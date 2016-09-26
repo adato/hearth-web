@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').factory('Conversations', [
-	'$resource',
+	'$resource', 'ConversationDataTransform',
 
-	function($resource) {
+	function($resource, ConversationDataTransform) {
 		return $resource($$config.apiPath + '/conversations/:id', {
 			id: '@id',
 		}, {
@@ -43,7 +43,8 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			get: {
 				method: 'GET',
-				ignoreLoadingBar: true
+				ignoreLoadingBar: true,
+				// transformResponse: [ConversationDataTransform.enrichWithTitles]
 			},
 			leave: {
 				url: $$config.apiPath + '/conversations/:id/leave',
@@ -108,7 +109,7 @@ angular.module('hearth.services').factory('Conversations', [
 					state: 'unread'
 				}
 			},
-			setReaded: {
+			markAsRead: {
 				url: $$config.apiPath + '/conversations/:id/read',
 				method: 'POST'
 			},

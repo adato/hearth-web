@@ -57,13 +57,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * @param  {Function} done [description]
 				 * @return {[type]}        [description]
 				 */
-				$scope.loadMessages = function(config, done, dontMarkAsReaded) {
+				$scope.loadMessages = function(config, done) {
 					var lockCounter = $scope.lockCounter;
 
 					config = angular.extend(config || {}, {
 						id: $scope.info._id,
-						limit: _messagesCount,
-						no_read: !!dontMarkAsReaded
+						limit: _messagesCount
 					});
 
 					Conversations.getMessages(
@@ -85,9 +84,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * If we have space on top, load older messages
 				 * also add parameter to dont mark conversation as readed when loading messages
 				 */
-				$scope.testOlderMessagesLoading = function(dontMarkAsReaded) {
+				$scope.testOlderMessagesLoading = function(dontMarkAsRead) {
 					if ($(".nano-content", element).scrollTop() < 100)
-						$scope.loadOlderMessages(dontMarkAsReaded);
+						$scope.loadOlderMessages(dontMarkAsRead);
 				};
 
 				$scope.onContentScrolling = function() {
@@ -234,20 +233,22 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * Transform conversation info so we can use it in view
 				 */
 				$scope.deserialize = function(conversation) {
-					conversation.titleDetail = conversation.title;
-					conversation.titleCustom = false;
+					// THIS IS DONE ALREADY ON CONV GET FFS
 
-					if (!conversation.title) {
-						conversation.titleDetail = [];
-						conversation.titleCustom = true;
-
-						// use first three participants names if we dont have title
-						for (var i = 0; i < 3 && i < conversation.participants.length; i++) {
-							var user = conversation.participants[i];
-							conversation.titleDetail.push(user.name);
-						};
-						conversation.titleDetail = conversation.titleDetail.join(", ");
-					}
+					// conversation.titleDetail = conversation.title;
+					// conversation.titleCustom = false;
+					//
+					// if (!conversation.title) {
+					// 	conversation.titleDetail = [];
+					// 	conversation.titleCustom = true;
+					//
+					// 	// use first three participants names if we dont have title
+					// 	for (var i = 0; i < 3 && i < conversation.participants.length; i++) {
+					// 		var user = conversation.participants[i];
+					// 		conversation.titleDetail.push(user.name);
+					// 	};
+					// 	conversation.titleDetail = conversation.titleDetail.join(", ");
+					// }
 
 					return conversation;
 				};
@@ -274,11 +275,11 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 					Messenger.decrUnreaded();
 					$scope.info.read = true;
-					Conversations.setReaded({
+					Conversations.markAsRead({
 						id: $scope.info._id
 					});
 
-					$scope.$emit('currentConversationAsReaded');
+					//  $scope.$emit('currentConversationAsReaded');
 				};
 
 				/**
@@ -380,8 +381,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 */
 				$scope.loadParticipants = function() {
 					Conversations.getParticipants({
-						id: $scope.info._id,
-						exclude_self: true
+						id: $scope.info._id
 					}, function(res) {
 						$scope.participants = res.participants;
 						$scope.resizeTMessagesBox(); // resize with timeout

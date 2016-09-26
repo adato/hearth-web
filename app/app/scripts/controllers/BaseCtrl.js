@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableSocketWrangler', 'ActionCableChannel', 'ScrollService',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableSocketWrangler, ActionCableChannel, ScrollService) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableSocketWrangler', 'ActionCableChannel', 'ScrollService', 'ConversationAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableSocketWrangler, ActionCableChannel, ScrollService, ConversationAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -904,15 +904,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 
 			// Callback function that will dispatch WSNewMessage event
-			var callback = function(message) {
-				Messenger.loadCounters();
-				$rootScope.$broadcast('WSNewMessage', message);
-			};
+			// var callback = function(message) {
+			// TODO - cleanup after these
+			// Messenger.loadCounters();
+			// $rootScope.$broadcast('WSNewMessage', message);
+			// /TODO
+			// };
 
 			ActionCableSocketWrangler.start();
 
 			// Subscribe to the message channel
-			consumer.subscribe(callback).then(function() {});
+			consumer.subscribe(ConversationAux.handleEvent);
 		});
 
 		// expose rights check for use in templates
