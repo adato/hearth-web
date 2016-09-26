@@ -38,16 +38,16 @@
 				<span ng-show="addMessageForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 			</div>
 		</div>
-		<div id="message-footer" class="display-flex flex-space-between">
-			<div>
-				<a ng-click="close()" class="revert-changes" tabindex="0">{{:: 'CANCEL' | translate }}</a>
-			</div>
-			<div class="display-flex">
-				<files-picker ng-model="message.attachments_attributes" files-multiple="true"></files-picker>
+		<div id="message-footer" class="display-flex flex-space-between flex-reverse">
+			<div class="display-flex flex-reverse">
 				<button ng-disabled="sendingMessage" type="submit" class="button-send">
 					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
 					{{:: 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
 				</button>
+				<files-picker ng-model="message.attachments_attributes" files-multiple="true"></files-picker>
+			</div>
+			<div>
+				<a ng-click="close()" class="revert-changes" tabindex="0">{{:: 'CANCEL' | translate }}</a>
 			</div>
 		</div>
 	</form>
