@@ -125,7 +125,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.markAsRead = function(conversation) {
 			if (conversation.read) return;
-			console.log(conversation);
+			// console.log(conversation);
 
 			Conversations.markAsRead({
 				id: conversation._id
@@ -153,7 +153,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (!conversation) return false;
 			if ($scope.detail && conversation._id == $scope.detail._id) return false;
 
-			console.log('MARKING', markAsRead, conversation);
 			if (markAsRead) $scope.markAsRead(conversation);
 
 			$scope.showNewMessageForm = false;
@@ -309,7 +308,16 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// };
 
 		function loadConversations(cb) {
-			ConversationAux.loadConversations().then(function(conversations) {
+			var params = {
+				wipe: true
+			};
+			if ($scope.filter) {
+				if ($scope.filter.type) params.filterType = $scope.filter.type;
+				if ($scope.filter.query) params.query = $scope.filter.query;
+				if ($scope.filter.post_id) params.post_id = $scope.filter.post_id;
+			}
+			console.log(params);
+			ConversationAux.loadConversations(params).then(function(conversations) {
 				$scope.conversations = conversations;
 				if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) return (cb && typeof(cb) === 'function' ? cb(true) : false);
 				ConversationAux.loadConversation($state.params.id).then(function(conversation) {

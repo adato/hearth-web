@@ -44,7 +44,7 @@ angular.module('hearth.services').factory('Conversations', [
 			get: {
 				method: 'GET',
 				ignoreLoadingBar: true,
-				// transformResponse: [ConversationDataTransform.enrichWithTitles]
+				transformResponse: [ConversationDataTransform.enrichWithTitles]
 			},
 			leave: {
 				url: $$config.apiPath + '/conversations/:id/leave',

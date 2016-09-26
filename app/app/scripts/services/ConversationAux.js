@@ -6,12 +6,14 @@
  * @description functions and cache for conversations
  */
 
-angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', function($q, Conversations) {
+angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', function($q, Conversations, $location) {
 
 	var conversationList = [],
 		conversationListLoading,
 		conversationListLoaded,
 		conversationGetLimit = 20;
+
+	// var validConversationFilters = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
 
 	var factory = {
 		handleEvent: handleEvent,
@@ -22,10 +24,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	return factory;
 
 	///////////////
-
-	// function deserializeConversation(conversation) {
-	// 	return conversation;
-	// }
 
 	/**
 	 *	@param {Object} socketEvent
@@ -54,6 +52,9 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *	- {Boolean} wipe - remove all items from the conversation list before adding new
 	 *	- {Int} limit - how many should be fetched
 	 *	- {Int} offset - how many should be skipped
+	 *	- {String} filterType - filter - type
+	 *	- {String} post_id - filter - only conversations about a specific marketplace post
+	 *	- {String} query - filter - only conversations matching the query
 	 *	- {Boolean} prepend - if TRUE - the fetched conversations shall be prepended to the list, instead of appending
 	 */
 	function loadConversations(paramObject) {
@@ -63,19 +64,20 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			conversationListLoading = true;
 			var params = {
 				limit: paramObject.limit || conversationGetLimit,
-				offset: paramObject.offset || 0,
-
+				offset: paramObject.offset || 0
 			}
+			if (paramObject.filterType) params[paramObject.filterType] = true;
+			if (paramObject.post_id) params.post_id = paramObject.post_id;
+			if (paramObject.query) params.query = paramObject.query;
+
+			console.log(params);
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;
 				if (paramObject.wipe) conversationList.length = 0;
-				// for (var i = res.conversations.length; i--; deserializeConversation(res.conversations[i])) {}
 				conversationList[paramObject.prepend ? 'unshift' : 'push'].apply(conversationList, res.conversations);
 
 				console.log(conversationList);
-				// console.log(conversationList);
-
 				resolve(conversationList);
 			}, reject);
 		});
