@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 		production: 'prod'
 	}
 
-	var env = grunt.option('target') || environment.development;
+	var env = environment[grunt.option('target')] || environment.development;
 
 	var landingPageSrcFolder = 'landing-page-src',
 		landingPageDestFolder = 'dist';
