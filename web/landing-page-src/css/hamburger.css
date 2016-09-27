@@ -2,12 +2,11 @@
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
  * @author Jonathan Suh @jonsuh
- * @site https://jonsuh.com/hamburgers
- * @link https://github.com/jonsuh/hamburgers
+ * @site jonsuh.com/hamburgers
+ * @link github.com/jonsuh/hamburgers
  */
 .hamburger {
   padding: 0;
-  display: inline-block;
   cursor: pointer;
   transition-property: opacity, -webkit-filter;
   transition-property: opacity, filter;
@@ -24,16 +23,26 @@
   .hamburger:hover {
     opacity: 0.7; }
 
+/** CONTRACTED HEADER **/
+.header-wrapper.contracted .hamburger-box,
+
 .hamburger-box {
   width: 25px;
   height: 25px;
   display: inline-block;
-  position: relative; }
+  position: relative;
+}
 
 .hamburger-inner {
   display: block;
   top: 50%;
   margin-top: -2px; }
+
+  /** CONTRACTED HEADER **/
+  .header-wrapper.contracted .hamburger-inner,
+  .header-wrapper.contracted .hamburger-inner::before,
+  .header-wrapper.contracted .hamburger-inner::after,
+
   .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
     width: 25px;
     height: 4px;
@@ -44,7 +53,8 @@
     transition-property: transform;
     transition-property: transform, -webkit-transform;
     transition-duration: 0.05s;
-    transition-timing-function: ease; }
+    transition-timing-function: ease;
+  }
   .hamburger-inner::before, .hamburger-inner::after {
     content: '';
     display: block; }
@@ -55,9 +65,14 @@
 /*
  * Spring
  */
+
+/** CONTRACTED HEADER **/
+.header-wrapper.contracted .hamburger--spring .hamburger-inner,
+
 .hamburger--spring .hamburger-inner {
   top: 2px;
-  transition: background-color 0s 0.15s linear; }
+  transition: background-color 0s 0.15s linear;
+}
   .hamburger--spring .hamburger-inner::before {
     top: 10px;
     transition: top 0.06s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), -webkit-transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
