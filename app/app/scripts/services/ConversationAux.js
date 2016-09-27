@@ -8,6 +8,11 @@
 
 angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', function($q, Conversations, $location) {
 
+	var ACTION_NEW_CONVERSATION = 'conversationCreated',
+		ACTION_NEW_MESSAGE = 'message',
+		ACTION_CONVERSATION_READ = 'conversationMarkedRead',
+		ACTION_CONVERSATION_UNREAD = 'conversationMarkedUnread';
+
 	var conversationList = [],
 		conversationListLoading,
 		conversationListLoaded,
@@ -30,6 +35,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 */
 	function handleEvent(socketEvent) {
 		console.log(socketEvent);
+
+		switch (socketEvent.action) {
+			case:
+		}
 	}
 
 	/**
