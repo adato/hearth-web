@@ -17,6 +17,7 @@
 		notLoggedSelector = '[user-not-logged]',
 		profileSectionSelector = '#profileSection',
 		profileAvatarSelector = '[profile-image]',
+		profileAvatarDefault = '/img/no-avatar.jpg',
 		profileFullNameSelector = '[profile-name]',
 		profileLinkSelector = '[profile-link]',
 		logoutNodeIdentificator = '[logout]';
@@ -74,7 +75,7 @@
 	function fillProfile(profileObject) {
 		profileLogged();
 
-		fe($(profileAvatarSelector), function(el) {el.setAttribute('src', profile.avatar.normal);});
+		fe($(profileAvatarSelector), function(el) {el.setAttribute('src', profile.avatar.normal || profileAvatarDefault);});
 		fe($(profileFullNameSelector), function(el) {el.innerHTML = [profile.name, profile.surname].join('\u00A0').trim();});
 		fe($(profileLinkSelector), function(el) {el.setAttribute('href', '/app/profile/' + profile._id);});
 	}
