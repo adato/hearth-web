@@ -8,10 +8,12 @@
 
 angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', function($q, Conversations, $location) {
 
-	var ACTION_NEW_CONVERSATION = 'conversationCreated',
-		ACTION_NEW_MESSAGE = 'message',
-		ACTION_CONVERSATION_READ = 'conversationMarkedRead',
-		ACTION_CONVERSATION_UNREAD = 'conversationMarkedUnread';
+	var ACTION_NEW_CONVERSATION = 'created',
+		ACTION_NEW_MESSAGE = 'created',
+		ACTION_CONVERSATION_READ = 'read',
+		ACTION_CONVERSATION_UNREAD = 'unread',
+		ACTION_CONVERSATION_ARCHIVED = 'archived',
+		ACTION_CONVERSATION_DELETED = 'deleted';
 
 	var conversationList = [],
 		conversationListLoading,
@@ -31,15 +33,40 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	///////////////
 
 	/**
-	 *	@param {Object} socketEvent
+	 *	@param {Object} socketEvent - event coming from socket with one the following actions:
+	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
 		console.log(socketEvent);
 
 		switch (socketEvent.action) {
-			case:
+			case ACTION_NEW_CONVERSATION:
+			case ACTION_NEW_MESSAGE:
+				return handleNewConversationOrMessage(socketEvent);
+			case ACTION_CONVERSATION_READ:
+				return handleConversationReadStatus(socketEvent, true);
+			case ACTION_CONVERSATION_UNREAD:
+				return handleConversationReadStatus(socketEvent, false);
+			case ACTION_CONVERSATION_ARCHIVED:
+				return handleConversationArchived(socketEvent);
+			case ACTION_CONVERSATION_DELETED:
+				return handleConversationDeleted(socketEvent);
 		}
 	}
+
+	function handleNewConversationOrMessage(socketEvent) {
+
+	}
+	function handleConversationReadStatus(socketEvent, readStatus) {
+
+	}
+	function handleConversationArchived(socketEvent) {
+
+	}
+	function handleConversationDeleted(socketEvent) {
+
+	}
+
 
 	/**
 	 *	@param {Int} id [optional] - id of the conversation to resolve, or first conversation found
