@@ -57,12 +57,15 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	function handleNewConversationOrMessage(socketEvent) {
 
 	}
-	function handleConversationReadStatus(socketEvent, readStatus) {
 
+	function handleConversationReadStatus(socketEvent, readStatus) {
+		// getConversation(socketEvent.conversation)
 	}
+
 	function handleConversationArchived(socketEvent) {
 
 	}
+
 	function handleConversationDeleted(socketEvent) {
 
 	}
