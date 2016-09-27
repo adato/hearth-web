@@ -1,5 +1,13 @@
 module.exports = function(grunt) {
 
+	var environment = {
+		development: 'dev',
+		staging: 'stage',
+		production: 'prod'
+	}
+
+	var env = grunt.option('target') || environment.development;
+
 	var landingPageSrcFolder = 'landing-page-src',
 		landingPageDestFolder = 'dist';
 
@@ -26,9 +34,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
     			src: [
-					landingPageSrcFolder + '/js/config.js',
+					landingPageSrcFolder + '/js/config-' + env + '.js',
 					landingPageSrcFolder + '/js/libs.js',
-					// landingPageSrcFolder + '/js/language.js',
 					landingPageSrcFolder + '/js/testimonials.js',
 					landingPageSrcFolder + '/js/referrals.js',
 					landingPageSrcFolder + '/js/blogposts.js',
