@@ -1,5 +1,5 @@
 ;(function(window, config) {
-	'use strict'
+	'use strict';
 
 	// window.aeg should be defined in <head /> because of language
 	// redirect cookie factory dependecy, so we just extend it
