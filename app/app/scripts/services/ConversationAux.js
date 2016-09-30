@@ -22,6 +22,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 
 	// var validConversationFilters = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
 
+	var FILTER_ARCHIVE = 'archive';
+
 	var factory = {
 		handleEvent: handleEvent,
 		loadConversation: loadConversation,
@@ -55,21 +57,34 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	function handleNewConversationOrMessage(socketEvent) {
-
+		return conversationList.unshift(socketEvent.conversation);
 	}
 
 	function handleConversationReadStatus(socketEvent, readStatus) {
-		// getConversation(socketEvent.conversation)
+		for (var i = conversationList.length;i--;) {
+			if (conversationList[i]._id === conversationId) return conversationList[i].read = readStatus;
+		}
+		return false;
 	}
 
-	function handleConversationArchived(socketEvent) {
-
+	function handleConversationListChange(socketEvent) {
+		if (conversationFilter.current === FILTER_ARCHIVE) {
+			return conversationList.unshift(socketEvent.conversation);
+		} else {
+			return removeConversationFromList(socketEvent.conversation._id);
+		}
 	}
 
 	function handleConversationDeleted(socketEvent) {
-
+		return removeConversationFromList(socketEvent.conversation._id);
 	}
 
+	function removeConversationFromList(conversationId) {
+		for (var i = conversationList.length;i--;) {
+			if (conversationList[i]._id === conversationId) return conversationList.splice(i, 1);
+		}
+		return false;
+	}
 
 	/**
 	 *	@param {Int} id [optional] - id of the conversation to resolve, or first conversation found
