@@ -208,6 +208,12 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.showError.contact_email = true;
 			}
 
+			if (typeof $scope.userLanguage !== 'undefined' && $scope.userLanguage.length == 0) {
+				res = false;
+				$scope.showError.user_language = true;
+			}
+
+
 			if (!$scope.validateSocialNetworks()) {
 				res = false;
 			}

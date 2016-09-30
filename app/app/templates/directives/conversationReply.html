@@ -19,16 +19,16 @@
 				<span ng-show="msgReplyForm.text.$error.required">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
 			</div>
 		</div>
-		<div id="message-footer" class="display-flex flex-space-between">
-			<div>
-				<a class="hide-for-large-up cancel-changes" ng-click="closeConversation()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
-			</div>
-			<div class="display-flex">
-				<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
+		<div id="message-footer" class="display-flex flex-space-between flex-reverse">
+			<div class="display-flex flex-reverse">
 				<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">
 					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
 					{{:: 'SEND' | translate }}
 				</button>
+				<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
+			</div>
+			<div>
+				<a class="hide-for-large-up cancel-changes" ng-click="closeConversation()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
 			</div>
 		</div>
 	</form>

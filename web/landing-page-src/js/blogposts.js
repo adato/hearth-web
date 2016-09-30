@@ -1,5 +1,5 @@
 ;(function(window, config) {
-	'use strict'
+	'use strict';
 
 	var request = window.aeg.request,
 		$ = window.aeg.$,

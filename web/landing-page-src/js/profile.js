@@ -1,5 +1,5 @@
 ;(function(window, config) {
-	'use strict'
+	'use strict';
 
 	var $ = window.aeg.$,
 		cookieFactory = window.aeg.cookieFactory,

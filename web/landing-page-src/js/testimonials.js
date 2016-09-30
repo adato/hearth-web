@@ -1,5 +1,5 @@
 ;(function(window) {
-	'use strict'
+	'use strict';
 
 	var $ = window.aeg.$,
  		fe = window.aeg.fe,
