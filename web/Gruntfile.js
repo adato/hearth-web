@@ -43,7 +43,8 @@ module.exports = function(grunt) {
 					landingPageSrcFolder + '/js/dots-navigation.js',
 					landingPageSrcFolder + '/js/slideshow.js',
 					landingPageSrcFolder + '/js/profile.js',
-					landingPageSrcFolder + '/js/script.js'
+					landingPageSrcFolder + '/js/script.js',
+					landingPageSrcFolder + '/js/hotjar.js',
 				],
     			dest: landingPageDestFolder + '/js/main.js',
 			},

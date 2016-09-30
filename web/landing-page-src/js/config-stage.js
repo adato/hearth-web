@@ -5,7 +5,9 @@
 		apiPath: 'https://api.stage.hearth.net',
 		authTokenIdentificator: 'authToken',
 
-		blogPostLimit: 3
+		blogPostLimit: 3,
+
+		hotjar: '56501'
 	};
 
 })(window);
