@@ -151,18 +151,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.filter.query && $scope.applyFilter();
 		};
 
-		$scope.markReaded = function(conversation) {
-			if (conversation.read) {
-				return false;
-			}
-
-			Conversations.setReaded({
-				id: conversation._id
-			}, function(res) {
-				conversation.read = true;
-			});
-		};
-
 		/**
 		 * This will show requested conversation in right column
 		 * and optionally mark it as readed
@@ -174,13 +162,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		/*
 		   This will fetch the conversation and mark it as read
 		*/
-		$scope.showConversation = function(conversation, markAsRead) {
+		$scope.showConversation = function(conversation) {
 			var title;
-
-			if (markAsRead === true) {
-				// set it as "read" when it already isnt
-				$scope.markReaded(conversation);
-			}
 
 			if ($scope.detail && conversation._id == $scope.detail._id) {
 				return false;
@@ -198,6 +181,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// enable counters loading after URL is changed
 			$timeout(function() {
 				$scope.$broadcast('updateTitle');
+				$scope.$broadcast('currentConversationAsReaded', $scope.detail);
 			});
 		};
 
@@ -273,7 +257,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if ($scope.conversations && $scope.conversations.length) {
 				for (var i = $scope.conversations.length; i--;) {
 					if ($scope.conversations[i]._id == id) {
-						return $scope.showConversation($scope.conversations[i], false);
+						return $scope.showConversation($scope.conversations[i]);
 					}
 				}
 			}
@@ -285,7 +269,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				id: id
 			}, function(res) {
 				$scope.notFound = false;
-				$scope.showConversation($scope.deserializeConversation(res), false);
+				$scope.showConversation($scope.deserializeConversation(res));
 			}, function() {
 				$scope.notFound = true;
 			});
@@ -325,7 +309,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					return $location.url("/messages");
 				}
 				// if we should switch to the first conversation at the top
-				$scope.showConversation($scope.conversations[0], false);
+				$scope.showConversation($scope.conversations[0]);
 				$timeout(function() {
 					$scope.$broadcast("scrollbarResize");
 					$scope.$broadcast("classIfOverflowContentResize");
@@ -342,7 +326,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				if (paramId) {
 					$scope.loadConversationDetail(paramId);
 				} else if (list.length) {
-					$scope.showConversation(list[0], false);
+					$scope.showConversation(list[0]);
 				}
 			});
 		};
@@ -414,7 +398,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 						return false;
 					}
 
-					$scope.showConversation(list[0], false);
+					$scope.showConversation(list[0]);
 				}
 			});
 		};
@@ -424,7 +408,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (params.id) {
 				$scope.loadConversationDetail(params.id, true);
 			} else if ($scope.conversations.length) {
-				$scope.showConversation($scope.conversations[0], false);
+				$scope.showConversation($scope.conversations[0]);
 			}
 		};
 
