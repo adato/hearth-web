@@ -45,23 +45,23 @@
 										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;">
 											<li>
 												<!-- bookmark post -->
-												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-												<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+												<a ng-if="! isMine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
 												<!-- bookmark post -->
 											</li>
 											<li>
 												<!-- flag post -->
-												<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-												<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+												<a ng-if="! isMine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 												<!-- flag post -->
 											</li>
 											<li>
 												<!-- hide post -->
-												<a ng-if="!mine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
 												<!-- /hide post -->
 											</li>
 											<li>
-												<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+												<a ng-if="! isMine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 											</li>
 
 											<!-- admin only -->
