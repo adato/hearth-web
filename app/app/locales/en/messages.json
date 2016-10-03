@@ -29,7 +29,7 @@
 			"CANCEL_FILTER_BAR": "Remove filter",
 			"KM": "Km",
 			"CLOSE_FILTER": "Close a filter",
-			"BY_CHARACTER": "By Category"
+			"BY_CHARACTER": "By Nature"
 		},
 		"POST": {
 			"FLAG_POST": "Report abusive post",
@@ -38,7 +38,7 @@
 			"SHARE_WITH": "Share via",
 			"PUBLISHED_AT": "Added",
 			"REMOVE_FROM_COMMUNITY": "Remove from Community",
-			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
+			"CLICK_TO_COLLAPSE": "View brief description",
 			"SHARE_LINK": "Share link",
 			"UNBOOKMARK_POST": "Remove from favourites",
 			"BOOKMARK_POST": "Add to favourites",
@@ -47,20 +47,20 @@
 		"EDIT_FILTER": "Edit filter",
 		"FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
 		"RESET_FILTER": "Reset filter",
-		"NOTHING_FOUND": "Keep calm and meditate. Something has gone wrong, there are no posts.",
+		"NOTHING_FOUND": "Something has gone wrong. Give us a sec please and then try again.",
 		"SHOW_POSTS_IN_LIST": "Show posts in list",
 		"SHOW_POSTS_ON_MAP": "Show posts on map",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
 		"CREATE_NEW_ADD": "Add a new gift or wish",
-		"REFRESH_AFTER_ERROR": "Případně zkus načíst inzeráty znovu.",
+		"REFRESH_AFTER_ERROR": "Or try reload the posts again.",
 		"USER": {
-			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+			"INFO_NOT_FILLED": "User has not given any personal info yet."
 		},
 		"COMMUNITY": {
-			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+			"INFO_NOT_FILLED": "Community has not given any info yet"
 		},
-		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
-		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku<\/strong><\/a>."
+		" SHOW_POSTS_ON_MAP": "View posts on a map",
+		"NOT_ON_FIRST_PAGE": "We reloaded the Marketplace at around the spot you have finished browsing. You can still reload again  <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>from the beginning<\/strong><\/a>."
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -78,8 +78,8 @@
 		"SUSPEND": {
 			"LABEL": "Suspend post",
 			"ARE_YOU_SURE": "Do you want to suspend this post?",
-			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit.",
-			"CONNECTED_MESSAGE": "Ahoj,\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
+			"CONNECTED_MESSAGE_PLACEHOLDER": "Please send a few words to the user of a suspended post about why did you decide to suspend it.",
+			"CONNECTED_MESSAGE": "Hello,\n\nas a Hearth.net custodian I just suspended your gift\/wish {{post_type}} {{post_title}} ({{post_url}}), because its contents is in breach of Hearth.net Terms and conditions (https:\/\/www.hearth.net\/app\/terms).\n\nPlease edit the text of your gift\/wish so it complies with Hearth.net TCO and publish again or if not possible, delete the gift\/wish.\n\nFor Hearth.net custodians community – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
 			"LABEL": "Resume"
@@ -89,13 +89,13 @@
 		},
 		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
 		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed.",
-		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem",
-		"LANGUAGE": "Jazyk inzerátu",
+		"SUSPENDED_BY_ADMIN": "Suspended by admin",
+		"LANGUAGE": "Ad language",
 		"FOLLOW": {
-			"LABEL": "Sledovat inzerát"
+			"LABEL": "Watch the post"
 		},
 		"UNFOLLOW": {
-			"LABEL": "Přestat inzerát sledovat"
+			"LABEL": "Stop watching the post"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
@@ -253,7 +253,7 @@
 				"RECIPIENTS_NOT_FILLED": "Don't forget to fill in the message recipients. Like at the post office."
 			},
 			"RECIPIENT": "To:",
-			"AS_ADMIN": "Odeslat jako správce"
+			"AS_ADMIN": "Send as admin"
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
@@ -301,7 +301,7 @@
 			"EMPTY_HEADER": "You have no conversations here. Can you hear the... silence?",
 			"EMPTY_TEXT": "...",
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
-			"EMPTY": "<p>Je n&aacute;m l&iacute;to, ale dostali jste se na konverzaci, kter&aacute; už neexistuje nebo k n&iacute; nem&aacute;te př&iacute;stup. Pokud si mysl&iacute;te, že se jedn&aacute; o chybu, <a title=\"feedback\" href=\"\/app\/feedback\">dejte n&aacute;m o tom pros&iacute;m vědět<\/a>.<\/p>"
+			"EMPTY": "<p>Sorry but you are trying to get into conversation that no longer exist or you cannot access it. If you think it is an error, <a title=\"feedback\" href=\"\/app\/feedback\">please let us know<\/a>.<\/p>"
 		},
 		"ARCHIVE_CONVERSATION": "Archive conversation",
 		"ARCHIVE_CONFIRM": {
@@ -958,16 +958,16 @@
 		"CONVERSATION_ARCHIVE_FAILED": "There was an error in the archive. Those archives! ",
 		"RATING_REPLY_SUCCESS": "That's it! Comment was added successfully.",
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
-		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační e-mail byl zaslán na tvou e-mailovou adresu.",
-		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního e-mailu došlo k chybě.",
-		"API_ERROR": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
-		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
-		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
-		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
-		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
+		"REACTIVATING_EMAIL_WAS_SENT": "Activation e-mail has been sent to your e-mail address.",
+		"REACTIVATING_EMAIL_FAILED": "There was an error while sending activation e-mail.",
+		"API_ERROR": "<p>Something went wrong, please try again in a while and <a href=\"\/app\/feedback\">do let us know<\/a> if it doesn't help. Thanks!<\/p>",
+		"POST_BOOKMARKED_SUCCESFULLY": "Nice! Adding post to favourites was successful.",
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Post was removed from the favourites... Lost its charm?",
+		"COMMUNITY_RATING_ADD_FAILED": "There was an error when adding rating.",
+		"ATTACHMENT_DOWNLOAD_FAILED": "Attachment failed to download.",
 		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results.",
-		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
+		"POST_FOLLOWED_SUCCESFULLY": "Good! You watch the post now.",
+		"POST_UNFOLLOWED_SUCCESFULLY": "You no longer watch the post."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
@@ -1120,7 +1120,7 @@
 			"NO_POSTS_ME": "Attention! You haven't created any ads so far. Let's set it right. You can give or accept anything that comes into your mind.",
 			"NO_POSTS_OTHER": "User hasn't given or accepted anything. Maybe they are looking around or simply answering others' ads.",
 			"NO_RECEIVED_RATINGS_ME": "You haven't been bold enough to reply to an ad yet. So nobody has had the chance to post a couple of nice words in exchange...",
-			"NO_POSTS_BOOKMARKED": "You have no favourite posts yet."
+			"NO_POSTS_BOOKMARKED": "You have no favourite gifts and wishes yet."
 		},
 		"TOP": {
 			"KARMA_NO_RATING_ME": "With your first rating, we'll add a splash of color here.",
@@ -1144,13 +1144,13 @@
 		"RATING": {
 			"OPEN_REPLY_FORM": "Add comment",
 			"REPLY_TO_USER": "Reply to rating from",
-			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+			"FILTERED": "This rating has been removed due to the breach of Hearth.net Terms and conditions (advertising, inappropriate content et al.)"
 		},
 		"CONTACT": {
-			"VISIBILITY_NOBODY": "Nikdo",
-			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
-			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
-			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
+			"VISIBILITY_NOBODY": "Nobody",
+			"VISIBILITY_FOLLOWEES": "I follow",
+			"VISIBILITY_EVERYBODY": "Logged-in users",
+			"WHO_CAN_SEE_IT": "Who can view it"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
@@ -1316,26 +1316,26 @@
 	"ERROR_BAD_IMAGE_SIZE_ALL": "Total size of uploaded images cannot exceed {{maxSize}}MB.",
 	"RELOAD_PAGE": "Reload the page",
 	"TOP_BAR": {
-		"ADD_NEW_POST": "New Gift\/Wish",
+		"ADD_NEW_POST": "New gift\/wish",
 		"SEARCH": {
-			"EVERYWHERE": "Všude",
-			"MARKET": "Na tržišti",
-			"COMMUNITY": "V komunitách",
-			"PEOPLE": "V lidech",
-			"MESSAGES": "Ve zprávách"
+			"EVERYWHERE": "Everywhere",
+			"MARKET": "At Marketplace",
+			"COMMUNITY": "In communities",
+			"PEOPLE": "In people",
+			"MESSAGES": "In messages"
 		}
 	},
-	"ERROR_WHILE_UPLOADING": "Při nahrávání došlo k chybě",
-	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
-	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
-	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;&scaron; ji i ty? Svůj profil vytvoř&iacute;&scaron; během chvilky a svět darů je r&aacute;zem i tvůj.<\/p>",
-	"SIGNUP_HEADING_FB": "Come in",
+	"ERROR_WHILE_UPLOADING": "There was an error while loading",
+	"LOGIN_INACTIVE_ACCOUNT": "You are tyring to log in with account that has not been activated yet. By clicking the link in confirmation registration e-mail. You can e-mail with registration link...",
+	"RESEND_ACTIVATING_EMAIL": "Let send again",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. You can e-mail",
+	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net is a generous social network full of interesting people who dare to give. Do you? You can create your profile in a snap and the world of gifts is instantly yours.<\/p>",
+	"SIGNUP_HEADING_FB": "Join in",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Close and continue registration."
 	},
-	"SEARCH": "Hledat",
-	"COMMUNITY_HAS_REGISTERED": "Community registered",
+	"SEARCH": "Search",
+	"COMMUNITY_HAS_REGISTERED": "Community has been created",
 	"MEET_COMMUNITY": "Meet community",
 	"community-operate-in": "We operate in",
 	"MY_BOOKMARKS": "My favourites",
@@ -1343,19 +1343,19 @@
 	"SIGNUP_ERR_SHORT_FIRST_NAME": "This name is too short, it has to consist of at least 2 characters.",
 	"LAST_NAME": "Surname",
 	"communities": {
-		"suggested": "Vybrané komunity"
+		"suggested": "Selected communities"
 	},
 	"messages": {
-		"detail": "Detail konverzace",
-		"0": "Konverzace"
+		"detail": "Conversation detail",
+		"0": "Conversation"
 	},
-	"profileSettings": "Nastavení profilu",
+	"profileSettings": "Profile settings",
 	"LANGUAGE": {
 		"ENGLISH": "English",
-		"CZECH": "Čeština",
-		"SLOVAK": "Slovenčina"
+		"CZECH": "Czech",
+		"SLOVAK": "Slovak"
 	},
-	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>You are logging into Hearth.net with a third-party account (Facebook, Google, Twitter). However the system does not recognize this account. Perhaps you don't have a Hearth account yet, or have you registered before via email?<br \/><br \/>Try to recall and sign in with a different account, or <a href=\"{{ registerUrl }}\">register<\/a>.<\/p>",
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>You are logging into Hearth.net with a third-party account (Facebook, Google, Twitter). However the system does not recognize this account. Perhaps you don't have a Hearth account yet, or have you registered before via e-mail?<br \/><br \/>Try to remember and sign in with a different account, or <a href=\"{{ registerUrl }}\">register<\/a>.<\/p>",
 	"h1": {
 		"marketplace": "Marketplace",
 		"communities": "Communities",
@@ -1374,16 +1374,16 @@
 	},
 	"FULLTEXT": {
 		"FILTER": {
-			"BY_TYPE": "Podle obsahu",
+			"BY_TYPE": "By type",
 			"TYPE": {
-				"ALL": "Vše",
-				"POSTS": "Dary a přání",
-				"PEOPLE": "Lidé",
-				"COMMUNITY": "Komunity"
+				"ALL": "All",
+				"POSTS": "Gifts and wishes",
+				"PEOPLE": "People",
+				"COMMUNITY": "Communities"
 			},
-			"BY_LOCATION": "Podle umístění",
-			"BY_ACTIVITY": "Podle aktivity",
-			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní.",
+			"BY_LOCATION": "By location",
+			"BY_ACTIVITY": "By activity",
+			"ACTIVITY": "View long-time inactive posts too.",
 			"BY_LANGUAGE": "By language",
 			"LANGUAGE": {
 				"ALL": "Any",
@@ -1394,38 +1394,38 @@
 	},
 	"ADD_ATTACHMENT": "Attach file",
 	"CHANGE_ATTACHMENT": "Change file",
-	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
-	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
-	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>",
+	"ERR_RATING_SCORE_REQUIRED": "Before sending the rating, score is required",
+	"ERR_SOCIAL_NETWORK_NAME": "Social network link is not valid",
+	"APP_CRITICAL_ERROR": "<p>There was an error when loading Hearth.net.<\/p>\n<p>Wait a bit please and then try <a href=\".\">reload<\/a> the page again.<\/p>",
 	"INVITATION_STATUS": {
-		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
-		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
-		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je jako",
-		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
+		"INVITATION_SENT": "{{email}}: Yipee, invitation was sent successfuly!",
+		"USER_ALREADY_INVITED": "{{email}}: You have already invited this person to Hearth before.",
+		"USER_ALREADY_EXIST": "{{email}}: This person is already on Hearth as",
+		"INVITATION_NOT_SENT": "{{email}}: Invitation could not be sent. Perhaps invalid e-mail address?"
 	},
-	"COMMUNITY_MOTTO": "Stručně o komunitě",
-	"COMMUNITY_MOTTO_EXAMPLE": "Zadej stručné info o komunitě",
-	"ERR_COMMUNITY_MOTTO_MAX_LENGTH": "Stručné info o komunitě by mělo být stručnější :)",
+	"COMMUNITY_MOTTO": "Community motto",
+	"COMMUNITY_MOTTO_EXAMPLE": "Add brief community description",
+	"ERR_COMMUNITY_MOTTO_MAX_LENGTH": "Brief info about community should be really brief :)",
 	"OUR_FACEBOOK": "Facebook",
 	"OUR_TWITTER": "Twitter",
 	"OUR_LINKEDIN": "LinkedIn",
 	"OUR_GOOGLEPLUS": "Google+",
 	"OUR_WEB": "Web",
-	"COMMUNITY_INTERESTS": "Zájmy",
-	"COMMUNITY_INTERESTS_EXAMPLE": "Zadejte klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
-	"OUR_NETWORKS": "Sociální sítě a weby",
-	"USER_MOTTO": "Stručně o mně",
+	"COMMUNITY_INTERESTS": "Interests",
+	"COMMUNITY_INTERESTS_EXAMPLE": "Insert keywords divided by comma, ie.: education, civil society,...",
+	"OUR_NETWORKS": "Social networks and websites",
+	"USER_MOTTO": "About me in short",
 	"USER_MOTTO_EXAMPLE": "",
-	"ERR_USER_MOTTO_MAX_LENGTH": "Stručné info o mně by mělo být stručnější :)",
-	"ERR_INVALID_URL": "Tato adresa není platná",
+	"ERR_USER_MOTTO_MAX_LENGTH": "Brief info about me should really be brief :)",
+	"ERR_INVALID_URL": "This url address is invaild (or did you mean No. 404 )",
 	"CATEGORY_INFORMATION": "Information",
 	"CATEGORY_MASS": "Mass",
 	"CATEGORY_ENERGY": "Energy",
 	"POST_CATEGORY_LABEL": "Category",
-	"SELECT_CATEGORY_LABEL": "Select a category",
-	"ERR_AD_CATEGORY": "Category must be filled.",
+	"SELECT_CATEGORY_LABEL": "Select at least one nature of your post",
+	"ERR_AD_CATEGORY": "You must select the Nature.",
 	"FILE_TYPE": {
-		"INVALID_TYPE": "Promiň, ale soubory typu .{{type}} jako přílohu nepodporujeme."
+		"INVALID_TYPE": "Sorry, but we don't support files of .{{type}} type as an attachment."
 	},
 	"CATEGORY_INFORMATION_TEXT": "(knowledge, tips...)",
 	"CATEGORY_MASS_TEXT": "(things...)",
@@ -1433,23 +1433,23 @@
 	"ERR_AD_CATEGORY_MAX": "You can choose up to 2 categories.",
 	"BUBBLE": {
 		"MARKETPLACE_ITEM_MOOD": {
-			"TEXT": "Skvělé! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat."
+			"TEXT": "Awesome! We have added an option to Hearth for you to choose a nature with any gift\/wish. Soon you'll be able to view this info as well as ability to filter by that."
 		},
 		"MARKETPLACE_ITEM_BOOKMARK": {
-			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
+			"TEXT": "Did you know, you can add any gift or wish to the favourites so that you can access them later, whenever you want?"
 		},
 		"HIDE_POST": {
 			"TEXT": "<p><em>Tip:<\/em> You can mark any ad that bothers you and you no longer wish to see as hidden.<\/p>"
 		}
 	},
-	"energy_TOOLTIP": "Aktivita, myšlenka...",
-	"mass_TOOLTIP": "Věci...",
-	"information_TOOLTIP": "Znalosti, tipy...",
+	"energy_TOOLTIP": "Activity, idea...",
+	"mass_TOOLTIP": "Things...",
+	"information_TOOLTIP": "Knowledge, tips...",
 	"AD_HIDE_LABEL": "Hide ad",
 	"AD_HIDE_ARE_YOU_SURE": "After you hide this ad, it will no longer display in the Marketplace or search results. You will still see it in the profile of a given user and also be able to access the details of the post.",
 	"HIDE_AD": "Hide ad",
-	"USING_HEARTH_FROM_COUNTRY": "Nejčastěji Hearth používáš v této zemi",
-	"USER_LANGUAGE_AND_COUNTRY": "Jazyk a země",
+	"USING_HEARTH_FROM_COUNTRY": "You use Hearth most often in this country",
+	"USER_LANGUAGE_AND_COUNTRY": "Language and country",
 	"COUNTRY": {
 		"AF": "Afghanistan",
 		"AX": "Åland Islands",
@@ -1705,9 +1705,9 @@
 		"EH": "Western Sahara",
 		"ZW": "Zimbabwe"
 	},
-	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
-	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
-	"RATING_POST_TITLE": "Společné inzeráty",
-	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
+	"POSTS_RELATED_QUESTION": "Will any similar post catch your eye?",
+	"ERR_TEXT_TOO_LOUD": "Sorry to bother, but please do switch off the Caps Lock. Netiquette says it equals to SHOUTING plus it looks bad. Thanks :)",
+	"RATING_POST_TITLE": "Common posts",
+	"RATING_ACTIVE_POST_TITLE": "Other active posts",
 	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language"
 }
