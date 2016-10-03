@@ -44,13 +44,30 @@ input.bottom-line-input:focus {
 		padding-left: 10px;
 	}
 }
+
+.language-container {
+	.autocomplete-container {
+		display:inline-block;
+	}
+}
+
+
 @media #{$small-down} {
 	.filter .filter-inner {
 		label {
 			display: block !important;
 		}
 	}
+
+	.language-container {
+		.autocomplete-container {
+			display:block;
+		}
+	}
+
 }
 .radio-container {
 	padding-bottom: $size-small;
 }
+
+
