@@ -32,7 +32,7 @@
 						<div class="text-center no-result" ng-if="!conversations.length">
 							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
-						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, true)">
+						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item)">
 							<div class="avatars">
 								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="normal" type="person._type" ng-repeat="person in item.participants"></avatar>
 								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
@@ -53,7 +53,6 @@
 								<h2 ng-if="!item.title && item.titlePersons" title="{{item.titlePersons}}">{{ item.titlePersons }}
 									<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 								</h2>
-
 								<h2 ng-if="!item.title && !item.titlePersons">
 									{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
 								</h2>
