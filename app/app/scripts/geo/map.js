@@ -19,7 +19,8 @@ angular.module('hearth.geo').directive('map', [
 			replace: true,
 			scope: {
 				ads: "=",
-				center: "="
+				center: "=",
+				centerTo: "=",
 			},
 			// transclude: true,
 			link: function(scope, element) {
@@ -63,6 +64,13 @@ angular.module('hearth.geo').directive('map', [
 						height: 40,
 					}];
 
+				scope.listenerEnabled = true;
+				var idleListenerFunction = function() {
+					if (scope.listenerEnabled === true) {
+						$rootScope.$emit('searchRequest', map.getBounds().toJSON());
+					}
+				}
+
 				if (typeof templateSource !== 'string') {
 					templateSource = templateSource[1];
 				}
@@ -97,13 +105,12 @@ angular.module('hearth.geo').directive('map', [
 							//                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
 							oms.addListener('click', scope.onMarkerClick);
 
+							google.maps.event.addListener(map, 'idle', idleListenerFunction);
+
 							/**
 							 *	Attach listener to idle state to refresh data.
 							 *	I am not using bounds_changed event, as it is buggy and fires multiple times per map drag.
 							 */
-							google.maps.event.addListener(map, 'idle', function() {
-								$rootScope.$emit('searchRequest', map.getBounds().toJSON());
-							});
 
 						}, 100);
 					}
@@ -143,11 +150,17 @@ angular.module('hearth.geo').directive('map', [
 					});
 				};
 
+				var extendBounds = function(markers) {
+					var bounds = new google.maps.LatLngBounds();
+					markers.forEach(function(marker) {
+						bounds.extend(marker.getPosition());
+					});
+					return bounds;
+				}
+
 				// this will zoom to show all markers and center map view
 				scope.centerZoomToAll = function(markers) {
-					map.fitBounds(markers.reduce(function(bounds, marker) {
-						return bounds.extend(marker.getPosition());
-					}, new google.maps.LatLngBounds()));
+					map.fitBounds(extendBounds(markers));
 				};
 
 				scope.onMarkerClick = function(marker) {
@@ -177,6 +190,8 @@ angular.module('hearth.geo').directive('map', [
 				}
 
 				scope.createPins = function(e, ads) {
+					scope.listenerEnabled = false;
+
 					var i, j, ad, location, distanceBase, distance = false;
 					ads = ads || [];
 					markers = [];
@@ -186,7 +201,6 @@ angular.module('hearth.geo').directive('map', [
 						markerCluster.clearMarkers();
 						oms.clearMarkers();
 					} else {
-						// console.log('setting to false');
 						retainCurrentCollectionFlag = false;
 					}
 
@@ -213,10 +227,12 @@ angular.module('hearth.geo').directive('map', [
 							}
 						}
 					}
-
 					if (scope.center) scope.centerZoomToAll(markers);
 					markerCluster.addMarkers(markers);
 					markerCluster.repaint();
+					$timeout(function() {
+						scope.listenerEnabled = true;
+					}, 500);
 				};
 
 				/*                scope.zoomMarkerClusterer = function(cluster) {
@@ -226,6 +242,18 @@ angular.module('hearth.geo').directive('map', [
 
 				scope.initMap();
 				scope.$on('showMarkersOnMap', scope.createPins);
+
+				scope.$watch('centerTo', function(newVal, oldVal) {
+					if (newVal !== oldVal && newVal !== null) {
+
+						if (typeof newVal.lng === 'undefined') {
+							newVal.lng = newVal.lon;
+						}
+						map.setCenter(newVal);
+						map.setZoom(markerClusterMaxZoom + 1);
+						$rootScope.$emit('searchRequest', map.getBounds().toJSON());
+					}
+				});
 			}
 		};
 	}
