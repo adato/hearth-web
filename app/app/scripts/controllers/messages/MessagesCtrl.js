@@ -162,10 +162,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		/*
 		   This will fetch the conversation and mark it as read
 		*/
-		$scope.showConversation = function(conversation) {
+		$scope.showConversation = function(conversation, markAsRead) {
 			var title;
 
-			if ($scope.detail && conversation._id == $scope.detail._id) {
+			if ($scope.detail && conversation._id === $scope.detail._id) {
 				return false;
 			}
 
@@ -175,13 +175,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// dont load counter when we click on conversation detail
 			// (and change URL)
-			$location.url("/messages/" + conversation._id + "?" + jQuery.param($location.search()));
+			$location.url('/messages/' + conversation._id + '?' + jQuery.param($location.search()));
 
 
 			// enable counters loading after URL is changed
 			$timeout(function() {
 				$scope.$broadcast('updateTitle');
-				$scope.$broadcast('currentConversationAsReaded', $scope.detail);
+				if (markAsRead) {
+					$scope.$broadcast('currentConversationAsReaded', $scope.detail);
+				}
 			});
 		};
 
@@ -256,7 +258,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// but first try to find it in list
 			if ($scope.conversations && $scope.conversations.length) {
 				for (var i = $scope.conversations.length; i--;) {
-					if ($scope.conversations[i]._id == id) {
+					if ($scope.conversations[i]._id === id) {
 						return $scope.showConversation($scope.conversations[i]);
 					}
 				}
@@ -303,7 +305,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.conversations.splice(index, 1);
 
 			// and if it is currently open, jump to top
-			if (!dontSwitchConversation && id == $scope.detail._id) {
+			if (!dontSwitchConversation && id === $scope.detail._id) {
 				if (!$scope.conversations.length) {
 					$scope.detail = false;
 					return $location.url("/messages");
