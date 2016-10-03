@@ -232,7 +232,7 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.repaint();
 					$timeout(function() {
 						scope.listenerEnabled = true;
-					}, 300);
+					}, 500);
 				};
 
 				/*                scope.zoomMarkerClusterer = function(cluster) {

@@ -104,7 +104,7 @@ angular.module('hearth.geo').directive('searchMap', [
 						scope.setSearchParams(searchParams);
 					}
 
-					if (typeof boundingBox === 'undefined' || (typeof searchParams.lat !== 'undefined' && typeof searchParams.lon !== 'undefined')) {
+					if (typeof boundingBox === 'undefined' || (typeof searchParams.name !== 'undefined' && searchParams.name == '')) {
 						scope.center = true;
 					}
 
@@ -114,7 +114,7 @@ angular.module('hearth.geo').directive('searchMap', [
 				};
 
 				var len = scope.getUrlParams().name;
-				if (typeof len === 'undefined' || len == '') {
+				if (typeof len === 'undefined') {
 					scope.autodetectMyLocation();
 				} else {
 					scope.search();
