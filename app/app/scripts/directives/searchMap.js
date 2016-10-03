@@ -43,7 +43,6 @@ angular.module('hearth.geo').directive('searchMap', [
 						var location = place.geometry.location;
 						var dist = $location.search().distance;
 
-						console.log('init search from main loop')
 						scope.centerTo = {
 							lat: location.lat(),
 							lon: location.lng(),
@@ -88,7 +87,6 @@ angular.module('hearth.geo').directive('searchMap', [
 
 				// propagates changes from js object into url
 				scope.setSearchParams = function(params) {
-					console.log('save to url', params)
 					params = angular.extend(scope.getUrlParams(), params);
 					$location.search(params);
 
@@ -102,25 +100,21 @@ angular.module('hearth.geo').directive('searchMap', [
 					searchParams.map_output = 1;
 
 					if (typeof boundingBox !== 'undefined') {
-						console.log('bb:', boundingBox);
 						searchParams = angular.extend(searchParams, scope.getMapBoundingBoxParams(boundingBox));
 						scope.setSearchParams(searchParams);
 					}
 
-					if (typeof searchParams.lat !== 'undefined' && typeof searchParams.lon !== 'undefined') {
-						//						scope.center = true;
+					if (typeof boundingBox === 'undefined' || (typeof searchParams.lat !== 'undefined' && typeof searchParams.lon !== 'undefined')) {
+						scope.center = true;
 					}
 
-					console.log("query", searchParams)
 					Post.mapQuery(searchParams, function(data) {
-						// console.log(data);
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
 
-				var len = scope.getUrlParams().lat;
-				if (typeof len === 'undefined') {
-					console.log('autodetect location');
+				var len = scope.getUrlParams().name;
+				if (typeof len === 'undefined' || len == '') {
 					scope.autodetectMyLocation();
 				} else {
 					scope.search();
@@ -132,7 +126,6 @@ angular.module('hearth.geo').directive('searchMap', [
 				 */
 				var lastBoundingBoxUsed;
 				$rootScope.$on('searchRequest', function(event, boundingBox) {
-					console.log('searchrequest', boundingBox);
 					if (typeof lastBoundingBoxUsed !== 'undefined' && lastBoundingBoxUsed.south == boundingBox.south && lastBoundingBoxUsed.west === boundingBox.west && lastBoundingBoxUsed.east === boundingBox.east && lastBoundingBoxUsed.north === boundingBox.north) {} else {
 						scope.search(boundingBox);
 					}
@@ -141,11 +134,9 @@ angular.module('hearth.geo').directive('searchMap', [
 				});
 
 				scope.$on('filterReseted', function() {
-					console.log('filterresetted');
 					scope.search();
 				});
 				scope.$on('filterApplied', function() {
-					console.log('filterapplied');
 					scope.search();
 				});
 
