@@ -285,7 +285,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 			timeAgoService.init();
 			Notify.checkRefreshMessage();
-			Auth.isLoggedIn() && Messenger.loadCounters();
 
 		};
 
@@ -905,8 +904,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			// Callback function that will dispatch WSNewMessage event
 			var callback = function(message) {
-				Messenger.loadCounters();
 				$rootScope.$broadcast('WSNewMessage', message);
+				$rootScope.$broadcast('WSMessageCounter', message);
 			};
 
 			ActionCableSocketWrangler.start();
