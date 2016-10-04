@@ -369,8 +369,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
+		// returns ID of conversation to load OR false, depending on url params
 		$scope.getParamId = function() {
-			var parts = $location.url().split('/');
+			var parts = $location.path().split('/');
 			return parts.length > 2 ? parts[2] : false;
 		};
 
