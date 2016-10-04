@@ -151,7 +151,8 @@ angular.module('hearth').config([
 			.state('messages.detail', {
 				titleIgnore: true,
 				url: '/:id',
-				template: '<div>abcd dbawdwd</div>'
+				templateUrl: 'templates/messages/detail.html'
+					// template: '<conversation-detail global="true"></conversation-detail>'
 			})
 			.state('profile', {
 				title: false,

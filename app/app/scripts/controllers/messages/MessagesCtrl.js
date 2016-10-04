@@ -10,42 +10,54 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state',
 	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state) {
 
+		// start processing socket events
+		ConversationAux.init({
+			enableProcessing: true
+		});
+
 		$scope.filter = $location.search();
-		$scope.showNewMessageForm = false;
+
+		// $scope.showNewMessageForm = false;
+
 		$scope.loaded = false;
-		$scope.conversations = false;
-		$scope.notFound = false;
-		$scope.showFulltext = false;
-		$scope.detail = false;
 		$scope.loadingBottom = false;
 
-		var _loadLimit = 20; // pull requests interval in ms
+		// the conversation list
+		$scope.conversations = false;
 
-		if (!Object.keys($scope.filter).length) {
-			$scope.filter = {
-				query: null,
-				type: null,
-				post_id: null
-			}
-		}
+		$scope.notFound = false;
+		$scope.showFulltext = false;
 
-		$scope.toggleAddForm = function(conversation) {
-			if (conversation) {
-				$location.url('/messages/');
-				$scope.filter = {
-						query: null,
-						type: null,
-						post_id: null
-					}
-					// $scope.loadConversations({}, function(list) {
-					// 	$scope.loadConversationDetail(conversation._id);
-					// });
-				$scope.showConversation(conversation._id);
-				return;
-			}
+		// this variable holds the displayed conversation
+		$scope.detail = false;
 
-			$scope.showNewMessageForm = !$scope.showNewMessageForm;
-		};
+		// var _loadLimit = 20; // pull requests interval in ms
+
+		// if (!Object.keys($scope.filter).length) {
+		// 	$scope.filter = {
+		// 		query: null,
+		// 		type: null,
+		// 		post_id: null
+		// 	}
+		// }
+
+		// $scope.toggleAddForm = function(conversation) {
+		// 	if (conversation) {
+		// 		$location.url('/messages/');
+		// 		$scope.filter = {
+		// 				query: null,
+		// 				type: null,
+		// 				post_id: null
+		// 			}
+		// 			// $scope.loadConversations({}, function(list) {
+		// 			// 	$scope.loadConversationDetail(conversation._id);
+		// 			// });
+		// 		// $scope.showConversation(conversation._id);
+		// 		return;
+		// 	}
+		//
+		// 	$scope.showNewMessageForm = !$scope.showNewMessageForm;
+		// };
 
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
@@ -86,7 +98,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// };
 
 		$scope.loadNewConversations = function() {
-			$scope.$broadcast('loadNewMessages');
+			// $scope.$broadcast('loadNewMessages');
 
 			if (!$scope.conversations.length) {
 				return loadConversations();
@@ -102,18 +114,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			ConversationAux.loadConversations(config);
 		};
 
-		$scope.removeDuplicitConversations = function(list) {
-			list.forEach(function(item) {
-				$scope.removeConversationFromList(null, item._id, true);
-			});
-		};
+		// $scope.removeDuplicitConversations = function(list) {
+		// 	list.forEach(function(item) {
+		// 		$scope.removeConversationFromList(null, item._id, true);
+		// 	});
+		// };
 
-		$scope.prependConversations = function(conversations) {
-			$scope.removeDuplicitConversations(conversations);
-			Array.prototype.unshift.apply($scope.conversations, conversations);
-			$scope.$broadcast("scrollbarResize");
-			$scope.$broadcast("classIfOverflowContentResize");
-		};
+		// $scope.prependConversations = function(conversations) {
+		// 	$scope.removeDuplicitConversations(conversations);
+		// 	Array.prototype.unshift.apply($scope.conversations, conversations);
+		// 	$scope.$broadcast("scrollbarResize");
+		// 	$scope.$broadcast("classIfOverflowContentResize");
+		// };
 
 		$scope.searchConversation = function() {
 			// if fulltext is hidden, first only show input
@@ -126,12 +138,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.markAsRead = function(conversation) {
 			if (conversation.read) return;
 			// console.log(conversation);
+			Messenger.decreaseUnread();
 
 			Conversations.markAsRead({
 				id: conversation._id
 			}, function(res) {
 				console.log(res);
-				// Messenger.decrUnreaded();
 				// conversation.read = true;
 			});
 		};
@@ -147,28 +159,36 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		/*
 		   This will fetch the conversation and mark it as read
 		*/
-		$scope.showConversation = function(conversation, markAsRead) {
-			var title;
-
-			if (!conversation) return false;
-			if ($scope.detail && conversation._id == $scope.detail._id) return false;
-
-			if (markAsRead) $scope.markAsRead(conversation);
-
-			$scope.showNewMessageForm = false;
-			$scope.notFound = false;
-			$scope.detail = conversation;
-
-			// dont load counter when we click on conversation detail
-			// (and change URL)
-			$location.url('/messages/' + conversation._id + '?' + jQuery.param($location.search()));
-
-
-			// enable counters loading after URL is changed
-			$timeout(function() {
-				$scope.$broadcast('updateTitle');
-			});
-		};
+		// $scope.showConversation = function(conversation, markAsRead) {
+		// 	var title;
+		//
+		// 	if (!conversation) return false;
+		// 	if ($scope.detail && conversation._id == $scope.detail._id) return false;
+		//
+		// 	if (markAsRead) $scope.markAsRead(conversation);
+		//
+		// 	$scope.showNewMessageForm = false;
+		// 	$scope.notFound = false;
+		//
+		// 	$scope.detail = conversation;
+		//
+		//
+		// 	// $scope.detail = conversation;
+		// 	// ConversationAux.loadConversation
+		//
+		// 	// dont load counter when we click on conversation detail
+		// 	// (and change URL)
+		// 	// $location.url('/messages/' + conversation._id + '?' + jQuery.param($location.search()));
+		// 	$state.go('messages.detail', {
+		// 		id: conversation._id
+		// 	});
+		//
+		//
+		// 	// enable counters loading after URL is changed
+		// 	// $timeout(function() {
+		// 	// 	$scope.$broadcast('updateTitle');
+		// 	// });
+		// };
 
 		// $scope.deserializeConversation = function(conversation) {
 		// 	var post = conversation.post;
@@ -218,12 +238,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	}
 		// 	return newArray;
 		// };
-
-		$scope.loadPostConversations = function() {
-			Conversations.getPosts(function(res) {
-				$scope.postConversations = res;
-			});
-		};
 
 		// $scope.loadConversations = function(config, done) {
 		// 	config = config || {};
@@ -282,7 +296,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	$scope.deserializeConversation(conv);
 		// };
 
-		// when we leave/delete conversation - remove it from conversation list
+		// // when we leave/delete conversation - remove it from conversation list
 		// $scope.removeConversationFromList = function(ev, id, dontSwitchConversation) {
 		// 	// find its position
 		// 	var index = $scope.findConversation(id);
@@ -295,14 +309,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	if (!dontSwitchConversation && id == $scope.detail._id) {
 		// 		if (!$scope.conversations.length) {
 		// 			$scope.detail = false;
-		// 			return $location.url("/messages");
+		// 			return $location.url('/messages');
 		// 		}
 		// 		// if we should switch to the first conversation at the top
-		// 		$scope.showConversation($scope.conversations[0], false);
+		// 		// $scope.showConversation($scope.conversations[0], false);
 		// 		$timeout(function() {
-		// 			$scope.$broadcast("scrollbarResize");
-		// 			$scope.$broadcast("classIfOverflowContentResize");
-		// 			$(".conversations .scroll-content").scrollTop(0);
+		// 			$scope.$broadcast('scrollbarResize');
+		// 			$scope.$broadcast('classIfOverflowContentResize');
+		// 			$('.conversations .scroll-content').scrollTop(0);
 		// 		});
 		// 	}
 		// };
@@ -319,11 +333,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			console.log(params);
 			ConversationAux.loadConversations(params).then(function(conversations) {
 				$scope.conversations = conversations;
-				if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) return (cb && typeof(cb) === 'function' ? cb(true) : false);
-				ConversationAux.loadConversation($state.params.id).then(function(conversation) {
-					$scope.showConversation(conversation, false);
-					return (cb && typeof(cb) === 'function' ? cb(true) : false);
-				});
+				// if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) return (cb && typeof(cb) === 'function' ? cb(true) : false);
+
+				// ConversationAux.loadConversation($state.params.id).then(function(conversation) {
+				// 	$scope.showConversation(conversation, false);
+				return (cb && typeof(cb) === 'function' ? cb(conversations) : false);
+				// });
 			});
 			// $scope.loadConversations({}, function(list) {
 			// 	var paramId = $scope.getParamId();
@@ -351,7 +366,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadBottom = function() {
 			$scope.loadingBottom = true;
 			var config = {
-				limit: _loadLimit,
+				// limit: _loadLimit,
 				offset: $scope.conversations.length
 			};
 
@@ -377,18 +392,27 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	return parts.length > 2 ? parts[2] : false;
 		// };
 
+		$scope.loadPostConversations = function() {
+			Conversations.getPosts(function(res) {
+				$scope.postConversations = res;
+			});
+		};
+
 		function init() {
-			$scope.conversations = false;
-			$scope.detail = false;
+			// $scope.conversations = false;
+			// $scope.detail = false;
 			$scope.notFound = false;
-			$scope.showFulltext = false;
-			$scope.showNewMessageForm = false;
+			// $scope.showFulltext = false;
+			// $scope.showNewMessageForm = false;
 			$scope.loadingBottom = false;
 
 			$scope.loadPostConversations();
 
-			loadConversations(function() {
+			loadConversations(function(conversations) {
 				$scope.loaded = true;
+				if (!($state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
+					id: $state.params.id ? $state.params.id : conversations[0]._id
+				});
 			});
 			// $scope.loadConversations({
 			// 	limit: _loadLimit,
@@ -413,21 +437,21 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// });
 		};
 
-		var changeDetail = function(ev, state, params) {
-			// load first conversation on init
-			ConversationAux.loadConversation(params.id).then(function(conversation) {
-				$scope.showConversation(conversation, params.id);
-			}, function(err) {
-				$scope.notFound = true;
-			});
-			// if (params.id) {
-			// 	$scope.loadConversationDetail(params.id, true);
-			// } else if ($scope.conversations.length) {
-			// 	$scope.showConversation($scope.conversations[0], false);
-			// }
-		};
+		// var changeDetail = function(ev, state, params) {
+		// 	// load first conversation on init
+		// 	ConversationAux.loadConversation(params.id).then(function(conversation) {
+		// 		$scope.showConversation(conversation, params.id);
+		// 	}, function(err) {
+		// 		$scope.notFound = true;
+		// 	});
+		// 	// if (params.id) {
+		// 	// 	$scope.loadConversationDetail(params.id, true);
+		// 	// } else if ($scope.conversations.length) {
+		// 	// 	$scope.showConversation($scope.conversations[0], false);
+		// 	// }
+		// };
 
-		$scope.$on('$stateChangeSuccess', changeDetail);
+		// $scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
 

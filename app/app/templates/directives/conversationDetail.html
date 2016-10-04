@@ -1,6 +1,7 @@
 <div>
-	<div loading show="!messages"></div>
-	<div class="conversation-detail" ng-if="messages">
+	<div ng-bind='info.messages.length'></div>
+	<div loading show="!info.messages.length"></div>
+	<div class="conversation-detail" ng-if="info.messages.length">
 		<div class="conversation-detail-top">
 			<span class="fleft conversation-title" ng-if="info">
 				<span class="left" ng-if="info.titleDetail && !info.titleCustom">
@@ -24,7 +25,7 @@
 					<a ng-if="!info.is_archived" ng-click="confirmBox('MESSAGES.ARCHIVE_CONFIRM.LABEL', 'MESSAGES.ARCHIVE_CONFIRM.TEXT', archiveConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.ARCHIVE_CONVERSATION' | translate }}</a>
 					<a ng-if="info.is_member" ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
 					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
-					<a ng-if="info.read" ng-click="unreadConversation(info)" class="action-link divider">Označit za nepřečtenou</a>
+					<a ng-if="info.read" ng-click="markConversationAsUnread(info)" class="action-link divider">Označit za nepřečtenou</a>
 				</div>
 			</span>
 			<div class="clear"></div>
@@ -54,7 +55,7 @@
 			<div class="nano messages-container" custom-scrollbar>
 				<div class="nano-content">
 					<div class="nano-content-inner">
-						<article class="message" ng-repeat="item in messages track by $index">
+						<article class="message" ng-repeat="item in info.messages track by $index">
 							<div ng-if="item.author">
 								<div class="message-head" ng-class="{'owner-name': item.author._type == 'Community'}">
 									<a class="left" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">

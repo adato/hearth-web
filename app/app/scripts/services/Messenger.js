@@ -43,11 +43,11 @@ angular.module('hearth.services').service('Messenger', [
 			_loadingEnabled = true;
 		};
 
-		this.decrUnreaded = function() {
+		this.decreaseUnread = function() {
 			$rootScope.messagesCounters.unread--;
 		};
 
-		this.incrUnreaded = function() {
+		this.increaseUnread = function() {
 			$rootScope.messagesCounters.unread++;
 		};
 	}

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableSocketWrangler', 'ActionCableChannel', 'ScrollService', 'ConversationAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableSocketWrangler, ActionCableChannel, ScrollService, ConversationAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -893,29 +893,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				'context': $state.current.name
 			});
 		};
-
-		/**
-		 * Create a websocket messaging channel
-		 * with token param after user is logged in
-		 */
-		$rootScope.$on('onUserLogin', function(event, data) {
-			var consumer = new ActionCableChannel("MessagesChannel", {
-				token: $.cookie("authToken")
-			});
-
-			// Callback function that will dispatch WSNewMessage event
-			// var callback = function(message) {
-			// TODO - cleanup after these
-			// Messenger.loadCounters();
-			// $rootScope.$broadcast('WSNewMessage', message);
-			// /TODO
-			// };
-
-			ActionCableSocketWrangler.start();
-
-			// Subscribe to the message channel
-			consumer.subscribe(ConversationAux.handleEvent);
-		});
 
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;

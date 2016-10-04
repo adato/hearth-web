@@ -1,15 +1,7 @@
 <div loading show="!loaded"></div>
 
 <div class="messages" ng-if="loaded" dynamic-height offset="140" min-height="400" ng-class="{ 'message-detail-displayed': detail || showNewMessageForm}">
-	<!--h1 class="text-center">{{'h1.messages' | translate}}</h1-->
-
 	<div class="display-medium-flex flex-space-between flex-medium-divide formStyle messages-options" ng-class="{'detail-shown': (detail || showNewMessageForm)}">
-		<!-- <form class="search" method="POST" ng-submit="searchConversation()">
-			<div class="slide-show" ng-class="{'width-auto': showFulltext}">
-				<input type="text" ng-model="filter.query" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
-			</div>
-			<button class="button-icon fa fa-search"></button>
-		</form> -->
 		<select class="messages-filter conversation-list-width margin-bottom-small flex-div" ng-model="filter.type" ng-change="applyFilter(filter)">
 			<option value="" ng-selected="filter.type == ''">{{:: 'MESSAGES.FILTER.ALL' | translate }}</option>
 			<option ng-if="userHasRight('post.suspend')" value="from_admin" ng-selected="filter.type == 'from_admin'">{{:: 'MESSAGES.FILTER.POST_ADMIN' | translate }}</option>
@@ -32,7 +24,8 @@
 						<div class="text-center no-result" ng-if="!conversations.length">
 							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
-						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, true)">
+						<!-- <div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, true)"> -->
+						<a ui-sref='messages.detail({id: item._id})' class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations">
 							<div class="avatars">
 								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="normal" type="person._type" ng-repeat="person in item.participants"></avatar>
 								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
@@ -67,7 +60,7 @@
 								<i class="fright" ng-if="item.last_message_time" title="{{:: item.last_message_time | date:DATETIME_FORMATS.medium }}" ago="item.last_message_time"></i>
 							</div>
 							<div class="clear"></div>
-						</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -93,7 +86,12 @@
 			</div>
 		</div>
 
-		<div class="box conversation-detail-container" ng-if="!showNewMessageForm && detail">
+		<!-- conversation detail and new conv. form -->
+		<div class="box conversation-detail-container">
+			<div ui-view></div>
+		</div>
+
+		<!-- <div class="box conversation-detail-container" ng-if="!showNewMessageForm && detail">
 			<conversation-detail info="detail"></conversation-detail>
 		</div>
 
@@ -101,5 +99,6 @@
 			<conversation-add close="toggleAddForm"></conversation-add>
 		</div>
 		<div class="clear"></div>
+		-->
 	</div>
 </div>

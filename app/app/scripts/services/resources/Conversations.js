@@ -113,7 +113,7 @@ angular.module('hearth.services').factory('Conversations', [
 				url: $$config.apiPath + '/conversations/:id/read',
 				method: 'POST'
 			},
-			setUnreaded: {
+			markAsUnread: {
 				url: $$config.apiPath + '/conversations/:id/unread',
 				method: 'POST'
 			},
