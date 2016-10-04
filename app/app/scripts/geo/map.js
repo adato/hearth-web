@@ -25,7 +25,6 @@ angular.module('hearth.geo').directive('map', [
 			// transclude: true,
 			link: function(scope, element) {
 				var markerCluster, oms, map,
-					retainCurrentCollectionFlag,
 					I_ID = 0,
 					I_TYPE = 1,
 					I_LOCATION = 2,
@@ -161,16 +160,18 @@ angular.module('hearth.geo').directive('map', [
 				// this will zoom to show all markers and center map view
 				scope.centerZoomToAll = function(markers) {
 					map.fitBounds(extendBounds(markers));
+					$timeout(function() {
+						scope.listenerEnabled = true;
+					}, 1000);
+
 				};
 
 				scope.onMarkerClick = function(marker) {
-
+					scope.listenerEnabled = false;
 					Post.get({
 						postId: marker.info[I_ID]
 					}, function(data) {
 						data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
-						map.panTo(marker.position);
-						retainCurrentCollectionFlag = true;
 
 						if (data.author._type == 'Community') {
 							data.adType = (data.type === 'need' ? 'WE_NEED' : 'WE_OFFER');
@@ -178,6 +179,9 @@ angular.module('hearth.geo').directive('map', [
 							data.adType = data.type;
 						}
 						scope.showMarkerWindow(template(data), marker);
+						$timeout(function() {
+							scope.listenerEnabled = true;
+						}, 1000);
 					}, function(err) {});
 				};
 
@@ -197,12 +201,8 @@ angular.module('hearth.geo').directive('map', [
 					markers = [];
 					markerLimitValues = [];
 
-					if (!retainCurrentCollectionFlag) {
-						markerCluster.clearMarkers();
-						oms.clearMarkers();
-					} else {
-						retainCurrentCollectionFlag = false;
-					}
+					markerCluster.clearMarkers();
+					oms.clearMarkers();
 
 					if (typeof $location.search().distance != 'undefined') {
 						distance = parseInt($location.search().distance, 10);
@@ -230,9 +230,6 @@ angular.module('hearth.geo').directive('map', [
 					if (scope.center) scope.centerZoomToAll(markers);
 					markerCluster.addMarkers(markers);
 					markerCluster.repaint();
-					$timeout(function() {
-						scope.listenerEnabled = true;
-					}, 500);
 				};
 
 				/*                scope.zoomMarkerClusterer = function(cluster) {
