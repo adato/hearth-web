@@ -79,8 +79,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
 
-			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
-
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
