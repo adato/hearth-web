@@ -107,8 +107,9 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				for (var i = conversationList.length; i--;) {
 					if (conversationList[i]._id === socketEvent.conversation._id) {
 						conv = conversationList.splice(i, 1)[0];
-						// update some properties
+						// update the required properties
 						conv.message = socketEvent.conversation.message;
+						conv.read = socketEvent.conversation.read;
 						// if the found conversation already has 'messages' prop, append the new message to it
 						if (conv.messages && conv.messages.length) {
 							conv.messages.push(socketEvent.conversation.message);

@@ -191,22 +191,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				// };
 
 				/**
-				 * Scroll to bottom
-				 */
-				function scrollBottom() {
-					$timeout(function() {
-						if ($(".nano-content", element).length > 0) {
-							$(".nano-content", element).scrollTop($(".nano-content", element)[0].scrollHeight * 1000);
-						}
-					});
-				}
-
-				$rootScope.$on('messageAddedToConversation', function(conversation) {
-					console.log('UIII');
-					if ($scope.info._id === conversation._id) scrollBottom();
-				});
-
-				/**
 				 * If user is on bottom, keep user there after added more content
 				 */
 				function testScrollBottom() {
@@ -218,6 +202,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						scrollBottom();
 					}
 				}
+
+				/**
+				 * Scroll to bottom
+				 */
+				function scrollBottom() {
+					$timeout(function() {
+						if ($(".nano-content", element).length > 0) {
+							$(".nano-content", element).scrollTop($(".nano-content", element)[0].scrollHeight * 1000);
+						}
+					});
+				}
+
+				$rootScope.$on('messageAddedToConversation', function(event, conversation) {
+					if (conversation && conversation.conversation && $scope.info._id === conversation.conversation._id) scrollBottom();
+				});
 
 				/**
 				 * Send action request to archive/delete/leave conversation
@@ -353,13 +352,13 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * - this will let view to render first
 				 */
 				function resizeTMessagesBox() {
-					$timeout($scope.resizeMessagesBox);
+					$timeout(resizeMessagesBox);
 				}
 
-				$scope.resizeMessagesBox = function() {
-					var container = $(".messages-container", element);
+				function resizeMessagesBox() {
+					var container = $('.messages-container', element);
 					var offset = -50;
-					var measureContainer = $(".messages-container");
+					var measureContainer = $('.messages-container');
 
 					if (ResponsiveViewport.isSmall()) {
 						// box needs to be tall on mobile devices, so we count on whole-page-height
@@ -367,16 +366,16 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						offset = 0;
 					}
 					testScrollBottom();
-					var maxBoxHeight = measureContainer.height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() + offset;
-					container.css("max-height", maxBoxHeight);
+					var maxBoxHeight = measureContainer.height() - element.find('.conversation-detail-top').outerHeight() - element.find('.messages-reply').outerHeight() + offset;
+					container.css('max-height', maxBoxHeight);
 					container.fadeIn();
 
 					$timeout(function() {
 						// resize scrollbar
-						$scope.$broadcast("scrollbarResize");
-						$scope.$broadcast("classIfOverflowContentResize");
+						$scope.$broadcast('scrollbarResize');
+						$scope.$broadcast('classIfOverflowContentResize');
 					});
-				};
+				}
 
 				$scope.markConversationAsUnread = function(info) {
 					// don't wait for server to respond, makes for better UX
@@ -474,15 +473,15 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				// };
 
 				// resize box when needed
-				$(window).resize($scope.resizeMessagesBox);
-				$scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
+				$(window).resize(resizeMessagesBox);
+				$scope.$on("conversationReplyFormResized", resizeMessagesBox);
 				// $scope.$watch('updateTitle', $scope.setTitle);
 				// $scope.$watch('info', $scope.init);
 				// $scope.$watch('info', $scope.deserializeInfo, true);
 				// $scope.$on('loadNewMessages', $scope.loadNewMessages);
 				// $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
 				$scope.$on('$destroy', function() {
-					$(window).off('resize', $scope.resizeMessagesBox);
+					$(window).off('resize', resizeMessagesBox);
 				});
 			}
 		};
