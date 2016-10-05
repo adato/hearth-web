@@ -49,6 +49,7 @@
 						<span ng-show="createAdForm.title.$error.minlength">{{:: 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
 						<span ng-show="createAdForm.title.$error.maxlength">{{:: 'ERR_AD_TITLE_LEN' | translate }}</span>
 					</div>
+					<check-capitals model="post.title" ng-if="showError.title" class="moveUp error warning"></check-capitals>
 				</div>
 			</section>
 			<section class="text">
@@ -61,6 +62,7 @@
 					<span ng-show="createAdForm.text.$error.minlength">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
 					<span ng-show="createAdForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
+				<check-capitals model="post.text" ng-if="showError.text" class="moveUp error warning"></check-capitals>
 			</section>
 			<section class="position-relative" ng-if="languageList.length">
 				<label for="post-language" class="nowrap flex-div margin-bottom-small margin-right-medium">

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators', 'ProfileUtils', 'Interest', '$q', 'LanguageList',
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators, ProfileUtils, Interest, $q, LanguageList) {
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators', 'ProfileUtils', 'Interest', '$q', 'LanguageList', '$translate',
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators, ProfileUtils, Interest, $q, LanguageList, $translate) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -26,22 +26,16 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.parameters = ProfileUtils.params;
 
 		/* languages supported in "languages-i-speak" section */
-		$scope.languageList = LanguageList.list;
-		/* Array that will hold the $scope.languageList with translations, once they are created (=translated) */
-		$scope.filteredLangs = [];
+		$scope.languageList = LanguageList.localizedList;
 		/* Array that will be filled with user's languages */
-		$scope.filteredLangsUser = [];
-
-		function sortTranslations(a, b) {
-			return a.translate.localeCompare(b.translate);
-		}
+		$scope.userLanguage = [];
 
 
 		$scope.loadLanguages = function(query) {
-			var languages = $scope.filteredLangs;
+			var languages = $scope.languageList;
 
 			return languages.filter(function(lang) {
-				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
+				return lang.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			});
 		};
 
@@ -62,18 +56,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				profile: data
 			});
 
-			// Fill $scope.filteredLangs With language translations
-			// 	AND add language translations to user lang-model
-			angular.forEach($scope.languageList, function(lang) {
-				var newLang = {};
-				newLang['lang'] = lang;
-				newLang['translate'] = LanguageList.translate(lang);
-				$scope.filteredLangs.push(newLang);
-				if (data.user_languages[lang]) $scope.filteredLangsUser.push(newLang);
-			});
-
-			$scope.filteredLangs.sort(sortTranslations);
-
+			if (typeof data.user_languages != 'undefined' && data.user_languages.length) {
+				data.user_languages.forEach(function(userLang) {
+					$scope.userLanguage.push({
+						'code': userLang,
+						'name': $translate.instant('MY_LANG.' + userLang)
+					});
+				});
+			}
 
 			$scope.showContactMail = data.contact_email && data.contact_email != '';
 			return data;
@@ -187,9 +177,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				}
 			}
 
-			data.user_languages = {};
-			$scope.filteredLangsUser.forEach(function(userLang) {
-				data.user_languages[userLang.lang] = true;
+			data.user_languages = [];
+			$scope.userLanguage.forEach(function(userLang) {
+				data.user_languages.push(userLang.code);
 			});
 
 			return data;
@@ -217,6 +207,12 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				res = false;
 				$scope.showError.contact_email = true;
 			}
+
+			if (typeof $scope.userLanguage !== 'undefined' && $scope.userLanguage.length == 0) {
+				res = false;
+				$scope.showError.user_language = true;
+			}
+
 
 			if (!$scope.validateSocialNetworks()) {
 				res = false;

@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport',
-	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport) {
+	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'PageTitle', '$translate', 'ResponsiveViewport',
+	function($rootScope, Conversations, $timeout, Notify, Viewport, PageTitle, $translate, ResponsiveViewport) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -269,16 +269,11 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				$scope.setConversationAsReaded = function() {
-					if (!$scope.info || $scope.info.read)
-						return false;
+					$scope.$emit('currentConversationAsReaded', $scope.info);
+				};
 
-					Messenger.decrUnreaded();
-					$scope.info.read = true;
-					Conversations.setReaded({
-						id: $scope.info._id
-					});
-
-					$scope.$emit('currentConversationAsReaded');
+				$scope.setConversationAsUnReaded = function() {
+					$scope.$emit('currentConversationAsUnReaded', $scope.info);
 				};
 
 				/**
@@ -305,7 +300,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 */
 				$scope.onMessageAdded = function() {
 					$scope.scrollBottom();
-					$scope.loadNewMessages();
 				};
 
 				/**
@@ -355,15 +349,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					$scope.sendActionRequest(id, 'LEAVE', Conversations.leave);
 				};
 
-				$scope.unreadConversation = function(info) {
-					Conversations.setUnreaded({
-						id: info._id
-					}, function(res) {
-						Messenger.incrUnreaded();
-						info.read = false;
-					});
-				};
-
 				/**
 				 * Show/hide participants list & load from API
 				 */
@@ -392,8 +377,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				$scope.bindActionHandlers = function() {
-					element.bind('click', function() {
-						$scope.setConversationAsReaded();
+					element.bind('click', function(e) {
+						if ($(e.target).is('#mark-as-readed')) {
+							$scope.setConversationAsUnReaded();
+						} else {
+							$scope.setConversationAsReaded();
+						}
 					});
 
 					element.bind('keypress', function() {

@@ -91,9 +91,13 @@
 			</h2>
 
 			<section class="languages">
-				<tags-input ng-model="filteredLangsUser" display-property="translate" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+				<tags-input ng-model="userLanguage" display-property="name" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
 					<auto-complete source="loadLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
 				</tags-input>
+
+				<div class="error" ng-show="showError.user_language">
+					<span>{{:: 'ERR_NOT_FILLED_LANGUAGES' | translate }}</span>
+				</div>
 			</section>
 			<div class="clear"></div>
 			<h2>

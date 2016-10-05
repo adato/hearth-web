@@ -25,7 +25,7 @@
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
 									<div class="dropdown-wrapper">
-										<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!mine">
+										<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!isMine">
 											<div bubble-placeholder="bookmark-reminder"></div>
 											<div bubble-placeholder="hide-post"></div>
 											<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'})" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none margin-left-medium round gray"
@@ -45,23 +45,23 @@
 										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;">
 											<li>
 												<!-- bookmark post -->
-												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-												<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+												<a ng-if="! isMine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
 												<!-- bookmark post -->
 											</li>
 											<li>
 												<!-- flag post -->
-												<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-												<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+												<a ng-if="! isMine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 												<!-- flag post -->
 											</li>
 											<li>
 												<!-- hide post -->
-												<a ng-if="!mine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
 												<!-- /hide post -->
 											</li>
 											<li>
-												<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+												<a ng-if="! isMine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 											</li>
 
 											<!-- admin only -->
@@ -70,6 +70,11 @@
 											</li>
 											<li ng-if="userHasRight('post.suspend') && isActive">
 												<a class="elevated-authority-function" ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{ (isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate)) }}</a>
+											</li>
+											<!-- TODO: in future there will be another user privilegs then post.suspend -->
+											<li ng-if='userHasRight("post.suspend")'>
+												<a ng-if="!item.is_followed" class="elevated-authority-function" ng-click="followItem(item)">{{:: "POST.FOLLOW.LABEL" | translate}}</a>
+												<a ng-if="item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)">{{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
 											</li>
 											<!-- /admin only -->
 										</ul>

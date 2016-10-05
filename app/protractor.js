@@ -10,6 +10,7 @@ exports.config = {
 		testFolder + 'unauth/marketplace.js',
 		testFolder + 'auth/register.js',
 		testFolder + 'auth/login.js',
+		testFolder + 'auth/profile.js',
 		testFolder + 'auth/bookmarks.js',
 		testFolder + 'auth/deleteUser.js'
 	],
@@ -19,6 +20,10 @@ exports.config = {
 			testFolder + 'auth/register.js',
 			testFolder + 'auth/login.js',
 			testFolder + 'auth/deleteUser.js'
+		],
+		'quick': [
+			testFolder + 'auth/login-hardcoded.js',
+			testFolder + 'auth/profile.js',
 		]
 	},
 	onPrepare: function() {

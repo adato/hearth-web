@@ -238,19 +238,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		});
 
-		$scope.loadMyCommunities = function() {
-
+		function loadMyCommunities() {
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
 				$rootScope.myCommunities = res;
 				$rootScope.myAdminCommunities = [];
 				res.forEach(function(item) {
-
 					// create list of communities I'm admin in
-					if (item.admin == $rootScope.loggedUser._id)
-						$rootScope.myAdminCommunities.push(item);
+					if (item.admin == $rootScope.loggedUser._id) $rootScope.myAdminCommunities.push(item);
 				});
+
+				$rootScope.$emit('communities:loaded');
+				$rootScope.communitiesLoaded = true;
 			});
 		};
 
@@ -275,7 +275,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.appUrl = $$config.appUrl;
 
 			if ($rootScope.loggedUser._id) {
-				$scope.loadMyCommunities();
+				loadMyCommunities();
 				$scope.checkTutorial();
 			} else {
 				// set to check tutorial after next login
@@ -285,11 +285,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 			timeAgoService.init();
 			Notify.checkRefreshMessage();
-			Auth.isLoggedIn() && Messenger.loadCounters();
 
 		};
 
-		$rootScope.$on('reloadCommunities', $scope.loadMyCommunities);
+		$rootScope.$on('reloadCommunities', loadMyCommunities);
 		$scope.$on('initFinished', $scope.initHearthbeat);
 		$rootScope.initFinished && $scope.initHearthbeat();
 
@@ -615,6 +614,48 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
+		/**
+		 * Function will follow item - only for specific admin roles
+		 * @todo: will be changed due another admin privilegs in future
+		 */
+		$rootScope.followItem = function(post) {
+			if (post.is_followed)
+				return false;
+
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			Post.follow({
+				id: post._id
+			}, function(res) {
+				if (res.ok === true) {
+					post.is_followed = !post.is_followed;
+					Notify.addSingleTranslate('NOTIFY.POST_FOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
+				}
+			});
+		};
+
+		/**
+		 * Function will unfollow item - only for admin roles
+		 * @todo: will be changed due another admin privilegs in future
+		 */
+		$rootScope.unfollowItem = function(post) {
+			if (!post.is_followed)
+				return false;
+
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			Post.unfollow({
+				postId: post._id
+			}, function(res) {
+				if (res.ok === true) {
+					post.is_followed = !post.is_followed;
+					Notify.addSingleTranslate('NOTIFY.POST_UNFOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
+				}
+			});
+		};
+
 		$rootScope.openLinkSharingBox = function(item) {
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
@@ -863,8 +904,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			// Callback function that will dispatch WSNewMessage event
 			var callback = function(message) {
-				Messenger.loadCounters();
 				$rootScope.$broadcast('WSNewMessage', message);
+				$rootScope.$broadcast('WSMessageCounter', message);
 			};
 
 			ActionCableSocketWrangler.start();
