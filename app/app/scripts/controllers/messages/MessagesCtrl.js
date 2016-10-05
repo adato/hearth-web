@@ -151,18 +151,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.filter.query && $scope.applyFilter();
 		};
 
-		$scope.markReaded = function(conversation) {
-			if (conversation.read) {
-				return false;
-			}
-
-			Conversations.setReaded({
-				id: conversation._id
-			}, function(res) {
-				conversation.read = true;
-			});
-		};
-
 		/**
 		 * This will show requested conversation in right column
 		 * and optionally mark it as readed
@@ -177,12 +165,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showConversation = function(conversation, markAsRead) {
 			var title;
 
-			if (markAsRead === true) {
-				// set it as "read" when it already isnt
-				$scope.markReaded(conversation);
-			}
-
-			if ($scope.detail && conversation._id == $scope.detail._id) {
+			if ($scope.detail && conversation._id === $scope.detail._id) {
 				return false;
 			}
 
@@ -192,12 +175,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// dont load counter when we click on conversation detail
 			// (and change URL)
-			$location.url("/messages/" + conversation._id + "?" + jQuery.param($location.search()));
+			$location.url('/messages/' + conversation._id + '?' + jQuery.param($location.search()));
 
 
 			// enable counters loading after URL is changed
 			$timeout(function() {
 				$scope.$broadcast('updateTitle');
+				if (markAsRead) {
+					$scope.$broadcast('currentConversationAsReaded', $scope.detail);
+				}
 			});
 		};
 
@@ -272,8 +258,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// but first try to find it in list
 			if ($scope.conversations && $scope.conversations.length) {
 				for (var i = $scope.conversations.length; i--;) {
-					if ($scope.conversations[i]._id == id) {
-						return $scope.showConversation($scope.conversations[i], false);
+					if ($scope.conversations[i]._id === id) {
+						return $scope.showConversation($scope.conversations[i]);
 					}
 				}
 			}
@@ -285,7 +271,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				id: id
 			}, function(res) {
 				$scope.notFound = false;
-				$scope.showConversation($scope.deserializeConversation(res), false);
+				$scope.showConversation($scope.deserializeConversation(res));
 			}, function() {
 				$scope.notFound = true;
 			});
@@ -319,13 +305,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.conversations.splice(index, 1);
 
 			// and if it is currently open, jump to top
-			if (!dontSwitchConversation && id == $scope.detail._id) {
+			if (!dontSwitchConversation && id === $scope.detail._id) {
 				if (!$scope.conversations.length) {
 					$scope.detail = false;
 					return $location.url("/messages");
 				}
 				// if we should switch to the first conversation at the top
-				$scope.showConversation($scope.conversations[0], false);
+				$scope.showConversation($scope.conversations[0]);
 				$timeout(function() {
 					$scope.$broadcast("scrollbarResize");
 					$scope.$broadcast("classIfOverflowContentResize");
@@ -342,7 +328,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				if (paramId) {
 					$scope.loadConversationDetail(paramId);
 				} else if (list.length) {
-					$scope.showConversation(list[0], false);
+					$scope.showConversation(list[0]);
 				}
 			});
 		};
@@ -383,8 +369,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
+		// returns ID of conversation to load OR false, depending on url params
 		$scope.getParamId = function() {
-			var parts = $location.url().split('/');
+			var parts = $location.path().split('/');
 			return parts.length > 2 ? parts[2] : false;
 		};
 
@@ -414,7 +401,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 						return false;
 					}
 
-					$scope.showConversation(list[0], false);
+					$scope.showConversation(list[0]);
 				}
 			});
 		};
@@ -424,7 +411,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (params.id) {
 				$scope.loadConversationDetail(params.id, true);
 			} else if ($scope.conversations.length) {
-				$scope.showConversation($scope.conversations[0], false);
+				$scope.showConversation($scope.conversations[0]);
 			}
 		};
 
