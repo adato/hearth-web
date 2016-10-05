@@ -21,7 +21,8 @@
 	var bartaSetup = getTestimonialTranslations('barta'),
 		hajzlerSetup = getTestimonialTranslations('hajzler'),
 		panekSetup = getTestimonialTranslations('panek'),
-		vaclavekSetup = getTestimonialTranslations('vaclavek');
+		vaclavekSetup = getTestimonialTranslations('vaclavek'),
+		fellmerSetup = getTestimonialTranslations('fellmer');
 	bartaSetup.code = 'barta';
 	bartaSetup.imgId = 'image-testimonial-barta';
 	bartaSetup.name = 'Jiří Bárta';
@@ -34,6 +35,9 @@
 	vaclavekSetup.code = 'vaclavek';
 	vaclavekSetup.imgId = 'image-testimonial-vaclavek';
 	vaclavekSetup.name = 'Petr Václavek';
+	fellmerSetup.code = 'fellmer';
+	fellmerSetup.imgId = 'image-testimonial-fellmer';
+	fellmerSetup.name = 'Raphael Fellmer';
 
 	var dynaTestimonials = {
 		wrapperSelector: '#testimonialsWrapper',
@@ -41,7 +45,8 @@
 			bartaSetup,
 			hajzlerSetup,
 			panekSetup,
-			vaclavekSetup
+			vaclavekSetup,
+			fellmerSetup
 		]
 	};
 

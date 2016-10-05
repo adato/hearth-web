@@ -22,6 +22,11 @@
 		profileLinkSelector = '[profile-link]',
 		logoutNodeIdentificator = '[logout]';
 
+
+	// COOKIE PATH ERROR FIX-UP
+	cookieFactory.remove(authTokenIdentificator, '/cs');
+	cookieFactory.remove(authTokenIdentificator, '/sk');
+
 	var apiToken = cookieFactory.get(authTokenIdentificator);
 	if (apiToken) {
 		initProfile(apiToken);
@@ -89,6 +94,11 @@
 		req.onload = function() {
 			if (req.status === 200) {
 				cookieFactory.remove(authTokenIdentificator);
+
+				// COOKIE PATH ERROR FIX-UP
+				cookieFactory.remove(authTokenIdentificator, '/cs');
+				cookieFactory.remove(authTokenIdentificator, '/sk');
+
 				profileNotLogged();
 			} else {
 				console.error('Something went wong during logout:', req);
