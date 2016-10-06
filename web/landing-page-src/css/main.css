@@ -970,25 +970,27 @@ html[lang='sk'] #section-marketplace {
 #image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-s.jpg')}
 #image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-s.jpg')}
 #image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-s.jpg')}
-@media (min-width: 768px) {
+/* with the way they are currently shown - this is enough */
+/*@media (min-width: 768px) {
 	#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-m.jpg')}
 	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-m.jpg')}
 	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-m.jpg')}
 	#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-m.jpg')}
 	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-m.jpg')}
 	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-m.jpg')}
-}
-@media (min-width: 1200px) {
+}*/
+/*@media (min-width: 1200px) {
 	#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-l.jpg')}
 	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-l.jpg')}
 	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-l.jpg')}
 	#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-l.jpg')}
 	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-l.jpg')}
 	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-l.jpg')}
-}
+}*/
 
 /* TESTIMONIAL IMAGES */
 #image-testimonial-barta{background-image: url('../img/people/jiri-barta.png')}
 #image-testimonial-vaclavek{background-image: url('../img/people/petr-vaclavek.png')}
 #image-testimonial-panek{background-image: url('../img/people/simon-panek.png')}
 #image-testimonial-hajzler{background-image: url('../img/people/tomas-hajzler.png')}
+#image-testimonial-fellmer{background-image: url('../img/people/raphael-fellmer.png')}
