@@ -111,6 +111,28 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				var posts = UsersCommunitiesService.alterPossiblePosts(res, headers);
 
 				$scope.ratingPosts = posts;
+
+				var ratingActivePosts = [];
+
+				UserRatings.activePosts({
+					userId: params.user_id,
+					current_community_id: val
+				}, function(res) {
+					angular.forEach(res.data, function(post) {
+						ratingActivePosts.push(post);
+					});
+				});
+
+				UserRatings.activePosts({
+					userId: $rootScope.loggedUser._id,
+					current_community_id: val
+				}, function(res) {
+					angular.forEach(res.data, function(post) {
+						ratingActivePosts.push(post);
+					});
+				});
+
+				$scope.ratingActivePosts = ratingActivePosts;
 				$scope.loadedRatingPosts = true;
 				$scope.loadingRatingPosts = false;
 			}, function(res) {

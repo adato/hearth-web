@@ -11,18 +11,25 @@
 			<i class="fa fa-spin fa-spinner"></i> {{:: 'COMMON.LOADING' | translate }}
 			<br>
 		</span>
-		<div ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts">
+		<div>
 			<div class="padding-bottom-3">
 				{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
 			</div>
 			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				<option value="" ng-selected="true">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-				<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
-					{{ 'RATING_POST_TYPES.'+ (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }}
-				</option>
+				<optgroup ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_POST_TITLE' | translate }}">
+					<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
+						{{ 'RATING_POST_TYPES.'+ (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }}
+					</option>
+				</optgroup>
+				<optgroup ng-if="ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
+					<option ng-repeat="post in ratingActivePosts | orderBy: '-updated_at'" title="{{:: post.title}}" value="{{:: post._id }}">
+						{{:: postTypes[post.author._type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.author.name}})
+					</option>
+				</optgroup>
 			</select>
 		</div>
-		<div ng-if="!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" class="padding-bottom">
+		<div ng-if="(!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts) && (!ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts)" class="padding-bottom">
 			{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
 		</div>
 		<br />
