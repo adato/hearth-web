@@ -59,6 +59,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	$scope.showNewMessageForm = !$scope.showNewMessageForm;
 		// };
 
+		// $scope.setCurrentConversationAsReadedSoft = function() {
+		// 	$scope.detail.read = true;
+		// 	$scope.conversations[0].read = true;
+		// };
+
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
 
@@ -92,11 +97,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.$broadcast('filterApplied', filter);
 		};
 
-		// $scope.setCurrentConversationAsReadedSoft = function() {
-		// 	$scope.detail.read = true;
-		// 	$scope.conversations[0].read = true;
-		// };
-
 		$scope.loadNewConversations = function() {
 			// $scope.$broadcast('loadNewMessages');
 
@@ -127,13 +127,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	$scope.$broadcast("classIfOverflowContentResize");
 		// };
 
-		$scope.searchConversation = function() {
-			// if fulltext is hidden, first only show input
-			if (!$scope.showFulltext || !$scope.filter.query)
-				return $scope.showFulltext = !$scope.showFulltext;
-
-			$scope.filter.query && $scope.applyFilter();
-		};
+		// NOT EVEN USED ANYWHERE
+		// $scope.searchConversation = function() {
+		// 	// if fulltext is hidden, first only show input
+		// 	if (!$scope.showFulltext || !$scope.filter.query)
+		// 		return $scope.showFulltext = !$scope.showFulltext;
+		//
+		// 	$scope.filter.query && $scope.applyFilter();
+		// };
 
 		$scope.markAsRead = function(conversation) {
 			if (conversation.read) return;
@@ -148,10 +149,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-		/**
-		 * This will show requested conversation in right column
-		 * and optionally mark it as readed
-		 */
 		$scope.$on('closeConversation', function() {
 			$scope.detail = null;
 		});

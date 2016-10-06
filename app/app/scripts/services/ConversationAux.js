@@ -20,7 +20,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 
 	var MESSAGE_LIMIT = 15;
 
+	// list of conversations shown in the conversations column
 	var conversationList = [],
+		// all conversations downloaded from the server
+		// conversationsCache = [],	// << not used
 		conversationListLoading,
 		conversationListLoaded,
 		conversationGetLimit = 20;
