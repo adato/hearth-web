@@ -978,7 +978,8 @@
 		"ATTACHMENT_DOWNLOAD_FAILED": "Nepodařilo se stáhnout přílohu.",
 		"POST_HID_SUCCESFULLY": "Skvelé. Skrytie inzerátu sa podarilo, už sa ti nebude na tržnici a vo vyhľadávání zobrazovať.",
 		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
+		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto.",
+		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",

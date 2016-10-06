@@ -250,6 +250,17 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
 
 			}, function(res) {
+				var data = res.data;
+				var errors = data.errors;
+
+				if (data && errors) {
+					if (errors.contact_email) {
+						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CONTACT_EMAIL_ERROR', Notify.T_ERROR);
+					} else {
+						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
+					}
+				}
+
 				$rootScope.globalLoading = false;
 				$scope.sending = false;
 			});

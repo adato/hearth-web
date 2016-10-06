@@ -52,9 +52,7 @@ angular.module('hearth.services').factory('User', [
 			},
 			edit: {
 				method: 'PUT',
-				errorNotify: {
-					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
-				},
+				errorNotify: false,
 				transformRequest: [LocationJsonDataTransform.insertLocationJson]
 			},
 			editSettings: {
