@@ -57,18 +57,17 @@
 					<div class="nano-content-inner">
 						<article class="message" ng-repeat="item in info.messages track by $index">
 							<div ng-if="item.author">
-								<div class="message-head" ng-class="{'owner-name': item.author._type == 'Community'}">
-									<a class="left" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
-										<avatar class="left move-bot" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
-										<h5 class="fleft">
+								<div class="message-head display-flex flex-space-between flex-wrap" ng-class="{'owner-name': item.author._type == 'Community'}">
+									<a class="display-flex" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
+										<avatar class="" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
+										<h5 class="text-emphasize margin-none">
 											{{item.author.name | ellipsis:50}}
 											<div ng-if="item.author._type == 'Community'">
 												({{item.owner.name }})
 											</div>
 										</h5>
 									</a>
-									<span class="right" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
-									<div class="clear"></div>
+									<span class="color-dark-gray" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
 								</div>
 								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 								<file-viewer ng-if="item.file_attachments.length" message="item"></file-viewer>

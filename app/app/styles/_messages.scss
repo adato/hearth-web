@@ -242,7 +242,7 @@
 				}
 			}
 			.message-head {
-				font-size: 14px;
+				// font-size: 14px;
 				&.owner-name {
 					.avatar {
 						position: relative;
@@ -256,18 +256,18 @@
 				.avatar {
 					margin-right: 10px;
 				}
-				h5 {
-					font-weight: 600;
-					font-size: 14px;
-					position: relative;
-					top: 5px;
-				}
-				& > span {
-					margin-right: 5px;
-					color: #999;
-					position: relative;
-					top: 10px;
-				}
+				// h5 {
+				// 	font-weight: 600;
+				// 	font-size: 14px;
+				// 	position: relative;
+				// 	top: 5px;
+				// }
+				// & > span {
+				// 	margin-right: 5px;
+				// 	color: #999;
+				// 	position: relative;
+				// 	top: 10px;
+				// }
 			}
 			p {
 				margin-top: 0px;
@@ -381,6 +381,9 @@
 
 .nano-content {
 	//	right: -50px !important; /* when zoomed out, there is a little bit of native scrollbar */
+	.nano-content-inner {
+		margin-right: 20px;
+	}
 }
 
 .modal.new-message {
