@@ -54,12 +54,12 @@
 			return '';
 		}
 
-		function cookieRemove(cname) {
-			document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+		function cookieRemove(cname, path) {
+			document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + (path ? path : '/');
 		}
 
 		function cookieSet(cname, cvalue, path) {
-			document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT' + (path ? '; path=' + path : '');
+			document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT; path=' + (path ? path : '/');
 		}
 
 		//
@@ -146,7 +146,7 @@
 	</script>
 
 </head>
-<body class='border-box-sized'>
+<body class='border-box-sized' id='top'>
 	<div class='header-wrapper'>
 		<div class='flex flex-stretch-content'>
 			<div class='nav-clickable flex position-relative small-only'>
@@ -166,7 +166,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class='logo medium-up'></div>
+			<a href='#top' class='logo medium-up'></a>
 		</div>
 		<nav class='flex flex-stretch-content'>
 			<ul class='main-navigation medium-up'>
@@ -439,7 +439,7 @@
 
 			<div class='text-center'>
 			    <div class='flex'>
-			        <div class='max-500 flex flex-medium-column flex-align-start flex-large-align-center' tabs id='testimonialsWrapper'>
+			        <div class='max-500 min-500 flex flex-medium-column flex-align-start flex-large-align-center' tabs id='testimonialsWrapper'>
 			            <div class='medium-flex flex-1 full-width'>
 							<!-- TESTIMONIAL SETUP -->
 								<div hidden data-attr-t
@@ -466,6 +466,12 @@
 									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.VACLAVEK.POSITION.LONG'
 									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.VACLAVEK.TEXT'
 								></div>
+								<div hidden data-attr-t
+									person-id='fellmer'
+									position-short-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.FELLMER.POSITION.SHORT'
+									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.FELLMER.POSITION.LONG'
+									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.FELLMER.TEXT'
+								></div>
 							<!-- /TESTIMONIAL SETUP -->
 
 			                <!-- Nav tabs -->
@@ -475,7 +481,7 @@
 								-->
 			                </ul>
 			            </div>
-			            <div class='medium-flex flex-2 margin-horizontal-large flex-2' id='testimonials'>
+			            <div class='medium-flex flex-2 margin-horizontal-large' id='testimonials'>
 			                <!-- Tab panes -->
 			                <div class='tab-content' id='tabs-collapse' tab-content>
 			                    <!--
