@@ -967,7 +967,8 @@
 		"ATTACHMENT_DOWNLOAD_FAILED": "Attachment failed to download.",
 		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results.",
 		"POST_FOLLOWED_SUCCESFULLY": "Good! You watch the post now.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "You no longer watch the post."
+		"POST_UNFOLLOWED_SUCCESFULLY": "You no longer watch the post.",
+		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
