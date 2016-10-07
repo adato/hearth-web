@@ -7,15 +7,18 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, IsEmpty) {
 
 		// start processing socket events
 		ConversationAux.init({
 			enableProcessing: true
 		});
 
-		$scope.filter = $location.search();
+		$scope.filter = {
+			type: '',
+			post_id: void 0
+		};
 
 		// $scope.showNewMessageForm = false;
 
@@ -64,37 +67,55 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	$scope.conversations[0].read = true;
 		// };
 
-		$scope.getFilter = function() {
-			var filter = angular.copy($location.search());
+		// $scope.getFilter = function() {
+		// 	var filter = angular.copy($location.search());
+		//
+		// 	if (!!~['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'].indexOf(filter.type))
+		// 		filter[filter.type] = true;
+		//
+		// 	delete filter.type;
+		// 	return filter;
+		// };
 
-			if (!!~['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'].indexOf(filter.type))
-				filter[filter.type] = true;
+		/**
+		 *	- {String} filterString
+		 */
+		$scope.applyFilter = function(filterObject) {
+			filterObject = filterObject || {};
+			// $scope.filter.post_id = null;
+			// var type = data.type;
+			var query = filterObject.type.split(':');
+			// var post_id = query[1];
+			//
+			// if (post_id) {
+			// 	$scope.filter.post_id = post_id;
+			// }
+			//
+			// var filter = angular.copy($scope.filter);
+			//
+			// if (!filter.query)
+			// 	delete filter.query;
+			// if (!filter.type)
+			// 	delete filter.type;
+			// if (!filter.post_id)
+			// 	delete filter.post_id;
+			//
+			// $location.url('/messages?' + jQuery.param(filter));
+			// $scope.$broadcast('filterApplied', filter);
 
-			delete filter.type;
-			return filter;
-		};
+			// filterObject = filterObject || {};
 
-		$scope.applyFilter = function(data) {
-			$scope.filter.post_id = null;
-			var type = data.type;
-			var query = type.split(':');
-			var post_id = query[1];
+			// weird approach, but whatever
+			$scope.filter.post_id = query[0] === 'as_replies_post' ? query[1] : void 0;
 
-			if (post_id) {
-				$scope.filter.post_id = post_id;
-			}
+			var filter = {
+				key: query[0],
+				value: query[1] || true
+			};
 
-			var filter = angular.copy($scope.filter);
-
-			if (!filter.query)
-				delete filter.query;
-			if (!filter.type)
-				delete filter.type;
-			if (!filter.post_id)
-				delete filter.post_id;
-
-			$location.url('/messages?' + jQuery.param(filter));
-			$scope.$broadcast('filterApplied', filter);
+			$location.url($location.path());
+			if (filter.key) $location.search(filter.key, filter.value);
+			init()
 		};
 
 		$scope.loadNewConversations = function() {
@@ -109,7 +130,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				prepend: true
 			};
 
-			angular.extend(config, $scope.getFilter());
+			// angular.extend(config, $scope.getFilter());
 
 			ConversationAux.loadConversations(config);
 		};
@@ -318,16 +339,28 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	}
 		// };
 
+		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
+
 		function loadConversations(cb) {
 			var params = {
 				wipe: true
 			};
-			if ($scope.filter) {
-				if ($scope.filter.type) params.filterType = $scope.filter.type;
-				if ($scope.filter.query) params.query = $scope.filter.query;
-				if ($scope.filter.post_id) params.post_id = $scope.filter.post_id;
+			var searchParams = $location.search();
+			if (searchParams.as_replies_post) {
+				params.post_id = searchParams.as_replies_post;
+			} else {
+				for (var i = filterTypes.length; i--;) {
+					if (searchParams[filterTypes[i]]) {
+						params.filterType = filterTypes[i];
+						break;
+					}
+				}
 			}
-			console.log(params);
+			// if ($scope.filter) {
+			// 	if ($scope.filter.type) params.filterType = $scope.filter.type;
+			// 	if ($scope.filter.query) params.query = $scope.filter.query;
+			// 	if ($scope.filter.post_id) params.post_id = $scope.filter.post_id;
+			// }
 			ConversationAux.loadConversations(params).then(function(conversations) {
 				$scope.conversations = conversations;
 				// if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) return (cb && typeof(cb) === 'function' ? cb(true) : false);
@@ -367,7 +400,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				offset: $scope.conversations.length
 			};
 
-			angular.extend(config, $scope.getFilter());
+			// angular.extend(config, $scope.getFilter());
 
 			// Conversations.get(conf, function(res) {
 			// 	$scope.addToBottom(res.conversations);
@@ -389,13 +422,37 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	return parts.length > 2 ? parts[2] : false;
 		// };
 
-		$scope.loadPostConversations = function() {
+		function loadPostConversations() {
 			Conversations.getPosts(function(res) {
 				$scope.postConversations = res;
 			});
 		};
 
-		function init() {
+		function init(paramObject) {
+			paramObject = paramObject || {};
+
+			// set filter select-box to correct value
+			// TODO - refactor this!!
+			var searchParams = $location.search(),
+				filterSet = false;
+			if (searchParams.as_replies_post) {
+				$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
+				$scope.filter.post_id = searchParams.as_replies_post;
+				filterSet = true;
+			} else {
+				for (var i = filterTypes.length; i--;) {
+					if (searchParams[filterTypes[i]]) {
+						$scope.filter.type = filterTypes[i];
+						$scope.filter.post_id = void 0;
+						filterSet = true;
+						break;
+					}
+				}
+			}
+			if (filterSet) $state.go('messages', {
+				notify: false
+			});
+
 			// $scope.conversations = false;
 			// $scope.detail = false;
 			$scope.notFound = false;
@@ -403,14 +460,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// $scope.showNewMessageForm = false;
 			$scope.loadingBottom = false;
 
-			$scope.loadPostConversations();
+			loadPostConversations();
 
 			loadConversations(function(conversations) {
 				$scope.loaded = true;
-				if (!($state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
 					id: $state.params.id ? $state.params.id : conversations[0]._id
 				});
 			});
+
 			// $scope.loadConversations({
 			// 	limit: _loadLimit,
 			// 	offset: 0
@@ -458,7 +516,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// $scope.$on('conversationCreated', $scope.loadCounters);
 		// $scope.$on('currentConversationAsReaded', $scope.setCurrentConversationAsReadedSoft);
 		// $scope.$on('conversationDeepUpdate', $scope.updateDeepConversation);
-		$scope.$on('filterApplied', init);
+		// $scope.$on('filterApplied', init);
+
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();
 	}

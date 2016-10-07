@@ -32,7 +32,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 
 	var factory = {
 		addConversationToList: addConversationToList,
+		addConversationParticipants: addConversationParticipants,
+		deserializeConversation: deserializeConversation,
 		init: init,
+		getFirstConversationIdIfAny: getFirstConversationIdIfAny,
 		handleEvent: handleEvent,
 		loadConversation: loadConversation,
 		loadConversationMessages: loadConversationMessages,
@@ -150,15 +153,57 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	/**
+	 *	adds conversation title, maxAvatarCount, titlePersons and titleDetail
+	 */
+	function deserializeConversation(conversation) {
+		if (conversation && conversation._id) {
+			conversation.maxAvatarCount = (conversation.participants_count > 4) ? 3 : 4; // print 4 avatars max or only 3 avatars and 4th will be +X counter
+			// if it is post reply conversation, add post type
+			if (!conversation.title && conversation.post && conversation.post.title) {
+				conversation.title = conversation.post.title;
+				conversation.post.type_code = (conversation.post.author._type == 'User' ? (conversation.post.type == 'offer' ? 'OFFER' : 'NEED') : (conversation.post.type == 'offer' ? 'WE_OFFER' : 'WE_NEED'));
+			}
+			// if there is no title, build it from its first at most 3 participants
+			if (conversation.participants.length) {
+				conversation.titlePersons = [];
+				for (var i = 0; i < 2 && i < conversation.participants.length; i++) {
+					conversation.titlePersons.push(conversation.participants[i].name);
+				}
+				conversation.titlePersons = conversation.titlePersons.join(', ');
+			}
+			conversation.titleDetail = conversation.title || conversation.titlePersons;
+		}
+		return conversation;
+	}
+
+	/**
 	 *	- {Object} conversation - conversation to add to the list
 	 *	- {Int} index - the index to which to add the conversation
 	 *	@return index to which the conversation has been added or false if not added
 	 */
 	function addConversationToList(paramObject) {
 		if (!paramObject.conversation) return false;
+		deserializeConversation(paramObject.conversation);
 		if (paramObject.index > conversationList.length) paramObject.index = conversationList.length;
 		conversationList.splice(paramObject.index, 0, paramObject.conversation);
 		return paramObject.index;
+	}
+
+	/**
+	 *	- {Object} conversation - the conversation to which to add participants
+	 *	@return {Promise} resolves into conversation enhanced with its participants
+	 */
+	function addConversationParticipants(paramObject) {
+		paramObject = paramObject || {};
+		if (!paramObject.conversation) throw new Error('Conversation required for adding participants');
+		return $q(function(resolve, reject) {
+			Conversations.getParticipants({
+				id: paramObject.conversation._id
+			}, function(res) {
+				paramObject.conversation.allParticipants = res.participants;
+				resolve(paramObject.conversation);
+			}, reject);
+		});
 	}
 
 	/**
@@ -293,7 +338,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *	- {Int} offset - how many should be skipped
 	 *	- {String} filterType - filter - type
 	 *	- {String} post_id - filter - only conversations about a specific marketplace post
-	 *	- {String} query - filter - only conversations matching the query
 	 *	- {Boolean} prepend - if TRUE - the fetched conversations shall be prepended to the list, instead of appending
 	 */
 	function loadConversations(paramObject) {
@@ -307,20 +351,21 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			}
 			if (paramObject.filterType) params[paramObject.filterType] = true;
 			if (paramObject.post_id) params.post_id = paramObject.post_id;
-			if (paramObject.query) params.query = paramObject.query;
-
-			console.log(params);
+			// console.log(params);
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;
-				if (paramObject.wipe) conversationList.length = 0;
 
-				removeDuplicates({
-					source: conversationList,
-					target: res.conversations,
-					comparator: '_id'
-				});
-
+				// either clean up the conversation list or remove possible duplicates
+				if (paramObject.wipe) {
+					conversationList.length = 0;
+				} else {
+					removeDuplicates({
+						source: conversationList,
+						target: res.conversations,
+						comparator: '_id'
+					});
+				}
 				conversationList[paramObject.prepend ? 'unshift' : 'push'].apply(conversationList, res.conversations);
 				resolve(conversationList);
 			}, reject);
@@ -346,6 +391,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			if (map[paramObject.target[i][paramObject.comparator]]) paramObject.target.splice(i, 1);
 		}
 		return;
+	}
+
+	function getFirstConversationIdIfAny() {
+		return (conversationList.length ? conversationList[0]._id : '');
 	}
 
 }]);

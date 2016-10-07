@@ -15,20 +15,23 @@ angular.module('hearth.directives').directive('conversationDetail', [
 			scope: {},
 			templateUrl: 'templates/directives/conversationDetail.html',
 			link: function($scope, element) {
+				// PSEUDO INJECTS
 				$scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
 				$scope.getProfileLink = $rootScope.getProfileLink;
 				$scope.loggedUser = $rootScope.loggedUser;
 				$scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
 				$scope.pluralCat = $rootScope.pluralCat;
 				$scope.confirmBox = $rootScope.confirmBox;
+
+				// INIT VARIABLES
 				// $scope.scrollBottom = false;
-				$scope.participants = false;
+				// $scope.participants = false;
 				$scope.showParticipants = false;
 				$scope.sendingActionRequest = false;
-				$scope.lockCounter = 0;
+				// $scope.lockCounter = 0;
 				// $scope.messages = false;
 				// var _messagesCount = 10; // how many messages will we load in each request except new messages
-				$scope.info
+				$scope.info = {};
 
 				var _scrollInited = false;
 				var _loadOlderMessagesEnd = false;
@@ -393,24 +396,34 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					$scope.showParticipants = !$scope.showParticipants;
 					resizeTMessagesBox();
 
-					if ($scope.showParticipants && !$scope.participants)
-						$scope.loadParticipants();
+					if ($scope.info.participants.length === $scope.info.participants_count) $scope.info.allParticipants = $scope.info.participants;
+
+					if ($scope.showParticipants && !$scope.info.allParticipants) {
+						ConversationAux.addConversationParticipants({
+							conversation: $scope.info
+						}).then(function(conversation) {
+							resizeTMessagesBox();
+							$timeout(function() {
+								$scope.$broadcast('scrollbarResize');
+							});
+						});
+					};
 				};
 
 				/**
 				 * Load participants list
 				 */
-				$scope.loadParticipants = function() {
-					Conversations.getParticipants({
-						id: $scope.info._id
-					}, function(res) {
-						$scope.participants = res.participants;
-						resizeTMessagesBox(); // resize with timeout
-						$timeout(function() {
-							$scope.$broadcast('scrollbarResize');
-						});
-					});
-				};
+				// function loadParticipants() {
+				// Conversations.getParticipants({
+				// 	id: $scope.info._id
+				// }, function(res) {
+				// 	$scope.participants = res.participants;
+				// 	resizeTMessagesBox(); // resize with timeout
+				// 	$timeout(function() {
+				// 		$scope.$broadcast('scrollbarResize');
+				// 	});
+				// });
+				// };
 
 				function bindActionHandlers() {
 					element.bind('click', function() {
@@ -447,7 +460,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					_loadOlderMessagesEnd = false;
 					_scrollInited = false;
 					// $scope.messages = false;
-					$scope.participants = false;
+					// $scope.participants = false;
 					$scope.showParticipants = false;
 					$timeout(function() {
 						bindActionHandlers();
