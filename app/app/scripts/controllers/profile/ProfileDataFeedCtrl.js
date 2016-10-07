@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService',
-	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService) {
+	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService',
+	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -102,35 +102,51 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		};
 
 		function processRelevantPosts(params, val) {
+			var Resource = val ? CommunityRatings : UserRatings;
+			var configUser = {
+				userId: params.user_id
+			}
+			var configLoggedUser = {
+				userId: $rootScope.loggedUser._id
+			}
+			var configCommunity = {
+				communityId: val
+			}
+
 			$scope.loadingRatingPosts = true;
 
-			UserRatings.possiblePosts({
-				userId: params.user_id,
-				current_community_id: val
-			}, function(res, headers) {
+			Resource.possiblePosts(val ? configCommunity : configUser, function(res, headers) {
 				var posts = UsersCommunitiesService.alterPossiblePosts(res, headers);
 
 				$scope.ratingPosts = posts;
 
 				var ratingActivePosts = [];
 
-				UserRatings.activePosts({
-					userId: params.user_id,
-					current_community_id: val
-				}, function(res) {
-					angular.forEach(res.data, function(post) {
-						ratingActivePosts.push(post);
+				if (val) {
+					UserRatings.activePosts(configUser, function(res) {
+						angular.forEach(res.data, function(post) {
+							ratingActivePosts.push(post);
+						});
 					});
-				});
 
-				UserRatings.activePosts({
-					userId: $rootScope.loggedUser._id,
-					current_community_id: val
-				}, function(res) {
-					angular.forEach(res.data, function(post) {
-						ratingActivePosts.push(post);
+					CommunityRatings.activePosts(configCommunity, function(res) {
+						angular.forEach(res.data, function(post) {
+							ratingActivePosts.push(post);
+						});
 					});
-				});
+				} else {
+					UserRatings.activePosts(configUser, function(res) {
+						angular.forEach(res.data, function(post) {
+							ratingActivePosts.push(post);
+						});
+					});
+
+					UserRatings.activePosts(configLoggedUser, function(res) {
+						angular.forEach(res.data, function(post) {
+							ratingActivePosts.push(post);
+						});
+					});
+				}
 
 				$scope.ratingActivePosts = ratingActivePosts;
 				$scope.loadedRatingPosts = true;
