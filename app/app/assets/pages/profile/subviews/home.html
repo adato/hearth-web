@@ -3,7 +3,7 @@
 		<div class="box ratings home-ratings" ng-if="receivedRatings.length">
 			<h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
 			<h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
-			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
+			<div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
 			<p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
 			<p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}}
 				<a href="" ng-click="openUserRatingForm()">
