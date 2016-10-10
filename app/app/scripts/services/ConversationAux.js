@@ -6,7 +6,7 @@
  * @description functions and cache for conversations
  */
 
-angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state) {
+angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', 'Messenger', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state, Messenger) {
 
 	var inited,
 		processingRunning;
@@ -101,6 +101,9 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
+		console.log(socketEvent);
+		Messenger.setUnreadCount(socketEvent.unread);
+
 		if (!processingRunning) return void 0;
 
 		switch (socketEvent.action) {
@@ -373,11 +376,15 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *	- {String} filterType [optional] - filter - type
 	 *	- {String} post_id [optional] - filter - only conversations about a specific marketplace post
 	 *	- {Boolean} prepend [optional] - if TRUE - the fetched conversations shall be prepended to the list, instead of appending
+	 *
+	 *	@return {Promise} resolves into {conversations: Array, thatsAllFolks: Boolean}
 	 */
 	function loadConversations(paramObject) {
 		paramObject = paramObject || {};
 		return $q(function(resolve, reject) {
-			if (conversationListLoading) resolve(conversationList);
+			if (conversationListLoading) return resolve({
+				conversations: conversationList
+			});
 			conversationListLoading = true;
 			var limit = (paramObject.socketReinit ? conversationList.length : (paramObject.limit || conversationGetLimit));
 			var params = {
@@ -401,6 +408,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						dict[res.conversations[i]._id] = res.conversations[i];
 					}
 					for (var i = conversationList.length; i--;) {
+						// mark the exising conversations with a flag so that we can prepend the nonexistant ones to the conversationList later
+						if (dict[conversationList[i]._id]) dict[conversationList[i]._id].alreadyPresent = true;
+
+						// take care of non-up-to-date conversations
 						if (conversationList[i].messages && dict[conversationList[i]._id] && conversationList[i].messages[conversationList[i].messages.length - 1]._id !== dict[conversationList[i]._id].message._id) {
 							// TODO this hack can be removed with the introduction of flag instead of plain .messages deletion
 							// It basically just checks that we dont delete the conversation that we have opened
@@ -420,6 +431,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 							}
 						}
 					}
+					// prepend conversations that are not yet in the list, i.e. new conversations
+					for (var i = res.conversations.length; i--;) {
+						if (!res.conversations[i].alreadyPresent) conversationList.unshift(res.conversations[i]);
+					}
 				} else {
 					removeDuplicates({
 						source: conversationList,
@@ -428,13 +443,17 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 					});
 				}
 				if (!paramObject.socketReinit) conversationList[paramObject.prepend ? 'unshift' : 'push'].apply(conversationList, res.conversations);
-				resolve(conversationList);
+				resolve({
+					conversations: conversationList,
+					thatsAllFolks: res.conversations.length < limit
+				});
 			}, reject);
 		});
 	}
 
 	/**
-	 *	Strips 'target' of items existing in 'source'. Decides on the given comparator (=property name)
+	 *	Strips 'target' of items existing in 'source'.
+	 *	Decision of existence is based on the given comparator (=property name)
 	 *
 	 *	- {Array} source
 	 *	- {Array} target

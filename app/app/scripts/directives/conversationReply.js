@@ -69,9 +69,9 @@ angular.module('hearth.directives').directive('conversationReply', [
 					});
 				};
 
-				$scope.closeConversation = function() {
-					$scope.$emit('closeConversation');
-				}
+				// $scope.closeConversation = function() {
+				// 	$scope.$emit('closeConversation');
+				// }
 
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;

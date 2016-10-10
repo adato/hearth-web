@@ -24,6 +24,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.loaded = false;
 		$scope.loadingBottom = false;
+		var conversationLoadInProgress,
+			allConversationsLoaded;
 
 		// the conversation list
 		$scope.conversations = false;
@@ -118,25 +120,25 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			init()
 		};
 
-		$scope.loadNewConversations = function() {
-			// $scope.$broadcast('loadNewMessages');
-
-			if (!$scope.conversations.length) {
-				return loadConversations();
-			}
-
-			var config = {
-				newer: $scope.conversations[0].last_message_time,
-				prepend: true
-			};
-
-			// angular.extend(config, $scope.getFilter());
-
-			ConversationAux.loadConversations(config).then(function() {
-				$scope.$broadcast("scrollbarResize");
-				$scope.$broadcast("classIfOverflowContentResize");
-			});
-		};
+		// $scope.loadNewConversations = function() {
+		// 	// $scope.$broadcast('loadNewMessages');
+		//
+		// 	if (!$scope.conversations.length) {
+		// 		return loadConversations();
+		// 	}
+		//
+		// 	var config = {
+		// 		newer: $scope.conversations[0].last_message_time,
+		// 		prepend: true
+		// 	};
+		//
+		// 	// angular.extend(config, $scope.getFilter());
+		//
+		// 	ConversationAux.loadConversations(config).then(function() {
+		// 		$scope.$broadcast("scrollbarResize");
+		// 		$scope.$broadcast("classIfOverflowContentResize");
+		// 	});
+		// };
 
 		// $scope.removeDuplicitConversations = function(list) {
 		// 	list.forEach(function(item) {
@@ -160,22 +162,22 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// 	$scope.filter.query && $scope.applyFilter();
 		// };
 
-		$scope.markAsRead = function(conversation) {
-			if (conversation.read) return;
-			// console.log(conversation);
-			Messenger.decreaseUnread();
+		// $scope.markAsRead = function(conversation) {
+		// 	if (conversation.read) return;
+		// 	// console.log(conversation);
+		// 	Messenger.decreaseUnread();
+		//
+		// 	Conversations.markAsRead({
+		// 		id: conversation._id
+		// 	}, function(res) {
+		// 		// console.log(res);
+		// 		conversation.read = true;
+		// 	});
+		// };
 
-			Conversations.markAsRead({
-				id: conversation._id
-			}, function(res) {
-				console.log(res);
-				// conversation.read = true;
-			});
-		};
-
-		$scope.$on('closeConversation', function() {
-			$scope.detail = null;
-		});
+		// $scope.$on('closeConversation', function() {
+		// 	$scope.detail = null;
+		// });
 
 		/*
 		   This will fetch the conversation and mark it as read
@@ -364,15 +366,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// 	if ($scope.filter.query) params.query = $scope.filter.query;
 			// 	if ($scope.filter.post_id) params.post_id = $scope.filter.post_id;
 			// }
-			ConversationAux.loadConversations(params).then(function(conversations) {
-				$scope.conversations = conversations;
+			ConversationAux.loadConversations(params).then(function(res) {
+				$scope.conversations = res.conversations;
 				$scope.$broadcast("scrollbarResize");
 				$scope.$broadcast("classIfOverflowContentResize");
 				// if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) return (cb && typeof(cb) === 'function' ? cb(true) : false);
 
 				// ConversationAux.loadConversation($state.params.id).then(function(conversation) {
 				// 	$scope.showConversation(conversation, false);
-				return (cb && typeof(cb) === 'function' ? cb(conversations) : false);
+				return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false);
 				// });
 			});
 			// $scope.loadConversations({}, function(list) {
@@ -399,7 +401,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
+			if (conversationLoadInProgress || allConversationsLoaded) return false;
 			$scope.loadingBottom = true;
+			conversationLoadInProgress = true;
 			var config = {
 				// limit: _loadLimit,
 				offset: $scope.conversations.length
@@ -415,10 +419,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// 		$scope.loadingBottom = false;
 			// 	}
 			ConversationAux.loadConversations(config).then(function(res) {
-				// $timeout(function() {
+				if (res.thatsAllFolks) allConversationsLoaded = true;
+				conversationLoadInProgress = false;
 				$scope.$broadcast("scrollbarResize");
 				$scope.$broadcast("classIfOverflowContentResize");
 				// });
+			}, function(err) {
+				conversationLoadInProgress = false;
 			});
 		};
 
@@ -437,7 +444,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			paramObject = paramObject || {};
 
 			// set filter select-box to correct value
-			// TODO - refactor this!!
+			// TODO - refactor those filters
 			var searchParams = $location.search(),
 				filterSet = false;
 			if (searchParams.as_replies_post) {
@@ -467,10 +474,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			loadPostConversations();
 
-			loadConversations(function(conversations) {
+			loadConversations(function(res) {
 				$scope.loaded = true;
 				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
-					id: $state.params.id ? $state.params.id : conversations[0]._id
+					id: $state.params.id ? $state.params.id : res.conversations[0]._id
 				});
 			});
 
