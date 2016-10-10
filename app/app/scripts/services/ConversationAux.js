@@ -6,7 +6,7 @@
  * @description functions and cache for conversations
  */
 
-angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope) {
+angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state) {
 
 	var inited,
 		processingRunning;
@@ -23,7 +23,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	// list of conversations shown in the conversations column
 	var conversationList = [],
 		// all conversations downloaded from the server
-		// conversationsCache = [],	// << not used
+		// conversationsCache = [],	// << not used ATM
 		conversationListLoading,
 		conversationListLoaded,
 		conversationGetLimit = 20;
@@ -36,6 +36,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		deserializeConversation: deserializeConversation,
 		init: init,
 		getFirstConversationIdIfAny: getFirstConversationIdIfAny,
+		getLastMessageTime: getLastMessageTime,
 		handleEvent: handleEvent,
 		loadConversation: loadConversation,
 		loadConversationMessages: loadConversationMessages,
@@ -76,6 +77,20 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			// /TODO
 			ActionCableSocketWrangler.start();
 			consumer.subscribe(handleEvent);
+
+			// ActionCableSocketWrangler doesn't expose $websocket onOpen and onClose callbacks,
+			// so we set up a watch on its states to achieve the same thing .. less efficiently
+			$rootScope.$watch(function() {
+				return ActionCableSocketWrangler.connecting;
+			}, function(newValue, oldValue) {
+				if (newValue === false && !ActionCableSocketWrangler.disconnected) {
+					// Here the define the logic that should happen after losing the socket connection
+					// and starting it up again - i.e. we should try to get information that we might
+					// have missed during our time offline
+					reinitMessaging();
+				}
+			});
+
 			return true;
 		}
 		return false;
@@ -86,7 +101,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
-		console.log(socketEvent);
 		if (!processingRunning) return void 0;
 
 		switch (socketEvent.action) {
@@ -203,6 +217,24 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				paramObject.conversation.allParticipants = res.participants;
 				resolve(paramObject.conversation);
 			}, reject);
+		});
+	}
+
+	function getLastMessageTime(conversation) {
+		if (!conversation) throw new TypeError('Conversation must be an object');
+		if (!conversation.messages || !conversation.messages.length) return conversation.message.created_at;
+		return conversation.messages[conversation.messages.length - 1].created_at;
+	}
+
+	/**
+	 *	Function to be run after retrieving fallen socket connection
+	 */
+	function reinitMessaging() {
+		// First reload the conversation list. Then check all conversations '.message' with the last
+		// message in '.messages' and if it doesn't match, delete the '.messages' prop
+		// TODO: change deleting for some flag
+		loadConversations({
+			socketReinit: true
 		});
 	}
 
@@ -333,32 +365,61 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	/**
-	 *	- {Boolean} wipe - remove all items from the conversation list before adding new
-	 *	- {Int} limit - how many should be fetched
-	 *	- {Int} offset - how many should be skipped
-	 *	- {String} filterType - filter - type
-	 *	- {String} post_id - filter - only conversations about a specific marketplace post
-	 *	- {Boolean} prepend - if TRUE - the fetched conversations shall be prepended to the list, instead of appending
+	 *	- {Boolean} wipe [optional] - remove all items from the conversation list before adding new
+	 *	- {Boolean} socketReinit [optional] - if true, removes the '.messages' prop if last message_id
+	 *											doesn't match the '.message' message_id. If there are any convevrsations
+	 *	- {Int} limit [optional] - how many should be fetched
+	 *	- {Int} offset [optional] - how many should be skipped
+	 *	- {String} filterType [optional] - filter - type
+	 *	- {String} post_id [optional] - filter - only conversations about a specific marketplace post
+	 *	- {Boolean} prepend [optional] - if TRUE - the fetched conversations shall be prepended to the list, instead of appending
 	 */
 	function loadConversations(paramObject) {
 		paramObject = paramObject || {};
-		if (conversationListLoading) resolve(conversationList);
 		return $q(function(resolve, reject) {
+			if (conversationListLoading) resolve(conversationList);
 			conversationListLoading = true;
+			var limit = (paramObject.socketReinit ? conversationList.length : (paramObject.limit || conversationGetLimit));
 			var params = {
-				limit: paramObject.limit || conversationGetLimit,
+				limit: limit,
 				offset: paramObject.offset || 0
 			}
 			if (paramObject.filterType) params[paramObject.filterType] = true;
 			if (paramObject.post_id) params.post_id = paramObject.post_id;
-			// console.log(params);
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;
 
-				// either clean up the conversation list or remove possible duplicates
+				// either clean up the conversation list
+				// or run the socketReinit procedure
+				// or remove possible duplicates
 				if (paramObject.wipe) {
 					conversationList.length = 0;
+				} else if (paramObject.socketReinit) {
+					var dict = {};
+					for (var i = res.conversations.length; i--;) {
+						dict[res.conversations[i]._id] = res.conversations[i];
+					}
+					for (var i = conversationList.length; i--;) {
+						if (conversationList[i].messages && dict[conversationList[i]._id] && conversationList[i].messages[conversationList[i].messages.length - 1]._id !== dict[conversationList[i]._id].message._id) {
+							// TODO this hack can be removed with the introduction of flag instead of plain .messages deletion
+							// It basically just checks that we dont delete the conversation that we have opened
+							if ($state.params.id === conversationList[i]._id) {
+								loadConversationMessages({
+									conversation: conversationList[i],
+									params: {
+										newer: getLastMessageTime(conversationList[i])
+									}
+								}).then(function(conversation) {
+									$rootScope.$emit('messageAddedToConversation', {
+										conversation: conversation
+									});
+								});
+							} else {
+								delete conversationList[i].messages;
+							}
+						}
+					}
 				} else {
 					removeDuplicates({
 						source: conversationList,
@@ -366,7 +427,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						comparator: '_id'
 					});
 				}
-				conversationList[paramObject.prepend ? 'unshift' : 'push'].apply(conversationList, res.conversations);
+				if (!paramObject.socketReinit) conversationList[paramObject.prepend ? 'unshift' : 'push'].apply(conversationList, res.conversations);
 				resolve(conversationList);
 			}, reject);
 		});

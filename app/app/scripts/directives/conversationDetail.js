@@ -144,12 +144,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				// 	// $scope.$emit("conversationUpdated", $scope.info);
 				// };
 
-				$scope.getLastMessageTime = function() {
-					if (!$scope.messages || !$scope.messages.length)
-						return undefined;
-
-					return $scope.messages[$scope.messages.length - 1].created_at;
-				};
+				// $scope.getLastMessageTime = function() {
+				// 	if (!$scope.messages || !$scope.messages.length)
+				// 		return undefined;
+				//
+				// 	return $scope.messages[$scope.messages.length - 1].created_at;
+				// };
 
 				// $scope.reloadConversationInfo = function() {
 				// 	Conversations.get({
@@ -177,7 +177,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				// 	ConversationAux.loadConversationMessages({
 				// 		conversation: $scope.info,
 				// 		params: {
-				// 			newer: $scope.getLastMessageTime()
+				// 			newer: ConversationAux.getLastMessageTime($scope.info)
 				// 		}
 				// 	}).then(function(conversation) {
 				// 		// function(messages) {
@@ -307,26 +307,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				}
 
 				$scope.setConversationAsRead = function() {
-					if (!$scope.info || $scope.info.read)
-						return false;
-
+					if (!$scope.info || $scope.info.read) return false;
 					Messenger.decreaseUnread();
 					$scope.info.read = true;
 					Conversations.markAsRead({
 						id: $scope.info._id
 					});
-
-					//  $scope.$emit('currentConversationAsReaded');
 				};
 
 				/**
 				 * Load older messages when we scrolled to top
 				 */
 				function loadOlderMessages(loadOlderMessages) {
-					if (_loadingOlderMessages || _loadOlderMessagesEnd || !$scope.info.messages.length) return false;
+					if (_loadingOlderMessages || $scope.info.messages[0].first_message || !$scope.info.messages.length) return false;
 					_loadingOlderMessages = true;
 
-					// $scope.loadMessages({
 					ConversationAux.loadConversationMessages({
 						conversation: $scope.info,
 						prepend: true,
@@ -334,11 +329,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
 							older: $scope.info.messages[0] ? $scope.info.messages[0].created_at : undefined
 						}
 					}).then(function(conversation) {
-						// }, function(messages) {
 						_loadingOlderMessages = false;
 
 						scrollToCurrentPosition();
 						if (loadOlderMessages !== true) $scope.setConversationAsRead();
+					}, function(error) {
+						_loadingOlderMessages = false;
 					});
 				}
 

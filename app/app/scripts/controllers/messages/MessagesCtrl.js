@@ -132,7 +132,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// angular.extend(config, $scope.getFilter());
 
-			ConversationAux.loadConversations(config);
+			ConversationAux.loadConversations(config).then(function() {
+				$scope.$broadcast("scrollbarResize");
+				$scope.$broadcast("classIfOverflowContentResize");
+			});
 		};
 
 		// $scope.removeDuplicitConversations = function(list) {
@@ -363,6 +366,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// }
 			ConversationAux.loadConversations(params).then(function(conversations) {
 				$scope.conversations = conversations;
+				$scope.$broadcast("scrollbarResize");
+				$scope.$broadcast("classIfOverflowContentResize");
 				// if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) return (cb && typeof(cb) === 'function' ? cb(true) : false);
 
 				// ConversationAux.loadConversation($state.params.id).then(function(conversation) {
