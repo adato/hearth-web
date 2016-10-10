@@ -20,7 +20,7 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 			filesPattern: '=',
 			filesMultiple: '='
 		},
-		templateUrl: 'templates/directives/filesPicker.html',
+		templateUrl: 'assets/components/filesPicker/filesPicker.html',
 		controller: ['$scope', function($scope) {
 			var ctrl = this;
 

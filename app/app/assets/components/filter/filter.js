@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('filter', [
 				filterShown: '=',
 				filterSelected: '='
 			},
-			templateUrl: 'templates/directives/filter.html',
+			templateUrl: 'assets/components/filter/filter.html',
 			link: function(scope, element) {
 				var options = {
 					types: ['geocode']

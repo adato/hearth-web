@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('communityItem', [
 				item: '=',
 				user: '='
 			},
-			templateUrl: 'templates/directives/communityItem.html',
+			templateUrl: 'assets/components/communityItem/communityItem.html',
 			link: function(scope, element) {
 				scope.getProfileLink = $rootScope.getProfileLink;
 			}

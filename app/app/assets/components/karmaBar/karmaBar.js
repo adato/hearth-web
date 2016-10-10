@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('karmaBar', [
 			scope: {
 				for: "=",
 			},
-			templateUrl: 'templates/directives/karmaBar.html',
+			templateUrl: 'assets/components/karmaBar/karmaBar.html',
 			link: function(scope, el, attrs) {
 				scope.up = scope.for.up_votes;
 				scope.down = scope.for.down_votes;

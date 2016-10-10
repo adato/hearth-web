@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 			scope: {
 				rating: "="
 			},
-			templateUrl: 'templates/directives/ratingReply.html',
+			templateUrl: 'assets/components/ratingReply/ratingReply.html',
 			link: function(scope, el, attrs) {
 				var sendingReply = false;
 				scope.showError = false;

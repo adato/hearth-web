@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('fileViewer', [
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'templates/directives/fileViewer.html',
+			templateUrl: 'assets/components/fileViewer/fileViewer.html',
 			scope: {
 				message: "="
 			},

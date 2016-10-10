@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('filterStatus', [
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'templates/directives/filterStatus.html',
+			templateUrl: 'assets/components/filterStatus/filterStatus.html',
 			scope: {},
 			link: function(scope) {
 				scope.resetFilter = function() {

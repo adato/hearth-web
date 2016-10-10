@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('privacySelector', [
 				ngModel: '=',
 				relatedModel: '@'
 			},
-			templateUrl: 'templates/directives/privacySelector.html',
+			templateUrl: 'assets/components/privacySelector/privacySelector.html',
 			link: function(scope, elem, attrs) {
 
 				attrs.$observe('relatedModel', function(val) {

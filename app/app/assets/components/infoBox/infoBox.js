@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('infoBox', [
 				infoboxIndex: "=",
 				infoboxClass: "=",
 			},
-			templateUrl: 'templates/directives/infoBox.html',
+			templateUrl: 'assets/components/infoBox/infoBox.html',
 			link: function(scope, el, attrs) {
 				scope.show = false; // infobox shown
 				scope.error = false; // an error occured when loading info

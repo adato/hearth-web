@@ -20,7 +20,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 				remove: '=remove',
 				ngDisabled: '=',
 			},
-			templateUrl: 'templates/directives/authorSelector.html',
+			templateUrl: 'assets/components/authorSelector/authorSelector.html',
 			link: function($scope) {
 				$scope.list = [];
 				$scope.selected = {};

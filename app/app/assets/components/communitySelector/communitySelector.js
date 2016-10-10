@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('communitySelector', [
 				communities: '=',
 				disable: '=',
 			},
-			templateUrl: 'templates/directives/communitySelector.html',
+			templateUrl: 'assets/components/communitySelector/communitySelector.html',
 			link: function($scope, baseElement) {
 				$scope.myCommunities = [];
 				$scope.list = {

@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('radio', function() {
 			onUpdate: '&',
 			ngDisabled: '='
 		},
-		templateUrl: 'templates/directives/radio.html',
+		templateUrl: 'assets/components/radio/radio.html',
 		link: function(scope, el) {
 			scope.checked = false;
 

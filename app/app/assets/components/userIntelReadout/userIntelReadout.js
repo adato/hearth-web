@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 				entity: '=',
 				type: '='
 			},
-			templateUrl: 'templates/directives/userIntelReadout.html',
+			templateUrl: 'assets/components/userIntelReadout/userIntelReadout.html',
 			link: function(scope) {
 				scope.isEmpty = IsEmpty;
 

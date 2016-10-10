@@ -31,7 +31,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
 		var itemTypes = ['post', 'banner'] //, 'community', 'user', 'conversation']; no more types needed for now
-		var templateDir = 'templates/directives/items/';
+		var templateDir = 'assets/components/item/items/';
 
 		if ($state.params.query) {
 			$rootScope.searchQuery.query = $state.params.query;
