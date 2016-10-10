@@ -1,7 +1,7 @@
 window['$$config'] = {
 	basePath: '/app/',
 	appUrl: window.location.origin + '/app/',
-	modalTemplates: 'templates/modal/',
+	modalTemplates: 'assets/modals/',
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'en',
