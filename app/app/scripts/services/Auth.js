@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window', 'ConversationAux',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window, ConversationAux) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -22,7 +22,9 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.user = session;
 						$rootScope.user.loggedIn = true;
 						$.cookie('user_id', session._id);
+
 						$rootScope.$emit('onUserLogin', session);
+						ConversationAux.init();
 
 						if (session.get_logged_in_user && session.get_logged_in_user.location) {
 							var loc = session.get_logged_in_user.location;

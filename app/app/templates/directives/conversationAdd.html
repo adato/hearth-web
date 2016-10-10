@@ -47,7 +47,7 @@
 				<files-picker ng-model="message.attachments_attributes" files-multiple="true"></files-picker>
 			</div>
 			<div>
-				<a ng-click="close()" class="revert-changes" tabindex="0">{{:: 'CANCEL' | translate }}</a>
+				<a ui-sref="messages.detail({id: getFirstConversationId()})" class="revert-changes">{{:: 'CANCEL' | translate }}</a>
 			</div>
 		</div>
 	</form>

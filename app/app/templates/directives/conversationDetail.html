@@ -1,6 +1,6 @@
 <div>
-	<div loading show="!messages"></div>
-	<div class="conversation-detail" ng-if="messages">
+	<div loading show="!info.messages.length"></div>
+	<div class="conversation-detail" ng-if="info.messages.length">
 		<div class="conversation-detail-top">
 			<span class="fleft conversation-title" ng-if="info">
 				<span class="left" ng-if="info.titleDetail && !info.titleCustom">
@@ -24,18 +24,18 @@
 					<a ng-if="!info.is_archived" ng-click="confirmBox('MESSAGES.ARCHIVE_CONFIRM.LABEL', 'MESSAGES.ARCHIVE_CONFIRM.TEXT', archiveConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.ARCHIVE_CONVERSATION' | translate }}</a>
 					<a ng-if="info.is_member" ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
 					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
-					<a ng-if="info.read" id="mark-as-readed" ng-click="setConversationAsUnReaded()" class="action-link divider">{{:: 'MESSAGES.MARK_CONVERSATION_AS_UNREAD' | translate }}</a>
+					<a ng-if="info.read" ng-click="markConversationAsUnread(info)" class="action-link divider">Označit za nepřečtenou</a>
 				</div>
 			</span>
 			<div class="clear"></div>
 			<div ng-if="showParticipants">
 				<hr />
-				<div class="conversation-participants" ng-class="{nano: participants && participants.length > 9}" ng-attr-custom-scrollbar="participants && participants.length > 9">
+				<div class="conversation-participants" ng-class="{nano: info.allParticipants && info.allParticipants.length > 9}" ng-attr-custom-scrollbar="info.allParticipants && info.allParticipants.length > 9">
 					<div class="nano-content">
 						<div class="nano-content-inner">
-							<div loading show="!participants"></div>
+							<div loading show="!info.allParticipants"></div>
 							<ul>
-								<li ng-repeat="item in participants">
+								<li ng-repeat="item in info.allParticipants">
 									<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="display-flex">
 										<avatar src="item.avatar.normal" class="margin-right-medium" type="item._type" size="mini"></avatar>
 										<span title="{{:: item.name }}">{{:: item.name | ellipsis:15}}</span>
@@ -54,20 +54,19 @@
 			<div class="nano messages-container" custom-scrollbar>
 				<div class="nano-content">
 					<div class="nano-content-inner">
-						<article class="message" ng-repeat="item in messages track by $index">
+						<article class="message" ng-repeat="item in info.messages track by $index">
 							<div ng-if="item.author">
-								<div class="message-head" ng-class="{'owner-name': item.author._type == 'Community'}">
-									<a class="left" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
-										<avatar class="left move-bot" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
-										<h5 class="fleft">
+								<div class="message-head display-flex flex-space-between flex-wrap" ng-class="{'owner-name': item.author._type == 'Community'}">
+									<a class="display-flex" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
+										<avatar class="" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
+										<h5 class="text-emphasize margin-none">
 											{{item.author.name | ellipsis:50}}
 											<div ng-if="item.author._type == 'Community'">
 												({{item.owner.name }})
 											</div>
 										</h5>
 									</a>
-									<span class="right" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
-									<div class="clear"></div>
+									<span class="color-dark-gray" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
 								</div>
 								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 								<file-viewer ng-if="item.file_attachments.length" message="item"></file-viewer>

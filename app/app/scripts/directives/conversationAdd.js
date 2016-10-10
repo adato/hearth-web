@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify', 'FileService', '$timeout',
-	function($rootScope, Conversations, Notify, FileService, $timeout) {
+	'$rootScope', 'Conversations', 'Notify', 'FileService', '$timeout', 'ConversationAux', '$state',
+	function($rootScope, Conversations, Notify, FileService, $timeout, ConversationAux, $state) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -138,8 +138,15 @@ angular.module('hearth.directives').directive('conversationAdd', [
 							Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
 						}
 
-						$scope.$emit("conversationCreated", res);
-						$scope.close(res);
+						ConversationAux.addConversationToList({
+							conversation: res,
+							index: 0
+						});
+						$state.go('messages.detail', {
+							id: res._id
+						});
+						// $scope.$emit("conversationCreated", res);
+						// $scope.close(res);
 					}, function(err) {
 						$scope.sendingMessage = false;
 
@@ -148,6 +155,10 @@ angular.module('hearth.directives').directive('conversationAdd', [
 						}
 					});
 				};
+
+				$scope.getFirstConversationId = function() {
+					return ConversationAux.getFirstConversationIdIfAny();
+				}
 			}
 		};
 	}

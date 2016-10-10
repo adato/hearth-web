@@ -148,10 +148,16 @@ angular.module('hearth').config([
 				templateUrl: 'templates/messages/list.html',
 				controller: 'MessagesCtrl'
 			})
+			.state('messages.new', {
+				titleIgnore: true,
+				url: '/new',
+				template: '<conversation-add></conversation-add>'
+			})
 			.state('messages.detail', {
 				titleIgnore: true,
 				url: '/:id',
-				template: '<div>abcd dbawdwd</div>'
+				template: '<conversation-detail></conversation-detail>'
+					// templateUrl: 'templates/messages/detail.html'
 			})
 			.state('profile', {
 				title: false,
