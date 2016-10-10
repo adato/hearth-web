@@ -23,6 +23,10 @@ angular.module('hearth.services').service('Messenger', [
 			_loadingEnabled = true;
 		};
 
+		this.setUnreadCount = function(count) {
+			$rootScope.messagesCounters.unread = count;
+		}
+
 		this.decreaseUnread = function() {
 			$rootScope.messagesCounters.unread--;
 		};
