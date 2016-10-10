@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('userSelector', [
 				ngBlur: '&',
 				ngFocus: '&'
 			},
-			templateUrl: 'templates/directives/userSelector.html',
+			templateUrl: 'assets/components/userSelector/userSelector.html',
 			link: function($scope, baseElement) {
 				var timer = null;
 				$scope.userList = [];

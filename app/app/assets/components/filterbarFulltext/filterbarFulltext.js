@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('filterbarFulltext', [
 		return {
 			replace: true,
 			restrict: 'E',
-			templateUrl: 'templates/directives/filterbarFulltext.html',
+			templateUrl: 'assets/components/filterbarFulltext/filterbarFulltext.html',
 			scope: true,
 			link: function(scope) {
 				scope.filterType = $state.params.type;

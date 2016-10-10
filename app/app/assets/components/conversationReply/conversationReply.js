@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 			scope: {
 				conversation: '='
 			},
-			templateUrl: 'templates/directives/conversationReply.html',
+			templateUrl: 'assets/components/conversationReply/conversationReply.html',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
 				$scope.showError = {

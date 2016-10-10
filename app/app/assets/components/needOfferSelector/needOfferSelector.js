@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('needofferselector',
 				ngDisabled: '=',
 				requiredShown: '='
 			},
-			templateUrl: 'templates/directives/needOfferSelector.html',
+			templateUrl: 'assets/components/needOfferSelector/needOfferSelector.html',
 			link: function(scope) {
 				scope.requiredMessageShown = scope.requiredShown !== void 0 ? scope.requiredShown : false;
 				scope.$watch('requiredShown', function(value) {

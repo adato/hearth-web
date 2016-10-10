@@ -22,7 +22,7 @@ angular.module('hearth.geo').directive('searchMap', [
 				setLoadingFn: '&',
 				items: '=',
 			},
-			templateUrl: 'templates/directives/searchMap.html',
+			templateUrl: 'assets/components/searchMap/searchMap.html',
 			link: function(scope, element) {
 				scope.center = false;
 				var input = $('input', element)[0];

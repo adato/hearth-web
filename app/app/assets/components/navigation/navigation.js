@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('navigation', [
 			restrict: 'E',
 			scope: true,
 			replace: true,
-			templateUrl: 'templates/directives/navigation.html',
+			templateUrl: '/assets/components/navigation/navigation.html',
 			link: function($scope, element) {
 				$scope.searchHidden = !$location.search().query;
 				$scope.searchFilterDisplayed = false;

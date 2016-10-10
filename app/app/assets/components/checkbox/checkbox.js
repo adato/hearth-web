@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 			onUpdate: '&',
 			disable: '=?'
 		},
-		templateUrl: 'templates/directives/checkbox.html',
+		templateUrl: 'assets/components/checkbox/checkbox.html',
 		link: function(scope, el) {
 			scope.checked = false;
 			// if (scope.disable) {

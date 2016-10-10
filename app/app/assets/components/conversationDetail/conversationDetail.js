@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 			scope: {
 				info: '=',
 			},
-			templateUrl: 'templates/directives/conversationDetail.html',
+			templateUrl: 'assets/components/conversationDetail/conversationDetail.html',
 			link: function($scope, element) {
 				$scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
 				$scope.getProfileLink = $rootScope.getProfileLink;

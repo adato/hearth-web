@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('avatar', [
 				'type': '=',
 				'href': '='
 			},
-			templateUrl: 'templates/directives/avatar.html',
+			templateUrl: 'assets/components/avatar/avatar.html',
 			link: function($scope) {
 				$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user');
 			}

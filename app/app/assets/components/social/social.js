@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('social', [
 				summary: '=',
 				facebookInvite: '@'
 			},
-			templateUrl: 'templates/directives/social.html',
+			templateUrl: 'assets/components/social/social.html',
 			link: function($scope) {
 				$scope.url = "";
 

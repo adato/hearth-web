@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				hideHeading: '=',
 				close: "&"
 			},
-			templateUrl: 'templates/directives/communityEditForm.html',
+			templateUrl: 'assets/components/communityEditForm/communityEditForm.html',
 			link: function($scope, element) {
 				$scope.communityMembers = false;
 				$scope.loaded = false;

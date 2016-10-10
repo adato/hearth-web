@@ -20,7 +20,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				notifyContainer: '@',
 				close: '=',
 			},
-			templateUrl: 'templates/directives/conversationAdd.html',
+			templateUrl: 'assets/components/conversationAdd/conversationAdd.html',
 			link: function($scope, element) {
 				$scope.userHasRight = $rootScope.userHasRight;
 
