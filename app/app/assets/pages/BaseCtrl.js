@@ -298,7 +298,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.showMsgOnlyLogged = showMsgOnlyLogged;
 			ngDialog.open({
-				template: $$config.templates + 'userForms/login.html',
+				template: 'assets/pages/userForms/login.html',
 				controller: 'LoginCtrl',
 				scope: scope,
 				closeByEscape: true,
@@ -663,7 +663,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.post = item;
 			ngDialog.open({
-				template: $$config.templates + 'modal/linkSharing.html',
+				template: $$config.modalTemplates + 'linkSharing.html',
 				controller: 'LinkSharing',
 				scope: scope,
 				closeByEscape: true,
@@ -678,7 +678,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.post = item;
 			ngDialog.open({
-				template: $$config.templates + 'modal/emailSharing.html',
+				template: $$config.modalTemplates + 'emailSharing.html',
 				controller: 'EmailSharing',
 				scope: scope,
 				closeByEscape: true,

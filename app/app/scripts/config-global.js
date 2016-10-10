@@ -2,7 +2,6 @@ window['$$config'] = {
 	basePath: '/app/',
 	appUrl: window.location.origin + '/app/',
 	modalTemplates: 'assets/modals/',
-	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'en',
 	maxImagesSize: 6, // max size of all attached images in MB

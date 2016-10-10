@@ -1,4 +1,4 @@
-<div ng-include="'templates/profile/subviews/ratingsPanel.html'"></div>
+<div ng-include="'assets/pages/profile/subviews/ratingsPanel.html'"></div>
 <div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! data.length">
 	<div class="item">
 		<p>{{:: 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
@@ -9,7 +9,7 @@
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
 	<section class="large-10 small-12 medium-10 columns rating-form">
-		<div class="item rating-received" ng-include="'templates/profile/subviews/ratingForm.html'">
+		<div class="item rating-received" ng-include="'assets/pages/profile/subviews/ratingForm.html'">
 			<!-- include -->
 		</div>
 	</section>
