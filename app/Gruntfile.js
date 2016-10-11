@@ -610,7 +610,7 @@ module.exports = function(grunt) {
 					dot: true,
 					cwd: '<%= yeoman.app %>',
 					dest: '.tmp',
-					src: 'assets/{,*/}*'
+					src: 'assets/**/*'
 				}, {
 					cwd: '<%= yeoman.app %>/../',
 					dest: '.tmp/concat/config-local.js',
@@ -753,7 +753,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				src: ['.tmp/assets/**/*.js'],
-				dest: '.tmp/assets/scripts.js',
+				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
 				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/analytics.js', '.tmp/concat/newRelic.js'],
