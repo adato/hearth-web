@@ -610,7 +610,7 @@ module.exports = function(grunt) {
 					dot: true,
 					cwd: '<%= yeoman.app %>',
 					dest: '.tmp',
-					src: 'assets{,*/}*'
+					src: 'assets/{,*/}*'
 				}, {
 					cwd: '<%= yeoman.app %>/../',
 					dest: '.tmp/concat/config-local.js',
