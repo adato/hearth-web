@@ -33,7 +33,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 					return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
 				},
 				apply: function() {
-					var template = 'templates/directives/bubble/hide-post-option.html';
+					var template = 'assets/components/bubble/hide-post-option.html';
 					var placeholder = bubblePlaceholderSearch({
 						identificator: 'hide-post'
 					});
@@ -58,7 +58,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 					);
 				},
 				apply: function() {
-					var template = 'templates/directives/bubble/bookmark-reminder.html';
+					var template = 'assets/components/bubble/bookmark-reminder.html';
 					var placeholder = bubblePlaceholderSearch({
 						identificator: 'bookmark-reminder'
 					});
@@ -74,7 +74,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 					return ($rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('categories') > -1));
 				},
 				apply: function() {
-					var template = 'templates/directives/bubble/marketplace-item-mood.html';
+					var template = 'assets/components/bubble/marketplace-item-mood.html';
 					// the target is in modal, so before attempting to search for it,
 					// let's give it some time to render
 					$timeout(function() {

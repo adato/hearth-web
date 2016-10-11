@@ -23,7 +23,7 @@ angular.module('hearth.geo').directive('locations', [
 				errorCode: "@",
 				base: "@"
 			},
-			templateUrl: 'templates/geo/locations.html',
+			templateUrl: 'assets/components/geo/locations.html',
 			link: function($scope, baseElement) {
 				var map, autocomplete, tagsInput, marker = false;
 				$scope.mapPoint = false;
