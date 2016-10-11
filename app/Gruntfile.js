@@ -136,7 +136,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: {
-					src: ['<%= yeoman.app %>/scripts/**/*.js']
+					src: ['<%= yeoman.app %>/assets/**/*.js']
 				},
 				options: {
 					searchString: /\$translate\(\'(.*)\'\)/g,
@@ -168,7 +168,7 @@ module.exports = function(grunt) {
 			},
 
 			api: {
-				src: ['<%= yeoman.app %>/scripts/**/*.js'],
+				src: ['<%= yeoman.app %>/assets/**/*.js'],
 				title: 'Hearth API Documentation'
 			}
 		},
@@ -437,7 +437,7 @@ module.exports = function(grunt) {
 				cssDir: '.tmp/styles',
 				generatedImagesDir: '.tmp/images/generated',
 				imagesDir: '<%= yeoman.app %>/images',
-				javascriptsDir: '<%= yeoman.app %>/scripts',
+				javascriptsDir: '<%= yeoman.app %>/assets',
 				fontsDir: '<%= yeoman.app %>/fonts',
 				httpImagesPath: '../images',
 				httpGeneratedImagesPath: '/images/generated',
@@ -469,7 +469,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					src: [
-						'<%= yeoman.dist %>/scripts/{,*/}*.js',
+						'<%= yeoman.dist %>/assets/{,*/}*.js',
 						'<%= yeoman.dist %>/styles/{,*/}*.css',
 						//'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 						//'<%= yeoman.dist %>/styles/fonts/*'
@@ -570,7 +570,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: '.tmp/assets',
 					src: '*.js',
-					dest: '.tmp/scripts'
+					dest: '.tmp/assets'
 				}]
 			}
 		},
