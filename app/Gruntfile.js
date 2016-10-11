@@ -43,10 +43,10 @@ module.exports = function(grunt) {
 		watch: {
 			js: {
 				files: [
-					'<%= yeoman.app %>/scripts/{,*/}*.js',
+					'<%= yeoman.app %>/assets/{,*/}*.js',
+					'<%= yeoman.app %>/assets/{,*/}*.html',
 					'<%= yeoman.envFolder %>/{,*/}*.js',
 					'<%= yeoman.app %>/locales/{,*/}*.json',
-					'<%= yeoman.app %>/templates/**/*.html',
 				],
 				tasks: [
 //					'eslint',
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
 		search: {
 			templates: {
 				files: {
-					src: ['<%= yeoman.app %>/templates/*.html']
+					src: ['<%= yeoman.app %>/assets/*.html']
 				},
 				options: {
 					searchString: /\'([\d\w]+)\'\s*\|\s*translate/g,
@@ -371,7 +371,7 @@ module.exports = function(grunt) {
 		},
 
 		jsbeautifier: {
-			files : ["<%= yeoman.app %>/scripts/**/*.js","<%= yeoman.app %>/templates/**/*.html"],
+			files : ["<%= yeoman.app %>/assets/**/*.js","<%= yeoman.app %>/assets/**/*.html"],
 			locales: {
 				src: ["app/locales/*/messages.json"],
 				options: {}
@@ -555,7 +555,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: '.tmp/templates',
+					cwd: '.tmp/assets',
 					src: ['**/*.html'],
 					dest: '.tmp/templates'
 				}]
@@ -568,7 +568,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '.tmp/scripts',
+					cwd: '.tmp/assets',
 					src: '*.js',
 					dest: '.tmp/scripts'
 				}]
@@ -586,7 +586,7 @@ module.exports = function(grunt) {
 		copy: {
 			localConfig: {
 				cwd: '<%= yeoman.app %>/../',
-				dest: '.tmp/scripts/config-local.js',
+				dest: '.tmp/assets/config-local.js',
 				src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
 			},
 			dist: {
@@ -610,27 +610,32 @@ module.exports = function(grunt) {
 					dot: true,
 					cwd: '<%= yeoman.app %>',
 					dest: '.tmp',
-					src: 'templates/**/*'
+					src: 'assets{,*/}*'
 				}, {
 					cwd: '<%= yeoman.app %>/../',
 					dest: '.tmp/concat/config-local.js',
 					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
-				}, {
-					expand: true,
-					cwd: '<%= yeoman.app %>/templates',
-					dest: '.tmp/templates',
-					src: ['**/*']
-				}, {
+				},
+//				{
+//					expand: true,
+//					cwd: '<%= yeoman.app %>/templates',
+//					dest: '.tmp/templates',
+//					src: ['**/*']
+//				},
+
+				 {
 					expand: true,
 					cwd: '<%= yeoman.app %>/libs',
 					dest: '<%= yeoman.dist %>/libs',
 					src: ['**/*']
-				}, {
-					expand: true,
-					cwd: '<%= yeoman.app %>/scripts',
-					dest: '.tmp/scripts',
-					src: ['**/*']
-				}, {
+				}, 
+//				{
+//					expand: true,
+//					cwd: '<%= yeoman.app %>/scripts',
+//					dest: '.tmp/scripts',
+//					src: ['**']
+//				}, 
+				{
 					expand: true,
 					cwd: '<%= yeoman.tmp %>',
 					dest: '<%= yeoman.dist %>/images',
@@ -663,31 +668,31 @@ module.exports = function(grunt) {
 		},
 		rename: {
 			configDist: {
-				src: '.tmp/scripts/config-global.js',
+				src: '.tmp/assets/config-global.js',
 				dest: '.tmp/concat/config-global.js'
 			},
 			tmplMin: {
 				src: '.tmp/concat/templates.js',
-				dest: '<%= yeoman.dist %>/scripts/templates.min.js'
+				dest: '<%= yeoman.dist %>/assets/templates.min.js'
 			},
 			scriptsMin: {
 				src: '.tmp/concat/scripts.js',
-				dest: '<%= yeoman.dist %>/scripts/scripts.min.js'
+				dest: '<%= yeoman.dist %>/assets/scripts.min.js'
 			},
 			scriptsMinMap: {
 				src: '.tmp/concat/scripts.js.map',
-				dest: '<%= yeoman.dist %>/scripts/scripts.min.js.map'
+				dest: '<%= yeoman.dist %>/assets/scripts.min.js.map'
 			},
 			configMin: {
 				src: '.tmp/concat/config.js',
-				dest: '<%= yeoman.dist %>/scripts/config.min.js'
+				dest: '<%= yeoman.dist %>/assets/config.min.js'
 			},
 			analytics: {
-				src: '.tmp/scripts/analytics.js',
+				src: '.tmp/assets/utils/analytics.js',
 				dest: '.tmp/concat/analytics.js'
 			},
 			newRelic: {
-				src: '.tmp/scripts/newRelic.js',
+				src: '.tmp/assets/utils/newRelic.js',
 				dest: '.tmp/concat/newRelic.js'
 			}
 		},
@@ -737,7 +742,7 @@ module.exports = function(grunt) {
 					sourceMapIn: '.tmp/concat/config.js.map'
 				},
 				files: {
-					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
+					'<%= yeoman.dist %>/assets/config.min.js': ['.tmp/concat/config.js'],
 				}
 			},
 		},
@@ -747,8 +752,8 @@ module.exports = function(grunt) {
 				sourceMap: true
 			},
 			scripts: {
-				src: ['.tmp/scripts/**/*.js'],
-				dest: '.tmp/concat/scripts.js',
+				src: ['.tmp/assets/**/*.js'],
+				dest: '.tmp/assets/scripts.js',
 			},
 			config: {
 				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/analytics.js', '.tmp/concat/newRelic.js'],
@@ -772,7 +777,7 @@ module.exports = function(grunt) {
 				base: '.tmp'
 			},
 			main: {
-				src: ['.tmp/templates/**/*.html'],
+				src: ['.tmp/assets/**/*.html'],
       			dest: '.tmp/concat/templates.js'
 			}
 		},

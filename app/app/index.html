@@ -38,11 +38,11 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/app/apple-touch-icon-114x114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/app/apple-touch-icon-144x144-precomposed.png">
 	<base href="/app/">
-	<!-- build:js /app/scripts/config.min.js -->
-	<script src="/app/scripts/config-local.js"></script>
-	<script src="/app/scripts/config-global.js"></script>
-	<script src="/app/scripts/analytics.js"></script>
-	<script src="/app/scripts/newRelic.js"></script>
+	<!-- build:js /app/assets/config.min.js -->
+	<script src="/app/assets/config-local.js"></script>
+	<script src="/app/assets/config-global.js"></script>
+	<script src="/app/assets/utils/analytics.js"></script>
+	<script src="/app/assets/utils/newRelic.js"></script>
 	<!-- endbuild -->
 	<link rel="stylesheet" type="text/css" href="/app/vendor/flexslider/flexslider.css">
 	<link rel="stylesheet" type="text/css" href="/app/vendor/fancybox/source/jquery.fancybox.css" media="screen" />
@@ -127,12 +127,12 @@
 	<script src="/app/vendor/intl-tel-input/build/js/intlTelInput.js"></script>
 	<script src="/app/vendor/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
 
-	<!-- build:js /app/scripts/scripts.min.js -->
-	<script src="/app/scripts/bootstrap.js"></script>
-	<script src="/app/scripts/utils/jqueryQueryParams.js"></script>
-	<script src="/app/scripts/utils/device.js"></script>
-	<script src="/app/scripts/app.js"></script>
-	<script src="/app/scripts/routes.js"></script>
+	<!-- build:js /app/assets/scripts.min.js -->
+	<script src="/app/assets/bootstrap.js"></script>
+	<script src="/app/assets/utils/jqueryQueryParams.js"></script>
+	<script src="/app/assets/utils/device.js"></script>
+	<script src="/app/assets/app.js"></script>
+	<script src="/app/assets/routes.js"></script>
 	<script src="/app/assets/services/resources/Ratings.js"></script>
 	<script src="/app/assets/services/resources/ChangePassword.js"></script>
 	<script src="/app/assets/services/resources/Community.js"></script>
@@ -222,7 +222,7 @@
 	<script src="/app/assets/services/MultipartForm.js"></script>
 	<script src="/app/assets/services/HearthCrowdfunding.js"></script>
 	<script src="/app/assets/services/ViewportUtils.js"></script>
-	<script src="/app/scripts/filters/filters.js"></script>
+	<script src="/app/assets/filters/filters.js"></script>
 	<script src="/app/assets/components/navigation/navigation.js"></script>
 	<script src="/app/assets/components/ratingReply/ratingReply.js"></script>
 	<script src="/app/assets/components/analyticsCustom/analyticsCustom.js"></script>
@@ -295,17 +295,17 @@
 	<script src="/app/assets/components/bubblePlaceholder/bubblePlaceholder.js"></script>
 	<script src="/app/assets/components/whenScrolled/whenScrolled.js"></script>
 	<script src="/app/assets/components/checkCapitals/checkCapitals.js"></script>
-	<script src="/app/scripts/utils/ExifRestorer.js"></script>
-	<script src="/app/scripts/utils/timeAgo.js"></script>
-	<script src="/app/scripts/utils/apiPrefix.js"></script>
-	<script src="/app/scripts/utils/validatedCheckbox.js"></script>
-	<script src="/app/scripts/utils/withErrors.js"></script>
-	<script src="/app/scripts/utils/eventPause.js"></script>
-	<script src="/app/scripts/utils/abTest.js"></script>
-	<script src="/app/scripts/geo/geo.js"></script>
-	<script src="/app/scripts/geo/locations.js"></script>
+	<script src="/app/assets/components/timeAgo/timeAgo.js"></script>
+	<script src="/app/assets/components/apiPrefix/apiPrefix.js"></script>
+	<script src="/app/assets/components/validatedCheckbox/validatedCheckbox.js"></script>
+	<script src="/app/assets/components/withErrors/withErrors.js"></script>
+	<script src="/app/assets/utils/ExifRestorer.js"></script>
+	<script src="/app/assets/utils/eventPause.js"></script>
+	<script src="/app/assets/components/abTest/abTest.js"></script>
+	<script src="/app/assets/components/geo/geo.js"></script>
+	<script src="/app/assets/components/geo/locations.js"></script>
 	<script src="/app/assets/components/searchMap/searchMap.js"></script>
-	<script src="/app/scripts/geo/map.js"></script>
+	<script src="/app/assets/components/geo/map.js"></script>
 	<script src="/app/assets/pages/static/ComponentsCtrl.js"></script>
 	<script src="/app/assets/pages/BaseCtrl.js"></script>
 	<script src="/app/assets/pages/map/MapCtrl.js"></script>
@@ -316,10 +316,10 @@
 	<script src="/app/assets/pages/profile/ProfileEditCtrl.js"></script>
 	<script src="/app/assets/pages/profile/ProfileInviteCtrl.js"></script>
 	<script src="/app/assets/pages/profile/ProfileDataFeedCtrl.js"></script>
-	<script src="/app/scripts/controllers/RegisterCtrl.js"></script>
-	<script src="/app/scripts/controllers/ConfirmEmailCtrl.js"></script> 
-	<script src="/app/scripts/controllers/ForgottenPasswordCtrl.js"></script>
-	<script src="/app/scripts/controllers/ResetPwdCtrl.js"></script>
+	<script src="/app/assets/pages/userForms/RegisterCtrl.js"></script>
+	<script src="/app/assets/pages/userForms/ConfirmEmailCtrl.js"></script> 
+	<script src="/app/assets/pages/userForms/ForgottenPasswordCtrl.js"></script>
+	<script src="/app/assets/pages/userForms/ResetPwdCtrl.js"></script>
 	<script src="/app/assets/pages/static/FeedbackCtrl.js"></script>
 	<script src="/app/assets/pages/static/TermsCtrl.js"></script>
 	<script src="/app/assets/pages/community/CommunityProfileCtrl.js"></script>
@@ -327,16 +327,16 @@
 	<script src="/app/assets/pages/community/CommunitiesCtrl.js"></script>
 	<script src="/app/assets/pages/community/CommunityListCtrl.js"></script>
 	<script src="/app/assets/pages/community/CommunityDataFeedCtrl.js"></script>
-	<script src="/app/scripts/controllers/LoginCtrl.js"></script>
+	<script src="/app/assets/pages/userForms/LoginCtrl.js"></script>
 	<script src="/app/assets/pages/fulltext/FulltextCtrl.js"></script>
 	<script src="/app/assets/pages/static/Error404Ctrl.js"></script>
-	<script src="/app/scripts/controllers/FillEmailCtrl.js"></script>
+	<script src="/app/assets/pages/userForms/FillEmailCtrl.js"></script>
 	<script src="/app/assets/pages/item/ItemDetail.js"></script>
 	<script src="/app/assets/pages/item/ItemDetailOld.js"></script>
-	<script src="/app/scripts/controllers/TokenLoginCtrl.js"></script>
+	<script src="/app/assets/pages/userForms/TokenLoginCtrl.js"></script>
 	<script src="/app/assets/pages/messages/MessagesCtrl.js"></script>
 	<script src="/app/assets/pages/static/LocalizationPage.js"></script>
-	<script src="/app/scripts/controllers/LanguageChangeCtrl.js"></script>
+	<script src="/app/assets/pages/static/LanguageChangeCtrl.js"></script>
 	<script src="/app/assets/pages/static/StaticPageCtrl.js"></script>
 	<script src="/app/assets/modals/RemoveItemFromCommunity.js"></script>
 	<script src="/app/assets/modals/ModalContainer.js"></script>
@@ -350,8 +350,8 @@
 	<script src="/app/assets/modals/InviteBox.js"></script>
 	<script src="/app/assets/modals/ConfirmBox.js"></script>
 	<script src="/app/assets/modals/ItemSuspend.js"></script>
-	<script src="/app/scripts/constants/MottoLength.js"></script>
-	<script src="/app/scripts/tracking.js"></script>
+	<script src="/app/assets/constants/MottoLength.js"></script>
+	<script src="/app/assets/utils/tracking.js"></script>
 	<!-- endbuild -->
 
 </body>
