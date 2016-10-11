@@ -1,0 +1,221 @@
+<div>
+	<section ng-if="errorLoading == 404" class="box padding-top large-6 small-6 medium-6 margin-auto text-center">
+		<p class="margin-0">{{:: 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
+	</section>
+	<div class="row margin-bottom-20 profile-edit-common" ng-show="loaded">
+		<div class="communities-notify-area"></div>
+		<form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
+			<div class="right-column small-12 large-5 small-5 medium-5 columns push-7" ng-cloak>
+				<div image-preview files="community.avatar" limit-pixel-size="400" limit="5" single-file="true">
+					<img class="preview" ng-if="community.avatar.file" ng-src="{{community.avatar.file}}" resized-thumbnail-image exif-rotated />
+					<img class="preview" ng-if="!community.avatar.file && community.avatar.large" ng-src="{{community.avatar.large}}" resized-thumbnail-image />
+					<div class="text">
+						<span class="fa fa-plus-square-o"></span>
+						<span>{{:: 'CHOOSE_AVATAR_FILE' | translate}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="fleft small-12 large-7 small-7 medium-7 pull-5 alt-bg">
+				<h2 class="hide-border">
+					<span class="content">
+						<span class="fa fa-users"></span>
+						<span ng-if="! community._id">{{:: 'COMMUNITY_ADD' | translate }}</span>
+						<span ng-if="community._id">{{:: 'COMMUNITY_EDIT' | translate }}</span>
+					</span>
+				</h2>
+				<section class="who">
+					<div class="name margin">
+						<label>
+							{{:: 'COMMUNITY_NAME' | translate }}
+							<input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="community.name" class="text-input" type='text' ng-required="true" ng-maxlength="75" />
+							<div class="absolute error" ng-show="showError.name">
+								<span ng-show="communityForm.name.$error.required">{{:: 'ERR_COMMUNITY_NAME_NOT_FILLED' | translate }}</span>
+								<span ng-show="communityForm.name.$error.maxlength">{{:: 'ERR_COMMUNITY_NAME_MAX_LENGTH' | translate }}</span>
+							</div>
+						</label>
+					</div>
+				</section>
+				<section class="who">
+					<div class="name margin">
+						<label>
+							{{:: 'COMMUNITY_MOTTO' | translate }}
+							<input type="text" name="motto" ng-model="community.motto" class="text-input" maxlength="{{parameters.MAX_MOTTO_LENGTH}}" ng-maxlength="parameters.MAX_MOTTO_LENGTH" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY_MOTTO_EXAMPLE' | translate }}"
+							/>
+							<div class="absolute error" ng-show="showError.motto">
+								<span ng-show="communityForm.motto.$error.maxlength">{{:: 'ERR_COMMUNITY_MOTTO_MAX_LENGTH' | translate }}</span>
+							</div>
+						</label>
+					</div>
+				</section>
+			</div>
+			<div class="clear"></div>
+			<div>
+				<h2>
+					<span class="content">
+						<span class="fa fa-info"></span>{{:: 'COMMUNITY_ABOUT' | translate }}
+					</span>
+				</h2>
+				<section>
+					<div class="column small-12 large-6">
+						<label>
+							{{:: 'COMMUNITY_DESCRIPTION' | translate }}
+						</label>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="5000" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.description" name="description" required>
+						</input-max-length>
+						<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
+					</div>
+					<div class="column small-12 large-6">
+						<label>
+							{{:: 'COMMUNITY_RESTRICTIONS' | translate }}
+						</label>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
+					</div>
+					<div class="column small-12" ng-if="community._id">
+						<label>
+							{{:: 'COMMUNITY_INTERESTS' | translate }}
+						</label>
+						<tags-input class='interests-input' refocus-input-on-tab class="tags" ng-model="community.interests" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$"
+										min-length="0" max-length="500">
+							<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+						</tags-input>
+					</div>
+				</section>
+				<div class="clear"></div>
+
+				<h2>
+					<span class="content">
+						<span class="fa fa-globe"></span>{{:: 'COMMUNITY_PLACE' | translate }}
+					</span>
+				</h2>
+				<section class="location">
+					<locations locations="community.locations" is-required="true" error-code="COMMUNITY_LOCATIONS_IS_EMPTY_STRICT" show-error="showError.locations"></locations>
+				</section>
+
+				<div ng-if="community._id">
+					<h2>
+						<span class="content">
+							<span class="fa fa-envelope"></span>{{:: 'OUR_NETWORKS' | translate }}
+						</span>
+					</h2>
+					<section class="social">
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_FACEBOOK' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="community.facebook" class="text-input" type="url" ng-blur="updateUrl($event, community, 'facebook')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['facebook']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_TWITTER' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="community.twitter" class="text-input" type="url" ng-blur="updateUrl($event, community, 'twitter')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['twitter']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_LINKEDIN' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="community.linkedin" class="text-input" type="url" ng-blur="updateUrl($event, community, 'linkedin')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['linkedin']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_GOOGLEPLUS' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="community.googleplus" class="text-input" type="url" ng-blur="updateUrl($event, community, 'googleplus')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['googleplus']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+					</section>
+					<div class="clear"></div>
+					<section class="webs">
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								<span class="fa fa-globe"></span> {{:: 'OUR_WEB' | translate }}
+							</label>
+
+							<div ng-repeat="web in community.webs track by $index" class="web-item">
+								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="community.webs[$index]" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, community.webs, $index)">
+
+								<div class="remove" ng-hide="$first">
+									<span class="fa fa-times-circle" ng-click="community.webs.splice($index,1)"></span>
+								</div>
+							</div>
+
+							<div class="error margin" ng-show="showError.social_networks['webs']">
+								<span>{{:: 'ERR_INVALID_URL' | translate }}</span>
+							</div>
+
+							<a ng-click="community.webs.push('')">
+								<span class="fa fa-plus-square"></span>{{:: 'ADD_NEXT_WEB' | translate }}
+							</a>
+						</div>
+						<div class="clear"></div>
+					</section>
+				</div>
+				<div class="clear"></div>
+				<br />
+				<br />
+				<section>
+					<div class="display-flex flex-reverse flex-space-between">
+						<button type="submit" class="button-send right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+						<a ng-if="!community._id" tabindex="0" ng-click="close()" class="revert-changes">{{:: 'CANCEL_ADD_COMMUNITY' | translate }}</a>
+						<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
+					</div>
+				</section>
+			</div>
+		</form>
+		<div class="clear"></div>
+		<!-- ==================================== Change admin in community ================================ -->
+		<div ng-if="community._id">
+			<h2>
+				<span class="content">
+					<span class="fa fa-share"></span>{{:: 'COMMUNITY_CHANGE_ADMIN' | translate }}
+				</span>
+			</h2>
+			<section class="change-admin" ng-if="community.member_count > 1">
+				<span>
+					{{:: 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }} &nbsp;
+					<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
+				</span>
+				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community"
+								analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+			</section>
+			<section class="change-admin" ng-if="community.member_count == 1">
+				<br /> {{:: 'COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS' | translate }}
+				<br />
+				<br />
+			</section>
+		</div>
+		<div class="clear"></div>
+		<!-- ==================================== Delete community ================================ -->
+		<div ng-if="community._id">
+			<h2>
+				<span class="content">
+					<span class="fa fa-minus-circle"></span>{{:: 'COMMUNITY_DELETE' | translate }}
+				</span>
+			</h2>
+			<br />
+			<br />
+			<section class="delete">
+				<p class="small-8 fleft" ng-if="community.member_count > 1">
+					{{'COMMUNITY.COMMUNITY_HAS_X_MEMBERS.'+pluralCat(community.member_count) | translate:'{count: '+community.member_count+'}' }}, {{:: 'COMMUNITY_DELETE_ANYWAY' | translate }}
+				</p>
+				<p class="small-8 fleft" ng-if="community.member_count == 1">
+					{{:: 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
+				</p>
+				<button ng-click="confirmBox('COMMUNITY.COMMUNITY_REMOVE_LABEL', 'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE', delete, null, this)" class="button-send right">{{:: 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
+			</section>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div loading show="!loaded && !errorLoading"></div>
+</div>
