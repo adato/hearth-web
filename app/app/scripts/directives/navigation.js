@@ -6,8 +6,8 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('navigation', [
-	'$rootScope', 'Auth', '$state', '$location', '$analytics',
-	function($rootScope, Auth, $state, $location, $analytics) {
+	'$rootScope', 'Auth', '$state', '$location', '$analytics', 'ConversationAux',
+	function($rootScope, Auth, $state, $location, $analytics, ConversationAux) {
 		return {
 			restrict: 'E',
 			scope: true,
@@ -16,6 +16,7 @@ angular.module('hearth.directives').directive('navigation', [
 			link: function($scope, element) {
 				$scope.searchHidden = !$location.search().query;
 				$scope.searchFilterDisplayed = false;
+				$scope.getFirstConversationId = ConversationAux.getFirstConversationId;
 				$scope.searchQuery = {
 					query: $location.search().query
 				};

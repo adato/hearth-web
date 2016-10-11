@@ -101,8 +101,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
-		console.log(socketEvent);
-		Messenger.setUnreadCount(socketEvent.unread);
+		// console.log(socketEvent);
+		if (socketEvent.unread !== void 0) Messenger.setUnreadCount(socketEvent.unread);
 
 		if (!processingRunning) return void 0;
 
@@ -135,10 +135,22 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						conv.read = socketEvent.conversation.read;
 						// if the found conversation already has 'messages' prop, append the new message to it
 						if (conv.messages && conv.messages.length) {
-							conv.messages.push(socketEvent.conversation.message);
-							$rootScope.$emit('messageAddedToConversation', {
-								conversation: conv
-							});
+							// before pushing to messages array check for possible duplicates if the message is from my precious self
+							var allowPush = true;
+							if (socketEvent.conversation.message.author && socketEvent.conversation.message.author._id == $rootScope.loggedUser._id) {
+								for (var i = conv.messages.length; i--;) {
+									if (conv.messages[i]._id === socketEvent.conversation.message._id) {
+										allowPush = false;
+										break;
+									}
+								}
+							}
+							if (allowPush) {
+								conv.messages.push(socketEvent.conversation.message);
+								$rootScope.$emit('messageAddedToConversation', {
+									conversation: conv
+								});
+							}
 						}
 						break;
 					}
@@ -311,9 +323,12 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 */
 	function loadConversationMessages(paramObject) {
 		paramObject = paramObject || {};
-		var params = angular.extend(paramObject.params || {}, {
-			limit: MESSAGE_LIMIT
-		});
+
+		// only add limit if we don't fetch newer messages
+		var defaults = {};
+		paramObject.params = paramObject.params || {};
+		if (!paramObject.params.newer) defaults.limit = MESSAGE_LIMIT;
+		var params = angular.extend(paramObject.params, defaults);
 		return $q(function(resolve, reject) {
 			if (paramObject.conversationId) {
 				params.id = paramObject.conversationId

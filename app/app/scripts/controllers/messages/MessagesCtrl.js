@@ -22,7 +22,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// $scope.showNewMessageForm = false;
 
+		// loading for the whole page including filters
 		$scope.loaded = false;
+
+		// loading for conversation list and conversation detail (used during changing of filters)
+		$scope.reloading = false
+
+		// don't really know what this one is for
 		$scope.loadingBottom = false;
 		var conversationLoadInProgress,
 			allConversationsLoaded;
@@ -440,8 +446,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-		function init(paramObject) {
-			paramObject = paramObject || {};
+		function init() {
+			$scope.reloading = true;
 
 			// set filter select-box to correct value
 			// TODO - refactor those filters
@@ -461,9 +467,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					}
 				}
 			}
-			if (filterSet) $state.go('messages', {
-				notify: false
-			});
+			if (filterSet) {
+				$state.go('messages', {
+					notify: false
+				});
+			}
 
 			// $scope.conversations = false;
 			// $scope.detail = false;
@@ -476,8 +484,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			loadConversations(function(res) {
 				$scope.loaded = true;
+				$scope.reloading = false;
 				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
-					id: $state.params.id ? $state.params.id : res.conversations[0]._id
+					id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
 				});
 			});
 
