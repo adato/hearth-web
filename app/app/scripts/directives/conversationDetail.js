@@ -213,6 +213,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					$timeout(function() {
 						if ($(".nano-content", element).length > 0) {
 							$(".nano-content", element).scrollTop($(".nano-content", element)[0].scrollHeight * 1000);
+							resizeTMessagesBox();
 						}
 					});
 				}
@@ -306,12 +307,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					});
 				}
 
-				$scope.setConversationAsRead = function() {
-					if (!$scope.info || $scope.info.read) return false;
+				function markConversationAsRead(conversation) {
+					if (!conversation || conversation.read) return false;
 					Messenger.decreaseUnread();
-					$scope.info.read = true;
+					conversation.read = true;
 					Conversations.markAsRead({
-						id: $scope.info._id
+						id: conversation._id
 					});
 				};
 
@@ -332,7 +333,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						_loadingOlderMessages = false;
 
 						scrollToCurrentPosition();
-						if (loadOlderMessages !== true) $scope.setConversationAsRead();
+						if (loadOlderMessages !== true) markConversationAsRead($scope.info);
 					}, function(error) {
 						_loadingOlderMessages = false;
 					});
@@ -423,20 +424,15 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 				function bindActionHandlers() {
 					element.bind('click', function() {
-						$scope.setConversationAsRead();
+						markConversationAsRead($scope.info);
 					});
-
 					element.bind('keypress', function() {
-						$scope.setConversationAsRead();
+						markConversationAsRead($scope.info);
 					});
-
 					var ev = $scope.$on('scrollbarResize', function() {
 						ev();
-
 						$(".nano-content", element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e) {
-							if (e.which > 0 || e.type == "mousedown" || e.type == "mousewheel") {
-								$scope.setConversationAsRead();
-							}
+							if (e.which > 0 || e.type == "mousedown" || e.type == "mousewheel") markConversationAsRead($scope.info);
 						});
 					});
 				}
@@ -464,6 +460,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 					ConversationAux.loadConversation(conversationId).then(function(conversation) {
 						$scope.info = conversation;
+						if ($state.params['mark-as-read']) markConversationAsRead(conversation);
 						setTitle();
 						$scope.loaded = true;
 
