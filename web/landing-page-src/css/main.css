@@ -119,6 +119,16 @@ a{color: #4a4a4a}
 	-webkit-filter: none;
 	filter: none;
 }
+.badge{
+	padding: 3px 8px;
+	border-radius: 6px;
+	line-height: 1.2;
+	font-size: 70%;
+	font-weight: bold;
+}
+.badge.background-primary{
+	color: #fff
+}
 .button-flame.large{
 	width: 40px; height: 40px;
 	margin-bottom: 5px;
@@ -215,6 +225,9 @@ a.masonry-item:hover .button,
 	width: 200px;
 }
 .nav-item{
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
 	padding: 8px 12px 8px 8px;
 	font-weight: bold;
 	white-space: nowrap;
@@ -312,6 +325,11 @@ a.masonry-item:hover .button,
 	display: block;
 	min-width: 200px;
 	margin: 0;
+}
+.hover-window li a.nav-item{
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
 }
 .hover-window li:first-child a,
 #main-navigation li:first-child a{

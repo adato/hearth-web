@@ -20,7 +20,8 @@
 		profileAvatarDefault = '/img/no-avatar.jpg',
 		profileFullNameSelector = '[profile-name]',
 		profileLinkSelector = '[profile-link]',
-		logoutNodeIdentificator = '[logout]';
+		logoutNodeIdentificator = '[logout]',
+		unreadMessagesBadgeSelector = '[message-count]';
 
 
 	// COOKIE PATH ERROR FIX-UP
@@ -43,6 +44,7 @@
 	///////////////////
 
 	function initProfile(apiToken) {
+		// get profile information
 		var req = requestApi('GET', apiPath + '/profile', {token: apiToken});
 		req.onload = function() {
 			if (req.status === 200) {
@@ -55,6 +57,19 @@
 			}
 		};
 		req.send();
+
+		// get unread message count
+		var unreadMessageCountReq = requestApi('GET', apiPath + '/conversations/counter', {token: apiToken});
+		unreadMessageCountReq.onload = function() {
+			if (unreadMessageCountReq.status === 200) {
+				var res = JSON.parse(unreadMessageCountReq.responseText);
+				if (res && res.unread !== void 0) {
+					var unreadCount = parseInt(res.unread) > 1000 ? '999+' : res.unread;
+					fe($(unreadMessagesBadgeSelector), function(el) {el.innerHTML = unreadCount; el.style.display = 'block'});
+				}
+			}
+		}
+		unreadMessageCountReq.send();
 	}
 
 	/**
