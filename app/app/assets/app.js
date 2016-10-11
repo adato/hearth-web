@@ -155,7 +155,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			function cacheFiles(done) {
 
 				// cache tooltip in MAP -- DEPRECATED -- remove when map will be refactored
-				$http.get('templates/geo/markerTooltip.html', {
+				$http.get('assets/components/geo/markerTooltip.html', {
 					cache: $templateCache
 				});
 				done(null);
