@@ -1,0 +1,26 @@
+<div ng-include="'assets/pages/profile/subviews/followingPanel.html'"></div>
+<div ng-if="subPageLoaded">
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="mine && ! data.length">
+		<div class="item">
+			<p>{{:: 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
+		</div>
+	</div>
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="! mine && ! data.length">
+		<div class="item">
+			<p>{{:: 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
+		</div>
+	</div>
+	<div class="people-listing" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
+		<div class="person small-12 medium-6 large-4 columns" ng-repeat="(id, item) in data track by item._id" ng-class="{'end': $last}">
+			<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
+				<avatar type="item._type" href="getProfileLink(item._type, item._id)" src="item.avatar.normal"></avatar>
+			</div>
+			<div class="name">
+				<h4>
+					<a href="{{:: getProfileLink(item._type, item._id)}}">{{item.name|ellipsis:24}}</a>
+				</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div loading show="!subPageLoaded"></div>
