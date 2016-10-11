@@ -53,10 +53,13 @@ angular.module('hearth.directives').directive('conversationReply', [
 					reply.id = $scope.conversation._id;
 					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
 					$scope.sendingReply = true;
-					Conversations.reply(reply, function(res) {
-						$scope.reply.text = '';
-						$scope.reply.attachments_attributes = '';
 
+					// backup the reply object and clear it up
+					reply = JSON.parse(JSON.stringify(reply));
+					$scope.reply.text = '';
+					$scope.reply.attachments_attributes = '';
+
+					Conversations.reply(reply, function(res) {
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
 							$('#message-footer').removeClass('message-actions');
