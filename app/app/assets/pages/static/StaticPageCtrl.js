@@ -119,7 +119,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 				// give angular some time to load the template
 				$timeout(function() {
 					$scope.openModal($location.search()[MODAL_KEY]);
-				}, 100);
+				}, 1000);
 			}
 		}
 
