@@ -111,16 +111,16 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			$scope.postalAddressData.email = email;
 		}
 
-		$scope.init = function() {
-			if ($rootScope.loggedUser._id) {
-				prefillEmail();
-			}
-			if ($location.search()[MODAL_KEY] && ACCEPTED_MODAL_VALUES.indexOf($location.search()[MODAL_KEY]) > -1) {
-				// give angular some time to load the template
+		$scope.modalInit = function(modalId) {
+			if ($location.search()[MODAL_KEY] && ACCEPTED_MODAL_VALUES.indexOf($location.search()[MODAL_KEY]) > -1 && $location.search()[MODAL_KEY] === modalId) {
 				$timeout(function() {
 					$scope.openModal($location.search()[MODAL_KEY]);
-				}, 1000);
+				}, 10);
 			}
+		}
+
+		$scope.init = function() {
+			if ($rootScope.loggedUser._id) prefillEmail();
 		}
 
 		$scope.init();
