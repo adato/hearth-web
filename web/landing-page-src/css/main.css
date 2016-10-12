@@ -845,7 +845,9 @@ a.masonry-item{
 /*******************
 	FACES
 *******************/
-.min-500{ min-width: 500px; }
+@media (min-width: 500px){
+	.min-500{ min-width: 500px; }
+}
 .max-500{ max-width: 500px; margin: 0 auto; }
 @media (min-width: 1200px){
 	.min-500{ min-width: 800px; }
@@ -883,7 +885,7 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 	}
 }
 
-.nav>li>a{position:relative;display:block;padding: 0px 8px}
+.nav>li>a{position:relative;display:block;padding: 0px 8px 8px}
 
 .nav.nav-justified > li > a { position: relative; }
 .nav.nav-justified > li > a:hover,
