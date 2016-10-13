@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'FileService', 'ConversationAux',
-	function(Conversations, Notify, $timeout, FileService, ConversationAux) {
+	'Conversations', 'Notify', '$timeout', 'FileService', 'ConversationAux', '$rootScope',
+	function(Conversations, Notify, $timeout, FileService, ConversationAux, $rootScope) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -50,14 +50,21 @@ angular.module('hearth.directives').directive('conversationReply', [
 				}
 
 				$scope.sendReply = function(reply) {
-					reply.id = $scope.conversation._id;
-					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
-					$scope.sendingReply = true;
-
 					// backup the reply object and clear it up
 					reply = JSON.parse(JSON.stringify(reply));
 					$scope.reply.text = '';
 					$scope.reply.attachments_attributes = '';
+
+					// set conversation id
+					reply.id = $scope.conversation._id;
+
+					// set params and handle community response prop
+					var params = {};
+					if (reply.current_community_id && reply.current_community_id !== $rootScope.loggedUser._id) params.current_community_id = reply.current_community_id;
+					delete reply.current_community_id;
+
+					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
+					$scope.sendingReply = true;
 
 					Conversations.reply(reply, function(res) {
 						$timeout(function() {
@@ -85,7 +92,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;
 
-					if ($scope.actors.length == 1) {
+					if ($scope.actors.length > 1) {
 						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? '' : $scope.actors[0]._id);
 					}
 				};
