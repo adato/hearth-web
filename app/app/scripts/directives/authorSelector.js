@@ -19,6 +19,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 				authorList: '=?',
 				remove: '=remove',
 				ngDisabled: '=',
+				dontSetAuthorAsNullIfLoggedUser: '='
 			},
 			templateUrl: 'templates/directives/authorSelector.html',
 			link: function($scope) {
@@ -64,8 +65,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 				};
 
 				$scope.onChange = function(id) {
-					if (id === $rootScope.loggedUser._id) id = null;
-
+					if (!$scope.dontSetAuthorAsNullIfLoggedUser && id === $rootScope.loggedUser._id) id = null;
 					$scope.authorId = id;
 					$scope.selectedEntity = $scope.getByIndex(id);
 				};
