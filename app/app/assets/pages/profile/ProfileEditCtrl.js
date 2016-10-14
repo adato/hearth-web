@@ -256,6 +256,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				if (data && errors) {
 					if (errors.contact_email) {
 						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CONTACT_EMAIL_ERROR', Notify.T_ERROR);
+						$scope.showError.contact_email = true;
+						$scope.profileEditForm.contact_email.$setValidity('email_used', false);
+						$rootScope.scrollToError();
 					} else {
 						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 					}
@@ -274,10 +277,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 		};
 
+		$scope.contactEmailFocus = function() {
+			$scope.showError.contact_email = false;
+		};
+
+
 		$scope.hideContactEmail = function() {
 			// hide input & set him empty and dont show any errors
 			$scope.showContactMail = false;
-			$scope.profile.contact_email = '';
 
 			$timeout(function() {
 				$scope.showError.contact_email = false;
