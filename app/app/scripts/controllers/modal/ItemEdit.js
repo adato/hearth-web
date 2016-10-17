@@ -48,28 +48,34 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			paramObject = paramObject || {};
 			if (!(paramObject.itemType && paramObject.post)) throw new TypeError('itemType and post are both required.');
 			var post = paramObject.post;
-			console.log(paramObject.itemType);
-			switch (paramObject.itemType) {
-				case OFFER:
-				case LEND:
-					var et = post.exact_type;
-					if (paramObject.itemType === LEND) {
-						post.exact_type = post.exact_type === GIFT ? (post.type === OFFER ? ANY : LOAN) : LOAN;
-					} else {
-						post.exact_type = GIFT
-					}
-					post.type = post.type === OFFER && et === GIFT ? null : OFFER;
-					break;
-				case NEED:
-				case BORROW:
-					var et = post.exact_type;
-					if (paramObject.itemType === BORROW) {
-						post.exact_type = post.exact_type === LOAN ? (post.type === NEED ? ANY : GIFT) : GIFT;
-					} else {
-						post.exact_type = GIFT;
-					}
-					post.type = post.type === NEED && et === GIFT ? null : NEED;
-					break;
+			if (paramObject.itemType === OFFER) {
+				if (post.type === OFFER) {
+					if (post.exact_type === GIFT) return;
+					if (post.exact_type === ANY) return post.exact_type = LOAN;
+				}
+				post.exact_type = post.exact_type === LOAN ? ANY : GIFT;
+				post.type = OFFER;
+			} else if (paramObject.itemType === LEND) {
+				if (post.exact_type === ANY && post.type === OFFER) {
+					post.exact_type = GIFT;
+				} else {
+					post.exact_type = post.exact_type === GIFT ? (post.type === OFFER ? ANY : LOAN) : LOAN;
+				}
+				post.type = OFFER;
+			} else if (paramObject.itemType === NEED) {
+				if (post.type === NEED) {
+					if (post.exact_type === GIFT) return;
+					if (post.exact_type === ANY) return post.exact_type = LOAN;
+				}
+				post.exact_type = post.exact_type === LOAN ? ANY : GIFT;
+				post.type = NEED;
+			} else if (paramObject.itemType === BORROW) {
+				if (post.exact_type === ANY && post.type === NEED) {
+					post.exact_type = GIFT;
+				} else {
+					post.exact_type = post.exact_type === GIFT ? (post.type === NEED ? ANY : LOAN) : LOAN;
+				}
+				post.type = NEED;
 			}
 		};
 

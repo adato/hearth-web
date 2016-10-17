@@ -131,3 +131,10 @@ button.no-vertical-padding {
 		background-color: darken($colorLightGray, 10%);
 	}
 }
+.button-white.active {
+	background: $colorSecondary;
+
+	&:focus {
+		background: darken($colorSecondary, 10%);
+	}
+}
