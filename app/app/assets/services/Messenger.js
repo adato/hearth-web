@@ -15,24 +15,7 @@ angular.module('hearth.services').service('Messenger', [
 			$rootScope.messagesCounters = args;
 		};
 
-		this.disableLoading = function() {
-			_loadingEnabled = false;
-		};
-
-		this.enableLoading = function() {
-			_loadingEnabled = true;
-		};
-
-		this.setUnreadCount = function(count) {
-			$rootScope.messagesCounters.unread = count;
-		}
-
-		this.decreaseUnread = function() {
-			$rootScope.messagesCounters.unread--;
-		};
-
-		this.increaseUnread = function() {
-			$rootScope.messagesCounters.unread++;
-		};
+		// update counters after WS event is recieved
+		$rootScope.$on('WSMessageCounter', this.updateCounters);
 	}
 ]);
