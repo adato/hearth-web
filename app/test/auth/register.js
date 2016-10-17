@@ -54,30 +54,31 @@ describe('hearth registration', function () {
 
 	it('should validate email in various ways', function () {
 		var emailInput = element(by.model('user.email'));
+		emailInput.click().then(function() {
+			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
-		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
+			emailInput.sendKeys(protractor.Key.TAB);
+			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeTruthy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
-		emailInput.sendKeys(protractor.Key.TAB);
-		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeTruthy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
+			emailInput.sendKeys('tester', protractor.Key.TAB);
+			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeTruthy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
-		emailInput.sendKeys('tester', protractor.Key.TAB);
-		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeTruthy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
-
-		emailInput.clear();
-		emailInput.sendKeys('tester@test.com', protractor.Key.TAB);
-		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
+			emailInput.clear();
+			emailInput.sendKeys('tester@test.com', protractor.Key.TAB);
+			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
+		});
 	});
 
 
@@ -124,6 +125,10 @@ describe('hearth registration', function () {
 		var lastNameInput = element(by.model('user.last_name'));
 		var passwordInput = element(by.model('user.password'));
 
+		// init emaillistener
+		var emailListenerPromise = protractor.helpers.getEmailListener();
+		console.log(emailListenerPromise);
+
 		// none of validation errors displayed
 		// some validation errors displayed
 		firstNameInput.sendKeys('Testerovo');
@@ -139,12 +144,16 @@ describe('hearth registration', function () {
 		console.log("> Using register credentials: ", testEmail, protractor.helpers.options.testPassword);
 		expect(element.all(by.css('.register-successful')).isDisplayed()).toBeTruthy();
 
+
 		browser.getCurrentUrl().then(function (url) {
+			console.log("got url", url);
 			origAddress = protractor.helpers.parseLocation(url);
 
 			browser.wait(function () {
-				return protractor.helpers.getEmailListener();;
-			}, 200000).then(function (email) {
+				console.log("emaillistener promise setup")
+				return emailListenerPromise();
+			}, 20000).then(function (email) {
+				console.log("got emaillistener promise fullfill")
 				var urls = protractor.helpers.getRegConfirmUrlFromText(email.html);
 				var confirmUrlParsed = protractor.helpers.parseLocation(urls[0]);
 				var confirmUrl = origAddress.protocol + '//' + origAddress.host + confirmUrlParsed.pathname + confirmUrlParsed.search;
@@ -158,5 +167,5 @@ describe('hearth registration', function () {
 			});
 
 		});
-	}, 200000); // 'should register new user' has longer timeout specified here
+	}, 200000);
 });
