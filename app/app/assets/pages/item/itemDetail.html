@@ -81,13 +81,17 @@
 									</div>
 								</div>
 								<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large-up margin-bottom-small">
-									<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-										<avatar class="show-post-arrows small-avatar-small {{:: item.type }}" type="item.author._type" src="item.author.avatar.normal" size="normal"></avatar>
+									<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="display-inline-block position-relative">
+										<avatar class="small-avatar-small" type="item.author._type" src="item.author.avatar.normal" size="normal"></avatar>
+										<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + item.type">
+											<i class="fa fa-fw" ng-class="(item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
+										</div>
 									</a>
 								</div>
 								<div class="column small-12 medium-8 medium-pull-4">
 									<h1 class='display-inline-block margin-right-medium'>
-										<span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span>
+										<!-- <span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span> -->
+										<span ng-class="'color-' + item.type" translate="{{:: (item.exact_type != 'loan' ? postTypes[item.author._type][item.type] : (item.type == 'offer' ? 'LEND' : 'BORROW')) }}"></span>
 										{{:: item.title}}
 									</h1>
 									<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
@@ -249,10 +253,13 @@
 
 				<div class="column large-3 end has-delimiter show-for-large-up">
 					<div class='text-center margin-bottom-medium'>
-						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2'>
-							<avatar class='margin-top-medium show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
+						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2 position-relative display-block'>
+							<avatar class='margin-top-medium ' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
 							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
 							<karma-bar for="item.author"></karma-bar>
+							<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + item.type">
+								<i class="fa fa-fw" ng-class="(item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
+							</div>
 						</a>
 					</div>
 					<div ng-if="profile">
