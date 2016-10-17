@@ -162,7 +162,7 @@ button.active[disabled] .item-option-bg-type {
 		line-height: 30px;
 	}
 	.item-option-bg-type > i {
-		font-size: inherit;
+		font-size: 14px;
 	}
 	.item-option-bg-type.by-avatar {
 		top: 40px;
@@ -179,6 +179,46 @@ button.active[disabled] .item-option-bg-type {
 		-ms-filter: "FlipH";
 	}
 }
+// ANIMATIONS
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(0.8) rotate(-45deg);
+    transform: scale(0.8) rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    -ms-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(0.8) rotate(-45deg);
+    -ms-transform: scale(0.8) rotate(-45deg);
+    transform: scale(0.8) rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    -ms-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+}
+.faa-pulse.animated,
+.faa-pulse.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-pulse {
+  -webkit-animation: pulse 1s linear infinite;
+  animation: pulse 1s linear infinite;
+}
+
 
 /* @kamil TODO - remove after standardizing main ui-view's first-child and padding */
 @media #{$medium-down}{
