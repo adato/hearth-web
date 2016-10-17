@@ -47,7 +47,7 @@
 		"EDIT_FILTER": "Upravit filtr",
 		"FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
 		"RESET_FILTER": "Vymazat filtr",
-		"NOTHING_FOUND": "Buď v klidu a medituj. Někde se stala chybka, nejsou tu žádné inzeráty",
+		"NOTHING_FOUND": "Někde se stala chybka. Dej nám prosím chvilku a zkus to znovu.",
 		"SHOW_POSTS_IN_LIST": "Zobrazit seznam",
 		"SHOW_POSTS_ON_MAP": "Zobrazit na mapě",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
@@ -57,7 +57,7 @@
 			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
 		},
 		"COMMUNITY": {
-			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+			"INFO_NOT_FILLED": "Komunita o sobě zatím nevyplnila žádné infromace."
 		},
 		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
 		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku<\/strong><\/a>."
@@ -319,7 +319,8 @@
 			"left": "<p>Opustil(a) jsi konverzaci.<\/p>"
 		},
 		"NEW_MESSAGE": "Poslat zprávu",
-		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink."
+		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink.",
+		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou"
 	},
 	"MESSAGES_ARCHIVE": "Archív zpráv",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -974,10 +975,11 @@
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
-		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
+		"ATTACHMENT_DOWNLOAD_FAILED": "Nepodařilo se stáhnout přílohu.",
 		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat.",
 		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
+		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto.",
+		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáš žádné inzeráty, můžeš si je ale přidat ",
@@ -1144,7 +1146,7 @@
 			"NO_POSTS_ME": "Zatím jsi nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžeš darovat či přijmout, co tě jen napadne.",
 			"NO_POSTS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
 			"NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáš žádnou odvážnou odpověď na inzerát. Nikdo tak neměl příležitost napsat sem něco pěkného...",
-			"NO_POSTS_BOOKMARKED": "Nemáte žádné oblíbené dary a přání"
+			"NO_POSTS_BOOKMARKED": "Nemáš žádné oblíbené dary a přání"
 		},
 		"TOP": {
 			"KARMA_NO_RATING_ME": "S prvním hodnocením ti to zde obarvíme :)",
@@ -1170,7 +1172,7 @@
 		"RATING": {
 			"OPEN_REPLY_FORM": "Přidat komentář",
 			"REPLY_TO_USER": "Reagovat na hodnocení od",
-			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah aj.)"
 		},
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
@@ -1221,7 +1223,7 @@
 	"ADD_LOCATION": "Zadej místo",
 	"LOCATIONS_ARE_EMPTY": "Doplň prázdné místo a nebo zaškrtni, že na místě nezáleží.",
 	"INSERT_LOCATION": "Vložit lokaci",
-	"USER_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo komunity) inzerátem.",
+	"USER_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním inzerátem (tvým nebo komunity).",
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"RATING_POST_TYPES": {
 		"offered": "Věnoval(a) jsem",
@@ -1289,7 +1291,7 @@
 	"ADD_COMMUNITY_RATING": "Hodnocení komunity",
 	"COMMUNITY_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
 	"WRITE_COMMUNITY_SOME_RATING": "Napiš komunitě k hodnocení pár slov",
-	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo uživatelovým) inzerátem.",
+	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním inzerátem (tvým nebo uživatelovým).",
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"SEND_COMMUNITY_RATING": "Odeslat hodnocení",
 	"TOP_BAR_MESSAGES": "Zprávy",
@@ -1343,7 +1345,7 @@
 			"TEXT_PLACEHOLDER": "Text odpovědi..."
 		}
 	},
-	"YOU_ARE_OFFLINE": "<p><strong>Do&scaron;lo k chybě při spojen&iacute;<\/strong> Nem&aacute;te probl&eacute;m s připojen&iacute;m k internetu?<\/p>",
+	"YOU_ARE_OFFLINE": "<p><strong>Do&scaron;lo k chybě při spojen&iacute;.<\/strong> Nem&aacute;te probl&eacute;m s připojen&iacute;m k internetu?<\/p>",
 	"ERROR_BAD_IMAGE_SIZE_ALL": "Celková velikost nahrávaných obrázků nesmí překročit velikost {{maxSize}}MB.",
 	"RELOAD_PAGE": "Obnovit stránku",
 	"TOP_BAR": {
@@ -1366,8 +1368,8 @@
 		"CONTINUE_TO_REGISTER": "Zavřít a pokračovat v registraci."
 	},
 	"SEARCH": "Hledat",
-	"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
-	"MEET_COMMUNITY": "Poznejte komunitu",
+	"COMMUNITY_HAS_REGISTERED": "Komunita vytvořena",
+	"MEET_COMMUNITY": "Poznej komunitu",
 	"community-operate-in": "Působíme v",
 	"MY_BOOKMARKS": "Moje oblíbené",
 	"LAST_NAME_PLACEHOLDER": "Příjmení",
@@ -1429,7 +1431,7 @@
 	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
 	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>",
 	"INVITATION_STATUS": {
-		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
+		"INVITATION_SENT": "{{email}}: Jupí, pozvánka úspěšně odeslána!",
 		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
 		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je jako",
 		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
@@ -1448,13 +1450,13 @@
 	"USER_MOTTO": "Stručně o mně",
 	"USER_MOTTO_EXAMPLE": "",
 	"ERR_USER_MOTTO_MAX_LENGTH": "Stručné info o mně by mělo být stručnější :)",
-	"ERR_INVALID_URL": "Tato adresa není platná",
+	"ERR_INVALID_URL": "Tato adresa není platná (nebo jsi myslel\/a čp. 404)",
 	"CATEGORY_INFORMATION": "Informace",
 	"CATEGORY_MASS": "Hmota",
 	"CATEGORY_ENERGY": "Energie",
 	"POST_CATEGORY_LABEL": "Povaha inzerátu",
 	"SELECT_CATEGORY_LABEL": "Vyberte alespoň jednu povahu inzerátu",
-	"ERR_AD_CATEGORY": "Povaha inzerátu musí být vyplněna.",
+	"ERR_AD_CATEGORY": "Povaha inzerátu musí být vybrána.",
 	"FILE_TYPE": {
 		"INVALID_TYPE": "Promiň, ale soubory typu .{{type}} jako přílohu nepodporujeme."
 	},
@@ -1737,7 +1739,8 @@
 		"ZW": "Zimbabwe"
 	},
 	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
-	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
+	"ERR_TEXT_TOO_LOUD": "Neradi přerušujeme, ale zkus si prosím přepnout na malá písmena. Podle Netikety je to ŘVANÍ a hlavně to nevypadá pěkně. Díky :)",
 	"RATING_POST_TITLE": "Společné inzeráty",
-	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
+	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš"
 }

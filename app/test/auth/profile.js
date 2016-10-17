@@ -233,6 +233,8 @@ describe('user profile', function() {
 		clearTagInput('.interests #interests');
 		clearTagInput('.location-input');
 		clearTagInput('section.languages');
+		addTagToInput('section.languages', 'espe'); // add one language to pass a validation
+		browser.sleep(200);
 
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear();
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear();

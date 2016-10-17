@@ -57,7 +57,7 @@
 			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
 		},
 		"COMMUNITY": {
-			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+			"INFO_NOT_FILLED": "Komunita o sobě zatím nevyplnila žádné infromace."
 		},
 		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
 		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku<\/strong><\/a>."
@@ -319,7 +319,8 @@
 			"left": "<p>Opustili ste konverzáciu.<\/p>"
 		},
 		"NEW_MESSAGE": "Poslať správu",
-		"NEW_MESSAGE_SENT": "Správa bola úspešne odoslaná. Cink."
+		"NEW_MESSAGE_SENT": "Správa bola úspešne odoslaná. Cink.",
+		"MARK_CONVERSATION_AS_UNREAD": "Označiť za neprečítanú"
 	},
 	"MESSAGES_ARCHIVE": "Archív správ",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
@@ -939,7 +940,7 @@
 		"RESET_PASSWORD_SUCCESS": "Postup na zmenu hesla sme vám poslali na email.",
 		"NEW_PASS_SUCCESS": "Nové heslo bolo nastavené. Teraz sa môžete prihlásiť.",
 		"NEW_PASS_FAILED": "Nastavenie nového hesla sa nepodarilo.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Teraz sa môžete prihlásiť.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Vitajte v Hearth.net!",
 		"ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",
 		"POST_SPAM_REPORT_FAILED": "Nahlásenie inzerátu sa nepodarilo.",
 		"POST_SPAM_REPORT_SUCCESS": "Inzerát bol nahlásený.",
@@ -974,10 +975,11 @@
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
-		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
+		"ATTACHMENT_DOWNLOAD_FAILED": "Nepodařilo se stáhnout přílohu.",
 		"POST_HID_SUCCESFULLY": "Skvelé. Skrytie inzerátu sa podarilo, už sa ti nebude na tržnici a vo vyhľadávání zobrazovať.",
 		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
+		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto.",
+		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
@@ -1170,7 +1172,7 @@
 		"RATING": {
 			"OPEN_REPLY_FORM": "Pridať komentár",
 			"REPLY_TO_USER": "Reagovať na hodnotenia od",
-			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah aj.)"
 		},
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
@@ -1429,7 +1431,7 @@
 	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
 	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>",
 	"INVITATION_STATUS": {
-		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
+		"INVITATION_SENT": "{{email}}: Jupí, pozvánka úspěšně odeslána!",
 		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
 		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je jako",
 		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
@@ -1448,7 +1450,7 @@
 	"USER_MOTTO": "Stručně o mně",
 	"USER_MOTTO_EXAMPLE": "",
 	"ERR_USER_MOTTO_MAX_LENGTH": "Stručné info o mně by mělo být stručnější :)",
-	"ERR_INVALID_URL": "Tato adresa není platná",
+	"ERR_INVALID_URL": "Tato adresa není platná (nebo jsi myslel\/a čp. 404)",
 	"CATEGORY_INFORMATION": "Informácie",
 	"CATEGORY_MASS": "Hmota",
 	"CATEGORY_ENERGY": "Energie",
@@ -1737,7 +1739,8 @@
 		"ZW": "Zimbabwe"
 	},
 	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
-	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
+	"ERR_TEXT_TOO_LOUD": "Neradi přerušujeme, ale zkus si prosím přepnout na malá písmena. Podle Netikety je to ŘVANÍ a hlavně to nevypadá pěkně. Díky :)",
 	"RATING_POST_TITLE": "Společné inzeráty",
-	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
+	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš"
 }
