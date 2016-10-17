@@ -41,8 +41,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.itemOptionIcons[NEED] = 'fa-heart';
 
 		/**
+		 *	Function that takes care of correct behaviour of the `type` and `exact_type` picker
+		 *
 		 *	- {String} itemType [offer, lend, borrow, need] [required]
-		 *	- {Object} post [required] the post
+		 *	- {Object} post [required] the post on which the `type` is being set
 		 */
 		$scope.setItemTypeActive = function(paramObject) {
 			paramObject = paramObject || {};
@@ -197,6 +199,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 * Transform - deserialize post to object which can be used in application
 		 */
 		$scope.transformDataIn = function(post) {
+			console.log('INIT', post);
 			if (post) {
 				post.text = $.trim(post.text);
 				post.dateOrig = post.valid_until;
@@ -222,7 +225,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
 
-				// post.type = post.type == 'offer';
+				post.type = post.type || OFFER;
+				post.exact_type = post.exact_type || GIFT;
 			}
 			return post;
 		}
@@ -420,7 +424,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$.cookie(POST_LANGUAGE, post.language);
 
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
-
 				// if it is save&activate button
 				// call prolong or resume endpoints first
 				switch (activate && post.state) {
@@ -440,7 +443,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		function modifyDateFormat(dateFormat) {
-
 			dateFormat = dateFormat.replace(/yyyy/g, 'y');
 			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
 			return dateFormat;
