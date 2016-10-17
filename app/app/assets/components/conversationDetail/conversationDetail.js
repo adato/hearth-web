@@ -229,6 +229,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					};
 				};
 
+
+
 				function bindActionHandlers() {
 					element.bind('click', function() {
 						markConversationAsRead($scope.info);
