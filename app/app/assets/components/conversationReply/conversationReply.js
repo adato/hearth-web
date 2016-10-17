@@ -86,6 +86,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 						});
 					}, function(err) {
 						$scope.sendingReply = false;
+						$scope.reply = reply;
 					});
 				};
 
