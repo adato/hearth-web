@@ -103,6 +103,36 @@ a.user{
 	}
 }
 
+.item-option-bg-offer,
+.item-option-bg-lend,
+.item-option-bg-need,
+.item-option-bg-borrow{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin-top: 10px;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	color: $colorDarkGray;
+	transform: rotate(45deg);
+}
+.item-option-bg-offer,
+.item-option-bg-lend{
+	background-color: $colorPrimary;
+	border-bottom-left-radius: 50%;
+}
+.item-option-bg-need,
+.item-option-bg-borrow{
+	background-color: $colorSecondary;
+	border-top-right-radius: 50%;
+}
+.item-option-bg-offer > i,
+.item-option-bg-lend > i,
+.item-option-bg-need > i,
+.item-option-bg-borrow > i{
+	color: #fff;
+	transform: rotate(-45deg);
+}
 /* @kamil TODO - remove after standardizing main ui-view's first-child and padding */
 @media #{$medium-down}{
 	.item-common.temp-padding {

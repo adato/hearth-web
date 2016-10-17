@@ -24,6 +24,55 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.character = $$config.postCharacter;
 		$scope.languageList = LanguageList.localizedList;
 
+		var OFFER = 'offer',
+			LEND = 'lend',
+			BORROW = 'borrow',
+			NEED = 'need',
+			GIFT = 'gift',
+			LOAN = 'loan',
+			ANY = 'any';
+
+		$scope.itemTypeOptions = [OFFER, LEND, BORROW, NEED];
+
+		$scope.itemOptionIcons = {};
+		$scope.itemOptionIcons[OFFER] = 'fa-heart';
+		$scope.itemOptionIcons[LEND] = 'fa-clock-o';
+		$scope.itemOptionIcons[BORROW] = 'fa-clock-o';
+		$scope.itemOptionIcons[NEED] = 'fa-heart';
+
+		/**
+		 *	- {String} itemType [offer, lend, borrow, need] [required]
+		 *	- {Object} post [required] the post
+		 */
+		$scope.setItemTypeActive = function(paramObject) {
+			paramObject = paramObject || {};
+			if (!(paramObject.itemType && paramObject.post)) throw new TypeError('itemType and post are both required.');
+			var post = paramObject.post;
+			console.log(paramObject.itemType);
+			switch (paramObject.itemType) {
+				case OFFER:
+				case LEND:
+					var et = post.exact_type;
+					if (paramObject.itemType === LEND) {
+						post.exact_type = post.exact_type === GIFT ? (post.type === OFFER ? ANY : LOAN) : LOAN;
+					} else {
+						post.exact_type = GIFT
+					}
+					post.type = post.type === OFFER && et === GIFT ? null : OFFER;
+					break;
+				case NEED:
+				case BORROW:
+					var et = post.exact_type;
+					if (paramObject.itemType === BORROW) {
+						post.exact_type = post.exact_type === LOAN ? (post.type === NEED ? ANY : GIFT) : GIFT;
+					} else {
+						post.exact_type = GIFT;
+					}
+					post.type = post.type === NEED && et === GIFT ? null : NEED;
+					break;
+			}
+		};
+
 		$scope.slide = {
 			files: false,
 			date: false,
@@ -53,10 +102,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return $scope.imageSizesSum;
 		};
 
-		$scope.togglePostType = function() {
-			if (!$scope.post.reply_count)
-				$scope.post.type = !$scope.post.type;
-		};
+		// $scope.togglePostType = function() {
+		// 	if (!$scope.post.reply_count)
+		// 		$scope.post.type = !$scope.post.type;
+		// };
 
 		$scope.queryKeywords = function($query) {
 			return KeywordsService.queryKeywords($query);
@@ -167,7 +216,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
 
-				post.type = post.type == 'offer';
+				// post.type = post.type == 'offer';
 			}
 			return post;
 		}
@@ -353,7 +402,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				angular.copy(post), {
 					valid_until: (post.valid_until) ? convertDateToIso(post.valid_until, $scope.dateFormat) : post.valid_until,
 					id: $scope.post._id,
-					type: post.type ? 'offer' : 'need'
+					// type: post.type ? 'offer' : 'need'
 				}
 			);
 
