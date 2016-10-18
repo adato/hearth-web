@@ -3,6 +3,7 @@ describe('hearth bookmarks', function() {
 
 	beforeEach(function() {
 		protractor.helpers.navigateTo('');
+		browser.waitForAngular();
 	});
 
 	function navigateToMyFav() {
@@ -22,7 +23,7 @@ describe('hearth bookmarks', function() {
 	}
 
 	it('should be able to make a bookmark on marketplace', function() {
-
+		browser.sleep(1000);
 		var elAll = element.all(by.className('item-common')).get(0);
 		var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
 		var dropdownBookmarkLink = elAll.element(by.css('[test-beacon="marketplace-item-add-bookmark"]'));
