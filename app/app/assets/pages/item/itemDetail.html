@@ -1,8 +1,8 @@
 <article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
-		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && (item.state === "suspended" && !userHasRight("post.suspend"))) || (!itemDeleted && item === false) || (itemDeleted)'>
-			<p class="margin-none" ng-show="item && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
+		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && (item.state === "suspended" && !item.title)) || (!itemDeleted && item === false) || (itemDeleted)'>
+			<p class="margin-none" ng-show="item && !item.title && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
 		</section>
