@@ -66,7 +66,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
 					$scope.sendingReply = true;
 
-					Conversations.reply(reply, function(res) {
+					Conversations.reply(params, reply, function(res) {
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
 							$('#message-footer').removeClass('message-actions');
