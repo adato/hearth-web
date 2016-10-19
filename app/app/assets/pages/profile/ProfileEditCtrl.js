@@ -203,11 +203,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.showError.phone = true;
 			}
 
-			if ($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
-				res = false;
-				$scope.showError.contact_email = true;
-			}
-
 			if (typeof $scope.userLanguage !== 'undefined' && $scope.userLanguage.length == 0) {
 				res = false;
 				$scope.showError.user_language = true;
