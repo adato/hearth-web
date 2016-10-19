@@ -146,10 +146,6 @@ button.active[disabled] .item-option-bg-type {
 }
 .item-option-bg-type.by-avatar {
 	position: absolute;
-	// top: 70%;
-	// margin-top: -15px;
-	// margin-left: -15px;
-	// right: -10px;
 	top: 25px;
 	margin-top: -15px;
 	margin-left: -15px;
@@ -217,6 +213,34 @@ button.active[disabled] .item-option-bg-type {
 .faa-parent.animated-hover:hover > .faa-pulse {
   -webkit-animation: pulse 1s linear infinite;
   animation: pulse 1s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+.faa-spin.animated,
+.faa-spin.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-spin {
+  -webkit-animation: spin 1s linear;
+  animation: spin 1s linear;
 }
 
 

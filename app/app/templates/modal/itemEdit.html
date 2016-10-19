@@ -31,12 +31,11 @@
 				</div>
 				<div class="form-section column small-12">
 					<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex flex-medium-divide">
-						<!-- <needofferselector ng-if="!post.current_community_id" ng-disabled="post.reply_count" model="post.type" text-true="{{:: 'OFFER' | translate }}" text-false="{{:: 'NEED' | translate }}"></needofferselector>
-						<needofferselector ng-if="post.current_community_id" ng-disabled="post.reply_count" model="post.type" text-true="{{:: 'WE_OFFER' | translate }}" text-false="{{:: 'WE_NEED' | translate }}"></needofferselector> -->
-						<button type="button" ng-repeat="itemOption in itemTypeOptions" ng-disabled="post.reply_count" class="flex-1 button button-white flex-div padding-horizontal-small" ng-click="setItemTypeActive({itemType: itemOption, post: post})" ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow')))}">
+						<button type="button" ng-repeat="itemOption in itemTypeOptions" ng-disabled="post.reply_count" class="flex-1 button button-white flex-div padding-horizontal-small faa-parent animated-hover" ng-click="setItemTypeActive({itemType: itemOption, post: post})"
+										ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow')))}">
 							<div>
 								<div class="item-option-bg-type" ng-class="'item-option-bg-' + itemOption">
-									<i class="fa" ng-class="[(itemOptionIcons[itemOption]), ((itemOption == 'offer' || itemOption == 'need') ? 'faa-pulse animated' : 'fa-spin')]"></i>
+									<i class="fa" ng-class="[(itemOptionIcons[itemOption]), ((itemOption == 'offer' || itemOption == 'need') ? 'faa-pulse' : 'faa-spin')]"></i>
 								</div>
 							</div>
 							<div translate="{{:: (post.current_community_id ? 'WE_' : '') + itemOption.toUpperCase() }}"></div>
