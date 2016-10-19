@@ -60,7 +60,7 @@
 			"INFO_NOT_FILLED": "Community has not given any info yet"
 		},
 		" SHOW_POSTS_ON_MAP": "View posts on a map",
-		"NOT_ON_FIRST_PAGE": "We reloaded the Marketplace at around the spot you have finished browsing. You can still reload again  <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>from the beginning<\/strong><\/a>."
+		"NOT_ON_FIRST_PAGE": "We tried to reload the Marketplace at around the point you finished browsing. You can still reload again  <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>from the beginning<\/strong><\/a>."
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -78,7 +78,7 @@
 		"SUSPEND": {
 			"LABEL": "Suspend post",
 			"ARE_YOU_SURE": "Do you want to suspend this post?",
-			"CONNECTED_MESSAGE_PLACEHOLDER": "Please send a few words to the user of a suspended post about why did you decide to suspend it.",
+			"CONNECTED_MESSAGE_PLACEHOLDER": "Please let the user of a suspended ad know about why did you decide to suspend it.",
 			"CONNECTED_MESSAGE": "Hello,\n\nas a Hearth.net custodian I just suspended your gift\/wish {{post_type}} {{post_title}} ({{post_url}}), because its contents is in breach of Hearth.net Terms and conditions (https:\/\/www.hearth.net\/app\/terms).\n\nPlease edit the text of your gift\/wish so it complies with Hearth.net TCO and publish again or if not possible, delete the gift\/wish.\n\nFor Hearth.net custodians community – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
@@ -92,10 +92,10 @@
 		"SUSPENDED_BY_ADMIN": "Suspended by admin",
 		"LANGUAGE": "Ad language",
 		"FOLLOW": {
-			"LABEL": "Watch the post"
+			"LABEL": "Watch the ad"
 		},
 		"UNFOLLOW": {
-			"LABEL": "Stop watching the post"
+			"LABEL": "Stop watching the ad"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
@@ -257,7 +257,7 @@
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
-			"NO_RESULT": "No conversations in the list. Like zero.",
+			"NO_RESULT": "No conversations in the list. Like inbox zero.",
 			"PARTICIPANTS_AND_MORE": "and others"
 		},
 		"CONVERSATION_SEARCH_PLACEHOLDER": "Enter what you're looking for...",
@@ -276,15 +276,15 @@
 			"TEXT": "If you delete this conversation, you will not be able to return to it. Other recipients will still have access to it."
 		},
 		"LEAVE_CONFIRM": {
-			"TEXT": "If you leave the conversation, other recipients can continue with the conversation, but you will not be able to access it. No worries though. We will move the conversation to the Archive, where you can return to its history anytime you wish.",
+			"TEXT": "If you leave the conversation, other recipients can continue with the conversation, but you will not be able to access it. No worries though. We will move the conversation to the Archive, where you can return to it via history anytime you wish.",
 			"LABEL": "Leave this conversation?"
 		},
 		"SYSTEM_MESSAGE": {
 			"User": {
-				"left": "<p>User <strong>{{target.name}}<\/strong> has left the conversation.<\/p>"
+				"left": "<p>User <strong>{{target.name}}<\/strong> left the conversation.<\/p>"
 			},
 			"Community": {
-				"left": "<p>Community <strong>{{target.name}}<\/strong> has left the conversation.<\/p>"
+				"left": "<p>Community <strong>{{target.name}}<\/strong> left the conversation.<\/p>"
 			}
 		},
 		"DETAIL": {
@@ -298,7 +298,7 @@
 			},
 			"EXPAND_ACTIONS": "Conversation menu",
 			"REPLY_TO_POST": "Reply to:",
-			"EMPTY_HEADER": "You have no conversations here. Can you hear the... silence?",
+			"EMPTY_HEADER": "There are no conversations here. Can you hear the... crickets?",
 			"EMPTY_TEXT": "...",
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
 			"EMPTY": "<p>Sorry but you are trying to get into conversation that no longer exist or you cannot access it. If you think it is an error, <a title=\"feedback\" href=\"\/app\/feedback\">please let us know<\/a>.<\/p>"
@@ -308,21 +308,21 @@
 			"LABEL": "Archive this conversation?",
 			"TEXT": "If you archive the conversation, you can return to it whenever you want in the Archive. And you won't miss any new messages, we will notify you..."
 		},
-		"NO_MESSAGE_YET": "Oh my! No message from You nor for You. But it can be changed just now:",
+		"NO_MESSAGE_YET": "Oh my! No messages from You nor for You. But you can change that swiftly:",
 		"NEW_MESSAGE_USER_RESTRICTION": "Choose only users you have already connected with. If you want to send a message to another user, you can do so from their profile.",
 		"YOU": "You",
 		"REPLY_AS_COMMUNITY": "Reply as:",
 		"REPLY_AS_USER": "as",
 		"SYSTEM_MESSAGE_YOU": {
-			"left": "<p>You have left the conversation.<\/p>"
+			"left": "<p>You left the conversation.<\/p>"
 		},
 		"NEW_MESSAGE": "Send message",
-		"NEW_MESSAGE_SENT": "You have successfully sent a message! Ping.",
+		"NEW_MESSAGE_SENT": "Message sent successfully! Ping.",
 		"MARK_CONVERSATION_AS_UNREAD": "Mark as unread"
 	},
 	"MESSAGES_ARCHIVE": "Messages archive",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archive",
-	"MESSAGES_DELETE": "Delete for good (i.e. forever)",
+	"MESSAGES_DELETE": "Delete permanently (i.e. forever)",
 	"MESSAGES_INBOX": "Inbox",
 	"MESSAGES_NEW": "New message",
 	"MESSAGES_SEND": "Sent messages",
@@ -455,7 +455,7 @@
 		"forgot-pass": "Forgotten password",
 		"token-login": "First login",
 		"fill-email": "Fill in email",
-		"confirm-email": "Email confirmation",
+		"confirm-email": "E-mail confirmation",
 		"login": "Sign in",
 		"reg": "Sign up",
 		"search": "Search",
@@ -811,8 +811,8 @@
 	"YOU_HAVE": "You have",
 	"USER_HAS": "User has",
 	"COMMUNITIES": "Communities",
-	"ERROR_BAD_IMAGE_FORMAT": "Picture has the wrong format. You can only use these: {{ formats}}",
-	"ERROR_BAD_IMAGE_SIZE": "The picture is too big. Like waay too much. Maximum size is {{ maxSize }}MB",
+	"ERROR_BAD_IMAGE_FORMAT": "The image is wrong format. You can only use these: {{ formats}}",
+	"ERROR_BAD_IMAGE_SIZE": "The image is too big. Like tooo much. Maximum size is {{ maxSize }}MB",
 	"TOTAL_COUNT": "{{value}} in total",
 	"USING_HEARTH_IN_LANG": "You are currently using Hearth",
 	"HEARTH_IN_THIS_LANG": "in English",
@@ -851,7 +851,7 @@
 			"EXPAND_MORE_INFO": "More info"
 		},
 		"CREATE": {
-			"CHOOSE_PLACE_FROM_MAP": "Select a place on the map"
+			"CHOOSE_PLACE_FROM_MAP": "Pick a place on the map"
 		}
 	},
 	"POSTS_INACTIVE": "Inactive posts",
@@ -946,12 +946,12 @@
 		"EMAIL_NOTIFY_CONFIG_SUCCESS": "Setting email notifications was successfully saved.",
 		"EMAIL_NOTIFY_CONFIG_FAILED": "Saving settings has failed.",
 		"EMAIL_SHARING_FAILED": "Err...There was an error when sending the email.",
-		"POST_REMOVE_FROM_COMMUNITY_FAILED": "An error while removing the ad from community",
+		"POST_REMOVE_FROM_COMMUNITY_FAILED": "An error occured while removing the ad from community",
 		"MESSAGE_SEND_SUCCESS": "Zing! Message has been sent.",
-		"MESSAGE_SEND_FAILED": "O-o-p-s. Message could not been sent.",
-		"CONVERSATION_DELETE_SUCCESS": "Conversation deleted. ",
-		"CONVERSATION_DELETE_FAILED": "Error when deleting the conversation. Oh well...",
-		"CONVERSATION_LEAVE_SUCCESS": "You have left the conversation. Recluse!",
+		"MESSAGE_SEND_FAILED": "O-o-p-s. Message couln't be sent.",
+		"CONVERSATION_DELETE_SUCCESS": "Conversation was deleted. ",
+		"CONVERSATION_DELETE_FAILED": "Error when deleting the conversation.",
+		"CONVERSATION_LEAVE_SUCCESS": "You left the conversation. Lone Wolf!",
 		"CONVERSATION_LEAVE_FAILED": "There was an error while leaving the conversation.",
 		"MESSAGE_REPLY_FAILED": "D'oh. Error while sending the message.",
 		"CONVERSATION_ARCHIVE_SUCCESS": "Conversation was successfully archived.",
@@ -966,11 +966,11 @@
 		"COMMUNITY_RATING_ADD_FAILED": "There was an error when adding rating.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "Attachment failed to download.",
 		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results.",
-		"POST_FOLLOWED_SUCCESFULLY": "Good! You watch the post now.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "You no longer watch the post.",
-		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
+		"POST_FOLLOWED_SUCCESFULLY": "Good! You watch the ad now.",
+		"POST_UNFOLLOWED_SUCCESFULLY": "You no longer watch the ad.",
+		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Apologies, but there was an error when saving your profile. It seems you have a second account on Hearth already with the same e-mail attached to it. <a title=\"Contact us\" href=\"\/app\/feedback\">Let us know<\/a> and we can merge your accounts or find another way. Thanks.<\/p>"
 	},
-	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
+	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels. Up with bigger!",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
 	"BUT_YOU_HAVE_INACTIVE_POSTS": "But you have a couple of inactive ads.",
 	"USER_RATING_SCORE_SELECT_TEXT": "How did you get along?",
@@ -1139,7 +1139,7 @@
 			"other": "wishes"
 		},
 		"REPLIES": {
-			"NO_REPLIES": "You have not replied to any gift or wish so we can't show you much here at the moment.",
+			"NO_REPLIES": "You have not replied to any gift or wish so we can't show you much here right now.",
 			"GO_TO_CONVERSATION": "Go to conversation"
 		},
 		"RATING": {
@@ -1149,7 +1149,7 @@
 		},
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nobody",
-			"VISIBILITY_FOLLOWEES": "I follow",
+			"VISIBILITY_FOLLOWEES": "Users I follow",
 			"VISIBILITY_EVERYBODY": "Logged-in users",
 			"WHO_CAN_SEE_IT": "Who can view it"
 		}
@@ -1191,7 +1191,7 @@
 	"ADD_LOCATION": "Add location",
 	"LOCATIONS_ARE_EMPTY": "Fill in location or tick box no location needed.",
 	"INSERT_LOCATION": "Insert location",
-	"USER_RATING_JOIN_REALIZED_GIFT": "You can link your rating to an ad that you have interacted with in the last 3 months.",
+	"USER_RATING_JOIN_REALIZED_GIFT": "You can attach your rating to an ad that you have interacted with in the last 3 months or to any active ad (yours or community one).",
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
 	"RATING_POST_TYPES": {
 		"offered": "I offered",
@@ -1199,7 +1199,7 @@
 		"we_needed": "We accepted",
 		"we_offered": "We offered"
 	},
-	"RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted with any ads in the last 3 months. But you can still rate the user. :)",
+	"RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted with any ads in the past 3 months and you have no active ad right now. But hey, you can still rate the user. :)",
 	"RATING_COMMON_POSTS_TOP": "Which post was it?",
 	"RATING_TO_POST": "To post",
 	"RATING_LOADING_COMMON_POSTS": "Loading list of ads",
@@ -1259,7 +1259,7 @@
 	"ADD_COMMUNITY_RATING": "Community rating",
 	"COMMUNITY_RATING_SCORE_SELECT_TEXT": "How was your communication?",
 	"WRITE_COMMUNITY_SOME_RATING": "Add a couple of words to the community rating",
-	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "You can link your rating to an ad that you have interacted with in the last 3 months.",
+	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "You can link your rating to an ad that you have interacted with in the last 3 months or any other active ad (yours or other user's).",
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
 	"SEND_COMMUNITY_RATING": "Send rating",
 	"TOP_BAR_MESSAGES": "Messages",
@@ -1270,28 +1270,28 @@
 	"ERR_REPORT_TEXT_MIN_LEN": "Please tell us why do you report the ad",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text is too long... 2500 characters is maximum. Think Twitter or SMS.",
 	"REPORT_HARMFUL_AD_ONLY_ONCE": "You have already set this gift or wish as inaproppriate.",
-	"POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "To enter the ad to community you can't have it visible for friends only.",
+	"POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "To insert the ad to community you can't have it visible for friends only.",
 	"SOCIAL_NETWORKS": "Connect with us via:",
 	"COMMUNITY_WAS_NOT_FOUND": "No such community here. Sorry...",
 	"AD_REMOVE_FROM_COMMUNITY_LABEL": "Remove ad from the community",
 	"POST_COMMUNITY_REMOVE": {
 		"HEADING": "Remove ad from the community",
 		"INFO": "Is this ad not for your community? You can simply remove it...",
-		"REASON_PLACEHOLDER": "Tell user why the ad is not suitable for your communities...",
+		"REASON_PLACEHOLDER": "Tell user why the ad is not suitable for Your communities...",
 		"SELECT_COMMUNITIES": "Select communities from which to remove the ad:",
 		"REASON_LABEL": "Reason for removal:",
 		"POST_WILL_BE_REMOVED_FROM": "<p>Ad will be removed from the community <strong>{{name}}<\/strong>.<\/p>",
 		"SUCCESS_MESSAGE": "Ad removed successfully."
 	},
 	"ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Select at least one community from which to remove the ad.",
-	"ERR_MESSAGE_TEXT_MIN_LEN": "Did you forget to fill in the message? Usually it's needed, you know.",
+	"ERR_MESSAGE_TEXT_MIN_LEN": "Did you not forget to fill in the message? Usually it's needed, you know.",
 	"LOCATION_UNLIMITED_MESSAGE": "Anywhere",
 	"TERMS": "Terms of use",
 	"ADS_ALL": "All gifts and wishes",
 	"USER_MESSAGES": "Messages",
 	"SEND_MESSAGE": "Send message...",
 	"COMMUNITY_TERMS": "Community terms",
-	"NEW_VERSION_NOTIFICATION": "We have newer more shiny version of Hearth ready for you. Do you want to update Hearth now or later?",
+	"NEW_VERSION_NOTIFICATION": "We have newer slicker version of Hearth ready for you. Do you want to update Hearth now or later?",
 	"RELOAD": "Reload",
 	"ALL_COMMUNITIES": "All communities",
 	"RATINGS_COUNT": "ratings",
@@ -1313,7 +1313,7 @@
 			"TEXT_PLACEHOLDER": "Reply text..."
 		}
 	},
-	"YOU_ARE_OFFLINE": "<p><strong>Connection error<\/strong> Is your internet connection ok?<\/p>",
+	"YOU_ARE_OFFLINE": "<p><strong>Connection error<\/strong> Is your internet connection ok? Or modem on fire?<\/p>",
 	"ERROR_BAD_IMAGE_SIZE_ALL": "Total size of uploaded images cannot exceed {{maxSize}}MB.",
 	"RELOAD_PAGE": "Reload the page",
 	"TOP_BAR": {
@@ -1329,7 +1329,7 @@
 	"ERROR_WHILE_UPLOADING": "There was an error while loading",
 	"LOGIN_INACTIVE_ACCOUNT": "You are tyring to log in with account that has not been activated yet. By clicking the link in confirmation registration e-mail. You can e-mail with registration link...",
 	"RESEND_ACTIVATING_EMAIL": "Let send again",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. You can e-mail",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. You can **** e-mail with activation link...",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net is a generous social network full of interesting people who dare to give. Do you? You can create your profile in a snap and the world of gifts is instantly yours.<\/p>",
 	"SIGNUP_HEADING_FB": "Join in",
 	"SIGN_UP": {
@@ -1404,9 +1404,9 @@
 		"USER_ALREADY_EXIST": "{{email}}: This person is already on Hearth as",
 		"INVITATION_NOT_SENT": "{{email}}: Invitation could not be sent. Perhaps invalid e-mail address?"
 	},
-	"COMMUNITY_MOTTO": "Community motto",
-	"COMMUNITY_MOTTO_EXAMPLE": "Add brief community description",
-	"ERR_COMMUNITY_MOTTO_MAX_LENGTH": "Brief info about community should be really brief :)",
+	"COMMUNITY_MOTTO": "About community in short",
+	"COMMUNITY_MOTTO_EXAMPLE": "Add short community description",
+	"ERR_COMMUNITY_MOTTO_MAX_LENGTH": "About community in short should be really short :)",
 	"OUR_FACEBOOK": "Facebook",
 	"OUR_TWITTER": "Twitter",
 	"OUR_LINKEDIN": "LinkedIn",
@@ -1449,7 +1449,7 @@
 	"AD_HIDE_LABEL": "Hide ad",
 	"AD_HIDE_ARE_YOU_SURE": "After you hide this ad, it will no longer display in the Marketplace or search results. You will still see it in the profile of a given user and also be able to access the details of the post.",
 	"HIDE_AD": "Hide ad",
-	"USING_HEARTH_FROM_COUNTRY": "You use Hearth most often in this country",
+	"USING_HEARTH_FROM_COUNTRY": "You use Hearth mostly in this country",
 	"USER_LANGUAGE_AND_COUNTRY": "Language and country",
 	"COUNTRY": {
 		"AF": "Afghanistan",
@@ -1706,9 +1706,11 @@
 		"EH": "Western Sahara",
 		"ZW": "Zimbabwe"
 	},
-	"POSTS_RELATED_QUESTION": "Will any similar post catch your eye?",
+	"POSTS_RELATED_QUESTION": "Will any related ad catch your eye?",
 	"ERR_TEXT_TOO_LOUD": "Sorry to bother, but please do switch off the Caps Lock. Netiquette says it equals to SHOUTING plus it looks bad. Thanks :)",
-	"RATING_POST_TITLE": "Common posts",
-	"RATING_ACTIVE_POST_TITLE": "Other active posts",
-	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language"
+	"RATING_POST_TITLE": "Common ads",
+	"RATING_ACTIVE_POST_TITLE": "Other active ads",
+	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language",
+	"LEND": "Půjčím",
+	"BORROW": "Půjčím si"
 }

@@ -60,48 +60,165 @@ a.user{
 }
 
 
-.avatar.show-post-arrows{
+//
+//	REPLACED BY item-option-bg-type
+//
+// .avatar.show-post-arrows{
+// 	position: relative;
+// }
+// .avatar.show-post-arrows:before{
+// 	content:'';
+// 	position: absolute;
+// 	display:block;
+// 	width: 20px; height: 20px;
+// 	right: -30px; top: 10px; left: initial;
+// 	margin-top: 0;
+// 	background-size: cover;
+// 	z-index: 5;
+// }
+// .avatar.show-post-arrows.need:before{
+// 	background-image: url('/app/images/arrow-receive.svg');
+// }
+// .avatar.show-post-arrows.offer:before{
+// 	background-image: url('/app/images/arrow-give.svg');
+// }
+// @media #{$medium-up}{
+// 	.avatar.show-post-arrows:before{
+// 		width: 30px; height: 30px;
+// 		right: -40px; top: 25px;
+// 	}
+// }
+// @media #{$large-up}{
+// 	.avatar.show-post-arrows:before{
+// 		width: 40px; height: 40px;
+// 		right: -60px; top: 20px;
+// 	}
+// 	.has-delimiter .avatar.show-post-arrows:before{
+// 		width: 50px; height: 50px;
+// 		top: 40px; left: -60px; right: initial;
+//
+// 		-moz-transform: scaleX(-1);
+// 		-o-transform: scaleX(-1);
+// 		-webkit-transform: scaleX(-1);
+// 		transform: scaleX(-1);
+// 		filter: FlipH;
+// 		-ms-filter: "FlipH";
+// 	}
+// }
+
+.item-option-bg-type {
 	position: relative;
-}
-.avatar.show-post-arrows:before{
-	content:'';
-	position: absolute;
-	display:block;
-	width: 20px; height: 20px;
-	right: -30px; top: 10px; left: initial;
-	margin-top: 0;
-	background-size: cover;
+	display: inline-block;
+	margin-top: 10px;
+	width: 20px;
+	height: 20px;
+	line-height: 17px;
+	color: $colorDarkGray;
+	text-align: center;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	transform: rotate(45deg);
 	z-index: 5;
 }
-.avatar.show-post-arrows.need:before{
-	background-image: url('/app/images/arrow-receive.svg');
+.item-option-bg-offer,
+.item-option-bg-lend {
+	background-color: $colorTertiary;
+	border-bottom-left-radius: 50%;
 }
-.avatar.show-post-arrows.offer:before{
-	background-image: url('/app/images/arrow-give.svg');
+.item-option-bg-need,
+.item-option-bg-borrow {
+	background-color: $colorPrimary;
+	border-top-right-radius: 50%;
 }
-@media #{$medium-up}{
-	.avatar.show-post-arrows:before{
-		width: 30px; height: 30px;
-		right: -40px; top: 25px;
+.item-option-bg-type > i {
+	color: #fff;
+	font-size: 10px;
+	transform: rotate(-45deg);
+}
+button.active .item-option-bg-type {
+	background-color: #fff;
+}
+button.active .item-option-bg-type > i {
+	color: $colorSecondary;
+}
+button.active[disabled] .item-option-bg-type {
+	background-color: $colorLightGray;
+}
+.item-option-bg-type.by-avatar {
+	position: absolute;
+	// top: 70%;
+	// margin-top: -15px;
+	// margin-left: -15px;
+	// right: -10px;
+	top: 25px;
+	margin-top: -15px;
+	margin-left: -15px;
+	right: -30px;
+}
+@media #{$medium-up} {
+	.item-option-bg-type {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
 	}
-}
-@media #{$large-up}{
-	.avatar.show-post-arrows:before{
-		width: 40px; height: 40px;
-		right: -60px; top: 20px;
+	.item-option-bg-type > i {
+		font-size: 14px;
 	}
-	.has-delimiter .avatar.show-post-arrows:before{
-		width: 50px; height: 50px;
-		top: 40px; left: -60px; right: initial;
+	.item-option-bg-type.by-avatar {
+		top: 40px;
+		right: -30px;
+	}
+	.has-delimiter .item-option-bg-type.by-avatar {
+		top: 75px; left: -55px; right: initial;
 
-		-moz-transform: scaleX(-1);
-		-o-transform: scaleX(-1);
-		-webkit-transform: scaleX(-1);
-		transform: scaleX(-1);
+		-moz-transform: scaleX(-1) rotate(45deg);
+		-o-transform: scaleX(-1) rotate(45deg);
+		-webkit-transform: scaleX(-1) rotate(45deg);
+		transform: scaleX(-1) rotate(45deg);
 		filter: FlipH;
 		-ms-filter: "FlipH";
 	}
 }
+// ANIMATIONS
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(0.8) rotate(-45deg);
+    transform: scale(0.8) rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    -ms-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(0.8) rotate(-45deg);
+    -ms-transform: scale(0.8) rotate(-45deg);
+    transform: scale(0.8) rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: scale(1.1) rotate(-45deg);
+    -ms-transform: scale(1.1) rotate(-45deg);
+    transform: scale(1.1) rotate(-45deg);
+  }
+}
+.faa-pulse.animated,
+.faa-pulse.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-pulse {
+  -webkit-animation: pulse 1s linear infinite;
+  animation: pulse 1s linear infinite;
+}
+
 
 /* @kamil TODO - remove after standardizing main ui-view's first-child and padding */
 @media #{$medium-down}{

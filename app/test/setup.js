@@ -84,7 +84,7 @@ module.exports = {
 		});
 	},
 	getRegConfirmUrlFromText: function(text) {
-	    return text.match(/(https:\/\/.[^"^>]*confirm-email\?hash=[^"^>]*)/ig);
+	    return text.match(/(https:\/\/.[^"^>]*confirm-email\?hash=[^"^>^<]*)/ig);
 	},
 	parseLocation: function (href) {
 	    var match = href.match(/^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)(\/[^?#]*)(\?[^#]*|)(#.*|)$/);
@@ -107,6 +107,7 @@ module.exports = {
 		    host: "imap.gmail.com",
 		    port: 993, // imap port
 		    tls: true,
+		    debug: console.log,
 		    tlsOptions: { rejectUnauthorized: false },
 		    mailbox: "Tests", // mailbox to monitor
 		    // searchFilter: ["UNSEEN", "FLAGGED"], // the search filter being used after an IDLE notification has been retrieved
@@ -117,6 +118,8 @@ module.exports = {
 		    // attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments
 		});
 
+		mailListener.start();
+
 		mailListener.on("server:connected", function(){
 		    console.log("Mail listener initialized");
 		});
@@ -126,16 +129,14 @@ module.exports = {
   			console.log(err);
 		});
 
-		mailListener.start();
-	    console.log("Waiting for an email...");
-
-		return new Promise(function(resolve, reject) {
-		    mailListener.on("mail", function(mail){
-		    	console.log("Got an email!");
-		        resolve(mail);
-		    });
-		});
-
+		return function () {
+			return new Promise(function(resolve, reject) {
+			    mailListener.on("mail", function(mail){
+			    	console.log("Got an email!");
+			        resolve(mail);
+			    });
+			});
+		}
 	},
 	getRandomInt: getRandomInt,
 	getTestEmail: function () {

@@ -449,7 +449,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					$rootScope.openEditForm(scope);
 				});
 			} else {
-
 				Post.createDraft({}, function(draft) {
 					scope.post = draft;
 					scope.isDraft = true;

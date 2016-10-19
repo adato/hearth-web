@@ -7,153 +7,156 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, IsEmpty) {
+		'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty',
+		function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, IsEmpty) {
 
-		// start processing socket events
-		ConversationAux.init({
-			enableProcessing: true
-		});
+			// start processing socket events
+			ConversationAux.init({
+				enableProcessing: true
+			});
 
-		$scope.filter = {
-			type: '',
-			post_id: void 0
-		};
-
-		// loading for the whole page including filters
-		$scope.loaded = false;
-
-		// loading for conversation list and conversation detail (used during changing of filters)
-		$scope.reloading = false
-
-		// don't really know what this one is for
-		$scope.loadingBottom = false;
-		var conversationLoadInProgress,
-			allConversationsLoaded;
-
-		// the conversation list
-		$scope.conversations = false;
-
-		$scope.notFound = false;
-		$scope.showFulltext = false;
-
-		// this variable holds the displayed conversation
-		$scope.detail = false;
-
-		/**
-		 *	- {String} filterString
-		 */
-		$scope.applyFilter = function(filterObject) {
-			filterObject = filterObject || {};
-			var query = filterObject.type.split(':');
-
-			$scope.filter.post_id = query[0] === 'as_replies_post' ? query[1] : void 0;
-
-			var filter = {
-				key: query[0],
-				value: query[1] || true
+			$scope.filter = {
+				type: '',
+				post_id: void 0
 			};
 
-			$location.url($location.path());
-			if (filter.key) $location.search(filter.key, filter.value);
-			init()
-		};
+			// loading for the whole page including filters
+			$scope.loaded = false;
 
-		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
+			// loading for conversation list and conversation detail (used during changing of filters)
+			$scope.reloading = false
 
-		function loadConversations(cb) {
-			var params = {
-				wipe: true
-			};
-			var searchParams = $location.search();
-			if (searchParams.as_replies_post) {
-				params.post_id = searchParams.as_replies_post;
-			} else {
-				for (var i = filterTypes.length; i--;) {
-					if (searchParams[filterTypes[i]]) {
-						params.filterType = filterTypes[i];
-						break;
-					}
-				}
-			}
-			ConversationAux.loadConversations(params).then(function(res) {
-				$scope.conversations = res.conversations;
-				$scope.$broadcast("scrollbarResize");
-				$scope.$broadcast("classIfOverflowContentResize");
-				return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false);
-			});
-		};
+			// don't really know what this one is for
+			$scope.loadingBottom = false;
+			var conversationLoadInProgress,
+				allConversationsLoaded;
 
-		// load another batch to the bottom of list when scrolled down
-		$scope.loadBottom = function() {
-			if (conversationLoadInProgress || allConversationsLoaded) return false;
-			$scope.loadingBottom = true;
-			conversationLoadInProgress = true;
-			var config = {
-				offset: $scope.conversations.length
-			};
-
-			ConversationAux.loadConversations(config).then(function(res) {
-				if (res.thatsAllFolks) allConversationsLoaded = true;
-				conversationLoadInProgress = false;
-				$scope.$broadcast("scrollbarResize");
-				$scope.$broadcast("classIfOverflowContentResize");
-				// });
-			}, function(err) {
-				conversationLoadInProgress = false;
-			});
-		};
-
-		function loadPostConversations() {
-			Conversations.getPosts(function(res) {
-				$scope.postConversations = res;
-			});
-		};
-
-		function init() {
-			$scope.reloading = true;
-
-			// set filter select-box to correct value
-			// TODO - refactor those filters
-			var searchParams = $location.search(),
-				filterSet = false;
-			if (searchParams.as_replies_post) {
-				$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
-				$scope.filter.post_id = searchParams.as_replies_post;
-				filterSet = true;
-			} else {
-				for (var i = filterTypes.length; i--;) {
-					if (searchParams[filterTypes[i]]) {
-						$scope.filter.type = filterTypes[i];
-						$scope.filter.post_id = void 0;
-						filterSet = true;
-						break;
-					}
-				}
-			}
-			if (filterSet) {
-				$state.go('messages', {
-					notify: false
-				});
-			}
+			// the conversation list
+			$scope.conversations = false;
 
 			$scope.notFound = false;
-			$scope.loadingBottom = false;
+			$scope.showFulltext = false;
 
-			loadPostConversations();
+			// this variable holds the displayed conversation
+			$scope.detail = false;
 
-			loadConversations(function(res) {
-				$scope.loaded = true;
-				$scope.reloading = false;
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
-					id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
+			/**
+			 *	- {String} filterString
+			 */
+			$scope.applyFilter = function(filterObject) {
+				filterObject = filterObject || {};
+				var query = filterObject.type.split(':');
+
+				$scope.filter.post_id = query[0] === 'as_replies_post' ? query[1] : void 0;
+
+				var filter = {
+					key: query[0],
+					value: query[1] || true
+				};
+
+				$location.url($location.path());
+				if (filter.key) $location.search(filter.key, filter.value);
+				init()
+			};
+
+
+			var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
+
+			function loadConversations(cb) {
+				var params = {
+					wipe: true
+				};
+				var searchParams = $location.search();
+				if (searchParams.as_replies_post) {
+					params.post_id = searchParams.as_replies_post;
+				} else {
+					for (var i = filterTypes.length; i--;) {
+						if (searchParams[filterTypes[i]]) {
+							params.filterType = filterTypes[i];
+							break;
+						}
+					}
+				}
+				ConversationAux.loadConversations(params).then(function(res) {
+					$scope.conversations = res.conversations;
+					$scope.$broadcast("scrollbarResize");
+					$scope.$broadcast("classIfOverflowContentResize");
+					return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false); 
 				});
-			});
-		};
+			};
 
-		UnauthReload.check();
 
-		$scope.$on('initFinished', init);
-		$rootScope.initFinished && init();
+	// load another batch to the bottom of list when scrolled down
+$scope.loadBottom = function() {
+	if (conversationLoadInProgress || allConversationsLoaded) return false;
+	$scope.loadingBottom = true;
+	conversationLoadInProgress = true;
+	var config = {
+		offset: $scope.conversations.length
+	};
+
+	ConversationAux.loadConversations(config).then(function(res) {
+		if (res.thatsAllFolks) allConversationsLoaded = true;
+		conversationLoadInProgress = false;
+		$scope.$broadcast("scrollbarResize");
+		$scope.$broadcast("classIfOverflowContentResize");
+		// });
+	}, function(err) {
+		conversationLoadInProgress = false;
+	});
+};
+
+
+function loadPostConversations() {
+	Conversations.getPosts(function(res) {
+		$scope.postConversations = res;
+	});
+};
+
+function init() {
+	$scope.reloading = true;
+
+	// set filter select-box to correct value
+	// TODO - refactor those filters
+	var searchParams = $location.search(),
+		filterSet = false;
+	if (searchParams.as_replies_post) {
+		$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
+		$scope.filter.post_id = searchParams.as_replies_post;
+		filterSet = true;
+	} else {
+		for (var i = filterTypes.length; i--;) {
+			if (searchParams[filterTypes[i]]) {
+				$scope.filter.type = filterTypes[i];
+				$scope.filter.post_id = void 0;
+				filterSet = true;
+				break;
+			}
+		}
 	}
+	if (filterSet) {
+		$state.go('messages', {
+			notify: false
+		});
+	}
+
+	$scope.notFound = false;
+	$scope.loadingBottom = false;
+
+	loadPostConversations();
+
+	loadConversations(function(res) {
+		$scope.loaded = true;
+		$scope.reloading = false;
+		if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
+			id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
+		});
+	}); 
+};
+
+UnauthReload.check(); 
+
+$scope.$on('initFinished', init);
+$rootScope.initFinished && init();
+}
 ]);
