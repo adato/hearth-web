@@ -93,8 +93,8 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;
 
-					if ($scope.actors.length > 1) {
-						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? '' : $scope.actors[0]._id);
+					if ($scope.actors.length > 1 || ($scope.actors.length === 1 && $scope.actors[0]._type === 'Community')) {
+						$scope.reply.current_community_id = ($scope.actors[0]._type == 'User' ? '' : $scope.actors[0]._id);
 					}
 				};
 				$scope.init();
