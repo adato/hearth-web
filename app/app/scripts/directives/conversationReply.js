@@ -44,6 +44,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.sendReply = function(reply) {
 					reply = JSON.parse(JSON.stringify(reply));
+					console.log(reply);
 					reply.id = $scope.conversation._id;
 					var params = {};
 					if (reply.current_community_id && reply.current_community_id !== $rootScope.loggedUser._id) params.current_community_id = reply.current_community_id;
@@ -81,8 +82,8 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;
 
-					if ($scope.actors.length > 1) {
-						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? '' : $scope.actors[0]._id);
+					if ($scope.actors.length > 1 || ($scope.actors.length === 1 && $scope.actors[0]._type === 'Community')) {
+						$scope.reply.current_community_id = ($scope.actors[0]._type == 'User' ? '' : $scope.actors[0]._id);
 					}
 				};
 				$scope.init();
