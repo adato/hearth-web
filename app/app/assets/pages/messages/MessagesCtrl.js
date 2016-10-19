@@ -47,6 +47,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			filterObject = filterObject || {};
 			var query = filterObject.type.split(':');
 
+			// weird approach, but whatever
 			$scope.filter.post_id = query[0] === 'as_replies_post' ? query[1] : void 0;
 
 			var filter = {
@@ -58,7 +59,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (filter.key) $location.search(filter.key, filter.value);
 			init()
 		};
-
 
 		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
 
@@ -85,7 +85,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
 			if (conversationLoadInProgress || allConversationsLoaded) return false;
@@ -100,12 +99,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				conversationLoadInProgress = false;
 				$scope.$broadcast("scrollbarResize");
 				$scope.$broadcast("classIfOverflowContentResize");
-				// });
 			}, function(err) {
 				conversationLoadInProgress = false;
 			});
 		};
-
 
 		function loadPostConversations() {
 			Conversations.getPosts(function(res) {
@@ -152,6 +149,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
 				});
 			});
+
 		};
 
 		UnauthReload.check();
