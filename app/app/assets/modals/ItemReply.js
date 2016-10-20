@@ -69,6 +69,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				$scope.post.reply_count += 1;
 				$scope.post.is_replied = true;
 			}, function(res) {
+				console.log(res);
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 			});

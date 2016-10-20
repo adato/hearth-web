@@ -80,12 +80,14 @@
 		if (readOnBlogTranslation && readOnBlogTranslation.length) readOnBlog = readOnBlogTranslation[0].getAttribute('translation');
 
 		standaradizedPost.innerHTML = ""
-			// + "<div class='blog-img-wrapper'><div class='blog-img' id='image-blog-1'></div></div>"
 			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
 			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
-			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
+			+ (title && title.innerHTML ? '<h3>'
+				+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '">' : '')
+			 		+ title.innerHTML
+				+ (link && link.childNodes.length ? '</a>' : '')
+			+ '</h3>' : '')
 			+ (textHTML ? '<div class="faux-paragraph">' + textHTML + '</div>' : '')
-			// + (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
 			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
