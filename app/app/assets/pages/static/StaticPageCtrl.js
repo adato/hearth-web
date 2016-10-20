@@ -7,13 +7,16 @@
  */
 
 angular.module('hearth.controllers').controller('StaticPageCtrl', [
-	'$state', '$scope', 'ngDialog', 'Auth', 'User', 'Feedback', '$rootScope', '$sce', '$log',
-	function($state, $scope, ngDialog, Auth, User, Feedback, $rootScope, $sce, $log) {
+	'$state', '$scope', 'ngDialog', 'Auth', 'User', 'Feedback', '$rootScope', '$sce', '$log', '$location', '$timeout',
+	function($state, $scope, ngDialog, Auth, User, Feedback, $rootScope, $sce, $log, $location, $timeout) {
 		$scope.loading = true;
 		$scope.pageName = $state.current.name;
 		$scope.finishLoading = function() {
 			$scope.loading = false;
 		};
+
+		var ACCEPTED_MODAL_VALUES = ['support-us-modal-pay', 'support-us-modal-write-us', 'support-us-modal-endorse'],
+			MODAL_KEY = 'open-modal';
 
 		$scope.feedbackData = {
 			text: '',
@@ -108,10 +111,16 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			$scope.postalAddressData.email = email;
 		}
 
-		$scope.init = function() {
-			if ($rootScope.loggedUser._id) {
-				prefillEmail();
+		$scope.modalInit = function(modalId) {
+			if ($location.search()[MODAL_KEY] && ACCEPTED_MODAL_VALUES.indexOf($location.search()[MODAL_KEY]) > -1 && $location.search()[MODAL_KEY] === modalId) {
+				$timeout(function() {
+					$scope.openModal($location.search()[MODAL_KEY]);
+				}, 10);
 			}
+		}
+
+		$scope.init = function() {
+			if ($rootScope.loggedUser._id) prefillEmail();
 		}
 
 		$scope.init();

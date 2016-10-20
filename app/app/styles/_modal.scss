@@ -234,6 +234,10 @@ body.ngdialog-open {
 	}
 	a {
 		color: color(5);
+		
+		&.button {
+			color: #fff;
+		}
 		&:hover {
 			opacity: 0.7;
 		}
