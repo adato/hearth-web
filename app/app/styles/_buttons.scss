@@ -138,3 +138,9 @@ button.no-vertical-padding {
 		background: darken($colorSecondary, 10%);
 	}
 }
+.button-white[disabled],
+.button-white[disabled]:hover {
+	color: $colorDarkGray;
+	background: $colorLightGray;
+	border: $colorDarkGray;
+}
