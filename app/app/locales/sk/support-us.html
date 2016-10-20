@@ -35,44 +35,14 @@
 <hr />
 
 <div class="large-12 columns i-want">
-	
 	<div class="large-3 columns center text-center">
 		<img src="./images/banner/crowdsource3.jpg" width="130" height="130" class="round"/>
 	</div>
 	<div class="large-9 columns">
 		<h3>Daj o nás vedieť</h3>
-		<p>Ak máš možnosť predstaviť štedrú sociálnu sieť ľuďom okolo seba a pozvať ich do Hearth.net, radi ti s tým pomôžeme. Na začiatok máme tri možnosti. Vyber si, ktorou začneš.</p>
-		<div class="i-want-more">
-			<div class="large-4 columns">
-				<div class="panel print-flyer">
-					<h3 class="xinverse">Vytlač si leták</h3>
-					<p style="position:relative;top:-55px;margin-bottom:-22px;">(len po česky)</p>
-					<img src="./images/icons/print.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-print');" class="button">Vyvesím leták</a>
-					<br style="clear:both">
-				</div>
-			</div>
-			<div class="large-4 columns">
-				<div class="panel get-widget">
-					<h3>Pridaj logo na svoju stránku</h3>
-					<img src="./images/icons/window2.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Stiahnem logo</a>
-					<br style="clear:both">
-				</div>
-			</div>
-			<div class="large-4 columns">
-				<div class="panel get-badge">
-					<h3 class="xinverse">Napíš si o placky a samolepky</h3>
-					<img src="./images/icons/hearth.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chcem&nbsp;placky</a>
-					<br style="clear:both">
-				</div>
-			</div>
-		</div>
+		<div ng-include="'support-us-endorse'">
 	</div>
 </div>
-
-
 
 <div style="clear: both;" class="large-12 columns text-center">
 	<br><br>
@@ -185,6 +155,52 @@
 	</div>
 </script>
 
+<script type="text/ng-template" id="support-us-modal-endorse" ng-init="modalInit('support-us-modal-endorse')">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h2>Dej o nás vědět</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+		<div ng-include="'support-us-endorse'"></div>
+		<div class="clear"></div>
+		<div class="display-flex flex-space-between margin-top-medium">
+			<a ng-click="closeThisDialog()">{{:: 'CLOSE' | translate }}</a>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="support-us-endorse">
+	<p>Ak máš možnosť predstaviť štedrú sociálnu sieť ľuďom okolo seba a pozvať ich do Hearth.net, radi ti s tým pomôžeme. Na začiatok máme tri možnosti. Vyber si, ktorou začneš.</p>
+	<div class="i-want-more">
+		<div class="large-4 columns">
+			<div class="panel print-flyer">
+				<h3 class="xinverse">Vytlač si leták</h3>
+				<p style="position:relative;top:-55px;margin-bottom:-22px;">(len po česky)</p>
+				<img src="./images/icons/print.svg"/>
+				<a href="" ng-click="openModal('support-us-modal-print');" class="button">Vyvesím leták</a>
+				<br style="clear:both">
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="panel get-widget">
+				<h3>Pridaj logo na svoju stránku</h3>
+				<img src="./images/icons/window2.svg"/>
+				<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Stiahnem logo</a>
+				<br style="clear:both">
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="panel get-badge">
+				<h3 class="xinverse">Napíš si o placky a samolepky</h3>
+				<img src="./images/icons/hearth.svg"/>
+				<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chcem&nbsp;placky</a>
+				<br style="clear:both">
+			</div>
+		</div>
+	</div>
+</script>
+
 <script type="text/ng-template" id="support-us-modal-badge">
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
@@ -287,7 +303,7 @@
 				</div>
 				<div class="small-12 large-9 columns">
 					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="emailPattern" />
-				</div>	
+				</div>
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
