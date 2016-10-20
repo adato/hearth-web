@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'FileService',
-	function(Conversations, Notify, $timeout, FileService) {
+	'Conversations', 'Notify', '$timeout', 'FileService', 'ConversationAux',
+	function(Conversations, Notify, $timeout, FileService, ConversationAux) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -42,14 +42,24 @@ angular.module('hearth.directives').directive('conversationReply', [
 					$scope.$emit('conversationReplyFormResized');
 				};
 
+				// TODO change for some nice directive
+				// instead of this ugly workaround
+				$scope.focusInput = function(selector) {
+					var target = el[0].querySelector(selector);
+					if (target) target.focus();
+				}
+
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversation._id;
 					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
 					$scope.sendingReply = true;
-					Conversations.reply(reply, function(res) {
-						$scope.reply.text = '';
-						$scope.reply.attachments_attributes = '';
 
+					// backup the reply object and clear it up
+					reply = JSON.parse(JSON.stringify(reply));
+					$scope.reply.text = '';
+					$scope.reply.attachments_attributes = '';
+
+					Conversations.reply(reply, function(res) {
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
 							$('#message-footer').removeClass('message-actions');
@@ -63,15 +73,20 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
-						$scope.$emit('conversationMessageAdded', res);
+						// $scope.$emit('conversationMessageAdded', res);
+
+						ConversationAux.handleEvent({
+							action: 'created',
+							conversation: res
+						});
 					}, function(err) {
 						$scope.sendingReply = false;
 					});
 				};
 
-				$scope.closeConversation = function() {
-					$scope.$emit('closeConversation');
-				}
+				// $scope.closeConversation = function() {
+				// 	$scope.$emit('closeConversation');
+				// }
 
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;
