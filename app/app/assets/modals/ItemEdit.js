@@ -48,14 +48,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 */
 		$scope.setItemTypeActive = function(paramObject) {
 			paramObject = paramObject || {};
-			if (!(paramObject.itemType && paramObject.post)) throw new TypeError('itemType and post are both required.');
+			if (!(paramObject.itemType && paramObject.post)) throw new TypeError('itemType and post are both required for setting item type and exact_type.');
 			var post = paramObject.post;
 			if (paramObject.itemType === OFFER) {
 				if (post.type === OFFER) {
 					if (post.exact_type === GIFT) return;
-					if (post.exact_type === ANY) return post.exact_type = LOAN;
+					else if (post.exact_type === ANY) return post.exact_type = LOAN;
+					else if (post.exact_type === LOAN) post.exact_type = ANY;
+				} else {
+					post.exact_type = GIFT;
 				}
-				post.exact_type = post.exact_type === LOAN ? ANY : GIFT;
 				post.type = OFFER;
 			} else if (paramObject.itemType === LEND) {
 				if (post.exact_type === ANY && post.type === OFFER) {
@@ -68,8 +70,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				if (post.type === NEED) {
 					if (post.exact_type === GIFT) return;
 					if (post.exact_type === ANY) return post.exact_type = LOAN;
+					if (post.exact_type === LOAN) post.exact_type = ANY;
+				} else {
+					post.exact_type = GIFT;
 				}
-				post.exact_type = post.exact_type === LOAN ? ANY : GIFT;
 				post.type = NEED;
 			} else if (paramObject.itemType === BORROW) {
 				if (post.exact_type === ANY && post.type === NEED) {
@@ -199,7 +203,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 * Transform - deserialize post to object which can be used in application
 		 */
 		$scope.transformDataIn = function(post) {
-			console.log('INIT', post);
 			if (post) {
 				post.text = $.trim(post.text);
 				post.dateOrig = post.valid_until;
