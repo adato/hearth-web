@@ -213,9 +213,9 @@ button.active[disabled] .item-option-bg-type {
 }
 .faa-pulse.animated,
 .faa-pulse.animated-hover:hover,
-.faa-parent.animated-hover:hover > .faa-pulse {
-  -webkit-animation: pulse 1s linear infinite;
-  animation: pulse 1s linear infinite;
+.faa-parent.animated-hover:not([disabled]):hover .faa-pulse {
+  -webkit-animation: pulse 1s linear;
+  animation: pulse 1s linear;
 }
 @-webkit-keyframes spin {
   0% {
@@ -234,16 +234,16 @@ button.active[disabled] .item-option-bg-type {
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    transform: rotate(359deg);
+    -webkit-transform: rotate(315deg);
+    -ms-transform: rotate(315deg);
+    transform: rotate(315deg);
   }
 }
 .faa-spin.animated,
 .faa-spin.animated-hover:hover,
-.faa-parent.animated-hover:hover > .faa-spin {
-  -webkit-animation: spin 1s linear;
-  animation: spin 1s linear;
+.faa-parent.animated-hover:not([disabled]):hover .faa-spin {
+  -webkit-animation: spin 1s;
+  animation: spin 1s;
 }
 
 
