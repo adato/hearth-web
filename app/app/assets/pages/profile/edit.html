@@ -134,11 +134,10 @@
 				<div ng-show="showContactMail" class="contact-email clearfix">
 					<div class="large-6 small-12 medium-6 columns">
 						<label>{{:: 'MY_CONTACT_EMAIL' | translate }}</label>
-						<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
+						<input ng-model="profile.contact_email" ng-focus="contactEmailFocus()" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
 
 						<div class="error" ng-show="showError.contact_email">
 							<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-							<span ng-show="profileEditForm.contact_email.$error.required">{{:: 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
 						</div>
 					</div>
 					<div class="large-6 small-12 medium-6 columns">
