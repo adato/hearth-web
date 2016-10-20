@@ -141,6 +141,9 @@ button.active .item-option-bg-type {
 button.active .item-option-bg-type > i {
 	color: $colorSecondary;
 }
+button.inactive .item-option-bg-type{
+	background-color: $colorDarkGray;
+}
 button.active[disabled] .item-option-bg-type {
 	background-color: $colorLightGray;
 }

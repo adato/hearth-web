@@ -31,8 +31,9 @@
 				</div>
 				<div class="form-section column small-12">
 					<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex flex-medium-divide">
-						<button type="button" ng-repeat="itemOption in itemTypeOptions" ng-disabled="post.reply_count" class="flex-1 button button-white flex-div padding-horizontal-small faa-parent animated-hover" ng-click="setItemTypeActive({itemType: itemOption, post: post})"
-										ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow')))}">
+						<button type="button" ng-repeat="itemOption in itemTypeOptions" ng-disabled="post.reply_count && ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))"
+										class="flex-1 button button-white flex-div padding-horizontal-small faa-parent animated-hover" ng-click="setItemTypeActive({itemType: itemOption, post: post})" ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow'))),
+									inactive: ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))}">
 							<div>
 								<div class="item-option-bg-type" ng-class="'item-option-bg-' + itemOption">
 									<i class="fa" ng-class="[(itemOptionIcons[itemOption]), ((itemOption == 'offer' || itemOption == 'need') ? 'faa-pulse' : 'faa-spin')]"></i>
