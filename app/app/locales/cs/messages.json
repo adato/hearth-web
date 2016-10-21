@@ -246,11 +246,11 @@
 			"RECIPIENTS_LABEL": "Příjemce",
 			"SUBJECT_LABEL": "Předmět:",
 			"TEXT_LABEL": "Zpráva:",
-			"TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat šťastným příjemcům...",
+			"TEXT_PLACEHOLDER": "Napiš text zprávy, kterou chceš odeslat šťastným příjemcům...",
 			"SUBJECT_PLACEHOLDER": "Vyplň předmět konverzace",
 			"SEND_MESSAGE": "Odeslat zprávu",
 			"ERR": {
-				"RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy. Jako na poště."
+				"RECIPIENTS_NOT_FILLED": "Nezapomeň vyplnit příjemce zprávy. Jako na poště."
 			},
 			"RECIPIENT": "Příjemce:",
 			"AS_ADMIN": "Odeslat jako správce"
@@ -260,7 +260,7 @@
 			"NO_RESULT": "V seznamu nejsou žádné konverzace. Fakt ne.",
 			"PARTICIPANTS_AND_MORE": "a další"
 		},
-		"CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
+		"CONVERSATION_SEARCH_PLACEHOLDER": "Zadej, co hledáš...",
 		"FILTER": {
 			"ALL": "Všechny konverzace",
 			"POST_REPLIES": "Odpovědi na dary a přání",
@@ -272,12 +272,12 @@
 		"DELETE_CONVERSATION": "Smazat konverzaci",
 		"LEAVE_CONVERSATION": "Opustit konverzaci",
 		"DELETE_CONFIRM": {
-			"LABEL": "Chcete konverzaci smazat?",
-			"TEXT": "Smažete-li tuto konverzaci, už se k ní nebudete moct vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
+			"LABEL": "Chceš konverzaci smazat?",
+			"TEXT": "Smažeš-li tuto konverzaci, už se k ní nebudeš moct vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
 		},
 		"LEAVE_CONFIRM": {
-			"TEXT": "Když opustíte konverzaci, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Bez obav! Konverzaci vám uložíme do Archivu, kde se k její historii budete moct kdykoliv vrátit.",
-			"LABEL": "Chcete konverzaci opustit?"
+			"TEXT": "Když opustíš konverzaci, ostatní příjemci budou pokračovat v konverzaci, ty ji ale nebudeš moct sledovat. Bez obav! Konverzaci ti uložíme do Archivu, kde se k její historii budeš moct kdykoliv vrátit.",
+			"LABEL": "Chceš konverzaci opustit?"
 		},
 		"SYSTEM_MESSAGE": {
 			"User": {
@@ -308,10 +308,10 @@
 		"ARCHIVE_CONVERSATION": "Archivovat konverzaci",
 		"ARCHIVE_CONFIRM": {
 			"LABEL": "Chcete konverzaci archivovat?",
-			"TEXT": "Pokud konverzaci archivujete, kdykoli se k ní můžete v Archivu vrátit. A neunikne vám v ní ani nová zpráva, upozorníme vás na ni..."
+			"TEXT": "Pokud konverzaci archivuješ, kdykoli se k ní můžeš v Archivu vrátit. A neunikne ti v ní ani nová zpráva, upozorníme tě na ni..."
 		},
 		"NO_MESSAGE_YET": "No teda! Žádná zpráva od Vás ani pro Vás. Jde to hned změnit:",
-		"NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze uživatele, se kterými již máte nějakou vazbu. Chcete-li napsat jinému uživateli, udělejte to z jeho profilu.",
+		"NEW_MESSAGE_USER_RESTRICTION": "Zde můžeš vybrat pouze uživatele, se kterými již máš nějakou vazbu. Chceš-li napsat jinému uživateli, udělej to z jeho profilu.",
 		"YOU": "Ty",
 		"REPLY_AS_COMMUNITY": "Odpovědět jako:",
 		"REPLY_AS_USER": "jako",
@@ -961,8 +961,8 @@
 		"MESSAGE_SEND_SUCCESS": "Zing! Zpráva byla úspěšně odeslána.",
 		"MESSAGE_SEND_FAILED": "O-o-p-s. Při odesílání zprávy došlo k chybě",
 		"CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
-		"CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě. No teda...",
-		"CONVERSATION_LEAVE_SUCCESS": "Opustili jste konverzaci. Solitéři!",
+		"CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
+		"CONVERSATION_LEAVE_SUCCESS": "Opustil(a) jsi konverzaci. Robinsone!",
 		"CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
 		"MESSAGE_REPLY_FAILED": "Jaj. Při odesílání zprávy došlo k chybě.",
 		"CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
@@ -977,11 +977,11 @@
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "Nepodařilo se stáhnout přílohu.",
 		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat.",
-		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
+		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu zapnuto.",
 		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto.",
 		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
 	},
-	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
+	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů. Sem s větším!",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáš žádné inzeráty, můžeš si je ale přidat ",
 	"BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máš několik neaktivních inzerátů.",
 	"USER_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
@@ -1063,7 +1063,7 @@
 		"DELEGATE_ADMIN_ARE_YOU_SURE": "Doopravdy chceš předat správcovství této skupiny?",
 		"CONFIRM_LEAVE": {
 			"TITLE": "Opustit komunitu",
-			"TEXT": "Doopravdy chcete opustit tuto komunitu?"
+			"TEXT": "Doopravdy chceš opustit tuto komunitu?"
 		},
 		"PROFILE": {
 			"GIVEN_RATINGS": "Odeslaná hodnocení",
@@ -1176,7 +1176,7 @@
 		},
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
-			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
+			"VISIBILITY_FOLLOWEES": "Uživatelé co sleduji",
 			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
 			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
@@ -1297,7 +1297,7 @@
 	"TOP_BAR_MESSAGES": "Zprávy",
 	"ADD_CONTENT_AS_USER": "jako",
 	"REPLY": "Odpovědět",
-	"SELECT_USERS": "Vyberte jednoho nebo více příjemců",
+	"SELECT_USERS": "Vyber jednoho nebo více příjemců",
 	"ATTACHE_IMAGES": "Přiložit obrázky",
 	"ERR_REPORT_TEXT_MIN_LEN": "Napiš prosím důvod nahlášení inzerátu",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen. Vzpomeň na Twitter nebo esemesky.",
@@ -1345,7 +1345,7 @@
 			"TEXT_PLACEHOLDER": "Text odpovědi..."
 		}
 	},
-	"YOU_ARE_OFFLINE": "<p><strong>Do&scaron;lo k chybě při spojen&iacute;.<\/strong> Nem&aacute;te probl&eacute;m s připojen&iacute;m k internetu?<\/p>",
+	"YOU_ARE_OFFLINE": "<p><strong>Do&scaron;lo k chybě při spojen&iacute;.<\/strong> Nem&aacute;te probl&eacute;m s připojen&iacute;m k internetu? Modem v plamenech?<\/p>",
 	"ERROR_BAD_IMAGE_SIZE_ALL": "Celková velikost nahrávaných obrázků nesmí překročit velikost {{maxSize}}MB.",
 	"RELOAD_PAGE": "Obnovit stránku",
 	"TOP_BAR": {
@@ -1359,9 +1359,9 @@
 		}
 	},
 	"ERROR_WHILE_UPLOADING": "Při nahrávání došlo k chybě",
-	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;&scaron; ji i ty? Svůj profil vytvoř&iacute;&scaron; během chvilky a svět darů je r&aacute;zem i tvůj.<\/p>",
 	"SIGNUP_HEADING_FB": "Přidej se",
 	"SIGN_UP": {
@@ -1445,7 +1445,7 @@
 	"OUR_GOOGLEPLUS": "Google+",
 	"OUR_WEB": "Web",
 	"COMMUNITY_INTERESTS": "Zájmy",
-	"COMMUNITY_INTERESTS_EXAMPLE": "Zadejte klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
+	"COMMUNITY_INTERESTS_EXAMPLE": "Zadej klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
 	"OUR_NETWORKS": "Sociální sítě a weby",
 	"USER_MOTTO": "Stručně o mně",
 	"USER_MOTTO_EXAMPLE": "",
@@ -1742,5 +1742,7 @@
 	"ERR_TEXT_TOO_LOUD": "Neradi přerušujeme, ale zkus si prosím přepnout na malá písmena. Podle Netikety je to ŘVANÍ a hlavně to nevypadá pěkně. Díky :)",
 	"RATING_POST_TITLE": "Společné inzeráty",
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
-	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš"
+	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš",
+	"LEND": "Půjčím",
+	"BORROW": "Půjčím si"
 }

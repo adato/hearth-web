@@ -203,11 +203,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.showError.phone = true;
 			}
 
-			if ($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
-				res = false;
-				$scope.showError.contact_email = true;
-			}
-
 			if (typeof $scope.userLanguage !== 'undefined' && $scope.userLanguage.length == 0) {
 				res = false;
 				$scope.showError.user_language = true;
@@ -256,6 +251,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				if (data && errors) {
 					if (errors.contact_email) {
 						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CONTACT_EMAIL_ERROR', Notify.T_ERROR);
+						$scope.showError.contact_email = true;
+						$scope.profileEditForm.contact_email.$setValidity('email_used', false);
+						$rootScope.scrollToError();
 					} else {
 						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 					}
@@ -274,10 +272,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 		};
 
+		$scope.contactEmailFocus = function() {
+			$scope.showError.contact_email = false;
+		};
+
+
 		$scope.hideContactEmail = function() {
 			// hide input & set him empty and dont show any errors
 			$scope.showContactMail = false;
-			$scope.profile.contact_email = '';
 
 			$timeout(function() {
 				$scope.showError.contact_email = false;

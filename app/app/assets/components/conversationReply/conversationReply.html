@@ -1,5 +1,5 @@
 <div class="message-reply">
-	<form novalidate name="msgReplyForm" ng-submit="sendReply(reply)" class="formStyle">
+	<form novalidate name="msgReplyForm" ng-submit="sendReply(reply); focusInput('#reply-text');" class="formStyle">
 		<label for="reply-text">
 			<div class="author-info">
 				<div ng-if="actors.length == 1 && actors[0]._type != 'Community'">
@@ -13,8 +13,8 @@
 			</div>
 		</label>
 		<div class="form-section">
-			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
-			<textarea ng-disabled="!conversation.is_member || sendingReply" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
+			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors" dont-set-author-as-null-if-logged-user='true'></author-selector>
+			<textarea ctrl-enter-submit ng-disabled="!conversation.is_member" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
 			<div class="error" ng-show="msgReplyForm.text.$invalid && showError.text">
 				<span ng-show="msgReplyForm.text.$error.required">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
 			</div>
@@ -28,7 +28,7 @@
 				<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
 			</div>
 			<div>
-				<a class="hide-for-large-up cancel-changes" ng-click="closeConversation()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
+				<a class="hide-for-large-up cancel-changes" ui-sref="messages">{{:: 'CLOSE' | translate }}</a>
 			</div>
 		</div>
 	</form>

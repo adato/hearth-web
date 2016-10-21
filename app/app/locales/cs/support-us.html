@@ -17,7 +17,6 @@
 		<p>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš.<br>Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>
 		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Daruji pro Hearth</a>
 	</div>
-	
 </div>
 
 <hr />
@@ -41,33 +40,7 @@
 	</div>
 	<div class="large-9 columns">
 		<h3>Dej o nás vědět</h3>
-		<p>Pokud máš možnost představit štědrou sociální síť lidem okolo sebe a pozvat je do Hearth.net, rádi ti s tím pomůžeme. Pro začátek máme tři možnosti a vyber si, kterou začneš.</p>
-		<div class="i-want-more">
-			<div class="large-4 columns">
-				<div class="panel print-flyer">
-					<h3>Vytiskni leták</h3>
-					<img src="./images/icons/print.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-print');" class="button">Stáhnu leták</a>
-					<br style="clear:both">
-				</div>
-			</div>
-			<div class="large-4 columns">
-				<div class="panel get-widget">
-					<h3>Přidej logo do své stránky</h3>
-					<img src="./images/icons/window2.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Stáhnu logo</a>
-					<br style="clear:both">
-				</div>
-			</div>
-			<div class="large-4 columns">
-				<div class="panel get-badge">
-					<h3>Napiš si o placky a samolepky</h3>
-					<img src="./images/icons/hearth.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chci placky</a>
-					<br style="clear:both">
-				</div>
-			</div>
-		</div>
+		<div ng-include="'support-us-endorse'">
 	</div>
 </div>
 
@@ -183,6 +156,51 @@
 	</div>
 </script>
 
+<script type="text/ng-template" id="support-us-modal-endorse" ng-init="modalInit('support-us-modal-endorse')">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h3>Dej o nás vědět</h3>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+		<div ng-include="'support-us-endorse'"></div>
+		<div class="clear"></div>
+		<div class="display-flex flex-space-between margin-top-medium">
+			<a ng-click="closeThisDialog()">{{:: 'CLOSE' | translate }}</a>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="support-us-endorse">
+	<p>Pokud máš možnost představit štědrou sociální síť lidem okolo sebe a pozvat je do Hearth.net, rádi ti s tím pomůžeme. Pro začátek máme tři možnosti a vyber si, kterou začneš.</p>
+	<div class="i-want-more">
+		<div class="large-4 columns">
+			<div class="panel print-flyer">
+				<h3>Vytiskni leták</h3>
+				<img src="./images/icons/print.svg"/>
+				<a href="" ng-click="openModal('support-us-modal-print');" class="button">Stáhnu leták</a>
+				<br style="clear:both">
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="panel get-widget">
+				<h3>Přidej logo do své stránky</h3>
+				<img src="./images/icons/window2.svg"/>
+				<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Stáhnu logo</a>
+				<br style="clear:both">
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="panel get-badge">
+				<h3>Napiš si o placky a samolepky</h3>
+				<img src="./images/icons/hearth.svg"/>
+				<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chci placky</a>
+				<br style="clear:both">
+			</div>
+		</div>
+	</div>
+</script>
+
 <script type="text/ng-template" id="support-us-modal-badge">
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
@@ -261,7 +279,7 @@
 </script>
 
 
-<script type="text/ng-template" id="support-us-modal-write-us">
+<script type="text/ng-template" id="support-us-modal-write-us" ng-init="modalInit('support-us-modal-write-us')">
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Vytvářej s námi' | translate }}</h2>
@@ -284,7 +302,7 @@
 				</div>
 				<div class="small-12 large-9 columns">
 					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="emailPattern"/>
-				</div>	
+				</div>
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
@@ -302,7 +320,7 @@
 	</div>
 </script>
 
-<script type="text/ng-template" id="support-us-modal-pay">
+<script type="text/ng-template" id="support-us-modal-pay" ng-init="modalInit('support-us-modal-pay')">
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Přispěj finančně' | translate }}

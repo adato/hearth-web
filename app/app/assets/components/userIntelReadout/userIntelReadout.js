@@ -56,11 +56,22 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 					scope.entity.about_shortened = scope.entity.motto || (scope.entity.about ? (scope.entity.about.length > (MottoLength + 3) ? (scope.entity.about.substring(0, MottoLength) + '…') : scope.entity.about) : '');
 				}
 
+				// identifies, if particular profile attribute can be displayed, depending its content
 				scope.canShow = function(itemName) {
-					if (typeof itemName == 'undefined' || itemName == null || itemName == '') {
+
+					// filter out invalid itemNames
+					if (typeof itemName == 'undefined' || !itemName) {
 						return false;
 					}
-					return (scope.selectedSetup.indexOf(itemName) > -1 && typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null);
+
+					// if item should be displayed in this setup
+					if (scope.selectedSetup.indexOf(itemName) > -1) {
+						// if itemName is attribute of entity, display it
+					 	if (typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null && scope.entity[itemName].length > 0) {
+					 		return true;
+					 	}
+					}
+					return false;
 				}
 
 			}
