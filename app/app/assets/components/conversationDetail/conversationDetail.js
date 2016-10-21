@@ -24,64 +24,13 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				$scope.confirmBox = $rootScope.confirmBox;
 
 				// INIT VARIABLES
-				// $scope.scrollBottom = false;
-				// $scope.participants = false;
 				$scope.showParticipants = false;
 				$scope.sendingActionRequest = false;
-				// $scope.lockCounter = 0;
-				// $scope.messages = false;
-				// var _messagesCount = 10; // how many messages will we load in each request except new messages
 				$scope.info = {};
 
 				var _scrollInited = false;
 				var _loadOlderMessagesEnd = false;
 				var _loadingOlderMessages = false;
-
-				// $scope.addMessagesToList = function(messages, append) {
-				// 	// concat new messages
-				// 	if (!$scope.messages)
-				// 		$scope.messages = messages;
-				// 	else if (append)
-				// 		$scope.messages = $scope.messages.concat(messages);
-				// 	else
-				// 		Array.prototype.unshift.apply($scope.messages, messages);
-				//
-				// 	// and resize message box
-				// 	resizeTMessagesBox();
-				//
-				// 	// when we get less messages then requested, we hitted the end of list
-				// 	if (!append && messages.length < _messagesCount)
-				// 		_loadOlderMessagesEnd = true;
-				// };
-
-				/**
-				 * Load messages
-				 * @param  {[type]}   from [description]
-				 * @param  {Function} done [description]
-				 * @return {[type]}        [description]
-				 */
-				// $scope.loadMessages = function(config, done) {
-				// 	var lockCounter = $scope.lockCounter;
-				//
-				// 	config = angular.extend(config || {}, {
-				// 		id: $scope.info._id,
-				// 		limit: _messagesCount
-				// 	});
-				//
-				// 	Conversations.getMessages(
-				// 		config,
-				// 		function(res) {
-				// 			// test if we loaded data for actual conversation detail
-				// 			if (lockCounter !== $scope.lockCounter) return false;
-				// 			// TODO - figure why API is sending empty array on conversations I have no right to read
-				// 			if (!res.messages.length) done();
-				//
-				// 			// append/prepend messages
-				// 			res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
-				//
-				// 			done && done(res.messages);
-				// 		}, done);
-				// };
 
 				/**
 				 * If we have space on top, load older messages
@@ -97,101 +46,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				function onContentScrolling() {
 					testOlderMessagesLoading();
 				};
-
-				/**
-				 * This will handle callback functions after first messages are loaded
-				 */
-				// function afterInitLoad() {
-				// 	_loadingOlderMessages = false;
-				//
-				// 	$timeout(function() {
-				// 		// test if we are on bottom
-				// 		testOlderMessagesLoading(true);
-				//
-				// 		// when scrolled top, load older messages
-				// 		$(".nano-content", element).scroll(onContentScrolling);
-				// 	});
-				// };
-
-				// $scope.hasSystemMessage = function(messages) {
-				// 	for (var i = messages.length - 1; i >= 0; i--) {
-				// 		if (!messages[i].author)
-				// 			return true;
-				// 	}
-				// 	return false;
-				// };
-
-				// $scope.getLastMessage = function(messages) {
-				// 	// find last message that is not system message
-				// 	for (var i = messages.length - 1; i >= 0; i--) {
-				// 		if (messages[i].author)
-				// 			return messages[i];
-				// 	}
-				// 	return false;
-				// };
-
-				// $scope.updateConversationInfo = function(messages, messagesCount) {
-				// 	var lastMessage = $scope.getLastMessage(messages);
-				// 	// if there is no non-system message, dont update
-				// 	if (!lastMessage)
-				// 		return false;
-				//
-				// 	// set info to conversation detail
-				// 	$scope.info.message = lastMessage;
-				// 	$scope.info.messages_count += messagesCount;
-				//
-				// 	// send info event upward
-				// 	// $scope.$emit("conversationUpdated", $scope.info);
-				// };
-
-				// $scope.getLastMessageTime = function() {
-				// 	if (!$scope.messages || !$scope.messages.length)
-				// 		return undefined;
-				//
-				// 	return $scope.messages[$scope.messages.length - 1].created_at;
-				// };
-
-				// $scope.reloadConversationInfo = function() {
-				// 	Conversations.get({
-				// 		id: $scope.info._id,
-				// 		exclude_self: true
-				// 	}, function(res) {
-				// 		if ($scope.participants) $scope.loadParticipants();
-				//
-				// 		$scope.info.is_member = res.is_member;
-				// 		$scope.info.participants = res.participants;
-				// 		$scope.info.participants_count = res.participants_count;
-				// 		$scope.info.title = res.title;
-				// 		$scope.info = $scope.deserialize($scope.info);
-				//
-				// 		delete $scope.info.titlePersons;
-				// 		$scope.$emit("conversationDeepUpdate", $scope.info);
-				// 	});
-				// };
-
-				/**
-				 * Load new messages on demand through websocket message channel
-				 */
-				// $scope.loadNewMessages = function() {
-				// 	// $scope.loadMessages({
-				// 	ConversationAux.loadConversationMessages({
-				// 		conversation: $scope.info,
-				// 		params: {
-				// 			newer: ConversationAux.getLastMessageTime($scope.info)
-				// 		}
-				// 	}).then(function(conversation) {
-				// 		// function(messages) {
-				// 		// if (messages && messages.length) {
-				// 		// if ($scope.hasSystemMessage(messages)) {
-				// 		// if ($scope.hasSystemMessage(conversation.messages)) {
-				// 		// 	$scope.reloadConversationInfo();
-				// 		// }
-				//
-				// 		testScrollBottom();
-				// 		// $scope.updateConversationInfo(conversation.messages, conversation.messages.length);
-				// 		// }
-				// 	}, console.log);
-				// };
 
 				/**
 				 * If user is on bottom, keep user there after added more content
@@ -233,7 +87,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					if ($scope.sendingActionRequest) return false;
 					$scope.sendingActionRequest = true;
 					// returns the removed conversation and its index to return it to the list in case something goes wrong
-					var backup = ConversationAux.removeConversationFromList(id);
+					var backup = ConversationAux.removeConversationFromList(id, {
+						redirectIfActiveWindow: true
+					});
 
 					resourceFunc({
 						id: id
@@ -266,30 +122,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				$scope.leaveConversation = function(id) {
 					sendActionRequest(id, 'LEAVE', Conversations.leave);
 				};
-
-				/**
-				 * Transform conversation info so we can use it in view
-				 */
-				// $scope.deserialize = function(conversation) {
-				// THIS IS DONE ALREADY ON CONV GET FFS
-
-				// conversation.titleDetail = conversation.title;
-				// conversation.titleCustom = false;
-				//
-				// if (!conversation.title) {
-				// 	conversation.titleDetail = [];
-				// 	conversation.titleCustom = true;
-				//
-				// 	// use first three participants names if we dont have title
-				// 	for (var i = 0; i < 3 && i < conversation.participants.length; i++) {
-				// 		var user = conversation.participants[i];
-				// 		conversation.titleDetail.push(user.name);
-				// 	};
-				// 	conversation.titleDetail = conversation.titleDetail.join(", ");
-				// }
-				//
-				// 	return conversation;
-				// };
 
 				/**
 				 * Keep user on his position when added more messages to top
@@ -338,14 +170,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						_loadingOlderMessages = false;
 					});
 				}
-
-				/**
-				 * When we add new message callback
-				 */
-				// $scope.onMessageAdded = function() {
-				// 	scrollBottom();
-				// 	// $scope.loadNewMessages();
-				// };
 
 				/**
 				 * Resize box with timeout
@@ -407,21 +231,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					};
 				};
 
-				/**
-				 * Load participants list
-				 */
-				// function loadParticipants() {
-				// Conversations.getParticipants({
-				// 	id: $scope.info._id
-				// }, function(res) {
-				// 	$scope.participants = res.participants;
-				// 	resizeTMessagesBox(); // resize with timeout
-				// 	$timeout(function() {
-				// 		$scope.$broadcast('scrollbarResize');
-				// 	});
-				// });
-				// };
-
 				function bindActionHandlers() {
 					element.bind('click', function() {
 						markConversationAsRead($scope.info);
@@ -447,12 +256,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * and load messages
 				 */
 				function init(conversationId) {
-					// $scope.lockCounter++;
-					// set initial state
 					_loadOlderMessagesEnd = false;
 					_scrollInited = false;
-					// $scope.messages = false;
-					// $scope.participants = false;
 					$scope.showParticipants = false;
 					$timeout(function() {
 						bindActionHandlers();
@@ -473,19 +278,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 				init($state.params.id);
 
-				// $scope.deserializeInfo = function(info) {
-				// 	// $scope.info = $scope.deserialize($scope.info);
-				// 	setTitle();
-				// };
-
 				// resize box when needed
 				$(window).resize(resizeMessagesBox);
 				$scope.$on("conversationReplyFormResized", resizeMessagesBox);
-				// $scope.$watch('updateTitle', $scope.setTitle);
-				// $scope.$watch('info', $scope.init);
-				// $scope.$watch('info', $scope.deserializeInfo, true);
-				// $scope.$on('loadNewMessages', $scope.loadNewMessages);
-				// $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
 				$scope.$on('$destroy', function() {
 					$(window).off('resize', resizeMessagesBox);
 				});

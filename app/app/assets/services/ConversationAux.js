@@ -6,7 +6,7 @@
  * @description functions and cache for conversations
  */
 
-angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', 'Messenger', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state, Messenger) {
+angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', 'Messenger', '$timeout', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state, Messenger, $timeout) {
 
 	var inited,
 		processingRunning;
@@ -26,7 +26,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		// conversationsCache = [],	// << not used ATM
 		conversationListLoading,
 		conversationListLoaded,
-		conversationGetLimit = 20;
+		conversationGetLimit = 20,
+		conversationGetBuffer = [];
 
 	var FILTER_ARCHIVE = 'archive';
 
@@ -101,7 +102,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
-		// console.log(socketEvent);
+		console.log(socketEvent);
 		if (socketEvent.unread !== void 0) Messenger.setUnreadCount(socketEvent.unread);
 
 		if (!processingRunning) return void 0;
@@ -124,6 +125,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	function handleNewConversationOrMessage(socketEvent) {
 		if (socketEvent.conversation && socketEvent.conversation.message) {
 			if (socketEvent.conversation.message.first_message) {
+				$timeout(function() {
+					$rootScope.$emit('newConversationAdded', socketEvent.conversation);
+				});
+				deserializeConversation(socketEvent.conversation);
 				return conversationList.unshift(socketEvent.conversation);
 			} else {
 				var conv;
@@ -131,8 +136,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 					if (conversationList[i]._id === socketEvent.conversation._id) {
 						conv = conversationList.splice(i, 1)[0];
 						// update the required properties
-						conv.message = socketEvent.conversation.message;
+						if (socketEvent.conversation.message && !socketEvent.conversation.message.verb) conv.message = socketEvent.conversation.message;
 						conv.read = socketEvent.conversation.read;
+						conv.participants = socketEvent.conversation.participants;
+						conv.participants_count = socketEvent.conversation.participants_count;
 						// if the found conversation already has 'messages' prop, append the new message to it
 						if (conv.messages && conv.messages.length) {
 							// before pushing to messages array check for possible duplicates if the message is from my precious self
@@ -255,10 +262,21 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 
 	/**
 	 *	@param {Int} conversationId
+	 *	@param {Object} paramObject	- {Boolean} redirectIfActiveWindow
 	 *	@return {Object}	- {Array} removed - the removed conversation
 	 *						- {Int} index - the index from which the conversation has been removed
 	 */
-	function removeConversationFromList(conversationId) {
+	function removeConversationFromList(conversationId, paramObject) {
+		if (paramObject) {
+			if (paramObject.redirectIfActiveWindow) {
+				// wait a cycle so that the conversation is really removed before taking any action
+				$timeout(function() {
+					$rootScope.$emit('conversationRemoved', {
+						id: conversationId
+					});
+				});
+			}
+		}
 		for (var i = conversationList.length; i--;) {
 			if (conversationList[i]._id === conversationId) return {
 				removed: conversationList.splice(i, 1),
@@ -397,9 +415,12 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	function loadConversations(paramObject) {
 		paramObject = paramObject || {};
 		return $q(function(resolve, reject) {
-			if (conversationListLoading) return resolve({
-				conversations: conversationList
-			});
+
+			// if (conversationListLoading) return resolve({
+			// 	conversations: conversationList
+			// });
+			if (conversationListLoading) return conversationGetBuffer.push([resolve, reject]);
+
 			conversationListLoading = true;
 			var limit = (paramObject.socketReinit ? conversationList.length : (paramObject.limit || conversationGetLimit));
 			var params = {
@@ -458,11 +479,24 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 					});
 				}
 				if (!paramObject.socketReinit) conversationList[paramObject.prepend ? 'unshift' : 'push'].apply(conversationList, res.conversations);
+
+				for (var i = conversationGetBuffer.length; i--;) {
+					conversationGetBuffer[i][0]({
+						conversations: conversationList,
+						thatsAllFolks: res.conversations.length < limit
+					});
+				}
+
 				resolve({
 					conversations: conversationList,
 					thatsAllFolks: res.conversations.length < limit
 				});
-			}, reject);
+			}, function(err) {
+				for (var i = conversationGetBuffer.length; i--;) {
+					conversationGetBuffer[i][1](err);
+				}
+				reject(err);
+			});
 		});
 	}
 
