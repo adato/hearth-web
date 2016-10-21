@@ -977,8 +977,9 @@
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "Nepodařilo se stáhnout přílohu.",
 		"POST_HID_SUCCESFULLY": "Skvelé. Skrytie inzerátu sa podarilo, už sa ti nebude na tržnici a vo vyhľadávání zobrazovať.",
-		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
+		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu zapnuto.",
+		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto.",
+		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"\/app\/feedback\">Napi&scaron; n&aacute;m<\/a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
@@ -1175,7 +1176,7 @@
 		},
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
-			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
+			"VISIBILITY_FOLLOWEES": "Uživatelé co sleduji",
 			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
 			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
@@ -1358,9 +1359,9 @@
 		}
 	},
 	"ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe",
-	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
 	"SIGNUP_HEADING_FB": "Pridajte sa",
 	"SIGN_UP": {
@@ -1444,7 +1445,7 @@
 	"OUR_GOOGLEPLUS": "Google+",
 	"OUR_WEB": "Web",
 	"COMMUNITY_INTERESTS": "Zájmy",
-	"COMMUNITY_INTERESTS_EXAMPLE": "Zadejte klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
+	"COMMUNITY_INTERESTS_EXAMPLE": "Zadej klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
 	"OUR_NETWORKS": "Sociální sítě a weby",
 	"USER_MOTTO": "Stručně o mně",
 	"USER_MOTTO_EXAMPLE": "",
@@ -1741,5 +1742,7 @@
 	"ERR_TEXT_TOO_LOUD": "Neradi přerušujeme, ale zkus si prosím přepnout na malá písmena. Podle Netikety je to ŘVANÍ a hlavně to nevypadá pěkně. Díky :)",
 	"RATING_POST_TITLE": "Společné inzeráty",
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
-	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš"
+	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
+	"LEND": "Půjčím",
+	"BORROW": "Půjčím si"
 }
