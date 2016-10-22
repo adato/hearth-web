@@ -102,7 +102,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		};
 
 		function processRelevantPosts(params, val) {
-			var Resource = val ? CommunityRatings : UserRatings;
+			var configUserPossible = {
+				userId: params.user_id,
+				current_community_id: val
+			}
 			var configUser = {
 				userId: params.user_id
 			}
@@ -115,7 +118,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 			$scope.loadingRatingPosts = true;
 
-			Resource.possiblePosts(val ? configCommunity : configUser, function(res, headers) {
+			UserRatings.possiblePosts(val ? configUserPossible : configUser, function(res, headers) {
 				var posts = UsersCommunitiesService.alterPossiblePosts(res, headers);
 
 				$scope.ratingPosts = posts;
