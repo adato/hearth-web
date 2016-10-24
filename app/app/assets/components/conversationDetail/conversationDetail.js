@@ -87,7 +87,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					if ($scope.sendingActionRequest) return false;
 					$scope.sendingActionRequest = true;
 					// returns the removed conversation and its index to return it to the list in case something goes wrong
-					var backup = ConversationAux.removeConversationFromList(id);
+					var backup = ConversationAux.removeConversationFromList(id, {
+						redirectIfActiveWindow: true
+					});
 
 					resourceFunc({
 						id: id
@@ -228,8 +230,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						});
 					};
 				};
-
-
 
 				function bindActionHandlers() {
 					element.bind('click', function() {

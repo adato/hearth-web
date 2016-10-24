@@ -1327,9 +1327,9 @@
 		}
 	},
 	"ERROR_WHILE_UPLOADING": "There was an error while loading",
-	"LOGIN_INACTIVE_ACCOUNT": "You are tyring to log in with account that has not been activated yet. By clicking the link in confirmation registration e-mail. You can e-mail with registration link...",
+	"LOGIN_INACTIVE_ACCOUNT": "You are tyring to log in with account that has not been activated yet. By clicking the link in confirmation registration e-mail. You can have  it <a {{attrs}}>sent to you again<\/a>.",
 	"RESEND_ACTIVATING_EMAIL": "Let send again",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. You can **** e-mail with activation link...",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. You can  have it <a {{attrs}}>sent to you again<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net is a generous social network full of interesting people who dare to give. Do you? You can create your profile in a snap and the world of gifts is instantly yours.<\/p>",
 	"SIGNUP_HEADING_FB": "Join in",
 	"SIGN_UP": {

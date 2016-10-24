@@ -19,7 +19,7 @@ angular.module('hearth.services').service('Facebook', [
 					cookie: true,
 					status: true,
 					xfbml: true,
-					version: 'v2.6'
+					version: 'v2.8'
 				});
 			}
 			inited = true;

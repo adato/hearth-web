@@ -60,6 +60,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			init()
 		};
 
+		function redirectToFirstIfMatch(event, conversation) {
+			if ($state.params.id === conversation.id) {
+				if (!$scope.conversations.length || (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) {
+					$state.go('messages');
+				} else {
+					$state.go('messages.detail', {
+						id: ($scope.conversations.length ? $scope.conversations[0]._id : void 0)
+					});
+				}
+			}
+		}
+
 		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
 
 		function loadConversations(cb) {
@@ -91,7 +103,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.loadingBottom = true;
 			conversationLoadInProgress = true;
 			var config = {
-				offset: $scope.conversations.length
+				offset: ($scope.conversations ? $scope.conversations.length : 0)
 			};
 
 			ConversationAux.loadConversations(config).then(function(res) {
@@ -112,6 +124,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		function init() {
 			$scope.reloading = true;
+			// set conversation to false, so that template ng-ifs evaluate correctly and show loading
+			$scope.conversations = false;
 
 			// set filter select-box to correct value
 			// TODO - refactor those filters
@@ -155,6 +169,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		UnauthReload.check();
 
 		$scope.$on('initFinished', init);
+		$rootScope.$on('conversationRemoved', redirectToFirstIfMatch);
+		$rootScope.$on('newConversationAdded', function(event, conversation) {
+			if (!$scope.reloading && $scope.conversations && $scope.conversations.length === 1 && !ResponsiveViewport.isSmall() && !ResponsiveViewport.isMedium()) {
+				console.log('RELOCATING');
+				$state.go('messages.detail', {
+					id: conversation._id
+				});
+			}
+		});
 		$rootScope.initFinished && init();
 	}
 ]);

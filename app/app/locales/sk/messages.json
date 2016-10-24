@@ -1359,9 +1359,9 @@
 		}
 	},
 	"ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe",
-	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš...",
+	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
 	"SIGNUP_HEADING_FB": "Pridajte sa",
 	"SIGN_UP": {
