@@ -224,9 +224,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 							conversation: $scope.info
 						}).then(function(conversation) {
 							resizeTMessagesBox();
-							$timeout(function() {
-								$scope.$broadcast('scrollbarResize');
-							});
 						});
 					};
 				};
