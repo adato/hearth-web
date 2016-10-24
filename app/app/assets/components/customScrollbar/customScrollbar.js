@@ -15,11 +15,12 @@ angular.module('hearth.directives').directive('customScrollbar', [
 			template: false,
 			link: function(scope, element, attrs) {
 				function addScrollbar() {
+					if (typeof $().nanoScroller !== 'function') return console.error('nanoScroller has failed to load.');
 					$(element).nanoScroller();
 				}
 
 				$timeout(addScrollbar);
-				scope.$on("scrollbarResize", addScrollbar);
+				scope.$on('scrollbarResize', addScrollbar);
 			}
 		};
 	}
