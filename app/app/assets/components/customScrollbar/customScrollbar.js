@@ -15,10 +15,13 @@ angular.module('hearth.directives').directive('customScrollbar', [
 			template: false,
 			link: function(scope, element, attrs) {
 				var handler;
+
 				function addScrollbar() {
 					if (typeof $().nanoScroller !== 'function') return console.error('JQuery module nanoScroller has failed to load.');
 					if (typeof handler === 'function') handler();
-					$(element).nanoScroller();
+					$timeout(function(){
+						$(element).nanoScroller();
+					}, 100);
 				}
 
 				$timeout(addScrollbar);
