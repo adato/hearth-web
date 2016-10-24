@@ -1744,5 +1744,6 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mali ste na mysli "
 }
