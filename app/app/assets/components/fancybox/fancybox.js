@@ -10,6 +10,7 @@ angular.module('hearth.directives').directive('fancybox', [
 	function($compile, $timeout) {
 		return {
 			link: function($scope, element, attrs) {
+				if (typeof $().fancybox !== 'function') return console.error('JQuery module fancybox has failed to load.')
 				$(element).find(".fancy").fancybox({
 					padding: 0,
 					helpers: {
