@@ -189,7 +189,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						measureContainer = $('#homepage-hero');
 						offset = 0;
 					}
-					testScrollBottom();
 					var maxBoxHeight = measureContainer.height() - element.find('.conversation-detail-top').outerHeight() - element.find('.messages-reply').outerHeight() + offset;
 					container.css('max-height', maxBoxHeight);
 					container.fadeIn();
@@ -269,6 +268,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						$timeout(function() {
 							// binding here so that even ng-ifed things are done
 							$('.nano-content', element).scroll(onContentScrolling);
+							testScrollBottom();
 						}, 10);
 					}, console.info);
 				}
