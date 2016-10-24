@@ -198,6 +198,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.showError.email = true;
 			}
 
+			if ($scope.profileEditForm.contact_email.$viewValue && $scope.profileEditForm.contact_email.$invalid) {
+				res = false;
+				$scope.showError.contact_email = true;
+			}
+
 			if ($scope.profileEditForm.phone.$invalid) {
 				res = false;
 				$scope.showError.phone = true;

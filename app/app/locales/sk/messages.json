@@ -1745,8 +1745,10 @@
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
 	"LEND": "Půjčím",
 	"BORROW": "Půjčím si",
-	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mali ste na mysli ",
+	<< << << < HEAD "MAILGUN_VALIDATION_DID_YOU_MEAN": "Mali ste na mysli ",
 	"LIGHTBOX_PREVIMAGE": "Predchádzajúci",
 	"LIGHTBOX_NEXTIMAGE": "Nasledujúci",
-	"LIGHTBOX_OPENINTAB": "Otvoriť obrázok v novej karte"
+	"LIGHTBOX_OPENINTAB": "Otvoriť obrázok v novej karte" === === =
+		"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mali ste na mysli " >>> >>> > f015fec...HEARTH - 944 mailgun server - side validation of emails.Used at profile editation,
+	so far
 }
