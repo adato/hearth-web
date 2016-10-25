@@ -25,7 +25,7 @@ angular.module('hearth.directives').directive('mailgunValidator', ['$q',
 					var onSuccess = function(data) {
 						if (data.did_you_mean != '') {
 							scope.$broadcast('mailgun-did-you-mean', {
-								'model': attrs.mailgunValidator,
+								'model': (attrs.mailgunValidator ? attrs.mailgunValidator : null),
 								'did_you_mean': data.did_you_mean
 							});
 						}
@@ -69,9 +69,11 @@ angular.module('hearth.directives').directive('mailgunValidatorDidYouMean', ['$q
 			link: function(scope, element, attrs) {
 				scope.showOptions = false;
 				scope.$on('mailgun-did-you-mean', function(event, options) {
-					if (typeof options != 'undefined' && options != null && options != '' && options['did_you_mean'] != '' && options['did_you_mean'] != null && options['model'] != '' && options['model'] != null && options['model'] == attrs.id) {
-						scope.showOptions = true;
-						scope.options = options['did_you_mean'];
+					if (typeof options != 'undefined' && options != null && options != '' && options['did_you_mean'] != '' && options['did_you_mean'] != null) {
+						if ((typeof attrs.id != 'undefined' && options['model'] != '' && options['model'] != null && options['model'] == attrs.id) || typeof attrs.id == 'undefined') {
+							scope.showOptions = true;
+							scope.options = options['did_you_mean'];
+						}
 					} else {
 						scope.showOptions = false;
 					}
