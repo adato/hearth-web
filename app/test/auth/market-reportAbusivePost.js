@@ -6,7 +6,7 @@ describe('hearth report abusive post', function() {
 	});
 
 	it('should see "report abusive post" modal on market', function() {
-		browser.sleep(1000);
+		browser.sleep(2000);
 
 		var elAll = element.all(by.className('item-common')).get(0);
 		var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
@@ -19,10 +19,10 @@ describe('hearth report abusive post', function() {
 		expect(expectedDropdown.isDisplayed()).toBeTruthy();
 		browser.sleep(100);
 		dropdownReportPostLink.click();
-		browser.sleep(500);
+		browser.sleep(1000);
 		expect(modal.isPresent()).toBeTruthy();
 		modalCloseButton.click();
-		browser.sleep(500);
+		browser.sleep(1000);
 		expect(modal.isPresent()).toBeFalsy();
 
 	});
