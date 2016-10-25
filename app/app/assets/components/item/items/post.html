@@ -78,7 +78,7 @@
 									<li>
 										<!-- flag post -->
 										<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-										<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+										<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)" test-beacon="marketplace-item-flag">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 										<!-- /flag post -->
 									</li>
 									<li>

@@ -373,7 +373,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.post = item;
 			ngDialog.open({
-				template: $$config.templates + 'modal/itemReport.html',
+				template: $$config.modalTemplates + 'itemReport.html',
 				controller: 'ItemReport',
 				scope: scope,
 				closeByEscape: true,
