@@ -91,8 +91,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 			ConversationAux.loadConversations(params).then(function(res) {
 				$scope.conversations = res.conversations;
-				$scope.$broadcast("scrollbarResize");
-				$scope.$broadcast("classIfOverflowContentResize");
+				$scope.$broadcast('scrollbarResize');
+				$scope.$broadcast('classIfOverflowContentResize');
 				return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false);
 			});
 		};
@@ -109,8 +109,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			ConversationAux.loadConversations(config).then(function(res) {
 				if (res.thatsAllFolks) allConversationsLoaded = true;
 				conversationLoadInProgress = false;
-				$scope.$broadcast("scrollbarResize");
-				$scope.$broadcast("classIfOverflowContentResize");
+				$scope.$broadcast('scrollbarResize');
+				$scope.$broadcast('classIfOverflowContentResize');
 			}, function(err) {
 				conversationLoadInProgress = false;
 			});
