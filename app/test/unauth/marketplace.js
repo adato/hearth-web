@@ -3,6 +3,7 @@ describe('hearth unauth marketplace', function() {
   beforeEach(function() {
     protractor.helpers.navigateTo('', function () {
       browser.waitForAngular();
+      browser.sleep(500);
     });
   });
 
