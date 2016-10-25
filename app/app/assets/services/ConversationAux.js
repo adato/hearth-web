@@ -27,9 +27,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		conversationListLoading,
 		conversationListLoaded,
 		conversationGetLimit = 20,
+		conversationFilter = {},
 		conversationGetBuffer = [];
 
-	var FILTER_ARCHIVE = 'archive';
+	var FILTER_ARCHIVE = 'archived';
 
 	var factory = {
 		addConversationToList: addConversationToList,
@@ -132,11 +133,17 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				return conversationList.unshift(socketEvent.conversation);
 			} else {
 				var conv;
+				var isSystemMessageConcerningMyOwnAction = false;
 				for (var i = conversationList.length; i--;) {
 					if (conversationList[i]._id === socketEvent.conversation._id) {
 						conv = conversationList.splice(i, 1)[0];
 						// update the required properties
-						if (socketEvent.conversation.message && !socketEvent.conversation.message.verb) conv.message = socketEvent.conversation.message;
+						if (socketEvent.conversation.message && !socketEvent.conversation.message.verb) {
+							conv.message = socketEvent.conversation.message;
+							if (socketEvent.conversation.message.system_data && socketEvent.conversation.message.system_data.target && socketEvent.conversation.message.system_data.target.id == $rootScope.loggedUser._id) {
+								isSystemMessageConcerningMyOwnAction = true;
+							}
+						}
 						conv.read = socketEvent.conversation.read;
 						conv.participants = socketEvent.conversation.participants;
 						conv.participants_count = socketEvent.conversation.participants_count;
@@ -162,12 +169,13 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						break;
 					}
 				}
-				return conversationList.unshift(conv);
+				return isSystemMessageConcerningMyOwnAction ? true : conversationList.unshift(conv);
 			}
 		}
 	}
 
 	function handleConversationReadStatus(socketEvent, readStatus) {
+		return false;
 		if (socketEvent.conversation) {
 			for (var i = 0, l = conversationList.length; i < l; i++) {
 				if (conversationList[i]._id === socketEvent.conversation._id) return conversationList[i].read = readStatus;
@@ -176,12 +184,22 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		return false;
 	}
 
-	function handleConversationListChange(socketEvent) {
+	// function handleConversationListChange(socketEvent) {
+	// 	if (conversationFilter.current === FILTER_ARCHIVE) {
+	// 		return conversationList.unshift(socketEvent.conversation);
+	// 	} else {
+	// 		return removeConversationFromList(socketEvent.conversation._id);
+	// 	}
+	// }
+
+	function handleConversationArchived(socketEvent) {
 		if (conversationFilter.current === FILTER_ARCHIVE) {
-			return conversationList.unshift(socketEvent.conversation);
-		} else {
-			return removeConversationFromList(socketEvent.conversation._id);
+			return addConversationToList({
+				conversation: socketEvent.conversation,
+				index: 0
+			});
 		}
+		return removeConversationFromList(socketEvent.conversation._id);
 	}
 
 	function handleConversationDeleted(socketEvent) {
@@ -427,7 +445,11 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				limit: limit,
 				offset: paramObject.offset || 0
 			}
-			if (paramObject.filterType) params[paramObject.filterType] = true;
+			if (paramObject.filterType) {
+				params[paramObject.filterType] = true;
+				console.log('FILTAR', paramObject);
+				conversationFilter.current = paramObject.filterType;
+			}
 			if (paramObject.post_id) params.post_id = paramObject.post_id;
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
