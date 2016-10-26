@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state',
-	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state) {
+	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'DOMTraversalService',
+	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, DOMTraversalService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -28,6 +28,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				$scope.sendingActionRequest = false;
 				$scope.info = {};
 
+				var conversationOptionsSelector = '[conversation-options]';
 				var _scrollInited = false;
 				var _loadOlderMessagesEnd = false;
 				var _loadingOlderMessages = false;
@@ -139,11 +140,40 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					});
 				}
 
-				function markConversationAsRead(conversation) {
+				function markConversationAsRead(conversation, event) {
 					if (!conversation || conversation.read) return false;
+
+					// don't trigger conversation read on clicking the 'mark as unread button' or similar
+					if (event && event.target && DOMTraversalService.findParentBySelector(event.target, conversationOptionsSelector)) return false;
+
 					Messenger.decreaseUnread();
 					conversation.read = true;
+
+					$state.go('.', {
+						'mark-as-read': ''
+					}, {
+						reload: false,
+						notify: false
+					});
+
 					Conversations.markAsRead({
+						id: conversation._id
+					});
+				};
+
+				$scope.markConversationAsUnread = function(conversation) {
+					// don't wait for server to respond, makes for better UX
+					Messenger.increaseUnread();
+					conversation.read = false;
+
+					$state.go('.', {
+						'mark-as-read': ''
+					}, {
+						reload: false,
+						notify: false
+					});
+
+					Conversations.markAsUnread({
 						id: conversation._id
 					});
 				};
@@ -200,15 +230,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					});
 				}
 
-				$scope.markConversationAsUnread = function(info) {
-					// don't wait for server to respond, makes for better UX
-					Messenger.increaseUnread();
-					info.read = false;
-					Conversations.markAsUnread({
-						id: info._id
-					});
-				};
-
 				/**
 				 * Show/hide participants list & load from API
 				 */
@@ -228,16 +249,16 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				function bindActionHandlers() {
-					element.bind('click', function() {
-						markConversationAsRead($scope.info);
+					element.bind('click', function(event) {
+						markConversationAsRead($scope.info, event);
 					});
-					element.bind('keypress', function() {
-						markConversationAsRead($scope.info);
+					element.bind('keypress', function(event) {
+						markConversationAsRead($scope.info, event);
 					});
 					var ev = $scope.$on('scrollbarResize', function() {
 						ev();
 						$(".nano-content", element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e) {
-							if (e.which > 0 || e.type == "mousedown" || e.type == "mousewheel") markConversationAsRead($scope.info);
+							if (e.which > 0 || e.type == "mousedown" || e.type == "mousewheel") markConversationAsRead($scope.info, e);
 						});
 					});
 				}
