@@ -126,6 +126,11 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	function handleNewConversationOrMessage(socketEvent) {
 		if (socketEvent.conversation && socketEvent.conversation.message) {
 			if (socketEvent.conversation.message.first_message) {
+				// check if not a duplicate conversation, i. e. new conversation created by myself
+				for (var i = 0, l = conversationList.length; i < l; i++) {
+					if (conversationList[i]._id === socketEvent.conversation._id) return false;
+				}
+
 				$timeout(function() {
 					$rootScope.$emit('newConversationAdded', socketEvent.conversation);
 				});
@@ -237,6 +242,11 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 */
 	function addConversationToList(paramObject) {
 		if (!paramObject.conversation) return false;
+		// check if not a duplicate conversation, i. e. new conversation created by myself
+		for (var i = 0, l = conversationList.length; i < l; i++) {
+			if (conversationList[i]._id === paramObject.conversation._id) return false;
+		}
+
 		deserializeConversation(paramObject.conversation);
 		if (paramObject.index > conversationList.length) paramObject.index = conversationList.length;
 		conversationList.splice(paramObject.index, 0, paramObject.conversation);
