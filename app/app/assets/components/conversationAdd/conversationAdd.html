@@ -29,7 +29,7 @@
 			<label>
 				{{:: 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
 				<!-- <textarea rows="5" name="text" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea> -->
-				<textarea ng-disabled="sendingMessage" class="margin-bottom-none" ng-focus="showError.text = false" ng-blur="showError.text = true" rows="5" id="reply-text" name="text" autosize-textarea ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}"
+				<textarea ctrl-enter-submit ng-disabled="sendingMessage" class="margin-bottom-none" ng-focus="showError.text = false" ng-blur="showError.text = true" rows="5" id="reply-text" name="text" autosize-textarea ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}"
 								ng-model="message.text"></textarea>
 			</label>
 			<div class="error" ng-show="addMessageForm.text.$invalid && showError.text">

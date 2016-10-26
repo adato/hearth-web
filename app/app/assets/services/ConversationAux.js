@@ -137,18 +137,13 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				deserializeConversation(socketEvent.conversation);
 				return conversationList.unshift(socketEvent.conversation);
 			} else {
-				var conv;
-				var isSystemMessageConcerningMyOwnAction = false;
+				var conv,
+					isSystemMessageConcerningMyOwnAction = (socketEvent.conversation.message.system_data && socketEvent.conversation.message.system_data.target && socketEvent.conversation.message.system_data.target._id == $rootScope.loggedUser._id);
 				for (var i = conversationList.length; i--;) {
 					if (conversationList[i]._id === socketEvent.conversation._id) {
 						conv = conversationList.splice(i, 1)[0];
 						// update the required properties
-						if (socketEvent.conversation.message && !socketEvent.conversation.message.verb) {
-							conv.message = socketEvent.conversation.message;
-							if (socketEvent.conversation.message.system_data && socketEvent.conversation.message.system_data.target && socketEvent.conversation.message.system_data.target.id == $rootScope.loggedUser._id) {
-								isSystemMessageConcerningMyOwnAction = true;
-							}
-						}
+						if (socketEvent.conversation.message && !socketEvent.conversation.message.verb) conv.message = socketEvent.conversation.message;
 						conv.read = socketEvent.conversation.read;
 						conv.participants = socketEvent.conversation.participants;
 						conv.participants_count = socketEvent.conversation.participants_count;
