@@ -48,7 +48,7 @@ angular.module('hearth.services').factory('LocationJsonDataTransform', ['$window
 		if (fromJson && ((typeof entity).toLowerCase() === 'string')) {
 			try {
 				entity = $window.JSON.parse(entity);
-			} catch(e) {
+			} catch (e) {
 				entityIsValid = false;
 			}
 		}
