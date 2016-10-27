@@ -114,10 +114,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return $scope.imageSizesSum;
 		};
 
-		// $scope.togglePostType = function() {
-		// 	if (!$scope.post.reply_count)
-		// 		$scope.post.type = !$scope.post.type;
-		// };
+		$scope.togglePostType = function() {
+			if (!$scope.post.reply_count) $scope.post.type = $scope.post.type === OFFER ? NEED : OFFER;
+		};
 
 		$scope.queryKeywords = function($query) {
 			return KeywordsService.queryKeywords($query);
