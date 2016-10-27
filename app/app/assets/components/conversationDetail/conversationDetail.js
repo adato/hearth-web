@@ -70,7 +70,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 							$(".nano-content", element).scrollTop($(".nano-content", element)[0].scrollHeight * 1000);
 							resizeTMessagesBox();
 						}
-					});
+					}, 50);
 				}
 
 				$rootScope.$on('messageAddedToConversation', function(event, conversation) {
