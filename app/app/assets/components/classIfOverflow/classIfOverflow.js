@@ -10,9 +10,9 @@ angular.module('hearth.directives').directive('classIfOverflow', ['$timeout',
 		return {
 			restrict: 'A',
 			scope: {
-				classIfOverflow: "@",
-				inner: "@",
-				outer: "@",
+				classIfOverflow: '@',
+				inner: '@',
+				outer: '@',
 			},
 			link: function(scope, element, attrs) {
 				// test if inner elements overflows container
@@ -30,7 +30,7 @@ angular.module('hearth.directives').directive('classIfOverflow', ['$timeout',
 
 				$timeout(scope.toggleClass);
 				$(window).resize(scope.toggleClass);
-				scope.$on("classIfOverflowContentResize", scope.toggleClass);
+				scope.$on('classIfOverflowContentResize', scope.toggleClass);
 			}
 		};
 	}
