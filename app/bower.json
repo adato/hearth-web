@@ -43,7 +43,8 @@
     "overlapping-marker-spiderfier": "*",
     "angular-actioncable": "^1.0.1",
     "international-phone-number": "^0.0.16",
-    "angular-select2": "^1.5.2"
+    "angular-select2": "^1.5.2",
+    "angular-bootstrap-lightbox": "^0.12.0"
   },
   "devDependencies": {},
   "resolutions": {
