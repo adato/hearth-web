@@ -51,7 +51,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.sendReply = function(reply) {
 					reply = JSON.parse(JSON.stringify(reply));
-					console.log(reply);
 					reply.id = $scope.conversation._id;
 					var params = {};
 					if (reply.current_community_id && reply.current_community_id !== $rootScope.loggedUser._id) params.current_community_id = reply.current_community_id;
