@@ -32,9 +32,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.validateReply = function(reply) {
 					var invalid = false;
-
-					if (!reply.text)
-						invalid = $scope.showError.text = true;
+					if (!reply.text) invalid = $scope.showError.text = true;
 					return !invalid;
 				};
 
@@ -50,23 +48,27 @@ angular.module('hearth.directives').directive('conversationReply', [
 				}
 
 				$scope.sendReply = function(reply) {
+
 					// backup the reply object and clear it up
-					reply = JSON.parse(JSON.stringify(reply));
+					// DO NOT USE JSON.PARSE / STRINGIFY FOR THE REPLY MIGHT CONTAIN FILE(S)
+					// attachments are only emptied post-sending so that they display their animation
+					var replyCopy = {};
+					for (var prop in reply) {
+						if (reply.hasOwnProperty(prop)) replyCopy[prop] = reply[prop];
+					}
+					replyCopy.id = $scope.conversation._id;
 					$scope.reply.text = '';
-					$scope.reply.attachments_attributes = '';
 
-					// set conversation id
-					reply.id = $scope.conversation._id;
-
-					// set params and handle community response prop
 					var params = {};
 					if (reply.current_community_id && reply.current_community_id !== $rootScope.loggedUser._id) params.current_community_id = reply.current_community_id;
 					delete reply.current_community_id;
 
-					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
+					if ($scope.sendingReply || !$scope.validateReply(replyCopy)) return false;
 					$scope.sendingReply = true;
 
-					Conversations.reply(params, reply, function(res) {
+					Conversations.reply(params, replyCopy, function(res) {
+						$scope.reply.attachments_attributes = '';
+
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
 							$('#message-footer').removeClass('message-actions');
