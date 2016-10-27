@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('navigation', [
 			link: function($scope, element) {
 				$scope.searchHidden = !$location.search().query;
 				$scope.searchFilterDisplayed = false;
-				$scope.getFirstConversationId = ConversationAux.getFirstConversationId;
+				$scope.getFirstConversationId = ConversationAux.getFirstConversationIdIfAny;
 				$scope.searchQuery = {
 					query: $location.search().query
 				};
