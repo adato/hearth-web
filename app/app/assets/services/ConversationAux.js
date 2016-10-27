@@ -460,6 +460,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;
+				var conversationsCount = res.conversations.length;
 
 				// either clean up the conversation list
 				// or run the socketReinit procedure
@@ -511,19 +512,23 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				for (var i = conversationGetBuffer.length; i--;) {
 					conversationGetBuffer[i][0]({
 						conversations: conversationList,
-						thatsAllFolks: res.conversations.length < limit
+						thatsAllFolks: conversationsCount < limit
 					});
 				}
 
-				resolve({
+				$rootScope.$emit('conversationListChanged', {
+					conversationList: conversationList
+				});
+
+				return resolve({
 					conversations: conversationList,
-					thatsAllFolks: res.conversations.length < limit
+					thatsAllFolks: conversationsCount < limit
 				});
 			}, function(err) {
 				for (var i = conversationGetBuffer.length; i--;) {
 					conversationGetBuffer[i][1](err);
 				}
-				reject(err);
+				return reject(err);
 			});
 		});
 	}
