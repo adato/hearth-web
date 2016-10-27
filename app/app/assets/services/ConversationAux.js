@@ -26,9 +26,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		// conversationsCache = [],	// << not used ATM
 		conversationListLoading,
 		conversationListLoaded,
-		conversationGetLimit = 20,
+		conversationGetLimit = 8,
 		conversationFilter = {},
-		conversationGetBuffer = [];
+		conversationGetBuffer = [],
+		socketReinitCounter = 0;
 
 	var FILTER_ARCHIVE = 'archived';
 
@@ -89,7 +90,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 					// Here the define the logic that should happen after losing the socket connection
 					// and starting it up again - i.e. we should try to get information that we might
 					// have missed during our time offline
-					reinitMessaging();
+					socketReinitCounter++
+					if (socketReinitCounter > 1) reinitMessaging();
 				}
 			});
 
@@ -452,7 +454,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			}
 			if (paramObject.filterType) {
 				params[paramObject.filterType] = true;
-				console.log('FILTAR', paramObject);
 				conversationFilter.current = paramObject.filterType;
 			}
 			if (paramObject.post_id) params.post_id = paramObject.post_id;
