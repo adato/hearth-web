@@ -84,9 +84,9 @@
 			</div>
 			<ul lemmon-slider ng-if="item.attachments_attributes.length">
 				<li ng-repeat="photo in item.attachments_attributes track by $index">
-					<a ng-href="{{ photo.large }}" rel="{{:: item._id }}">
-						<img ng-src="{{photo.normal}}">
-					</a>
+						<a ng-click="openLightboxModal($index)">
+							<img ng-src="{{photo.normal}}">
+						</a>
 				</li>
 			</ul>
 			<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
