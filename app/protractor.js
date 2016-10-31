@@ -12,6 +12,7 @@ exports.config = {
 		testFolder + 'auth/login.js',
 		testFolder + 'auth/profile.js',
 		testFolder + 'auth/bookmarks.js',
+		testFolder + 'auth/market-reportAbusivePost.js',
 		testFolder + 'auth/deleteUser.js'
 	],
 	suites: {
@@ -23,7 +24,7 @@ exports.config = {
 		],
 		'quick': [
 			testFolder + 'auth/login-hardcoded.js',
-			testFolder + 'auth/profile.js',
+			testFolder + 'auth/market-reportAbusivePost.js',
 		]
 	},
 	onPrepare: function() {
