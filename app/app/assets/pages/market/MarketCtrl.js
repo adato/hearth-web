@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', '$window', 'ScrollService',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, $window, ScrollService) {
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', '$window', 'ScrollService', 'Lightbox',
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, $window, ScrollService, Lightbox) {
 
 		var postLimit = 15;
 		var marketplaceInited = false;
@@ -70,6 +70,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			scope.showSharing = false;
 			scope.delayedView = true;
 			scope.language = $rootScope.language;
+			scope.openLightboxModal = function(index) {
+				Lightbox.openModal(scope.item.attachments_attributes, index);
+			};
 			angular.extend(scope, ItemServices);
 
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);

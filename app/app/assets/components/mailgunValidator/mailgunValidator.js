@@ -65,7 +65,7 @@ angular.module('hearth.directives').directive('mailgunValidatorDidYouMean', ['$q
 			scope: {
 				'target': '=',
 			},
-			template: '<span ng-show="showOptions" class="mailgun-validator-did-you-mean">{{:: \'MAILGUN_VALIDATION_DID_YOU_MEAN\' | translate }} <a ng-click="target = options">{{ options }}</a><br><br></span>',
+			template: '<span ng-show="showOptions" class="mailgun-validator-did-you-mean" test-beacon="mailgun-validator-did-you-mean">{{:: \'MAILGUN_VALIDATION_DID_YOU_MEAN\' | translate }} <a ng-click="target = options">{{ options }}</a><br><br></span>',
 			link: function(scope, element, attrs) {
 				scope.showOptions = false;
 				scope.$on('mailgun-did-you-mean', function(event, options) {
