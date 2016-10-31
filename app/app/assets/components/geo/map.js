@@ -67,7 +67,7 @@ angular.module('hearth.geo').directive('map', [
 					templateSource = templateSource[1];
 				}
 				template = $interpolate(templateSource);
-				
+
 				var searchRequestInhibited = false;
 				var idleListenerFunction = function() {
 					if (searchRequestInhibited === true) {
