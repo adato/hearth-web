@@ -70,10 +70,8 @@ angular.module('hearth.geo').directive('map', [
 
 				var searchRequestInhibited = false;
 				var idleListenerFunction = function() {
-					console.log('searchRq');
-					if (searchRequestInhibited === true) { 
-						console.log('omiting rq'); 
-						return; 
+					if (searchRequestInhibited === true) {
+						return;
 					}
 					$rootScope.$emit('searchRequest', map.getBounds().toJSON());
 				}
@@ -148,7 +146,9 @@ angular.module('hearth.geo').directive('map', [
 						});
 					});
 
-					$timeout(function () { searchRequestInhibited = false; }, 1000); 
+					$timeout(function() {
+						searchRequestInhibited = false;
+					}, 1000);
 
 				};
 
@@ -233,18 +233,12 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.repaint();
 				};
 
-				/*                scope.zoomMarkerClusterer = function(cluster) {
-				                    map.fitBounds(cluster.getBounds());
-				                    map.setZoom(markerClusterMaxZoom + 1);
-				                };*/
-
 				scope.initMap();
 				scope.$on('showMarkersOnMap', scope.createPins);
 
 				scope.$watch('centerTo', function(newVal, oldVal) {
 					if (newVal !== oldVal && newVal !== null) {
 
-						console.warn('centerto');
 						if (typeof newVal.lng === 'undefined') {
 							newVal.lng = newVal.lon;
 						}

@@ -16,12 +16,7 @@ angular.module('hearth.geo').directive('searchMap', [
 		return {
 			restrict: 'E',
 			replace: true,
-			scope: {
-				location: '=',
-				setLocationFn: '&',
-				setLoadingFn: '&',
-				items: '=',
-			},
+			scope: {},
 			templateUrl: 'assets/components/searchMap/searchMap.html',
 			link: function(scope, element) {
 				scope.center = false;
