@@ -44,6 +44,8 @@ input.bottom-line-input:focus {
 		padding-left: 10px;
 	}
 }
+
+
 @media #{$small-down} {
 	.filter .filter-inner {
 		label {
@@ -54,3 +56,5 @@ input.bottom-line-input:focus {
 .radio-container {
 	padding-bottom: $size-small;
 }
+
+

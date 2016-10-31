@@ -119,6 +119,16 @@ a{color: #4a4a4a}
 	-webkit-filter: none;
 	filter: none;
 }
+.badge{
+	padding: 3px 8px;
+	border-radius: 6px;
+	line-height: 1.2;
+	font-size: 70%;
+	font-weight: bold;
+}
+.badge.background-primary{
+	color: #fff
+}
 .button-flame.large{
 	width: 40px; height: 40px;
 	margin-bottom: 5px;
@@ -215,6 +225,9 @@ a.masonry-item:hover .button,
 	width: 200px;
 }
 .nav-item{
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
 	padding: 8px 12px 8px 8px;
 	font-weight: bold;
 	white-space: nowrap;
@@ -312,6 +325,11 @@ a.masonry-item:hover .button,
 	display: block;
 	min-width: 200px;
 	margin: 0;
+}
+.hover-window li a.nav-item{
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
 }
 .hover-window li:first-child a,
 #main-navigation li:first-child a{
@@ -842,9 +860,13 @@ a.masonry-item{
 /*******************
 	FACES
 *******************/
+@media (min-width: 500px){
+	.min-500{ min-width: 500px; }
+}
 .max-500{ max-width: 500px; margin: 0 auto; }
 @media (min-width: 1200px){
-	.max-500{ max-width: 900px; }
+	.min-500{ min-width: 800px; }
+	.max-500{ max-width: 800px; }
 	#testimonials .tab-pane{
 		text-align: center;
 	}
@@ -878,7 +900,7 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 	}
 }
 
-.nav>li>a{position:relative;display:block;padding: 0px 8px}
+.nav>li>a{position:relative;display:block;padding: 0px 8px 8px}
 
 .nav.nav-justified > li > a { position: relative; }
 .nav.nav-justified > li > a:hover,
@@ -970,25 +992,27 @@ html[lang='sk'] #section-marketplace {
 #image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-s.jpg')}
 #image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-s.jpg')}
 #image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-s.jpg')}
-@media (min-width: 768px) {
+/* with the way they are currently shown - this is enough */
+/*@media (min-width: 768px) {
 	#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-m.jpg')}
 	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-m.jpg')}
 	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-m.jpg')}
 	#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-m.jpg')}
 	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-m.jpg')}
 	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-m.jpg')}
-}
-@media (min-width: 1200px) {
+}*/
+/*@media (min-width: 1200px) {
 	#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-l.jpg')}
 	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-l.jpg')}
 	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-l.jpg')}
 	#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-l.jpg')}
 	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-l.jpg')}
 	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-l.jpg')}
-}
+}*/
 
 /* TESTIMONIAL IMAGES */
 #image-testimonial-barta{background-image: url('../img/people/jiri-barta.png')}
 #image-testimonial-vaclavek{background-image: url('../img/people/petr-vaclavek.png')}
 #image-testimonial-panek{background-image: url('../img/people/simon-panek.png')}
 #image-testimonial-hajzler{background-image: url('../img/people/tomas-hajzler.png')}
+#image-testimonial-fellmer{background-image: url('../img/people/raphael-fellmer.png')}

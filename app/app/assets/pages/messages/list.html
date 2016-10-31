@@ -1,0 +1,90 @@
+<div loading show="!loaded"></div>
+
+<div class="messages" ng-if="loaded" dynamic-height offset="140" min-height="400" ng-class="{ 'message-detail-displayed': ($state.params.id || $state.is('messages.new'))}">
+	<div class="display-medium-flex flex-space-between flex-medium-divide formStyle messages-options" ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}">
+		<select class="messages-filter conversation-list-width margin-bottom-small flex-div" ng-model="filter.type" ng-change="applyFilter(filter)">
+			<option value="" ng-selected="filter.type == ''">{{:: 'MESSAGES.FILTER.ALL' | translate }}</option>
+			<option ng-if="userHasRight('post.suspend')" value="from_admin" ng-selected="filter.type == 'from_admin'">{{:: 'MESSAGES.FILTER.POST_ADMIN' | translate }}</option>
+			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{:: 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<option value="as_replies_post:{{post._id}}" ng-repeat="post in postConversations.posts" ng-selected="filter.post_id === post._id">&ndash; {{:: post.type | uppercase | translate }} {{:: post.title }}</option>
+			<option value="archived" ng-selected="filter.type == 'archived'">{{:: 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
+		</select>
+		<a class="button-send display-block nowrap margin-bottom-small flex-div" ui-sref="messages.new">{{:: 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+	</div>
+	<div loading show="reloading"></div>
+	<div class="messages-container display-flex flex-align-start" ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}" ng-if="!reloading" dynamic-height offset="0" container=".messages" min-height="340">
+		<div id="about" class="conversations" ng-if="conversations.length" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
+			<div class="nano" custom-scrollbar>
+				<div class="nano-content" when-scrolled="loadBottom()" loading-in-progress="conversationLoadInProgress" inner-scrolling="true">
+					<div class="nano-content-inner">
+						<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == $state.params.id}"></div>
+						<div class="text-center no-result" ng-if="!conversations.length">
+							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
+						</div>
+						<a ui-sref='messages.detail({id: item._id, "mark-as-read": true})' class="conversation" ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}"
+										ng-repeat="item in conversations">
+							<div class="avatars">
+								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="normal" type="person._type" ng-repeat="person in item.participants"></avatar>
+								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
+								<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
+								<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
+							</div>
+							<div class="conversation-info">
+								<h2 ng-if="item.title">
+									<div>
+										<span ng-if="item.post">{{ item.post.type_code | translate }}</span> {{ item.title | ellipsis:45 }}
+									</div>
+									<i ng-if="item.titlePersons" class="left" title="{{item.titlePersons}}"> {{ item.titlePersons | ellipsis:28 }}
+										<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
+									</i>
+
+									<div class="clear"></div>
+								</h2>
+								<h2 ng-if="!item.title && item.titlePersons" title="{{item.titlePersons}}">{{ item.titlePersons }}
+									<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
+								</h2>
+								<h2 ng-if="!item.title && !item.titlePersons">
+									{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
+								</h2>
+								<span class="unreaded-count" ng-if="!item.read"></span>
+
+								<div class="clear"></div>
+								<p ng-if="item.message.text">
+									<span ng-if="item.message.owner._id == loggedUser._id" ng-bind=":: 'MESSAGES.YOU' | translate"></span>
+									<span ng-if="item.message.owner._id != loggedUser._id" ng-bind="item.message.owner.name"></span>: {{ item.message.text | ellipsis:60 }}
+								</p>
+								<i class="fright" ng-if="item.last_message_time" title="{{:: item.last_message_time | date:DATETIME_FORMATS.medium }}" ago="item.last_message_time"></i>
+							</div>
+							<div class="clear"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="box flex-1" ng-if="!conversations.length && !$state.is('messages.new') && !notFound && loaded">
+			<div class="text-center no-result">
+				<br/>
+				<img src="images/fireplace.jpeg" title="{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
+				<br/>
+				<br/>
+				<h4>{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
+				<span>{{:: 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
+			</div>
+		</div>
+
+		<div class="box conversation-detail-container" ng-if="!$state.is('messages.new') && notFound && loaded">
+			<p ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></p>
+			<div class="bottom">
+				<a class="left link hide-for-large-up" ng-href="messages">
+					{{ 'CLOSE' | translate }}
+				</a>
+			</div>
+		</div>
+
+		<!-- conversation detail and new conv. form -->
+		<div class="box conversation-detail-container" ng-if="$state.params.id || $state.is('messages.new')">
+			<div ui-view></div>
+		</div>
+	</div>
+</div>
