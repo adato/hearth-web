@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "async": "~1.4.2",
-    "ngDialog": "~0.5.4",
+    "ngDialog": "~0.6.4",
     "SHA-1": "~0.1.1",
     "fastclick": "~1.0.6",
     "angularitics": "~0.17.2",
@@ -53,7 +53,6 @@
     "angular-translate": "~2.8.1",
     "jquery": "2.0.2",
     "font-awesome": "~4.3.0",
-    "ngDialog": "~0.5.4",
     "async": "~1.4.2",
     "mobile-detect": "~0.4.3"
   }
