@@ -30,7 +30,7 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 		}
 
 		$scope.showFinished = function() {
-			$(".modal").slideToggle();
+			$(".hearth-modal").slideToggle();
 			timeout = $timeout(function() {
 				$scope.closeThisDialog();
 			}, 5000);

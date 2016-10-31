@@ -63,18 +63,18 @@ angular.module('hearth.geo').directive('map', [
 						height: 40,
 					}];
 
-				scope.listenerEnabled = true;
-				var idleListenerFunction = function() {
-					if (scope.listenerEnabled === true) {
-						$rootScope.$emit('searchRequest', map.getBounds().toJSON());
-					}
-				}
-
 				if (typeof templateSource !== 'string') {
 					templateSource = templateSource[1];
 				}
-
 				template = $interpolate(templateSource);
+				
+				var searchRequestInhibited = false;
+				var idleListenerFunction = function() {
+					if (searchRequestInhibited === true) {
+						return;
+					}
+					$rootScope.$emit('searchRequest', map.getBounds().toJSON());
+				}
 
 				scope.initMap = function() {
 					if (!map) {
@@ -83,8 +83,8 @@ angular.module('hearth.geo').directive('map', [
 								zoom: 11
 							});
 
-							google.maps.event.trigger(map, "resize");
-							geo.focusCurrentLocation(map);
+							/*google.maps.event.trigger(map, "resize");
+							geo.focusCurrentLocation(map);*/
 
 							oms = new OverlappingMarkerSpiderfier(map, {
 								markersWontMove: true,
@@ -101,9 +101,7 @@ angular.module('hearth.geo').directive('map', [
 								styles: markerClusterStyles
 							});
 
-							//                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
 							oms.addListener('click', scope.onMarkerClick);
-
 							google.maps.event.addListener(map, 'idle', idleListenerFunction);
 
 							/**
@@ -147,6 +145,9 @@ angular.module('hearth.geo').directive('map', [
 							var path = $location.path('post/' + itemId);
 						});
 					});
+					$timeout(function() {
+						searchRequestInhibited = false;
+					}, 1000);
 				};
 
 				var extendBounds = function(markers) {
@@ -167,7 +168,7 @@ angular.module('hearth.geo').directive('map', [
 				};
 
 				scope.onMarkerClick = function(marker) {
-					scope.listenerEnabled = false;
+					searchRequestInhibited = true;
 					Post.get({
 						postId: marker.info[I_ID]
 					}, function(data) {
@@ -179,9 +180,7 @@ angular.module('hearth.geo').directive('map', [
 							data.adType = data.type;
 						}
 						scope.showMarkerWindow(template(data), marker);
-						$timeout(function() {
-							scope.listenerEnabled = true;
-						}, 1000);
+
 					}, function(err) {});
 				};
 
@@ -231,11 +230,6 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.addMarkers(markers);
 					markerCluster.repaint();
 				};
-
-				/*                scope.zoomMarkerClusterer = function(cluster) {
-				                    map.fitBounds(cluster.getBounds());
-				                    map.setZoom(markerClusterMaxZoom + 1);
-				                };*/
 
 				scope.initMap();
 				scope.$on('showMarkersOnMap', scope.createPins);
