@@ -8,7 +8,6 @@
  */
 angular.module('hearth.directives').directive('item', [
 	'$translate', '$rootScope', 'Filter', 'Karma', '$timeout', '$filter', 'Rights', 'ItemAux',
-
 	function($translate, $rootScope, Filter, Karma, $timeout, $filter, Rights, ItemAux) {
 		return {
 			restrict: 'E',

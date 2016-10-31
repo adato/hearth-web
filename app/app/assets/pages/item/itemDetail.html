@@ -103,7 +103,7 @@
 							<ul lemmon-slider ng-if="item.attachments_attributes.length" class="item-section">
 								<li ng-repeat="photo in item.attachments_attributes track by $index">
 									<a ng-click="openLightboxModal($index)">
-										<img ng-src="{{photo.normal}}" class="img-thumbnail" />
+										<img ng-src="{{photo.normal}}" />
 									</a>
 								</li>
 							</ul>

@@ -43,6 +43,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 		'$httpProvider', '$translateProvider', '$authProvider', '$windowProvider', 'LightboxProvider',
 		function($httpProvider, $translateProvider, $authProvider, $windowProvider, LightboxProvider) {
 
+			LightboxProvider.templateUrl = 'assets/components/lightbox/lightbox.html';
 			LightboxProvider.getImageUrl = function(image) {
 				return image.large;
 			};
