@@ -149,7 +149,6 @@ angular.module('hearth.geo').directive('map', [
 					$timeout(function() {
 						searchRequestInhibited = false;
 					}, 1000);
-
 				};
 
 				var extendBounds = function(markers) {

@@ -43,10 +43,10 @@ module.exports = function(grunt) {
 		watch: {
 			js: {
 				files: [
-					'<%= yeoman.app %>/assets/{,*/}*.js',
-					'<%= yeoman.app %>/assets/{,*/}*.html',
-					'<%= yeoman.envFolder %>/{,*/}*.js',
-					'<%= yeoman.app %>/locales/{,*/}*.json',
+					'<%= yeoman.app %>/assets/{,*/,*/*/}*.js',
+					'<%= yeoman.app %>/assets/{,*/,*/*/}*.html',
+					'<%= yeoman.envFolder %>/{,*/,*/*/}*.js',
+					'<%= yeoman.app %>/locales/{,*/,*/*/}*.json',
 				],
 				tasks: [
 //					'eslint',
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: [
-					'<%= yeoman.app %>/{,*/}*.html',
+					'<%= yeoman.app %>/assets/{,*/,*/*/}*.html',
 					'.tmp/styles/{,*/}*.css',
 					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
 				]
