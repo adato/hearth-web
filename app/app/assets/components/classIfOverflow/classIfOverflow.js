@@ -13,11 +13,16 @@ angular.module('hearth.directives').directive('classIfOverflow', ['$timeout',
 				classIfOverflow: '@',
 				inner: '@',
 				outer: '@',
+				ifNotOverflow: '&?'
 			},
 			link: function(scope, element, attrs) {
 				// test if inner elements overflows container
 				scope.isOverflow = function(el) {
-					return el.find(scope.inner).height() > el.height();
+					var itIs = el.find(scope.inner).height() > el.height();
+					if (!itIs && typeof scope.ifNotOverflow === 'function') {
+						scope.ifNotOverflow();
+					}
+					return itIs;
 				};
 
 				scope.toggleClass = function() {

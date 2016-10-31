@@ -31,6 +31,9 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		conversationGetBuffer = [],
 		socketReinitCounter = 0;
 
+	// TODO delete later
+	var convListErrorThrowed;
+
 	var FILTER_ARCHIVE = 'archived';
 
 	var factory = {
@@ -74,11 +77,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			inited = true;
 
 			var consumer = new ActionCableChannel('MessagesChannel', token);
-			// TODO - cleanup after these
-			// Messenger.loadCounters();
-			// $rootScope.$broadcast('WSNewMessage', message);
-			// /TODO
-			// ActionCableSocketWrangler.start();
 			consumer.subscribe(handleEvent);
 
 			// ActionCableSocketWrangler doesn't expose $websocket onOpen and onClose callbacks,
@@ -556,7 +554,17 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	function getFirstConversationIdIfAny() {
-		return (conversationList.length ? conversationList[0]._id : '');
+		checkConversationListValidity(conversationList);
+		return (conversationList && conversationList.length && conversationList[0] && conversationList[0]._id ? conversationList[0]._id : '');
+	}
+
+	function checkConversationListValidity(list) {
+		if (convListErrorThrowed) return;
+		var listCopy = JSON.parse(JSON.stringify(list));
+		if (listCopy && listCopy.length && !listCopy[0]) {
+			convListErrorThrowed = true;
+			throw new Error('conversationList contents are invalid. Contents: "' + JSON.stringify(list) + '".');
+		}
 	}
 
 }]);
