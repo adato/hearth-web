@@ -73,8 +73,15 @@ angular.module('hearth.geo').directive('map', [
 				if (typeof templateSource !== 'string') {
 					templateSource = templateSource[1];
 				}
+				template = $interpolate(templateSource); 
 
-				template = $interpolate(templateSource);
+				var searchRequestInhibited = false;
+				var idleListenerFunction = function() {
+						if (searchRequestInhibited === true) {
+							return;
+						}
+						$rootScope.$emit('searchRequest', map.getBounds().toJSON());
+					} 
 
 				scope.initMap = function() {
 					if (!map) {
@@ -146,7 +153,10 @@ angular.module('hearth.geo').directive('map', [
 						scope.$apply(function() {
 							var path = $location.path('post/' + itemId);
 						});
-					});
+					}); 
+						$timeout(function() {
+							searchRequestInhibited = false;
+						}, 1000);
 				};
 
 				var extendBounds = function(markers) {
@@ -231,11 +241,6 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.addMarkers(markers);
 					markerCluster.repaint();
 				};
-
-				/*                scope.zoomMarkerClusterer = function(cluster) {
-				                    map.fitBounds(cluster.getBounds());
-				                    map.setZoom(markerClusterMaxZoom + 1);
-				                };*/
 
 				scope.initMap();
 				scope.$on('showMarkersOnMap', scope.createPins);
