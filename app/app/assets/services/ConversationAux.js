@@ -26,10 +26,15 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		// conversationsCache = [],	// << not used ATM
 		conversationListLoading,
 		conversationListLoaded,
-		conversationGetLimit = 20,
-		conversationGetBuffer = [];
+		conversationGetLimit = 8,
+		conversationFilter = {},
+		conversationGetBuffer = [],
+		socketReinitCounter = 0;
 
-	var FILTER_ARCHIVE = 'archive';
+	// TODO delete later
+	var convListErrorThrowed;
+
+	var FILTER_ARCHIVE = 'archived';
 
 	var factory = {
 		addConversationToList: addConversationToList,
@@ -72,11 +77,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			inited = true;
 
 			var consumer = new ActionCableChannel('MessagesChannel', token);
-			// TODO - cleanup after these
-			// Messenger.loadCounters();
-			// $rootScope.$broadcast('WSNewMessage', message);
-			// /TODO
-			// ActionCableSocketWrangler.start();
 			consumer.subscribe(handleEvent);
 
 			// ActionCableSocketWrangler doesn't expose $websocket onOpen and onClose callbacks,
@@ -88,7 +88,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 					// Here the define the logic that should happen after losing the socket connection
 					// and starting it up again - i.e. we should try to get information that we might
 					// have missed during our time offline
-					reinitMessaging();
+					socketReinitCounter++
+					if (socketReinitCounter > 1) reinitMessaging();
 				}
 			});
 
@@ -125,13 +126,19 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	function handleNewConversationOrMessage(socketEvent) {
 		if (socketEvent.conversation && socketEvent.conversation.message) {
 			if (socketEvent.conversation.message.first_message) {
+				// check if not a duplicate conversation, i. e. new conversation created by myself
+				for (var i = 0, l = conversationList.length; i < l; i++) {
+					if (conversationList[i]._id === socketEvent.conversation._id) return false;
+				}
+
 				$timeout(function() {
 					$rootScope.$emit('newConversationAdded', socketEvent.conversation);
 				});
 				deserializeConversation(socketEvent.conversation);
 				return conversationList.unshift(socketEvent.conversation);
 			} else {
-				var conv;
+				var conv,
+					isSystemMessageConcerningMyOwnAction = (socketEvent.conversation.message.system_data && socketEvent.conversation.message.system_data.target && socketEvent.conversation.message.system_data.target._id == $rootScope.loggedUser._id);
 				for (var i = conversationList.length; i--;) {
 					if (conversationList[i]._id === socketEvent.conversation._id) {
 						conv = conversationList.splice(i, 1)[0];
@@ -162,12 +169,13 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						break;
 					}
 				}
-				return conversationList.unshift(conv);
+				return isSystemMessageConcerningMyOwnAction ? true : conversationList.unshift(conv);
 			}
 		}
 	}
 
 	function handleConversationReadStatus(socketEvent, readStatus) {
+		return false;
 		if (socketEvent.conversation) {
 			for (var i = 0, l = conversationList.length; i < l; i++) {
 				if (conversationList[i]._id === socketEvent.conversation._id) return conversationList[i].read = readStatus;
@@ -176,12 +184,22 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		return false;
 	}
 
-	function handleConversationListChange(socketEvent) {
+	// function handleConversationListChange(socketEvent) {
+	// 	if (conversationFilter.current === FILTER_ARCHIVE) {
+	// 		return conversationList.unshift(socketEvent.conversation);
+	// 	} else {
+	// 		return removeConversationFromList(socketEvent.conversation._id);
+	// 	}
+	// }
+
+	function handleConversationArchived(socketEvent) {
 		if (conversationFilter.current === FILTER_ARCHIVE) {
-			return conversationList.unshift(socketEvent.conversation);
-		} else {
-			return removeConversationFromList(socketEvent.conversation._id);
+			return addConversationToList({
+				conversation: socketEvent.conversation,
+				index: 0
+			});
 		}
+		return removeConversationFromList(socketEvent.conversation._id);
 	}
 
 	function handleConversationDeleted(socketEvent) {
@@ -219,6 +237,11 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 */
 	function addConversationToList(paramObject) {
 		if (!paramObject.conversation) return false;
+		// check if not a duplicate conversation, i. e. new conversation created by myself
+		for (var i = 0, l = conversationList.length; i < l; i++) {
+			if (conversationList[i]._id === paramObject.conversation._id) return false;
+		}
+
 		deserializeConversation(paramObject.conversation);
 		if (paramObject.index > conversationList.length) paramObject.index = conversationList.length;
 		conversationList.splice(paramObject.index, 0, paramObject.conversation);
@@ -427,11 +450,15 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				limit: limit,
 				offset: paramObject.offset || 0
 			}
-			if (paramObject.filterType) params[paramObject.filterType] = true;
+			if (paramObject.filterType) {
+				params[paramObject.filterType] = true;
+				conversationFilter.current = paramObject.filterType;
+			}
 			if (paramObject.post_id) params.post_id = paramObject.post_id;
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;
+				var conversationsCount = res.conversations.length;
 
 				// either clean up the conversation list
 				// or run the socketReinit procedure
@@ -483,19 +510,23 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				for (var i = conversationGetBuffer.length; i--;) {
 					conversationGetBuffer[i][0]({
 						conversations: conversationList,
-						thatsAllFolks: res.conversations.length < limit
+						thatsAllFolks: conversationsCount < limit
 					});
 				}
 
-				resolve({
+				$rootScope.$emit('conversationListChanged', {
+					conversationList: conversationList
+				});
+
+				return resolve({
 					conversations: conversationList,
-					thatsAllFolks: res.conversations.length < limit
+					thatsAllFolks: conversationsCount < limit
 				});
 			}, function(err) {
 				for (var i = conversationGetBuffer.length; i--;) {
 					conversationGetBuffer[i][1](err);
 				}
-				reject(err);
+				return reject(err);
 			});
 		});
 	}
@@ -523,7 +554,17 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	function getFirstConversationIdIfAny() {
-		return (conversationList.length ? conversationList[0]._id : '');
+		checkConversationListValidity(conversationList);
+		return (conversationList && conversationList.length && conversationList[0] && conversationList[0]._id ? conversationList[0]._id : '');
+	}
+
+	function checkConversationListValidity(list) {
+		if (convListErrorThrowed) return;
+		var listCopy = JSON.parse(JSON.stringify(list));
+		if (listCopy && listCopy.length && !listCopy[0]) {
+			convListErrorThrowed = true;
+			throw new Error('conversationList contents are invalid. Contents: "' + JSON.stringify(list) + '".');
+		}
 	}
 
 }]);

@@ -13,6 +13,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		var deleteOffset = false;
 		$scope.readedAllData = false;
 		$scope.postTypes = $$config.postTypes;
+		$scope.loaded = true;
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
@@ -62,6 +63,9 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		};
 
 		$scope.load = function(addOffset) {
+			if (!$scope.loaded) {
+				return;
+			}
 			var params = $.extend({
 				limit: 15,
 				offset: (addOffset) ? $scope.items.length : 0

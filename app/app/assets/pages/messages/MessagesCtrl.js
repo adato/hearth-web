@@ -27,9 +27,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.reloading = false
 
 		// don't really know what this one is for
-		$scope.loadingBottom = false;
-		var conversationLoadInProgress,
-			allConversationsLoaded;
+		$scope.conversationLoadInProgress = false;
+		var allConversationsLoaded;
 
 		// the conversation list
 		$scope.conversations = false;
@@ -91,28 +90,31 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 			ConversationAux.loadConversations(params).then(function(res) {
 				$scope.conversations = res.conversations;
-				$scope.$broadcast('scrollbarResize');
-				$scope.$broadcast('classIfOverflowContentResize');
+				$timeout(function() {
+					$scope.$broadcast('scrollbarResize');
+					$scope.$broadcast('classIfOverflowContentResize');
+				}, 50);
 				return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false);
 			});
 		};
 
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
-			if (conversationLoadInProgress || allConversationsLoaded) return false;
-			$scope.loadingBottom = true;
-			conversationLoadInProgress = true;
+			if ($scope.conversationLoadInProgress || allConversationsLoaded) return false;
+			$scope.conversationLoadInProgress = true;
 			var config = {
 				offset: ($scope.conversations ? $scope.conversations.length : 0)
 			};
 
 			ConversationAux.loadConversations(config).then(function(res) {
 				if (res.thatsAllFolks) allConversationsLoaded = true;
-				conversationLoadInProgress = false;
-				$scope.$broadcast('scrollbarResize');
-				$scope.$broadcast('classIfOverflowContentResize');
+				$scope.conversationLoadInProgress = false;
+				$timeout(function() {
+					$scope.$broadcast('scrollbarResize');
+					$scope.$broadcast('classIfOverflowContentResize');
+				}, 50);
 			}, function(err) {
-				conversationLoadInProgress = false;
+				$scope.conversationLoadInProgress = false;
 			});
 		};
 
@@ -172,7 +174,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$rootScope.$on('conversationRemoved', redirectToFirstIfMatch);
 		$rootScope.$on('newConversationAdded', function(event, conversation) {
 			if (!$scope.reloading && $scope.conversations && $scope.conversations.length === 1 && !ResponsiveViewport.isSmall() && !ResponsiveViewport.isMedium()) {
-				console.log('RELOCATING');
 				$state.go('messages.detail', {
 					id: conversation._id
 				});

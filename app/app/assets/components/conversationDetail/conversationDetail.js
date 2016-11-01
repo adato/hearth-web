@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state',
-	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state) {
+	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'DOMTraversalService',
+	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, DOMTraversalService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -28,6 +28,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				$scope.sendingActionRequest = false;
 				$scope.info = {};
 
+				var conversationOptionsSelector = '[conversation-options]';
 				var _scrollInited = false;
 				var _loadOlderMessagesEnd = false;
 				var _loadingOlderMessages = false;
@@ -38,24 +39,24 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 */
 				function testOlderMessagesLoading(dontMarkAsRead) {
 					if (!$rootScope.$$phase) $rootScope.$apply();
-					if ($(".nano-content", element).scrollTop() < 100) {
+					if ($('.nano-content', element).scrollTop() < 100) {
 						loadOlderMessages(dontMarkAsRead);
 					}
-				};
+				}
 
 				function onContentScrolling() {
 					testOlderMessagesLoading();
-				};
+				}
 
 				/**
 				 * If user is on bottom, keep user there after added more content
 				 */
 				function testScrollBottom() {
-					var outer = $(".nano", element);
-					var inner = $(".nano-content", outer);
+					var outer = $('.nano', element);
+					var inner = $('.nano-content', outer);
 					var pos = Math.ceil(inner.scrollTop() + inner.height());
 
-					if (pos >= inner.prop('scrollHeight')) {
+					if (pos <= inner.prop('scrollHeight')) {
 						scrollBottom();
 					}
 				}
@@ -65,11 +66,11 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 */
 				function scrollBottom() {
 					$timeout(function() {
-						if ($(".nano-content", element).length > 0) {
-							$(".nano-content", element).scrollTop($(".nano-content", element)[0].scrollHeight * 1000);
+						if ($('.nano-content', element).length > 0) {
+							$('.nano-content', element).scrollTop($('.nano-content', element)[0].scrollHeight * 1000);
 							resizeTMessagesBox();
 						}
-					});
+					}, 50);
 				}
 
 				$rootScope.$on('messageAddedToConversation', function(event, conversation) {
@@ -95,7 +96,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						id: id
 					}, function(res) {
 						$scope.sendingActionRequest = false;
-						// $scope.$emit("conversationRemoved", id);
+						// $scope.$emit('conversationRemoved', id);
 
 						Notify.addSingleTranslate('NOTIFY.CONVERSATION_' + type + '_SUCCESS', Notify.T_SUCCESS);
 					}, function(err) {
@@ -127,23 +128,52 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * Keep user on his position when added more messages to top
 				 */
 				function scrollToCurrentPosition(done) {
-					var content = $(".nano-content", element);
+					var content = $('.nano-content', element);
 					var height = content.prop('scrollHeight');
 					var scrollTop = content.scrollTop();
 
 					$timeout(function() {
-						$scope.$broadcast("scrollbarResize");
-						$(".nano-content", element).scrollTop($(".nano-content", element).prop('scrollHeight') - height + scrollTop);
+						$scope.$broadcast('scrollbarResize');
+						$('.nano-content', element).scrollTop($('.nano-content', element).prop('scrollHeight') - height + scrollTop);
 
 						done && done();
 					});
 				}
 
-				function markConversationAsRead(conversation) {
+				function markConversationAsRead(conversation, event) {
 					if (!conversation || conversation.read) return false;
+
+					// don't trigger conversation read on clicking the 'mark as unread button' or similar
+					if (event && event.target && DOMTraversalService.findParentBySelector(event.target, conversationOptionsSelector)) return false;
+
 					Messenger.decreaseUnread();
 					conversation.read = true;
+
+					$state.go('.', {
+						'mark-as-read': ''
+					}, {
+						reload: false,
+						notify: false
+					});
+
 					Conversations.markAsRead({
+						id: conversation._id
+					});
+				}
+
+				$scope.markConversationAsUnread = function(conversation) {
+					// don't wait for server to respond, makes for better UX
+					Messenger.increaseUnread();
+					conversation.read = false;
+
+					$state.go('.', {
+						'mark-as-read': ''
+					}, {
+						reload: false,
+						notify: false
+					});
+
+					Conversations.markAsUnread({
 						id: conversation._id
 					});
 				};
@@ -200,15 +230,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					});
 				}
 
-				$scope.markConversationAsUnread = function(info) {
-					// don't wait for server to respond, makes for better UX
-					Messenger.increaseUnread();
-					info.read = false;
-					Conversations.markAsUnread({
-						id: info._id
-					});
-				};
-
 				/**
 				 * Show/hide participants list & load from API
 				 */
@@ -228,16 +249,16 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				function bindActionHandlers() {
-					element.bind('click', function() {
-						markConversationAsRead($scope.info);
+					element.bind('click', function(event) {
+						markConversationAsRead($scope.info, event);
 					});
-					element.bind('keypress', function() {
-						markConversationAsRead($scope.info);
+					element.bind('keypress', function(event) {
+						markConversationAsRead($scope.info, event);
 					});
 					var ev = $scope.$on('scrollbarResize', function() {
 						ev();
-						$(".nano-content", element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e) {
-							if (e.which > 0 || e.type == "mousedown" || e.type == "mousewheel") markConversationAsRead($scope.info);
+						$('.nano-content', element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e) {
+							if (e.which > 0 || e.type == 'mousedown' || e.type == 'mousewheel') markConversationAsRead($scope.info, e);
 						});
 					});
 				}
@@ -266,10 +287,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						$scope.loaded = true;
 
 						$timeout(function() {
-							// binding here so that even ng-ifed things are done
+							// binding here so that even 'ng-if'-ed things are done
 							$('.nano-content', element).scroll(onContentScrolling);
 							testScrollBottom();
-						}, 10);
+						}, 50);
 					}, console.info);
 				}
 
@@ -277,7 +298,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 				// resize box when needed
 				$(window).resize(resizeMessagesBox);
-				$scope.$on("conversationReplyFormResized", resizeMessagesBox);
+				$scope.$on('conversationReplyFormResized', resizeMessagesBox);
 				$scope.$on('$destroy', function() {
 					$(window).off('resize', resizeMessagesBox);
 				});

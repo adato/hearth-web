@@ -75,7 +75,7 @@
 									<li>
 										<!-- flag post -->
 										<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-										<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+										<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)" test-beacon="marketplace-item-flag">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 										<!-- /flag post -->
 									</li>
 									<li>
@@ -144,11 +144,9 @@
 							</a>
 						</p>
 					</div>
-					<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
+					<ul lemmon-slider ng-if="item.attachments_attributes.length" class="item-section">
 						<li ng-repeat="photo in item.attachments_attributes track by $index">
-							<a class="fancy" ng-href="{{ photo.large }}" rel="{{item._id}}">
-								<img ng-src="{{photo.normal}}" />
-							</a>
+							<img ng-src="{{photo.normal}}" />
 						</li>
 					</ul>
 					<div class="item-section tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">

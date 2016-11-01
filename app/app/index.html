@@ -41,11 +41,10 @@
 	<!-- build:js /app/assets/config.min.js -->
 	<script src="/app/assets/config-local.js"></script>
 	<script src="/app/assets/config-global.js"></script>
-	<script src="/app/assets/utils/analytics.js"></script>
+	<!-- <script src="/app/assets/utils/analytics.js"></script> -->
 	<script src="/app/assets/utils/newRelic.js"></script>
 	<!-- endbuild -->
 	<link rel="stylesheet" type="text/css" href="/app/vendor/flexslider/flexslider.css">
-	<link rel="stylesheet" type="text/css" href="/app/vendor/fancybox/source/jquery.fancybox.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/app/vendor/nanoscroller/bin/css/nanoscroller.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/app/vendor/intl-tel-input/build/css/intlTelInput.css" media="screen" />
 	<script src="/app/vendor/jquery/dist/jquery.min.js"></script>
@@ -70,6 +69,69 @@
 				'libraries=places,geometry&language=';
 			document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + window.preferredLanguage + '"><\/script>');
 		})();
+	</script>
+	<script type="text/javascript">
+		(function() {
+			'use strict';
+			// =================== ADATO GA ACCOUNT =======================
+			(function(i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-40070733-1', {
+				name: 'adato'
+			});
+			ga('adato.require', 'displayfeatures');
+			ga('adato.send', 'pageview');
+			// =================== ADATO MIXPANEL =======================
+			(function(f, b) {
+				if (!b.__SV) {
+					var a, e, i, g;
+					window.mixpanel = b;
+					b._i = [];
+					b.init = function(a, e, d) {
+						function f(b, h) {
+							var a = h.split(".");
+							2 == a.length && (b = b[a[0]], h = a[1]);
+							b[h] = function() {
+								b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+							}
+						}
+						var c = b;
+						"undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
+						c.people = c.people || [];
+						c.toString = function(b) {
+							var a = "mixpanel";
+							"mixpanel" !== d && (a += "." + d);
+							b || (a += " (stub)");
+							return a
+						};
+						c.people.toString = function() {
+							return c.toString(1) + ".people (stub)"
+						};
+						i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+						for (g = 0; g < i.length; g++) f(c, i[g]);
+						b._i.push([a, e, d])
+					};
+					b.__SV = 1.2;
+					a = f.createElement("script");
+					a.type = "text/javascript";
+					a.async = !0;
+					a.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+					e = f.getElementsByTagName("script")[0];
+					e.parentNode.insertBefore(a, e)
+				}
+			})(document, window.mixpanel || []);
+			mixpanel.init($$config.mixpanel.token);
+		});
 	</script>
 	<script src="//connect.facebook.net/en_US/sdk.js"></script>
 	<!--[if lt IE 10]>
@@ -112,7 +174,6 @@
 	<script src="/app/vendor/ui-select/dist/select.min.js"></script>
 	<script src="/app/vendor/angular-select2/dist/angular-select2.min.js"></script>
 	<script src="/app/vendor/exif-js/exif.js"></script>
-	<script src="/app/vendor/fancybox/source/jquery.fancybox.js"></script>
 	<script src="/app/vendor/jquery.tipsy/js/jquery.tipsy.min.js"></script>
 	<script src="/app/vendor/flexslider/jquery.flexslider-min.js"></script>
 	<script src="/app/vendor/smartcrop/smartcrop.js"></script>
@@ -168,44 +229,49 @@
 	<script src="/app/assets/services/resources/UserBookmarks.js"></script>
 	<script src="/app/assets/services/resources/UsersActivityLog.js"></script>
 	<script src="/app/assets/services/resources/Conversations.js"></script>
-	<script src="/app/assets/services/ConversationAux.js"></script>
 	<script src="/app/assets/services/transforms/ConversationDataTransform.js"></script>
 	<script src="/app/assets/services/transforms/LocationJsonDataTransform.js"></script>
-	<script src="/app/assets/services/Ab.js"></script>
-	<script src="/app/assets/services/Bubble.js"></script>
-	<script src="/app/assets/services/ItemAux.js"></script>
-	<script src="/app/assets/services/ItemServices.js"></script>
-	<script src="/app/assets/services/PageTitle.js"></script>
-	<script src="/app/assets/services/Validators.js"></script>
 	<script src="/app/assets/services/$feature.js"></script>
 	<script src="/app/assets/services/$session.js"></script>
+	<script src="/app/assets/services/Ab.js"></script>
+	<script src="/app/assets/services/Activities.js"></script>
 	<script src="/app/assets/services/ApiHealthChecker.js"></script>
 	<script src="/app/assets/services/ApiErrorInterceptor.js"></script>
 	<script src="/app/assets/services/ApiMaintenanceInterceptor.js"></script>
 	<script src="/app/assets/services/Auth.js"></script>
+	<script src="/app/assets/services/Bubble.js"></script>
+	<script src="/app/assets/services/Communities.js"></script>
+	<script src="/app/assets/services/ConversationAux.js"></script>
 	<script src="/app/assets/services/CountryList.js"></script>
-	<script src="/app/assets/services/LocalStorage.js"></script>
+	<script src="/app/assets/services/DOMTraversalService.js"></script>
 	<script src="/app/assets/services/Errors.js"></script>
 	<script src="/app/assets/services/Facebook.js"></script>
-	<script src="/app/assets/services/UniqueFilter.js"></script>
 	<script src="/app/assets/services/FileService.js"></script>
 	<script src="/app/assets/services/Filter.js"></script>
 	<script src="/app/assets/services/FolloweesPostsService.js"></script>
 	<script src="/app/assets/services/FolloweesSearchService.js"></script>
 	<script src="/app/assets/services/FulltextService.js"></script>
+	<script src="/app/assets/services/HearthCrowdfunding.js"></script>
 	<script src="/app/assets/services/HearthLoginInterceptor.js"></script>
 	<script src="/app/assets/services/InfiniteScrollPagination.js"></script>
+	<script src="/app/assets/services/IsEmpty.js"></script>
+	<script src="/app/assets/services/ItemAux.js"></script>
+	<script src="/app/assets/services/ItemServices.js"></script>
 	<script src="/app/assets/services/Karma.js"></script>
 	<script src="/app/assets/services/KeywordsService.js"></script>
 	<script src="/app/assets/services/LanguageList.js"></script>
 	<script src="/app/assets/services/LanguageSwitch.js"></script>
+	<script src="/app/assets/services/LocalStorage.js"></script>
+	<script src="/app/assets/services/Messenger.js"></script>
+	<script src="/app/assets/services/MultipartForm.js"></script>
 	<script src="/app/assets/services/Notify.js"></script>
 	<script src="/app/assets/services/OpenGraph.js"></script>
+	<script src="/app/assets/services/PageTitle.js"></script>
 	<script src="/app/assets/services/PostsService.js"></script>
 	<script src="/app/assets/services/ProfileProgress.js"></script>
 	<script src="/app/assets/services/ProfileUtils.js"></script>
-	<script src="/app/assets/services/IsEmpty.js"></script>
 	<script src="/app/assets/services/ResponseErrors.js"></script>
+	<script src="/app/assets/services/ResponsiveViewport.js"></script>
 	<script src="/app/assets/services/Rights.js"></script>
 	<script src="/app/assets/services/RubySerializer.js"></script>
 	<script src="/app/assets/services/ScrollService.js"></script>
@@ -214,15 +280,11 @@
 	<script src="/app/assets/services/timeAgoService.js"></script>
 	<script src="/app/assets/services/Throttle.js"></script>
 	<script src="/app/assets/services/UnauthReload.js"></script>
+	<script src="/app/assets/services/UniqueFilter.js"></script>
 	<script src="/app/assets/services/UsersCommunitiesService.js"></script>
 	<script src="/app/assets/services/UsersService.js"></script>
+	<script src="/app/assets/services/Validators.js"></script>
 	<script src="/app/assets/services/ViewPort.js"></script>
-	<script src="/app/assets/services/ResponsiveViewport.js"></script>
-	<script src="/app/assets/services/Communities.js"></script>
-	<script src="/app/assets/services/Messenger.js"></script>
-	<script src="/app/assets/services/Activities.js"></script>
-	<script src="/app/assets/services/MultipartForm.js"></script>
-	<script src="/app/assets/services/HearthCrowdfunding.js"></script>
 	<script src="/app/assets/services/ViewportUtils.js"></script>
 	<script src="/app/assets/filters/filters.js"></script>
 	<script src="/app/assets/components/navigation/navigation.js"></script>
@@ -262,7 +324,6 @@
 	<script src="/app/assets/components/imagePreview/imagePreview.js"></script>
 	<script src="/app/assets/components/resizedThumbnailImage/resizedThumbnailImage.js"></script>
 	<script src="/app/assets/components/exifRotated/exifRotated.js"></script>
-	<script src="/app/assets/components/fancybox/fancybox.js"></script>
 	<script src="/app/assets/components/refocusInputOnTab/refocusInputOnTab.js"></script>
 	<script src="/app/assets/components/autosizeTextarea/autosizeTextarea.js"></script>
 	<script src="/app/assets/components/maxLenCounter/maxLenCounter.js"></script>

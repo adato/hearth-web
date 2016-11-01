@@ -25,7 +25,7 @@
 					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
 					{{:: 'TOP_BAR_MESSAGES' | translate }}
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
@@ -184,7 +184,8 @@
 
 			<section class="bar-columns logo-column">
 				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
-					<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
+					<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150" height="28">
+				</a>
 			</section>
 
 			<section class="bar-columns searchbox-column">

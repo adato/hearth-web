@@ -82,11 +82,9 @@
 					<a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
 				</p>
 			</div>
-			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+			<ul lemmon-slider ng-if="item.attachments_attributes.length">
 				<li ng-repeat="photo in item.attachments_attributes track by $index">
-					<a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}">
-						<img ng-src="{{photo.normal}}">
-					</a>
+					<img ng-src="{{photo.normal}}">
 				</li>
 			</ul>
 			<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
