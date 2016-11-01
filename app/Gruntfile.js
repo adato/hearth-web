@@ -628,13 +628,13 @@ module.exports = function(grunt) {
 					cwd: '<%= yeoman.app %>/libs',
 					dest: '<%= yeoman.dist %>/libs',
 					src: ['**/*']
-				}, 
+				},
 //				{
 //					expand: true,
 //					cwd: '<%= yeoman.app %>/scripts',
 //					dest: '.tmp/scripts',
 //					src: ['**']
-//				}, 
+//				},
 				{
 					expand: true,
 					cwd: '<%= yeoman.tmp %>',

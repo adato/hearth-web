@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth.directives').service('ImageLib', ['$http', function($http) {
+angular.module('hearth.directives').service('ImageLib', ['$http', '$window', function($http, $window) {
 
 	this.getProportionalSize = function(img, maxWidth, maxHeight) {
 		var ratio = 1;
@@ -64,12 +64,12 @@ angular.module('hearth.directives').service('ImageLib', ['$http', function($http
 		});
 	};
 
-	this.upload = function(file, uploadUrl, done, doneErr) {
-		$http.post(uploadUrl, {
-				file_data: file
-			})
-			.success(done)
-			.error(doneErr);
+	this.upload = function(file, uploadResource, done, doneErr) {
+		//file is base64, so we change it back to a file
+		var the_file = new Blob([$window.atob(file)],  {type: 'image/jpeg', encoding: 'utf-8'});
+		console.log(the_file);
+
+		uploadResource(the_file, done, doneErr);
 	};
 }]);
 
