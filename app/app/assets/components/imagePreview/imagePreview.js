@@ -64,12 +64,10 @@ angular.module('hearth.directives').service('ImageLib', ['$http', '$window', fun
 		});
 	};
 
-	this.upload = function(file, uploadResource, done, doneErr) {
-		//file is base64, so we change it back to a file
-		var the_file = new Blob([$window.atob(file)],  {type: 'image/jpeg', encoding: 'utf-8'});
-		console.log(the_file);
-
-		uploadResource(the_file, done, doneErr);
+	this.upload = function(fileBase64, uploadResource, fileItself, done, doneErr) {
+		uploadResource(fileItself).$promise.then(function(res) {
+			done(res);
+		}, doneErr);
 	};
 }]);
 
