@@ -126,9 +126,11 @@ angular.module('hearth.services').factory('Post', [
 			uploadAttachment: {
 				url: $$config.apiPath + '/posts/:postId/attachments',
 				method: 'POST',
+				headers: {
+					'Content-Type': undefined
+				},
 				errorNotify: false,
 				transformRequest: function(data) {
-					console.log('data', data);
 					var fd = new FormData();
 					if (data.file) fd.append('attachments_attributes[][multipart]', data.file);
 					return fd;
