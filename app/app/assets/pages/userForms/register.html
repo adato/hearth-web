@@ -30,8 +30,7 @@
 			</div>
 			<div class="text-in-input">
 				<label for="email">{{'EMAIL_PLACEHOLDER' | translate}}</label>
-				<input id="email" type="email" email-validator ng-model-options="{ updateOn: 'blur' }" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" mailgun-validator
-								ng-model-options="{ debounce: 700 }">
+				<input id="email" type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur', debounce: 700 }">
 				<span ng-show="profileEditForm.$pending.mailgun || registerForm.$pending.used" class="fa fa-spin fa-spinner"></span>
 			</div>
 			<div class="moveUp error" ng-show="showError.email">
