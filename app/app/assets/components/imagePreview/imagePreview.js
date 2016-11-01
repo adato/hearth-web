@@ -64,15 +64,8 @@ angular.module('hearth.directives').service('ImageLib', ['$http', '$window', fun
 		});
 	};
 
-	this.upload = function(file, uploadResource, done, doneErr) {
-		//file is base64, so we change it back to a file
-		var the_file = new Blob([$window.atob(file)], {
-			type: 'image/jpeg',
-			encoding: 'utf-8'
-		});
-		console.log(the_file);
-
-		uploadResource(the_file, done, doneErr);
+	this.upload = function(fileBase64, uploadResource, fileItself, done, doneErr) {
+		uploadResource(fileItself, done, doneErr);
 	};
 }]);
 
@@ -181,7 +174,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 					}
 				}
 
-				function handleImageLoad(img, imgFile, limitSize) {
+				function handleImageLoad(img, imgFile, limitSize, fileItself) {
 					var resized;
 
 					if (img.width < scope.limitPixelSize || img.height < scope.limitPixelSize)
@@ -218,12 +211,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
-						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
+						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, fileItself, function(res) {
 							scope.uploading = false;
 							pushResult(res, {
 								total: 0
 							});
-							$('input', el).val("");
+							$('input', el).val('');
 						}, function(err) {
 							scope.uploading = false;
 							scope.error.uploadError = true;
@@ -251,7 +244,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 								var image = new Image();
 								image.src = imgFile;
 								return image.onload = function() {
-									handleImageLoad(this, e, limitSize);
+									handleImageLoad(this, e, limitSize, file);
 									scope.$apply();
 								};
 							}
