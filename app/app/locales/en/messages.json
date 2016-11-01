@@ -1711,6 +1711,10 @@
 	"RATING_POST_TITLE": "Common ads",
 	"RATING_ACTIVE_POST_TITLE": "Other active ads",
 	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language",
-	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"LEND": "I lend",
+	"BORROW": "I borrow",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Did you mean ",
+	"LIGHTBOX_PREVIMAGE": "Previous",
+	"LIGHTBOX_NEXTIMAGE": "Next",
+	"LIGHTBOX_OPENINTAB": "Open image in new tab"
 }
