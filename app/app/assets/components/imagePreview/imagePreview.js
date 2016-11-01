@@ -178,7 +178,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 					}
 				}
 
-				function handleImageLoad(img, imgFile, limitSize) {
+				function handleImageLoad(img, imgFile, limitSize, fileItself) {
 					var resized;
 
 					if (img.width < scope.limitPixelSize || img.height < scope.limitPixelSize)
@@ -215,12 +215,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
-						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
+						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, fileItself, function(res) {
 							scope.uploading = false;
 							pushResult(res, {
 								total: 0
 							});
-							$('input', el).val("");
+							$('input', el).val('');
 						}, function(err) {
 							scope.uploading = false;
 							scope.error.uploadError = true;
@@ -248,7 +248,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 								var image = new Image();
 								image.src = imgFile;
 								return image.onload = function() {
-									handleImageLoad(this, e, limitSize);
+									handleImageLoad(this, e, limitSize, file);
 									scope.$apply();
 								};
 							}
