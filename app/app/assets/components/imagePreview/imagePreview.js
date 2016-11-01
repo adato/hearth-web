@@ -65,7 +65,9 @@ angular.module('hearth.directives').service('ImageLib', ['$http', '$window', fun
 	};
 
 	this.upload = function(fileBase64, uploadResource, fileItself, done, doneErr) {
-		uploadResource(fileItself, done, doneErr);
+		uploadResource(fileItself).$promise.then(function(res) {
+			done(res);
+		}, doneErr);
 	};
 }]);
 
