@@ -132,7 +132,7 @@ angular.module('hearth.services').factory('Post', [
 				errorNotify: false,
 				transformRequest: function(data) {
 					var fd = new FormData();
-					if (data.file) fd.append('attachments_attributes[][multipart]', data.file);
+					if (data.file) fd.append('file', data.file);
 					return fd;
 				}
 			}
