@@ -7,15 +7,52 @@
  */
 
 angular.module('hearth.services').service('Messenger', [
-	'$rootScope',
-	function($rootScope) {
+	'$q', 'Conversations', '$rootScope', '$timeout',
+	function($q, Conversations, $rootScope, $timeout) {
 		$rootScope.messagesCounters = {};
+		var self = this;
+		var timer = null;
+		var _loadingEnabled = true;
+		var _loadingCounters = false;
+		this.counters = null;
 
-		this.updateCounters = function(event, args) {
-			$rootScope.messagesCounters = args;
+		// load counters and send it to callback
+		this.loadCounters = function(done) {
+			if (!_loadingEnabled || _loadingCounters) return false;
+			_loadingCounters = true;
+
+			Conversations.getCounters({}, function(res) {
+				if (!_loadingEnabled) {
+					return false;
+				}
+
+				_loadingCounters = false;
+				self.counters = res;
+				$rootScope.messagesCounters = res;
+				done && done(res);
+			}, function() {
+				_loadingCounters = false;
+			});
 		};
 
-		// update counters after WS event is recieved
-		$rootScope.$on('WSMessageCounter', this.updateCounters);
+		this.disableLoading = function() {
+			_loadingEnabled = false;
+		};
+
+		this.enableLoading = function() {
+			_loadingEnabled = true;
+		};
+
+		this.setUnreadCount = function(count) {
+			$rootScope.messagesCounters.unread = count;
+		}
+
+		this.decreaseUnread = function() {
+			$rootScope.messagesCounters.unread--;
+		};
+
+		this.increaseUnread = function() {
+			$rootScope.messagesCounters.unread++;
+		};
 	}
 ]);

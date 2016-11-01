@@ -69,6 +69,19 @@
 					</div>
 				</div>
 			</div>
+			<div ng-show="configOptionsShow.postLanguage" class="medium-display-table-row language-container">
+				<h5 class="medium-display-table-cell nowrap-addon padding-bottom-small">{{:: 'FULLTEXT.FILTER.BY_LANGUAGE' | translate }}</h5>
+				<div class="radio-container medium-display-table-cell">
+					<radio type="radio" model="filter.post_language" value="null">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
+					<radio type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
+					<radio type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
+					<div class="autocomplete-container" ng-show="filter.post_language == 'other'">
+						<tags-input ng-model="filter.post_language_other" display-property="name" key-property="code" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+							<auto-complete source="queryLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
+						</tags-input>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<section class="footer display-flex">
