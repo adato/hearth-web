@@ -15,7 +15,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.limitPixelSize = 200; // Pixels
 		$scope.maxImageSizeLimit = 5; // MB
-		$scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
+		// $scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
+		$scope.uploadResource = function(file) {
+			return Post.uploadAttachment({
+				postId: $scope.post._id
+			}, {
+				file: file
+			});
+		};
 		$scope.imagesCount = 0;
 		$scope.authorList;
 		$scope.imageSizesSum = 0;

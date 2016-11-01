@@ -56,7 +56,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					var inner = $('.nano-content', outer);
 					var pos = Math.ceil(inner.scrollTop() + inner.height());
 
-					if (pos >= inner.prop('scrollHeight')) {
+					if (pos <= inner.prop('scrollHeight')) {
 						scrollBottom();
 					}
 				}
@@ -70,7 +70,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 							$('.nano-content', element).scrollTop($('.nano-content', element)[0].scrollHeight * 1000);
 							resizeTMessagesBox();
 						}
-					}, 100);
+					}, 50);
 				}
 
 				$rootScope.$on('messageAddedToConversation', function(event, conversation) {
@@ -290,7 +290,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 							// binding here so that even 'ng-if'-ed things are done
 							$('.nano-content', element).scroll(onContentScrolling);
 							testScrollBottom();
-						}, 100);
+						}, 50);
 					}, console.info);
 				}
 
