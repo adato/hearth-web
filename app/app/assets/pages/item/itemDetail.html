@@ -1,17 +1,21 @@
 <article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
-		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && (item.state === "suspended" && !item.title)) || (!itemDeleted && item === false) || (itemDeleted)'>
-			<p class="margin-none" ng-show="item && !item.title && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
+		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted) || (item && !isMine && item.state === "expired")'>
+			<p class="margin-none" ng-show="item && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
+			<p class="margin-none" ng-show="!isMine && item.state === 'expired'">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</p>
 		</section>
-		<section ng-if="! itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
+		<section ng-if="!itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
 			<div class='row'>
 				<div ng-if="!isActive" class="column small-12 large-8">
-					<div class='item-status-bar' ng-if="item.state == 'expired'">
+					<div class='item-status-bar' ng-if="item.state === 'expired'">
 						<span ng-if="item.valid_until">{{:: 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
 						<span ng-if="!item.valid_until">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</span>
+					</div>
+					<div class='item-status-bar' ng-if="item.state === 'suspended'">
+						<span ng-if="item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
 					</div>
 					<div class="item-status-bar" ng-if="(!userHasRight('post.suspend')) && item.state == 'suspended'">
 						<span>{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
