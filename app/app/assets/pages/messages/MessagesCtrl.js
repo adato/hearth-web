@@ -65,7 +65,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					$state.go('messages');
 				} else {
 					$state.go('messages.detail', {
-						id: ($scope.conversations.length ? $scope.conversations[0]._id : void 0)
+						id: ConversationAux.getFirstConversationIdIfAny()
 					});
 				}
 			}
