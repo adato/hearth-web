@@ -108,16 +108,19 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		function processRelevantPosts(id, val) {
 			var configCommunityPossible = {
 				communityId: $stateParams.id,
-				current_community_id: val
+				current_community_id: val,
+				not_related: true
 			}
 			var configUser = {
 				userId: $rootScope.loggedUser._id
 			}
 			var configCommunity = {
-				communityId: val
+				communityId: val,
+				not_related: true
 			}
 			var configCurrentCommunity = {
-				communityId: $stateParams.id
+				communityId: $stateParams.id,
+				not_related: true
 			}
 
 			$scope.loadingRatingPosts = true;

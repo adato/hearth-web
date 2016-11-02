@@ -54,8 +54,7 @@ angular.module('hearth.services').factory('CommunityRatings', [
 				method: 'GET',
 				params: {
 					communityId: '@communityId',
-					state: 'active',
-					not_related: 'true'
+					state: 'active'
 				}
 			}
 		});
