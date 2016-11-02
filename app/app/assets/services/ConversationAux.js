@@ -124,6 +124,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	function handleNewConversationOrMessage(socketEvent) {
+		debugger;
 		if (socketEvent.conversation && socketEvent.conversation.message) {
 			if (socketEvent.conversation.message.first_message) {
 				// check if not a duplicate conversation, i. e. new conversation created by myself
