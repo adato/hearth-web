@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'Lightbox',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, Lightbox) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -865,7 +865,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if ($rootScope.searchBarDisplayed) {
 				$('#searchContainer').slideDown('slow', function() {
-					$('#searchContainer').show();
 					angular.element('#search').focus();
 				});
 
@@ -877,9 +876,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				});
 			} else {
 				angular.element('#search').blur();
-				$('#searchContainer').slideUp('slow', function() {
-					$('#searchContainer').hide();
-				});
+				$('#searchContainer').slideUp('slow');
 
 				$(document).off('click.search');
 			}

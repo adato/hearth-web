@@ -119,9 +119,9 @@
 
 .off-canvas-fixed {
 	transition: transform 500ms ease;
-	z-index: 999;
-	left: 0;
-	right: 0;
+	z-index:29999;
+	left:0;
+	right:0;
 }
 
 .move-right > .off-canvas-fixed {
@@ -138,11 +138,9 @@
 .off-canvas-wrap,
 .off-canvas-wrap > .inner-wrap {
 	min-height: 100vh;
-	overflow-y: hidden;
+	overflow-y:hidden;
 }
-.fixed {
-	position:fixed;
-}
+.fixed { position:fixed; }
 
 
 @media (min-width: 50.063em){

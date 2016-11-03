@@ -12,11 +12,11 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 			scope: false,
 			transclude: true,
 			replace: true,
-			template: '<div class="lemmon-slider"><div class="slider-container"><ul ng-transclude></ul></div><div class="controll"><a class="prev-page" ng-click="prev()"><i class="fa fa-chevron-left"></i></a><a class="next-page" ng-click="next()"><i class="fa fa-chevron-right"></i></a></div></div>',
+			template: '<div class="lemmon-slider"><div class="container"><ul ng-transclude></ul></div><div class="controll"><a class="prev-page" ng-click="prev()"><i class="fa fa-chevron-left"></i></a><a class="next-page" ng-click="next()"><i class="fa fa-chevron-right"></i></a></div></div>',
 			link: function(scope, element, attrs) {
 				var slider = null;
 				var timeout = $timeout(function() {
-					slider = $(".slider-container", element);
+					slider = $(".container", element);
 
 					// if there are more images then we can show, init slider
 					if (scope.isOverflow()) {

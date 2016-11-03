@@ -2,23 +2,21 @@
 	<!-- navigation -->
 	<div class="lightbox-nav">
 		<!-- close button -->
-		<button class="close" aria-hidden="true" ng-click="$dismiss()">
-			<i class="fa fa-times"></i>
-		</button>
+		<button class="close" aria-hidden="true" ng-click="$dismiss()">×</button>
 
-		<div class="btn-group" ng-if="Lightbox.images.length > 1">
+		<!--div class="btn-group" ng-if="Lightbox.images.length > 1">
 			<a class="btn btn-xs btn-default" ng-click="Lightbox.prevImage()">
-				‹ {{:: 'LIGHTBOX_PREVIMAGE' | translate }}
+				‹ Previous
 			</a>
 
 			<a ng-href="{{Lightbox.imageUrl}}" target="_blank" class="btn btn-xs btn-default" title="Open in new tab">
-				{{:: 'LIGHTBOX_OPENINTAB' | translate }}
+				Open image in new tab
 			</a>
 
 			<a class="btn btn-xs btn-default" ng-click="Lightbox.nextImage()">
-				{{:: 'LIGHTBOX_NEXTIMAGE' | translate }} ›
+				Next ›
 			</a>
-		</div>
+		</div-->
 	</div>
 
 	<div class="lightbox-image-container">

@@ -210,7 +210,7 @@
 					text-align: left;
 					.avatar {
 						margin-right: 1.25rem;
-						//margin-top: -2 * $ui-small-grid-size;
+						//margin-top: -2 * $ui-small-grid-size; 
 					}
 				}
 /*				.content {
@@ -291,17 +291,14 @@
 
 .lemmon-slider {
 	position: relative;
-	
-	.slider-container {
+	.container {
 		overflow: hidden;
 		width: 100%;
 		height: 120px;
-
 		ul {
 			height: 120px;
 			margin: 0;
 			padding: 0;
-
 			li {
 				float: left;
 				margin: 0 5px 0 0;
