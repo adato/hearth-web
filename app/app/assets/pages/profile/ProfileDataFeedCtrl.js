@@ -113,7 +113,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				userId: $rootScope.loggedUser._id
 			}
 			var configCommunity = {
-				communityId: val
+				communityId: val,
+				not_related: true
 			}
 
 			$scope.loadingRatingPosts = true;
