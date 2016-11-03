@@ -3,7 +3,7 @@
 angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber', 'bootstrapLightbox'
+		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
@@ -40,13 +40,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			});
 		}
 	]).config([
-		'$httpProvider', '$translateProvider', '$authProvider', '$windowProvider', 'LightboxProvider',
-		function($httpProvider, $translateProvider, $authProvider, $windowProvider, LightboxProvider) {
-
-			LightboxProvider.templateUrl = 'assets/components/lightbox/lightbox.html';
-			LightboxProvider.getImageUrl = function(image) {
-				return image.large;
-			};
+		'$httpProvider', '$translateProvider', '$authProvider', '$windowProvider',
+		function($httpProvider, $translateProvider, $authProvider, $windowProvider) {
 
 			var $window = $windowProvider.$get();
 
