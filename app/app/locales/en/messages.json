@@ -1712,6 +1712,10 @@
 	"RATING_ACTIVE_POST_TITLE": "Other active ads",
 	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language",
 	"LEND": "Půjčím",
+<<<<<<< HEAD
 	"BORROW": "Půjčím si",
 	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Did you mean "
+=======
+	"BORROW": "Půjčím si"
+>>>>>>> parent of a8afdfb... HEARTH-984 translations for lightbox template
 }
