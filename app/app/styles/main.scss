@@ -164,10 +164,6 @@ body {
 	}
 	font-family: $body-font-family;
 	-webkit-text-size-adjust: 100%; // for mobile
-
-	a:hover {
-		text-decoration: none; 
-	}
 }
 .no-scroll{
 	overflow-y: hidden;
