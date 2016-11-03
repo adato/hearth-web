@@ -3,22 +3,17 @@
 angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber'
+		'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
 			$locationProvider.html5Mode(true);
 		}
 	]).config([
-		'cfpLoadingBarProvider', '$compileProvider', '$httpProvider',
-		function(cfpLoadingBarProvider, $compileProvider, $httpProvider) {
-
+		'$compileProvider', '$httpProvider',
+		function($compileProvider, $httpProvider) {
 			$compileProvider.debugInfoEnabled($$config.disableDebugInfo);
 			$httpProvider.useApplyAsync(true);
-
-			// Loading Bar Configuration
-			cfpLoadingBarProvider.includeSpinner = false;
-			return cfpLoadingBarProvider.includeSpinner;
 		}
 	]).config([
 		'tmhDynamicLocaleProvider', '$translateProvider',

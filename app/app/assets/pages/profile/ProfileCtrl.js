@@ -40,6 +40,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		 * Expects info.locations = [{city: ...}, ...]
 		 */
 		$scope.citiesToString = function(info) {
+			info = info || {};
+			info.locations = info.locations || [];
 			var list = [];
 			info.locations.forEach(function(item) {
 				if (item.city) list.push(item.city);
@@ -75,13 +77,14 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				_id: $stateParams.id
 			}, function(res) {
 				res = ProfileUtils.single.copyMottoIfNecessary(res);
-				res.post_total = res.post_count.needs + res.post_count.offers;
+				res.post_total = (res.post_count ? res.post_count.needs + res.post_count.offers : 0);
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
 				$scope.mine = $rootScope.isMine($stateParams.id);
 				$scope.profileLoaded = true;
 
 				PageTitle.setTranslate('TITLE.user-profile-page', res.name);
+				res.avatar = res.avatar || {};
 				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);
 				// broadcast event for load subpages
 				if (fetchSubpage)
