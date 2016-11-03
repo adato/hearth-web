@@ -1,9 +1,9 @@
-describe('logged user profile', function() {
+describe('logged user profile', function() {  
 
-
+  
   it('should login and dismiss modal', function () {
   	protractor.helpers.login();
-  	element(by.css('.hearth-modal span.close')).click();
+  	element(by.css('.modal span.close')).click();
   	browser.driver.sleep(1000);
   });
 
@@ -31,7 +31,7 @@ describe('logged user profile', function() {
   it('should go to profile settings after select in menu', function () {
   	protractor.helpers.hoverTopUserMenu();
   	element(by.css('.dropdown.user-dropdown li:nth-child(3) a')).click(); // click 3rd menu item
-	expect(browser.getCurrentUrl()).toContain('app/profile-settings');
+	expect(browser.getCurrentUrl()).toContain('app/profile-settings'); 
   });
 
   it('should logout at the end of a session', function () {
