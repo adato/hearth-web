@@ -4,7 +4,8 @@
 	<div class="fill-email-notify-container"></div>
 	<form ng-submit="fillEmail()" name="fillEmailForm" novalidate class="register-login-form">
 		<span ng-bind-html="'FILL_EMAIL_FOR_TWITTER_LOGIN' | translate"></span>
-		<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ debounce: 300 }">
+		<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-validator
+						mailgun-validator ng-model-options="{ debounce: 300 }">
 
 		<span ng-show="fillEmailForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
 		<div class="moveUp error" ng-show="showError.email">

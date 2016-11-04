@@ -51,7 +51,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 		$scope.fillEmail = function() {
 			if ($scope.sending)
 				return false;
-		
+
 			// is email valid?
 			$scope.validateEmail($scope.data, function() {
 				// valid email, ready to go on ... 
@@ -74,7 +74,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 						$scope.showError.email = true;
 					}
 				});
-			}, function (res) {
+			}, function(res) {
 				// invalid email, discard
 				$scope.sending = false;
 			});
