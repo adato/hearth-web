@@ -143,7 +143,10 @@ angular.module('hearth.services').factory('Auth', [
 				}, success, error);
 			},
 			processLoginResponse: function(data) {
-				if (data.email_token) return $location.path($$config.appUrl + 'fill-email/' + data.email_token);
+				if (data.email_token) {
+					$window.location.href = $$config.basePath + 'fill-email/' + data.email_token;
+					return;
+				}
 
 				// when user logged, use his language configured on API
 				if (data.language) LanguageSwitch.setCookie(data.language);
