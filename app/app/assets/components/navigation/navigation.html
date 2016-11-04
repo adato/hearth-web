@@ -1,16 +1,16 @@
 <section id="navigation">
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
-			<li ng-if="loggedUser._id" class="tab-bar log-info">
+			<li ng-if=":: loggedUser._id" class="tab-bar log-info">
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
 					<div class="display-inline-block ellipsed-username" ng-bind="loggedUser.name"></div>
 				</a>
 			</li>
-			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
+			<li ng-if=":: !(loggedUser._id)" class="tab-bar log-info">
 				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class="display-inline-block" ng-bind-html="'LOG_IN' | translate"></div>
+					<div class="display-inline-block" ng-bind-html=":: 'LOG_IN' | translate"></div>
 				</a>
 			</li>
 			<li>
@@ -21,20 +21,20 @@
 					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
+				<a ng-if=":: loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
 					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
+				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
 					{{:: 'TOP_BAR_MESSAGES' | translate }}
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
-			<li ng-show="!loggedUser.name">
+			<li ng-show=":: !loggedUser.name">
 				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">{{:: 'LOG_IN' | translate}}</a>
 			</li>
-			<li ng-show="!loggedUser.name">
+			<li ng-show=":: !loggedUser.name">
 				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">{{:: 'SIGNUP' | translate }}</a>
 			</li>
 		</ul>
@@ -199,7 +199,7 @@
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
 				</a>
 
-				<a ng-if="loggedUser._id" ui-sref="communities.suggested" class='header-item' ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
+				<a ng-if=":: loggedUser._id" ui-sref="communities.suggested" class='header-item' ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 					<div class="fa icon-community"></div>
 					<label>{{:: 'COMMUNITIES' | translate }}</label>
 				</a>
@@ -233,7 +233,7 @@
 				</div>
 
 				<span class="top-bar-messages">
-					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class='header-item' ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
+					<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class='header-item' ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
 						<span class="messages-icon">
 							<span ng-if="messagesCounters.unread">
 								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
@@ -244,7 +244,7 @@
 				</span>
 
 				<div class="dropdown-container">
-					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="header-item logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
+					<a ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="header-item logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
 						<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 						<label>{{ loggedUser.name | ellipsis:12 }}</label>
 					</a>
@@ -336,7 +336,7 @@
 						</li>
 					</ul>
 				</div>
-				<a ng-if="!loggedUser._id" class='header-item' ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
+				<a ng-if=":: !loggedUser._id" class='header-item' ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
 					<i class="fa fa-sign-in"></i>
 					<label>{{'TOP_BAR_SIGN_IN' | translate }}</label>
 				</a>
