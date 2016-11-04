@@ -48,7 +48,7 @@ describe('hearth registration', function () {
 		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, true, false]);
 
 		passwordInput.sendKeys('testerovoHeslo');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
 	});
 
 
