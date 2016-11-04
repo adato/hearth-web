@@ -865,6 +865,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if ($rootScope.searchBarDisplayed) {
 				$('#searchContainer').slideDown('slow', function() {
+					$('#searchContainer').show();
 					angular.element('#search').focus();
 				});
 
@@ -876,7 +877,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				});
 			} else {
 				angular.element('#search').blur();
-				$('#searchContainer').slideUp('slow');
+				$('#searchContainer').slideUp('slow', function() {
+					$('#searchContainer').hide();
+				});
 
 				$(document).off('click.search');
 			}
