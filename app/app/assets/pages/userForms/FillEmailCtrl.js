@@ -17,60 +17,44 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 		$scope.showError = {
 			email: false
 		};
-
+		$scope.sending = false;
 		$scope.errors = new ResponseErrors();
 
-		$scope.testEmailExists = function(email, form, inputName, cb) {
-
-			$scope[form][inputName].$error.used = false;
+		$scope.testEmailExists = function(email, form, inputName, cbValid, cbInvalid) {
 			// dont check when email is blank
 			if (!email) return false;
 
 			// Check if email is in our DB
+			$scope.sending = true;
 			Email.exists({
 				email: email
 			}, function(res) {
-				if (res.ok) {
-					// show error when email does not exist
-					$scope.showError.email = true;
-					$scope[form][inputName].$error.used = true;
-				}
-				// call callbeck
-				cb && cb(res.ok);
+				$scope[form][inputName].$error.used = true;
+				return cbInvalid && cbInvalid('email does exist');
 			}, function(res) {
-				if (res.ok) {
-					$scope.showError.email = true;
-					$scope[form][inputName].$error.used = true;
-					return cb && cb(true);
-				}
-
-				cb && cb(false);
+				$scope[form][inputName].$error.used = false;
+				return cbValid && cbValid();
 			});
 		};
 
-		$scope.validateEmail = function(form, cb) {
-			$scope.showError.email = true;
-			$scope.fillEmailForm.email.$error.used = false;
+		$scope.validateEmail = function(form, cbValid, cbInvalid) {
 
-			// if form is not valid, return false
-			if ($scope.fillEmailForm.email.$error.email) {
-				cb && cb(true);
+			// if email is invalid 
+			if ($scope.fillEmailForm.email.length) {
+				cbInvalid && cbInvalid('email invalid');
 			} else {
 				// else test if email exists
-				$scope.testEmailExists(form.email, 'fillEmailForm', 'email', cb);
+				$scope.testEmailExists(form.email, 'fillEmailForm', 'email', cbValid, cbInvalid);
 			}
 		};
 
 		$scope.fillEmail = function() {
 			if ($scope.sending)
 				return false;
-			$scope.sending = true;
-
+		
 			// is email valid?
-			$scope.validateEmail($scope.data, function(res) {
-				if (res) {
-					return $scope.sending = false;
-				}
+			$scope.validateEmail($scope.data, function() {
+				// valid email, ready to go on ... 
 
 				return Auth.completeEmailForRegistration($scope.data, function() { // success
 					$scope.sending = false;
@@ -90,6 +74,9 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 						$scope.showError.email = true;
 					}
 				});
+			}, function (res) {
+				// invalid email, discard
+				$scope.sending = false;
 			});
 		};
 

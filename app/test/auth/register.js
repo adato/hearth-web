@@ -35,20 +35,34 @@ describe('hearth registration', function () {
 		var passwordInput = element(by.model('user.password'));
 
 		// none of validation errors displayed
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
 
 		registerButton.click();
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, false, true, false]);
 
 		firstNameInput.sendKeys('Testerovo');
 		lastNameInput.sendKeys('Jmeno');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, false, true, false]);
 
 		emailInput.sendKeys('testovaci@hearth.net');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, true, false]);
 
 		passwordInput.sendKeys('testerovoHeslo');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
+	});
+
+
+	it('should validate with mailgun ', function () {
+		var emailInput = element(by.model('user.email'));
+		var expectedEmailInputValidatorMessage = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]'));
+		var expectedEmailInputValidatorMessageEmail = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]>a'));
+
+		emailInput.sendKeys('testovaci@gmaily.xom');
+		emailInput.sendKeys(protractor.Key.TAB);
+		browser.sleep(500);
+		expect(expectedEmailInputValidatorMessage.isDisplayed()).toBeTruthy();
+		expect(expectedEmailInputValidatorMessageEmail.getText()).toBe('testovaci@gmail.com');
+
 	});
 
 
@@ -72,8 +86,20 @@ describe('hearth registration', function () {
 			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
+
+			// mailgun should trigger error
+			emailInput.clear();
+			emailInput.sendKeys('tester@gmail.co', protractor.Key.TAB);
+			browser.sleep(1500);
+			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.mailgun"]')).isDisplayed()).toBeTruthy();
+			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
+
 			emailInput.clear();
 			emailInput.sendKeys('tester@test.com', protractor.Key.TAB);
+			browser.sleep(1500);
 			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
@@ -137,7 +163,7 @@ describe('hearth registration', function () {
 		passwordInput.sendKeys(protractor.helpers.options.testPassword);
 
 		// none of validation errors displayed
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
 		// send registration
 		registerButton.click();
 
