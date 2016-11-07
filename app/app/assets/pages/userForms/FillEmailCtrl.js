@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.FillEmailCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('FillEmailCtrl', [

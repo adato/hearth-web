@@ -169,13 +169,13 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						break;
 					}
 				}
-				return isSystemMessageConcerningMyOwnAction ? true : conversationList.unshift(conv);
+				if (isSystemMessageConcerningMyOwnAction) return true;
+				if (conv) return conversationList.unshift(conv);
 			}
 		}
 	}
 
 	function handleConversationReadStatus(socketEvent, readStatus) {
-		return false;
 		if (socketEvent.conversation) {
 			for (var i = 0, l = conversationList.length; i < l; i++) {
 				if (conversationList[i]._id === socketEvent.conversation._id) return conversationList[i].read = readStatus;
@@ -193,13 +193,16 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	// }
 
 	function handleConversationArchived(socketEvent) {
-		if (conversationFilter.current === FILTER_ARCHIVE) {
-			return addConversationToList({
-				conversation: socketEvent.conversation,
-				index: 0
-			});
+		if (socketEvent.conversation) {
+			if (conversationFilter.current === FILTER_ARCHIVE) {
+				return addConversationToList({
+					conversation: socketEvent.conversation,
+					index: 0
+				});
+			}
+			return removeConversationFromList(socketEvent.conversation._id);
 		}
-		return removeConversationFromList(socketEvent.conversation._id);
+		return false;
 	}
 
 	function handleConversationDeleted(socketEvent) {
@@ -439,9 +442,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 		paramObject = paramObject || {};
 		return $q(function(resolve, reject) {
 
-			// if (conversationListLoading) return resolve({
-			// 	conversations: conversationList
-			// });
 			if (conversationListLoading) return conversationGetBuffer.push([resolve, reject]);
 
 			conversationListLoading = true;
@@ -555,7 +555,12 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 
 	function getFirstConversationIdIfAny() {
 		checkConversationListValidity(conversationList);
-		return (conversationList && conversationList.length && conversationList[0] && conversationList[0]._id ? conversationList[0]._id : '');
+		if (conversationList && conversationList.length) {
+			for (var i = 0, l = conversationList.length; i < l; i++) {
+				if (conversationList[i] && conversationList[i]._id) return conversationList[i]._id;
+			}
+		}
+		return '';
 	}
 
 	function checkConversationListValidity(list) {
