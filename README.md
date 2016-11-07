@@ -49,8 +49,8 @@ Landing page favicon
 ```
 
 
-Testing
--------
+Testing with Protractor
+-----------------------
 For end2end testing we use Protractor tool which is build on top of selenium. 
 
 ### Setup
@@ -80,6 +80,24 @@ Or pick only one test suite from suite list in web/app/protractor.js file, eg.:
 ```
 npm test -- --suite=unauth
 ```
+
+Testing with Karma
+------------------
+### Run tests
+Run the tests from the web/app directory.
+```
+karma start
+```
+It will search for the karma.spec.js in the current directory.
+If you want to specify the config file, run
+```
+karma start xxx.spec.js
+```
+
+### Structure and important files location
+* /app/karma.conf.js - configuration file
+* /app/test/spec/setup.js - additional setup for the test environment
+* /app/test/spec - root directory for tests
 
 Contact
 -------
