@@ -90,7 +90,7 @@ describe('hearth registration', function () {
 			// mailgun should trigger error
 			emailInput.clear();
 			emailInput.sendKeys('tester@gmail.co', protractor.Key.TAB);
-			browser.sleep(1500);
+			browser.sleep(3000); // wait for delayed bind and mailgun reply
 			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
