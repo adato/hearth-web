@@ -27,4 +27,47 @@
 	div .jumbo{
 		flex: 1 1 auto;
 	}
+
+	.ie-3-balls {
+		position: relative;
+		width: 100%;
+		margin: 20px 0;
+	}
+	.ie-3-balls > div {
+		color: #fff;
+		font-size: 60%;
+		text-align: center;
+		border-radius: 50%;
+	}
+}
+@media all and (min-width: 1px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.ie-3-balls > div {
+		width: 120px; height: 120px;
+		padding-top: 25px;
+	}
+	.ie-3-balls > div:nth-child(2) {
+		margin-right: -20px;
+		margin-left: -20px;
+	}
+}
+@media all and (min-width: 400px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.ie-3-balls > div {
+		width: 160px; height: 160px;
+		padding-top: 30px;
+		font-size: 90%;
+	}
+}
+@media all and (min-width: 768px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.ie-3-balls > div {
+		width: 210px; height: 210px;
+		padding-top: 30px;
+		font-size: 100%;
+	}
+}
+@media all and (min-width: 992px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.ie-3-balls > div {
+		width: 300px; height: 300px;
+		padding-top: 60px;
+		font-size: 120%;
+	}
 }
