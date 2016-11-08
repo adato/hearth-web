@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter',
-	function($rootScope, ItemServices, $filter, Filter) {
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale',
+	function($rootScope, ItemServices, $filter, Filter, $locale) {
 		function getPostScope(post, $scope) {
 			var author = post;
 			if (post._type == 'Post') author = post.author;
@@ -25,6 +25,13 @@ angular.module('hearth.services').service('PostScope', [
 			angular.extend(scope, ItemServices);
 
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
+			scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
+
+			var updateTimeAgo = function() {
+				scope.item.updated_at_timeago = $filter('ago')(scope.item.updated_at);
+				setTimeout(updateTimeAgo, 30000); // every few seconds refresh timeago dates
+			}
+			updateTimeAgo();
 
 			// post address for social links
 			scope.postAddress = $rootScope.appUrl + 'post/' + post._id;

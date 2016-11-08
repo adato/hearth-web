@@ -46,7 +46,7 @@
 				<div class="box-content">
 					<header class="item-section row">
 						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
-							<span class="color-dark-gray" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
+							<span class="color-dark-gray" title="{{:: item.updated_at_date }}">{{:: item.updated_at_timeago}}</span>
 							<div class="dropdown-wrapper">
 								<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!mine">
 									<div bubble-placeholder="bookmark-reminder"></div>
