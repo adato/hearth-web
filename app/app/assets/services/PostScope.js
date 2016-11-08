@@ -9,12 +9,14 @@
 angular.module('hearth.services').service('PostScope', [
 	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale',
 	function($rootScope, ItemServices, $filter, Filter, $locale) {
+
 		function getPostScope(post, $scope) {
 			var author = post;
 			if (post._type == 'Post') author = post.author;
 
 			// creates new isolated scope 
 			var scope = $scope.$new(true);
+
 			scope.keywords = $scope.keywordsActive;
 			scope.item = post;
 			scope.toggleTag = Filter.toggleTag;
@@ -27,11 +29,16 @@ angular.module('hearth.services').service('PostScope', [
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 			scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
 
+			var timeout = null;
 			var updateTimeAgo = function() {
 				scope.item.updated_at_timeago = $filter('ago')(scope.item.updated_at);
-				setTimeout(updateTimeAgo, 30000); // every few seconds refresh timeago dates
+				timeout = setTimeout(updateTimeAgo, 30000); // every few seconds refresh timeago dates
 			}
 			updateTimeAgo();
+
+			scope.$on('$destroy', function() {
+				clearTimeout(timeout);
+			});
 
 			// post address for social links
 			scope.postAddress = $rootScope.appUrl + 'post/' + post._id;
