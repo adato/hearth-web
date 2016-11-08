@@ -11,7 +11,9 @@
 			<span ng-show="fillEmailForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
 			<span ng-show="fillEmailForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
 			<span ng-show="fillEmailForm.email.$error.used">{{ 'ALREADY_USED_EMAIL' | translate }}</span>
+			<span ng-show="fillEmailForm.email.$error.mailgun">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 		</div>
+		<span mailgun-validator-did-you-mean target="data.email"></span>
 		<hr />
 		<div class="bottom">
 			<button class="primary button-send pointer center" type="submit">
