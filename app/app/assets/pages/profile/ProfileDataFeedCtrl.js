@@ -212,7 +212,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					$timeout(function() {
 						$('#post_' + post._id).show();
 					});
-				});
+				}, 100);
 			});
 		}
 
