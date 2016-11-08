@@ -52,7 +52,7 @@
 									<div bubble-placeholder="bookmark-reminder"></div>
 									<div bubble-placeholder="hide-post"></div>
 									<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'})" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none margin-left-medium round gray"
-													title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{item._id}}" test-beacon="marketplace-item-dropdown-toggle">
+													title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id}}" test-beacon="marketplace-item-dropdown-toggle">
 
 										<!-- variant = 0 nebo 1, name = pojmenovani testu -->
 										<ab-test variant="0" name="'sipka'">
@@ -84,20 +84,20 @@
 										<!-- /hide post -->
 									</li>
 									<li>
-										<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+										<a ng-if=":: ! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 									</li>
 
 									<!-- admin only -->
-									<li ng-if='userHasRight("post.suspend") && isActive'>
+									<li ng-if=':: userHasRight("post.suspend") && isActive'>
 										<hr />
 									</li>
-									<li ng-if='userHasRight("post.suspend") && isActive'>
+									<li ng-if=':: userHasRight("post.suspend") && isActive'>
 										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate))}}</a>
 									</li>
 									<!-- TODO: in future there will be another user privilegs then post.suspend -->
-									<li ng-if='userHasRight("post.suspend")'>
-										<a ng-if="!item.is_followed" class="elevated-authority-function" ng-click="followItem(item)">{{:: "POST.FOLLOW.LABEL" | translate}}</a>
-										<a ng-if="item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)">{{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
+									<li ng-if=':: userHasRight("post.suspend")'>
+										<a ng-if=":: !item.is_followed" class="elevated-authority-function" ng-click="followItem(item)">{{:: "POST.FOLLOW.LABEL" | translate}}</a>
+										<a ng-if=":: item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)">{{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
 									</li>
 									<!-- /admin only -->
 								</ul>
@@ -127,7 +127,7 @@
 							<div ng-if=":: !item.location_unlimited">
 								<span ng-repeat="(locationId, location) in :: item.locations track by $index">
 									<span ng-if=":: location.short_address">
-										<i class="fa fa-map-marker" ng-if=":: $first"></i>&nbsp;{{ location.short_address }}
+										<i class="fa fa-map-marker" ng-if=":: $first"></i>&nbsp;{{:: location.short_address }}
 										<span ng-if=":: !$last">;</span>
 									</span>
 								</span>
