@@ -67,9 +67,9 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 					// if item should be displayed in this setup
 					if (scope.selectedSetup.indexOf(itemName) > -1) {
 						// if itemName is attribute of entity, display it
-						if (typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null && scope.entity[itemName].length > 0) {
-							return true;
-						}
+					 	if (typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null && scope.entity[itemName].length > 0) {
+					 		return true;
+					 	}
 					}
 					return false;
 				}

@@ -1,0 +1,30 @@
+.ie-only {
+	display: none !important;
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.ie-hide {
+		display: none !important;
+	}
+	.ie-only {
+		display: inherit !important;
+	}
+
+	.flex .flex-1{flex: 1 1 auto}
+	.flex .flex-2{flex: 2 1 auto}
+	.flex .flex-3{flex: 3 1 auto}
+	.flex .flex-4{flex: 4 1 auto}
+	.flex .flex-5{flex: 5 1 auto}
+	.flex .flex-6{flex: 6 1 auto}
+	.flex .flex-7{flex: 7 1 auto}
+	.flex .flex-8{flex: 8 1 auto}
+	.flex .flex-9{flex: 9 1 auto}
+	.flex .flex-10{flex: 10 1 auto}
+	.flex .flex-11{flex: 11 1 auto}
+	.flex .flex-12{flex: 12 1 auto}
+
+	div #nav-tabs,
+	div .ball p,
+	div .jumbo{
+		flex: 1 1 auto;
+	}
+}

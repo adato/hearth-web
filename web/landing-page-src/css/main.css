@@ -849,9 +849,19 @@ a.masonry-item{
 	.min-500{ min-width: 500px; }
 }
 .max-500{ max-width: 500px; margin: 0 auto; }
+
+/* solves weird IE bug */
+#testimonials .lead {
+	max-width: 500px;
+}
+
 @media (min-width: 1200px){
 	.min-500{ min-width: 800px; }
 	.max-500{ max-width: 800px; }
+
+	/* solves weird IE bug */
+	#testimonials .lead { max-width: 800px; }
+
 	#testimonials .tab-pane{
 		text-align: center;
 	}
