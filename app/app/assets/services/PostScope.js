@@ -12,6 +12,8 @@ angular.module('hearth.services').service('PostScope', [
 		function getPostScope(post, $scope) {
 			var author = post;
 			if (post._type == 'Post') author = post.author;
+
+			// creates new isolated scope 
 			var scope = $scope.$new(true);
 			scope.keywords = $scope.keywordsActive;
 			scope.item = post;
