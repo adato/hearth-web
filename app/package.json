@@ -66,6 +66,7 @@
     "karma-jenkins-reporter": "0.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-safari-launcher": "^1.0.0",
+    "karma-spec-reporter": "0.0.26",
     "load-grunt-tasks": "0.2.0",
     "mail-listener2": "^0.1.8",
     "protractor": "4.0.10",
