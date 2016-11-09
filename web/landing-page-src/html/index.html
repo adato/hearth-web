@@ -18,10 +18,11 @@
 
 	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 	<link rel='stylesheet' type='text/css' href='./css/main.css' />
-	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Raleway&amp;subset=latin-ext" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Merriweather+Sans|Raleway&amp;subset=latin-ext' rel='stylesheet' />
+</head>
+<body class='border-box-sized' id='top'>
 
-
-	<script>
+	<script id='libs'>
 
 		//
 		//	GOOGLE ANALYTICS INIT
@@ -41,6 +42,11 @@
 				get: cookieGet,
 				set: cookieSet,
 				remove: cookieRemove
+			},
+			languages: {
+				en: 'en',
+				cs: 'cs',
+				sk: 'sk'
 			}
 		};
 
@@ -62,6 +68,67 @@
 		function cookieSet(cname, cvalue, path) {
 			document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT; path=' + (path ? path : '/');
 		}
+	</script>
+
+	<!--[if lt IE 10]>
+	<script id='unsupportedBrowserScript'>
+
+		//
+		//	UNSUPPORTED BROWSER MESSAGE FOR IE < 10
+		//
+		(function(window, document) {
+			// SETUP
+
+			var unsupportedDialog = '<div class="ngdialog ngdialog-theme-default" id="unsupportedBrowser">'
+				+ '<div class="ngdialog-overlay"></div>'
+				+ '<div class="ngdialog-content">'
+					+ '<div id="aeg-translate-unsupported-browser" class="itemReply" style="line-height: 1.4;"><h3>We wish you a nice day</h3>We are terribly sorry, but we can\'t serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> to use <strong>Hearth.net</strong>.</div>'
+				+ '</div>'
+			+ '</div>';
+			var unsupportedDialogFragment = document.createElement('div');
+			unsupportedDialogFragment.innerHTML = unsupportedDialog;
+			document.body.insertBefore(unsupportedDialogFragment, document.body.firstChild);
+
+			var unsupportedBrowserTranslations = {};
+			function getLangSelector() {
+				return ("<div class='text-align-right'>"
+					+	"<a href='javascript:changeLanguage(language.cs, true)' class='language-option flex lang-cs nav-item' id='language-cs'><div class='flag flag-cs display-inline-block'></div><div class='display-inline-block'></div></a></li>"
+					+	"<a href='javascript:changeLanguage(language.sk, true)' class='language-option flex lang-sk nav-item' id='language-sk'><div class='flag flag-sk display-inline-block'></div><div class='display-inline-block'></div></a></li>"
+					+	"<a href='javascript:changeLanguage(language.en, true)' class='language-option flex lang-en nav-item' id='language-en'><div class='flag flag-en display-inline-block'></div><div class='display-inline-block'></div></a></li>"
+				+	"</div>"
+				+ "<hr />");
+			}
+			unsupportedBrowserTranslations[window.aeg.languages.en] = '<h3>We wish you a nice day</h3>We are terribly sorry, but we can\'t serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> to use <strong>Hearth.net</strong>.';
+			unsupportedBrowserTranslations[window.aeg.languages.cs] = '<h3>Přejeme vám hezký den</h3>Je nám to nesmírně líto, ale stránku vám nemůžeme zobrazit, protože používáte zastaralý prohlížeč. Abyste mohli používat <strong>Hearth.net</strong>, <a href="http://browsehappy.com/">stáhněte si novější prohlížeč</a>.';
+			unsupportedBrowserTranslations[window.aeg.languages.sk] = '<h3>Prajeme vám pekný deň</h3>Je nám to nesmierne ľúto, ale stránku vám nemôžeme zobraziť, pretože používate zastaraný prehliadač. Abyste mohli používať <strong>Hearth.net</strong>, <a href="http://browsehappy.com/">stiahnite si novší prehliadač</a>.';
+			var unsupportedBrowserNodeId = 'aeg-translate-unsupported-browser';
+
+			// EXPOSE
+			window.aeg = window.aeg || {};
+			window.aeg.checkIfBrowserSupported = checkIfBrowserSupported;
+
+			/////////////////
+
+			/**
+			 *	- language - the language in which to show the message about unsupported browser
+			 */
+			function checkIfBrowserSupported(opts) {
+				opts = opts || {};
+				var unsupportedBrowserNode = document.getElementById(unsupportedBrowserNodeId);
+				if (unsupportedBrowserNode && opts.language) {
+					unsupportedBrowserNode.innerHTML = getLangSelector() + unsupportedBrowserTranslations[opts.language];
+				}
+				// prevent scrolling
+				document.body.style.overflow = 'hidden';
+				// and also prevent redirect
+				window.preventLangRedirecting = true;
+			}
+		})(window, document);
+
+	</script>
+	<![endif]-->
+
+	<script id='languageScript'>
 
 		//
 		//	LANGUAGE LOGIC + REDIRECT
@@ -69,14 +136,22 @@
 		(function(window) {
 			'use strict'
 
+			// unsupported browsers do not need to be redirected
+			if (window.preventLangRedirecting) return false;
+
 			var cookieFactory = window.aeg.cookieFactory;
 
-			var en = 'en',
-				cs = 'cs',
-				sk = 'sk';
+			var en = window.aeg.languages.en;
+			var cs = window.aeg.languages.cs;
+			var sk = window.aeg.languages.sk;
 
-			var defaultLanguage = en,
-				languageCookie = 'language';
+			var validLanguages = {};
+			validLanguages[en] = true;
+			validLanguages[cs] = true;
+			validLanguages[sk] = true;
+
+			var defaultLanguage = en;
+			var languageCookie = 'language';
 
 			// all langs except default en language
 			// what langs can be specified in url as /lang/...
@@ -121,6 +196,10 @@
 			/////////////////
 
 			function init() {
+
+				// do not redirect if the browser is unsupported
+				if (!window.aeg.checkIfBrowserSupported({language: (validLanguages[cookieFactory.get(languageCookie)] ? cookieFactory.get(languageCookie) : langBrowser)})) return false;
+
 				if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
 					return 'Tinky Winky!';
 				} else {
@@ -146,8 +225,6 @@
 		})(window);
 	</script>
 
-</head>
-<body class='border-box-sized' id='top'>
 	<div class='header-wrapper'>
 		<div class='flex flex-stretch-content'>
 			<div class='nav-clickable flex position-relative small-only'>

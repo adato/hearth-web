@@ -136,12 +136,62 @@
 	</script>
 	<script src="//connect.facebook.net/en_US/sdk.js"></script>
 	<!--[if lt IE 10]>
-    <div class="chromeframe">
-      <div class="reason">
-        <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
-      </div>
-    </div>
-  <![endif]-->
+		<div class="ngdialog ngdialog-theme-default" id="unsupportedBrowser">
+			<div class="ngdialog-overlay"></div>
+			<div class="ngdialog-content">
+				<div id="aeg-translate-unsupported-browser" class="itemReply" style="line-height: 1.4;">
+					We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> to use <strong>Hearth.net</strong>.
+				</div>
+			</div>
+		</div>
+		<script>
+
+			var en = 'en',
+				cs = 'cs',
+				sk = 'sk';
+
+			var validLanguages = {};
+			validLanguages[en] = true;
+			validLanguages[cs] = true;
+			validLanguages[sk] = true;
+
+			var defaultLanguage = en;
+			var languageCookie = 'language';
+
+			var currentLanguage = getCookie(languageCookie);
+			if (!validLanguages[currentLanguage]) currentLanguage = defaultLanguage;
+
+			var unsupportedBrowserTranslations = {};
+			unsupportedBrowserTranslations[en] = '<h3>We wish you a nice day</h3>We are terribly sorry, but we can\'t serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> to use <strong>Hearth.net</strong>.';
+			unsupportedBrowserTranslations[cs] = '<h3>Přejeme vám hezký den</h3>Je nám to nesmírně líto, ale stránku vám nemůžeme zobrazit, protože používáte zastaralý prohlížeč. Abyste mohli používat <strong>Hearth.net</strong>, <a href="http://browsehappy.com/">stáhněte si novější prohlížeč</a>.';
+			unsupportedBrowserTranslations[sk] = '<h3>Prajeme vám pekný deň</h3>Je nám to nesmierne ľúto, ale stránku vám nemôžeme zobraziť, pretože používate zastaraný prehliadač. Abyste mohli používať <strong>Hearth.net</strong>, <a href="http://browsehappy.com/">stiahnite si novší prehliadač</a>.';
+
+			var unsupportedBrowserNodeId = 'aeg-translate-unsupported-browser';
+
+			init();
+
+			/////////
+
+			function init() {
+				var unsupportedBrowserNode = document.getElementById(unsupportedBrowserNodeId);
+				if (unsupportedBrowserNode) {
+					unsupportedBrowserNode.innerHTML = unsupportedBrowserTranslations[currentLanguage];
+				}
+			}
+
+			function getCookie(cname) {
+				var name = cname + '=';
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var c = cookies[i];
+					while (c.charAt(0) === ' ') c = c.substring(1);
+					if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+				}
+				return '';
+			}
+
+		</script>
+	<![endif]-->
 	<div id="all" ng-include="'assets/pages/init.html'"></div>
 
 	<script src="/app/vendor/rollbar/dist/rollbar.min.js"></script>
