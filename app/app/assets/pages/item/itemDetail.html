@@ -5,7 +5,7 @@
 			<p class="margin-none" ng-show="item && !item.text && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
-			<p class="margin-none" ng-show="!isMine && item.state === 'expired'">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</p>
+			<p class="margin-none" ng-show="item && !isMine && item.state === 'expired'">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</p>
 		</section>
 		<section ng-if="!itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
 			<div class='row'>
