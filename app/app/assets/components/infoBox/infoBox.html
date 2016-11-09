@@ -7,7 +7,7 @@
 			</div>
 			<div class="inner" ng-if="info">
 				<div class="post-count">
-					<div class="count_accomplished" ng-bind-html=":: ('count-of-wished-and-gifts' | translate: {value: info.post_count.needs + info.post_count.offers })"></div>
+					<div class="count_accomplished" ng-bind-html=":: 'POSTS_COUNT_PL.' + pluralCat(info.post_count.needs + info.post_count.offers) | translate: {value: info.post_count.needs + info.post_count.offers }"></div>
 				</div>
 				<div class="author-about" ng-if="info.motto" ng-bind="info.motto"></div>
 				<user-intel-readout entity="info" type="'infobox'"></user-intel-readout>

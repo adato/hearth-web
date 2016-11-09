@@ -517,7 +517,11 @@
 	"and-on-social-networks": "A na sociálních sítích",
 	"author": "Autor",
 	"community": "komunity",
-	"count-of-wished-and-gifts": "<p>Aktuálně<strong> {{value}}<\/strong> aktivn&iacute;ch inzer&aacute;tů<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": "<p>Aktu&aacute;lně<strong> {{value}}<\/strong> aktivn&iacute; inzer&aacute;t<\/p>",
+		"few": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute; inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute;ch inzer&aacute;tů<\/p>"
+	},
 	"FILTER_ADS": "Filtrovat inzeráty",
 	"FILTER_IS_ON": "Filtr (aktivní)",
 	"in-area": "v okruhu",
@@ -1744,5 +1748,9 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Měli jste na mysli ",
+	"LIGHTBOX_PREVIMAGE": "Předchozí",
+	"LIGHTBOX_NEXTIMAGE": "Následující",
+	"LIGHTBOX_OPENINTAB": "Otevřít obrázek v nové záložce"
 }

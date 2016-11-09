@@ -517,7 +517,11 @@
 	"and-on-social-networks": "A na sociálnych sieťach",
 	"author": "Autor",
 	"community": "komunity",
-	"count-of-wished-and-gifts": "<p>Aktuálne<strong> {{value}}<\/strong> akt&iacute;vnych inzer&aacute;tov<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
+		"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
+	},
 	"FILTER_ADS": "Filtrovať inzeráty",
 	"FILTER_IS_ON": "Filter (aktívny)",
 	"in-area": "v okruhu",
@@ -1744,5 +1748,9 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mali ste na mysli ",
+	"LIGHTBOX_PREVIMAGE": "Predchádzajúci",
+	"LIGHTBOX_NEXTIMAGE": "Nasledujúci",
+	"LIGHTBOX_OPENINTAB": "Otvoriť obrázok v novej karte"
 }
