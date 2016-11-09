@@ -299,7 +299,6 @@ module.exports = function(config) {
         'app/assets/modals/ConfirmBox.js',
         'app/assets/modals/ItemSuspend.js',
         'app/assets/constants/MottoLength.js',
-        'app/assets/utils/tracking.js',
 
         // application tests
         'test/spec/karma-test-example.spec.js',
