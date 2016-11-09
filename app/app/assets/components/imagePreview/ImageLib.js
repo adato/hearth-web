@@ -65,6 +65,10 @@ angular.module('hearth.directives').service('ImageLib', ['$http', '$window', fun
 	};
 
 	this.upload = function(fileBase64, uploadResource, fileItself, done, doneErr) {
+		// var fileBlob = new Blob([$window.atob(fileBase64)], {
+		// 	type: 'image/png',
+		// 	encoding: 'utf-8'
+		// });
 		uploadResource(fileItself).$promise.then(function(res) {
 			done(res);
 		}, doneErr);
