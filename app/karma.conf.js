@@ -323,10 +323,16 @@ module.exports = function(config) {
 
     // possible values: 'spec', 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec','jenkins'],
+    reporters: ['spec','junit'],
 
     jenkinsReporter: {
       outputFile: 'test/test-results.xml'
+    },
+
+    junitReporter: {
+      outputDir: 'test', // results will be saved as $outputDir/$browserName.xml
+      outputFile: 'test-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      useBrowserName: false // add browser name to report and classes names
     },
 
     // web server port
