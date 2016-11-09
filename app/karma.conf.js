@@ -306,6 +306,10 @@ module.exports = function(config) {
     ],
 
 
+    proxies: {
+      '/version.txt': 'http://localhost:9876'
+    },
+
     // list of files to exclude
     exclude: [
     ],
