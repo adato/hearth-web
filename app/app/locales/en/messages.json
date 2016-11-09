@@ -515,7 +515,11 @@
 	"and-on-social-networks": "And on social networks",
 	"author": "Author",
 	"community": "communities",
-	"count-of-wished-and-gifts": "<p>Currently <strong>{{value}}<\/strong> active posts<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": "<p>Currently <strong>{{value}}<\/strong> active post<\/p>",
+		"few": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>",
+		"other": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>"
+	},
 	"FILTER_ADS": "Filter posts",
 	"FILTER_IS_ON": "Filter (active)",
 	"in-area": "in the area",
@@ -895,7 +899,7 @@
 		"POST_EDIT_FAILED": "Editing the post has failed.",
 		"POST_UPDAT_FAILED": "Editing the post has failed.",
 		"REMOVE_FOLLOWER_SUCCES": "You have successfully removed the user from your followers.",
-		"REMOVE_FOLLOWER_FAILED": "Removing the user from your followers has failed.",
+		"REMOVE_FOLLOWER_FAILED": "Removing the user from your followers has failed. Please try again, or let us know if the problem continues.",
 		"ADD_FOLLOWER_SUCCES": "Adding the user to your followers has been successful.",
 		"ADD_FOLLOWER_FAILED": "Adding the user to your followers has failed.",
 		"USER_RATING_FAILED": "User rating has failed.",

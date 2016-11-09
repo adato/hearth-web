@@ -25,6 +25,7 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.info = false; // we will cache infobox content
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.isEmpty = IsEmpty;
+				scope.pluralCat = $rootScope.pluralCat;
 
 				/**
 				 * Show user info into the box
