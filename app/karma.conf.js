@@ -21,7 +21,6 @@ module.exports = function(config) {
 
         // vendors/libs
         'app/vendor/jquery/dist/jquery.js',
-        'app/vendor/rollbar/dist/rollbar.min.js',
         'app/vendor/angular/angular.min.js',
         'app/vendor/angular-mobile-detect/dist/angular-mobile-detect.js',
         'app/vendor/angular-resource/angular-resource.min.js',
