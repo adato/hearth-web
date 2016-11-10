@@ -151,7 +151,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						if (conv.messages && conv.messages.length) {
 							// before pushing to messages array check for possible duplicates if the message is from my precious self
 							var allowPush = true;
-							if (socketEvent.conversation.message.author && (socketEvent.conversation.message.author._id == $rootScope.loggedUser._id || socketEvent.conversation.message.author._type === 'Community')) {
+							if (socketEvent.conversation.message.author && (socketEvent.conversation.message.author._id == $rootScope.loggedUser._id || socketEvent.conversation.message.author_type === 'Community')) {
 								for (var i = conv.messages.length; i--;) {
 									if (conv.messages[i]._id === socketEvent.conversation.message._id) {
 										allowPush = false;
@@ -218,7 +218,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			// if it is post reply conversation, add post type
 			if (!conversation.title && conversation.post && conversation.post.title) {
 				conversation.title = conversation.post.title;
-				conversation.post.type_code = (conversation.post.author._type == 'User' ? (conversation.post.type == 'offer' ? 'OFFER' : 'NEED') : (conversation.post.type == 'offer' ? 'WE_OFFER' : 'WE_NEED'));
+				conversation.post.type_code = (conversation.post.author_type == 'User' ? (conversation.post.type == 'offer' ? 'OFFER' : 'NEED') : (conversation.post.type == 'offer' ? 'WE_OFFER' : 'WE_NEED'));
 			}
 			// if there is no title, build it from its first at most 3 participants
 			if (conversation.participants.length) {
