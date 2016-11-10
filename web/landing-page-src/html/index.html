@@ -198,7 +198,7 @@
 			function init() {
 
 				// do not redirect if the browser is unsupported
-				if (!window.aeg.checkIfBrowserSupported({language: (validLanguages[cookieFactory.get(languageCookie)] ? cookieFactory.get(languageCookie) : langBrowser)})) return false;
+				if (typeof window.aeg.checkIfBrowserSupported === 'function' && !window.aeg.checkIfBrowserSupported({language: (validLanguages[cookieFactory.get(languageCookie)] ? cookieFactory.get(languageCookie) : langBrowser)})) return false;
 
 				if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
 					return 'Tinky Winky!';
