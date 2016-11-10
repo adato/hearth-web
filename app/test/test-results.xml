@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 2.1.1 (Linux 0.0.0)" package="" timestamp="2016-11-09T11:58:49" id="0" hostname="jan-HP-ProBook-4510s" make_target="undefined" tests="4" errors="0" failures="0" time="0.135">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+    </properties>
+    <testcase name="Test 2 + 2" time="0.002" classname="." package="PhantomJS 2.1.1 (Linux 0.0.0)" parentSuites="Simple JS test "/>
+    <testcase name="should exist" time="0.085" classname="." package="PhantomJS 2.1.1 (Linux 0.0.0)" parentSuites="ConversationAux factory"/>
+    <testcase name="should exist" time="0.026" classname="." package="PhantomJS 2.1.1 (Linux 0.0.0)" parentSuites="ConversationAux factory|.getFirstConversationIdIfAny()"/>
+    <testcase name="should return empty string" time="0.022" classname="." package="PhantomJS 2.1.1 (Linux 0.0.0)" parentSuites="ConversationAux factory|.getFirstConversationIdIfAny()"/>
+    <system-out><![CDATA[
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

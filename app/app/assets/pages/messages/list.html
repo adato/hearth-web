@@ -53,7 +53,7 @@
 									<span ng-if="item.message.owner._id == loggedUser._id" ng-bind=":: 'MESSAGES.YOU' | translate"></span>
 									<span ng-if="item.message.owner._id != loggedUser._id" ng-bind="item.message.owner.name"></span>: {{ item.message.text | ellipsis:60 }}
 								</p>
-								<i class="fright" ng-if="item.last_message_time" title="{{:: item.last_message_time | date:DATETIME_FORMATS.medium }}" ago="item.last_message_time"></i>
+								<i class="fright" ng-if="item.last_message.created_at" title="{{:: item.last_message.created_at | date:DATETIME_FORMATS.medium }}" ago="item.last_message.created_at"></i>
 							</div>
 							<div class="clear"></div>
 						</a>
