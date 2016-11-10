@@ -68,7 +68,7 @@ angular.module('hearth.directives').directive('filter', [
 					if ($.isEmptyObject(scope.filter)) {
 						scope.reset();
 					} else {
-						Filter.apply(scope.convertFilterToParams(scope.filter), scope.filterSave, true);
+						Filter.apply(convertFilterToParams(scope.filter), scope.filterSave, true);
 						scope.close();
 					}
 				};
@@ -78,13 +78,13 @@ angular.module('hearth.directives').directive('filter', [
 					if (!$rootScope.loggedUser._id) return false;
 
 					if (save) {
-						Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
+						Filter.setUserFilter(convertFilterToParams(scope.filter));
 					} else {
 						Filter.deleteUserFilter();
 					}
 				};
 
-				scope.convertFilterToParams = function(filter) {
+				function convertFilterToParams(filter) {
 					var fields = ['query', 'type', 'inactive', 'post_type', 'days', 'lang', 'r_lang', 'my_section'],
 						related = [],
 						character = [],
@@ -129,6 +129,7 @@ angular.module('hearth.directives').directive('filter', [
 						params.lat = filter.lat;
 						params.name = filter.name;
 						params.distance = parseInt(filter.distance) + $$config.lengthUnit;
+						params.order = 'distance';
 					}
 
 					// by post language
@@ -292,7 +293,7 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.recountPosts = function() {
-					var f = scope.convertFilterToParams(scope.filter);
+					var f = convertFilterToParams(scope.filter);
 					if (!f.type) f.type = scope.type;
 
 					Filter.getFilterCount(f, function(count) {
