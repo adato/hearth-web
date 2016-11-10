@@ -80,7 +80,7 @@
 									</li>
 									<li>
 										<!-- hide post -->
-										<a ng-if="!mine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
+										<a ng-if="!mine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ItemAux.hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
 										<!-- /hide post -->
 									</li>
 									<li>
@@ -178,7 +178,7 @@
 									</div>
 								</div>
 								<div class="padding-right-large" ng-if=":: (!item.is_replied && !mine) || (item.is_replied)">
-									<button ng-if=":: !item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=":: 'background-' + item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
+									<button ng-if=":: !item.is_replied && !mine" ng-click="ItemAux.replyItem(item)" class="button" ng-class=":: 'background-' + item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if=":: item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 									</span>
