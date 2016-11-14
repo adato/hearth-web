@@ -1749,9 +1749,9 @@
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš",
 	"LEND": "Půjčím",
 	"BORROW": "Půjčím si",
-	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Měli jste na mysli ",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Měl(a) jsi na mysli ",
 	"LIGHTBOX_PREVIMAGE": "Předchozí",
 	"LIGHTBOX_NEXTIMAGE": "Následující",
 	"LIGHTBOX_OPENINTAB": "Otevřít obrázek v nové záložce",
-	"ERR_MAILGUN_NOT_VALID_EMAIL": "Je to správný e-mail? Nepovedlo se nám ho ověřit. V případě omylu nám <a href=\"\/app\/feedback\">dejte vědět<\/a>."
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Je to správný e-mail? Nepovedlo se nám ho ověřit. V případě omylu nám <a href=\"\/app\/feedback\">dej vědět<\/a>."
 }
