@@ -3,10 +3,10 @@
 
 	<div ng-if="infoMessageToShow" class="row margin-horizontal-none margin-bottom-large">
 		<div class="column medium-10 medium-push-2 padding-medium close-wrapper box">
-			<div ng-click="infoMessageToShow = false" class="touchable close">
+			<div ng-click="$parent.infoMessageToShow = ''" class="touchable close">
 				<i class="fa fa-times"></i>
 			</div>
-			<div ng-bind-html="infoMessageToShow"></div>
+			<div ng-bind-html="$parent.infoMessageToShow"></div>
 		</div>
 	</div>
 
