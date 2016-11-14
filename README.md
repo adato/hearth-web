@@ -99,6 +99,9 @@ karma start xxx.spec.js
 * /app/test/spec/setup.js - additional setup for the test environment
 * /app/test/spec - root directory for tests
 
+### Examples
+* app/test/spec/assets/components/avatar/avatar.spec.js -  setup of the directive test
+
 Contact
 -------
 

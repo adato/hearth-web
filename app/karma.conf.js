@@ -11,9 +11,9 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
-
     // list of files / patterns to load in the browser
     files: [
+
         // Load config stuff for the environment
         'test/spec/setup.js',
         'configuration/development.js',
@@ -299,14 +299,34 @@ module.exports = function(config) {
         'app/assets/modals/ConfirmBox.js',
         'app/assets/modals/ItemSuspend.js',
         'app/assets/constants/MottoLength.js',
+        'node_modules/karma-read-json/karma-read-json.js',
+
+        // load JSONs
+        {pattern: 'app/locales/**/*.json', included: false},
 
         // application tests
         'test/spec/karma-test-example.spec.js',
-        'test/spec/assets/services/ConversationAux.spec.js'
+        'test/spec/assets/services/ConversationAux.spec.js',
+        'test/spec/assets/components/avatar/avatar.spec.js',
+
+        // application HTML
+        'app/assets/components/avatar/avatar.html'
     ],
 
+    ngHtml2JsPreprocessor: {
+      //
+      stripPrefix: 'app/',
+      moduleName: 'htmlTemplates'
+    },
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      'app/assets/components/**/*.html': ['ng-html2js']
+    },
 
     proxies: {
+      // return fake file from the running container, version.txt is not available
       '/version.txt': 'http://localhost:9876'
     },
 
@@ -314,20 +334,9 @@ module.exports = function(config) {
     exclude: [
     ],
 
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    	'app/index.html': 'html2js'
-    },
-
     // possible values: 'spec', 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['spec','junit'],
-
-    jenkinsReporter: {
-      outputFile: 'test/test-results.xml'
-    },
 
     junitReporter: {
       outputDir: 'test', // results will be saved as $outputDir/$browserName.xml
@@ -355,6 +364,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
+    // browsers: ['Chrome'],
 
     browserNoActivityTimeout: 100000,
 
