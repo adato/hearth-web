@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$timeout',
-	function($rootScope, ItemServices, $filter, Filter, $locale, $timeout) {
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale',
+	function($rootScope, ItemServices, $filter, Filter, $locale) {
 
 		function getPostScope(post, $scope) {
 			var author = post;
@@ -32,12 +32,12 @@ angular.module('hearth.services').service('PostScope', [
 			var timeout = null;
 			var updateTimeAgo = function() {
 				scope.item.updated_at_timeago = $filter('ago')(scope.item.updated_at);
-				timeout = $timeout(updateTimeAgo, 30000); // every few seconds refresh timeago dates
+				timeout = setTimeout(updateTimeAgo, 30000); // every few seconds refresh timeago dates
 			}
-			$timeout(updateTimeAgo, 1000); // run it later
+			setTimeout(updateTimeAgo, 1000); // run it later
 
 			scope.$on('$destroy', function() {
-				$timeout.cancel(timeout);
+				clearTimeout(timeout);
 			});
 
 			// post address for social links
