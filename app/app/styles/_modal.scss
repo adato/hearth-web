@@ -234,7 +234,7 @@ body.ngdialog-open {
 	}
 	a {
 		color: color(5);
-		
+
 		&.button {
 			color: #fff;
 		}
@@ -450,4 +450,22 @@ body.ngdialog-open {
 	width: 400px;
 	max-width: 95%;
 	padding: .5rem 0;
+}
+
+.close-wrapper {
+	position: relative;
+
+	.close {
+		color: #ddd;
+		position: absolute;
+		top: $size-small;
+		right: $size-small;
+		cursor: pointer;
+		transition: color 0s ease 0s, all 0.8s ease 0s;
+		z-index: 5;
+
+		&:hover {
+			color: #aaa;
+		}
+	}
 }
