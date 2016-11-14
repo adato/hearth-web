@@ -124,8 +124,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	}
 
 	function handleNewConversationOrMessage(socketEvent) {
-		if (socketEvent.conversation && socketEvent.conversation.message) {
-			if (socketEvent.conversation.message.first_message) {
+		if (socketEvent.conversation && socketEvent.conversation.last_message) {
+			if (socketEvent.conversation.last_message.first_message) {
 				// check if not a duplicate conversation, i. e. new conversation created by myself
 				for (var i = 0, l = conversationList.length; i < l; i++) {
 					if (conversationList[i]._id === socketEvent.conversation._id) return false;
@@ -138,12 +138,12 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				return conversationList.unshift(socketEvent.conversation);
 			} else {
 				var conv,
-					isSystemMessageConcerningMyOwnAction = (socketEvent.conversation.message.system_data && socketEvent.conversation.message.system_data.target && socketEvent.conversation.message.system_data.target._id == $rootScope.loggedUser._id);
+					isSystemMessageConcerningMyOwnAction = (socketEvent.conversation.last_message.system_data && socketEvent.conversation.last_message.system_data.target && socketEvent.conversation.last_message.system_data.target._id == $rootScope.loggedUser._id);
 				for (var i = conversationList.length; i--;) {
 					if (conversationList[i]._id === socketEvent.conversation._id) {
 						conv = conversationList.splice(i, 1)[0];
 						// update the required properties
-						if (socketEvent.conversation.message && !socketEvent.conversation.message.verb) conv.message = socketEvent.conversation.message;
+						if (socketEvent.conversation.last_message && !socketEvent.conversation.last_message.verb) conv.last_message = socketEvent.conversation.last_message;
 						conv.read = socketEvent.conversation.read;
 						conv.participants = socketEvent.conversation.participants;
 						conv.participants_count = socketEvent.conversation.participants_count;
@@ -151,16 +151,16 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						if (conv.messages && conv.messages.length) {
 							// before pushing to messages array check for possible duplicates if the message is from my precious self
 							var allowPush = true;
-							if (socketEvent.conversation.message.author && (socketEvent.conversation.message.author._id == $rootScope.loggedUser._id || socketEvent.conversation.message.author_type === 'Community')) {
+							if (socketEvent.conversation.last_message.author && (socketEvent.conversation.last_message.author._id == $rootScope.loggedUser._id || socketEvent.conversation.last_message.author_type === 'Community')) {
 								for (var i = conv.messages.length; i--;) {
-									if (conv.messages[i]._id === socketEvent.conversation.message._id) {
+									if (conv.messages[i]._id === socketEvent.conversation.last_message._id) {
 										allowPush = false;
 										break;
 									}
 								}
 							}
 							if (allowPush) {
-								conv.messages.push(socketEvent.conversation.message);
+								conv.messages.push(socketEvent.conversation.last_message);
 								$rootScope.$emit('messageAddedToConversation', {
 									conversation: conv
 								});
