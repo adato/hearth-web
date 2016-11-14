@@ -1,6 +1,12 @@
 <div id="notify-container-market"></div>
 <div class="market row">
 
+	<div ng-if="infoMessageToShow" class="row margin-bottom-medium">
+		<div class="column medium-10 medium-push-2" style='padding: 10px; background: pink;'>
+			<div ng-bind-html="infoMessageToShow"></div>
+		</div>
+	</div>
+
 	<marketplace-banner image="crowdsource" code="crowdsourcing-banner" language="{{language}}" title="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate}}" href="support-us"></marketplace-banner>
 
 	<filterbar></filterbar>

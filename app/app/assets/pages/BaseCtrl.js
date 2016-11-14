@@ -314,7 +314,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			};
 			$state.go('market', {
 				query: null,
-				type: null,
+				type: null
 			}, {
 				reload: true
 			});
