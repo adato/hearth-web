@@ -69,7 +69,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				var postScope = PostScope.getPostScope(post, $scope);
 				return compileTemplate(postScope, function(clone) {
-
+					clone[0].style.display = 'block';
 					container.append(clone[0]);
 
 					// Add pagination marker.
@@ -78,21 +78,17 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						marker.insertBefore(clone);
 					}
 
-					return $timeout(function() {
-						// Append the post the the view.
-						$('#post_' + post._id).show(); // was slideDown()
+					// Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
+					// Timeout for the check must be set long enough for the slidedown to take its full effect.
+					$timeout(function() {
+						if ($location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] === post._id) ScrollService.scrollToElement('#post_' + $location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM], false, 90);
+					}, 600);
 
-						// Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
-						// Timeout for the check must be set long enough for the slidedown to take its full effect.
-						$timeout(function() {
-							if ($location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] === post._id) ScrollService.scrollToElement('#post_' + $location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM], false, 90);
-						}, 600);
+					$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
 
-						$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
+					// Start next recursion cycle.
+					addItemsToList(container, data, index + 1, done);
 
-						// Start next recursion cycle.
-						addItemsToList(container, data, index + 1, done);
-					});
 				});
 			}
 			$scope.debug && console.timeEnd("Posts pushed to array and built");
@@ -107,9 +103,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			$scope.debug && console.time("Posts displayed with some effect");
-
-			$scope.debug && console.timeEnd("Posts displayed with some effect");
 			$scope.debug && console.timeEnd("Market posts loaded and displayed");
 			// finish loading and allow to show loading again
 
