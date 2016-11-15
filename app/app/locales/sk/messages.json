@@ -517,7 +517,13 @@
 	"and-on-social-networks": "A na sociálnych sieťach",
 	"author": "Autor",
 	"community": "komunity",
-	"count-of-wished-and-gifts": "<p>Aktuálne<strong> {{value}}<\/strong> akt&iacute;vnych inzer&aacute;tov<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": {
+			"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
+			"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
+			"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
+		}
+	},
 	"FILTER_ADS": "Filtrovať inzeráty",
 	"FILTER_IS_ON": "Filter (aktívny)",
 	"in-area": "v okruhu",
@@ -1298,7 +1304,7 @@
 	"ADD_CONTENT_AS_USER": "ako",
 	"REPLY": "Odpovedať",
 	"SELECT_USERS": "Vyberte jedného alebo viac príjemcov",
-	"ATTACHE_IMAGES": "Priložiť obrázky",
+	"ATTACHE_IMAGES": "Obrázky",
 	"ERR_REPORT_TEXT_MIN_LEN": "Napíšte, prosím, dôvod nahlásenia inzerátu",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text je príliš dlhý... maximum je 2500 znakov. Spomeňte si na Twitter alebo esemesky.",
 	"REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar alebo prianie ste už označili ako nevhodný.",
@@ -1744,5 +1750,15 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mal(a) si na mysli ",
+	"LIGHTBOX_PREVIMAGE": "Predchádzajúci",
+	"LIGHTBOX_NEXTIMAGE": "Nasledujúci",
+	"LIGHTBOX_OPENINTAB": "Otvoriť obrázok v novej karte",
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Je to správny e-mail? Nepodarilo se nám ho overiť. V prípade omylu nám <a href=\"\/app\/feedback\">daj vedieť<\/a>.",
+	"CONVERSATION": {
+		"SETTINGS": {
+			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
+		}
+	}
 }
