@@ -13,7 +13,8 @@ angular.module('hearth.directives').directive('suspendable', function() {
 	return {
 		restrict: 'A',
 		link: function(scope, element, attr) {
-			var watchers, timeout, suspended = false;
+			var watchers, timeout, suspended = false,
+				isFarAway = false;
 
 			// detects, if element is visible on screen (+- offset)
 			var isElementInView = function(element) {
@@ -22,8 +23,16 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				var elementTop = $(element).offset().top;
 				var elementBottom = elementTop + $(element).height();
 				var offset = 500;
+				var ret;
 
-				return ((pageTop - offset < elementTop) && (pageBottom + offset > elementBottom));
+				// this is an actual result
+				ret = ((pageTop - offset < elementTop) && (pageBottom + offset > elementBottom));
+
+				// this means if element is very far away and timeout can be even higher
+				offset = 3000;
+				isFarAway = !((pageTop - offset < elementTop) && (pageBottom + offset > elementBottom));
+
+				return ret;
 			}
 
 			// moves watchers out of scope
@@ -54,7 +63,12 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				} else {
 					if (!suspended) suspend();
 				}
-				timeout = setTimeout(checkVisibility, 1000)
+				if (isFarAway) {
+					// longer timeout for far away elements
+					timeout = setTimeout(checkVisibility, 5000);
+				} else {
+					timeout = setTimeout(checkVisibility, 1000);
+				}
 			}
 
 			setTimeout(checkVisibility, 4000); // call main fction
