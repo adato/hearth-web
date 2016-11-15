@@ -103,7 +103,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
-		// console.log(socketEvent);
 		if (socketEvent.unread !== void 0) Messenger.setUnreadCount(socketEvent.unread);
 
 		if (!processingRunning) return void 0;
@@ -151,7 +150,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						if (conv.messages && conv.messages.length) {
 							// before pushing to messages array check for possible duplicates if the message is from my precious self
 							var allowPush = true;
-							if (socketEvent.conversation.last_message.author && (socketEvent.conversation.last_message.author._id == $rootScope.loggedUser._id || socketEvent.conversation.last_message.author_type === 'Community')) {
+							if (socketEvent.conversation.last_message.author && (socketEvent.conversation.last_message.author._id === $rootScope.loggedUser._id || socketEvent.conversation.last_message.author._type === 'Community')) {
 								for (var i = conv.messages.length; i--;) {
 									if (conv.messages[i]._id === socketEvent.conversation.last_message._id) {
 										allowPush = false;
