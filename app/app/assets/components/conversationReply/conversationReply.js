@@ -60,8 +60,12 @@ angular.module('hearth.directives').directive('conversationReply', [
 					$scope.reply.text = '';
 
 					var params = {};
+
+					console.log(reply);
 					if (reply.current_community_id && reply.current_community_id !== $rootScope.loggedUser._id) params.current_community_id = reply.current_community_id;
-					delete reply.current_community_id;
+					//delete reply.current_community_id;
+
+					console.log(reply);
 
 					if ($scope.sendingReply || !$scope.validateReply(replyCopy)) return false;
 					$scope.sendingReply = true;
@@ -103,7 +107,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 						id: $scope.conversation._id
 					}, function(res) {
 						$scope.conversation.possible_actings = res.possible_actings;
-						$scope.actors = $scope.conversation.possible_actings;
+						$scope.actors = res.possible_actings;
 
 						if ($scope.actors.length > 1 || ($scope.actors.length === 1 && $scope.actors[0]._type === 'Community')) {
 							$scope.reply.current_community_id = ($scope.actors[0]._type == 'User' ? '' : $scope.actors[0]._id);
