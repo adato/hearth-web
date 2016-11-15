@@ -61,15 +61,11 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 					var params = {};
 
-					console.log(reply);
 					if (reply.current_community_id && reply.current_community_id !== $rootScope.loggedUser._id) params.current_community_id = reply.current_community_id;
 					//delete reply.current_community_id;
 
-					console.log(reply);
-
 					if ($scope.sendingReply || !$scope.validateReply(replyCopy)) return false;
 					$scope.sendingReply = true;
-
 
 					Conversations.reply(params, replyCopy, function(res) {
 						$scope.reply.attachments_attributes = '';
