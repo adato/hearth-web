@@ -394,12 +394,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return ret;
 		};
 
-		$rootScope.sendMessage = function(user) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+		/**
+		 *	@param {Object} user - user/community to whom to address the message
+		 *	@param {Object} params - {Boolean} toAllMembers
+		 */
+		$rootScope.sendMessage = function(user, params) {
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
+			params = params || {};
 
 			var scope = $scope.$new();
 			scope.user = user;
+
+			scope.params = {
+				for_all_members: !!params.toAllMembers
+			};
 
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'newMessage.html',

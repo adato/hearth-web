@@ -320,7 +320,9 @@
 		},
 		"NEW_MESSAGE": "Poslat zprávu",
 		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink.",
-		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou"
+		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou",
+		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
+		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity"
 	},
 	"MESSAGES_ARCHIVE": "Archív zpráv",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -517,7 +519,13 @@
 	"and-on-social-networks": "A na sociálních sítích",
 	"author": "Autor",
 	"community": "komunity",
-	"count-of-wished-and-gifts": "<p>Aktuálně<strong> {{value}}<\/strong> aktivn&iacute;ch inzer&aacute;tů<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": {
+			"one": "<p>Aktu&aacute;lně<strong> {{value}}<\/strong> aktivn&iacute; inzer&aacute;t<\/p>",
+			"few": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute; inzer&aacute;ty<\/p>",
+			"other": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute;ch inzer&aacute;tů<\/p>"
+		}
+	},
 	"FILTER_ADS": "Filtrovat inzeráty",
 	"FILTER_IS_ON": "Filtr (aktivní)",
 	"in-area": "v okruhu",
@@ -1298,7 +1306,7 @@
 	"ADD_CONTENT_AS_USER": "jako",
 	"REPLY": "Odpovědět",
 	"SELECT_USERS": "Vyber jednoho nebo více příjemců",
-	"ATTACHE_IMAGES": "Přiložit obrázky",
+	"ATTACHE_IMAGES": "Obrázky",
 	"ERR_REPORT_TEXT_MIN_LEN": "Napiš prosím důvod nahlášení inzerátu",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen. Vzpomeň na Twitter nebo esemesky.",
 	"REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jsi označil(a) jako nevhodný.",
@@ -1744,5 +1752,15 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Měl(a) jsi na mysli ",
+	"LIGHTBOX_PREVIMAGE": "Předchozí",
+	"LIGHTBOX_NEXTIMAGE": "Následující",
+	"LIGHTBOX_OPENINTAB": "Otevřít obrázek v nové záložce",
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Je to správný e-mail? Nepovedlo se nám ho ověřit. V případě omylu nám <a href=\"\/app\/feedback\">dej vědět<\/a>.",
+	"CONVERSATION": {
+		"SETTINGS": {
+			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
+		}
+	}
 }

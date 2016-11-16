@@ -56,7 +56,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			$location.url($location.path());
 			if (filter.key) $location.search(filter.key, filter.value);
-			init()
+			init();
 		};
 
 		function redirectToFirstIfMatch(event, conversation) {
