@@ -295,6 +295,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					// value is taken from $scope, because on-change handler on checkbox directive
 					// is broken somehow and passes values before the toggle change..
 					Community.patch({
+						_id: $scope.community._id,
 						allow_message_to_members: $scope.community.allow_message_to_members
 					});
 				};
