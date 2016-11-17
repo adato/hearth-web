@@ -17,7 +17,7 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 				'variant': '=',
 				'name': '='
 			},
-			template: '<span><span ng-if="variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
+			template: '<span><span ng-if=":: variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
 			link: function($scope) {
 
 				var DROPDOWN_VARIANT = 'ab-variant-v2';

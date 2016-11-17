@@ -305,12 +305,11 @@ module.exports = function(config) {
         {pattern: 'app/locales/**/*.json', included: false},
 
         // application tests
-        'test/spec/karma-test-example.spec.js',
-        'test/spec/assets/services/ConversationAux.spec.js',
-        'test/spec/assets/components/avatar/avatar.spec.js',
+        'test/spec/**/**/*.spec.js',
+
 
         // application HTML
-        'app/assets/components/avatar/avatar.html'
+        'app/assets/components/**/*.html'
     ],
 
     ngHtml2JsPreprocessor: {
@@ -322,7 +321,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'app/assets/components/**/*.html': ['ng-html2js']
+      'app/assets/components/**/**/*.html': ['ng-html2js']
     },
 
     proxies: {
