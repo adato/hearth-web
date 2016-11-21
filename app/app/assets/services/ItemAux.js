@@ -104,7 +104,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
-			var scope = $rootScope.$new();
+			var scope = $rootScope.$new(true);
 			scope.post = post;
 
 			var dialog = ngDialog.open({

@@ -24,9 +24,6 @@
 					<span ng-show="replyForm.message.$error.minlength">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
 					<span ng-show="replyForm.message.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
-				<div class="error" ng-show="! reply.agreed && showErrors.agreed">
-					<span ng-show="! reply.agreed">{{:: 'ERR_AD_REPLY_NOT_AGREE' | translate }}</span>
-				</div>
 			</div>
 			<div class="bottom display-flex flex-reverse flex-space-between">
 				<button class="button-send" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SUBMIT' | translate }}</button>

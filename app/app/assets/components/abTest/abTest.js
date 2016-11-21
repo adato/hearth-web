@@ -12,13 +12,10 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 		return {
 			replace: true,
 			transclude: true,
+			scope: {},
 			restrict: 'E',
-			scope: {
-				'variant': '=',
-				'name': '='
-			},
-			template: '<span><span ng-if=":: variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
-			link: function($scope) {
+			template: '<span><span ng-if="variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
+			link: function($scope, element, attr) {
 
 				var DROPDOWN_VARIANT = 'ab-variant-v2';
 
@@ -57,9 +54,11 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 				$scope.log = function(what) {
 					$analytics.eventTrack('Dropdown ' + what + 'ed (Post)', {
 						'Variant': $scope.variant,
-						'Variant Name': $scope.name,
+						'Variant Name': attr.name,
 					});
 				}
+
+				$scope.variant = attr.variant;
 
 				// if window has no cached variant, cache it
 				if (typeof $window.userAbVariant == 'undefined') {
