@@ -14,7 +14,8 @@ angular.module('hearth.directives').directive('suspendable', function() {
 		restrict: 'A',
 		link: function(scope, element, attr) {
 			var watchers, timeout, suspended = false,
-				isFarAway = false;
+				isFarAway = false,
+				html = null;
 
 			// detects, if element is visible on screen (+- offset)
 			var isElementInView = function(element) {
@@ -22,7 +23,7 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				var pageBottom = pageTop + $(window).height();
 				var elementTop = $(element).offset().top;
 				var elementBottom = elementTop + $(element).height();
-				var offset = 500;
+				var offset = 1000;
 				var ret;
 
 				// this is an actual result
@@ -40,6 +41,10 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				watchers = scope.$$watchers;
 				scope.$$watchers = [];
 				suspended = true;
+				html = element[0].innerHTML;
+				var height = $(element[0]).height();
+				element[0].innerHTML = '';
+				element[0].style.height = height + 'px';
 			};
 
 			// resumes watchers
@@ -50,14 +55,16 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				// discard our copy of the watchers
 				watchers = void 0;
 				suspended = false;
+
+				element[0].innerHTML = html;
 			};
 
 			scope.$on('$destroy', function() {
 				clearTimeout(timeout);
 			})
 
-			scope.$on('suspendPostWatchers', suspend);
-			scope.$on('resumePostWatchers', resume);
+			//scope.$on('suspendPostWatchers', suspend);
+			//scope.$on('resumePostWatchers', resume);
 
 			// main function to loop over
 			var checkVisibility = function() {
@@ -68,13 +75,13 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				}
 				if (isFarAway) {
 					// longer timeout for far away elements
-					timeout = setTimeout(checkVisibility, 5000);
+					timeout = setTimeout(checkVisibility, 3000);
 				} else {
-					timeout = setTimeout(checkVisibility, 1000);
+					timeout = setTimeout(checkVisibility, 600);
 				}
 			}
 
-			setTimeout(checkVisibility, 4000); // call main fction
+			setTimeout(checkVisibility, 3000); // call main fction
 		}
 	}
 });
