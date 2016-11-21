@@ -240,6 +240,16 @@
 						}
 					}
 				}
+
+				.conversation-add-participants {
+					.user-picker {
+						margin-top: 10px;
+
+						.ui-select-container {
+							margin-bottom: 0;
+						}
+					}
+				}
 			}
 			.message-head {
 				// font-size: 14px;
