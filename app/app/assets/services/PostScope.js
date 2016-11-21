@@ -26,8 +26,10 @@ angular.module('hearth.services').service('PostScope', [
 			scope.language = $rootScope.language;
 			angular.extend(scope, ItemServices);
 
-			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 			scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
+			scope.item.text_parsed = $filter('nl2br')($filter('linky')(scope.item.text));
+			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
+			scope.item.text_short_parsed = $filter('linky')(scope.item.text_short);
 
 			var timeout = null;
 			var updateTimeAgo = function() {
@@ -35,6 +37,14 @@ angular.module('hearth.services').service('PostScope', [
 				timeout = setTimeout(updateTimeAgo, 30000); // every few seconds refresh timeago dates
 			}
 			setTimeout(updateTimeAgo, 1000); // run it later
+
+			var updateRepliedBy = function() {
+				scope.item.replied_by_string = $filter('translate')(scope.replyCountTexts[scope.item.type] + '.' + scope.pluralCat(scope.item.reply_count), {
+					value: scope.item.reply_count
+				});
+			}
+			updateRepliedBy();
+			scope.$on('postUpdateRepliedBy', updateRepliedBy);
 
 			scope.$on('$destroy', function() {
 				clearTimeout(timeout);
