@@ -114,7 +114,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				controller: 'ItemReply',
 				preCloseCallback: function() {
 					$rootScope.$broadcast('resumePostWatchers');
-				}
+				},
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: true,
