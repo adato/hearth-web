@@ -153,7 +153,7 @@ angular.module('hearth.services').factory('Auth', [
 				var reloadLoc = UnauthReload.getLocation();
 				UnauthReload.clearReloadLocation();
 
-				return $window.location.replace(reloadLoc || '/');
+				return $window.location.replace(reloadLoc || '/app');
 			},
 			getTwitterAuthUrl: function(method) {
 				var fillEmailUrl = $$config.appUrl + 'fill-email/%{token}';
