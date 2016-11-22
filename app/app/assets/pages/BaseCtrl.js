@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -293,15 +293,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.initFinished && $scope.initHearthbeat();
 
 		// ======================================== PUBLIC METHODS =====================================
-		/**
-		 * @param showMsgOnlyLogged
-		 * @param {Object} paramObject - {Function} cb - callback function to call on login
-		 *									(if not defined, reloadPath cookie will be used)
-		 */
-		$rootScope.showLoginBox = function(showMsgOnlyLogged, paramObject) {
-			paramObject = paramObject || {};
+		$rootScope.showLoginBox = function(showMsgOnlyLogged) {
+			UnauthReload.clearReloadLocation();
 			var scope = $scope.$new();
-			if (paramObject.cb) scope.successfulLoginCallback = paramObject.cb;
 			scope.showMsgOnlyLogged = showMsgOnlyLogged;
 			ngDialog.open({
 				template: 'assets/pages/userForms/login.html',
