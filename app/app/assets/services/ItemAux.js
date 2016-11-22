@@ -107,9 +107,14 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			var scope = $rootScope.$new(true);
 			scope.post = post;
 
+			$rootScope.$broadcast('suspendPostWatchers');
+
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'itemReply.html',
 				controller: 'ItemReply',
+				preCloseCallback: function() {
+					$rootScope.$broadcast('resumePostWatchers');
+				}
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: true,

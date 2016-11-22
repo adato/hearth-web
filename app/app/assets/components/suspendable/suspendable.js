@@ -41,10 +41,6 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				watchers = scope.$$watchers;
 				scope.$$watchers = [];
 				suspended = true;
-				html = element[0].innerHTML;
-				var height = $(element[0]).height();
-				element[0].innerHTML = '';
-				element[0].style.height = height + 'px';
 			};
 
 			// resumes watchers
@@ -55,8 +51,6 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				// discard our copy of the watchers
 				watchers = void 0;
 				suspended = false;
-
-				element[0].innerHTML = html;
 			};
 
 			scope.$on('$destroy', function() {
