@@ -293,9 +293,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.initFinished && $scope.initHearthbeat();
 
 		// ======================================== PUBLIC METHODS =====================================
-		$rootScope.showLoginBox = function(showMsgOnlyLogged) {
-
+		/**
+		 * @param showMsgOnlyLogged
+		 * @param {Object} paramObject - {Function} cb - callback function to call on login
+		 *									(if not defined, reloadPath cookie will be used)
+		 */
+		$rootScope.showLoginBox = function(showMsgOnlyLogged, paramObject) {
+			paramObject = paramObject || {};
 			var scope = $scope.$new();
+			if (paramObject.cb) scope.successfulLoginCallback = paramObject.cb;
 			scope.showMsgOnlyLogged = showMsgOnlyLogged;
 			ngDialog.open({
 				template: 'assets/pages/userForms/login.html',
