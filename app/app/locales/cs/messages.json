@@ -317,7 +317,8 @@
 		"REPLY_AS_COMMUNITY": "Odpovědět jako:",
 		"REPLY_AS_USER": "jako",
 		"SYSTEM_MESSAGE_YOU": {
-			"left": "<p>Opustil(a) jsi konverzaci.<\/p>"
+			"left": "<p>Opustil(a) jsi konverzaci.<\/p>",
+			"enter": "Vstoupil(a) jsi do konverzace."
 		},
 		"NEW_MESSAGE": "Poslat zprávu",
 		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink.",

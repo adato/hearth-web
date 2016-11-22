@@ -315,7 +315,8 @@
 		"REPLY_AS_COMMUNITY": "Reply as:",
 		"REPLY_AS_USER": "as",
 		"SYSTEM_MESSAGE_YOU": {
-			"left": "<p>You left the conversation.<\/p>"
+			"left": "<p>You left the conversation.<\/p>",
+			"enter": "Vstoupil(a) jsi do konverzace."
 		},
 		"NEW_MESSAGE": "Send message",
 		"NEW_MESSAGE_SENT": "Message sent successfully!",
