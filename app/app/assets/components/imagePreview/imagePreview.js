@@ -29,7 +29,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
 				scope.showErrors = true;
 				scope.error = scope.error || {};
-				scope.uploading = false;
+				scope.uploading = 0;
 
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if (scope.singleFile) {
@@ -121,20 +121,20 @@ angular.module('hearth.directives').directive('imagePreview', [
 						return scope.error.badSize = true;
 					}
 
-					scope.uploading = true;
+					scope.uploading++;
 					scope.$apply();
 					$timeout(function() {
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
 						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, fileItself, function(res) {
-							scope.uploading = false;
+							scope.uploading--;
 							pushResult(res, {
 								total: 0
 							});
 							$('input', el).val('');
 						}, function(err) {
-							scope.uploading = false;
+							scope.uploading--;
 							scope.error.uploadError = true;
 							$log.error('Error: ', err);
 							$('input', el).val("");
