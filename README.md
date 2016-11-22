@@ -2,7 +2,7 @@ Hearth (Front end)
 ==================
 Front and app is based on Angular.
  
-Dependencies:
+Dependencies :
 * ruby
 * sass
 * compass
