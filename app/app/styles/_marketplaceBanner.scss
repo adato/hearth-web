@@ -61,3 +61,31 @@ section.banner {
 		//top: 50px;
 	}
 }
+
+
+/*
+	due to the fact that the banner has content outside of standard column bounds,
+	we need to specify overflow hidden on wrapping element to make sure the scrolling
+	is disabled
+*/
+.inner-wrap {
+	overflow-x: hidden;
+}
+.leader-banner {
+	width: calc(100% + 30px);
+	margin-right: -30px;
+
+	section.banner .marketplace-banner {
+		padding-left: 0;
+		overflow: visible;
+		height: 110px;
+
+		.close {
+			display: none;
+		}
+		img {
+			width: 805px;
+			max-width: 805px;
+		}
+	}
+}

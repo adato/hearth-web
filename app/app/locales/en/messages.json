@@ -47,12 +47,12 @@
 		"EDIT_FILTER": "Edit filter",
 		"FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
 		"RESET_FILTER": "Reset filter",
-		"NOTHING_FOUND": "Something has gone wrong. Give us a sec please and then try again.",
+		"NOTHING_FOUND": "Something has gone wrong. Give us a second please and then try again.",
 		"SHOW_POSTS_IN_LIST": "Show posts in list",
 		"SHOW_POSTS_ON_MAP": "Show posts on map",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
 		"CREATE_NEW_ADD": "Add a new gift or wish",
-		"REFRESH_AFTER_ERROR": "Or try reload the posts again.",
+		"REFRESH_AFTER_ERROR": "Or try to reload the posts again.",
 		"USER": {
 			"INFO_NOT_FILLED": "User has not given any personal info yet."
 		},
@@ -78,8 +78,8 @@
 		"SUSPEND": {
 			"LABEL": "Suspend post",
 			"ARE_YOU_SURE": "Do you want to suspend this post?",
-			"CONNECTED_MESSAGE_PLACEHOLDER": "Please let the user of a suspended ad know about why did you decide to suspend it.",
-			"CONNECTED_MESSAGE": "Hello,\n\nas a Hearth.net custodian I just suspended your gift\/wish {{post_type}} {{post_title}} ({{post_url}}), because its contents is in breach of Hearth.net Terms and conditions (https:\/\/www.hearth.net\/app\/terms).\n\nPlease edit the text of your gift\/wish so it complies with Hearth.net TCO and publish again or if not possible, delete the gift\/wish.\n\nFor Hearth.net custodians community – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
+			"CONNECTED_MESSAGE_PLACEHOLDER": "Please let the user of a suspended post know about why you decide to suspend it.",
+			"CONNECTED_MESSAGE": "Hello,\n\nas a Hearth.net custodian I just suspended your gift\/wish {{post_type}} {{post_title}} ({{post_url}}), because its content is in breach of Hearth.net Terms and conditions (https:\/\/www.hearth.net\/app\/terms).\n\nPlease edit the text of your gift\/wish so it complies with Hearth.net TCO and publish again or if not possible, delete the gift\/wish.\n\nFor Hearth.net custodians community – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
 			"LABEL": "Resume"
@@ -87,15 +87,19 @@
 		"EDIT": {
 			"LABEL": "Edit"
 		},
-		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
-		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed.",
+		"AUTHOR_SELECT_IS_DISABLED": "The post has a reply and that's why you cannot change the author.",
+		"TYPE_CHANGE_IS_DISABLED": "The post has a reply, that's why its type cannot be changed.",
 		"SUSPENDED_BY_ADMIN": "Suspended by admin",
-		"LANGUAGE": "Ad language",
+		"LANGUAGE": "Post language",
 		"FOLLOW": {
-			"LABEL": "Watch the ad"
+			"LABEL": "Watch this Post"
 		},
 		"UNFOLLOW": {
-			"LABEL": "Stop watching the ad"
+			"LABEL": "Stop watching this post"
+		},
+		"HIDE": {
+			"LABEL": "Hide this post",
+			"ARE_YOU_SURE": "Are you sure you want to hide this post?"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
@@ -250,14 +254,14 @@
 			"SUBJECT_PLACEHOLDER": "Add the conversation subject",
 			"SEND_MESSAGE": "Send message",
 			"ERR": {
-				"RECIPIENTS_NOT_FILLED": "Don't forget to fill in the message recipients. Like at the post office."
+				"RECIPIENTS_NOT_FILLED": "Don't forget to fill in the message recipients."
 			},
 			"RECIPIENT": "To:",
 			"AS_ADMIN": "Send as admin"
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
-			"NO_RESULT": "No conversations in the list. Like inbox zero.",
+			"NO_RESULT": "No conversations in the list.",
 			"PARTICIPANTS_AND_MORE": "and others"
 		},
 		"CONVERSATION_SEARCH_PLACEHOLDER": "Enter what you're looking for...",
@@ -281,7 +285,8 @@
 		},
 		"SYSTEM_MESSAGE": {
 			"User": {
-				"left": "<p>User <strong>{{target.name}}<\/strong> left the conversation.<\/p>"
+				"left": "<p>User <strong>{{target.name}}<\/strong> left the conversation.<\/p>",
+				"enter": "<p>Uživatel <strong>{{target.name}}<\/strong> vstoupil do konverzace.<\/p>"
 			},
 			"Community": {
 				"left": "<p>Community <strong>{{target.name}}<\/strong> left the conversation.<\/p>"
@@ -301,7 +306,7 @@
 			"EMPTY_HEADER": "There are no conversations here. Can you hear the... crickets?",
 			"EMPTY_TEXT": "...",
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
-			"EMPTY": "<p>Sorry but you are trying to get into conversation that no longer exist or you cannot access it. If you think it is an error, <a title=\"feedback\" href=\"\/app\/feedback\">please let us know<\/a>.<\/p>"
+			"EMPTY": "<p>Sorry but you are trying to get into a conversation that no longer exist or you cannot access it. If you think it is an error, <a title=\"feedback\" href=\"\/app\/feedback\">please let us know<\/a>.<\/p>"
 		},
 		"ARCHIVE_CONVERSATION": "Archive conversation",
 		"ARCHIVE_CONFIRM": {
@@ -314,11 +319,15 @@
 		"REPLY_AS_COMMUNITY": "Reply as:",
 		"REPLY_AS_USER": "as",
 		"SYSTEM_MESSAGE_YOU": {
-			"left": "<p>You left the conversation.<\/p>"
+			"left": "<p>You left the conversation.<\/p>",
+			"enter": "Vstoupil(a) jsi do konverzace."
 		},
 		"NEW_MESSAGE": "Send message",
-		"NEW_MESSAGE_SENT": "Message sent successfully! Ping.",
-		"MARK_CONVERSATION_AS_UNREAD": "Mark as unread"
+		"NEW_MESSAGE_SENT": "Message sent successfully!",
+		"MARK_CONVERSATION_AS_UNREAD": "Mark as unread",
+		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
+		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace"
 	},
 	"MESSAGES_ARCHIVE": "Messages archive",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archive",
@@ -460,9 +469,9 @@
 		"reg": "Sign up",
 		"search": "Search",
 		"feedback": "Contact",
-		"terms": "Terms and conditions",
+		"terms": "Terms and Conditions",
 		"about": "About",
-		"post": "Wish \/ gift detail",
+		"post": "wish \/ gift detail",
 		"messages": {
 			"0": "Conversation",
 			"detail": "Conversation detail"
@@ -515,7 +524,12 @@
 	"and-on-social-networks": "And on social networks",
 	"author": "Author",
 	"community": "communities",
-	"count-of-wished-and-gifts": "<p>Currently <strong>{{value}}<\/strong> active posts<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": {
+			"one": "<p>Currently <strong>{{value}}<\/strong> active post<\/p>",
+			"other": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>"
+		}
+	},
 	"FILTER_ADS": "Filter posts",
 	"FILTER_IS_ON": "Filter (active)",
 	"in-area": "in the area",
@@ -547,7 +561,7 @@
 			"new_comm_rating_received": "<p>You have received a rating from the community <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
 			"suspend_post": "<p>You have suspended the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
 			"prolong_post": "<p>You have resumed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-			"publish_post": "<p>You have renewed the ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+			"publish_post": "<p>You have renewed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
 		},
 		"third_person": {
 			"new_post": "<p>User created an ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -569,7 +583,7 @@
 			"new_comm_rating_received": "<p>User has received a rating from the community <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
 			"suspend_post": "<p>User has suspended the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
 			"prolong_post": "<p>User has resumed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-			"publish_post": "<p>User has renewed the ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+			"publish_post": "<p>User has renewed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
 		},
 		"rating": {
 			"first": {
@@ -614,7 +628,7 @@
 	"WRITE_USER_SOME_RATING": "Add a couple of words to the user rating...",
 	"SEND_USER_RATING": "Send rating",
 	"ERR_NOT_FILLED_RATING": "Send user some text along with the rating",
-	"USER_RATING_WAS_SENT": "Yay. Rating has been sent successfully.",
+	"USER_RATING_WAS_SENT": "Hurrah! Rating has been sent successfully.",
 	"ADD_USER_RATING": "Rate communication with the user",
 	"LEAVE_COMMUNITY": "Leave community",
 	"DELETE_LOCATION": "delete",
@@ -752,7 +766,7 @@
 	"SIGNUP_ERR_EASY_PASSWORD": "This password is too simple. You can do better!",
 	"SIGNUP_ERR_SHORT_PASSWORD": "This password is too short, it has to consist of at least 5 characters.",
 	"SIGNUP_ERR_NO_PASSWORD": "Fill in password.",
-	"SIGNUP_HEADING_TEXT": "Your profile is just few short steps away. Quick, quick!",
+	"SIGNUP_HEADING_TEXT": "Your profile is just few short steps away. Almost there!",
 	"SIGNUP_PROCESS_ERROR": "Ugh. Something is broken. Registration could not be finished.",
 	"WE_HAVE_SENT_YOU_AN_EMAIL_TO_RESET_PASSWORD": "Hurray! We have just sent you a secret confirmation code. You'll find it in the e-mail.",
 	"FILL_EMAIL_TO_RESET_PASSWORD": "We just need your e-mail address. So we can send you further instructions on how to reset your password.",
@@ -840,13 +854,13 @@
 	"POSTS": {
 		"0": "Posts",
 		"DETAIL": {
-			"LOCATION_HEADING": "Ad location",
+			"LOCATION_HEADING": "Post location",
 			"SHOW_MAP": "Show map",
 			"HIDE_MAP": "Hide map",
 			"REPLIES": "User replies",
-			"NO_REPLY": "You have no replies to this ad yet.",
+			"NO_REPLY": "You have no replies to this post yet.",
 			"LOCATION_ANYWHERE": "Anywhere",
-			"LOCATION_ANYWHERE_HEADING": "Ad location: anywhere",
+			"LOCATION_ANYWHERE_HEADING": "Post location: anywhere",
 			"POST_EXPIRING_SOON": "Expires in few more days",
 			"EXPAND_MORE_INFO": "More info"
 		},
@@ -887,109 +901,109 @@
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "So sad you are leaving us. But never say never, right? Please tell us why and we will work hard to get you back on board...",
 	"FULLTEXT_WE_FOUND_RESULTS": "<p>Yes! We've found <strong>{{counter}}<\/strong> results for you concerning <strong>{{value}}<\/strong>.<\/p>",
 	"NOTIFY": {
-		"POST_CREATED_SUCCESFULLY": "Ad has been successfully saved.",
-		"POST_UPDATED_SUCCESFULLY": "Ad has been edited successfully.",
-		"POST_DELETED_SUCCESFULLY": "Ad has been deleted successfully.",
+		"POST_CREATED_SUCCESFULLY": "Post has been successfully saved.",
+		"POST_UPDATED_SUCCESFULLY": "Post has been edited successfully.",
+		"POST_DELETED_SUCCESFULLY": "Post has been deleted successfully.",
 		"EMAIL_INVITATION_SUCCESS": "Invitation has been sent successfully.",
-		"EMAIL_INVITATION_FAILED": "Sending the invitation has failed.",
-		"POST_EDIT_FAILED": "Editing ad has failed.",
-		"POST_UPDAT_FAILED": "Editing post has failed.",
+		"EMAIL_INVITATION_FAILED": "Sending the invitation has failed. Please try again, or let us know if the problem continues.",
+		"POST_EDIT_FAILED": "Editing the post has failed. Please try again, or let us know if the problem continues.",
+		"POST_UPDAT_FAILED": "Editing the post has failed. Please try again, or let us know if the problem continues.",
 		"REMOVE_FOLLOWER_SUCCES": "You have successfully removed the user from your followers.",
-		"REMOVE_FOLLOWER_FAILED": "Removing the user from your followers has failed.",
+		"REMOVE_FOLLOWER_FAILED": "Removing the user from your followers has failed. Please try again, or let us know if the problem continues.",
 		"ADD_FOLLOWER_SUCCES": "Adding the user to your followers has been successful.",
-		"ADD_FOLLOWER_FAILED": "Adding the user to your followers has failed.",
-		"USER_RATING_FAILED": "User rating has failed.",
+		"ADD_FOLLOWER_FAILED": "Adding the user to your followers has failed. Please try again, or let us know if the problem continues.",
+		"USER_RATING_FAILED": "User rating has failed. Please try again, or let us know if the problem continues.",
 		"USER_RATING_SUCCESS": "User rating has been added.",
 		"PASS_CHANGE_SUCCES": "Password has been edited successfully.",
-		"PASS_CHANGE_FAILED": "Password editing has failed.",
-		"ACCOUNT_DELETE_FAILED": "Deleting account has failed.",
+		"PASS_CHANGE_FAILED": "Password editing has failed. Please try again, or let us know if the problem continues.",
+		"ACCOUNT_DELETE_FAILED": "Deleting account has failed. Please try again, or let us know if the problem continues.",
 		"ACCOUNT_DELETE_SUCCESS": "Boom! Your account has been deleted! :(",
 		"USER_PROFILE_CHANGE_SUCCES": "Profile editing has been successful.",
-		"USER_PROFILE_CHANGE_FAILED": "Profile editing has failed.",
-		"USER_PROFILE_FORM_HAS_ERRORS": "There are errors in the form. Yep, sorry...",
-		"COMMUNITY_DELETE_SUCCESS": "Puff. Community has been deleted.",
-		"COMMUNITY_DELETE_FAILED": "Deleting community has failed.",
+		"USER_PROFILE_CHANGE_FAILED": "Profile editing has failed. Please try again, or let us know if the problem continues.",
+		"USER_PROFILE_FORM_HAS_ERRORS": "There are errors in the form. Our bad, sorry...",
+		"COMMUNITY_DELETE_SUCCESS": "Poof! Community has been deleted.",
+		"COMMUNITY_DELETE_FAILED": "Deleting community has failed. Please try again, or let us know if the problem continues.",
 		"COMMUNITY_DELEGATE_ADMIN_SUCCESS": "Administration has been handed over successfully.",
-		"COMMUNITY_DELEGATE_ADMIN_FAILED": "Administration handover has failed.",
-		"COMMUNITY_CREATE_FAILED": "Adding community has failed.",
-		"COMMUNITY_UPDATE_FAILED": "Editing community has failed.",
+		"COMMUNITY_DELEGATE_ADMIN_FAILED": "Administration handover has failed. Please try again, or let us know if the problem continues.",
+		"COMMUNITY_CREATE_FAILED": "Adding community has failed. Please try again, or let us know if the problem continues.",
+		"COMMUNITY_UPDATE_FAILED": "Editing community has failed. Please try again, or let us know if the problem continues.",
 		"COMMUNITY_UPDATE_SUCCESS": "Community has been edited successfully.",
 		"COMMUNITY_CREATE_SUCCESS": "Community has been created successfully. Woohoo!",
 		"COMMUNITY_APPLY_SUCCESS": "Community application has been sent successfully.",
-		"COMMUNITY_APPLY_FAILED": "Community application has failed.",
+		"COMMUNITY_APPLY_FAILED": "Community application has failed. Please try again, or let us know if the problem continues.",
 		"COMMUNITY_REJECT_SUCCESS": "Community application has been rejected.",
-		"COMMUNITY_REJECT_FAILED": "Rejecting application has failed.",
+		"COMMUNITY_REJECT_FAILED": "Rejecting application has failed. Please try again, or let us know if the problem continues.",
 		"COMMUNITY_LEAVE_SUCCESS": "You have left the community.",
-		"COMMUNITY_LEAVE_FAILED": "Leaving community has failed.",
+		"COMMUNITY_LEAVE_FAILED": "Leaving community has failed. Please try again, or let us know if the problem continues.",
 		"COMMUNITY_APPROVE_APPLICATION_SUCCESS": "Application has been successfully approved.",
-		"COMMUNITY_APPROVE_APPLICATION_FAILED": "Approval has failed.",
+		"COMMUNITY_APPROVE_APPLICATION_FAILED": "Approval has failed. Please try again, or let us know if the problem continues.",
 		"SIGNUP_PROCESS_SUCCESS": "Registration has been successful.",
-		"SIGNUP_PROCESS_ERROR": "Registration has failed. Sorry...",
-		"RESET_PASSWORD_FAILED": "Request to renew password has failed.",
+		"SIGNUP_PROCESS_ERROR": "Registration has failed. Please try again, or let us know if the problem continues.",
+		"RESET_PASSWORD_FAILED": "Request to renew password has failed. Please try again, or let us know if the problem continues.",
 		"RESET_PASSWORD_SUCCESS": "One, two, three. We have sent you an email with a walkthrough for changing your password. ",
 		"NEW_PASS_SUCCESS": "New password has been set. You can now sign in.",
-		"NEW_PASS_FAILED": "Setting up new password has failed.",
+		"NEW_PASS_FAILED": "Setting up new password has failed. Please try again, or let us know if the problem continues.",
 		"ACCOUNT_ACTIVATE_SUCCESS": "Victory! Your account has been activated. Welcome to Hearth.net!",
-		"ACCOUNT_ACTIVATE_FAILED": "Account activation has failed...",
-		"POST_SPAM_REPORT_FAILED": "Reporting ad has failed.",
-		"POST_SPAM_REPORT_SUCCESS": "Ad has been reported.",
-		"REPLY_SENT": "Reply to ad has been sent successfully.",
-		"POST_UPDATE_FAILED": "Saving the post has failed.",
+		"ACCOUNT_ACTIVATE_FAILED": "Account activation has failed... Please try again, or let us know if the problem continues.",
+		"POST_SPAM_REPORT_FAILED": "Reporting post has failed. Please try again, or let us know if the problem continues.",
+		"POST_SPAM_REPORT_SUCCESS": "Post has been reported.",
+		"REPLY_SENT": "Reply to post has been sent successfully.",
+		"POST_UPDATE_FAILED": "Saving the post has failed. Please try again, or let us know if the problem continues.",
 		"USER_KICKED_FROM_COMMUNITY_SUCCESS": "Member has been dismissed from the community.",
-		"USER_KICKED_FROM_COMMUNITY_FAILED": "Dismissing the member from the community has failed...",
+		"USER_KICKED_FROM_COMMUNITY_FAILED": "Dismissing the member from the community has failed. Please try again, or let us know if the problem continues.",
 		"REPLY_FAILED": "Sending reply has failed.",
-		"CHANGE_LANGUAGE_FAILED": "Switching language has failed. :(",
-		"POST_DELETED_FAILED": "Ad could not be deleted.",
-		"ACCOUNT_DELETE_FAILED_COMMUNITY": "Before deleting your account, please hand over administration of your communities. Or else something horrible might happen!",
+		"CHANGE_LANGUAGE_FAILED": "Switching language has failed. Please try again, or let us know if the problem continues.",
+		"POST_DELETED_FAILED": "Post could not be deleted.",
+		"ACCOUNT_DELETE_FAILED_COMMUNITY": "Before deleting your account, please hand over administration of your communities. Or else something horrible might happen! (They might be deleted as well.)",
 		"COMPLETE_TWITTER_REGISTRATION_FAILED": "Adding email has failed.",
 		"COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email successfully saved.",
 		"EMAIL_NOTIFY_CONFIG_SUCCESS": "Setting email notifications was successfully saved.",
 		"EMAIL_NOTIFY_CONFIG_FAILED": "Saving settings has failed.",
 		"EMAIL_SHARING_FAILED": "Err...There was an error when sending the email.",
-		"POST_REMOVE_FROM_COMMUNITY_FAILED": "An error occured while removing the ad from community",
+		"POST_REMOVE_FROM_COMMUNITY_FAILED": "An error occured while removing the post from community",
 		"MESSAGE_SEND_SUCCESS": "Zing! Message has been sent.",
 		"MESSAGE_SEND_FAILED": "O-o-p-s. Message couln't be sent.",
 		"CONVERSATION_DELETE_SUCCESS": "Conversation was deleted. ",
 		"CONVERSATION_DELETE_FAILED": "Error when deleting the conversation.",
 		"CONVERSATION_LEAVE_SUCCESS": "You left the conversation. Lone Wolf!",
 		"CONVERSATION_LEAVE_FAILED": "There was an error while leaving the conversation.",
-		"MESSAGE_REPLY_FAILED": "D'oh. Error while sending the message.",
+		"MESSAGE_REPLY_FAILED": "Ooops. Error while sending the message.",
 		"CONVERSATION_ARCHIVE_SUCCESS": "Conversation was successfully archived.",
-		"CONVERSATION_ARCHIVE_FAILED": "There was an error in the archive. Those archives! ",
+		"CONVERSATION_ARCHIVE_FAILED": "Sorry! There was an error in the archive.",
 		"RATING_REPLY_SUCCESS": "That's it! Comment was added successfully.",
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
 		"REACTIVATING_EMAIL_WAS_SENT": "Activation e-mail has been sent to your e-mail address.",
 		"REACTIVATING_EMAIL_FAILED": "There was an error while sending activation e-mail.",
-		"API_ERROR": "<p>Something went wrong, please try again in a while and <a href=\"\/app\/feedback\">do let us know<\/a> if it doesn't help. Thanks!<\/p>",
+		"API_ERROR": "<p>Something went wrong. Please try again in a little while, and <a href=\"\/app\/feedback\">let us know<\/a> if there is still a problem. Thanks!<\/p>",
 		"POST_BOOKMARKED_SUCCESFULLY": "Nice! Adding post to favourites was successful.",
-		"POST_UNBOOKMARKED_SUCCESFULLY": "Post was removed from the favourites... Lost its charm?",
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Post was removed from the favourites",
 		"COMMUNITY_RATING_ADD_FAILED": "There was an error when adding rating.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "Attachment failed to download.",
-		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results.",
-		"POST_FOLLOWED_SUCCESFULLY": "Good! You watch the ad now.",
-		"POST_UNFOLLOWED_SUCCESFULLY": "You no longer watch the ad.",
+		"POST_HID_SUCCESFULLY": "This post has been hidden. You’ll no longer see it in the Marketplace or search results.",
+		"POST_FOLLOWED_SUCCESFULLY": "Great! You are now watching this post.",
+		"POST_UNFOLLOWED_SUCCESFULLY": "You are no longer watching this post.",
 		"USER_PROFILE_CONTACT_EMAIL_ERROR": "<p>Apologies, but there was an error when saving your profile. It seems you have a second account on Hearth already with the same e-mail attached to it. <a title=\"Contact us\" href=\"\/app\/feedback\">Let us know<\/a> and we can merge your accounts or find another way. Thanks.<\/p>"
 	},
-	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels. Up with bigger!",
-	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
-	"BUT_YOU_HAVE_INACTIVE_POSTS": "But you have a couple of inactive ads.",
+	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
+	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no posts yet. But you can create them.",
+	"BUT_YOU_HAVE_INACTIVE_POSTS": "But you have a couple of inactive posts.",
 	"USER_RATING_SCORE_SELECT_TEXT": "How did you get along?",
 	"ACTIVATE_ACCOUNT_BROKEN_LINK": "Ugh! The account activation link is not valid.",
-	"NEGATIVE": "Oops. Something has gone wrong...",
+	"NEGATIVE": "Oops. Something has gone wrong. Please try again, or let us know if the problem continues.",
 	"POSITIVE": "Everything has clicked into place",
 	"GO_BACK_TO_MARKET": "Go to Marketplace",
 	"NO_SIGNAL_ON_THIS_PAGE": "How did you get here in the first place? If you think that it's a mistake, please let us know.",
 	"ERROR_404_SUBHEADER": "Sorry. No such thing here :(",
 	"YOUR_COMMUNITIES": "My communities",
-	"ERR_COMMUNITY_NAME_MAX_LENGTH": "Community name is too long. Cannot exceed 75 characters. Should be more than enough, right?",
+	"ERR_COMMUNITY_NAME_MAX_LENGTH": "Community name is too long. Cannot exceed 75 characters.",
 	"EMAIL_CONFIRMATION_HEADER": "Email confirmation",
 	"FIRST_NAME_PLACEHOLDER": "Name",
 	"WHOLE_PROFILE": "Show profile",
-	"DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Did you get in touch? Let the world know it was super great, or maybe something didn't go as smoothly as it could have...",
+	"DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Did you get in touch? Let the world know it was super great, or  maybe something didn't go as smoothly as it could have...",
 	"OR_GIVE_NEGATIVE_RATING": " or point out a mistake",
 	"YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST": "You have replied to this post.",
 	"ERR_RATING_IS_TOO_SHORT": "Add a little more to the user rating...",
-	"ERR_DATE_IS_OLD": "This period of validity is in the past. History. Over. Expired. Like the dead parrot. :)",
+	"ERR_DATE_IS_OLD": "This period of validity is in the past. (Please provide a correct date?)",
 	"FRIEND_INVITATION": "Invite friends",
 	"COMMUNITY_HAS_ONLY_INACTIVE_POSTS": "This community has only inactive ads. You can manage them in the list of all posts.",
 	"EDIT_POST_SUCCESS": "Post has been successfully edited.",
@@ -1005,9 +1019,9 @@
 		"one": "{{value}} person has offered it.",
 		"other": "{{value}} people have offered it."
 	},
-	"YOU_HAVE_ONLY_INACTIVE_POSTS": "You only have inactive ads here. You can enable them in the list of all posts.",
-	"COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS": "Err, you can change community administrator only when the community has more members. Why not invite someone along?",
-	"ALREADY_USED_EMAIL": "This email is being used already in our app. Yep.",
+	"YOU_HAVE_ONLY_INACTIVE_POSTS": "You only have inactive posts here. You can enable them in the list of all posts.",
+	"COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS": "Err, you can change a community administrator only when the community has more members. Why not invite someone along?",
+	"ALREADY_USED_EMAIL": "This email is being used already in our app. Try another.",
 	"COMPLETE": "Send",
 	"FILL_CONTACT_EMAIL": "Fill in your contact email for us.",
 	"FILL_EMAIL_TO_COMPLETE_REGISTRATION": "Complete registration",
@@ -1030,13 +1044,13 @@
 			"other": "{{count}} people waiting for approval"
 		},
 		"HOME": {
-			"NO_ACTIVITY_ME": "You seem to be new here. Not much to show so far. :)",
-			"NO_ACTIVITY_OTHER": "This is a new community. Brand new it seems. Otherwise there would be loads of interesting and fun info here. Let's wait and see!"
+			"NO_ACTIVITY_ME": "You seem to be new here. Not much activity so far. :)",
+			"NO_ACTIVITY_OTHER": "This is a new community. Brand new it seems. Otherwise there would be loads of interesting and fun info here. We wait to see it! We love watching things grow!:)"
 		},
 		"POSTS": {
-			"NO_POSTS_ADMIN": "What? You haven't created any ads yet. Let's do something about it. You can give or accept, whatever comes into your beautiful mind.",
-			"NO_POSTS_MEMBER": "You have no ads in the community.",
-			"NO_POSTS_OTHER": "The community hasn't offered anything yet, nor needed to accept. Perhaps they are still looking around or answering others' ads. Or just warming up..."
+			"NO_POSTS_ADMIN": "What? You haven't created any posts yet. Let's do something about it. You can give or accept, whatever comes into your beautiful mind.",
+			"NO_POSTS_MEMBER": "You have no posts in the community.",
+			"NO_POSTS_OTHER": "The community hasn't offered anything yet, nor needed to accept. Perhaps they are still looking around or answering others' posts. Or just warming up..."
 		},
 		"REMOVE_MEMBER_ARE_YOU_SURE": "Do you really want to dismiss this member from the community?",
 		"REMOVE_MEMBER_LABEL": "Dismiss member from community",
@@ -1072,7 +1086,7 @@
 				"one": "User has {{count}} friend",
 				"other": "User has {{count}} friends"
 			},
-			"NO_FRIENDS_ME": "You seem to be at little lonely here. Follow anyone following you and voilà, you'll have a friendship right there!",
+			"NO_FRIENDS_ME": "You seem to be a little lonely here. Follow anyone following you and voilà, you'll have a friendship right there!",
 			"NO_FRIENDS_OTHER": "User doesn't have any friends here. Now what? Follow each other and you become friends. Easy-peasy."
 		},
 		"FOLLOWEES": {
@@ -1106,9 +1120,9 @@
 		"HOME": {
 			"NO_ACTIVITY_ME": "You're new here. Not much activity so far :)",
 			"NO_ACTIVITY_OTHER": "User is new here. Not lazy, just new, so we cannot show you their activity.",
-			"NO_POSTS_ME": "You haven't created any ads. Let's do something about it, shall we? You can give or accept anything that crosses your beautiful mind.",
-			"NO_ACTIVITY_ME_OLDER": "You have no activity here so far.",
-			"NO_ACTIVITY_OTHER_OLDER": "User hasn't been too active here. Are we in for a surprise soon? "
+			"NO_POSTS_ME": "You haven't created any posts. Let's do something about it, shall we? You can give or accept anything that crosses your beautiful mind.",
+			"NO_ACTIVITY_ME_OLDER": "You have no activity here so far. There's no time like the present.",
+			"NO_ACTIVITY_OTHER_OLDER": "User hasn't been too active here. Saving for a rainy day? "
 		},
 		"INVITATION": {
 			"ADDRESSES": "Addresses:",
@@ -1118,9 +1132,9 @@
 		"POSTS": {
 			"NO_GIVEN_RATINGS_ME": "It seems you haven't given or accepted anything. That's why you couldn't share how it went with us. But you can easily fix that!",
 			"NO_GIVEN_RATINGS_OTHER": "User hasn't given or accepted anything. That's why they couldn't give a rating to anyone.",
-			"NO_POSTS_ME": "Attention! You haven't created any ads so far. Let's set it right. You can give or accept anything that comes into your mind.",
-			"NO_POSTS_OTHER": "User hasn't given or accepted anything. Maybe they are looking around or simply answering others' ads.",
-			"NO_RECEIVED_RATINGS_ME": "You haven't been bold enough to reply to an ad yet. So nobody has had the chance to post a couple of nice words in exchange...",
+			"NO_POSTS_ME": "Attention! You haven't created any posts so far. Let's set it right. You can give or accept anything that comes into your mind.",
+			"NO_POSTS_OTHER": "User hasn't given or accepted anything. Maybe they are looking around or simply answering others' posts.",
+			"NO_RECEIVED_RATINGS_ME": "You haven't been bold enough to reply to any posts yet. So nobody has had the chance to leave a couple of nice words in exchange...",
 			"NO_POSTS_BOOKMARKED": "You have no favourite gifts and wishes yet."
 		},
 		"TOP": {
@@ -1129,7 +1143,7 @@
 		},
 		"REMOVE_FOLOWEESE_LABEL": "Stop following user",
 		"REMOVE_FOLOWEESE_TEXT": "Do you really want to stop following this user?",
-		"YOUR_PROFILE_IS_EMPTY": "Your profile seems to be kind of sad... Hey, it's empty. Don't be so mysterious - tell the world about stuff you like.",
+		"YOUR_PROFILE_IS_EMPTY": "Your profile seems to be kind of empty. Don't be so mysterious - tell the world about stuff you like.",
 		"GIVES_COUNT": {
 			"one": "gift",
 			"other": "gifts"
@@ -1145,11 +1159,11 @@
 		"RATING": {
 			"OPEN_REPLY_FORM": "Add comment",
 			"REPLY_TO_USER": "Reply to rating from",
-			"FILTERED": "This rating has been removed due to the breach of Hearth.net Terms and conditions (advertising, inappropriate content et al.)"
+			"FILTERED": "This rating has been removed due to the breach of Hearth.net terms and conditions (advertising, inappropriate content et al.)"
 		},
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nobody",
-			"VISIBILITY_FOLLOWEES": "Users I follow",
+			"VISIBILITY_FOLLOWEES": "Users I am following",
 			"VISIBILITY_EVERYBODY": "Logged-in users",
 			"WHO_CAN_SEE_IT": "Who can view it"
 		}
@@ -1181,7 +1195,7 @@
 	},
 	"COMMON": {
 		"LOADING": "Loading...",
-		"STILL_WORKING": "Please wait, working hard..."
+		"STILL_WORKING": "Please wait, working hard...trying to get it right..."
 	},
 	"ERR_LOCATION_UNKNOWN_PLACE": "We don't know of such a place... Could you pick one from the list instead?",
 	"COMMUNITIES_PL": {
@@ -1191,18 +1205,18 @@
 	"ADD_LOCATION": "Add location",
 	"LOCATIONS_ARE_EMPTY": "Fill in location or tick box no location needed.",
 	"INSERT_LOCATION": "Insert location",
-	"USER_RATING_JOIN_REALIZED_GIFT": "You can attach your rating to an ad that you have interacted with in the last 3 months or to any active ad (yours or community one).",
-	"USER_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
+	"USER_RATING_JOIN_REALIZED_GIFT": "You can attach your rating to a post that you have interacted with in the last 3 months or to any active post (yours or a community one).",
+	"USER_RATING_CHOOSE_POST_TO_JOIN": "Select post",
 	"RATING_POST_TYPES": {
 		"offered": "I offered",
 		"needed": "I accepted",
 		"we_needed": "We accepted",
 		"we_offered": "We offered"
 	},
-	"RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted with any ads in the past 3 months and you have no active ad right now. But hey, you can still rate the user. :)",
+	"RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted with any posts in the past 3 months and you have no active posts right now. But hey, you can still rate the user. :)",
 	"RATING_COMMON_POSTS_TOP": "Which post was it?",
 	"RATING_TO_POST": "To post",
-	"RATING_LOADING_COMMON_POSTS": "Loading list of ads",
+	"RATING_LOADING_COMMON_POSTS": "Loading list of posts",
 	"SAVE_AND_ACTIVATE": "Save and publish",
 	"CHOOSE_LANGUAGE": "Select language",
 	"RATINGS_LABEL_WRITE_SOME_WORD": "Add a couple of words:",
@@ -1214,23 +1228,23 @@
 	"RATINGS_SAYING_FOR": "Said about user",
 	"USER_NOTIFICATION": "Notifications",
 	"NOTIFICATION": {
-		"ALERT_EXPIRING_POSTS": "Send notifications for ads close to their expiry date (usually 3 days before expiry).",
-		"ALERT_EXPIRED_POSTS": "Send notifications for expired ads.",
-		"ALERT_TIME_UNLIMITED_POSTS": "Send notifications for ads without an expiry date.",
+		"ALERT_EXPIRING_POSTS": "Send notifications for posts close to their expiry date (usually 3 days before expiry).",
+		"ALERT_EXPIRED_POSTS": "Send notifications for expired posts.",
+		"ALERT_TIME_UNLIMITED_POSTS": "Send notifications for posts without an expiry date.",
 		"ALERT_NEW_MESSAGES_IN_CONVERSATION": "Send notifications of new messages in the conversation.",
 		"ALERT_NEW_CONVERSATION": "Send e-mail notifications about new conversations.",
 		"MESSAGES_ALLOW_ONLY_POST_REPLIES": "I don't want to receive messages that aren't replies to my gifts and wishes."
 	},
 	"FACEBOOK_INVITATION_MESSAGE": "I'm at Hearth.net - the generous social network for sharing gifts, skills and experience. Come and give it a try!",
 	"ADD_CONTENT_AS_COMMUNITY": "as community",
-	"SELECT_COMMUNITIES_FOR_POST": "Select communities the ad should go into:",
-	"POST_TITLE_LABEL": "Ad short description:",
-	"POST_TEXT_LABEL": "Ad text:",
+	"SELECT_COMMUNITIES_FOR_POST": "Select communities the post should go into:",
+	"POST_TITLE_LABEL": "Post short description:",
+	"POST_TEXT_LABEL": "Post text:",
 	"POST_KEYWORDS_LABEL": "Keywords:",
 	"POST_PLACE_LABEL": "Places:",
-	"POST_COMMUNITIES_LABEL": "Place ad in community",
+	"POST_COMMUNITIES_LABEL": "Place post in community",
 	"POST_EXPIRATION_DATE_LABEL": "Valid until:",
-	"POST_LOCK_LABEL": "Ad privacy:",
+	"POST_LOCK_LABEL": "Post privacy:",
 	"IMAGES": "Images",
 	"SHOW_TO_ALL": "show to all",
 	"SHOW_TO_FRIENDS": "show to friends",
@@ -1238,20 +1252,20 @@
 	"UNTIL": "until",
 	"NOT_FILLED": "unfilled",
 	"POST_REPORT": {
-		"HEADING": "Report ad",
+		"HEADING": "Report post",
 		"REPORT_INFO": "<p>Reason for report:<\/p>",
-		"REASON_PLACEHOLDER": "Tell us a little about why this ad is bad...",
-		"SUCCESS_MESSAGE": "Ad has been reported successfully."
+		"REASON_PLACEHOLDER": "Tell us a little about why this post is bad...",
+		"SUCCESS_MESSAGE": "Post has been reported successfully."
 	},
 	"REPORT": "Report",
 	"INFO_BOX_LOADING_ERROR": "There was an error while loading.",
 	"EMAIL_SHARING": {
-		"HEADING": "Send ad to a friend",
+		"HEADING": "Send post to a friend",
 		"ADDRESS_LABEL": "Friend's email:",
 		"ADDRESS_PLACEHOLDER": "Enter one or more email addresses separated by commas.",
 		"TEXT_LABEL": "Message text:",
 		"TEXT_PLACEHOLDER": "Enter a few words here...",
-		"NOTE": "Send this ad to your friends.",
+		"NOTE": "Send this post to your friends.",
 		"SUCCESS_MESSAGE": "Email has been sent successfully. :)"
 	},
 	"ERR_NOT_FILLED_SHARING_EMAIL_ADDRS": "You have to fill in your friend's email address.",
@@ -1259,39 +1273,39 @@
 	"ADD_COMMUNITY_RATING": "Community rating",
 	"COMMUNITY_RATING_SCORE_SELECT_TEXT": "How was your communication?",
 	"WRITE_COMMUNITY_SOME_RATING": "Add a couple of words to the community rating",
-	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "You can link your rating to an ad that you have interacted with in the last 3 months or any other active ad (yours or other user's).",
-	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
+	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "You can link your rating to a post that you have interacted with in the last 3 months or any other active post (your own or another user's).",
+	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Select post",
 	"SEND_COMMUNITY_RATING": "Send rating",
 	"TOP_BAR_MESSAGES": "Messages",
 	"ADD_CONTENT_AS_USER": "as",
 	"REPLY": "Reply",
 	"SELECT_USERS": "Select one or more recipients",
-	"ATTACHE_IMAGES": "Attach images",
-	"ERR_REPORT_TEXT_MIN_LEN": "Please tell us why do you report the ad",
+	"ATTACHE_IMAGES": "Images",
+	"ERR_REPORT_TEXT_MIN_LEN": "Please tell us why you are reporting the post",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text is too long... 2500 characters is maximum. Think Twitter or SMS.",
 	"REPORT_HARMFUL_AD_ONLY_ONCE": "You have already set this gift or wish as inaproppriate.",
-	"POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "To insert the ad to community you can't have it visible for friends only.",
+	"POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "To insert the post to community you can't have it visible for friends only.",
 	"SOCIAL_NETWORKS": "Connect with us via:",
 	"COMMUNITY_WAS_NOT_FOUND": "No such community here. Sorry...",
-	"AD_REMOVE_FROM_COMMUNITY_LABEL": "Remove ad from the community",
+	"AD_REMOVE_FROM_COMMUNITY_LABEL": "Remove post from the community",
 	"POST_COMMUNITY_REMOVE": {
-		"HEADING": "Remove ad from the community",
-		"INFO": "Is this ad not for your community? You can simply remove it...",
-		"REASON_PLACEHOLDER": "Tell user why the ad is not suitable for Your communities...",
-		"SELECT_COMMUNITIES": "Select communities from which to remove the ad:",
+		"HEADING": "Remove post from the community",
+		"INFO": "Is this post not for your community? You can simply remove it...",
+		"REASON_PLACEHOLDER": "Tell user why the post is not suitable for Your communities...",
+		"SELECT_COMMUNITIES": "Select communities from which to remove the post:",
 		"REASON_LABEL": "Reason for removal:",
-		"POST_WILL_BE_REMOVED_FROM": "<p>Ad will be removed from the community <strong>{{name}}<\/strong>.<\/p>",
-		"SUCCESS_MESSAGE": "Ad removed successfully."
+		"POST_WILL_BE_REMOVED_FROM": "<p>Post&nbsp;will be removed from the community <strong>{{name}}<\/strong>.<\/p>",
+		"SUCCESS_MESSAGE": "Post removed successfully."
 	},
-	"ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Select at least one community from which to remove the ad.",
-	"ERR_MESSAGE_TEXT_MIN_LEN": "Did you not forget to fill in the message? Usually it's needed, you know.",
+	"ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Select at least one community from which to remove the post.",
+	"ERR_MESSAGE_TEXT_MIN_LEN": "No text entered? Did you forget to fill in the message? ",
 	"LOCATION_UNLIMITED_MESSAGE": "Anywhere",
 	"TERMS": "Terms of use",
 	"ADS_ALL": "All gifts and wishes",
 	"USER_MESSAGES": "Messages",
 	"SEND_MESSAGE": "Send message...",
 	"COMMUNITY_TERMS": "Community terms",
-	"NEW_VERSION_NOTIFICATION": "We have newer slicker version of Hearth ready for you. Do you want to update Hearth now or later?",
+	"NEW_VERSION_NOTIFICATION": "We have a slick new version of Hearth ready for you. Do you want to update Hearth now or later?",
 	"RELOAD": "Reload",
 	"ALL_COMMUNITIES": "All communities",
 	"RATINGS_COUNT": "ratings",
@@ -1315,21 +1329,21 @@
 	},
 	"YOU_ARE_OFFLINE": "<p><strong>Connection error<\/strong> Is your internet connection ok? Or modem on fire?<\/p>",
 	"ERROR_BAD_IMAGE_SIZE_ALL": "Total size of uploaded images cannot exceed {{maxSize}}MB.",
-	"RELOAD_PAGE": "Reload the page",
+	"RELOAD_PAGE": "Reload this page",
 	"TOP_BAR": {
 		"ADD_NEW_POST": "New gift\/wish",
 		"SEARCH": {
 			"EVERYWHERE": "Everywhere",
-			"MARKET": "At Marketplace",
+			"MARKET": "In marketplace",
 			"COMMUNITY": "In communities",
 			"PEOPLE": "In people",
 			"MESSAGES": "In messages"
 		}
 	},
-	"ERROR_WHILE_UPLOADING": "There was an error while loading",
+	"ERROR_WHILE_UPLOADING": "There was an error while uploading",
 	"LOGIN_INACTIVE_ACCOUNT": "You are tyring to log in with account that has not been activated yet. By clicking the link in confirmation registration e-mail. You can have  it <a {{attrs}}>sent to you again<\/a>.",
-	"RESEND_ACTIVATING_EMAIL": "Let send again",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. You can  have it <a {{attrs}}>sent to you again<\/a>.",
+	"RESEND_ACTIVATING_EMAIL": "Lets send it again",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to get a new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. You can  have it <a {{attrs}}>sent to you again<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net is a generous social network full of interesting people who dare to give. Do you? You can create your profile in a snap and the world of gifts is instantly yours.<\/p>",
 	"SIGNUP_HEADING_FB": "Join in",
 	"SIGN_UP": {
@@ -1362,7 +1376,7 @@
 		"communities": "Communities",
 		"messages": "Messages",
 		"profile_edit": "Edit profile",
-		"terms": "Terms and conditions",
+		"terms": "Terms and Conditions",
 		"map": "Map of gifts and wishes",
 		"profile_settings": "Profile settings",
 		"faq": "Frequently asked questions",
@@ -1378,13 +1392,13 @@
 			"BY_TYPE": "By type",
 			"TYPE": {
 				"ALL": "All",
-				"POSTS": "Gifts and wishes",
+				"POSTS": "Gifts and Wishes",
 				"PEOPLE": "People",
 				"COMMUNITY": "Communities"
 			},
 			"BY_LOCATION": "By location",
 			"BY_ACTIVITY": "By activity",
-			"ACTIVITY": "View long-time inactive posts too.",
+			"ACTIVITY": "Also view long-time inactive posts.",
 			"BY_LANGUAGE": "By language",
 			"LANGUAGE": {
 				"ALL": "Any",
@@ -1395,11 +1409,11 @@
 	},
 	"ADD_ATTACHMENT": "Attach file",
 	"CHANGE_ATTACHMENT": "Change file",
-	"ERR_RATING_SCORE_REQUIRED": "Before sending the rating, score is required",
+	"ERR_RATING_SCORE_REQUIRED": "Before sending the rating, you must select the option.",
 	"ERR_SOCIAL_NETWORK_NAME": "Social network link is not valid",
 	"APP_CRITICAL_ERROR": "<p>There was an error when loading Hearth.net.<\/p>\n<p>Wait a bit please and then try <a href=\".\">reload<\/a> the page again.<\/p>",
 	"INVITATION_STATUS": {
-		"INVITATION_SENT": "{{email}}: Yipee, invitation was sent successfuly!",
+		"INVITATION_SENT": "{{email}}: Yipee, your invitation was sent successfully!",
 		"USER_ALREADY_INVITED": "{{email}}: You have already invited this person to Hearth before.",
 		"USER_ALREADY_EXIST": "{{email}}: This person is already on Hearth as",
 		"INVITATION_NOT_SENT": "{{email}}: Invitation could not be sent. Perhaps invalid e-mail address?"
@@ -1417,8 +1431,8 @@
 	"OUR_NETWORKS": "Social networks and websites",
 	"USER_MOTTO": "About me in short",
 	"USER_MOTTO_EXAMPLE": "",
-	"ERR_USER_MOTTO_MAX_LENGTH": "Brief info about me should really be brief :)",
-	"ERR_INVALID_URL": "This url address is invaild (or did you mean No. 404 )",
+	"ERR_USER_MOTTO_MAX_LENGTH": "short info about me should really be short :)",
+	"ERR_INVALID_URL": "This url address is invalid (or were you just excited to see our No. 404 Page? )",
 	"CATEGORY_INFORMATION": "Information",
 	"CATEGORY_MASS": "Mass",
 	"CATEGORY_ENERGY": "Energy",
@@ -1440,16 +1454,16 @@
 			"TEXT": "Did you know, you can add any gift or wish to the favourites so that you can access them later, whenever you want?"
 		},
 		"HIDE_POST": {
-			"TEXT": "<p><em>Tip:<\/em> You can mark any ad that bothers you and you no longer wish to see as hidden.<\/p>"
+			"TEXT": "<p><em>Tip:<\/em> You can mark as hidden any post that bothers you, and you no longer wish to see.<\/p>"
 		}
 	},
 	"energy_TOOLTIP": "Activity, idea...",
 	"mass_TOOLTIP": "Things...",
 	"information_TOOLTIP": "Knowledge, tips...",
-	"AD_HIDE_LABEL": "Hide ad",
-	"AD_HIDE_ARE_YOU_SURE": "After you hide this ad, it will no longer display in the Marketplace or search results. You will still see it in the profile of a given user and also be able to access the details of the post.",
-	"HIDE_AD": "Hide ad",
-	"USING_HEARTH_FROM_COUNTRY": "You use Hearth mostly in this country",
+	"AD_HIDE_LABEL": "Hide post",
+	"AD_HIDE_ARE_YOU_SURE": "After you hide this post, it will no longer display in the Marketplace or search results. You will still see it in the profile of a given user and also be able to access the details of the post.",
+	"HIDE_AD": "Hide post",
+	"USING_HEARTH_FROM_COUNTRY": "You use Hearth.net mostly in this country",
 	"USER_LANGUAGE_AND_COUNTRY": "Language and country",
 	"COUNTRY": {
 		"AF": "Afghanistan",
@@ -1706,11 +1720,22 @@
 		"EH": "Western Sahara",
 		"ZW": "Zimbabwe"
 	},
-	"POSTS_RELATED_QUESTION": "Will any related ad catch your eye?",
-	"ERR_TEXT_TOO_LOUD": "Sorry to bother, but please do switch off the Caps Lock. Netiquette says it equals to SHOUTING plus it looks bad. Thanks :)",
-	"RATING_POST_TITLE": "Common ads",
-	"RATING_ACTIVE_POST_TITLE": "Other active ads",
+	"POSTS_RELATED_QUESTION": "Will any related post catch your eye?",
+	"ERR_TEXT_TOO_LOUD": "Sorry to bother you, but please do switch off the Caps Lock. Netiquette says it equals to SHOUTING plus it looks bad. Thanks :)",
+	"RATING_POST_TITLE": "Common posts",
+	"RATING_ACTIVE_POST_TITLE": "Other active posts",
 	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language",
-	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"LEND": "I lend",
+	"BORROW": "I borrow",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Did you mean ",
+	"LIGHTBOX_PREVIMAGE": "Previous",
+	"LIGHTBOX_NEXTIMAGE": "Next",
+	"LIGHTBOX_OPENINTAB": "Open image in new tab",
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Is is the correct e-mail? We could not verify it. If this is a mistake please <a href=\"\/app\/support\">let us know<\/a>.",
+	"CONVERSATION": {
+		"SETTINGS": {
+			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
+		}
+	},
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, dej nám o tom vědět."
 }
