@@ -25,9 +25,6 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				scope.style = {
 					'background-image': scope.image
 				};
-
-				console.log(scope.restrictLanguage);
-
 				scope.close = function($event) {
 					scope.closed = !scope.closed;
 					$.cookie(scope.code, scope.closed, {
