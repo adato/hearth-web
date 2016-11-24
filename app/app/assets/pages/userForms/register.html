@@ -3,6 +3,12 @@
 	<span ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</span>
 </h1>
 
+<div class='error text-center margin-bottom-20' ng-show="showError.blockedUserByEmail">
+	<span>{{:: 'SIGNUP_BLOCKED_EMAIL_ERROR' | translate }}
+		<a href="feedback">{{:: 'SIGNUP_BLOCKED_EMAIL_FEEDBACK_LINK' | translate}}</a>
+	</span>
+</div>
+
 <div class="register-login-dialog" ng-cloak>
 	<div class="register-form row">
 		<div class="headMessage error"></div>

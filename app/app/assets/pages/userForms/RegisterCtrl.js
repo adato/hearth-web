@@ -26,6 +26,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			first_name: false,
 			email: false,
 			password: false,
+			blockedUserByEmail: false
 		};
 
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('register');
@@ -81,6 +82,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 			$scope.registerForm.email.$error.used = false;
 			$scope.showError.topError = false;
+			$scope.showError.blockedUserByEmail = false;
+
 
 			// lock - dont send form twice
 			if ($scope.sending) return false;
@@ -112,6 +115,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				$scope.apiErrors = new ResponseErrors(err);
 				if ($scope.apiErrors.email)
 					$scope.showError.email = true;
+				if ($scope.apiErrors.blockedUserByEmail)
+					$scope.showError.blockedUserByEmail = true;
 
 				return $analytics.eventTrack('error during registration', {
 					category: 'registration',
