@@ -12,7 +12,7 @@ Dependencies:
 How install ruby dependecies
 ```shell
 cd project/web
-bundle
+bundle 
 ```
  
 How to run server
