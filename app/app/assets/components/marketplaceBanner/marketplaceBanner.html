@@ -1,9 +1,9 @@
 <section class="banner" ng-if="!closed">
-	<a class="large-10 large-push-2 hide-for-small medium-12 columns box {{::code}} marketplace-banner" title="{{::title}}" ng-href="{{::href}}">
+	<a class="large-10 large-push-2 hide-for-small medium-12 columns box {{::code}} marketplace-banner" title="{{::title}}" ng-href="{{::href}}" target="{{::target}}">
 		<div class="close" ng-click="close($event)">×</div>
 		<img src="/app/images/banner/{{::image}}-large-{{::language}}.png" alt="{{::title}}" />
 	</a>
-	<a class="large-12 hide-for-medium-up box {{::code}} marketplace-banner" title="{{::title}}" ng-href="{{::href}}">
+	<a class="large-12 hide-for-medium-up box {{::code}} marketplace-banner" title="{{::title}}" ng-href="{{::href}}" target="{{::target}}">
 		<div class="close" ng-click="close($event)">×</div>
 		<img src="/app/images/banner/{{::image}}-small-{{::language}}.png" alt="{{::title}}" />
 	</a>
