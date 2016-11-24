@@ -80,6 +80,9 @@ section.banner {
 		overflow: visible;
 		height: 110px;
 
+		.close {
+			display: none;
+		}
 		img {
 			width: 805px;
 			max-width: 805px;
