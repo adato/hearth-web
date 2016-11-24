@@ -14,7 +14,7 @@ How install ruby dependecies
 cd project/web
 bundle
 ```
-
+ 
 How to run server
 ```shell
 cd project/web/app
