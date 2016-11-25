@@ -30,7 +30,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			// tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
 			tmhDynamicLocaleProvider.localeLocationPattern('//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_{{locale}}.js');
 			// configure translate provider - where language constants are
-			$translateProvider.preferredLanguage(preferredLanguage);
+			$translateProvider.preferredLanguage(preferredLanguage || 'en');
 			$translateProvider.useSanitizeValueStrategy(null);
 
 			// $translateProvider.useStorage('SessionLanguageStorage');

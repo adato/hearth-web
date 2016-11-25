@@ -1,7 +1,8 @@
 <div id="notify-container-market"></div>
 <div class="market row">
 
-	<marketplace-banner image="crowdsource" code="crowdsourcing-banner" language="{{language}}" title="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate}}" href="support-us"></marketplace-banner>
+	<!-- <marketplace-banner image="crowdsource" code="crowdsourcing-banner" language="{{language}}" title="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate}}" href="support-us"></marketplace-banner> -->
+	<marketplace-banner class="leader-banner show-for-large-up" target="_blank" ng-if="(language == 'cs' || language == 'sk')" image="leader" code="leader-banner" language="{{language}}" title="" href="http://blog.hearth.net/hledame-vykonneho-reditele-pro-dobrocinny-startup-hearth-net/"></marketplace-banner>
 
 	<filterbar></filterbar>
 
