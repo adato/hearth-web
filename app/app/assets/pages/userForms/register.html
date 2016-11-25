@@ -4,8 +4,7 @@
 </h1>
 
 <div class='error text-center margin-bottom-20' ng-show="showError.blockedUserByEmail">
-	<span>{{:: 'SIGNUP_BLOCKED_EMAIL_ERROR' | translate }}
-		<a href="feedback">{{:: 'SIGNUP_BLOCKED_EMAIL_FEEDBACK_LINK' | translate}}</a>
+	<span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
 	</span>
 </div>
 
