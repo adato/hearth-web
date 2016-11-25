@@ -96,6 +96,10 @@
 		},
 		"UNFOLLOW": {
 			"LABEL": "Přestat inzerát sledovat"
+		},
+		"HIDE": {
+			"LABEL": "Skryť inzerát",
+			"ARE_YOU_SURE": "Naozaj chcete skryť tento inzerát?"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Položka sa nedá vymazať. Radšej sa s tým zmierte.",
@@ -1765,5 +1769,6 @@
 		"SETTINGS": {
 			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
 		}
-	}
+	},
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>."
 }
