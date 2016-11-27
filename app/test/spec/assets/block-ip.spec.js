@@ -19,7 +19,7 @@ describe('Access to Hearth blocked by IP address', function () {
       $httpBackend.whenGET('some_request').respond(403, blockResponseMock);
 
       $httpBackend.whenGET(/^(http|https)/).respond();
-      $httpBackend.whenGET('locales/en/messages.json').respond(readJSON('app/locales/en/messages.json'));
+      $httpBackend.whenGET('locales/en/messages.json').respond('app/locales/en/messages.json');
       $httpBackend.whenGET('assets/components/geo/markerTooltip.html').respond();
       $httpBackend.whenGET('assets/pages/static/error404.html').respond();
     }));
