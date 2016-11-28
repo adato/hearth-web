@@ -327,7 +327,8 @@
 		"MARK_CONVERSATION_AS_UNREAD": "Mark as unread",
 		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
 		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
-		"ADD_PARTICIPANT": "Přidat příjemce do konverzace"
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "New messages"
 	},
 	"MESSAGES_ARCHIVE": "Messages archive",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archive",
@@ -671,14 +672,14 @@
 		"one": "member",
 		"other": "members"
 	},
-	"COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE": "Community has no more members. How about inviting more people along?",
-	"COMMUNITY_HAS_NO_ADS_YET": "Hard to believe, but this community has no ads yet. Could it be black magic?",
+	"COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE": "Community has no other members. How about inviting some more people along?",
+	"COMMUNITY_HAS_NO_ADS_YET": "Hard to believe, but this community has no posts yet. Can you help change that? ",
 	"COMMUNITY_ACTIVITY": "Community activity",
 	"COMMUNITY_HAS": "Community has",
 	"COMMUNITY_APPLICATION_SENT": "Community application waiting for approval.",
 	"COMMUNITY_POSTS": "Community posts",
 	"COMMUNITY_APPLY": "Apply to join community",
-	"COMMUNITY_HAS_NO_POSTS_YET": "This community has no ads yet. But here you are, so maybe...?",
+	"COMMUNITY_HAS_NO_POSTS_YET": "This community has no posts yet. But here you are, so maybe...?",
 	"COMMUNITY_SEE_ALL_APPLICATIONS": "Show all community applications.",
 	"COMMUNITY_HAS_NO_APPLICATIONS": "Currently there are no applications for the community.",
 	"COMMUNITY_HAS_MEMBERS_COUNT": "Community total",
@@ -711,7 +712,7 @@
 	"SWITCH_TO": "Switch to",
 	"ERR_USER_NOT_FOUND": "User not found. Where are they?",
 	"POST_NOT_FOUND": "Post not found. Where is it?!",
-	"POST_WAS_DELETED": "Ad has been deleted.",
+	"POST_WAS_DELETED": "Post has been deleted.",
 	"EDIT_POST": "Edit",
 	"COMMUNITY_EDIT": "Edit community profile",
 	"COMMUNITY_ADD": "Add community",
@@ -723,25 +724,25 @@
 		"HEADER": "Edit profile"
 	},
 	"LOGOUT": "Sign out",
-	"ERR_ACTION_FAILED_DUE_TO_ERRORS": "There are errors in your ad, the action could not be completed. Please correct it and try again.",
-	"ERR_AD_TITLE_LEN": "The post title is too long. Too long...",
-	"ERR_AD_TITLE_MIN_LEN": "Title of the post is too short.",
+	"ERR_ACTION_FAILED_DUE_TO_ERRORS": "There are errors in your post, the action could not be completed. Please correct it and try again.",
+	"ERR_AD_TITLE_LEN": "The post title is too long. (Max xxxx characters)",
+	"ERR_AD_TITLE_MIN_LEN": "Title of the post is too short. (min characters?)",
 	"ERR_AD_TEXT_LEN": "Your post is too long, Mr. Shakespeare. We're sorry but our total length is 2500 characters.",
-	"ERR_AD_TEXT_MIN_LEN": "Your post is too short. Add a few more words... Wise men say that every word counts.",
+	"ERR_AD_TEXT_MIN_LEN": "Your post is too short. Add a few more words... Wise men say that every word counts. (Min characters)",
 	"ERR_FORM_NOT_VALID": "There is an error in your form. Correct it and then save the form again.",
 	"ERR_AD_REPLY_NOT_AGREE": "Send the user your email too, so they can get in touch with you.",
-	"ERR_NOT_VALID_EMAIL": "Email format is not valid.",
+	"ERR_NOT_VALID_EMAIL": "Email format is not valid. Try again.",
 	"ERR_NOT_FILLED_EMAIL": "Please fill in your email.",
 	"ERR_NOT_FILLED_CONTACT_EMAIL": "Please fill in your contact email.",
-	"ERR_NOT_VALID_PHONE": "You have entered wrong format of the phone number.",
+	"ERR_NOT_VALID_PHONE": "You have entered the wrong format for the phone number. Try again.",
 	"ERR_NOT_FILLED_FIRST_NAME": "Please fill in your name",
 	"ERR_NOT_FILLED_OLD_PASS": "Enter your previous password...",
-	"ERR_NOT_FILLED_NEW_PASS": "Please fill the new password that you want to set.",
-	"ERR_TOO_SHORT_NEW_PASS": "New password has to be at least 5 characters! In words: five.",
+	"ERR_NOT_FILLED_NEW_PASS": "Please fill in the new password that you want to set.",
+	"ERR_TOO_SHORT_NEW_PASS": "New password has to be at least 5 characters!",
 	"ERR_OLD_PASS_IS_NOT_VALID": "You have entered an invalid current password. Curse that Caps Lock!",
-	"LOCATIONS_IS_EMPTY": "Fill in the location or tick place doesn't matter.",
+	"LOCATIONS_IS_EMPTY": "Fill in the location or check the box - place doesn't matter.",
 	"LOCATIONS_IS_EMPTY_STRICT": "Fill in location!",
-	"DATE_IS_EMPTY": "Fill in ad expiry date or tick unlimited duration.",
+	"DATE_IS_EMPTY": "Fill in post expiry date or check the box for - unlimited duration.",
 	"INVITE_EMAIL_WAS_SENT": "Invitation has been sent, thank you.",
 	"LOGIN_HEADING": "Sign in",
 	"LOGIN_BUTTON": "Sign in",
@@ -1311,7 +1312,7 @@
 	"RATINGS_COUNT": "ratings",
 	"MY_POST_REPLIES": "My replies",
 	"COMMUNITY_RATINGS": "ratings",
-	"COMMUNITY_GIVEN_RATINGS": "Given ratings:",
+	"COMMUNITY_GIVEN_RATINGS": "Sent ratings:",
 	"COMMUNITY_RECEIVED_RATINGS": "Recieved ratings:",
 	"REPLY_TO_POST": "to gift\/wish:",
 	"REPORT_HARMFUL_AD": "Report the ad to admins and the user as harmful.",
@@ -1445,7 +1446,7 @@
 	"CATEGORY_INFORMATION_TEXT": "(knowledge, tips...)",
 	"CATEGORY_MASS_TEXT": "(things...)",
 	"CATEGORY_ENERGY_TEXT": "(activity, desire...)",
-	"ERR_AD_CATEGORY_MAX": "You can choose up to 2 categories.",
+	"ERR_AD_CATEGORY_MAX": "You can choose up to 2 options for the nature.",
 	"BUBBLE": {
 		"MARKETPLACE_ITEM_MOOD": {
 			"TEXT": "Awesome! We have added an option to Hearth for you to choose a nature with any gift\/wish. Soon you'll be able to view this info as well as ability to filter by that."
@@ -1737,5 +1738,5 @@
 			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
 		}
 	},
-	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, dej nám o tom vědět."
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>."
 }

@@ -329,7 +329,8 @@
 		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou",
 		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
 		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
-		"ADD_PARTICIPANT": "Přidat příjemce do konverzace"
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "Nové zprávy"
 	},
 	"MESSAGES_ARCHIVE": "Archív zpráv",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -1770,5 +1771,5 @@
 			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
 		}
 	},
-	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, dej nám o tom vědět."
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>."
 }
