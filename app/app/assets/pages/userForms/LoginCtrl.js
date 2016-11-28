@@ -115,6 +115,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				$scope.showError.noOauthAccountFound = true;
 
 			if (Auth.isLoggedIn()) {
+				$location.replace();
 				return $location.path($rootScope.referrerUrl || '/');
 			}
 

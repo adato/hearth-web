@@ -7,15 +7,15 @@
  */
 
 angular.module('hearth.services').service('UnauthReload', [
-	'$translate', '$location', '$rootScope', '$timeout',
-	function($translate, $location, $rootScope, $timeout) {
+	'$translate', '$location', '$rootScope', '$timeout', '$state',
+	function($translate, $location, $rootScope, $timeout, $state) {
 		var self = this;
 		var cookieName = 'reloadPath';
 
 		/**
 		 *  Check if user is logged - if no, throw him on login page
 		 */
-		this.checkAuth = function() {
+		self.checkAuth = function() {
 			// if not logged
 			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) {
 				$rootScope.loginRequired = true;
@@ -23,7 +23,10 @@ angular.module('hearth.services').service('UnauthReload', [
 				$.cookie(cookieName, $location.path().slice(1), {
 					path: '/'
 				});
-				$location.path('login');
+				// $location.path('login');
+				// $state.go('login', {
+				// 	location: 'replace'
+				// });
 
 				var destroy = $rootScope.$on('$routeChangeSuccess', function() {
 					$timeout(function() {
@@ -37,13 +40,13 @@ angular.module('hearth.services').service('UnauthReload', [
 		/**
 		 *  Check if user is logged - if no, throw him on login page
 		 */
-		this.check = function() {
+		self.check = function() {
 			// check after user is loaded
 			$rootScope.$on('initFinished', self.checkAuth);
 			$rootScope.initFinished && self.checkAuth();
 		};
 
-		this.checkLocation = function() {
+		self.checkLocation = function() {
 			var loc = self.getLocation();
 
 			if (loc) {
@@ -52,16 +55,15 @@ angular.module('hearth.services').service('UnauthReload', [
 			}
 		};
 
-		this.clearReloadLocation = function() {
+		self.clearReloadLocation = function() {
 			$.cookie(cookieName, '', {
 				path: '/'
 			});
 		};
 
-		this.getLocation = function() {
+		self.getLocation = function() {
 			return $.cookie(cookieName);
 		};
 
-		return this;
 	}
 ]);
