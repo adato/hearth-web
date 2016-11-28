@@ -61,7 +61,7 @@
 	a {
 		font-weight: 600;
 	}
-	/** { 
+	/** {
 		text-align: left;
 	}*/
 	div.error {
@@ -138,13 +138,6 @@
 			font-size: 20px;
 			width: 130px;
 		}
-		a {
-			position: relative;
-			top: 12px;
-			&.close {
-				/* margin-left: 20px; */
-			}
-		}
 	}
 	.need-offer-selector {
 		display: inline-block;
@@ -167,7 +160,7 @@
 		.headline {
 			display: block;
 		}
-		
+
 		.character-label {
 			margin-left: 0;
 			margin-right: 10px;

@@ -55,7 +55,7 @@
 	</script>
 </head>
 
-<body ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': ''))]" ng-keydown="escapeKey($event)">
+<body>
 	<script type="text/javascript">
 		// scripts to be loaded sooner
 		(function(){
@@ -136,12 +136,62 @@
 	</script>
 	<script src="//connect.facebook.net/en_US/sdk.js"></script>
 	<!--[if lt IE 10]>
-    <div class="chromeframe">
-      <div class="reason">
-        <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
-      </div>
-    </div>
-  <![endif]-->
+		<div class="ngdialog ngdialog-theme-default" id="unsupportedBrowser">
+			<div class="ngdialog-overlay"></div>
+			<div class="ngdialog-content">
+				<div id="aeg-translate-unsupported-browser" class="itemReply" style="line-height: 1.4;">
+					We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> to use <strong>Hearth.net</strong>.
+				</div>
+			</div>
+		</div>
+		<script>
+
+			var en = 'en',
+				cs = 'cs',
+				sk = 'sk';
+
+			var validLanguages = {};
+			validLanguages[en] = true;
+			validLanguages[cs] = true;
+			validLanguages[sk] = true;
+
+			var defaultLanguage = en;
+			var languageCookie = 'language';
+
+			var currentLanguage = getCookie(languageCookie);
+			if (!validLanguages[currentLanguage]) currentLanguage = defaultLanguage;
+
+			var unsupportedBrowserTranslations = {};
+			unsupportedBrowserTranslations[en] = '<h3>We wish you a nice day</h3>We are terribly sorry, but we can\'t serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> to use <strong>Hearth.net</strong>.';
+			unsupportedBrowserTranslations[cs] = '<h3>Přejeme vám hezký den</h3>Je nám to nesmírně líto, ale stránku vám nemůžeme zobrazit, protože používáte zastaralý prohlížeč. Abyste mohli používat <strong>Hearth.net</strong>, <a href="http://browsehappy.com/">stáhněte si novější prohlížeč</a>.';
+			unsupportedBrowserTranslations[sk] = '<h3>Prajeme vám pekný deň</h3>Je nám to nesmierne ľúto, ale stránku vám nemôžeme zobraziť, pretože používate zastaraný prehliadač. Abyste mohli používať <strong>Hearth.net</strong>, <a href="http://browsehappy.com/">stiahnite si novší prehliadač</a>.';
+
+			var unsupportedBrowserNodeId = 'aeg-translate-unsupported-browser';
+
+			init();
+
+			/////////
+
+			function init() {
+				var unsupportedBrowserNode = document.getElementById(unsupportedBrowserNodeId);
+				if (unsupportedBrowserNode) {
+					unsupportedBrowserNode.innerHTML = unsupportedBrowserTranslations[currentLanguage];
+				}
+			}
+
+			function getCookie(cname) {
+				var name = cname + '=';
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var c = cookies[i];
+					while (c.charAt(0) === ' ') c = c.substring(1);
+					if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+				}
+				return '';
+			}
+
+		</script>
+	<![endif]-->
 	<div id="all" ng-include="'assets/pages/init.html'"></div>
 
 	<script src="/app/vendor/rollbar/dist/rollbar.min.js"></script>
@@ -153,6 +203,7 @@
 	<script src="/app/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="/app/vendor/ngDialog/js/ngDialog.min.js"></script>
 	<script src="/app/libs/lemmon-slider.js"></script>
+	<script src="/app/libs/jquery.mailgun_validator.js"></script>
 	<script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
 	<script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
 	<script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
@@ -269,6 +320,7 @@
 	<script src="/app/assets/services/OpenGraph.js"></script>
 	<script src="/app/assets/services/PageTitle.js"></script>
 	<script src="/app/assets/services/PostsService.js"></script>
+	<script src="/app/assets/services/PostScope.js"></script>
 	<script src="/app/assets/services/ProfileProgress.js"></script>
 	<script src="/app/assets/services/ProfileUtils.js"></script>
 	<script src="/app/assets/services/ResponseErrors.js"></script>
@@ -287,6 +339,7 @@
 	<script src="/app/assets/services/Validators.js"></script>
 	<script src="/app/assets/services/ViewPort.js"></script>
 	<script src="/app/assets/services/ViewportUtils.js"></script>
+	<script src="/app/assets/services/ConversationAux.js"></script>
 	<script src="/app/assets/filters/filters.js"></script>
 	<script src="/app/assets/components/navigation/navigation.js"></script>
 	<script src="/app/assets/components/ratingReply/ratingReply.js"></script>
@@ -295,6 +348,7 @@
 	<script src="/app/assets/components/slideTrigger/slideTrigger.js"></script>
 	<script src="/app/assets/components/ago/ago.js"></script>
 	<script src="/app/assets/components/classIfOverflow/classIfOverflow.js"></script>
+	<script src="/app/assets/components/ctrlEnterSubmit/ctrlEnterSubmit.js"></script>
 	<script src="/app/assets/components/dynamicHeight/dynamicHeight.js"></script>
 	<script src="/app/assets/components/conversationReply/conversationReply.js"></script>
 	<script src="/app/assets/components/tipsy/tipsy.js"></script>
@@ -367,6 +421,7 @@
 	<script src="/app/assets/components/validatedCheckbox/validatedCheckbox.js"></script>
 	<script src="/app/assets/components/withErrors/withErrors.js"></script>
 	<script src="/app/assets/components/ctrlEnterSubmit/ctrlEnterSubmit.js"></script>
+	<script src="/app/assets/components/mailgunValidator/mailgunValidator.js"></script>
 	<script src="/app/assets/utils/ExifRestorer.js"></script>
 	<script src="/app/assets/utils/eventPause.js"></script>
 	<script src="/app/assets/components/abTest/abTest.js"></script>
@@ -419,6 +474,7 @@
 	<script src="/app/assets/modals/ConfirmBox.js"></script>
 	<script src="/app/assets/modals/ItemSuspend.js"></script>
 	<script src="/app/assets/constants/MottoLength.js"></script>
+	<script src="/app/assets/constants/MarketPostCount.js"></script>
 	<script src="/app/assets/utils/tracking.js"></script>
 	<!-- endbuild -->
 

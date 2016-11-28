@@ -10,6 +10,8 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 
 	var factory = {};
 
+	var MAX_MOTTO_LENGTH = MottoLength;
+
 	var PROFILE_TYPES = {
 		USER: 'user',
 		COMMUNITY: 'community'
@@ -59,9 +61,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		return paramObject.profile;
 	}
 
-	// SETUP
-	var MAX_MOTTO_LENGTH = MottoLength;
-
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
@@ -89,7 +88,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		for (var i = profile.interests.length; i--;) {
 			if (profile.interests[i].text) profile.interests[i] = profile.interests[i].text;
 		}
-		// profile.interests = profile.interests.join(',');
 		return profile;
 	}
 

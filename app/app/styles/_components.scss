@@ -104,6 +104,12 @@
 	display: flex;
 	align-items: center;
 }
+.flex-divide-small > .flex-div {
+	margin-right: $size-small;
+}
+.flex-divide-small > .flex-div:last-child{
+	margin-right: 0;
+}
 @media #{$medium-up}{
 	.display-medium-flex{
 		display: flex;
@@ -346,6 +352,7 @@ a.word-break{
 .background-need{background-color: $colorNeed;}
 .background-primary{background-color: $colorPrimary;}
 .background-secondary{background-color: $colorSecondary;}
+.background-white{background-color: #fff;}
 /* /COLOR */
 
 /* LINKS */

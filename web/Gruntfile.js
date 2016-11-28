@@ -17,7 +17,8 @@ module.exports = function(grunt) {
 		landingPageSrcFolder + '/css/hamburger.css',
 		landingPageSrcFolder + '/css/dots-navigation.css',
 		landingPageSrcFolder + '/css/main.css',
-		landingPageSrcFolder + '/css/font-awesome.min.css'
+		landingPageSrcFolder + '/css/font-awesome.min.css',
+		landingPageSrcFolder + '/css/ie-hacks.css'
 	];
 
 	grunt.initConfig({

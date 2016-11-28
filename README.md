@@ -1,9 +1,9 @@
 Hearth (Front end)
 ==================
 Front and app is based on Angular.
- 
+
 Dependencies:
-* ruby 
+* ruby
 * sass
 * compass
 * zurb-foundation
@@ -12,9 +12,9 @@ Dependencies:
 How install ruby dependecies
 ```shell
 cd project/web
-bundle 
+bundle
 ```
- 
+
 How to run server
 ```shell
 cd project/web/app
@@ -51,7 +51,7 @@ Landing page favicon
 
 Testing with Protractor
 -----------------------
-For end2end testing we use Protractor tool which is build on top of selenium. 
+For end2end testing we use Protractor tool which is build on top of selenium.
 
 ### Setup
 

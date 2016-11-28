@@ -172,7 +172,6 @@ a.masonry-item:hover .button,
 }
 .section + .section,
 .section > section + section {
-	/*margin-top: 40px;*/
 	padding-top: 40px;
 }
 .section:last-of-type{
@@ -181,9 +180,6 @@ a.masonry-item:hover .button,
 .section > section h1 {
 	margin-top: 56px;
 }
-/*.section > section + section h1 {
-	margin-top: 96px;
-}*/
 /*******************
 	NAV
 *******************/
@@ -192,7 +188,6 @@ a.masonry-item:hover .button,
 	top: 0;
 	width: 100%; height: 70px;
 	display: flex;
-	/*align-items: center;*/
 	align-items: stretch;
 	justify-content: space-between;
 	padding: 0 16px;
@@ -354,18 +349,11 @@ a.masonry-item:hover .button,
 .sub-link-list .nav-item:hover {
 	color: #fa5800;
 }
-/*@media (min-width: 1200px){
-	#language-panel{
-		flex-order: 4;
-		display: inherit;
-	}
-}*/
 .flag{
 	display:inline-block;
 	width: 30px; height: 30px;
 	vertical-align: middle;
 	border-radius: 50%;
-	/*background-position: center center;*/
 	background-size: cover;
 	background-repeat: no-repeat;
 	transition: .3s all;
@@ -567,9 +555,6 @@ html[lang='en'] .language-panel .lang-en{
 	position: relative;
 	padding-bottom: 110px;
 }
-/*.contains-slash + .section > section > h1{
-	margin-top: 16px;
-}*/
 .slash{
 	position: absolute;
 	bottom: -1px; left: 0;
@@ -719,9 +704,6 @@ a.masonry-item{
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 }
-/*.masonry-alt .masonry-item{
-	margin: 0 !important;
-}*/
 @media (min-width: 992px){
 	.masonry-alt .masonry-item{
 		margin: 0 !important;
@@ -768,10 +750,9 @@ a.masonry-item{
 /*******************
 	SOCIAL
 *******************/
-/*.footer{
-	font-size: 20px;
-	line-height: 32px;
-}*/
+.footer{
+	margin-bottom: 36px;
+}
 .footer .standard-p{
 	font-size: inherit;
 	line-height: inherit;
@@ -835,12 +816,6 @@ a.masonry-item{
 .blog-img-wrapper img {
 	border-radius: 50%;
 }
-/*.blog-img-wrapper > .blog-img {
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 100%;
-	padding-bottom: 100%;
-}*/
 
 .bulletize-paragraphs > p {
 	position: relative
@@ -864,9 +839,19 @@ a.masonry-item{
 	.min-500{ min-width: 500px; }
 }
 .max-500{ max-width: 500px; margin: 0 auto; }
+
+/* solves weird IE bug */
+#testimonials .lead {
+	max-width: 500px;
+}
+
 @media (min-width: 1200px){
 	.min-500{ min-width: 800px; }
 	.max-500{ max-width: 800px; }
+
+	/* solves weird IE bug */
+	#testimonials .lead { max-width: 800px; }
+
 	#testimonials .tab-pane{
 		text-align: center;
 	}
@@ -874,7 +859,6 @@ a.masonry-item{
 .img-circle{ border-radius: 50%; }
 div.img-circle{ padding-bottom: 100%; background-size: cover; }
 @media (min-width: 768px){
-	/*.nav-justified>li{display:table-cell;width:1%;vertical-align: top;}*/
 	.nav-justified>li>a{margin-bottom:0}
 }
 .nav.nav-justified{
@@ -982,6 +966,41 @@ html[lang='sk'] #section-marketplace {
 }
 
 /*******************
+	NG-DIALOG
+*******************/
+.ngdialog {
+	position: fixed;
+	top: 0; right: 0; bottom: 0; left: 0;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.95);
+	z-index: 99999 !important;
+	animation: 0.5s ease 0s normal none 1;
+}
+.ngdialog-content {
+	position: relative;
+	width: 650px;
+	display: inline-block;
+	margin: 6% auto;
+	padding: 20px;
+	text-align: left;
+	font-size: 16px;
+	border-radius: 8px;
+	color: black;
+	background: #fff;
+	animation: ease-in .5s;
+}
+.ngdialog-content h3 {
+	text-align: left;
+}
+.ngdialog-content a {
+	color: #1fb1e8;
+}
+.ngdialog-content hr {
+	margin-top: 15px;
+	opacity: .4;
+}
+
+/*******************
 	IMAGES
 *******************/
 
@@ -992,23 +1011,6 @@ html[lang='sk'] #section-marketplace {
 #image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-s.jpg')}
 #image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-s.jpg')}
 #image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-s.jpg')}
-/* with the way they are currently shown - this is enough */
-/*@media (min-width: 768px) {
-	#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-m.jpg')}
-	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-m.jpg')}
-	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-m.jpg')}
-	#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-m.jpg')}
-	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-m.jpg')}
-	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-m.jpg')}
-}*/
-/*@media (min-width: 1200px) {
-	#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-l.jpg')}
-	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-l.jpg')}
-	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-l.jpg')}
-	#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-l.jpg')}
-	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-l.jpg')}
-	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-l.jpg')}
-}*/
 
 /* TESTIMONIAL IMAGES */
 #image-testimonial-barta{background-image: url('../img/people/jiri-barta.png')}

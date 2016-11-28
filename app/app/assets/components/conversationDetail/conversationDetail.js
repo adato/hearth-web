@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 			scope: {},
 			templateUrl: 'assets/components/conversationDetail/conversationDetail.html',
 			link: function($scope, element) {
-				// PSEUDO INJECTS
+				// PSEUDO INJECTS AND EXPOSITIONS
 				$scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
 				$scope.getProfileLink = $rootScope.getProfileLink;
 				$scope.loggedUser = $rootScope.loggedUser;

@@ -31,6 +31,67 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.character = $$config.postCharacter;
 		$scope.languageList = LanguageList.localizedList;
 
+		var OFFER = 'offer',
+			LEND = 'lend',
+			BORROW = 'borrow',
+			NEED = 'need',
+			GIFT = 'gift',
+			LOAN = 'loan',
+			ANY = 'any';
+
+		$scope.itemTypeOptions = [OFFER, LEND, BORROW, NEED];
+
+		$scope.itemOptionIcons = {};
+		$scope.itemOptionIcons[OFFER] = 'fa-heart';
+		$scope.itemOptionIcons[LEND] = 'fa-clock-o';
+		$scope.itemOptionIcons[BORROW] = 'fa-clock-o';
+		$scope.itemOptionIcons[NEED] = 'fa-heart';
+
+		/**
+		 *	Function that takes care of correct behaviour of the `type` and `exact_type` picker
+		 *
+		 *	- {String} itemType [offer, lend, borrow, need] [required]
+		 *	- {Object} post [required] the post on which the `type` is being set
+		 */
+		$scope.setItemTypeActive = function(paramObject) {
+			paramObject = paramObject || {};
+			if (!(paramObject.itemType && paramObject.post)) throw new TypeError('itemType and post are both required for setting item type and exact_type.');
+			var post = paramObject.post;
+			if (paramObject.itemType === OFFER) {
+				if (post.type === OFFER) {
+					if (post.exact_type === GIFT) return;
+					else if (post.exact_type === ANY) return post.exact_type = LOAN;
+					else if (post.exact_type === LOAN) post.exact_type = ANY;
+				} else {
+					post.exact_type = GIFT;
+				}
+				post.type = OFFER;
+			} else if (paramObject.itemType === LEND) {
+				if (post.exact_type === ANY && post.type === OFFER) {
+					post.exact_type = GIFT;
+				} else {
+					post.exact_type = post.exact_type === GIFT ? (post.type === OFFER ? ANY : LOAN) : LOAN;
+				}
+				post.type = OFFER;
+			} else if (paramObject.itemType === NEED) {
+				if (post.type === NEED) {
+					if (post.exact_type === GIFT) return;
+					if (post.exact_type === ANY) return post.exact_type = LOAN;
+					if (post.exact_type === LOAN) post.exact_type = ANY;
+				} else {
+					post.exact_type = GIFT;
+				}
+				post.type = NEED;
+			} else if (paramObject.itemType === BORROW) {
+				if (post.exact_type === ANY && post.type === NEED) {
+					post.exact_type = GIFT;
+				} else {
+					post.exact_type = post.exact_type === GIFT ? (post.type === NEED ? ANY : LOAN) : LOAN;
+				}
+				post.type = NEED;
+			}
+		};
+
 		$scope.slide = {
 			files: false,
 			date: false,
@@ -61,8 +122,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.togglePostType = function() {
-			if (!$scope.post.reply_count)
-				$scope.post.type = !$scope.post.type;
+			if (!$scope.post.reply_count) $scope.post.type = $scope.post.type === OFFER ? NEED : OFFER;
 		};
 
 		$scope.queryKeywords = function($query) {
@@ -174,7 +234,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
 
-				post.type = post.type == 'offer';
+				post.type = post.type || OFFER;
+				post.exact_type = post.exact_type || GIFT;
 			}
 			return post;
 		}
@@ -360,7 +421,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				angular.copy(post), {
 					valid_until: (post.valid_until) ? convertDateToIso(post.valid_until, $scope.dateFormat) : post.valid_until,
 					id: $scope.post._id,
-					type: post.type ? 'offer' : 'need'
+					// type: post.type ? 'offer' : 'need'
 				}
 			);
 
@@ -372,7 +433,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$.cookie(POST_LANGUAGE, post.language);
 
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
-
 				// if it is save&activate button
 				// call prolong or resume endpoints first
 				switch (activate && post.state) {
@@ -392,7 +452,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		function modifyDateFormat(dateFormat) {
-
 			dateFormat = dateFormat.replace(/yyyy/g, 'y');
 			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
 			return dateFormat;

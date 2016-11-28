@@ -24,12 +24,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
-			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
+			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" multiple file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
 				scope.showErrors = true;
 				scope.error = scope.error || {};
-				scope.uploading = false;
+				scope.uploading = 0;
 
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if (scope.singleFile) {
@@ -121,20 +121,20 @@ angular.module('hearth.directives').directive('imagePreview', [
 						return scope.error.badSize = true;
 					}
 
-					scope.uploading = true;
+					scope.uploading++;
 					scope.$apply();
 					$timeout(function() {
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
 						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, fileItself, function(res) {
-							scope.uploading = false;
+							scope.uploading--;
 							pushResult(res, {
 								total: 0
 							});
 							$('input', el).val('');
 						}, function(err) {
-							scope.uploading = false;
+							scope.uploading--;
 							scope.error.uploadError = true;
 							$log.error('Error: ', err);
 							$('input', el).val("");

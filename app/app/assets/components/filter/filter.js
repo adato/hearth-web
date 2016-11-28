@@ -76,7 +76,6 @@ angular.module('hearth.directives').directive('filter', [
 				// when (un)checked checkbox for save filter - send request also to api
 				scope.toggleSaveFilter = function(save) {
 					if (!$rootScope.loggedUser._id) return false;
-
 					if (save) {
 						Filter.setUserFilter(convertFilterToParams(scope.filter));
 					} else {

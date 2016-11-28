@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'FileService', '$rootScope', 'ConversationAux',
-	function(Conversations, Notify, $timeout, FileService, $rootScope, ConversationAux) {
+	'Conversations', 'Notify', '$timeout', 'FileService', 'ConversationAux', '$rootScope',
+	function(Conversations, Notify, $timeout, FileService, ConversationAux, $rootScope) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -83,20 +83,15 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
-						// $scope.$emit('conversationMessageAdded', res);
-
 						ConversationAux.handleEvent({
 							action: 'created',
 							conversation: res
 						});
 					}, function(err) {
 						$scope.sendingReply = false;
+						$scope.reply = reply;
 					});
 				};
-
-				// $scope.closeConversation = function() {
-				// 	$scope.$emit('closeConversation');
-				// }
 
 				$scope.init = function() {
 					Conversations.get({
