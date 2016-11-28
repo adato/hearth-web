@@ -17,6 +17,7 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 
 		var factory = {
 			alterPossiblePosts: alterPossiblePosts,
+			isMyCommunity: isMyCommunity,
 			loadProfileInfo: loadProfileInfo,
 			query: query,
 		};
@@ -43,6 +44,23 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 				arr.push(item);
 			});
 			return arr;
+		}
+
+		/**
+		 *	Returns whether I am an admin in the given community or not
+		 *	@param {Object} communityObject - the community object that has an _id to check
+		 *	@param {Object} params - {Boolean} checkIfIAmAdmin - check wheter I am an admin in the given community
+		 *	@return {Boolean} true if I am a member/admin in the given community
+		 */
+		function isMyCommunity(communityObject, params) {
+			params = params || {};
+			if (communityObject && communityObject._id) {
+				var communityList = params.checkIfIAmAdmin ? $rootScope.myAdminCommunities : $rootScope.myCommunities;
+				for (var i = communityList.length; i--;) {
+					if (communityList[i]._id === communityObject._id) return true;
+				}
+			}
+			return false;
 		}
 
 		function loadProfileInfo(author, done, doneErr) {

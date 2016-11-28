@@ -4,17 +4,12 @@
 	<div class="fill-email-notify-container"></div>
 	<form ng-submit="fillEmail()" name="fillEmailForm" novalidate class="register-login-form">
 		<span ng-bind-html="'FILL_EMAIL_FOR_TWITTER_LOGIN' | translate"></span>
-		<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-validator
-						mailgun-validator ng-model-options="{ debounce: 300 }">
-
-		<span ng-show="fillEmailForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
+		<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="validateEmail(data)" ng-focus="showError.email = false;" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">
 		<div class="moveUp error" ng-show="showError.email">
 			<span ng-show="fillEmailForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
 			<span ng-show="fillEmailForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
 			<span ng-show="fillEmailForm.email.$error.used">{{ 'ALREADY_USED_EMAIL' | translate }}</span>
-			<span ng-show="fillEmailForm.email.$error.mailgun">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 		</div>
-		<span mailgun-validator-did-you-mean target="data.email"></span>
 		<hr />
 		<div class="bottom">
 			<button class="primary button-send pointer center" type="submit">

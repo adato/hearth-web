@@ -19,6 +19,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				onSuccess: '=',
 				notifyContainer: '@',
 				close: '=',
+				params: '=?'
 			},
 			templateUrl: 'assets/components/conversationAdd/conversationAdd.html',
 			link: function($scope, element) {
@@ -117,6 +118,9 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					}
 
 					var message = serializeMessage(msg);
+
+					// if there are some params defined, merge them with payload
+					angular.extend(message, $scope.params || {});
 
 					if ($scope.sendingMessage) {
 						return false;
