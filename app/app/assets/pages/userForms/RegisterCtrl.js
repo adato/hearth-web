@@ -35,6 +35,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			// switch serializer for this call to allow unencoded brackets
 			var serializer = $http.defaults.paramSerializer;
 			$http.defaults.paramSerializer = RubySerializer;
+			$scope.showError.blockedUserByEmail = false;
 
 			$auth.authenticate(provider, {
 				language: preferredLanguage,
@@ -47,6 +48,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				}
 				// switch serializer back only after the EP call has responded
 				$http.defaults.paramSerializer = serializer;
+			}, function(error) {
+				$scope.apiErrors = new ResponseErrors(error);
+				if ($scope.apiErrors.blockedUserByEmail)
+					$scope.showError.blockedUserByEmail = true;
 			});
 		};
 
