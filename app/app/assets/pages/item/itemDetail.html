@@ -218,7 +218,7 @@
 							<h1 ng-if="replies.length">{{:: 'POSTS.DETAIL.REPLIES' | translate }}</h1>
 							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
-						<article ng-repeat="(id, item) in replies track by item._id" class='box-section'>
+						<article ng-repeat="(id, item) in :: replies" class='box-section' ng-if=":: replies.length">
 							<section class='display-table'>
 								<div class='display-table-cell addon user'>
 									<div info-box="item.author" infobox-index="$index" infobox-class="'on-item-detail'">
