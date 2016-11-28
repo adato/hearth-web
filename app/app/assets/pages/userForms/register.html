@@ -40,7 +40,7 @@
 				<span ng-show="registerForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 				<span ng-show="apiErrors.email">{{ apiErrors.email | translate }}</span>
 			</div>
-			<span mailgun-validator-did-you-mean target="user.email"></span>
+			<!-- 			<span mailgun-validator-did-you-mean target="user.email"></span> -->
 			<div>
 				<label for="password">{{'PASS_PLACEHOLDER' | translate}}</label>
 				<show-text-in-password>

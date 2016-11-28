@@ -52,6 +52,8 @@ describe('hearth registration', function () {
 	});
 
 
+/*	not any more necessary since did-you-mean element is not displayed any more
+	
 	it('should validate with mailgun ', function () {
 		var emailInput = element(by.model('user.email'));
 		var expectedEmailInputValidatorMessage = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]'));
@@ -62,8 +64,7 @@ describe('hearth registration', function () {
 		browser.sleep(500);
 		expect(expectedEmailInputValidatorMessage.isDisplayed()).toBeTruthy();
 		expect(expectedEmailInputValidatorMessageEmail.getText()).toBe('testovaci@gmail.com');
-
-	});
+	});*/
 
 
 	it('should validate email in various ways', function () {

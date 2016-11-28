@@ -119,7 +119,7 @@
 							<span ng-show="profileEditForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 						</div>
 
-						<span mailgun-validator-did-you-mean id="1" target="profile.email"></span>
+						<!-- <span mailgun-validator-did-you-mean id="1" target="profile.email"></span> -->
 					</div>
 
 					<div class="large-6 small-12 medium-6 columns">
@@ -145,7 +145,7 @@
 							<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 							<span ng-show="profileEditForm.contact_email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 						</div>
-						<span mailgun-validator-did-you-mean id="2" target="profile.contact_email"></span>
+						<!-- <span mailgun-validator-did-you-mean id="2" target="profile.contact_email"></span> -->
 					</div>
 					<div class="large-6 small-12 medium-6 columns">
 						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
