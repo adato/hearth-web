@@ -40,10 +40,12 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			$auth.authenticate(provider, {
 				language: preferredLanguage
 			}).then(function(response) {
-				if (response.status == 200)
+				if (response.status == 200) {
+					Auth.setOAuth(true);
 					processLoginResult(response.data);
-				else
+				} else {
 					$scope.loginError = true;
+				}
 			}).catch(function(response) {
 				if (response.status == 400) {
 					$scope.showError.noOauthAccountFound = true;
@@ -99,14 +101,15 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.login = function(data) {
 			$scope.loginError = false;
 			// $scope.showError.badCredentials = false;
-			if (!$scope.validateLogin(data))
+			if (!$scope.validateLogin(data)) {
 				return showErrorCredentials();
+			}
 
+			Auth.setOAuth(false);
 			Auth.login(data, processLoginResult, processLoginErrorResult);
 		};
 
 		$scope.init = function() {
-
 			var params = $location.search();
 			if (params.error)
 				$scope.loginError = true;
@@ -115,6 +118,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				$scope.showError.noOauthAccountFound = true;
 
 			if (Auth.isLoggedIn()) {
+				$location.replace();
 				return $location.path($rootScope.referrerUrl || '/');
 			}
 

@@ -98,7 +98,7 @@
 			</div>
 			<footer class="clearfix">
 				<div class="reply-button-container fleft">
-					<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
+					<button ng-if="!item.is_replied && !mine" ng-click="ItemAux.replyItem(item)" class="button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
 					<div ng-if="item.is_replied">
 						{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</div>
@@ -130,9 +130,9 @@
 				</div>
 				<div class="reply-count-container fleft">
 					<div ng-if="item.reply_count && mine">
-						<a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
+						<a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type] + '.' + pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 					</div>
-					<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+					<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type] + '.' + pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
 					<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
 				</div>
 			</footer>

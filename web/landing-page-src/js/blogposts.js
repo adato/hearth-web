@@ -58,14 +58,14 @@
 		var standaradizedPost = document.createElement('div');
 		standaradizedPost.className = 'flex-div flex-1 blog-block';
 
-		var title = params.post.querySelector('title'),
-			link = params.post.querySelector('link'),
-			text = params.post.querySelector('description'),
+		var title = getElInnerHtmlAsText(params.post.querySelector('title'), {strip: 'title'}),
+			link = getElInnerHtmlAsText(params.post.querySelector('link'), {strip: 'link'}),
+			text = getElInnerHtmlAsText(params.post.querySelector('description'), {strip: 'description'}),
 			textHTML = '', // variable for transfrerring xml into html
-			pubDate = params.post.querySelector('pubDate');
+			pubDate = getElInnerHtmlAsText(params.post.querySelector('pubDate'), {strip: 'pubDate'});
 
 		// strip text of CDATA
-		if (text && text.innerHTML) textHTML = text.innerHTML.replace('<![CDATA[', '').replace(']]>', '');
+		if (text) textHTML = text.replace('<![CDATA[', '').replace(']]>', '');
 
 		// try to get image from the text html (this must happen after stripping CDATA)
 		var image = document.createElement('div');
@@ -73,24 +73,38 @@
 		image = image.querySelector('[data-blogpost-thumbnail] img');
 
 		// try to format publishing date
-		var formattedPubDate = formatDate(new Date(pubDate.innerHTML));
+		var formattedPubDate = formatDate(new Date(pubDate));
 
 		var readOnBlog = 'Blog',
 			readOnBlogTranslation = $(readOnBlogTranslationSelector);
 		if (readOnBlogTranslation && readOnBlogTranslation.length) readOnBlog = readOnBlogTranslation[0].getAttribute('translation');
 
-		standaradizedPost.innerHTML = ""
+
+		standaradizedPost.innerHTML = ''
 			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
 			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
-			+ (title && title.innerHTML ? '<h3>'
-				+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '">' : '')
-			 		+ title.innerHTML
-				+ (link && link.childNodes.length ? '</a>' : '')
+			+ (title ? '<h3>'
+				+ (!!link ? '<a target="_blank" href="' + link + '">' : '')
+			 		+ title
+				+ (!!link ? '</a>' : '')
 			+ '</h3>' : '')
 			+ (textHTML ? '<div class="faux-paragraph">' + textHTML + '</div>' : '')
-			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
+			+ (!!link ? '<a target="_blank" href="' + link + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
+	}
+
+	/**
+	 *	because IE is the BESTEST BROWSER EVER!
+	 *
+	 *	- opts - {String} strip - xml tag to strip
+	 */
+	function getElInnerHtmlAsText(el, opts) {
+		opts = opts || {};
+		var s = new XMLSerializer();
+		var str = s.serializeToString(el);
+		if (opts.strip) str = str.substring(opts.strip.length + 2, str.length - (opts.strip.length + 3));
+		return str;
 	}
 
 	function getElHtml(el) {

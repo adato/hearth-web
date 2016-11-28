@@ -46,7 +46,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 					scope.entity.about = scope.entity.description;
 
 					// for community show shortened description...
-					if (scope.entity.about.length > CommunityInfoMaxLength) {
+					if (scope.entity.about && scope.entity.about.length > CommunityInfoMaxLength) {
 						scope.entity.community_about_shortened = $filter('ellipsis')(scope.entity.about, CommunityInfoMaxLength, true);
 					}
 				}

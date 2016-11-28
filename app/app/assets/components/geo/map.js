@@ -145,7 +145,6 @@ angular.module('hearth.geo').directive('map', [
 							var path = $location.path('post/' + itemId);
 						});
 					});
-
 					$timeout(function() {
 						searchRequestInhibited = false;
 					}, 1000);
