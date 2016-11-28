@@ -1,18 +1,18 @@
 .flag {
 	display:inline-block;
 	width: 25px;
-	height: 18px;
+	height: 25px;
 	vertical-align: middle;
 	background-size: cover;
 	background-repeat: no-repeat;
 	&.flag-en {
-		background-image: url(../images/flags/flag-english.svg);
+		background-image: url(../images/flags/flag-english.png);
 	}
 	&.flag-cs {
-		background-image: url(../images/flags/flag-czech.svg);
+		background-image: url(../images/flags/flag-czech.png);
 	}
 	&.flag-sk {
-		background-image: url(../images/flags/flag-slovak.svg);
+		background-image: url(../images/flags/flag-slovak.png);
 	}
 	&.flag-rounded-corners,
 	&.flag-circular{
@@ -24,7 +24,7 @@
 	&.flag-rounded-corners{
 		/* @kamil: TODO - change to $size-tiny once possible //also fix all px values */
 		border-radius: .3125rem;
-		
+
 		vertical-align: top;
 		margin-top: .5rem;
 		margin-right: .5rem;
