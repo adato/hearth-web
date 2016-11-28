@@ -102,9 +102,7 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 		// function that binds scroll
 		function bindScroll() {
 			if (scrollAlreadyBound) return false;
-			angular.element($window).bind('scroll', Throttle.go(infiniteScrollRunner, 20), {
-				passive: true
-			});
+			angular.element($window).bind('scroll', Throttle.go(infiniteScrollRunner, 20));
 			scrollAlreadyBound = true;
 		}
 
