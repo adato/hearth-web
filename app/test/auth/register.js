@@ -154,10 +154,7 @@ describe('hearth registration', function () {
 
 		// init emaillistener
 		var emailListenerPromise = protractor.helpers.getEmailListener();
-//		console.log(emailListenerPromise);
 
-		// none of validation errors displayed
-		// some validation errors displayed
 		firstNameInput.sendKeys('Testerovo');
 		lastNameInput.sendKeys('Jmeno');
 		emailInput.sendKeys(testEmail);
@@ -165,19 +162,14 @@ describe('hearth registration', function () {
 
 		// none of validation errors displayed
 		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
-		// send registration
-		registerButton.click();
-		browser.sleep(5000);
-
 		console.log("> Using register credentials: ", testEmail, protractor.helpers.options.testPassword);
-		//expect(element.all(by.css('.register-successful')).isDisplayed()).toBeTruthy();
-
 
 		browser.getCurrentUrl().then(function (url) {
 			console.log("got url", url);
 			origAddress = protractor.helpers.parseLocation(url);
 
 			browser.wait(function () {
+				registerButton.click();
 				console.log("emaillistener promise setup")
 				return emailListenerPromise();
 			}, 20000).then(function (email) {
