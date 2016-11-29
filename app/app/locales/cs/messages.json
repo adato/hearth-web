@@ -956,7 +956,7 @@
 		"RESET_PASSWORD_SUCCESS": "Raz, dva, tři. Postup na změnu hesla jsme ti poslali na e-mail. ",
 		"NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžeš přihlásit.",
 		"NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Vítězství! Tvůj účet byl aktivován. Nyní se můžeš přihlásit.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Vítězství! Tvůj účet byl aktivován. Vítej v Hearth.net",
 		"ACCOUNT_ACTIVATE_FAILED": "Aktivace účtu se nezdařila...",
 		"POST_SPAM_REPORT_FAILED": "Nahlášení inzerátu se nepovedlo.",
 		"POST_SPAM_REPORT_SUCCESS": "Inzerát byl nahlášen.",
