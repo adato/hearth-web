@@ -1772,5 +1772,5 @@
 		}
 	},
 	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
-	"count-of-wished-and-gifts": "Počet darov a prianí: %{value}"
+	"count-of-wished-and-gifts": "Počet darov a prianí: {{value}}"
 }
