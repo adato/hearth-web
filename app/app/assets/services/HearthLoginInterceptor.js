@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('HearthLoginInterceptor', [
-	'$q', '$location', '$timeout', '$rootScope',
-	function($q, $location, $timeout, $rootScope) {
+	'$q', '$location', '$timeout', '$rootScope', '$injector',
+	function($q, $location, $timeout, $rootScope, $injector) {
 
 		return {
 			request: function(config) {
@@ -25,7 +25,12 @@ angular.module('hearth.services').factory('HearthLoginInterceptor', [
 						$rootScope.loginRequired = true;
 						$rootScope.user.loggedIn = false;
 						$rootScope.referrerUrl = $location.path();
-						$location.path('/login');
+
+						// $location.path('/login');
+						var $state = $injector.get('$state');
+						return $state.go('login', {}, {
+							location: 'replace'
+						});
 					}
 				}
 				return $q.reject(rejection);

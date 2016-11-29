@@ -9,12 +9,11 @@
 angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state', '$location', '$rootScope',
 	function($window, $document, Throttle, ViewportUtils, $state, $location, $rootScope) {
 
-		var currentPage = parseInt($location.search().page || 1),
-			pageLimitBottom = parseInt($location.search().page || 1),
-			pageCounter = currentPage,
-			pageMarkers = {},
-			scrollAlreadyBound,
-			q = 0;
+		var currentPage = parseInt($location.search().page || 1);
+		var pageLimitBottom = parseInt($location.search().page || 1);
+		var pageCounter = currentPage;
+		var pageMarkers = {};
+		var scrollAlreadyBound;
 
 		var factory = {
 			bindScroll: bindScroll,

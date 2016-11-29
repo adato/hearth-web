@@ -52,6 +52,12 @@ angular.module('hearth.services').factory('Community', [
 					return fd;
 				}]
 			},
+			patch: {
+				method: 'PATCH',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_UPDATE_FAILED'
+				}
+			},
 			remove: {
 				method: 'DELETE',
 				errorNotify: {

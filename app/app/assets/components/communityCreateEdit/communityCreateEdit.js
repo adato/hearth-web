@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService', '$q',
-	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService, $q) {
+	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService', '$timeout', '$q',
+	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService, $timeout, $q) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -298,6 +298,19 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 				$scope.close2 = function() {
 					$scope.close();
+				};
+
+				$scope.saveCommunityConversationSettings = function() {
+					// kamil:
+					// value is taken from $scope and in timeout, because on-change handler on checkbox directive
+					// is broken somehow and passes values before the toggle change..
+					// or maybe I just don't understand how it's supposed to work..
+					$timeout(function() {
+						Community.patch({
+							_id: $scope.community._id,
+							allow_message_to_members: $scope.community.allow_message_to_members
+						});
+					});
 				};
 
 				$scope.init = function() {
