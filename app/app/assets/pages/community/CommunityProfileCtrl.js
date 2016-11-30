@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService) {
 		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.sendingRating = false;
 		$scope.activePage = false;
 		$scope.showUserRatingForm = false;
+		$scope.communityService = UsersCommunitiesService;
 		$scope.rating = {
 			current_community_id: null,
 			score: null,

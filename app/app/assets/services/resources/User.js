@@ -55,6 +55,17 @@ angular.module('hearth.services').factory('User', [
 				errorNotify: false,
 				transformRequest: [LocationJsonDataTransform.insertLocationJson]
 			},
+			uploadAvatar: {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: [function(image) {
+					var fd = new FormData();
+					fd.append('avatar[file]', image)
+					return fd;
+				}]
+			},
 			editSettings: {
 				method: 'PUT',
 				errorNotify: {

@@ -55,6 +55,7 @@ describe('hearth bookmarks', function() {
 		expect(notify.isPresent()).toBeFalsy();
 		postDetailLink.click().then(function () {
 			// on post detail
+			browser.waitForAngular();
 			dropdownArrow.click();
 			dropdownBookmarkLink.click();
 			browser.sleep(500);

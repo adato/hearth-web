@@ -1,6 +1,15 @@
 <div id="notify-container-market"></div>
 <div class="market row">
 
+	<div ng-if="infoMessageToShow" class="row margin-horizontal-none margin-bottom-large">
+		<div class="column medium-10 medium-push-2 padding-medium close-wrapper box">
+			<div ng-click="$parent.infoMessageToShow = ''" class="touchable close">
+				<i class="fa fa-times"></i>
+			</div>
+			<div ng-bind-html="$parent.infoMessageToShow"></div>
+		</div>
+	</div>
+
 	<!-- <marketplace-banner image="crowdsource" code="crowdsourcing-banner" language="{{language}}" title="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate}}" href="support-us"></marketplace-banner> -->
 	<marketplace-banner class="leader-banner show-for-large-up" target="_blank" ng-if="(language == 'cs' || language == 'sk')" image="leader" code="leader-banner" language="{{language}}" title="" href="http://blog.hearth.net/hledame-vykonneho-reditele-pro-dobrocinny-startup-hearth-net/"></marketplace-banner>
 

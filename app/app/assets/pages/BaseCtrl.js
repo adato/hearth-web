@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -294,7 +294,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		// ======================================== PUBLIC METHODS =====================================
 		$rootScope.showLoginBox = function(showMsgOnlyLogged) {
-
+			UnauthReload.clearReloadLocation();
 			var scope = $scope.$new();
 			scope.showMsgOnlyLogged = showMsgOnlyLogged;
 			ngDialog.open({
@@ -314,7 +314,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			};
 			$state.go('market', {
 				query: null,
-				type: null,
+				type: null
 			}, {
 				reload: true
 			});
@@ -394,12 +394,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return ret;
 		};
 
-		$rootScope.sendMessage = function(user) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+		/**
+		 *	@param {Object} user - user/community to whom to address the message
+		 *	@param {Object} params - {Boolean} toAllMembers
+		 */
+		$rootScope.sendMessage = function(user, params) {
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
+			params = params || {};
 
 			var scope = $scope.$new();
 			scope.user = user;
+
+			scope.params = {};
+			if (!!params.toAllMembers) scope.params.for_all_members = true;
 
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'newMessage.html',
