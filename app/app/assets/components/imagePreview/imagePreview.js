@@ -108,7 +108,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 							if (resized.split(',').length == 1)
 								resized = 'data:image/jpeg;base64,' + resized;
 							pushResult({
-								file: resized
+								file: resized,
+								toBeUploaded: fileItself
 							}, {
 								total: 0
 							});
