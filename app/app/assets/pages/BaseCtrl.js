@@ -406,7 +406,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			scope.user = user;
 
 			scope.params = {};
-			if (!!params.toAllMembers) scope.params.for_all_members: true;
+			if (!!params.toAllMembers) scope.params.for_all_members = true;
 
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'newMessage.html',
