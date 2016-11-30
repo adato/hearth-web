@@ -41,6 +41,12 @@ angular.module('hearth.services').factory('Community', [
 				},
 				transformRequest: [LocationJsonDataTransform.insertLocationJson]
 			},
+			patch: {
+				method: 'PATCH',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_UPDATE_FAILED'
+				}
+			},
 			remove: {
 				method: 'DELETE',
 				errorNotify: {

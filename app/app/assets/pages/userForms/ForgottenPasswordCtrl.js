@@ -9,7 +9,9 @@
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 	'$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify',
 	function($scope, Auth, $location, ResponseErrors, Email, Notify) {
+		var resendingEmail = false;
 		var invalidEmail = null;
+
 		$scope.data = {
 			email: ''
 		};
@@ -44,11 +46,18 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 		};
 
 		$scope.resendActivationEmail = function() {
+			if (resendingEmail) return;
+			resendingEmail = true;
+
 			Auth.resendActivationEmail(invalidEmail, function(res) {
-				if (res.data && res.data.ok === true) {
+				resendingEmail = false;
+
+				if (res.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				}
+			}, function() {
+				resendingEmail = false;
 			});
 		};
 

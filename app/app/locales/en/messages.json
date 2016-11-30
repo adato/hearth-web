@@ -327,7 +327,8 @@
 		"MARK_CONVERSATION_AS_UNREAD": "Mark as unread",
 		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
 		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
-		"ADD_PARTICIPANT": "Přidat příjemce do konverzace"
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "New messages"
 	},
 	"MESSAGES_ARCHIVE": "Messages archive",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archive",
@@ -989,7 +990,7 @@
 	"BUT_YOU_HAVE_INACTIVE_POSTS": "But you have a couple of inactive posts.",
 	"USER_RATING_SCORE_SELECT_TEXT": "How did you get along?",
 	"ACTIVATE_ACCOUNT_BROKEN_LINK": "Ugh! The account activation link is not valid.",
-	"NEGATIVE": "Oops. Something has gone wrong. Please try again, or let us know if the problem continues.",
+	"NEGATIVE": "Oops. Something has gone wrong...",
 	"POSITIVE": "Everything has clicked into place",
 	"GO_BACK_TO_MARKET": "Go to Marketplace",
 	"NO_SIGNAL_ON_THIS_PAGE": "How did you get here in the first place? If you think that it's a mistake, please let us know.",
@@ -1731,11 +1732,12 @@
 	"LIGHTBOX_PREVIMAGE": "Previous",
 	"LIGHTBOX_NEXTIMAGE": "Next",
 	"LIGHTBOX_OPENINTAB": "Open image in new tab",
-	"ERR_MAILGUN_NOT_VALID_EMAIL": "Is is the correct e-mail? We could not verify it. If this is a mistake please <a href=\"\/app\/support\">let us know<\/a>.",
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Is it the correct e-mail? We could not verify it. If this is a mistake please <a href=\"\/app\/support\">let us know<\/a>.",
 	"CONVERSATION": {
 		"SETTINGS": {
 			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
 		}
 	},
-	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>."
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
+	"count-of-wished-and-gifts": "Count of gifts and wishes: {{value}}"
 }

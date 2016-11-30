@@ -35,15 +35,17 @@
 			</div>
 			<div class="text-in-input">
 				<label for="email">{{'EMAIL_PLACEHOLDER' | translate}}</label>
-				<input id="email" type="email" email-validator ng-model-options="{ updateOn: 'blur' }" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" />
-				<span ng-show="registerForm.$pending.used" class="fa fa-spin fa-spinner"></span>
+				<input id="email" type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
+				<span ng-show="registerForm.$pending.mailgun || registerForm.$pending.used" class="fa fa-spin fa-spinner" style="top:2.2rem;"></span>
 			</div>
 			<div class="moveUp error" ng-show="showError.email">
 				<span ng-show="registerForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
 				<span ng-show="registerForm.email.$error.used">{{ 'ERR_EMAIL_EXISTS' | translate }}</span>
 				<span ng-show="registerForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+				<span ng-show="registerForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 				<span ng-show="apiErrors.email">{{ apiErrors.email | translate }}</span>
 			</div>
+			<!-- 			<span mailgun-validator-did-you-mean target="user.email"></span> -->
 			<div>
 				<label for="password">{{'PASS_PLACEHOLDER' | translate}}</label>
 				<show-text-in-password>
