@@ -73,9 +73,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		};
 
 		$scope.hideForm = function() {
-			$state.go('market', {
-				showMessage: $filter('translate')('SIGNUP_WAS_SUCCESSFUL')
-			});
+			$(".register-login-form").slideUp('slow', function() {});
+			$(".register-successful").slideDown('slow', function() {});
+			// $state.go('market', {
+			// 	showMessage: $filter('translate')('SIGNUP_WAS_SUCCESSFUL')
+			// });
 		};
 
 		$scope.sendRegistration = function(user) {
