@@ -24,7 +24,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loaded = false;
 
 		// loading for conversation list and conversation detail (used during changing of filters)
-		$scope.reloading = false
+		$scope.reloading = false;
 
 		// don't really know what this one is for
 		$scope.conversationLoadInProgress = false;
@@ -163,11 +163,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			setParams();
 
-			if (filterSet) {
-				$state.go('messages', {
-					notify: false
-				});
-			}
+			// State contains selected conversation id. Have to delete conversation id from the state to avoid adding of the selected
+			// conversation to the conversationList and display message in another filter.
+			$state.go('messages', {
+				notify: false
+			});
+
 
 			$scope.notFound = false;
 			$scope.loadingBottom = false;
@@ -178,12 +179,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			loadConversations(function(res) {
 				$scope.loaded = true;
 				$scope.reloading = false;
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
-					id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
-				});
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()))
+					$state.go('messages.detail', {
+						id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
+					});
 			});
 
-		};
+		}
 
 		UnauthReload.check();
 
