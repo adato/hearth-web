@@ -42,7 +42,6 @@ angular.module('hearth.directives').directive('ctrlEnterSubmit', ['$timeout',
 				if (attributes.ctrlEnterSubmitOpts) {
 					var opts = scope.$eval(attributes.ctrlEnterSubmitOpts);
 					if (opts.refocus) $timeout(function() {
-						console.log(element[0]);
 						element[0].focus();
 					});
 				}

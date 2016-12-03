@@ -15,6 +15,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.lang = false; // used in view
 		$scope.changeSubmitted = false;
 		$scope.languages = LanguageSwitch.getLanguages();
+		$scope.isSocial = function() {
+			return $.cookie('logged_in_using_omniauth') === 'true' ? true : false;
+		};
 		$scope.pass = {
 			old: '',
 			changed: ''

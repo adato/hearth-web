@@ -329,7 +329,8 @@
 		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou",
 		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
 		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
-		"ADD_PARTICIPANT": "Přidat příjemce do konverzace"
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "Nové zprávy"
 	},
 	"MESSAGES_ARCHIVE": "Archív zpráv",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -527,11 +528,9 @@
 	"author": "Autor",
 	"community": "komunity",
 	"POSTS_COUNT_PL": {
-		"one": {
-			"one": "<p>Aktu&aacute;lně<strong> {{value}}<\/strong> aktivn&iacute; inzer&aacute;t<\/p>",
-			"few": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute; inzer&aacute;ty<\/p>",
-			"other": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute;ch inzer&aacute;tů<\/p>"
-		}
+		"one": "<p>Aktu&aacute;lně<strong> {{value}}<\/strong> aktivn&iacute; inzer&aacute;t<\/p>",
+		"few": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute; inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute;ch inzer&aacute;tů<\/p>"
 	},
 	"FILTER_ADS": "Filtrovat inzeráty",
 	"FILTER_IS_ON": "Filtr (aktivní)",
@@ -955,7 +954,7 @@
 		"RESET_PASSWORD_SUCCESS": "Raz, dva, tři. Postup na změnu hesla jsme ti poslali na e-mail. ",
 		"NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžeš přihlásit.",
 		"NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Vítězství! Tvůj účet byl aktivován. Nyní se můžeš přihlásit.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Vítězství! Tvůj účet byl aktivován. Vítej v Hearth.net",
 		"ACCOUNT_ACTIVATE_FAILED": "Aktivace účtu se nezdařila...",
 		"POST_SPAM_REPORT_FAILED": "Nahlášení inzerátu se nepovedlo.",
 		"POST_SPAM_REPORT_SUCCESS": "Inzerát byl nahlášen.",
@@ -1770,5 +1769,6 @@
 			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
 		}
 	},
-	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>."
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
+	"count-of-wished-and-gifts": "Počet darů a přání: {{value}}"
 }

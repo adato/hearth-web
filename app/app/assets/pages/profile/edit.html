@@ -110,12 +110,16 @@
 				<div class="clearfix">
 					<div class="large-6 small-12 medium-6 columns">
 						<label>{{:: 'MY_EMAIL' | translate }} *</label>
-						<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
+						<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true" mailgun-validator="1" ng-model-options="{ updateOn: 'blur' }">
+						<span ng-show="profileEditForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
 
 						<div class="error" ng-show="showError.email">
 							<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 							<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+							<span ng-show="profileEditForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 						</div>
+
+						<!-- <span mailgun-validator-did-you-mean id="1" target="profile.email"></span> -->
 					</div>
 
 					<div class="large-6 small-12 medium-6 columns">
@@ -134,11 +138,14 @@
 				<div ng-show="showContactMail" class="contact-email clearfix">
 					<div class="large-6 small-12 medium-6 columns">
 						<label>{{:: 'MY_CONTACT_EMAIL' | translate }}</label>
-						<input ng-model="profile.contact_email" ng-focus="contactEmailFocus()" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
+						<input ng-model="profile.contact_email" ng-focus="contactEmailFocus()" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email' mailgun-validator="2" ng-model-options="{ updateOn: 'blur' }">
+						<span ng-show="profileEditForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
 
 						<div class="error" ng-show="showError.contact_email">
 							<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+							<span ng-show="profileEditForm.contact_email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 						</div>
+						<!-- <span mailgun-validator-did-you-mean id="2" target="profile.contact_email"></span> -->
 					</div>
 					<div class="large-6 small-12 medium-6 columns">
 						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>

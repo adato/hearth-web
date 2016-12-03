@@ -22,7 +22,8 @@ angular.module('hearth.directives').directive('historyParamPusher', ['$state', '
 
 				// After setting the param into history, go to the desired url
 				$timeout(function() {
-					window.location = attrs.href;
+					var location = attrs.href.replace('/app', '');
+					return $location.path(location);
 				}, 1);
 
 			})

@@ -248,6 +248,17 @@
 						.ui-select-container {
 							margin-bottom: 0;
 						}
+
+						.button-send {
+							float: right;
+							width: 25%;
+						}
+
+						&.filled {
+							.ui-select-container {
+								width: 75%;
+							}
+						}
 					}
 				}
 			}

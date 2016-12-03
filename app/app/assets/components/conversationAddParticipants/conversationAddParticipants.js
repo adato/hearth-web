@@ -23,15 +23,30 @@ angular.module('hearth.directives').directive('conversationAddParticipants', [
 			link: function($scope, baseElement) {
 				var timer = null;
 				$scope.userList = [];
+				$scope.participants = [];
+				$scope.list = {
+					participants: $scope.participants
+				};
+				$scope.showSubmit = false;
+
+				$scope.$watch("list.participants", function(val) {
+					$scope.participants = val;
+					$scope.userList = [];
+					baseElement.find(".select2-drop").addClass("select2-display-none");
+				});
 
 				/**
-				 * This will return list of already added user IDs
+				 * This will return list of active and added participants IDs
 				 * @return {[type]} [description]
 				 */
 				$scope.getIdList = function() {
 					var list = {};
-					for (var i in $scope.users)
-						list[$scope.users[i]._id] = true;
+					var participants = $scope.users.concat($scope.participants);
+
+					for (var i in participants) {
+						list[participants[i]._id] = true;
+					}
+
 					return list;
 				};
 
@@ -40,18 +55,25 @@ angular.module('hearth.directives').directive('conversationAddParticipants', [
 				 */
 				$scope.filterUnique = function(users) {
 					var list = $scope.getIdList();
+
 					for (var i = 0; i < users.length; i++)
 						list[users[i]._id] && users.splice(i--, 1);
 					return users;
 				};
 
 				/**
-				 * Add participant to conversation
+				 * Add participants to conversation
 				 */
-				$scope.addParticipant = function(item, model) {
+				$scope.participantSubmit = function() {
+					var ids = []
+
+					angular.forEach($scope.participants, function(participant) {
+						ids.push(participant._id);
+					});
+
 					var params = {
 						conversation_id: $scope.conversation._id,
-						id: item._id
+						ids: ids
 					};
 
 					Conversations.addParticipants(params, function(res) {
