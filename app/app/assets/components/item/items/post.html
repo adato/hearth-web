@@ -5,7 +5,7 @@
 				<div class="v2 user text-center">
 					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" history-param-pusher='item._id'>
 						<avatar class="show-post-arrows {{:: item.type }}" type=":: item.author._type" src=":: item.author.avatar.large"></avatar>
-						<div class="name">{{:: item.author.name }}</div>
+						<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name }}</div>
 					</a>
 				</div>
 			</div>
@@ -112,7 +112,7 @@
 							<h1 class='display-inline-block margin-right-medium'>
 								<a ng-href="{{:: getProfileLink('Post', item._id) }}" history-param-pusher='item._id'>
 									<span ng-class=":: 'color-' + item.type" ng-bind-html=":: postTypes[item.author._type][item.type] | translate"></span>
-									<span ng-bind=":: item.title"></span>
+									<span ng-bind=":: item.title" test-beacon='marketplace-item-post-title'></span>
 								</a>
 							</h1>
 							<span class="nowrap" ng-if=":: isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
@@ -136,7 +136,7 @@
 					</header>
 
 					<div class="item-section text-container word-break">
-						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded" ng-bind-html=":: item.text | linky:'_blank' | nl2br"></p>
+						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded" ng-bind-html=":: item.text | linky:'_blank' | nl2br" test-beacon="marketplace-item-text"></p>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html=":: item.text_short | linky:'_blank'"></span>
 							<a ng-click="marketplace.expanded = !marketplace.expanded">
@@ -153,7 +153,7 @@
 					</ul>
 					<div class="item-section tags" ng-class=":: {'tagsActive': !inactivateTags}" ng-if=":: item.keywords.length">
 						<ul class="tagList">
-							<li ng-click="toggleTag(tag)" ng-class=":: {active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in :: item.keywords track by $index" ng-bind=":: tag"></li>
+							<li ng-click="toggleTag(tag)" ng-class=":: {active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in :: item.keywords track by $index" ng-bind=":: tag" test-beacon="marketplace-keywords"></li>
 						</ul>
 					</div>
 				</div>
@@ -188,7 +188,7 @@
 										<a class="text-decoration-underline" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type] + '.' + pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 									</div>
 									<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type] + '.' + pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
+									<div ng-if="!item.reply_count" test-beacon="marketplace-reply">{{:: 'NO_REPLY' | translate}}</div>
 								</div>
 							</div>
 						</div>
