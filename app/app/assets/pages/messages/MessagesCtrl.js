@@ -71,7 +71,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 		}
 
-		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
+		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts', 'community'];
 
 		function loadConversations(cb) {
 			var params = {
@@ -131,8 +131,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// set filter select-box to correct value
 			// TODO - refactor those filters
-			var searchParams = $location.search(),
-				filterSet = false;
+			var searchParams = $location.search();
+			var filterSet = false;
 			if (searchParams.as_replies_post) {
 				$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
 				$scope.filter.post_id = searchParams.as_replies_post;
@@ -161,12 +161,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			loadConversations(function(res) {
 				$scope.loaded = true;
 				$scope.reloading = false;
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
-					id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
-				});
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) {
+					$state.go('messages.detail', {
+						id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
+					});
+				}
 			});
-
-		};
+		}
 
 		UnauthReload.check();
 
