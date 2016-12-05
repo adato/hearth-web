@@ -269,10 +269,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				},
 				function(done) {
 					UsersActivityLog.get(params, function(res) {
-						res.map(function(activity) {
-							activity.text = Activities.getActivityTranslation(activity);
-							return activity;
-						});
+						if (res && typeof res.map === 'function') {
+							res.map(function(activity) {
+								activity.text = Activities.getActivityTranslation(activity);
+								return activity;
+							});
+						}
 						$scope.activityLog = res;
 						done(null);
 					}, done);

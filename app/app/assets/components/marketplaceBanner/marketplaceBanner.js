@@ -15,6 +15,8 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				'title': '@?',
 				'href': '@?',
 				'language': '@',
+				'restrictLanguage': '=?',
+				'target': '@?'
 			},
 			templateUrl: 'assets/components/marketplaceBanner/marketplaceBanner.html',
 			link: function(scope, element, attrs) {
@@ -24,7 +26,6 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				scope.style = {
 					'background-image': scope.image
 				};
-
 				scope.close = function($event) {
 					scope.closed = !scope.closed;
 					$.cookie(scope.code, scope.closed, {

@@ -177,6 +177,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			if ($scope.loading) return;
 			$scope.loading = true;
 
+			// show message if requested to do so by url param
+			$scope.infoMessageToShow;
+			if ($state.params.showMessage) $scope.infoMessageToShow = $state.params.showMessage;
+
+			// load posts
 			var params = angular.extend(angular.copy($location.search()), {
 				offset: $scope.items.length,
 				limit: MarketPostCount

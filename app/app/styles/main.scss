@@ -85,7 +85,8 @@ $fontSize: rem-calc(14);
 //  "foundation/components/side-nav",
 //  "foundation/components/split-buttons",
 "foundation/components/sub-nav",
-"foundation/components/switch",
+// "foundation/components/switch",
+"foundation/components/switches",
 "foundation/components/tables",
 //  "foundation/components/tabs",
 "foundation/components/thumbs",
@@ -110,7 +111,6 @@ $fontSize: rem-calc(14);
 @import "tutorial";
 @import "userForms";
 @import "messages";
-@import "angularLoadingBar";
 @import "filterbar";
 @import "filterStatus";
 @import "filter";
