@@ -28,7 +28,7 @@ describe('item directive - market place item', function () {
       return [200, ['success'], {}];
     });
 
-    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(readJSON(MESSAGES_JSON_EN_RESPONSE));
+    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
   }));
 
 
