@@ -52,6 +52,8 @@ describe('hearth registration', function () {
 	});
 
 
+/*	not any more necessary since did-you-mean element is not displayed any more
+	
 	it('should validate with mailgun ', function () {
 		var emailInput = element(by.model('user.email'));
 		var expectedEmailInputValidatorMessage = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]'));
@@ -62,8 +64,7 @@ describe('hearth registration', function () {
 		browser.sleep(500);
 		expect(expectedEmailInputValidatorMessage.isDisplayed()).toBeTruthy();
 		expect(expectedEmailInputValidatorMessageEmail.getText()).toBe('testovaci@gmail.com');
-
-	});
+	});*/
 
 
 	it('should validate email in various ways', function () {
@@ -90,7 +91,7 @@ describe('hearth registration', function () {
 			// mailgun should trigger error
 			emailInput.clear();
 			emailInput.sendKeys('tester@gmail.co', protractor.Key.TAB);
-			browser.sleep(1500);
+			browser.sleep(3000); // wait for delayed bind and mailgun reply
 			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
@@ -153,10 +154,7 @@ describe('hearth registration', function () {
 
 		// init emaillistener
 		var emailListenerPromise = protractor.helpers.getEmailListener();
-		console.log(emailListenerPromise);
 
-		// none of validation errors displayed
-		// some validation errors displayed
 		firstNameInput.sendKeys('Testerovo');
 		lastNameInput.sendKeys('Jmeno');
 		emailInput.sendKeys(testEmail);
@@ -164,18 +162,14 @@ describe('hearth registration', function () {
 
 		// none of validation errors displayed
 		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
-		// send registration
-		registerButton.click();
-
 		console.log("> Using register credentials: ", testEmail, protractor.helpers.options.testPassword);
-		expect(element.all(by.css('.register-successful')).isDisplayed()).toBeTruthy();
-
 
 		browser.getCurrentUrl().then(function (url) {
 			console.log("got url", url);
 			origAddress = protractor.helpers.parseLocation(url);
 
 			browser.wait(function () {
+				registerButton.click();
 				console.log("emaillistener promise setup")
 				return emailListenerPromise();
 			}, 20000).then(function (email) {

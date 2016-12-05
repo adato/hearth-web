@@ -30,7 +30,6 @@ angular.module('hearth.services').factory('Auth', [
 							var loc = session.get_logged_in_user.location;
 							$$config.defaultMapLocation = [loc[1], loc[0]];
 						}
-
 					} else {
 						$rootScope.$emit('unathorizedUserLogin');
 					}
@@ -43,6 +42,9 @@ angular.module('hearth.services').factory('Auth', [
 					if (res.get_logged_in_user)
 						$rootScope.loggedUser = res.get_logged_in_user;
 				});
+			},
+			setOAuth: function(value) {
+				$.cookie('logged_in_using_omniauth', value);
 			},
 			login: function(credentials, cb, errCb) {
 				User.login(credentials, cb, errCb);
@@ -57,7 +59,7 @@ angular.module('hearth.services').factory('Auth', [
 			logout: function(cb) {
 				return $session.then(function(session) {
 					if (session._id) {
-						delete session._id
+						delete session._id;
 					}
 					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				}, function() {
@@ -143,7 +145,10 @@ angular.module('hearth.services').factory('Auth', [
 				}, success, error);
 			},
 			processLoginResponse: function(data) {
-				if (data.email_token) return $location.path($$config.appUrl + 'fill-email/' + data.email_token);
+				if (data.email_token) {
+					$window.location.href = $$config.basePath + 'fill-email/' + data.email_token;
+					return;
+				}
 
 				// when user logged, use his language configured on API
 				if (data.language) LanguageSwitch.setCookie(data.language);
@@ -153,7 +158,7 @@ angular.module('hearth.services').factory('Auth', [
 				var reloadLoc = UnauthReload.getLocation();
 				UnauthReload.clearReloadLocation();
 
-				$rootScope.refreshToPath(reloadLoc ? $$config.basePath + reloadLoc : $$config.basePath);
+				return $window.location.replace(reloadLoc || '/app');
 			},
 			getTwitterAuthUrl: function(method) {
 				var fillEmailUrl = $$config.appUrl + 'fill-email/%{token}';

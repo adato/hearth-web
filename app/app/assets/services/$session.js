@@ -3,7 +3,7 @@
 /**
  * @ngdoc service
  * @name hearth.services.$session
- * @description 
+ * @description
  */
 
 angular.module('hearth.services').factory('$session', [

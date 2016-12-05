@@ -1,17 +1,21 @@
 <article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
-		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && (item.state === "suspended" && !userHasRight("post.suspend"))) || (!itemDeleted && item === false) || (itemDeleted)'>
-			<p class="margin-none" ng-show="item && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
+		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !item.text && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted) || (item && !isMine && item.state === "expired")'>
+			<p class="margin-none" ng-show="item && !item.text && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
+			<p class="margin-none" ng-show="item && !isMine && item.state === 'expired'">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</p>
 		</section>
-		<section ng-if="! itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
+		<section ng-if="!itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
 			<div class='row'>
 				<div ng-if="!isActive" class="column small-12 large-8">
-					<div class='item-status-bar' ng-if="item.state == 'expired'">
+					<div class='item-status-bar' ng-if="item.state === 'expired'">
 						<span ng-if="item.valid_until">{{:: 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
 						<span ng-if="!item.valid_until">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</span>
+					</div>
+					<div class='item-status-bar' ng-if="item.state === 'suspended'">
+						<span ng-if="item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
 					</div>
 					<div class="item-status-bar" ng-if="(!userHasRight('post.suspend')) && item.state == 'suspended'">
 						<span>{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
@@ -214,28 +218,28 @@
 							<h1 ng-if="replies.length">{{:: 'POSTS.DETAIL.REPLIES' | translate }}</h1>
 							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
-						<article ng-repeat="(id, item) in replies track by item._id" class='box-section'>
+						<article ng-repeat="(id, item) in :: replies track by item.conversation_id" class='box-section' ng-if=":: replies.length">
 							<section class='display-table'>
 								<div class='display-table-cell addon user'>
-									<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
-										<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
+									<div info-box="item.author" infobox-index="$index" infobox-class="'on-item-detail'">
+										<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
 									</div>
 								</div>
 								<div class='display-table-cell'>
 									<div class="row">
 										<div class="column small-12 medium-display-table margin-bottom-small">
 											<div class='medium-display-table-cell'>
-												<span class="text-emphasize">{{ item.message.author.name }}</span>
+												<span class="text-emphasize">{{:: item.author.name }}</span>
 											</div>
-											<div class="medium-display-table-cell addon nowrap date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
+											<div class="medium-display-table-cell addon nowrap date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
 												<i class="fa fa-clock-o"></i>&nbsp;{{ item.created_at | ago }}
 											</div>
 										</div>
 										<div class="column small-12">
-											<p class='word-break' ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
+											<p class='word-break' ng-bind-html=":: item.text | linky:'_blank' | nl2br"></p>
 										</div>
 										<div class="column small-12 text-right">
-											<a ng-href="{{:: getProfileLink(item._type, item._id) }}">
+											<a ng-href="{{:: getProfileLink('Conversation', item.conversation_id) }}">
 												{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}&nbsp;
 												<i class="fa fa-comments-o"></i>
 											</a>

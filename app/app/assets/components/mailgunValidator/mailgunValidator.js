@@ -65,12 +65,13 @@ angular.module('hearth.directives').directive('mailgunValidatorDidYouMean', ['$q
 			scope: {
 				'target': '=',
 			},
-			template: '<span ng-show="showOptions" class="mailgun-validator-did-you-mean" test-beacon="mailgun-validator-did-you-mean">{{:: \'MAILGUN_VALIDATION_DID_YOU_MEAN\' | translate }} <a ng-click="target = options">{{ options }}</a><br><br></span>',
+			template: '<span ng-show="showOptions" class="mailgun-validator-did-you-mean" test-beacon="mailgun-validator-did-you-mean">{{:: \'MAILGUN_VALIDATION_DID_YOU_MEAN\' | translate }} <a ng-click="target = options">{{ options }}</a> ?<br><br></span>',
 			link: function(scope, element, attrs) {
 				scope.showOptions = false;
 				scope.$on('mailgun-did-you-mean', function(event, options) {
-					if (typeof options != 'undefined' && options != null && options != '' && options['did_you_mean'] != '' && options['did_you_mean'] != null) {
-						if ((typeof attrs.id != 'undefined' && options['model'] != '' && options['model'] != null && options['model'] == attrs.id) || typeof attrs.id == 'undefined') {
+					if (is(options) && is(options['did_you_mean'])) {
+						// if there is an attribute AND id matches current model, OR no id is set
+						if ((typeof attrs.id != 'undefined' && is(options['model']) && options['model'] == attrs.id) || typeof attrs.id == 'undefined') {
 							scope.showOptions = true;
 							scope.options = options['did_you_mean'];
 						}
@@ -81,6 +82,11 @@ angular.module('hearth.directives').directive('mailgunValidatorDidYouMean', ['$q
 				scope.$on('mailgun-did-you-mean-hide', function() {
 					scope.showOptions = false;
 				});
+
+				// helper
+				function is(value) {
+					return (true === (typeof value != 'undefined' && value != '' && value != null));
+				}
 			}
 		};
 	}

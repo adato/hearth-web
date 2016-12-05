@@ -182,6 +182,8 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.user_languages.push(userLang.code);
 			});
 
+			delete data.avatar;
+
 			return data;
 		};
 
@@ -196,11 +198,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			if ($scope.profileEditForm.email.$invalid) {
 				res = false;
 				$scope.showError.email = true;
-			}
-
-			if ($scope.profileEditForm.contact_email.$viewValue && $scope.profileEditForm.contact_email.$invalid) {
-				res = false;
-				$scope.showError.contact_email = true;
 			}
 
 			if ($scope.profileEditForm.phone.$invalid) {
@@ -239,8 +236,13 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$rootScope.globalLoading = true;
 
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
-
-			User.edit(transformedData, function(res) {
+			var actions = {
+				user: User.edit(transformedData).$promise
+			};
+			if ($scope.profile.avatar.toBeUploaded) actions.avatar = User.uploadAvatar({
+				_id: $scope.profile._id
+			}, $scope.profile.avatar.toBeUploaded, Auth.refreshUserInfo).$promise;
+			$q.all(actions).then(function(res) {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 
