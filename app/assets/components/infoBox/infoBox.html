@@ -24,7 +24,7 @@
 						<span ng-if=":: connections.users.length == 2"> {{ :: 'AND' | translate }} </span>
 						<span ng-if=":: connections.users.length > 2">, </span>
 						<a ng-href="{{:: getProfileLink(connections.users[1]._type, connections.users[1]._id)}}">{{ :: connections.users[1].name }}</a>
-						<span ng-if=":: connections.users.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.users.length) | translate:{count:+connections.users.length - 2 }"></span>
+						<span ng-if=":: connections.users.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.users.length - 2) | translate:{count:+connections.users.length - 2 }"></span>
 					</div>
 
 					<!-- common communities -->
@@ -38,7 +38,7 @@
 						<span ng-if=":: connections.userCommunities.length == 2"> {{ :: 'AND' | translate }} </span>
 						<span ng-if=":: connections.userCommunities.length > 2">, </span>
 						<a ng-href="{{:: getProfileLink(connections.userCommunities[1]._type, connections.userCommunities[1]._id)}}">{{ :: connections.userCommunities[1].name }}</a>
-						<span ng-if=":: connections.userCommunities.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.userCommunities.length) | translate:{count:+connections.userCommunities.length - 2 }"></span>
+						<span ng-if=":: connections.userCommunities.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.userCommunities.length - 2) | translate:{count:+connections.userCommunities.length - 2 }"></span>
 					</div>
 
 					<!-- common community members -->
@@ -52,7 +52,7 @@
 						<span ng-if=":: connections.community.length == 2"> {{ :: 'AND' | translate }} </span>
 						<span ng-if=":: connections.community.length > 2">, </span>
 						<a ng-href="{{:: getProfileLink(connections.community[1]._type, connections.community[1]._id)}}">{{ :: connections.community[1].name }}</a>
-						<span ng-if=":: connections.community.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.community.length) | translate:{count:+connections.community.length - 2 }"></span>
+						<span ng-if=":: connections.community.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.community.length - 2) | translate:{count:+connections.community.length - 2 }"></span>
 					</div>
 				</div>
 				<div class="display-flex flex-space-between">
