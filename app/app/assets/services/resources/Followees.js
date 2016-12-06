@@ -31,6 +31,13 @@ angular.module('hearth.services').factory('Followees', [
 				logged_user_id: '@logged_user_id',
 				method: 'GET',
 				isArray: true
+			},
+			fetchCommunityFollowees: {
+				url: $$config.apiPath + '/communities/:community_id/followees/:logged_user_id/users',
+				community_id: '@community_id',
+				logged_user_id: '@logged_user_id',
+				method: 'GET',
+				isArray: true
 			}
 		});
 	}

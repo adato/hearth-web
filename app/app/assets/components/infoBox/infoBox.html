@@ -12,32 +12,48 @@
 				<div class="author-about" ng-if="info.motto" ng-bind="info.motto"></div>
 				<user-intel-readout entity="info" type="'infobox'"></user-intel-readout>
 				<div>
-					<div ng-if=" :: connections.users.length == 1">Společný známý:
+
+					<!-- common followees -->
+					<div ng-if=" :: connections.users.length == 1">
+						<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span>
 						<a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
 					</div>
 					<div ng-if=" :: connections.users.length > 1">
-						<b>{{ :: connections.users.length }}</b> společní známí:
+						<span ng-bind-html=":: 'INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span>
 						<a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
-						<span ng-if=":: connections.users.length == 2"> a </span>
+						<span ng-if=":: connections.users.length == 2"> {{ :: 'AND' | translate }} </span>
 						<span ng-if=":: connections.users.length > 2">, </span>
 						<a ng-href="{{:: getProfileLink(connections.users[1]._type, connections.users[1]._id)}}">{{ :: connections.users[1].name }}</a>
-						<span ng-if=":: connections.users.length > 2"> a {{ :: connections.users.length - 2 }} další</span>
+						<span ng-if=":: connections.users.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.users.length) | translate:{count:+connections.users.length - 2 }"></span>
 					</div>
 
-
-					<div ng-if=" :: connections.userCommunities.length == 1">Společná komunita:
+					<!-- common communities -->
+					<div ng-if=" :: connections.userCommunities.length == 1">
+						<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_COMMUNITIES.'+pluralCat(connections.userCommunities.length) | translate:{count:connections.userCommunities.length}"></span>
 						<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.userCommunities[0].name }}</a>
 					</div>
 					<div ng-if=" :: connections.userCommunities.length > 1">
-						<b>{{ :: connections.userCommunities.length }}</b> společní známí:
-						<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.users[0].name }}</a>
-						<span ng-if=":: connections.userCommunities.length == 2"> a </span>
+						<span ng-bind-html=":: 'INFOBOX.CONNECTIONS.COMMON_COMMUNITIES.'+pluralCat(connections.userCommunities.length) | translate:{count:connections.userCommunities.length}"></span>
+						<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.userCommunities[0].name }}</a>
+						<span ng-if=":: connections.userCommunities.length == 2"> {{ :: 'AND' | translate }} </span>
 						<span ng-if=":: connections.userCommunities.length > 2">, </span>
 						<a ng-href="{{:: getProfileLink(connections.userCommunities[1]._type, connections.userCommunities[1]._id)}}">{{ :: connections.userCommunities[1].name }}</a>
-						<span ng-if=":: connections.userCommunities.length > 2"> a {{ :: connections.userCommunities.length - 2 }} další</span>
+						<span ng-if=":: connections.userCommunities.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.userCommunities.length) | translate:{count:+connections.userCommunities.length - 2 }"></span>
 					</div>
 
-					<div ng-if=" :: connections.community.length">{{ :: connections.community.length }} společní uživatelé - xxx yyy a 3 další (nebo xxx yyy a aaa bbb)</div>
+					<!-- common community members -->
+					<div ng-if=" :: connections.community.length == 1">
+						<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_COMMUNITY_MEMBERS.'+pluralCat(connections.community.length) | translate:{count:connections.community.length}"></span>
+						<a ng-href="{{:: getProfileLink(connections.community[0]._type, connections.community[0]._id)}}">{{ :: connections.community[0].name }}</a>
+					</div>
+					<div ng-if=" :: connections.community.length > 1">
+						<span ng-bind-html=":: 'INFOBOX.CONNECTIONS.COMMON_COMMUNITY_MEMBERS.'+pluralCat(connections.community.length) | translate:{count:connections.community.length}"></span>
+						<a ng-href="{{:: getProfileLink(connections.community[0]._type, connections.community[0]._id)}}">{{ :: connections.community[0].name }}</a>
+						<span ng-if=":: connections.community.length == 2"> {{ :: 'AND' | translate }} </span>
+						<span ng-if=":: connections.community.length > 2">, </span>
+						<a ng-href="{{:: getProfileLink(connections.community[1]._type, connections.community[1]._id)}}">{{ :: connections.community[1].name }}</a>
+						<span ng-if=":: connections.community.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.community.length) | translate:{count:+connections.community.length - 2 }"></span>
+					</div>
 				</div>
 				<div class="display-flex flex-space-between">
 					<div class="social">
