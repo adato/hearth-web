@@ -157,6 +157,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// set filter select-box to correct value
 			// TODO - refactor those filters
 			var searchParams = $location.search();
+
+			// clean-up filter
+			$scope.filter = {};
+
 			if (searchParams.as_replies_post) {
 				$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
 				$scope.filter.post_id = searchParams.as_replies_post;
@@ -191,12 +195,21 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					});
 				}
 
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) {
+				var currConvInList = currentConvIsInTheList(res);
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) || !currConvInList) {
 					$state.go('messages.detail', {
-						id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
+						id: $state.params.id && currConvInList ? $state.params.id : res[0]._id
 					});
 				}
 			});
+		}
+
+		function currentConvIsInTheList(list) {
+			if (!list) return;
+			for (var i = list.length; i--;) {
+				if (list[i] && (list[i]._id === $state.params.id)) return true;
+			}
+			return false;
 		}
 
 		UnauthReload.check();
