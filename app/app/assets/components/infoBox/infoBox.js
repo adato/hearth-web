@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('infoBox', [
-	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty', 'ProfileUtils',
-	function($rootScope, UsersCommunitiesService, $state, $analytics, IsEmpty, ProfileUtils) {
+	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty', 'ProfileUtils', 'Followees',
+	function($rootScope, UsersCommunitiesService, $state, $analytics, IsEmpty, ProfileUtils, Followees) {
 		return {
 			transclude: true,
 			replace: true,
@@ -23,6 +23,11 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.show = false; // infobox shown
 				scope.error = false; // an error occured when loading info
 				scope.info = false; // we will cache infobox content
+				scope.connections = {
+					users: [], // same followees
+					userCommunities: [], // same communities
+					community: [], // community same members
+				}
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.isEmpty = IsEmpty;
 
@@ -54,6 +59,21 @@ angular.module('hearth.directives').directive('infoBox', [
 						scope.$apply(function(scope) {
 							scope.show = true;
 							scope.error = false;
+							Followees.fetchCommonFollowees({
+								user_id: scope.infoBox._id,
+								logged_user_id: $rootScope.loggedUser._id
+							}, function(data) {
+								scope.connections.users = data;
+							});
+
+							Followees.fetchCommonCommunities({
+								user_id: scope.infoBox._id,
+								logged_user_id: $rootScope.loggedUser._id
+							}, function(data) {
+								scope.connections.userCommunities = data;
+							});
+
+
 							UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
 						});
 					}

@@ -11,6 +11,34 @@
 				</div>
 				<div class="author-about" ng-if="info.motto" ng-bind="info.motto"></div>
 				<user-intel-readout entity="info" type="'infobox'"></user-intel-readout>
+				<div>
+					<div ng-if=" :: connections.users.length == 1">Společný známý:
+						<a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
+					</div>
+					<div ng-if=" :: connections.users.length > 1">
+						<b>{{ :: connections.users.length }}</b> společní známí:
+						<a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
+						<span ng-if=":: connections.users.length == 2"> a </span>
+						<span ng-if=":: connections.users.length > 2">, </span>
+						<a ng-href="{{:: getProfileLink(connections.users[1]._type, connections.users[1]._id)}}">{{ :: connections.users[1].name }}</a>
+						<span ng-if=":: connections.users.length > 2"> a {{ :: connections.users.length - 2 }} další</span>
+					</div>
+
+
+					<div ng-if=" :: connections.userCommunities.length == 1">Společná komunita:
+						<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.userCommunities[0].name }}</a>
+					</div>
+					<div ng-if=" :: connections.userCommunities.length > 1">
+						<b>{{ :: connections.userCommunities.length }}</b> společní známí:
+						<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.users[0].name }}</a>
+						<span ng-if=":: connections.userCommunities.length == 2"> a </span>
+						<span ng-if=":: connections.userCommunities.length > 2">, </span>
+						<a ng-href="{{:: getProfileLink(connections.userCommunities[1]._type, connections.userCommunities[1]._id)}}">{{ :: connections.userCommunities[1].name }}</a>
+						<span ng-if=":: connections.userCommunities.length > 2"> a {{ :: connections.userCommunities.length - 2 }} další</span>
+					</div>
+
+					<div ng-if=" :: connections.community.length">{{ :: connections.community.length }} společní uživatelé - xxx yyy a 3 další (nebo xxx yyy a aaa bbb)</div>
+				</div>
 				<div class="display-flex flex-space-between">
 					<div class="social">
 						<a ng-if=":: info.facebook" class="fa fa-fw fa-facebook-square" title="Facebook" href="{{:: info.facebook}}" target="_blank"></a>
