@@ -30,6 +30,7 @@ angular.module('hearth.directives').directive('infoBox', [
 				}
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.isEmpty = IsEmpty;
+				scope.pluralCat = $rootScope.pluralCat;
 
 				/**
 				 * Show user info into the box
@@ -59,19 +60,30 @@ angular.module('hearth.directives').directive('infoBox', [
 						scope.$apply(function(scope) {
 							scope.show = true;
 							scope.error = false;
-							Followees.fetchCommonFollowees({
-								user_id: scope.infoBox._id,
-								logged_user_id: $rootScope.loggedUser._id
-							}, function(data) {
-								scope.connections.users = data;
-							});
 
-							Followees.fetchCommonCommunities({
-								user_id: scope.infoBox._id,
-								logged_user_id: $rootScope.loggedUser._id
-							}, function(data) {
-								scope.connections.userCommunities = data;
-							});
+							if (typeof scope.infoBox._type != 'undefined' && scope.infoBox._type == 'Community') {
+								Followees.fetchCommunityFollowees({
+									community_id: scope.infoBox._id,
+									logged_user_id: $rootScope.loggedUser._id
+								}, function(data) {
+									scope.connections.community = data;
+								});
+							} else {
+								Followees.fetchCommonFollowees({
+									user_id: scope.infoBox._id,
+									logged_user_id: $rootScope.loggedUser._id
+								}, function(data) {
+									scope.connections.users = data;
+								});
+
+								Followees.fetchCommonCommunities({
+									user_id: scope.infoBox._id,
+									logged_user_id: $rootScope.loggedUser._id
+								}, function(data) {
+									scope.connections.userCommunities = data;
+								});
+
+							}
 
 
 							UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
