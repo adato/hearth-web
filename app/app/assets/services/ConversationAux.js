@@ -340,14 +340,14 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				}).then(function(conversation) {
 					// to keep the conversationList consistent, either find the current conversation in the list now
 					// OR append it there
-					var foundMatch;
-					for (var i = 0, l = conversationList.length; i < l; i++) {
-						if (conversationList[i]._id === conversation._id) {
-							conversationList[i] = conversation;
-							foundMatch = true;
-						}
-					}
-					if (!foundMatch) conversationList.push(conversation);
+					// var foundMatch;
+					// for (var i = 0, l = conversationList.length; i < l; i++) {
+					// 	if (conversationList[i]._id === conversation._id) {
+					// 		conversationList[i] = conversation;
+					// 		foundMatch = true;
+					// 	}
+					// }
+					// if (!foundMatch) conversationList.push(conversation);
 					resolve(conversation);
 				});
 			}, reject);
@@ -448,12 +448,13 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			var params = {
 				limit: limit,
 				offset: paramObject.offset || 0
-			}
+			};
 			if (paramObject.filterType) {
 				params[paramObject.filterType] = true;
 				conversationFilter.current = paramObject.filterType;
 			}
 			if (paramObject.post_id) params.post_id = paramObject.post_id;
+			if (paramObject.community_id) params.community_id = paramObject.community_id;
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;

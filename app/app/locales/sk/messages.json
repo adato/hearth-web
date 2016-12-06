@@ -271,7 +271,8 @@
 			"ARCHIVE": "Archivované konverzácie",
 			"USERS_POSTS": "Správy od používateľov",
 			"COMMUNITIES_POSTS": "Správy od komunít",
-			"POST_ADMIN": "Správcovské konverzácie"
+			"POST_ADMIN": "Správcovské konverzácie",
+			"COMMUNITY": "Konverzace v mých komunitách"
 		},
 		"DELETE_CONVERSATION": "Zmazať konverzáciu",
 		"LEAVE_CONVERSATION": "Opustiť konverzáciu",
@@ -528,11 +529,9 @@
 	"author": "Autor",
 	"community": "komunity",
 	"POSTS_COUNT_PL": {
-		"one": {
-			"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
-			"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
-			"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
-		}
+		"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
+		"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
 	},
 	"FILTER_ADS": "Filtrovať inzeráty",
 	"FILTER_IS_ON": "Filter (aktívny)",
@@ -1772,5 +1771,25 @@
 		}
 	},
 	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
-	"count-of-wished-and-gifts": "Počet darov a prianí: {{value}}"
+	"count-of-wished-and-gifts": "Počet darov a prianí: {{value}}",
+	"INFOBOX": {
+		"CONNECTIONS": {
+			"COMMON_USERS": {
+				"one": "Spoločný známy",
+				"other": "{{ count }} spoločných známych:",
+				"few": "{{ count }} společní známí:"
+			},
+			"AND_X_OTHER": {
+				"one": "a 1 ďalší",
+				"few": "a {{ count }} ďalší",
+				"other": "a {{ count }} ďalších"
+			},
+			"COMMON_COMMUNITIES": {
+				"one": "Spoločná komunita",
+				"few": "{{ count }} spoločné komunity:",
+				"other": "{{ count }} spoločných komunit:"
+			}
+		}
+	},
+	"AND": "a"
 }

@@ -5,7 +5,9 @@
 		<select class="messages-filter conversation-list-width margin-bottom-small flex-div" ng-model="filter.type" ng-change="$parent.applyFilter(filter)">
 			<option value="" ng-selected="filter.type == ''">{{:: 'MESSAGES.FILTER.ALL' | translate }}</option>
 			<option ng-if="userHasRight('post.suspend')" value="from_admin" ng-selected="filter.type == 'from_admin'">{{:: 'MESSAGES.FILTER.POST_ADMIN' | translate }}</option>
-			<option value="community" ng-selected="filter.type == 'community'">{{:: 'MESSAGES.FILTER.COMMUNITY' | translate }}</option>
+			<optgroup label="{{:: 'MESSAGES.FILTER.COMMUNITY' | translate }}" ng-if="communityConversations.length">
+				<option value="community_id:{{ conv._id }}" ng-repeat="conv in communityConversations" ng-selected="filter.community_id == conv._id">{{:: conv.name }}</option>
+			</optgroup>
 			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{:: 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
 			<option value="as_replies_post:{{post._id}}" ng-repeat="post in postConversations.posts" ng-selected="filter.post_id === post._id">&ndash; {{:: post.type | uppercase | translate }} {{:: post.title }}</option>
 			<option value="archived" ng-selected="filter.type == 'archived'">{{:: 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>

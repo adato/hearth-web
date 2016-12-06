@@ -89,11 +89,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.pageChangeWithScroll = false;
 		};
 
+		var locationSearch;
+
 		/**
 		 * When started routing to another page, compare routes and if they differ
 		 * scroll to top of the page, if not, refresh page with fixed height
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, next) {
+
+			// retain optional state params on conversation routes
+			// if (next)
+			console.log(next);
+			// locationSearch = $location.search();
+
 			// when changed route, load conversation counters
 			//Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();

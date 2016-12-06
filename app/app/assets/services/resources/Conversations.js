@@ -135,6 +135,10 @@ angular.module('hearth.services').factory('Conversations', [
 				url: $$config.apiPath + '/conversations/posts',
 				method: 'GET'
 			},
+			getCommunityConversations: {
+				url: $$config.apiPath + '/conversations/communities',
+				method: 'GET'
+			},
 			downloadAttachment: {
 				method: 'GET',
 				url: $$config.apiPath + '/messages/:messageId/files/:fileId'
