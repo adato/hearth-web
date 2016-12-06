@@ -30,6 +30,13 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		$scope.postTypes = $$config.postTypes;
 		$scope.data = [];
 		$scope.loadingData = false;
+
+		$scope.userPostCount = {
+			'active': 0,
+			'inactive': 0
+		};
+		$scope.userBookmarkCount = 0; // default zero counters
+
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
 		var inited = false;
@@ -183,17 +190,29 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		}
 
 		function loadBookmarks(params, done, doneErr) {
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+			var compiledTemplate;
+
+			$scope.userBookmarkCount = 0;
+
 			$scope.addPagination(params);
 			params.user_id = undefined;
-			UserBookmarks.query(params, function(res) {
-				$scope.postsBookmarked = [];
 
-				res.forEach(function(item) {
-					$scope.postsBookmarked.push(item);
-				});
+			$templateRequest(templateUrl).then(function(template) {
+				var compiledTemplate = $compile(template);
 
-				finishLoading();
-			}, doneErr);
+				// fetch posts
+				UserBookmarks.query(params, function(res) {
+					$scope.postsBookmarked = [];
+
+					res.forEach(function(item) {
+						$scope.userBookmarkCount++;
+						pushPost('.profile-common .ads-listing', item, compiledTemplate);
+					});
+
+					finishLoading();
+				}, doneErr);
+			});
 		}
 
 		function loadUserReplies(params, done, doneErr) {
