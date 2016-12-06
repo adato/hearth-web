@@ -7,9 +7,13 @@
  * @restrict A
  */
 
+angular.module('hearth').factory('InfoboxCache', function($cacheFactory) {
+	return $cacheFactory('infobox');
+});
+
 angular.module('hearth.directives').directive('infoBox', [
-	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty', 'ProfileUtils', 'Followees',
-	function($rootScope, UsersCommunitiesService, $state, $analytics, IsEmpty, ProfileUtils, Followees) {
+	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty', 'ProfileUtils', 'Followees', 'InfoboxCache',
+	function($rootScope, UsersCommunitiesService, $state, $analytics, IsEmpty, ProfileUtils, Followees, InfoboxCache) {
 		return {
 			transclude: true,
 			replace: true,
@@ -52,6 +56,58 @@ angular.module('hearth.directives').directive('infoBox', [
 					scope.error = true;
 				};
 
+
+				function fetchCommunityFollowees() {
+					var cacheId = "community_followee_" + scope.infoBox._type + scope.infoBox._id;
+					var cached = InfoboxCache.get(cacheId);
+					if (cached) {
+						scope.connections.community = cached;
+						return;
+					}
+
+					Followees.fetchCommunityFollowees({
+						community_id: scope.infoBox._id,
+						logged_user_id: $rootScope.loggedUser._id
+					}, function(data) {
+						scope.connections.community = data;
+						InfoboxCache.put(cacheId, data);
+					});
+				}
+
+				function fetchCommonFollowees() {
+					var cacheId = "common_followee_" + scope.infoBox._type + scope.infoBox._id;
+					var cached = InfoboxCache.get(cacheId);
+					if (cached) {
+						scope.connections.users = cached;
+						return;
+					}
+
+					Followees.fetchCommonFollowees({
+						user_id: scope.infoBox._id,
+						logged_user_id: $rootScope.loggedUser._id
+					}, function(data) {
+						scope.connections.users = data;
+						InfoboxCache.put(cacheId, data);
+					});
+				}
+
+				function fetchCommonCommunities() {
+					var cacheId = "common_communities_" + scope.infoBox._type + scope.infoBox._id;
+					var cached = InfoboxCache.get(cacheId);
+					if (cached) {
+						scope.connections.userCommunities = cached;
+						return;
+					}
+					Followees.fetchCommonCommunities({
+						user_id: scope.infoBox._id,
+						logged_user_id: $rootScope.loggedUser._id
+					}, function(data) {
+						scope.connections.userCommunities = data;
+						InfoboxCache.put(cacheId, data);
+					});
+				}
+
+
 				/**
 				 * On mouse in, show info box
 				 */
@@ -62,27 +118,10 @@ angular.module('hearth.directives').directive('infoBox', [
 							scope.error = false;
 
 							if (typeof scope.infoBox._type != 'undefined' && scope.infoBox._type == 'Community') {
-								Followees.fetchCommunityFollowees({
-									community_id: scope.infoBox._id,
-									logged_user_id: $rootScope.loggedUser._id
-								}, function(data) {
-									scope.connections.community = data;
-								});
+								fetchCommunityFollowees();
 							} else {
-								Followees.fetchCommonFollowees({
-									user_id: scope.infoBox._id,
-									logged_user_id: $rootScope.loggedUser._id
-								}, function(data) {
-									scope.connections.users = data;
-								});
-
-								Followees.fetchCommonCommunities({
-									user_id: scope.infoBox._id,
-									logged_user_id: $rootScope.loggedUser._id
-								}, function(data) {
-									scope.connections.userCommunities = data;
-								});
-
+								fetchCommonFollowees();
+								fetchCommonCommunities();
 							}
 
 
