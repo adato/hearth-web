@@ -528,11 +528,9 @@
 	"author": "Autor",
 	"community": "komunity",
 	"POSTS_COUNT_PL": {
-		"one": {
-			"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
-			"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
-			"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
-		}
+		"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
+		"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
 	},
 	"FILTER_ADS": "Filtrovať inzeráty",
 	"FILTER_IS_ON": "Filter (aktívny)",
