@@ -44,22 +44,28 @@ angular.module('hearth.services').factory('LocationJsonDataTransform', ['$window
 	 *	@return {Object} transformed entity object
 	 */
 	function locationJsonHelper(entity, fromJson, opts) {
-		if (fromJson && ((typeof entity).toLowerCase() === 'string')) entity = $window.JSON.parse(entity);
-		var entityDummy = [entity];
-		opts = opts || {};
-		if (opts.prop) entityDummy = entity[opts.prop];
-		for (var q = entityDummy.length; q--;) {
-			if (entityDummy[q].locations) {
-				for (var i = entityDummy[q].locations.length; i--;) {
-					entityDummy[q].locations[i] = (fromJson ? entityDummy[q].locations[i].json_data : {
-						json_data: (entityDummy[q].locations[i].address_components ? entityDummy[q].locations[i] : {
-							place_id: entityDummy[q].locations[i].place_id
-						})
-					});
+		try {
+			if (fromJson && ((typeof entity).toLowerCase() === 'string')) entity = $window.JSON.parse(entity);
+			var entityDummy = [entity];
+			opts = opts || {};
+			if (opts.prop) entityDummy = entity[opts.prop];
+			if (entityDummy && entityDummy.length) {
+				for (var q = entityDummy.length; q--;) {
+					if (entityDummy[q].locations) {
+						for (var i = entityDummy[q].locations.length; i--;) {
+							entityDummy[q].locations[i] = (fromJson ? entityDummy[q].locations[i].json_data : {
+								json_data: (entityDummy[q].locations[i].address_components ? entityDummy[q].locations[i] : {
+									place_id: entityDummy[q].locations[i].place_id
+								})
+							});
+						}
+					}
 				}
 			}
+			if (!fromJson && ((typeof entity).toLowerCase() === 'object')) entity = $window.JSON.stringify(entity);
+		} catch (e) {
+			// don't do anything here. Not our problem the response can't pass through JSON parser
 		}
-		if (!fromJson && ((typeof entity).toLowerCase() === 'object')) entity = $window.JSON.stringify(entity);
 
 		return entity;
 	}
