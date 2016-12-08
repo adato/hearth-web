@@ -96,8 +96,8 @@ karma start xxx.spec.js
 
 ### Structure and important files location
 * /app/karma.conf.js - configuration file
-* /app/test/spec/setup.js - additional setup for the test environment
-* /app/test/spec - root directory for tests
+* /app/test/unit/setup.js - additional setup for the test environment
+* /app/test/unit - root directory for unit tests
 
 ### Examples
 * app/test/spec/assets/components/avatar/avatar.spec.js -  setup of the directive test

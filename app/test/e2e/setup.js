@@ -5,8 +5,8 @@ function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-var emalRandomId = getRandomInt(1, 99999999999999999);
-var testAccountPassword = ''
+var emailRandomId = getRandomInt(1, 99999999999999999);
+var testAccountPassword = '';
 module.exports = {
 	options: {
 		testPassword: 'testovaci',
@@ -111,7 +111,7 @@ module.exports = {
 		    tlsOptions: { rejectUnauthorized: false },
 		    mailbox: "Tests", // mailbox to monitor
 		    // searchFilter: ["UNSEEN", "FLAGGED"], // the search filter being used after an IDLE notification has been retrieved
-		    markSeen: true, // all fetched email willbe marked as seen and not fetched next time
+		    markSeen: true // all fetched email will be marked as seen and not fetched next time
 		    // fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
 		    // mailParserOptions: {streamAttachments: true}, // options to be passed to mailParser lib.
 		    // attachments: true, // download attachments as they are encountered to the project directory
@@ -140,6 +140,6 @@ module.exports = {
 	},
 	getRandomInt: getRandomInt,
 	getTestEmail: function () {
-		return 'testovaci+'+emalRandomId+'@hearth.net';
+		return 'testovaci+'+emailRandomId+'@hearth.net';
 	}
 };

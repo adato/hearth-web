@@ -10,4 +10,4 @@ test-debug.log
 .netbeans.xml
 ../nbproject/
 Thumbs.db
-test/test-results.xml
+test/unit-tests-result.xml

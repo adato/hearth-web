@@ -13,7 +13,7 @@ module.exports = function (config) {
     files: [
 
       // Load config stuff for the environment
-      'test/spec/setup.js',
+      'test/unit/setup.js',
       'configuration/development.js',
       'app/assets/config-global.js',
 
@@ -303,7 +303,7 @@ module.exports = function (config) {
       {pattern: 'app/locales/**/*.json', included: false},
 
       // application tests
-      'test/spec/**/**/*.spec.js',
+      'test/unit/**/**/*.spec.js',
 
       // application HTML
       'app/assets/components/**/*.html'
@@ -335,7 +335,7 @@ module.exports = function (config) {
 
     junitReporter: {
       outputDir: 'test', // results will be saved as $outputDir/$browserName.xml
-      outputFile: 'test-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      outputFile: 'unit-tests-result.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
       useBrowserName: false // add browser name to report and classes names
     },
 

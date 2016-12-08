@@ -1,10 +1,7 @@
-describe('hearth unauth marketplace', function() {
+describe('hearth unauth marketplace', function () {
 
-  beforeEach(function() {
-    protractor.helpers.navigateTo('', function () {
-      browser.waitForAngular();
-      browser.sleep(500);
-    });
+  beforeEach(function () {
+    protractor.helpers.navigateTo('');
   });
 
   // should see marketplace with items
@@ -55,7 +52,7 @@ describe('hearth unauth marketplace', function() {
       // click again to switch back to marketplace
       switchToMapLink.click().then(function () {
         expect(marketContainer.isDisplayed()).toBeTruthy();
-        expect(mapContainer.isPresent()).toBeFalsy
+        expect(mapContainer.isPresent()).toBeFalsy();
       });
     });
   });
@@ -101,7 +98,7 @@ describe('hearth unauth marketplace', function() {
   });
 
 
-  function loginDialogTest (type) {
+  function loginDialogTest(type) {
     var createButton = element(by.css('.insert-button-container>a.button'));
     var loginModal = element(by.css('.register-login-dialog .alert-box.alert'));
     var loginModalCloseButton = element(by.css('.register-login-dialog span.close'));
@@ -117,30 +114,30 @@ describe('hearth unauth marketplace', function() {
         expect(createButton.isDisplayed()).toBeFalsy();
       }
       iconAdd.click().then(function () {
-		browser.sleep(500);
+        browser.sleep(500);
         expect(loginModal.isDisplayed()).toBeTruthy();
         loginModalCloseButton.click();
       }).then(function () {
-          browser.sleep(500);
-          expect(loginModal.isPresent()).toBeFalsy();
+        browser.sleep(500);
+        expect(loginModal.isPresent()).toBeFalsy();
       });
     }
 
     if (type === 'desktop') {
       expect(iconAdd.isDisplayed()).toBeFalsy(); // on desktop, mobile icon isnt displayed
       createButton.click().then(function () {
-		browser.sleep(500);
+        browser.sleep(500);
         expect(loginModal.isDisplayed()).toBeTruthy();
         loginModalCloseButton.click();
       }).then(function () {
-          browser.sleep(500);
-          expect(loginModal.isPresent()).toBeFalsy();
+        browser.sleep(500);
+        expect(loginModal.isPresent()).toBeFalsy();
       });
     }
   }
 
   // specific for mobile and tablet
-  function navigationTest (type) {
+  function navigationTest(type) {
     var container = element(by.css('div.off-canvas-wrap'));
     var topBar = element(by.css('nav.tab-bar'));
     var searchBar = element(by.css('div.mobile-top-search-bar-container'));
