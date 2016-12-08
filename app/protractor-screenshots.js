@@ -10,12 +10,12 @@ exports.config = {
   directConnect: true,
 	specs: [
 		testFolder + 'unauth/marketplace.spec.js',
-		testFolder + 'auth/register.spec.js',
-		testFolder + 'auth/login.spec.js',
-		testFolder + 'auth/profile.spec.js',
-		testFolder + 'auth/bookmarks.spec.js',
-		testFolder + 'auth/market-reportAbusivePost.spec.js',
-		testFolder + 'auth/deleteUser.spec.js'
+		// testFolder + 'auth/register.spec.js',
+		// testFolder + 'auth/login.spec.js',
+		// testFolder + 'auth/profile.spec.js',
+		// testFolder + 'auth/bookmarks.spec.js',
+		// testFolder + 'auth/market-reportAbusivePost.spec.js',
+		// testFolder + 'auth/deleteUser.spec.js'
 	],
 	suites: {
 		'unauth': [testFolder + 'unauth/marketplace.spec.js'],
