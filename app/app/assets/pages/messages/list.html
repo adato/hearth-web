@@ -15,7 +15,7 @@
 	<div class="messages-container display-flex flex-align-start" ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}" ng-if="!reloading" dynamic-height offset="0" container=".messages" min-height="340">
 		<div id="about" class="conversations" ng-if="conversations.length" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
 			<div class="nano" custom-scrollbar>
-				<div class="nano-content" when-scrolled="loadBottom()" loading-in-progress="conversationLoadInProgress" inner-scrolling="true">
+				<div class="nano-content" when-scrolled="loadBottom()" inner-scrolling="true">
 					<div class="nano-content-inner">
 						<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == $state.params.id}"></div>
 						<div class="text-center no-result" ng-if="!conversations.length">
@@ -57,6 +57,7 @@
 							</div>
 							<div class="clear"></div>
 						</a>
+						<div loading show="conversationLoadInProgress"></div>
 					</div>
 				</div>
 			</div>
