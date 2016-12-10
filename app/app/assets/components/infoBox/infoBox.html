@@ -1,5 +1,5 @@
 <div class="info-box">
-	<div class="user-info {{ infoboxClass }}" ng-class="{'placement-left': (infoboxIndex+1) % 3 == 0}" ng-if="show">
+	<div class="user-info {{:: infoboxClass }}" ng-class=":: {'placement-left': (infoboxIndex+1) % 3 == 0}" ng-if="show">
 		<div class="user-info-inner-wrapper">
 			<div loading delayed="false" show="!info && !error" class="loading-bar"></div>
 			<div class="text-center" ng-if="error">

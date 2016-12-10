@@ -526,10 +526,8 @@
 	"author": "Author",
 	"community": "communities",
 	"POSTS_COUNT_PL": {
-		"one": {
-			"one": "<p>Currently <strong>{{value}}<\/strong> active post<\/p>",
-			"other": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>"
-		}
+		"one": "<p>Currently <strong>{{value}}<\/strong> active post<\/p>",
+		"other": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>"
 	},
 	"FILTER_ADS": "Filter posts",
 	"FILTER_IS_ON": "Filter (active)",
