@@ -139,7 +139,7 @@
 					</header>
 
 					<div class="item-section text-container word-break">
-						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html=":: item.text_parsed"></p>
+						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html=":: item.text_parsed" test-beacon="marketplace-item-text"></p>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html=":: item.text_short_parsed"></span>
 							<a ng-click="marketplace.expanded = true">
@@ -191,7 +191,7 @@
 										<a class="text-decoration-underline" ng-href="{{getProfileLink('Post', item._id) }}#replies" ng-bind-html="item.replied_by_string"></a>
 									</div>
 									<div ng-if="item.reply_count && !mine" ng-bind-html="item.replied_by_string"></div>
-									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
+									<div ng-if="!item.reply_count" test-beacon="marketplace-reply">{{:: 'NO_REPLY' | translate}}</div>
 								</div>
 							</div>
 						</div>
