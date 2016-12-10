@@ -43,7 +43,6 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			get: {
 				method: 'GET',
-				ignoreLoadingBar: true,
 				transformResponse: [ConversationDataTransform.enrichWithTitles]
 			},
 			leave: {
@@ -68,17 +67,24 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			getCounters: {
 				url: $$config.apiPath + '/conversations/counter',
-				method: 'GET',
-				ignoreLoadingBar: true
+				method: 'GET'
 			},
 			getMessages: {
 				url: $$config.apiPath + '/conversations/:id/messages',
-				method: 'GET',
-				ignoreLoadingBar: true
+				method: 'GET'
 			},
 			getParticipants: {
 				url: $$config.apiPath + '/conversations/:id/users',
 				method: 'GET'
+			},
+			addParticipants: {
+				url: $$config.apiPath + '/conversations/:conversation_id/participants?:ids',
+				method: 'POST',
+				ignoreLoadingBar: true,
+				params: {
+					conversation_id: '@conversation_id',
+					'id[]': '@ids'
+				}
 			},
 			reply: {
 				url: $$config.apiPath + '/conversations',
@@ -136,8 +142,7 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/conversations/posts',
-				method: 'GET',
-				ignoreLoadingBar: true
+				method: 'GET'
 			},
 			downloadAttachment: {
 				method: 'GET',

@@ -61,7 +61,7 @@
 											</li>
 											<li>
 												<!-- hide post -->
-												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', ItemAux.hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
 												<!-- /hide post -->
 											</li>
 											<li>
@@ -165,7 +165,7 @@
 											</div>
 										</div>
 										<div class='padding-right-large'>
-											<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
+											<button ng-if="!item.is_replied && !isMine" ng-click="ItemAux.replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
 											<span ng-if="item.is_replied">
 												{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 											</span>
@@ -218,28 +218,28 @@
 							<h1 ng-if="replies.length">{{:: 'POSTS.DETAIL.REPLIES' | translate }}</h1>
 							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
-						<article ng-repeat="(id, item) in replies track by item._id" class='box-section'>
+						<article ng-repeat="(id, item) in :: replies track by item.conversation_id" class='box-section' ng-if=":: replies.length">
 							<section class='display-table'>
 								<div class='display-table-cell addon user'>
-									<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
-										<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
+									<div info-box="item.author" infobox-index="$index" infobox-class="'on-item-detail'">
+										<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
 									</div>
 								</div>
 								<div class='display-table-cell'>
 									<div class="row">
 										<div class="column small-12 medium-display-table margin-bottom-small">
 											<div class='medium-display-table-cell'>
-												<span class="text-emphasize">{{ item.message.author.name }}</span>
+												<span class="text-emphasize">{{:: item.author.name }}</span>
 											</div>
-											<div class="medium-display-table-cell addon nowrap date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
+											<div class="medium-display-table-cell addon nowrap date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
 												<i class="fa fa-clock-o"></i>&nbsp;{{ item.created_at | ago }}
 											</div>
 										</div>
 										<div class="column small-12">
-											<p class='word-break' ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
+											<p class='word-break' ng-bind-html=":: item.text | linky:'_blank' | nl2br"></p>
 										</div>
 										<div class="column small-12 text-right">
-											<a ng-href="{{:: getProfileLink(item._type, item._id) }}">
+											<a ng-href="{{:: getProfileLink('Conversation', item.conversation_id) }}">
 												{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}&nbsp;
 												<i class="fa fa-comments-o"></i>
 											</a>

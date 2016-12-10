@@ -55,7 +55,7 @@
 			<section class="text">
 				<label for="text">{{ 'POST_TEXT_LABEL' | translate }}</label>
 				<textarea id="text" autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required ng-attr-placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.text" name="text"
-								ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle">
+								class="create-ad-textarea text-input middle">
 				</textarea>
 				<div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
 					<span ng-show="createAdForm.text.$error.required">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
@@ -63,6 +63,42 @@
 					<span ng-show="createAdForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
 				<check-capitals model="post.text" ng-if="showError.text" class="moveUp error warning"></check-capitals>
+			</section>
+			<section class="files">
+				<label class="create-post-link">
+					<span ng-if="!imagesCount">
+						{{:: 'ATTACHE_IMAGES' | translate }}
+					</span>
+					<span ng-if="imagesCount">
+						{{:: 'IMAGES' | translate }} ({{ imagesCount }})
+					</span>
+				</label>
+				<div>
+					<ul class="fileList">
+						<li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
+							<div class="overlay"></div>
+							<a ng-click="removeImage($index)" title="{{:: 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+								<i class="fa fa-times"></i>
+							</a>
+							<img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" />
+						</li>
+						<li class="file-upload">
+							<div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource'
+											limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
+								<i class="fa fa-plus"></i>
+								<i class="fa fa-spinner fa-spin"></i>
+							</div>
+						</li>
+					</ul>
+					<div class="clear"></div>
+					<div class="clear error" ng-show="showError.files">
+						<span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \ 'JPG, JPEG, PNG, GIF\'} " }}</span>
+						<span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
+						<span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
+						<span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize:"+limitPixelSize+"}" }}</span>
+						<span ng-if="showError.files.uploadError">{{ "ERROR_WHILE_UPLOADING" | translate }}</span>
+					</div>
+				</div>
 			</section>
 			<section class="position-relative" ng-if="languageList.length">
 				<label for="post-language" class="nowrap flex-div margin-bottom-small margin-right-medium">
@@ -166,42 +202,6 @@
 						</radio>
 					</li>
 				</ul>
-			</section>
-			<section class="collapse files" ng-class="{ 'collapse-expanded': slide.files }">
-				<label slide-trigger="slide.files" class="create-post-link">
-					<span ng-if="!imagesCount">
-						{{:: 'ATTACHE_IMAGES' | translate }}
-					</span>
-					<span ng-if="imagesCount">
-						{{:: 'IMAGES' | translate }} ({{ imagesCount }})
-					</span>
-				</label>
-				<div ng-slide-down="slide.files" lazy-render duration="0.5">
-					<ul class="fileList">
-						<li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
-							<div class="overlay"></div>
-							<a ng-click="removeImage($index)" title="{{:: 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-								<i class="fa fa-times"></i>
-							</a>
-							<img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" />
-						</li>
-						<li class="file-upload">
-							<div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource'
-											limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
-								<i class="fa fa-plus"></i>
-								<i class="fa fa-spinner fa-spin"></i>
-							</div>
-						</li>
-					</ul>
-					<div class="clear"></div>
-					<div class="clear error" ng-show="showError.files">
-						<span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \ 'JPG, JPEG, PNG, GIF\'} " }}</span>
-						<span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
-						<span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
-						<span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize:"+limitPixelSize+"}" }}</span>
-						<span ng-if="showError.files.uploadError">{{ "ERROR_WHILE_UPLOADING" | translate }}</span>
-					</div>
-				</div>
 			</section>
 			<section class="display-flex flex-space-between flex-reverse">
 				<div class="nowrap">

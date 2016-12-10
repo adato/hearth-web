@@ -35,21 +35,36 @@ describe('hearth registration', function () {
 		var passwordInput = element(by.model('user.password'));
 
 		// none of validation errors displayed
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
 
 		registerButton.click();
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, false, true, false]);
 
 		firstNameInput.sendKeys('Testerovo');
 		lastNameInput.sendKeys('Jmeno');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, false, true, false]);
 
 		emailInput.sendKeys('testovaci@hearth.net');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, true, false]);
 
 		passwordInput.sendKeys('testerovoHeslo');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
 	});
+
+
+/*	not any more necessary since did-you-mean element is not displayed any more
+	
+	it('should validate with mailgun ', function () {
+		var emailInput = element(by.model('user.email'));
+		var expectedEmailInputValidatorMessage = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]'));
+		var expectedEmailInputValidatorMessageEmail = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]>a'));
+
+		emailInput.sendKeys('testovaci@gmaily.xom');
+		emailInput.sendKeys(protractor.Key.TAB);
+		browser.sleep(500);
+		expect(expectedEmailInputValidatorMessage.isDisplayed()).toBeTruthy();
+		expect(expectedEmailInputValidatorMessageEmail.getText()).toBe('testovaci@gmail.com');
+	});*/
 
 
 	it('should validate email in various ways', function () {
@@ -72,8 +87,20 @@ describe('hearth registration', function () {
 			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
+
+			// mailgun should trigger error
+			emailInput.clear();
+			emailInput.sendKeys('tester@gmail.co', protractor.Key.TAB);
+			browser.sleep(3000); // wait for delayed bind and mailgun reply
+			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+			expect(element(by.css('[ng-show="registerForm.email.$error.mailgun"]')).isDisplayed()).toBeTruthy();
+			expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
+
 			emailInput.clear();
 			emailInput.sendKeys('tester@test.com', protractor.Key.TAB);
+			browser.sleep(1500);
 			expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
 			expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
@@ -127,29 +154,22 @@ describe('hearth registration', function () {
 
 		// init emaillistener
 		var emailListenerPromise = protractor.helpers.getEmailListener();
-		console.log(emailListenerPromise);
 
-		// none of validation errors displayed
-		// some validation errors displayed
 		firstNameInput.sendKeys('Testerovo');
 		lastNameInput.sendKeys('Jmeno');
 		emailInput.sendKeys(testEmail);
 		passwordInput.sendKeys(protractor.helpers.options.testPassword);
 
 		// none of validation errors displayed
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
-		// send registration
-		registerButton.click();
-
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false]);
 		console.log("> Using register credentials: ", testEmail, protractor.helpers.options.testPassword);
-		expect(element.all(by.css('.register-successful')).isDisplayed()).toBeTruthy();
-
 
 		browser.getCurrentUrl().then(function (url) {
 			console.log("got url", url);
 			origAddress = protractor.helpers.parseLocation(url);
 
 			browser.wait(function () {
+				registerButton.click();
 				console.log("emaillistener promise setup")
 				return emailListenerPromise();
 			}, 20000).then(function (email) {
