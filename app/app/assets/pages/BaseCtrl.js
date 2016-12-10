@@ -496,50 +496,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-		/**
-		 * Function will hide item from marketplace
-		 */
-		$rootScope.hideItem = function(post, cb) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			$rootScope.globalLoading = true;
-			Post.hide({
-				id: post._id
-			}, function(res) {
-				if ($state.is('market')) {
-					$rootScope.$broadcast("itemDeleted", post);
-				}
-
-				Notify.addSingleTranslate('NOTIFY.POST_HID_SUCCESFULLY', Notify.T_SUCCESS);
-				$rootScope.globalLoading = false;
-
-				cb && cb(post); // if callback given, call it
-			}, function() {
-				$rootScope.globalLoading = false;
-			});
-		};
-
-		/**
-		 * Function will show modal window with reply form to given post
-		 */
-		$rootScope.replyItem = function(post) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			var scope = $scope.$new();
-			scope.post = post;
-
-			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemReply.html',
-				controller: 'ItemReply',
-				scope: scope,
-				closeByDocument: false,
-				closeByEscape: true,
-				showClose: false
-			});
-		};
-
 		$rootScope.openModalContainer = function(path, heading) {
 			var scope = $scope.$new();
 			scope.path = path;
@@ -578,46 +534,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				closeByDocument: false,
 				closeByEscape: true,
 				showClose: false
-			});
-		};
-
-		/**
-		 * Function will add item to users bookmarks
-		 */
-		$rootScope.addItemToBookmarks = function(post) {
-			if (post.is_bookmarked)
-				return false;
-
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			UserBookmarks.add({
-				'postId': post._id
-			}, function(res) {
-				if (res.ok === true) {
-					post.is_bookmarked = !post.is_bookmarked;
-					Notify.addSingleTranslate('NOTIFY.POST_BOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
-				}
-			});
-		};
-
-		/**
-		 * Function will remove item from users bookmarks
-		 */
-		$rootScope.removeItemFromBookmarks = function(post) {
-			if (!post.is_bookmarked)
-				return false;
-
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			UserBookmarks.remove({
-				'postId': post._id
-			}, function(res) {
-				if (res.ok === true) {
-					post.is_bookmarked = !post.is_bookmarked;
-					Notify.addSingleTranslate('NOTIFY.POST_UNBOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
-				}
 			});
 		};
 

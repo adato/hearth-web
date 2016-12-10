@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="highlights">
-			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
+			<avatar ng-if="info.avatar.large" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
 			<span class="shadow large">
 				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
 					<span>
