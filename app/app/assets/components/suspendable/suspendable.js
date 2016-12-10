@@ -57,8 +57,6 @@ angular.module('hearth.directives').directive('suspendable', function() {
 				clearTimeout(timeout);
 			})
 
-			//scope.$on('suspendPostWatchers', suspend);
-			//scope.$on('resumePostWatchers', resume);
 
 			// main function to loop over
 			var checkVisibility = function() {
