@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -294,7 +294,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		// ======================================== PUBLIC METHODS =====================================
 		$rootScope.showLoginBox = function(showMsgOnlyLogged) {
-
+			UnauthReload.clearReloadLocation();
 			var scope = $scope.$new();
 			scope.showMsgOnlyLogged = showMsgOnlyLogged;
 			ngDialog.open({
@@ -314,7 +314,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			};
 			$state.go('market', {
 				query: null,
-				type: null,
+				type: null
 			}, {
 				reload: true
 			});
@@ -394,12 +394,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return ret;
 		};
 
-		$rootScope.sendMessage = function(user) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+		/**
+		 *	@param {Object} user - user/community to whom to address the message
+		 *	@param {Object} params - {Boolean} toAllMembers
+		 */
+		$rootScope.sendMessage = function(user, params) {
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
+			params = params || {};
 
 			var scope = $scope.$new();
 			scope.user = user;
+
+			scope.params = {};
+			if (!!params.toAllMembers) scope.params.for_all_members = true;
 
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'newMessage.html',
@@ -489,50 +496,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-		/**
-		 * Function will hide item from marketplace
-		 */
-		$rootScope.hideItem = function(post, cb) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			$rootScope.globalLoading = true;
-			Post.hide({
-				id: post._id
-			}, function(res) {
-				if ($state.is('market')) {
-					$rootScope.$broadcast("itemDeleted", post);
-				}
-
-				Notify.addSingleTranslate('NOTIFY.POST_HID_SUCCESFULLY', Notify.T_SUCCESS);
-				$rootScope.globalLoading = false;
-
-				cb && cb(post); // if callback given, call it
-			}, function() {
-				$rootScope.globalLoading = false;
-			});
-		};
-
-		/**
-		 * Function will show modal window with reply form to given post
-		 */
-		$rootScope.replyItem = function(post) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			var scope = $scope.$new();
-			scope.post = post;
-
-			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemReply.html',
-				controller: 'ItemReply',
-				scope: scope,
-				closeByDocument: false,
-				closeByEscape: true,
-				showClose: false
-			});
-		};
-
 		$rootScope.openModalContainer = function(path, heading) {
 			var scope = $scope.$new();
 			scope.path = path;
@@ -571,46 +534,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				closeByDocument: false,
 				closeByEscape: true,
 				showClose: false
-			});
-		};
-
-		/**
-		 * Function will add item to users bookmarks
-		 */
-		$rootScope.addItemToBookmarks = function(post) {
-			if (post.is_bookmarked)
-				return false;
-
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			UserBookmarks.add({
-				'postId': post._id
-			}, function(res) {
-				if (res.ok === true) {
-					post.is_bookmarked = !post.is_bookmarked;
-					Notify.addSingleTranslate('NOTIFY.POST_BOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
-				}
-			});
-		};
-
-		/**
-		 * Function will remove item from users bookmarks
-		 */
-		$rootScope.removeItemFromBookmarks = function(post) {
-			if (!post.is_bookmarked)
-				return false;
-
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			UserBookmarks.remove({
-				'postId': post._id
-			}, function(res) {
-				if (res.ok === true) {
-					post.is_bookmarked = !post.is_bookmarked;
-					Notify.addSingleTranslate('NOTIFY.POST_UNBOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
-				}
 			});
 		};
 

@@ -1,93 +1,5 @@
 'use strict';
 
-angular.module('hearth.directives').service('ImageLib', ['$http', function($http) {
-
-	this.getProportionalSize = function(img, maxWidth, maxHeight) {
-		var ratio = 1;
-		var width = img.width;
-		var height = img.height;
-
-		if (img.width > maxWidth || img.height > maxHeight) {
-			var ratioX = (maxWidth / width);
-			var ratioY = (maxHeight / height);
-			var ratio = Math.min(ratioX, ratioY);
-		}
-
-		return {
-			width: Math.floor(width * ratio),
-			height: Math.floor(height * ratio)
-		};
-	};
-
-	this.resize = function(img, newSize, outputCanvas) {
-		var canvas = document.createElement('canvas');
-		canvas.width = newSize.width;
-		canvas.height = newSize.height;
-		var ctx = canvas.getContext("2d");
-		ctx.drawImage(img, 0, 0, newSize.width, newSize.height);
-		return outputCanvas ? canvas : canvas.toDataURL("image/jpeg");
-	};
-
-	this.cropSquareCenter = function(img, size, done) {
-		var oh = 0,
-			ow = 0;
-		var squareSize = Math.min(size.width, size.height);
-
-		if (size.width > size.height) {
-			ow = Math.round((size.width - squareSize) / 2);
-
-		} else if (size.width < size.height) {
-			oh = Math.round((size.height - squareSize) / 2);
-		}
-
-		var canvas = document.createElement('canvas');
-		canvas.width = squareSize;
-		canvas.height = squareSize;
-		var ctx = canvas.getContext("2d");
-		ctx.drawImage(img, ow, oh, squareSize, squareSize, 0, 0, squareSize, squareSize);
-		return done(canvas.toDataURL("image/jpeg"));
-	};
-
-	this.cropSmart = function(img, size, done) {
-		var squareSize = Math.min(size.width, size.height);
-
-		SmartCrop.crop(img, {
-			width: squareSize,
-			height: squareSize
-		}, function(result) {
-			var canvas = document.createElement('canvas');
-			canvas.width = squareSize;
-			canvas.height = squareSize;
-			var ctx = canvas.getContext("2d");
-			ctx.drawImage(img, result.topCrop.x, result.topCrop.y, result.topCrop.width, result.topCrop.height, 0, 0, result.topCrop.width, result.topCrop.height);
-			done(canvas.toDataURL("image/jpeg"));
-		});
-	};
-
-	this.upload = function(file, uploadUrl, done, doneErr) {
-		$http.post(uploadUrl, {
-				file_data: file
-			})
-			.success(done)
-			.error(doneErr);
-	};
-}]);
-
-angular.module('hearth.directives').directive('fileModel', ['$parse', '$rootScope', function($parse, $rootScope) {
-	return {
-		restrict: 'A',
-		link: function(scope, element, attrs) {
-			var model = $parse(attrs.fileModel);
-			var modelSetter = model.assign;
-
-			element.bind('change', function() {
-				modelSetter(scope, element[0].files[0]);
-				if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
-			});
-		}
-	};
-}]);
-
 /**
  * @ngdoc directive
  * @name hearth.directives.imagePreview
@@ -112,12 +24,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
-			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
+			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" multiple file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
 				scope.showErrors = true;
 				scope.error = scope.error || {};
-				scope.uploading = false;
+				scope.uploading = 0;
 
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if (scope.singleFile) {
@@ -178,7 +90,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 					}
 				}
 
-				function handleImageLoad(img, imgFile, limitSize) {
+				function handleImageLoad(img, imgFile, limitSize, fileItself) {
 					var resized;
 
 					if (img.width < scope.limitPixelSize || img.height < scope.limitPixelSize)
@@ -196,7 +108,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 							if (resized.split(',').length == 1)
 								resized = 'data:image/jpeg;base64,' + resized;
 							pushResult({
-								file: resized
+								file: resized,
+								toBeUploaded: fileItself
 							}, {
 								total: 0
 							});
@@ -209,20 +122,20 @@ angular.module('hearth.directives').directive('imagePreview', [
 						return scope.error.badSize = true;
 					}
 
-					scope.uploading = true;
+					scope.uploading++;
 					scope.$apply();
 					$timeout(function() {
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
-						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
-							scope.uploading = false;
+						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, fileItself, function(res) {
+							scope.uploading--;
 							pushResult(res, {
 								total: 0
 							});
-							$('input', el).val("");
+							$('input', el).val('');
 						}, function(err) {
-							scope.uploading = false;
+							scope.uploading--;
 							scope.error.uploadError = true;
 							$log.error('Error: ', err);
 							$('input', el).val("");
@@ -248,7 +161,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 								var image = new Image();
 								image.src = imgFile;
 								return image.onload = function() {
-									handleImageLoad(this, e, limitSize);
+									handleImageLoad(this, e, limitSize, file);
 									scope.$apply();
 								};
 							}

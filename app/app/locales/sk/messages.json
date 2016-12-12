@@ -329,7 +329,8 @@
 		"MARK_CONVERSATION_AS_UNREAD": "Označiť za neprečítanú",
 		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
 		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
-		"ADD_PARTICIPANT": "Přidat příjemce do konverzace"
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "Nové správy"
 	},
 	"MESSAGES_ARCHIVE": "Archív správ",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
@@ -527,11 +528,9 @@
 	"author": "Autor",
 	"community": "komunity",
 	"POSTS_COUNT_PL": {
-		"one": {
-			"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
-			"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
-			"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
-		}
+		"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
+		"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
 	},
 	"FILTER_ADS": "Filtrovať inzeráty",
 	"FILTER_IS_ON": "Filter (aktívny)",
@@ -1770,5 +1769,6 @@
 			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
 		}
 	},
-	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, dej nám o tom vědět."
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
+	"count-of-wished-and-gifts": "Počet darov a prianí: {{value}}"
 }

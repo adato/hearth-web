@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService',
-	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService) {
+	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService', '$timeout', '$q',
+	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService, $timeout, $q) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -120,6 +120,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					}
 					if (data.webs !== undefined) prepareWebs(data);
 					ProfileUtils.single.joinInterests(data);
+					delete data.avatar;
 					return data;
 				};
 
@@ -203,17 +204,25 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.sending = true;
 					$rootScope.globalLoading = true;
 
-					Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community), function(res) {
-						$rootScope.globalLoading = false;
-						$rootScope.$emit('reloadCommunities');
-						$location.path('/community/' + res._id);
+					var actions = {
+						community: Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community)).$promise
+					};
+					if ($scope.community.avatar.toBeUploaded) actions.avatar = Community.uploadAvatar({
+						_id: $scope.community._id
+					}, $scope.community.avatar.toBeUploaded).$promise;
+					$q.all(actions)
+						.then(function(res) {
+								res = res.community;
+								$rootScope.globalLoading = false;
+								$rootScope.$emit('reloadCommunities');
+								$location.path('/community/' + res._id);
 
-						Notify.addSingleTranslate('NOTIFY.COMMUNITY_' + ($scope.community._id ? 'UPDATE' : 'CREATE') + '_SUCCESS', Notify.T_SUCCESS);
-
-					}, function(res) {
-						$scope.sending = false;
-						$rootScope.globalLoading = false;
-					});
+								Notify.addSingleTranslate('NOTIFY.COMMUNITY_' + ($scope.community._id ? 'UPDATE' : 'CREATE') + '_SUCCESS', Notify.T_SUCCESS);
+							},
+							function(res) {
+								$scope.sending = false;
+								$rootScope.globalLoading = false;
+							});
 				};
 
 				$scope.change = function(id, needReload) {
@@ -289,6 +298,19 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 				$scope.close2 = function() {
 					$scope.close();
+				};
+
+				$scope.saveCommunityConversationSettings = function() {
+					// kamil:
+					// value is taken from $scope and in timeout, because on-change handler on checkbox directive
+					// is broken somehow and passes values before the toggle change..
+					// or maybe I just don't understand how it's supposed to work..
+					$timeout(function() {
+						Community.patch({
+							_id: $scope.community._id,
+							allow_message_to_members: $scope.community.allow_message_to_members
+						});
+					});
 				};
 
 				$scope.init = function() {
