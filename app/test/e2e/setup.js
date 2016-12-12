@@ -6,7 +6,7 @@ function getRandomInt (min, max) {
 }
 
 var emailRandomId = getRandomInt(1, 99999999999999999);
-var testAccountPassword = '';
+
 module.exports = {
 	options: {
 		testPassword: 'testovaci',
@@ -14,33 +14,41 @@ module.exports = {
 		local: {
 			baseUrl: 'https://0.0.0.0:9000/app',
 			appPath: '/',
-			loginName: 'hearth@mailinator.com', // test user email
+      name: 'Merrill',
+      surname: 'Triston' ,
+			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
 			loginPassword: 'tester', 			// test user password
-			loginFullName: 'E2E tester',
+			loginFullName: 'Merrill Triston',
 			loginTrimmedName: 'E2E teste…'
 		},
 		jenkins: {
 			baseUrl: 'https://jenkins:9000/app',
 			appPath: '/',
-			loginName: 'hearth@mailinator.com', // test user email
-			loginPassword: 'tester', 			// test user password
-			loginFullName: 'E2E tester',
+      name: 'Merrill',
+      surname: 'Triston' ,
+      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+      loginPassword: 'tester', 			// test user password
+      loginFullName: 'Merrill Triston',
 			loginTrimmedName: 'E2E teste…'
 		},
 		dev: {
 			baseUrl: 'http://dev.hearth.net/app',
 			appPath: '/',
-			loginName: 'hearth@mailinator.com', // test user email
-			loginPassword: 'tester', 			// test user password
-			loginFullName: 'E2E tester',
+      name: 'Merrill',
+      surname: 'Triston' ,
+      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+      loginPassword: 'tester', 			// test user password
+      loginFullName: 'Merrill Triston',
 			loginTrimmedName: 'E2E teste…'
 		},
 		stage: {
 			baseUrl: 'http://stage.hearth.net/app',
 			appPath: '/',
-			loginName: 'hearth-staging@mailinator.com', // test user email
-			loginPassword: 'tester', 		// test user password
-			loginFullName: 'E2E tester',
+      name: 'Merrill',
+      surname: 'Triston' ,
+      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+      loginPassword: 'tester', 			// test user password
+      loginFullName: 'Merrill Triston',
 			loginTrimmedName: 'E2E teste…'
 		}
 	},
@@ -53,7 +61,7 @@ module.exports = {
 		element(by.model('data.username')).sendKeys(this.config().loginName);
 		element(by.model('data.password')).sendKeys(this.config().loginPassword);
 		element(by.css('button.button-send')).click();
-		browser.driver.sleep(2000);
+		// browser.driver.sleep(2000);
 	},
 	logout: function () {
 		this.navigateTo('');

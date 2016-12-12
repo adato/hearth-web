@@ -15,7 +15,7 @@
 				<i class="fa fa-exclamation-triangle"></i>{{ 'ACCOUNT.LOGIN.LOGIN_FAILED' | translate }}
 			</div>
 		</div>
-		<p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
+		<p ng-show="showError.badCredentials" class="error" test-beacon="login-bad-credentials">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
 		<p ng-show="showError.inactiveAccount" class="error" translate="LOGIN_INACTIVE_ACCOUNT" translate-compile translate-values="{'attrs': 'ng-click=\'resendActivationEmail()\''}"></p>
 		<label for="email">{{'EMAIL_PLACEHOLDER' | translate}}</label>
 		<input id="email" type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username" ng-model-options="{ updateOn: 'blur' }" class="form-control text-input top" required />

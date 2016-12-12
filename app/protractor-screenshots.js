@@ -1,5 +1,6 @@
 var testFolder = './test/e2e/';
 var HtmlScreenshotReporter = require('/usr/local/lib/node_modules/protractor-jasmine2-screenshot-reporter');
+var SpecReporter = require('jasmine-spec-reporter');
 
 var reporter = new HtmlScreenshotReporter({
   dest: 'target/screenshots',
@@ -11,7 +12,7 @@ exports.config = {
 	specs: [
 		testFolder + 'unauth/marketplace.spec.js',
 		// testFolder + 'auth/register.spec.js',
-		// testFolder + 'auth/login.spec.js',
+		testFolder + 'auth/login.spec.js'
 		// testFolder + 'auth/profile.spec.js',
 		// testFolder + 'auth/bookmarks.spec.js',
 		// testFolder + 'auth/market-reportAbusivePost.spec.js',
@@ -36,6 +37,7 @@ exports.config = {
 	onPrepare: function() {
 		protractor.helpers = require('./test/e2e/setup.js');
     jasmine.getEnv().addReporter(reporter);
+    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
 	},
 
   // Close the report after all tests finish
