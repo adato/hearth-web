@@ -27,6 +27,8 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			agree: false
 		}
 
+		$rootScope.$broadcast('suspendPostWatchers');
+
 		// $scope.$watch("author", function(val) {
 		// 	$scope.reply.current_community_id = val;
 		// });
@@ -37,7 +39,6 @@ angular.module('hearth.controllers').controller('ItemReply', [
 		};
 
 		$scope.showFinished = function() {
-
 			$(".reply-ad").slideToggle();
 			timeout = $timeout(function() {
 				$scope.closeThisDialog();
@@ -46,6 +47,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 
 		$scope.close = function() {
 			$timeout.cancel(timeout);
+			$rootScope.$broadcast('resumePostWatchers');
 			$scope.closeThisDialog();
 		};
 
@@ -68,8 +70,9 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				$scope.showFinished();
 				$scope.post.reply_count += 1;
 				$scope.post.is_replied = true;
+
+				$rootScope.$broadcast('postUpdateRepliedBy'); // update post counters
 			}, function(res) {
-				console.log(res);
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 			});
