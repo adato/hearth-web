@@ -1,13 +1,9 @@
 describe('hearth report abusive post', function() {
-
-	beforeEach(function() {
-		protractor.helpers.navigateTo('');
-		browser.waitForAngular();
-	});
+  beforeAll(function() {
+    protractor.helpers.login();
+  });
 
 	it('should see "report abusive post" modal on market', function() {
-		browser.sleep(2000);
-
 		var elAll = element.all(by.className('item-common')).get(0);
 		var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
 		var dropdownReportPostLink = elAll.element(by.css('[test-beacon="marketplace-item-flag"]'));
@@ -24,7 +20,6 @@ describe('hearth report abusive post', function() {
 		modalCloseButton.click();
 		browser.sleep(1000);
 		expect(modal.isPresent()).toBeFalsy();
-
 	});
 
 });

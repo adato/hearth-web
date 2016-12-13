@@ -12,19 +12,20 @@ describe('hearth login/logout', function () {
     browser.actions().mouseMove(navigationMenu).perform();
     element(by.css("nav .logout-link")).click();
 
+    browser.sleep(1000);
     var loginButton = element(by.id('nav-login'));
     expect(loginButton.isPresent()).toBeTruthy();
   });
-});
 
-it('should not login with wrong credentials ', function () {
-  protractor.helpers.navigateTo('login');
-  element(by.model('data.username')).sendKeys("unauthorized-user65386255@not.here");
-  element(by.model('data.password')).sendKeys("password");
-  element(by.css('button.button-send')).click();
+  it('should not login with wrong credentials ', function () {
+    protractor.helpers.navigateTo('login');
+    element(by.model('data.username')).sendKeys("unauthorized-user65386255@not.here");
+    element(by.model('data.password')).sendKeys("password");
+    element(by.css('button.button-send')).click();
 
-  var errorMessage = element(by.css('p[test-beacon=login-bad-credentials]'));
-  expect(errorMessage.isPresent()).toBeTruthy();
+    var errorMessage = element(by.css('p[test-beacon=login-bad-credentials]'));
+    expect(errorMessage.isPresent()).toBeTruthy();
+  });
 });
 
 

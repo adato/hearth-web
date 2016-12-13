@@ -14,41 +14,41 @@ module.exports = {
 		local: {
 			baseUrl: 'https://0.0.0.0:9000/app',
 			appPath: '/',
-      name: 'Merrill',
-      surname: 'Triston' ,
+      name: 'Hearth',
+      surname: '' ,
 			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
 			loginPassword: 'tester', 			// test user password
-			loginFullName: 'Merrill Triston',
+			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		jenkins: {
 			baseUrl: 'https://jenkins:9000/app',
 			appPath: '/',
-      name: 'Merrill',
-      surname: 'Triston' ,
-      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-      loginPassword: 'tester', 			// test user password
-      loginFullName: 'Merrill Triston',
+      name: 'Jenkins',
+      surname: '' ,
+      loginName: 'jenkins.uzivatel@mailinator.com', // test user email
+      loginPassword: 'jenkins.uzivatel@mailinator.com', 			// test user password
+      loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		dev: {
 			baseUrl: 'http://dev.hearth.net/app',
 			appPath: '/',
-      name: 'Merrill',
-      surname: 'Triston' ,
+      name: 'Hearth',
+      surname: '' ,
       loginName: 'hearth-e2e-tester@mailinator.com', // test user email
       loginPassword: 'tester', 			// test user password
-      loginFullName: 'Merrill Triston',
+      loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		stage: {
 			baseUrl: 'http://stage.hearth.net/app',
 			appPath: '/',
-      name: 'Merrill',
-      surname: 'Triston' ,
+      name: 'Hearth',
+      surname: '' ,
       loginName: 'hearth-e2e-tester@mailinator.com', // test user email
       loginPassword: 'tester', 			// test user password
-      loginFullName: 'Merrill Triston',
+      loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		}
 	},

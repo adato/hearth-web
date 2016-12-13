@@ -1,11 +1,10 @@
-var testEmail = protractor.helpers.getTestEmail();
-var testPassword = protractor.helpers.options.testPassword;
+var testPassword = protractor.helpers.config().loginPassword;
 
 describe('hearth remove user', function() {
 
-	beforeEach(function() {
-		protractor.helpers.navigateTo('');
-	});
+  beforeAll(function() {
+    protractor.helpers.login();
+  });
 
 	it('should be able to remove user', function() {
 
@@ -48,7 +47,7 @@ describe('hearth remove user', function() {
 				delTextarea.sendKeys('$1bf6cc4c - Deleting test account');
 				delButton.click();
 				browser.sleep(500);
-				
+
 				expect(element(by.css('.logged-user-dropdown')).isPresent()).toBeFalsy();
 			});
 		});

@@ -35,6 +35,7 @@ describe('hearth unauth marketplace', function () {
 
   // should be able to switch to map
   it('should be able to switch to map view', function () {
+    browser.sleep(1000);
     var marketContainer = element(by.className('marketplace-items-container'));
     var switchToMapLink = element(by.css('.filterbar-wrap span.right>a.ng-binding'));
     var mapContainer = element(by.className('marketplace-map-container'));
