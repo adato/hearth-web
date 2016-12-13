@@ -269,7 +269,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 
 	function getLastMessageTime(conversation) {
 		if (!conversation) throw new TypeError('Conversation must be an object');
-		if (!conversation.messages || !conversation.messages.length) return conversation.message.created_at;
+		if (!conversation.messages || !conversation.messages.length) return conversation.last_message.created_at;
 		return conversation.messages[conversation.messages.length - 1].created_at;
 	}
 
@@ -466,38 +466,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				if (paramObject.wipe) {
 					conversationList.length = 0;
 				} else if (paramObject.socketReinit) {
-					var dict = {};
-					for (var i = res.conversations.length; i--;) {
-						dict[res.conversations[i]._id] = res.conversations[i];
-					}
-					for (var i = conversationList.length; i--;) {
-						// mark the exising conversations with a flag so that we can prepend the nonexistant ones to the conversationList later
-						if (dict[conversationList[i]._id]) dict[conversationList[i]._id].alreadyPresent = true;
-
-						// take care of non-up-to-date conversations
-						if (conversationList[i].messages && dict[conversationList[i]._id] && conversationList[i].messages[conversationList[i].messages.length - 1]._id !== dict[conversationList[i]._id].message._id) {
-							// TODO this hack can be removed with the introduction of flag instead of plain .messages deletion
-							// It basically just checks that we dont delete the conversation that we have opened
-							if ($state.params.id === conversationList[i]._id) {
-								loadConversationMessages({
-									conversation: conversationList[i],
-									params: {
-										newer: getLastMessageTime(conversationList[i])
-									}
-								}).then(function(conversation) {
-									$rootScope.$emit('messageAddedToConversation', {
-										conversation: conversation
-									});
-								});
-							} else {
-								delete conversationList[i].messages;
-							}
-						}
-					}
-					// prepend conversations that are not yet in the list, i.e. new conversations
-					for (var i = res.conversations.length; i--;) {
-						if (!res.conversations[i].alreadyPresent) conversationList.unshift(res.conversations[i]);
-					}
+					socketReinitProcedure(res);
 				} else {
 					removeDuplicates({
 						source: conversationList,
@@ -529,6 +498,44 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				return reject(err);
 			});
 		});
+	}
+
+	/**
+	 *	@param {Object} res - resolve of request for new conversation list
+	 */
+	function socketReinitProcedure(res) {
+		var dict = {};
+		for (var i = res.conversations.length; i--;) {
+			dict[res.conversations[i]._id] = res.conversations[i];
+		}
+		for (var i = conversationList.length; i--;) {
+			// mark the exising conversations with a flag so that we can prepend the nonexistant ones to the conversationList later
+			if (dict[conversationList[i]._id]) dict[conversationList[i]._id].alreadyPresent = true;
+
+			// take care of non-up-to-date conversations
+			if (conversationList[i].messages && dict[conversationList[i]._id] && conversationList[i].messages[conversationList[i].messages.length - 1]._id !== dict[conversationList[i]._id].last_message._id) {
+				// TODO this hack can be removed with the introduction of flag instead of plain .messages deletion
+				// It basically just checks that we dont delete the conversation that we have opened
+				if ($state.params.id === conversationList[i]._id) {
+					loadConversationMessages({
+						conversation: conversationList[i],
+						params: {
+							newer: getLastMessageTime(conversationList[i])
+						}
+					}).then(function(conversation) {
+						$rootScope.$emit('messageAddedToConversation', {
+							conversation: conversation
+						});
+					});
+				} else {
+					delete conversationList[i].messages;
+				}
+			}
+		}
+		// prepend conversations that are not yet in the list, i.e. new conversations
+		for (var i = res.conversations.length; i--;) {
+			if (!res.conversations[i].alreadyPresent) conversationList.unshift(res.conversations[i]);
+		}
 	}
 
 	/**
