@@ -49,8 +49,8 @@
 										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;">
 											<li>
 												<!-- bookmark post -->
-												<a ng-if="! isMine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-												<a ng-if="! isMine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+												<a ng-if="! isMine && item.is_bookmarked" ng-click="ItemAux.removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+												<a ng-if="! isMine && !item.is_bookmarked" ng-click="ItemAux.addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
 												<!-- bookmark post -->
 											</li>
 											<li>

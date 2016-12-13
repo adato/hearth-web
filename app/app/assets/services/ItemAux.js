@@ -12,7 +12,9 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		var factory = {
 			confirmSuspend: confirmSuspend,
 			hideItem: hideItem,
-			replyItem: replyItem
+			replyItem: replyItem,
+			addItemToBookmarks: addItemToBookmarks,
+			removeItemFromBookmarks: removeItemFromBookmarks
 		};
 
 		return factory;
