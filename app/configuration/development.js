@@ -3,7 +3,7 @@ var $$localConfig; // development
 $$localConfig = {
 	env: 'development',
 	fbAppId: '1495788017321716', // dev
-	disableDebugInfo: true,
+	angularDebugInfoEnabled: true,
 	languages: {
 		"cs": "cs_CZ",
 		"sk": "sk_SK",
