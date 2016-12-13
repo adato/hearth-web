@@ -1,0 +1,74 @@
+describe('Register controller', function () {
+  var $controller,
+    $httpBackend,
+    $http,
+    $rootScope,
+    $scope;
+
+
+  beforeEach(module('hearth'));
+
+  // JSON returned from backend, when email is blocked
+  var blockEmailResponse = {"ok": false, "error": "email blocked", "message": "Exceptions::EmailBlocked"};
+
+  beforeEach(inject(function ($injector, _$http_, _$controller_, _$rootScope_) {
+    $http = _$http_;
+    $controller = _$controller_;
+    $httpBackend = $injector.get('$httpBackend');
+    $rootScope = _$rootScope_;
+
+    $httpBackend.whenPOST('https://api.dev.hearth.net/users?referrals[]=').respond(403, blockEmailResponse);
+
+    $httpBackend.whenGET(/^https:\/\/api.dev.hearth.net\/session/).respond();
+    $httpBackend.whenGET('locales/en/messages.json').respond('app/locales/en/messages.json');
+    $httpBackend.whenGET('assets/components/geo/markerTooltip.html').respond();
+    $httpBackend.whenGET('assets/pages/market/market.html').respond();
+    $httpBackend.whenGET('assets/pages/static/error404.html').respond();
+    $httpBackend.flush();
+  }));
+
+  afterEach(function () {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  var user, registerForm;
+
+  function mockBlockedEmailData() {
+    user = {
+      email: 'blocked-user@mailinator.com',
+      first_name: 'Blocked',
+      last_name: 'User',
+      password: 'password'
+    };
+
+    $scope.registerForm = {
+      email: {
+        $error: {
+          used: false
+        }
+      }
+    };
+    $scope.showError = {
+      topError: false,
+      first_name: false,
+      email: false,
+      password: false,
+      blockedUserByEmail: false
+    };
+  }
+
+  it('Cannot register, if blocked by email address', function () {
+    $scope = $rootScope.$new();
+    var controller = $controller('RegisterCtrl', {
+      $scope: $scope
+    });
+
+    mockBlockedEmailData();
+
+    $scope.sendRegistration(user);
+    $httpBackend.flush();
+
+    expect($scope.showError.blockedUserByEmail).toBeTruthy();
+  });
+});
