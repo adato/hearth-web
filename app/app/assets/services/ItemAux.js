@@ -14,7 +14,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			confirmSuspend: confirmSuspend,
 			hideItem: hideItem,
 			removeItemFromBookmarks: removeItemFromBookmarks,
-			replyItem: replyItems
+			replyItem: replyItem
 		};
 
 		return factory;
