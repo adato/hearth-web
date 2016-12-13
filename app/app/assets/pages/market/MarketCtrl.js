@@ -7,17 +7,16 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', '$window', 'ScrollService',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, $window, ScrollService) {
+	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount',
+	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount) {
 
-		var postLimit = 15;
 		var marketplaceInited = false;
 
 		InfiniteScrollPagination.init();
 		// expose function to check whether the first page is shown or not
 		$scope.firstPageNotShown = InfiniteScrollPagination.firstPageNotShown;
 
-		$scope.limit = postLimit;
+		$scope.limit = MarketPostCount;
 		$scope.items = [];
 		$scope.loaded = false;
 		$scope.loading = false;
@@ -59,32 +58,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			templates[item._type.toLowerCase()](scope, done);
 		}
 
-		function getPostScope(post) {
-			var author = post;
-			if (post._type == 'Post') author = post.author;
-			var scope = $scope.$new(true);
-			scope.keywords = $scope.keywordsActive;
-			scope.item = post;
-			scope.toggleTag = Filter.toggleTag;
-			scope.foundationColumnsClass = 'large-10';
-			scope.showSharing = false;
-			scope.delayedView = true;
-			scope.language = $rootScope.language;
-			angular.extend(scope, ItemServices);
-
-			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
-
-			// post address for social links
-			scope.postAddress = $rootScope.appUrl + 'post/' + post._id;
-			scope.isActive = $rootScope.isPostActive(post);
-
-			// is this my post? if so, show controll buttons and etc
-			scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
-
-			scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until, moment.ISO_8601).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
-			return scope;
-		};
-
 		function addItemsToList(container, data, index, done) {
 			var posts = data.data;
 
@@ -94,32 +67,28 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.debug && console.time("Single post (" + (index) + ") built");
 				$scope.items.push(post);
 
-				var postScope = getPostScope(post);
+				var postScope = PostScope.getPostScope(post, $scope);
 				return compileTemplate(postScope, function(clone) {
-
+					clone[0].style.display = 'block';
 					container.append(clone[0]);
 
 					// Add pagination marker.
-					if (index % postLimit === 0) {
+					if (index % MarketPostCount === 0) {
 						var marker = $compile('<div pagination-marker="' + (InfiniteScrollPagination.getPageAndIncrementBottom()) + '"></div>')(postScope);
 						marker.insertBefore(clone);
 					}
 
-					return $timeout(function() {
-						// Append the post the the view.
-						$('#post_' + post._id).slideDown();
+					// Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
+					// Timeout for the check must be set long enough for the slidedown to take its full effect.
+					$timeout(function() {
+						if ($location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] === post._id) ScrollService.scrollToElement('#post_' + $location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM], false, 90);
+					}, 600);
 
-						// Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
-						// Timeout for the check must be set long enough for the slidedown to take its full effect.
-						$timeout(function() {
-							if ($location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] === post._id) ScrollService.scrollToElement('#post_' + $location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM], false, 90);
-						}, 600);
+					$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
 
-						$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
+					// Start next recursion cycle.
+					addItemsToList(container, data, index + 1, done);
 
-						// Start next recursion cycle.
-						addItemsToList(container, data, index + 1, done);
-					});
 				});
 			}
 			$scope.debug && console.timeEnd("Posts pushed to array and built");
@@ -134,9 +103,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			$scope.debug && console.time("Posts displayed with some effect");
-
-			$scope.debug && console.timeEnd("Posts displayed with some effect");
 			$scope.debug && console.timeEnd("Market posts loaded and displayed");
 			// finish loading and allow to show loading again
 
@@ -218,15 +184,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// load posts
 			var params = angular.extend(angular.copy($location.search()), {
 				offset: $scope.items.length,
-				limit: postLimit
+				limit: MarketPostCount
 			});
 			if ($location.search().page) {
 				if (marketplaceInited) {
-					params.offset = $scope.items.length + postLimit * InfiniteScrollPagination.getPageBottom() - postLimit;
+					params.offset = $scope.items.length + MarketPostCount * InfiniteScrollPagination.getPageBottom() - MarketPostCount;
 				} else {
 					InfiniteScrollPagination.marketplaceInit();
 
-					params.offset = postLimit * InfiniteScrollPagination.getPageBottom() - postLimit;
+					params.offset = MarketPostCount * InfiniteScrollPagination.getPageBottom() - MarketPostCount;
 					marketplaceInited = true;
 				}
 			}
@@ -271,7 +237,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
-					var post = getPostScope(angular.copy(data));
+					var post = PostScope.getPostScope(angular.copy(data), $scope);
 
 					compileTemplate(post, function(clone) {
 						$('#post_' + data._id).replaceWith(clone);
@@ -292,7 +258,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			post.hidden = true;
 			$scope.items.unshift(post);
 
-			compileTemplate(getPostScope(post), function(clone) {
+			compileTemplate(PostScope.getPostScope(post, $scope), function(clone) {
 				$('#market-item-list').prepend(clone);
 
 				setTimeout(function() {
