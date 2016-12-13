@@ -240,9 +240,30 @@
 						}
 					}
 				}
+
+				.conversation-add-participants {
+					.user-picker {
+						margin-top: 10px;
+
+						.ui-select-container {
+							margin-bottom: 0;
+						}
+
+						.button-send {
+							float: right;
+							width: 25%;
+						}
+
+						&.filled {
+							.ui-select-container {
+								width: 75%;
+							}
+						}
+					}
+				}
 			}
 			.message-head {
-				font-size: 14px;
+				// font-size: 14px;
 				&.owner-name {
 					.avatar {
 						position: relative;
@@ -256,18 +277,18 @@
 				.avatar {
 					margin-right: 10px;
 				}
-				h5 {
-					font-weight: 600;
-					font-size: 14px;
-					position: relative;
-					top: 5px;
-				}
-				& > span {
-					margin-right: 5px;
-					color: #999;
-					position: relative;
-					top: 10px;
-				}
+				// h5 {
+				// 	font-weight: 600;
+				// 	font-size: 14px;
+				// 	position: relative;
+				// 	top: 5px;
+				// }
+				// & > span {
+				// 	margin-right: 5px;
+				// 	color: #999;
+				// 	position: relative;
+				// 	top: 10px;
+				// }
 			}
 			p {
 				margin-top: 0px;
@@ -315,6 +336,7 @@
 				}
 			}
 			.messages-container {
+				height: 400px;
 				display: none;
 				.nano-content {
 					max-height: 100%;
@@ -381,6 +403,9 @@
 
 .nano-content {
 	//	right: -50px !important; /* when zoomed out, there is a little bit of native scrollbar */
+	.nano-content-inner {
+		margin-right: 20px;
+	}
 }
 
 .modal.new-message {

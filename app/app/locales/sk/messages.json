@@ -96,6 +96,10 @@
 		},
 		"UNFOLLOW": {
 			"LABEL": "Přestat inzerát sledovat"
+		},
+		"HIDE": {
+			"LABEL": "Skryť inzerát",
+			"ARE_YOU_SURE": "Naozaj chcete skryť tento inzerát?"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Položka sa nedá vymazať. Radšej sa s tým zmierte.",
@@ -267,7 +271,8 @@
 			"ARCHIVE": "Archivované konverzácie",
 			"USERS_POSTS": "Správy od používateľov",
 			"COMMUNITIES_POSTS": "Správy od komunít",
-			"POST_ADMIN": "Správcovské konverzácie"
+			"POST_ADMIN": "Správcovské konverzácie",
+			"COMMUNITY": "Konverzace v mých komunitách"
 		},
 		"DELETE_CONVERSATION": "Zmazať konverzáciu",
 		"LEAVE_CONVERSATION": "Opustiť konverzáciu",
@@ -281,7 +286,8 @@
 		},
 		"SYSTEM_MESSAGE": {
 			"User": {
-				"left": "<p>Používateľ<strong> {{target.name}}<\/strong> opustil konverzáciu.<\/p>\n"
+				"left": "<p>Používateľ<strong> {{target.name}}<\/strong> opustil konverzáciu.<\/p>\n",
+				"enter": "<p>Uživatel <strong>{{target.name}}<\/strong> vstoupil do konverzace.<\/p>"
 			},
 			"Community": {
 				"left": "<p>Komunita <strong>{{target.name}}<\/strong> opustila konverzáciu.<\/p>"
@@ -316,11 +322,16 @@
 		"REPLY_AS_COMMUNITY": "Odpovedať ako:",
 		"REPLY_AS_USER": "ako",
 		"SYSTEM_MESSAGE_YOU": {
-			"left": "<p>Opustili ste konverzáciu.<\/p>"
+			"left": "<p>Opustili ste konverzáciu.<\/p>",
+			"enter": "Vstoupil(a) jsi do konverzace."
 		},
 		"NEW_MESSAGE": "Poslať správu",
 		"NEW_MESSAGE_SENT": "Správa bola úspešne odoslaná. Cink.",
-		"MARK_CONVERSATION_AS_UNREAD": "Označiť za neprečítanú"
+		"MARK_CONVERSATION_AS_UNREAD": "Označiť za neprečítanú",
+		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
+		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "Nové správy"
 	},
 	"MESSAGES_ARCHIVE": "Archív správ",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
@@ -517,7 +528,11 @@
 	"and-on-social-networks": "A na sociálnych sieťach",
 	"author": "Autor",
 	"community": "komunity",
-	"count-of-wished-and-gifts": "<p>Aktuálne<strong> {{value}}<\/strong> akt&iacute;vnych inzer&aacute;tov<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": "<p>Aktuálne <strong>{{value}}<\/strong> aktívny inzerát<\/p>",
+		"few": "<p>Aktu&aacute;lne <strong>{{value}}<\/strong> akt&iacute;vne inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lne&nbsp;<strong>{{value}}<\/strong>&nbsp;akt&iacute;vnych inzer&aacute;tov<\/p>"
+	},
 	"FILTER_ADS": "Filtrovať inzeráty",
 	"FILTER_IS_ON": "Filter (aktívny)",
 	"in-area": "v okruhu",
@@ -1298,7 +1313,7 @@
 	"ADD_CONTENT_AS_USER": "ako",
 	"REPLY": "Odpovedať",
 	"SELECT_USERS": "Vyberte jedného alebo viac príjemcov",
-	"ATTACHE_IMAGES": "Priložiť obrázky",
+	"ATTACHE_IMAGES": "Obrázky",
 	"ERR_REPORT_TEXT_MIN_LEN": "Napíšte, prosím, dôvod nahlásenia inzerátu",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text je príliš dlhý... maximum je 2500 znakov. Spomeňte si na Twitter alebo esemesky.",
 	"REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar alebo prianie ste už označili ako nevhodný.",
@@ -1359,9 +1374,9 @@
 		}
 	},
 	"ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe",
-	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš...",
+	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
 	"SIGNUP_HEADING_FB": "Pridajte sa",
 	"SIGN_UP": {
@@ -1744,5 +1759,37 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mal(a) si na mysli ",
+	"LIGHTBOX_PREVIMAGE": "Predchádzajúci",
+	"LIGHTBOX_NEXTIMAGE": "Nasledujúci",
+	"LIGHTBOX_OPENINTAB": "Otvoriť obrázok v novej karte",
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Je to správny e-mail? Nepodarilo se nám ho overiť. V prípade omylu nám <a href=\"\/app\/feedback\">daj vedieť<\/a>.",
+	"CONVERSATION": {
+		"SETTINGS": {
+			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
+		}
+	},
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
+	"count-of-wished-and-gifts": "Počet darov a prianí: {{value}}",
+	"INFOBOX": {
+		"CONNECTIONS": {
+			"COMMON_USERS": {
+				"one": "Spoločný známy",
+				"other": "<b>{{ count }}<\/b> spoločných známych:",
+				"few": "<b>{{ count }}<\/b> spoloční známi:"
+			},
+			"AND_X_OTHER": {
+				"one": "a 1 ďalší",
+				"few": "a {{ count }} ďalší",
+				"other": "a {{ count }} ďalších"
+			},
+			"COMMON_COMMUNITIES": {
+				"one": "Spoločná komunita",
+				"few": "<b>{{ count }}<\/b> spoločné komunity:",
+				"other": "<b>{{ count }}<\/b> spoločných komunit:"
+			}
+		}
+	},
+	"AND": "a"
 }
