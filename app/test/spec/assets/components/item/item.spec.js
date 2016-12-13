@@ -59,7 +59,7 @@ describe('item directive - market place item', function () {
     // 2-way binding should be disabled
     expect(titleElement.html()).toEqual('Title of the post');
     expect(authorNameElement.html()).toEqual('David Hearth');
-    expect(textElement.html()).toEqual('Item description');
+    expect(textElement.html()).toEqual('Item description parsed');
     expect(replyElement.html()).toEqual('NO_REPLY');
     expect(keywordsElement.html()).toEqual('gift');
 
@@ -77,6 +77,9 @@ describe('item directive - market place item', function () {
       _id: '123456789',
       title: 'Title of the post',
       text: 'Item description',
+      text_parsed: 'Item description parsed', // return of nl2br and other filters
+      text_short: 'Item description short',
+      text_short_parsed: 'Item description parsed short',
       type: 'need', //need,offer
       reply_count: 0,
       author: {
