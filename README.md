@@ -22,7 +22,7 @@ npm install
 grunt serve
 ```
 
-Favicon location 
+Favicon location
 ```
 Prod. Facebook APP
 https://developers.facebook.com/apps/277542219089599/app-details/
