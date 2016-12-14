@@ -18,11 +18,12 @@ describe('hearth remove user', function() {
 				});
 		}
 
-		// user should be logged in
-		expect(element(by.css('.logged-user-dropdown')).isPresent()).toBeTruthy();
+    // user should be logged in
+    var navigationMenu = element(by.css(".logged-user-dropdown"));
+    expect(navigationMenu.isPresent()).toBeTruthy();
 
-		// go to user setting
-		var navigationMenu = element(by.css(".logged-user-dropdown"));
+    // go to user setting
+
 		browser.actions().mouseMove(navigationMenu).perform();
 		element(by.css("nav .user-settings-link")).click();
 
