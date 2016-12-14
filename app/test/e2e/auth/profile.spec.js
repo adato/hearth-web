@@ -84,15 +84,29 @@ describe('user profile', function() {
 
 	function clickSubmitButton(callback) {
 		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
+    submitButton.click().then(function () {
       browser.sleep(500);
 
-			// there is success bar shown after submit
-			var successBar = element(by.css('#notify-top .alert-box.success'));
-			expect(successBar.isPresent()).toBeTruthy();
+      // there is success bar shown after submit
+      var successBar = element(by.css('#notify-top .alert-box.success'));
 
-			return (typeof callback == 'function' ? callback() : true);
-		});
+      // Usually display the notification can take some times
+      var isPresent = false;
+      var i = 0;
+      while (i < 10) {
+        if (successBar.isPresent()) {
+          isPresent = true;
+          i = 10;
+        } else {
+          browser.sleep(300);
+        }
+        i++;
+      }
+
+      expect(isPresent).toBeTruthy();
+
+      return (typeof callback == 'function' ? callback() : true);
+    });
 	}
 
 
