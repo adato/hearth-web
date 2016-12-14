@@ -84,7 +84,7 @@ npm test -- --suite=unauth
 Testing with Karma
 ------------------
 ### Run tests
-Run the tests from the web/app directory. 
+Run the tests from the web/app directory.
 ```
 karma start
 ```
