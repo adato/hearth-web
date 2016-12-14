@@ -100,7 +100,7 @@ karma start xxx.spec.js
 * /app/test/unit - root directory for unit tests
 
 ### Examples
-* app/test/spec/assets/components/avatar/avatar.spec.js -  setup of the directive test.
+* app/test/spec/assets/components/avatar/avatar.spec.js -  setup of the directive test. 
 
 Contact
 -------
