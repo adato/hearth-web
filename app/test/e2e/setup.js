@@ -22,7 +22,7 @@ module.exports = {
 			loginTrimmedName: 'E2E teste…'
 		},
 		jenkins: {
-			baseUrl: 'https://127.0.0.1:9000/app',
+			baseUrl: 'https://jenkins:9000/app',
 			appPath: '/',
       name: 'Jenkins',
       surname: '' ,
