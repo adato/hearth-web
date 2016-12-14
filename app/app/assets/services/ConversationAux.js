@@ -338,16 +338,6 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				loadConversationMessages({
 					conversation: conversation
 				}).then(function(conversation) {
-					// to keep the conversationList consistent, either find the current conversation in the list now
-					// OR append it there
-					// var foundMatch;
-					// for (var i = 0, l = conversationList.length; i < l; i++) {
-					// 	if (conversationList[i]._id === conversation._id) {
-					// 		conversationList[i] = conversation;
-					// 		foundMatch = true;
-					// 	}
-					// }
-					// if (!foundMatch) conversationList.push(conversation);
 					resolve(conversation);
 				});
 			}, reject);

@@ -24,11 +24,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loaded = false;
 
 		// loading for conversation list and conversation detail (used during changing of filters)
-		$scope.reloading = false
+		$scope.reloading = false;
 
 		// don't really know what this one is for
 		$scope.conversationLoadInProgress = false;
-		var allConversationsLoaded;
+		var allConversationsLoaded = false;
 
 		// the conversation list
 		$scope.conversations = false;
@@ -179,6 +179,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			$scope.notFound = false;
 			$scope.loadingBottom = false;
+			allConversationsLoaded = false;
 
 			loadPostConversations();
 			loadCommunityConversations();
