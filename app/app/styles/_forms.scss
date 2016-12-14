@@ -1,7 +1,21 @@
 input,
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
 textarea,
 button,
 .button {
+	-webkit-border-radius: $global-radius;
 	border-radius: $global-radius;
 	resize: none;
 }
@@ -24,7 +38,8 @@ textarea:focus {
 }
 
 input[type="email"] {
-	&.ng-invalid-email {
+	&.ng-invalid-email,
+	&.ng-invalid-email_used {
 		border-color: $ui-input-error-color !important;
 		box-shadow: inset 0 0 5px $ui-input-error-color !important;
 	}

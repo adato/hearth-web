@@ -3,6 +3,7 @@ describe('hearth unauth marketplace', function() {
   beforeEach(function() {
     protractor.helpers.navigateTo('', function () {
       browser.waitForAngular();
+      browser.sleep(500);
     });
   });
 
@@ -164,11 +165,13 @@ describe('hearth unauth marketplace', function() {
 
       // after click on search button, the form should expand
       iconSearch.click().then(function () {
+        browser.sleep(400);
         expect(searchBar.isDisplayed()).toBeTruthy();
       });
 
       // after click on hamburger button, left sidebar should appear
       toggleButton.click().then(function () {
+        browser.sleep(400);
         expect(leftSidebar.isDisplayed()).toBeTruthy();
         expect(protractor.helpers.hasClass(container, 'move-right')).toBe(true);
       });

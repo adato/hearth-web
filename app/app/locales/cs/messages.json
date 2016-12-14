@@ -96,6 +96,10 @@
 		},
 		"UNFOLLOW": {
 			"LABEL": "Přestat inzerát sledovat"
+		},
+		"HIDE": {
+			"LABEL": "Skrýt inzerát",
+			"ARE_YOU_SURE": "Opravdu chcete skrýt tento inzerát? "
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiř.",
@@ -267,7 +271,8 @@
 			"ARCHIVE": "Archivované konverzace",
 			"USERS_POSTS": "Zprávy od uživatelů",
 			"COMMUNITIES_POSTS": "Zprávy od komunit",
-			"POST_ADMIN": "Správcovské konverzace"
+			"POST_ADMIN": "Správcovské konverzace",
+			"COMMUNITY": "Konverzace v mých komunitách"
 		},
 		"DELETE_CONVERSATION": "Smazat konverzaci",
 		"LEAVE_CONVERSATION": "Opustit konverzaci",
@@ -281,7 +286,8 @@
 		},
 		"SYSTEM_MESSAGE": {
 			"User": {
-				"left": "<p>Uživatel<strong> {{target.name}}<\/strong> opustil konverzaci.<\/p>"
+				"left": "<p>Uživatel<strong> {{target.name}}<\/strong> opustil konverzaci.<\/p>",
+				"enter": "<p>Uživatel <strong>{{target.name}}<\/strong> vstoupil do konverzace.<\/p>"
 			},
 			"Community": {
 				"left": "<p>Komunita <strong>{{target.name}}<\/strong> opustila konverzaci.<\/p>"
@@ -316,11 +322,16 @@
 		"REPLY_AS_COMMUNITY": "Odpovědět jako:",
 		"REPLY_AS_USER": "jako",
 		"SYSTEM_MESSAGE_YOU": {
-			"left": "<p>Opustil(a) jsi konverzaci.<\/p>"
+			"left": "<p>Opustil(a) jsi konverzaci.<\/p>",
+			"enter": "Vstoupil(a) jsi do konverzace."
 		},
 		"NEW_MESSAGE": "Poslat zprávu",
 		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink.",
-		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou"
+		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou",
+		"SEND_TO_ALL_COMMUNITY_MEMBERS": "Poslat zprávu všem členům",
+		"SEND_TO_COMMUNITY_ADMIN": "Poslat zprávu správci komunity",
+		"ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+		"LABEL_NEW_MESSAGES": "Nové zprávy"
 	},
 	"MESSAGES_ARCHIVE": "Archív zpráv",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -517,7 +528,11 @@
 	"and-on-social-networks": "A na sociálních sítích",
 	"author": "Autor",
 	"community": "komunity",
-	"count-of-wished-and-gifts": "<p>Aktuálně<strong> {{value}}<\/strong> aktivn&iacute;ch inzer&aacute;tů<\/p>",
+	"POSTS_COUNT_PL": {
+		"one": "<p>Aktu&aacute;lně<strong> {{value}}<\/strong> aktivn&iacute; inzer&aacute;t<\/p>",
+		"few": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute; inzer&aacute;ty<\/p>",
+		"other": "<p>Aktu&aacute;lně<strong>&nbsp;{{value}}<\/strong>&nbsp;aktivn&iacute;ch inzer&aacute;tů<\/p>"
+	},
 	"FILTER_ADS": "Filtrovat inzeráty",
 	"FILTER_IS_ON": "Filtr (aktivní)",
 	"in-area": "v okruhu",
@@ -940,7 +955,7 @@
 		"RESET_PASSWORD_SUCCESS": "Raz, dva, tři. Postup na změnu hesla jsme ti poslali na e-mail. ",
 		"NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžeš přihlásit.",
 		"NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Vítězství! Tvůj účet byl aktivován. Nyní se můžeš přihlásit.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Vítězství! Tvůj účet byl aktivován. Vítej v Hearth.net",
 		"ACCOUNT_ACTIVATE_FAILED": "Aktivace účtu se nezdařila...",
 		"POST_SPAM_REPORT_FAILED": "Nahlášení inzerátu se nepovedlo.",
 		"POST_SPAM_REPORT_SUCCESS": "Inzerát byl nahlášen.",
@@ -1298,7 +1313,7 @@
 	"ADD_CONTENT_AS_USER": "jako",
 	"REPLY": "Odpovědět",
 	"SELECT_USERS": "Vyber jednoho nebo více příjemců",
-	"ATTACHE_IMAGES": "Přiložit obrázky",
+	"ATTACHE_IMAGES": "Obrázky",
 	"ERR_REPORT_TEXT_MIN_LEN": "Napiš prosím důvod nahlášení inzerátu",
 	"ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen. Vzpomeň na Twitter nebo esemesky.",
 	"REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jsi označil(a) jako nevhodný.",
@@ -1359,9 +1374,9 @@
 		}
 	},
 	"ERROR_WHILE_UPLOADING": "Při nahrávání došlo k chybě",
-	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš...",
+	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu<\/a>.",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;&scaron; ji i ty? Svůj profil vytvoř&iacute;&scaron; během chvilky a svět darů je r&aacute;zem i tvůj.<\/p>",
 	"SIGNUP_HEADING_FB": "Přidej se",
 	"SIGN_UP": {
@@ -1744,5 +1759,37 @@
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš",
 	"LEND": "Půjčím",
-	"BORROW": "Půjčím si"
+	"BORROW": "Půjčím si",
+	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Měl(a) jsi na mysli ",
+	"LIGHTBOX_PREVIMAGE": "Předchozí",
+	"LIGHTBOX_NEXTIMAGE": "Následující",
+	"LIGHTBOX_OPENINTAB": "Otevřít obrázek v nové záložce",
+	"ERR_MAILGUN_NOT_VALID_EMAIL": "Je to správný e-mail? Nepovedlo se nám ho ověřit. V případě omylu nám <a href=\"\/app\/feedback\">dej vědět<\/a>.",
+	"CONVERSATION": {
+		"SETTINGS": {
+			"ALLOW_SENDING_TO_MEMBERS": "Umožnit členům komunity poslat zprávu celé komunitě"
+		}
+	},
+	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
+	"count-of-wished-and-gifts": "Počet darů a přání: {{value}}",
+	"INFOBOX": {
+		"CONNECTIONS": {
+			"COMMON_USERS": {
+				"one": "Společný známý",
+				"other": "<b>{{ count }}<\/b> společných známých:",
+				"few": "<b>{{ count }}<\/b> společní známí:"
+			},
+			"AND_X_OTHER": {
+				"one": "a 1 další",
+				"few": "a {{ count }} další",
+				"other": "a další {{ count }}"
+			},
+			"COMMON_COMMUNITIES": {
+				"one": "Společná komunita ",
+				"few": "<b>{{ count }}<\/b> společné komunity:",
+				"other": "<b>{{ count }}<\/b> společných komunit:"
+			}
+		}
+	},
+	"AND": "a"
 }
