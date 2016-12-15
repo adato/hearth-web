@@ -59,62 +59,17 @@ a.user{
 	}
 }
 
-
-//
-//	REPLACED BY item-option-bg-type
-//
-// .avatar.show-post-arrows{
-// 	position: relative;
-// }
-// .avatar.show-post-arrows:before{
-// 	content:'';
-// 	position: absolute;
-// 	display:block;
-// 	width: 20px; height: 20px;
-// 	right: -30px; top: 10px; left: initial;
-// 	margin-top: 0;
-// 	background-size: cover;
-// 	z-index: 5;
-// }
-// .avatar.show-post-arrows.need:before{
-// 	background-image: url('/app/images/arrow-receive.svg');
-// }
-// .avatar.show-post-arrows.offer:before{
-// 	background-image: url('/app/images/arrow-give.svg');
-// }
-// @media #{$medium-up}{
-// 	.avatar.show-post-arrows:before{
-// 		width: 30px; height: 30px;
-// 		right: -40px; top: 25px;
-// 	}
-// }
-// @media #{$large-up}{
-// 	.avatar.show-post-arrows:before{
-// 		width: 40px; height: 40px;
-// 		right: -60px; top: 20px;
-// 	}
-// 	.has-delimiter .avatar.show-post-arrows:before{
-// 		width: 50px; height: 50px;
-// 		top: 40px; left: -60px; right: initial;
-//
-// 		-moz-transform: scaleX(-1);
-// 		-o-transform: scaleX(-1);
-// 		-webkit-transform: scaleX(-1);
-// 		transform: scaleX(-1);
-// 		filter: FlipH;
-// 		-ms-filter: "FlipH";
-// 	}
-// }
-
 .item-option-bg-type {
 	position: relative;
-	display: inline-block;
-	margin-top: 10px;
+
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	width: 20px;
 	height: 20px;
-	line-height: 17px;
 	color: $colorDarkGray;
-	text-align: center;
 	border-top-left-radius: 50%;
 	border-bottom-right-radius: 50%;
 	transform: rotate(45deg);
@@ -124,6 +79,21 @@ a.user{
 .item-option-bg-lend {
 	background-color: $colorTertiary;
 	border-bottom-left-radius: 50%;
+}
+.item-option-bg-type > i{
+	display: block;
+	width: 12px; height: 12px;
+	background-size: 12px 12px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.item-option-bg-offer > i,
+.item-option-bg-need > i{
+	background-image: url('/app/images/icons/heart.svg');
+}
+.item-option-bg-borrow > i,
+.item-option-bg-lend > i{
+	background-image: url('/app/images/icons/clock.svg');
 }
 .item-option-bg-need,
 .item-option-bg-borrow {
@@ -141,6 +111,9 @@ button.active .item-option-bg-type {
 button.active .item-option-bg-type > i {
 	color: $colorSecondary;
 }
+button.inactive {
+	background-color: $colorLightGray;
+}
 button.inactive .item-option-bg-type{
 	background-color: $colorDarkGray;
 }
@@ -156,16 +129,16 @@ button.active[disabled] .item-option-bg-type {
 }
 @media #{$medium-up} {
 	.item-option-bg-type {
-		width: 30px;
-		height: 30px;
-		line-height: 30px;
+		width: 32px;
+		height: 32px;
 	}
 	.item-option-bg-type > i {
-		font-size: 14px;
+		width: 17px; height: 17px;
+		background-size: 17px 17px;
 	}
 	.item-option-bg-type.by-avatar {
-		top: 50px;
-		right: -10px;
+		top: 37px;
+		right: -14px;
 	}
 	.has-delimiter .item-option-bg-type.by-avatar {
 		top: 75px; left: -55px; right: initial;
@@ -214,8 +187,8 @@ button.active[disabled] .item-option-bg-type {
 .faa-pulse.animated,
 .faa-pulse.animated-hover:hover,
 .faa-parent.animated-hover:not([disabled]):hover .faa-pulse {
-  -webkit-animation: pulse 1s linear;
-  animation: pulse 1s linear;
+	-webkit-animation: pulse 1s linear;
+	animation: pulse 1s linear;
 }
 @-webkit-keyframes spin {
   0% {
@@ -244,6 +217,23 @@ button.active[disabled] .item-option-bg-type {
 .faa-parent.animated-hover:not([disabled]):hover .faa-spin {
   -webkit-animation: spin 1s;
   animation: spin 1s;
+}
+
+@media #{$small-only} {
+	.overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload > div:nth-child(1) {
+		margin-right: -$size-tiny !important;
+	}
+	.overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload > div:nth-child(2) {
+		margin-left: -$size-tiny !important;
+	}
+}
+@media #{$medium-up} {
+	.overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload > div:nth-child(1) {
+		margin-right: 0 !important;
+	}
+	.overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload > div:nth-child(2) {
+		margin-left: 0 !important;
+	}
 }
 
 

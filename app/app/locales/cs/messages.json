@@ -1791,5 +1791,11 @@
 			}
 		}
 	},
-	"AND": "a"
+	"AND": "a",
+	"OFFER_LEND": "Věnuji nebo půjčím",
+	"NEED_BORROW": "Přijmu nebo si půjčím",
+	"WE_NEED_BORROW": "Přijmeme nebo si půjčíme",
+	"WE_OFFER_LEND": "Věnujeme nebo půjčíme",
+	"WE_BORROW": "Půjčíme si",
+	"WE_LEND": "Půjčíme"
 }

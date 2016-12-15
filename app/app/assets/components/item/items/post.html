@@ -9,8 +9,11 @@
 					</a>
 				</div>
 			</div>
-			<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + item.type">
+			<!-- <div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + item.type">
 				<i class="fa fa-fw" ng-class="(item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
+			</div> -->
+			<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
+				<i></i>
 			</div>
 			<div class="v2 user text-center">
 				<karma-bar for=":: item.author"></karma-bar>
@@ -120,7 +123,7 @@
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
 							<h1 class='display-inline-block margin-right-medium'>
 								<a ng-href="{{:: getProfileLink('Post', item._id)}}" history-param-pusher='item._id'>
-									<span ng-class=":: 'color-' + item.type" ng-bind-html=":: (item.exact_type != 'loan' ? postTypes[item.author._type][item.type] : (item.type == 'offer' ? 'LEND' : 'BORROW')) | translate"></span>
+									<span ng-class=":: 'color-' + item.type" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
 									<span ng-bind=":: item.title" test-beacon="marketplace-item-post-title"></span>
 								</a>
 							</h1>

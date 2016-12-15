@@ -39,13 +39,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			LOAN = 'loan',
 			ANY = 'any';
 
-		$scope.itemTypeOptions = [OFFER, LEND, BORROW, NEED];
+		$scope.itemTypeOptions = [
+			[OFFER, LEND],
+			[BORROW, NEED]
+		];
 
-		$scope.itemOptionIcons = {};
-		$scope.itemOptionIcons[OFFER] = 'fa-heart';
-		$scope.itemOptionIcons[LEND] = 'fa-clock-o';
-		$scope.itemOptionIcons[BORROW] = 'fa-clock-o';
-		$scope.itemOptionIcons[NEED] = 'fa-heart';
+		// $scope.itemOptionIcons = {};
+		// $scope.itemOptionIcons[OFFER] = 'fa-heart';
+		// $scope.itemOptionIcons[LEND] = 'fa-clock-o';
+		// $scope.itemOptionIcons[BORROW] = 'fa-clock-o';
+		// $scope.itemOptionIcons[NEED] = 'fa-heart';
 
 		/**
 		 *	Function that takes care of correct behaviour of the `type` and `exact_type` picker

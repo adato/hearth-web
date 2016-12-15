@@ -29,20 +29,25 @@
 						<div class="tipsy-overlay" ng-if="post.reply_count"></div>
 					</div>
 				</div>
-				<div class="form-section column small-12">
-					<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex flex-medium-divide">
-						<button type="button" ng-repeat="itemOption in itemTypeOptions" ng-disabled="post.reply_count && ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))"
-										class="flex-1 button button-white flex-div padding-horizontal-small faa-parent animated-hover" ng-click="setItemTypeActive({itemType: itemOption, post: post})" ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow'))),
-									inactive: ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))}">
-							<div>
+		</div>
+		<div class="row">
+			<div class="display-flex overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload">
+				<div class="display-medium-flex flex-divide-medium flex-div flex-1" ng-repeat="itemOptionGroup in itemTypeOptions">
+					<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex form-section flex-div flex-medium-divide flex-1" ng-repeat="itemOption in itemOptionGroup">
+						<button type="button" ng-disabled="post.reply_count && ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))" class="flex-1 button button-white full-width flex-div padding-vertical-small padding-horizontal-tiny faa-parent animated-hover display-flex"
+										ng-click="setItemTypeActive({itemType: itemOption, post: post})" ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow'))),
+										inactive: ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))}">
+							<div class="margin-right-tiny padding-horizontal-small">
 								<div class="item-option-bg-type" ng-class="'item-option-bg-' + itemOption">
-									<i class="fa" ng-class="[(itemOptionIcons[itemOption]), ((itemOption == 'offer' || itemOption == 'need') ? 'faa-pulse' : 'faa-spin')]"></i>
+									<!-- <i class="faa-pulse" ng-class="itemOptionIcons[itemOption]"></i> -->
+									<i class="faa-pulse"></i>
 								</div>
 							</div>
 							<div translate="{{:: (post.current_community_id ? 'WE_' : '') + itemOption.toUpperCase() }}"></div>
 						</button>
 					</div>
 				</div>
+			</div>
 			</section>
 			<section class="title">
 				<label for="title">{{:: 'POST_TITLE_LABEL' | translate }}</label>
