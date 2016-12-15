@@ -50,8 +50,9 @@
 			</div>
 			<div ng-if="showParticipantsForm" class="conversation-add-participants">
 				<hr />
-				<conversation-add-participants ng-disabled users="info.participants" conversation="info" toggle-participants-form="toggleParticipantsForm()"></conversation-add-participants>
+				<conversation-add-participants users="info.participants" conversation="info" toggle-participants-form="toggleParticipantsForm()"></conversation-add-participants>
 			</div>
+			<hr />
 		</div>
 		<div loading class="older-messages-loader" show="loadingOlderMessages"></div>
 		<div class-if-overflow="shadow-top" outer=".nano" inner=".nano-content-inner">
