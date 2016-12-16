@@ -31,24 +31,20 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.character = $$config.postCharacter;
 		$scope.languageList = LanguageList.localizedList;
 
-		var OFFER = 'offer',
-			LEND = 'lend',
-			BORROW = 'borrow',
-			NEED = 'need',
-			GIFT = 'gift',
-			LOAN = 'loan',
-			ANY = 'any';
+		var OFFER = 'offer';
+		var LEND = 'lend';
+		var BORROW = 'borrow';
+		var NEED = 'need';
 
+		var GIFT = 'gift';
+		var LOAN = 'loan';
+		var ANY = 'any';
+
+		// put into two groups so that it is easier to responsively display as required
 		$scope.itemTypeOptions = [
 			[OFFER, LEND],
 			[BORROW, NEED]
 		];
-
-		// $scope.itemOptionIcons = {};
-		// $scope.itemOptionIcons[OFFER] = 'fa-heart';
-		// $scope.itemOptionIcons[LEND] = 'fa-clock-o';
-		// $scope.itemOptionIcons[BORROW] = 'fa-clock-o';
-		// $scope.itemOptionIcons[NEED] = 'fa-heart';
 
 		/**
 		 *	Function that takes care of correct behaviour of the `type` and `exact_type` picker

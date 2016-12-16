@@ -91,9 +91,17 @@ a.user{
 .item-option-bg-need > i{
 	background-image: url('/app/images/icons/heart.svg');
 }
+.active .item-option-bg-offer > i,
+.active .item-option-bg-need > i{
+	background-image: url('/app/images/icons/heart-clr.svg');
+}
 .item-option-bg-borrow > i,
 .item-option-bg-lend > i{
 	background-image: url('/app/images/icons/clock.svg');
+}
+.active .item-option-bg-borrow > i,
+.active .item-option-bg-lend > i{
+	background-image: url('/app/images/icons/clock-clr.svg');
 }
 .item-option-bg-need,
 .item-option-bg-borrow {
@@ -118,6 +126,7 @@ button.inactive .item-option-bg-type{
 	background-color: $colorDarkGray;
 }
 button.active[disabled] .item-option-bg-type {
+	border: 1px solid $colorDarkGray;
 	background-color: $colorLightGray;
 }
 .item-option-bg-type.by-avatar {
