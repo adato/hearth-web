@@ -237,9 +237,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
-
-				post.type = post.type || OFFER;
-				post.exact_type = post.exact_type || GIFT;
 			}
 			return post;
 		}

@@ -42,10 +42,10 @@
 						</div>
 					</div>
 				</div>
-				<section class="display-flex flex-space-between flex-reverse" ng-if="isDraft && !twoStepForm.step2 && post.type && post.exact_type">
+				<section class="display-flex flex-space-between flex-reverse" ng-if="isDraft && !twoStepForm.step2">
 					<!-- show only for "create item" where post.type and exact_type are not choosen -->
 					<div class="nowrap">
-						<button class="primary button button-send" type="button" ng-click="twoStepForm.step2 = true">{{:: 'CONTINUE' | translate }}</button>
+						<button ng-disabled="!post.exact_type || !post.type" class="primary button button-send" type="button" ng-click="twoStepForm.step2 = true">{{:: 'CONTINUE' | translate }}</button>
 					</div>
 					<a href="" ng-click="closeEdit()">{{:: 'CLOSE' | translate }}</a>
 				</section>
