@@ -1797,5 +1797,6 @@
 	"WE_NEED_BORROW": "Přijmeme nebo si půjčíme",
 	"WE_OFFER_LEND": "Věnujeme nebo půjčíme",
 	"WE_BORROW": "Půjčíme si",
-	"WE_LEND": "Půjčíme"
+	"WE_LEND": "Půjčíme",
+	"POST_BORROW_LEND_INFOTEXT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum gravida nisl, a ornare ante facilisis eget. Duis volutpat enim et placerat vestibulum. <br><br>\nMauris interdum tortor eget dui sagittis, vel volutpat augue ultrices. Proin lorem dui, dapibus non dolor eget, dapibus accumsan urna. Sed rhoncus est et orci tempus faucibus. Morbi pharetra eleifend lorem, sit amet gravida ipsum dictum."
 }

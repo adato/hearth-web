@@ -31,6 +31,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.character = $$config.postCharacter;
 		$scope.languageList = LanguageList.localizedList;
 
+
 		var OFFER = 'offer';
 		var LEND = 'lend';
 		var BORROW = 'borrow';
@@ -109,6 +110,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.sending = false;
 		$scope.pauseSending = false;
+		$scope.twoStepForm = {
+			step2: false
+		}
 
 		$rootScope.$on('removeAd', function(info, id) {
 			if (id == $scope.post._id) {
