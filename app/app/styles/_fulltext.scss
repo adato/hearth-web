@@ -92,6 +92,11 @@
 			.title {
 				font-size: rem-calc(22);
 
+				.item-option-bg-type {
+					float: left;
+					margin-right: 15px;
+				}
+
 				a {
 					color: color(5);
 					font-weight: 600;
