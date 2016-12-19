@@ -24,7 +24,7 @@
 			<div class="error" ng-if="showInvalidPostMessage">{{:: 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
 
 			<div class="row">
-				<p ng-if="!twoStepForm.step2" ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" class="padding-horizontal-tiny"></p>
+				<p ng-if="isDraft && !twoStepForm.step2" ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" class="padding-horizontal-tiny"></p>
 				<div class="display-flex overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload">
 					<div class="display-medium-flex flex-divide-medium flex-div flex-1" ng-repeat="itemOptionGroup in itemTypeOptions">
 						<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex form-section flex-div flex-medium-divide flex-1" ng-repeat="itemOption in itemOptionGroup">
@@ -66,8 +66,8 @@
 					<label for="title">{{:: 'POST_TITLE_LABEL' | translate }}</label>
 					<div class="name">
 						<div class="field-group">
-							<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius green bold" ng-if="post.type == 'offer'" ng-click="togglePostType()">{{:: postTypes[item.author._type][item.exact_type][item.type] }}</span>
-							<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius red bold" ng-if="post.type == 'need'" ng-click="togglePostType()">{{ ((post.exact_type == 'any' || post.exact_type == 'loan') ? (post.current_community_id ? 'WE_BORROW' : 'BORROW') : (post.current_community_id ? 'WE_NEED' : 'NEED')) | translate }}</span>
+							<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius green bold" ng-if="post.type == 'offer'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
+							<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius red bold" ng-if="post.type == 'need'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
 							<input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{:: 'TELL_WHAT' | translate }}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 						</div>
 						<div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title && createAdForm.$dirty">

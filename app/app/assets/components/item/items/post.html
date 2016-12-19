@@ -12,6 +12,7 @@
 			<!-- <div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + item.type">
 				<i class="fa fa-fw" ng-class="(item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
 			</div> -->
+
 			<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
 				<i></i>
 			</div>

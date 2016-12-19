@@ -46,6 +46,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			[OFFER, LEND],
 			[BORROW, NEED]
 		];
+		$scope.postTypes = $$config.postTypes;
 
 		/**
 		 *	Function that takes care of correct behaviour of the `type` and `exact_type` picker
