@@ -28,7 +28,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// don't really know what this one is for
 		$scope.conversationLoadInProgress = false;
-		var allConversationsLoaded = false;
 
 		// the conversation list
 		$scope.conversations = false;
@@ -101,11 +100,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				}, 50);
 				return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false);
 			});
-		};
+		}
 
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
-			if ($scope.conversationLoadInProgress || allConversationsLoaded) {
+			if ($scope.conversationLoadInProgress || $scope.allConversationsLoaded) {
 				return false;
 			}
 
@@ -116,7 +115,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			ConversationAux.loadConversations(params).then(function(res) {
 				if (res.thatsAllFolks) {
-					allConversationsLoaded = true;
+					$scope.allConversationsLoaded = true;
 				}
 
 				$scope.conversationLoadInProgress = false;
@@ -134,7 +133,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Conversations.getPosts(function(res) {
 				$scope.postConversations = res;
 			});
-		};
+		}
 
 		function init() {
 			$scope.reloading = true;
@@ -172,7 +171,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			$scope.notFound = false;
 			$scope.loadingBottom = false;
-			allConversationsLoaded = false;
+			$scope.allConversationsLoaded = false;
 
 			loadPostConversations();
 

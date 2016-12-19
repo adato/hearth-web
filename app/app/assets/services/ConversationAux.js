@@ -308,6 +308,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				index: i
 			};
 		}
+
 		return {
 			removed: [],
 			index: void 0
@@ -438,7 +439,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			var params = {
 				limit: limit,
 				offset: paramObject.offset || 0
-			}
+			};
 			if (paramObject.filterType) {
 				params[paramObject.filterType] = true;
 				conversationFilter.current = paramObject.filterType;
