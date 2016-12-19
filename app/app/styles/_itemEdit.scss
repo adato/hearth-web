@@ -195,6 +195,12 @@
 	.keywords {
 		margin-bottom: 1rem;
 	}
+
+	.button-type-switch>div {
+		line-height:35px;
+		float:left;
+	}
+
 	// any collapsible section
 	section.collapse {
 		&.collapse-expanded {
