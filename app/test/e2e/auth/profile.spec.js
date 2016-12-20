@@ -3,10 +3,12 @@ var randomNumber = protractor.helpers.getRandomInt(100, 999);
 
 describe('user profile', function() {
 
+  beforeAll(function() {
+    protractor.helpers.login();
+  });
+
 	beforeEach(function() {
 		navigateToEditProfile();
-		browser.waitForAngular();
-		browser.sleep(1000); // let it init all
 	});
 
 	var logs = [];
@@ -22,12 +24,8 @@ describe('user profile', function() {
 
 	function navigateToMyProfile() {
 		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
-		browser.sleep(500);
 		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(0).element(by.css('a.ng-binding'));
-		topMenuLink.click().then(function () {
-			browser.waitForAngular();
-			browser.sleep(500);
-		});
+		topMenuLink.click();
 	}
 
 	function navigateToEditProfile() {
@@ -35,11 +33,7 @@ describe('user profile', function() {
 		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
 		browser.sleep(500);
 		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(1).element(by.css('a.ng-binding'));
-		topMenuLink.click().then(function () {
-				browser.waitForAngular();
-				browser.sleep(500);
-
-		});
+		topMenuLink.click();
 	}
 
 	function setInputField(input, value, textarea) {
@@ -69,7 +63,7 @@ describe('user profile', function() {
 		} else {
 			return el.sendKeys(protractor.Key.ENTER);
 		}
-		
+
 	}
 
 	function clearTagInput(input) {
@@ -90,20 +84,33 @@ describe('user profile', function() {
 
 	function clickSubmitButton(callback) {
 		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
-			browser.waitForAngular();
-			browser.sleep(500);
-			
-			// there is success bar shown after submit
-			var successBar = element(by.css('#notify-top .alert-box.success'));
-			expect(successBar.isPresent()).toBeTruthy(); 
+    submitButton.click().then(function () {
+      browser.sleep(500);
 
-			return (typeof callback == 'function' ? callback() : true);
-		});		
+      // there is success bar shown after submit
+      var successBar = element(by.css('#notify-top .alert-box.success'));
+
+      // Usually display the notification can take some times
+      var isPresent = false;
+      var i = 0;
+      while (i < 10) {
+        if (successBar.isPresent()) {
+          isPresent = true;
+          i = 10;
+        } else {
+          browser.sleep(300);
+        }
+        i++;
+      }
+
+      expect(isPresent).toBeTruthy();
+
+      return (typeof callback == 'function' ? callback() : true);
+    });
 	}
 
 
-	it('should be able to change basic user info', function() {	
+	it('should be able to change basic user info', function() {
 		//navigateToEditProfile();
 
 		// basic info
@@ -115,8 +122,8 @@ describe('user profile', function() {
 	});
 
 
-	it('should be able to change about', function() {	
-		// about 
+	it('should be able to change about', function() {
+		// about
 		setInputField('about', 'About_' + randomNumber, true); // textarea
 
 		clickSubmitButton();
@@ -157,7 +164,7 @@ describe('user profile', function() {
 		clickSubmitButton();
 	});
 
-	it('should be able to change phone', function() {	
+	it('should be able to change phone', function() {
 		// contact
 		setInputField('phone', '+420777' + randomNumber + '' + randomNumber);
 
@@ -165,19 +172,19 @@ describe('user profile', function() {
 	});
 
 
-	it('should be able to change networks info', function() {	
+	it('should be able to change networks info', function() {
 
 		// social networks
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear().sendKeys('http://facebook.com/profile' + randomNumber);
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear().sendKeys('http://twitter.com/profile' + randomNumber);
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear().sendKeys('http://linkedin.com/profile' + randomNumber);
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear().sendKeys('http://plus.google.com/profile' + randomNumber);
-		
+
 		clickSubmitButton();
 	});
 
 
-	it('should be able to change user webs', function() {	
+	it('should be able to change user webs', function() {
 
 		// webs and internets
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear().sendKeys('http://profile' + randomNumber + '.com');
@@ -185,7 +192,7 @@ describe('user profile', function() {
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear().sendKeys('http://another.profile' + randomNumber + '.com');
 
 		clickSubmitButton();
-	});	
+	});
 
 
 	it('all should be saved fine', function() {
@@ -196,8 +203,8 @@ describe('user profile', function() {
 		assertInputField('about', 'About_' + randomNumber, true); // textarea
 		assertInputField('phone', '+420 777 ' + randomNumber + ' ' + randomNumber);
 
-		assertTagInputItemCount('.location-input', 2); // expect tag-input length to be 2 
-		assertTagInputItemCount('.interests #interests', 4); 
+		assertTagInputItemCount('.location-input', 2); // expect tag-input length to be 2
+		assertTagInputItemCount('.interests #interests', 4);
 		assertTagInputItemCount('section.languages', 3);
 
 
@@ -224,7 +231,7 @@ describe('user profile', function() {
 
 
 
-	it('should be able to save minimal profile info and clear the rest', function() {	
+	it('should be able to save minimal profile info and clear the rest', function() {
 
 		setInputField('my_work', '');
 		setInputField('phone', '');
@@ -240,7 +247,7 @@ describe('user profile', function() {
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear();
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear();
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear();
-		
+
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear();
 		element(by.css('#profileEditForm .webs a')).click();
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear();
@@ -248,7 +255,4 @@ describe('user profile', function() {
 		clickSubmitButton();
 	});
 
-	it('should be last test in order', function () {
-		flushLogs();
-	})	
 });
