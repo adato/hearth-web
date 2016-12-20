@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 days",
 			"ADS_ALL": "All posts",
-			"ADS_NEED": "Needs only",
-			"ADS_OFFER": "Offers only",
+			"ADS_NEED": "Needs only <small>(wish and borrow)<\/small>",
+			"ADS_OFFER": "Offers only <small>(give and lend)<\/small>",
 			"BY_AUTHOR": "By author",
 			"BY_LOCATION": "By place",
 			"BY_TIME": "By time",
@@ -1759,12 +1759,12 @@
 		}
 	},
 	"AND": "and",
-	"OFFER_LEND": "Věnuji nebo půjčím",
-	"NEED_BORROW": "Přijmu nebo si půjčím",
-	"WE_NEED_BORROW": "Přijmeme nebo si půjčíme",
-	"WE_OFFER_LEND": "Věnujeme nebo půjčíme",
+	"OFFER_LEND": "I give or lend",
+	"NEED_BORROW": "I wish or borrow",
+	"WE_NEED_BORROW": "We accept or borrow",
+	"WE_OFFER_LEND": "We give or lend",
 	"WE_BORROW": "We borrow",
 	"WE_LEND": "We lend",
-	"POST_BORROW_LEND_INFOTEXT": "Je to tady! Přáli jste si to a my přání plníme rádi. Nově si můžete nejen darovat, ale také půjčovat.<br \/>\n<br \/>\n<em>Vyber si:<\/em> Věnuji \/ Půjčím nebo obojí. Stejně tak: Přijmu \/ Půjčím si nebo obojí. A jedém!",
+	"POST_BORROW_LEND_INFOTEXT": "It’s here! You wished for it and we’re happy to deliver. Now you can not only give, but also lend and borrow.<br \/>\n<br \/>\n<em>Take your pick:<\/em> I give\/lend or both. Also: I accept\/borrow or both. Let’s go!",
 	"LOAD_NEXT": "Načíst další"
 }

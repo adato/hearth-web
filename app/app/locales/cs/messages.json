@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 dny",
 			"ADS_ALL": "Všechny dary a přání",
-			"ADS_NEED": "Jen přání",
-			"ADS_OFFER": "Jen dary",
+			"ADS_NEED": "Jen přání <small>(přijmu i půjčím si)<\/small>",
+			"ADS_OFFER": "Jen dary <small>(věnuji i půjčím)<\/small>",
 			"BY_AUTHOR": "Podle autora",
 			"BY_LOCATION": "Podle umístění",
 			"BY_TIME": "Podle času",
