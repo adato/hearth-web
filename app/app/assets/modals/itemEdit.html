@@ -24,7 +24,7 @@
 			<div class="error" ng-if="showInvalidPostMessage">{{:: 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
 
 			<div class="first-step-container row">
-				<p ng-if="isDraft && !twoStepForm.step2" ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" class="padding-horizontal-tiny"></p>
+				<p ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" class="padding-horizontal-tiny" ng-class="twoStepForm.step2 || !isDraft? 'faa-fade-out' : ''"></p>
 				<section id="type-switch-container" class="display-flex overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload">
 					<div class="display-medium-flex flex-divide-medium flex-div flex-1" ng-repeat="itemOptionGroup in itemTypeOptions">
 						<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex form-section flex-div flex-medium-divide flex-1 margin-vertical-8" ng-repeat="itemOption in itemOptionGroup">
@@ -51,7 +51,7 @@
 				</section>
 			</div>
 
-			<div class="second-step-container" ng-if="twoStepForm.step2 || !isDraft">
+			<div class="second-step-container faa-fade-in" ng-if="twoStepForm.step2 || !isDraft">
 				<!-- show either for editform, or for step2 of insert form -->
 				<section class="author display-flex flex-wrap row">
 					<div class="form-section column small-12 medium-6" ng-show="authorList.length > 1">
