@@ -43,7 +43,7 @@
 	font-size: $ui-text-font-size;
 	padding: $ui-grid-size;
 	@media #{$medium-up} {
-		width: 650px;
+		width: 670px;
 	}
 	textarea {
 		height: 85px;
@@ -61,7 +61,7 @@
 	a {
 		font-weight: 600;
 	}
-	/** { 
+	/** {
 		text-align: left;
 	}*/
 	div.error {
@@ -72,7 +72,6 @@
 	}
 	button.button-send {
 		text-align: center;
-
 		&.red {
 			background: red;
 			color: white;
@@ -138,13 +137,6 @@
 			font-size: 20px;
 			width: 130px;
 		}
-		a {
-			position: relative;
-			top: 12px;
-			&.close {
-				/* margin-left: 20px; */
-			}
-		}
 	}
 	.need-offer-selector {
 		display: inline-block;
@@ -167,7 +159,7 @@
 		.headline {
 			display: block;
 		}
-		
+
 		.character-label {
 			margin-left: 0;
 			margin-right: 10px;
@@ -203,6 +195,12 @@
 	.keywords {
 		margin-bottom: 1rem;
 	}
+
+	.button-type-switch>div {
+		line-height:35px;
+		float:left;
+	}
+
 	// any collapsible section
 	section.collapse {
 		&.collapse-expanded {

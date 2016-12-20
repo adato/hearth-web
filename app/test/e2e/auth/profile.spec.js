@@ -24,7 +24,7 @@ describe('user profile', function() {
 
 	function navigateToMyProfile() {
 		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
-		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(0).element(by.css('a.ng-binding'));
+		var topMenuLink = element(by.css('[test-beacon="dropdown-my-profile"]'));
 		topMenuLink.click();
 	}
 
@@ -32,7 +32,7 @@ describe('user profile', function() {
 		// go to profile-edit
 		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
 		browser.sleep(500);
-		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(1).element(by.css('a.ng-binding'));
+		var topMenuLink = element(by.css('[test-beacon="dropdown-edit-profile"]'));
 		topMenuLink.click();
 	}
 

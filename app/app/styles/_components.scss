@@ -101,8 +101,24 @@
 /* /table addons */
 
 .display-flex{
+	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
+}
+.flex-divide-small > .flex-div {
+	margin-right: $size-small;
+}
+.flex-divide-small > .flex-div:last-child{
+	margin-right: 0;
+}
+
+.flex-divide-medium {
+	margin-right: -$size-small;
+	margin-left: -$size-small;
+}
+.flex-divide-medium > .flex-div {
+	margin-right: $size-small;
+	margin-left: $size-small;
 }
 @media #{$medium-up}{
 	.display-medium-flex{
@@ -270,6 +286,14 @@ a.word-break{
 .padding-bottom-none{padding-bottom: 0 !important;}
 .padding-left-none{padding-left: 0 !important;}
 
+.padding-tiny{padding: $size-tiny !important;}
+.padding-vertical-tiny{padding-top: $size-tiny !important; padding-bottom: $size-tiny !important;}
+.padding-horizontal-tiny{padding-right: $size-tiny !important; padding-left: $size-tiny !important;}
+.padding-top-tiny{padding-top: $size-tiny !important;}
+.padding-right-tiny{padding-right: $size-tiny !important;}
+.padding-bottom-tiny{padding-bottom: $size-tiny !important;}
+.padding-left-tiny{padding-left: $size-tiny !important;}
+
 .padding-small{padding: $size-small !important;}
 .padding-vertical-small{padding-top: $size-small !important; padding-bottom: $size-small !important;}
 .padding-horizontal-small{padding-right: $size-small !important; padding-left: $size-small !important;}
@@ -303,6 +327,14 @@ a.word-break{
 .margin-right-none{margin-right: 0 !important;}
 .margin-bottom-none{margin-bottom: 0 !important;}
 .margin-left-none{margin-left: 0 !important;}
+
+.margin-tiny{margin: $size-tiny !important;}
+.margin-vertical-tiny{margin-top: $size-tiny !important; margin-bottom: $size-tiny !important;}
+.margin-horizontal-tiny{margin-right: $size-tiny !important; margin-left: $size-tiny !important;}
+.margin-top-tiny{margin-top: $size-tiny !important;}
+.margin-right-tiny{margin-right: $size-tiny !important;}
+.margin-bottom-tiny{margin-bottom: $size-tiny !important;}
+.margin-left-tiny{margin-left: $size-tiny !important;}
 
 .margin-small{margin: $size-small !important;}
 .margin-vertical-small{margin-top: $size-small !important; margin-bottom: $size-small !important;}
@@ -346,6 +378,7 @@ a.word-break{
 .background-need{background-color: $colorNeed;}
 .background-primary{background-color: $colorPrimary;}
 .background-secondary{background-color: $colorSecondary;}
+.background-white{background-color: #fff;}
 /* /COLOR */
 
 /* LINKS */
