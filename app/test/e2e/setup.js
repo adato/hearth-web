@@ -17,7 +17,7 @@ module.exports = {
       name: 'Hearth',
       surname: '' ,
 			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-			loginPassword: 'tester', 			// test user password
+			loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
 			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
@@ -37,7 +37,7 @@ module.exports = {
       name: 'Hearth',
       surname: '' ,
       loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-      loginPassword: 'tester', 			// test user password
+      loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
       loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
@@ -47,7 +47,7 @@ module.exports = {
       name: 'Hearth',
       surname: '' ,
       loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-      loginPassword: 'tester', 			// test user password
+      loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
       loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		}
