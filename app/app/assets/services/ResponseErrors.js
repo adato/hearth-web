@@ -46,6 +46,10 @@ angular.module('hearth.services').factory('ResponseErrors', function() {
 			if (res.data.name === 'ValidationError' && res.data.message && !errors.base) {
 				errors.base = res.data.message;
 			}
+
+			if (res.status === 403 && res.data.error === "email blocked") {
+				errors.blockedUserByEmail = 'true';
+			}
 			return errors;
 		};
 		parseServerErrors = function() {

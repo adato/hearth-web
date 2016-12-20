@@ -25,6 +25,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 				// INIT VARIABLES
 				$scope.showParticipants = false;
+				$scope.showParticipantsForm = false;
 				$scope.sendingActionRequest = false;
 				$scope.info = {};
 
@@ -230,6 +231,11 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					});
 				}
 
+				$scope.toggleParticipantsForm = function() {
+					$scope.showParticipantsForm = !$scope.showParticipantsForm;
+					resizeTMessagesBox();
+				};
+
 				/**
 				 * Show/hide participants list & load from API
 				 */
@@ -276,6 +282,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					_loadOlderMessagesEnd = false;
 					_scrollInited = false;
 					$scope.showParticipants = false;
+					$scope.showParticipantsForm = false;
+
 					$timeout(function() {
 						bindActionHandlers();
 					}, 10);

@@ -24,11 +24,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loaded = false;
 
 		// loading for conversation list and conversation detail (used during changing of filters)
-		$scope.reloading = false
+		$scope.reloading = false;
 
 		// don't really know what this one is for
 		$scope.conversationLoadInProgress = false;
-		var allConversationsLoaded;
+		var allConversationsLoaded = false;
 
 		// the conversation list
 		$scope.conversations = false;
@@ -73,10 +73,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
 
-		function loadConversations(cb) {
-			var params = {
-				wipe: true
-			};
+		function setParams() {
+			var params = {};
 			var searchParams = $location.search();
 			if (searchParams.as_replies_post) {
 				params.post_id = searchParams.as_replies_post;
@@ -88,6 +86,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					}
 				}
 			}
+			$scope.params = params;
+		}
+
+		function loadConversations(cb) {
+			var params = $scope.params;
+			params.wipe = true;
+
 			ConversationAux.loadConversations(params).then(function(res) {
 				$scope.conversations = res.conversations;
 				$timeout(function() {
@@ -100,15 +105,22 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
-			if ($scope.conversationLoadInProgress || allConversationsLoaded) return false;
-			$scope.conversationLoadInProgress = true;
-			var config = {
-				offset: ($scope.conversations ? $scope.conversations.length : 0)
-			};
+			if ($scope.conversationLoadInProgress || allConversationsLoaded) {
+				return false;
+			}
 
-			ConversationAux.loadConversations(config).then(function(res) {
-				if (res.thatsAllFolks) allConversationsLoaded = true;
+			$scope.conversationLoadInProgress = true;
+			var params = $scope.params;
+			params.wipe = false;
+			params.offset = $scope.conversations ? $scope.conversations.length : 0;
+
+			ConversationAux.loadConversations(params).then(function(res) {
+				if (res.thatsAllFolks) {
+					allConversationsLoaded = true;
+				}
+
 				$scope.conversationLoadInProgress = false;
+
 				$timeout(function() {
 					$scope.$broadcast('scrollbarResize');
 					$scope.$broadcast('classIfOverflowContentResize');
@@ -131,8 +143,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// set filter select-box to correct value
 			// TODO - refactor those filters
-			var searchParams = $location.search(),
-				filterSet = false;
+			var searchParams = $location.search();
+			var filterSet = false;
+
 			if (searchParams.as_replies_post) {
 				$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
 				$scope.filter.post_id = searchParams.as_replies_post;
@@ -147,26 +160,32 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					}
 				}
 			}
-			if (filterSet) {
-				$state.go('messages', {
-					notify: false
-				});
-			}
+
+			setParams();
+
+			// State contains selected conversation id. Have to delete conversation id from the state to avoid adding of the selected
+			// conversation to the conversationList and display message in another filter.
+			$state.go('messages', {
+				notify: false
+			});
+
 
 			$scope.notFound = false;
 			$scope.loadingBottom = false;
+			allConversationsLoaded = false;
 
 			loadPostConversations();
 
 			loadConversations(function(res) {
 				$scope.loaded = true;
 				$scope.reloading = false;
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) $state.go('messages.detail', {
-					id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
-				});
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()))
+					$state.go('messages.detail', {
+						id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
+					});
 			});
 
-		};
+		}
 
 		UnauthReload.check();
 

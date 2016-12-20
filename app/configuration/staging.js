@@ -3,7 +3,7 @@ var $$localConfig; // staging
 $$localConfig = {
 	env: 'staging',
 	fbAppId: '769756073037691', // stage
-	disableDebugInfo: true,
+	angularDebugInfoEnabled: false,
 	languages: {
 		"cs": "cs_CZ",
 		"sk": "sk_SK",

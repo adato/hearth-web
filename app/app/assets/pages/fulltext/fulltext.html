@@ -20,15 +20,13 @@
 				<section class="large-10 small-9 medium-10 columns">
 					<div>
 						<div class="row headline">
-							<div class="title columns" ng-class="{'small-12 medium-8 large-8': item._type === 'Post'}">
-								<i ng-switch-when="Post">
-									<img ng-if="item.type === 'offer'" ng-src="/app/images/arrow-give.svg" width="20" />
-									<img ng-if="item.type === 'need'" ng-src="/app/images/arrow-receive.svg" width="20" />
-								</i>
-
+							<div class="title columns" ng-class="{'small-12 medium-8 large-8 position-relative': item._type === 'Post'}">
 								<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
+								<span ng-switch-when="Post" class="item-option-bg-type" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
+									<i></i>
+								</span>
 								<a class="title" ng-href="{{getProfileLink(item._type, item._id)}}">
-									<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
+									<span ng-switch-when="Post" ng-bind-html=":: postTypes[item.author._type][item.exact_type][item.type] | translate"></span>
 									<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
 									<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
 									<span ng-if="!item.title && !item.highlight.first_name[0]" ng-bind-html="item.first_name"></span>

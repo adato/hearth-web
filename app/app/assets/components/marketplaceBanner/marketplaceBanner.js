@@ -14,6 +14,7 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				'image': '@',
 				'title': '@?',
 				'href': '@?',
+				'clickFunction': '&click',
 				'language': '@',
 				'restrictLanguage': '=?',
 				'target': '@?'
@@ -34,6 +35,13 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 					});
 					$event.stopPropagation();
 					$event.preventDefault();
+				}
+
+				scope.clickCallback = function($event) {
+					if (typeof scope.clickFunction === 'function') {
+						return scope.clickFunction($event);
+					}
+					return;
 				}
 			}
 		};
