@@ -105,7 +105,7 @@
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 								</div>
 							</header>
-							<div class="item-section text-container word-break">
+							<div class="item-section text-container word-wrap">
 								<p class="margin-none" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 							</div>
 							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
@@ -240,7 +240,7 @@
 											</div>
 										</div>
 										<div class="column small-12">
-											<p class='word-break' ng-bind-html=":: item.text | linky:'_blank' | nl2br"></p>
+											<p class='word-wrap' ng-bind-html=":: item.text | linky:'_blank' | nl2br"></p>
 										</div>
 										<div class="column small-12 text-right">
 											<a ng-href="{{:: getProfileLink('Conversation', item.conversation_id) }}">

@@ -15,8 +15,7 @@
 	display: table;
 	width: 100%;
 
-	word-break: break-all;/*fallback for firefox*/
-	word-break: break-word;
+	word-wrap: break-word;
 	a{
 		display: inline-block;
 	}
@@ -52,7 +51,7 @@
 	}
 }
 @media #{$medium-up}{
-	.medium-display-table{display: table; width: 100%; word-break: break-all; word-break: break-word;
+	.medium-display-table{display: table; width: 100%; word-wrap: break-word;
 		&.cells-padded-horizontal > .medium-display-table-row > .medium-display-table-cell:first-child:last-child,
 		&.cells-padded-horizontal > .medium-display-table-row > .medium-display-table-cell:last-child{padding-right: 0;}
 		&.cells-padded-horizontal > .medium-display-table-row > .medium-display-table-cell{padding-right: $size-medium;}
@@ -71,7 +70,7 @@
 	}
 }
 @media #{$large-up}{
-	.large-display-table{display: table; width: 100%; word-break: break-all; word-break: break-word;
+	.large-display-table{display: table; width: 100%; word-wrap: break-word;
 		&.cells-padded-horizontal > .large-display-table-row > .large-display-table-cell:first-child:last-child,
 		&.cells-padded-horizontal > .large-display-table-row > .large-display-table-cell:last-child{padding-right: 0;}
 		&.cells-padded-horizontal > .large-display-table-row > .large-display-table-cell{padding-right: $size-medium;}
@@ -246,12 +245,11 @@
 .text-decoration-underline{
 	text-decoration: underline;
 }
-.word-break{
-	word-break: break-all;/*fallback for firefox*/
-	word-break: break-word;
+.word-wrap{
+	word-wrap: break-word;
 }
-.word-break a,
-a.word-break{
+.word-wrap a,
+a.word-wrap{
 	display: inline-block;
 }
 /* /TEXT */

@@ -144,7 +144,7 @@
 
 
 @media (min-width: 50.063em){
-	.medium-display-table{display: table; width: 100%; word-break: break-all; word-break: break-word;}
+	.medium-display-table{display: table; width: 100%; word-wrap: break-word;}
 	.medium-display-table-row{display: table-row;}
 	.medium-display-table-row.cells-padded > .medium-display-table-cell:first-child:last-child,
 	.medium-display-table-row.cells-padded > .medium-display-table-cell:last-child{padding-right: 0;}
