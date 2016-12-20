@@ -235,12 +235,11 @@ li{display: block;}
 .text-decoration-underline{
 	text-decoration: underline;
 }
-.word-break{
-	word-break: break-all; /*fallback for firefox*/
-	word-break: break-word;
+.word-wrap{
+	word-wrap: break-word;
 }
-.word-break a,
-a.word-break{
+.word-wrap a,
+a.word-wrap{
 	display: inline-block;
 }
 /* /TEXT */
