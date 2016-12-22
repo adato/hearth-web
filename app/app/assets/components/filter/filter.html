@@ -15,17 +15,30 @@
 			<div ng-show="configOptionsShow.character" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_CHARACTER' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<checkbox model="filter.energy" value="true">{{:: 'CATEGORY_ENERGY' | translate}} {{:: 'CATEGORY_ENERGY_TEXT' | translate}}</checkbox>
-					<checkbox model="filter.mass" value="true">{{:: 'CATEGORY_MASS' | translate}} {{:: 'CATEGORY_MASS_TEXT' | translate}}</checkbox>
-					<checkbox model="filter.information" value="true">{{:: 'CATEGORY_INFORMATION' | translate}} {{:: 'CATEGORY_INFORMATION_TEXT' | translate}}</checkbox>
+					<checkbox model="filter.energy" value="true">{{:: 'CATEGORY_ENERGY' | translate}}
+						<small>{{:: 'CATEGORY_ENERGY_TEXT' | translate}}</small>
+					</checkbox>
+					<checkbox model="filter.mass" value="true">{{:: 'CATEGORY_MASS' | translate}}
+						<small>{{:: 'CATEGORY_MASS_TEXT' | translate}}</small>
+					</checkbox>
+					<checkbox model="filter.information" value="true">
+						{{:: 'CATEGORY_INFORMATION' | translate}}
+						<small>{{:: 'CATEGORY_INFORMATION_TEXT' | translate}}</small>
+					</checkbox>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.postType" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<radio type="radio" model="filter.post_type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
-					<radio type="radio" model="filter.post_type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
-					<radio type="radio" model="filter.post_type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
+					<radio type="radio" model="filter.post_type" value="'offer'">
+						<span ng-bind-html=":: 'MARKETPLACE.FILTER.ADS_OFFER' | translate"></span>
+					</radio>
+					<radio type="radio" model="filter.post_type" value="'need'">
+						<span ng-bind-html=":: 'MARKETPLACE.FILTER.ADS_NEED' | translate"></span>
+					</radio>
+					<radio type="radio" model="filter.post_type" value="null">
+						<span ng-bind-html=":: 'MARKETPLACE.FILTER.ADS_ALL' | translate"></span>
+					</radio>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.entityType" class="medium-display-table-row">
