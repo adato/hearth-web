@@ -89,7 +89,7 @@ Run the tests from the web/app directory.
 karma start
 ```
 It will search for the karma.spec.js in the current directory.
-If you want to specify the config file, run
+If you want to specify the config file, run 
 ```
 karma start xxx.spec.js
 ```
