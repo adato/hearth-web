@@ -81,7 +81,11 @@ angular.module('hearth.directives').directive('imagePreview', [
 					return false;
 				}
 
+				/**
+				 *	Pushes data into the scope.files object, which should be the controller model
+				 */
 				function pushResult(data, img) {
+					console.log(data, scope.singleFile);
 					if (scope.singleFile) {
 						scope.files = data;
 					} else {
@@ -97,24 +101,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 						return scope.error.badSizePx = true;
 
 					// if there is not upload resource, upload images later
-					if (!scope.uploadResource) {
-						var size = ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
-
-						var canvas = ImageLib.resize(img, size, true);
-						return ImageLib.cropSmart(canvas, size, function(resized) {
-
-							resized = ExifRestorer.restore(imgFile.target.result, resized);
-
-							if (resized.split(',').length == 1)
-								resized = 'data:image/jpeg;base64,' + resized;
-							pushResult({
-								file: resized,
-								toBeUploaded: fileItself
-							}, {
-								total: 0
-							});
-						});
-					}
+					if (!scope.uploadResource) return pushResult({
+						file: imgFile.target.result,
+						toBeUploaded: fileItself
+					}, {
+						total: 0
+					});
 
 					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize &&
 						imgFile.total > (limitSize * 1024 * 1024)
@@ -192,6 +184,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 				});
 
 				return el.bind('change', function(event) {
+					console.log(event);
 					previewImage(el, scope.limit); // 5 mb limit
 					if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 				});
