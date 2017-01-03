@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('itemList', [
 			scope: {
 				options: '='
 			},
-			template: '<item ng-repeat="item in items"></div>'
+			template: '<item ng-repeat="item in items"></div>',
 			link: function(scope, el, attrs) {
 
 				scope.items = (function() {
