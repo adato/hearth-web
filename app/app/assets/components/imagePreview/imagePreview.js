@@ -85,7 +85,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 				 *	Pushes data into the scope.files object, which should be the controller model
 				 */
 				function pushResult(data, img) {
-					console.log(data, scope.singleFile);
 					if (scope.singleFile) {
 						scope.files = data;
 					} else {
@@ -184,7 +183,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 				});
 
 				return el.bind('change', function(event) {
-					console.log(event);
 					previewImage(el, scope.limit); // 5 mb limit
 					if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 				});
