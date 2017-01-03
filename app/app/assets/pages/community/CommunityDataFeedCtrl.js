@@ -224,16 +224,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				Community.getPosts({
 					communityId: id
 				}, function(res) {
-					res.data.forEach(function(item) {
-						if ($rootScope.isPostActive(item)) {
-							$scope.communityPostCount.active++;
-							pushPost('#profile-ads-listing-active', item, compiledTemplate);
-						} else {
-							$scope.communityPostCount.inactive++;
-							pushPost('#profile-ads-listing-inactive', item, compiledTemplate);
-						}
-					});
 					finishLoading();
+					$timeout(function() {
+						res.data.forEach(function(item) {
+							if ($rootScope.isPostActive(item)) {
+								$scope.communityPostCount.active++;
+								pushPost('#profile-ads-listing-active', item, compiledTemplate);
+							} else {
+								$scope.communityPostCount.inactive++;
+								pushPost('#profile-ads-listing-inactive', item, compiledTemplate);
+							}
+						});
+					}, 10);
 				}, doneErr);
 			});
 		}
