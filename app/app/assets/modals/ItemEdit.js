@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http) {
 		var POST_LANGUAGE = 'postLanguage';
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
@@ -17,10 +17,50 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.maxImageSizeLimit = 5; // MB
 		// $scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
 		$scope.uploadResource = function(file) {
-			return Post.uploadAttachment({
-				postId: $scope.post._id
+			return Post.announceAttachment({
+				// config object for path
+				postId: $scope.post._id,
 			}, {
-				file: file
+				// object for payload
+				filename: file.name
+			}, function(data) {
+				// callback from $resource
+				// function for upload to s3
+				// and append info to scope items
+				var pathPrefix = (data.url + '/' + data.key).replace("${filename}", file.name);
+
+				/*	this should append all file data as multipart --- it works, but all multipart data get into the file and it is unreadable
+
+					var fd = new FormData();
+					fd.append('file', file);
+		
+					for (var i in data) {
+						var key = i;
+						var item = data[key];
+						if (typeof item !== 'function') fd.append(key, item);
+					};
+
+// this is another way to create FormData -- haven`t tried yet, may work better
+//				var fd = new FormData();
+//				fd.append('key', key);
+//				fd.append('Content-Type', file.type);
+//				fd.append('AWSAccessKeyId', data.key);
+//				fd.append('policy', data.policy);
+//				fd.append('signature', data['x-amz-signature']);
+//				fd.append("file", file);
+//				fd.append('acl', data.acl);
+
+				*/
+
+				// id does the request to S3, put data there
+				// if FormData is used, fd goes instead of file
+				return $http.put(pathPrefix, file, {
+					withCredentials: false,
+					headers: {
+						'Content-Type': file.type
+					}
+				});
+
 			});
 		};
 		$scope.imagesCount = 0;
