@@ -205,9 +205,67 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			});
 		}
 
+		var getPostsRunning;
+		var getPostsFinished;
+		var getPostsResult = {
+			active: [],
+			inactive: []
+		};
+		var getPostsQ = [];
+		/**
+		 *	- {Int} id - community id
+		 *	- {Boolean} active - get active/passive posts
+		 */
+		function getPosts(opts) {
+			return $q(function(resolve, reject) {
+				if (getPostsFinished) {
+					resolve(getPostsResult[opts.active ? 'active' : 'inactive']);
+				} else {
+					if (getPostsRunning) {
+						getPostsQ.push([resolve, reject]);
+					} else {
+						getPostsRunning = true;
+						Community.getPosts({
+							communityId: opts.id
+						}, function(res) {
+							getPostsFinished = true;
+							getPostsRunning = false;
+							res.data.forEach(function(item) {
+								if ($rootScope.isPostActive(item)) {
+									$scope.communityPostCount.active++;
+									getPostsResult.active.push(item);
+								} else {
+									$scope.communityPostCount.inactive++;
+									getPostsResult.inactive.push(item);
+								}
+							});
+							resolve(getPostsResult[opts.active ? 'active' : 'inactive']);
+							if (getPostsQ.length) {
+								getPostsQ.splice(getPostsQ.length)[0](getPostsResult[opts.active ? 'active' : 'inactive']);
+							}
+						}, function(err) {
+							reject(getPostsResult[opts.active ? 'active' : 'inactive']);
+							if (getPostsQ.length) {
+								getPostsQ.splice(getPostsQ.length)[1](getPostsResult[opts.active ? 'active' : 'inactive']);
+							}
+						});
+					}
+				}
+			});
+		}
+
 		// load posts of community
 		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadCommunityPosts(id, doneErr) {
+
+			$scope.communityPostListActiveOptions = {
+				getData: getPosts({
+					active: true
+				}),
+				templateUrl: $sce.getTrustedResourceUrl(templatePath)
+			};
+			return false;
+
 			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 			var compiledTemplate;
 

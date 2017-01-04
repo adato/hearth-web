@@ -19,14 +19,16 @@
 			<p>{{:: 'COMMUNITY.POSTS.NO_POSTS_OTHER' | translate }}</p>
 		</div>
 	</div>
-	<div id="profile-ads-listing-active" class="ads-listing active">
-	</div>
+	<!-- <div id="profile-ads-listing-active" class="ads-listing active">
+	</div> -->
+	<item-list options="communityPostListActiveOptions"></item-list>
 
 	<div ng-if="mine && communityPostCount.inactive" class="ads-listing inactive">
 		<h3>{{:: 'POSTS_INACTIVE' | translate }}</h3>
 	</div>
-	<div id="profile-ads-listing-inactive">
-	</div>
+	<!-- <div id="profile-ads-listing-inactive">
+	</div> -->
+	<!-- <item-list options="communityPostListInctiveOptions"></item-list> -->
 
 </div>
 <div loading show="!subPageLoaded"></div>
