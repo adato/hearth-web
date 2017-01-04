@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', '$q',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, $q) {
 		angular.extend($scope, ItemServices);
 		$scope.activityShow = false;
 		$scope.loadingData = false;
@@ -241,12 +241,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 							});
 							resolve(getPostsResult[opts.active ? 'active' : 'inactive']);
 							if (getPostsQ.length) {
-								getPostsQ.splice(getPostsQ.length)[0](getPostsResult[opts.active ? 'active' : 'inactive']);
+								getPostsQ.splice(getPostsQ.length, 1)[0](getPostsResult[opts.active ? 'active' : 'inactive']);
 							}
 						}, function(err) {
 							reject(getPostsResult[opts.active ? 'active' : 'inactive']);
 							if (getPostsQ.length) {
-								getPostsQ.splice(getPostsQ.length)[1](getPostsResult[opts.active ? 'active' : 'inactive']);
+								getPostsQ.splice(getPostsQ.length, 1)[1](getPostsResult[opts.active ? 'active' : 'inactive']);
 							}
 						});
 					}
@@ -258,8 +258,16 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadCommunityPosts(id, doneErr) {
 
+			// counter for template
+			$scope.communityPostCount = {
+				'active': 0,
+				'inactive': 0
+			};
+			finishLoading();
+
 			$scope.communityPostListActiveOptions = {
-				getData: getPosts({
+				getData: getPosts.bind(null, {
+					id: id,
 					active: true
 				}),
 				templateUrl: $sce.getTrustedResourceUrl(templatePath)
@@ -268,12 +276,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 			var compiledTemplate;
-
-			// counter for template
-			$scope.communityPostCount = {
-				'active': 0,
-				'inactive': 0
-			};
 
 			$templateRequest(templateUrl).then(function(template) {
 				var compiledTemplate = $compile(template);
