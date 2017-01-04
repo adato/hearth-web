@@ -47,6 +47,7 @@ angular.module('hearth.services').factory('Filter', [
 				if (params.keywords == "")
 					delete params.keywords;
 
+				params.page = 1;
 				$location.search(params);
 				$rootScope.$broadcast("filterApplied", params);
 			},
