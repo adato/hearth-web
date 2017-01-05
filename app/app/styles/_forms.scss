@@ -1,25 +1,3 @@
-input,
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="month"],
-input[type="week"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="time"],
-input[type="url"],
-textarea,
-button,
-.button {
-	-webkit-border-radius: $global-radius;
-	border-radius: $global-radius;
-	resize: none;
-}
-
 textarea{
 	max-height: 200px;
 }
@@ -33,8 +11,8 @@ tags-input.textarea-height > div > .tags {
 
 input:focus,
 textarea:focus {
-	border: 1px solid color(5) !important;
-	box-shadow: inset 0 0 5px color(5) !important;
+	border: 1px solid $color-blue !important;
+	box-shadow: inset 0 0 5px $color-blue !important;
 }
 
 input[type="email"] {
@@ -94,21 +72,21 @@ textarea, input {
 	border-color .3s,
 	box-shadow .3s;
 	&:focus {
-		background: lighten(color(4), 20%) !important;
+		background: lighten($color-light-gray, 20%) !important;
 	}
 	&::-webkit-input-placeholder {
-		color: color(3);
+		color: $color-dark-gray;
 	}
 	&:-moz-placeholder {
-		color: color(3);
+		color: $color-dark-gray;
 		opacity: 1;
 	}
 	&::-moz-placeholder {
-		color: color(3);
+		color: $color-dark-gray;
 		opacity: 1;
 	}
 	&:-ms-input-placeholder {
-		color: color(3);
+		color: $color-dark-gray;
 	}
 }
 
@@ -235,7 +213,7 @@ textarea, input {
 
 .cancel-changes,
 .cancel-changes:focus {
-	color: $colorSecondary;
+	color: $color-blue;
 	font-weight: bold;
 	&::before{
 		content: '\f00d';
@@ -247,7 +225,7 @@ textarea, input {
 
 .revert-changes,
 .revert-changes:focus {
-	color: $colorSecondary;
+	color: $color-blue;
 	font-weight: bold;
 	&::before{
 		content: '\f053';

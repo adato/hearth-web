@@ -24,7 +24,7 @@
 	&.flag-rounded-corners{
 		/* @kamil: TODO - change to $size-tiny once possible //also fix all px values */
 		border-radius: .3125rem;
-		
+
 		vertical-align: top;
 		margin-top: .5rem;
 		margin-right: .5rem;
@@ -46,14 +46,14 @@
 	font-size: 1rem !important;
 
 	.fa-inverse{
-		color: $colorOrange;
+		color: $color-orange;
 	}
 	&:hover{
 		.fa-square{
 			color: #ddd;
 		}
 		.fa-inverse{
-			color: $colorOrange !important;
+			color: $color-orange !important;
 		}
 	}
 }

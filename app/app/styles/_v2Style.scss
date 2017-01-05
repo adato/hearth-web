@@ -11,14 +11,14 @@ $fontSize: $fontSize;
 		font-size: 18px;
 		font-weight: bold;
 	}
-	
+
 	dd,
 	dd li,
 	p {
 		font-size: $fontSize;
 		line-height: 1.6;
 		a {
-			color: $colorBlue;
+			color: $color-blue;
 		}
 	}
 
@@ -117,19 +117,19 @@ $fontSize: $fontSize;
 		margin-right: -4px;
 
 		.label {
-			border: 1px solid $colorOrange;
+			border: 1px solid $color-orange;
 			margin: 0px 4px;
 			margin-bottom: 8px;
 			padding-top: 5px;
-			color: $colorOrange;
+			color: $color-orange;
 			background-color: inherit;
-			border-radius: $borderRadius;
+			border-radius: $global-radius;
 			min-width: 60px;
 			cursor: pointer;
 			transition: all .3s ease-in-out;
 			&.active,
 			&:hover {
-				background-color: $colorOrange;
+				background-color: $color-orange;
 				color: white;
 			}
 		}

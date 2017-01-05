@@ -51,11 +51,11 @@ a.user{
 	}
 	.ad-flag-container {
 		.action-dropdown:hover {
-			color: color(5) !important;
+			color: $color-blue !important;
 		}
 	}
 	.ad-date {
-		color: color(3);
+		color: $color-dark-gray;
 	}
 }
 
@@ -77,7 +77,7 @@ a.user{
 }
 .item-option-bg-offer,
 .item-option-bg-lend {
-	background-color: $colorTertiary;
+	background-color: $color-green;
 	border-bottom-left-radius: 50%;
 }
 .item-option-bg-type > i{
@@ -105,7 +105,7 @@ a.user{
 }
 .item-option-bg-need,
 .item-option-bg-borrow {
-	background-color: $colorPrimary;
+	background-color: $color-orange;
 	border-top-right-radius: 50%;
 }
 .item-option-bg-type > i {
@@ -117,7 +117,7 @@ button.active .item-option-bg-type {
 	background-color: #fff;
 }
 button.active .item-option-bg-type > i {
-	color: $colorSecondary;
+	color: $color-blue;
 }
 button.inactive {
 	background-color: $colorLightGray;
@@ -308,7 +308,7 @@ button.active[disabled] .item-option-bg-type {
 
 		.action-dropdown {
 			border-radius:50%;
-			background:color(4);
+			background:$color-light-gray;
 		}
 	}
 
@@ -322,7 +322,7 @@ button.active[disabled] .item-option-bg-type {
 	}
 	p a,
 	p a:hover {
-		color: $colorSecondary;
+		color: $color-blue;
 	}
 	header {
 		line-height: $size-large;
@@ -423,7 +423,7 @@ button.active[disabled] .item-option-bg-type {
 			input {
 				// width: 80%;
 				// display: inline-block;
-				color: $colorOrange;
+				color: $color-orange;
 				transition: none;
 			}
 		}
@@ -483,7 +483,7 @@ button.active[disabled] .item-option-bg-type {
 			/*text-decoration: underline;*/
 
 			&:hover {
-				color: $colorSecondary;
+				color: $color-blue;
 			}
 		}
 		.medium-display-table-cell,
@@ -516,16 +516,16 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 		right: auto;
 	}
 	background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%),
-	linear-gradient(to right, darken(color(5), 30%) 0%, darken(color(5), 30%) 80%, color(5) 100%);
+	linear-gradient(to right, darken($color-blue, 30%) 0%, darken($color-blue, 30%) 80%, $color-blue 100%);
 	&.empty {
-		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten(color(3), 20%);
+		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten($color-dark-gray, 20%);
 		.positive {
 			display: none;
 		}
 	}
 	.positive {
 		height: 5px;
-		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken(color(2), 10%) 0%, color(2) 80%, lighten(color(2), 5%) 100%);
+		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken($color-green, 10%) 0%, $color-green 80%, lighten($color-green, 5%) 100%);
 	}
 }
 
@@ -637,11 +637,11 @@ button p {
 		}
 		.ad-flag-container {
 			.action-dropdown:hover {
-				color: color(5) !important;
+				color: $color-blue !important;
 			}
 		}
 		.ad-date {
-			color: color(3);
+			color: $color-dark-gray;
 		}
 
 		.post-detail.offer:before, .post-detail.need:before {
@@ -702,7 +702,7 @@ button p {
 				font-weight: $ui-text-weight-bolder;
 			}
 			a {
-				color: color(5);
+				color: $color-blue;
 				display:block;
 			}
 			&:after {
@@ -751,7 +751,7 @@ button p {
 				margin: 0px auto;
 				margin-bottom: 10px;
 				width: 60%;
-				color: $colorOrange;
+				color: $color-orange;
 				transition: none;
 			}
 			ul {
@@ -807,16 +807,16 @@ button p {
 		}
 		;
 		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%),
-		linear-gradient(to right, darken(color(5), 30%) 0%, darken(color(5), 30%) 80%, color(5) 100%);
+		linear-gradient(to right, darken($color-blue, 30%) 0%, darken($color-blue, 30%) 80%, $color-blue 100%);
 		&.empty {
-			background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten(color(3), 20%);
+			background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten($color-dark-gray, 20%);
 			.positive {
 				display: none;
 			}
 		}
 		.positive {
 			height: 5px;
-			background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken(color(2), 10%) 0%, color(2) 80%, lighten(color(2), 5%) 100%);
+			background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken($color-green, 10%) 0%, $color-green 80%, lighten($color-green, 5%) 100%);
 		}
 	}
 
@@ -974,7 +974,7 @@ button p {
 			}
 			.descr .fa {
 				width: 8px;
-				color: color(1);
+				color: $color-orange;
 				margin-right: 3 * $ui-small-grid-size;
 			}
 			.social {
@@ -984,7 +984,7 @@ button p {
 				margin-bottom: $ui-small-grid-size;
 				padding-right: $ui-small-grid-size;
 				.fa {
-					color: color(5);
+					color: $color-blue;
 					margin: 1px;
 				}
 				.link {
@@ -1021,7 +1021,7 @@ button p {
 				display: inline;
 			}
 			.ad-flag-container>a {
-				color: color(3);
+				color: $color-dark-gray;
 				margin-left: 20px;
 				padding:5px;
 				position:relative;
@@ -1038,7 +1038,7 @@ button p {
 		}
 		.text-container {
 			a {
-				color: color(5);
+				color: $color-blue;
 				font-weight: 600;
 			}
 			p {
@@ -1060,7 +1060,7 @@ button p {
 			margin-bottom: 3*$ui-small-grid-size;
 		}
 		footer {
-			background: color(4);
+			background: $color-light-gray;
 			min-height: 74px;
 			box-sizing: border-box;
 			position: relative;
@@ -1088,7 +1088,7 @@ button p {
 				/* width: $ui-grid-size; */
 				height: $ui-grid-size;
 				margin-top: 16px;
-				color: color(3);
+				color: $color-dark-gray;
 
 				&:before {
 					width: $ui-grid-size;
@@ -1097,13 +1097,13 @@ button p {
 					font-size: 20px;
 				}
 				&:hover {
-					color: lighten(color(3), 20%);
+					color: lighten($color-dark-gray, 20%);
 				}
 			}
 
 			.sharing a {
-				color: color(4);
-				background: color(3);
+				color: $color-light-gray;
+				background: $color-dark-gray;
 				border-radius: 50%;
 				font-size: 15px;
 				width: $ui-grid-size;
@@ -1127,11 +1127,11 @@ button p {
 					left: 6px;
 				}
 				&:hover {
-					background: color(5);
+					background: $color-blue;
 				}
 				&:active,
 				&:focus {
-					background: darken(color(5), 10%);
+					background: darken($color-blue, 10%);
 				}
 			}
 
@@ -1140,23 +1140,23 @@ button p {
 				padding: $ui-small-grid-size;
 				margin-top: -2px;
 				a {
-					color: color(3);
+					color: $color-dark-gray;
 					margin-right: $ui-small-grid-size;
 					&:hover {
-						color: lighten(color(3), 10%);
+						color: lighten($color-dark-gray, 10%);
 					}
 					&:active,
 					&:focus {
-						color: darken(color(3), 10%);
+						color: darken($color-dark-gray, 10%);
 					}
 				}
 			}
 			.reply-count-container .reply-info-link {
-				color: color(3);
+				color: $color-dark-gray;
 				text-decoration: underline;
 				margin-left: 3*$ui-small-grid-size;
 				&:hover {
-					color: color(5);
+					color: $color-blue;
 				}
 			}
 			.reply-button-container,
@@ -1170,7 +1170,7 @@ button p {
 			}
 			.reply-button-container {
 				button {
-					color: lighten(color(4), 10%);
+					color: lighten($color-light-gray, 10%);
 					p {
 						margin: 0;
 						font-size: $ui-text-font-size;
@@ -1251,7 +1251,7 @@ button p {
 		.map-expand-toggle {
 			float: right;
 			a {
-				color: color(5);
+				color: $color-blue;
 			}
 		}
 		.map-container {
@@ -1260,32 +1260,32 @@ button p {
 	}
 	*[data-item-type="need"],
 	*[data-item-type="false"] {
-		color: color(1);
+		color: $color-orange;
 	}
 	*[data-item-type="offer"],
 	*[data-item-type="true"] {
-		color: color(2);
+		color: $color-green;
 	}
 	button[data-item-type="need"],
 	button[data-item-type="false"] {
-		background: color(1);
+		background: $color-orange;
 		&:hover {
-			background: lighten(color(1), 10%);
+			background: lighten($color-orange, 10%);
 		}
 		&:focus,
 		&:active {
-			background: darken(color(1), 10%);
+			background: darken($color-orange, 10%);
 		}
 	}
 	button[data-item-type="offer"],
 	button[data-item-type="true"] {
-		background: color(2);
+		background: $color-green;
 		&:hover {
-			background: lighten(color(2), 10%);
+			background: lighten($color-green, 10%);
 		}
 		&:focus,
 		&:active {
-			background: darken(color(2), 10%);
+			background: darken($color-green, 10%);
 		}
 	}
 }

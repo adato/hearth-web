@@ -14,7 +14,7 @@
 	.filter {
 
 		dt {
-			color: color(3);
+			color: $color-dark-gray;
 			text-transform: none;
 			margin:$ui-small-grid-size 0;
 			margin-right:3*$ui-small-grid-size;
@@ -25,14 +25,14 @@
 			a {
 				display:inline-block;
 				font-weight: bold;
-				border: 1px solid color(5);
+				border: 1px solid $color-blue;
 				border-radius: $global-radius;
 				padding: {
 					left: $fontSize;
 					right: $fontSize;
 				}
 				b {
-					background-color: lighten(color(5), 20%);
+					background-color: lighten($color-blue, 20%);
 					padding: {
 						left: 0.5em;
 						right: 0.5em;
@@ -49,10 +49,10 @@
 			&.active {
 				overflow: visible;
 				position: relative;
-				a { background-color: color(5); }
+				a { background-color: $color-blue; }
 				&:after {
 					content: '';
-					background-color: color(5);
+					background-color: $color-blue;
 					height: 0.5em;
 					width: 0.5em;
 					position: absolute;
@@ -106,12 +106,12 @@
 				}
 
 				a {
-					color: color(5);
+					color: $color-blue;
 					font-weight: 600;
 					text-decoration: underline;
 
 					&:hover {
-						color: darken( color(5), 20%);
+						color: darken( $color-blue, 20%);
 					}
 
 					span {
@@ -137,18 +137,18 @@
 			}
 		}
 		.fa {
-			color: lighten(color(3), 30%);
+			color: lighten($color-dark-gray, 30%);
 			margin: {
 				right: 0.25em;
 			}
 		}
 		.breadcrumb {
 			font-size: rem-count(6);
-			color: lighten(color(3), 10%);
+			color: lighten($color-dark-gray, 10%);
 			a {
-				color: lighten(color(3), 10%);
+				color: lighten($color-dark-gray, 10%);
 				&:hover {
-					color: darken(color(3), 10%);
+					color: darken($color-dark-gray, 10%);
 					text-decoration: underline;
 				}
 			}

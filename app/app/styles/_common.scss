@@ -57,10 +57,10 @@
 
 	/* @kamil todo - delete if nothing breaks without it*/
 	.header {
-		background-color: color(1);
-		color: color(4);
+		background-color: $color-orange;
+		color: $color-light-gray;
 		border: {
-			bottom: 1px solid color(3);
+			bottom: 1px solid $color-dark-gray;
 		}
 		padding: 1em;
 		margin-bottom: 1em;
@@ -75,7 +75,7 @@
 		padding: $size-large $size-large 0;
 
 		a{
-			color: $colorSecondary;
+			color: $color-blue;
 		}
 	}
 	&.no-result p{
@@ -96,7 +96,7 @@
 		.box-section{
 			padding: $size-large;
 			margin-bottom: $size-small;
-			background-color: $colorQuaternary;
+			background-color: $color-light-blue;
 
 			.display-table-cell.user{
 				padding-top: $size-small;
@@ -143,12 +143,12 @@ a.link {
 	position: absolute;
 	top: rem-calc(18 / 3);
 	right: rem-calc(7);
-	color: color(3);
+	color: $color-dark-gray;
 	cursor: pointer;
 	font-size: rem-calc(18);
 	transition: color 0.8s;
 	&:hover {
-		color: darken(color(3), 20%);
+		color: darken($color-dark-gray, 20%);
 	}
 }
 
@@ -261,23 +261,23 @@ a.link {
 		font-size: 2 * $fontSize;
 		display: block;
 	}
-	color: color(3);
+	color: $color-dark-gray;
 	transition: opacity 0.8s;
 	&:hover {
-		color: darken(color(3), 20%);
+		color: darken($color-dark-gray, 20%);
 	}
 }
 
 input:not([type]),
 input[type='text'],
 textarea {
-	border: 1px solid darken(color(4), 20%);
+	border: 1px solid darken($color-light-gray, 20%);
 	@include transition(background-color, 0.5s);
 	box-shadow: none;
 	&:focus {
 		background-color: white;
 		box-shadow: none;
-		border: 1px solid darken(color(4), 40%);
+		border: 1px solid darken($color-light-gray, 40%);
 	}
 }
 
@@ -306,18 +306,18 @@ textarea {
 }
 
 .datepicker {
-	border: 1px solid color(5) !important;
+	border: 1px solid $color-blue !important;
 	border-radius: $global-radius;
 	thead {
 		tr {
 			th {
-				color: color(5) !important;
+				color: $color-blue !important;
 			}
 		}
 	}
 	td {
 		&.active {
-			background-color: color(5) !important;
+			background-color: $color-blue !important;
 		}
 	}
 }
@@ -401,9 +401,9 @@ button.disabled,
 button[disabled],
 .button.disabled,
 .button[disabled] {
-	background-color: lighten(color(5), 30%);
+	background-color: lighten($color-blue, 30%);
 	&:hover {
-		background-color: lighten(color(5), 30%);
+		background-color: lighten($color-blue, 30%);
 	}
 }
 
@@ -427,11 +427,11 @@ a.elevated-authority-function:active{
 to remove !important would be also nice .. someday */
 button.neutral,
 button.neutral:disabled{
-	background-color: darken(color(4), 20%) !important;
+	background-color: darken($color-light-gray, 20%) !important;
 }
 button.neutral:hover,
 button.neutral:focus{
-	background-color: color(3) !important;
+	background-color: $color-dark-gray !important;
 }
 /* /kamil */
 

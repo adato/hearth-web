@@ -37,7 +37,7 @@
 				left: 20px;
 				right: 20px;
 			}
-			background: lighten(color(5), 45%);
+			background: lighten($color-blue, 45%);
 			small {
 				font-size: 0.85rem;
 				float: right;

@@ -55,9 +55,9 @@
 			&>li {
 				text-align: left !important;
 				&:hover:not(.no-hover) {
-					background-color: color(1);
+					background-color: $color-orange;
 					a {
-						color: color(4);
+						color: $color-light-gray;
 					}
 				}
 				.no-hover {
@@ -74,7 +74,7 @@
 			}
 			.divider {
 				border: {
-					top: 1px solid lighten(color(3), 40%);
+					top: 1px solid lighten($color-dark-gray, 40%);
 				}
 			}
 		}
@@ -103,7 +103,7 @@
 }
 
 .action-dropdown:hover {
-	color: $colorSecondary !important;
+	color: $color-blue !important;
 }
 .actions-dropdown {
 	position: absolute;
@@ -132,7 +132,7 @@
 		position: relative;
 		display: block;
 		padding: $size-tiny $size-medium;
-		color: $colorSecondary;
+		color: $color-blue;
 		margin-top: 1px;
 
 		&:hover {

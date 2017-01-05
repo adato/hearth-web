@@ -3,13 +3,13 @@
 	.fa {
 		width: rem-calc(16);
 		font-size: rem-calc(16);
-		color: color(5);
+		color: $color-blue;
 	}
 	&[disabled]{
 		cursor: default !important;
 		color: $colorDarkGray !important;
 		& > .fa{
-			color: lighten($colorSecondary, 25%);
+			color: lighten($color-blue, 25%);
 		}
 	}
 }

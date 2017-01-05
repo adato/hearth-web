@@ -9,16 +9,16 @@
 	font-size: $ui-text-font-size;
 	border: none;
 	border-radius: $global-radius;
-	background: color(5);
+	background: $color-blue;
 	transition: all .3s;
 	cursor: pointer;
 	outline: none;
 	&:hover {
-		background-color: lighten(color(5), abs($button-function-factor));
+		background-color: lighten($color-blue, abs($button-function-factor));
 	}
 	&:focus,
 	&:active {
-		background-color: darken(color(5), abs($button-function-factor));
+		background-color: darken($color-blue, abs($button-function-factor));
 	}
 
 	@media #{$large-up} {
@@ -29,23 +29,23 @@
 
 .button2 {
 	border-radius: $global-radius;
-	border-color: color(5);
+	border-color: $color-blue;
 	transition: border-color .3s, background-color .3s;
-	background-color: color(5);
-	border: 2px solid color(5);
+	background-color: $color-blue;
+	border: 2px solid $color-blue;
 	cursor: pointer;
 	color: white;
 	padding: 1em 1.5em;
 	&:hover {
-		background-color: darken(color(5), abs($button-function-factor));
-		border-color: darken(color(5), abs($button-function-factor));
+		background-color: darken($color-blue, abs($button-function-factor));
+		border-color: darken($color-blue, abs($button-function-factor));
 		color: white;
 	}
 }
 
 .button-icon {
 	background-color: transparent;
-	color: color(5);
+	color: $color-blue;
 	border-width: 0px;
 	margin-bottom: 0px;
 	padding: 0px;
@@ -53,7 +53,7 @@
 	&:focus,
 	{
 		background-color: transparent;
-		color: color(5);
+		color: $color-blue;
 	}
 }
 
@@ -67,13 +67,13 @@
 	/*font-size: 1.2rem;*/
 	/*margin: 0 0 1.25rem;*/
 	/*padding: 0.5rem 2rem;*/
-	background-color: $colorSecondary;
+	background-color: $color-blue;
 	transition: background-color 300ms ease-out 0s;
 	cursor: pointer;
 	opacity: 1;
 	&:hover,
 	&:focus {
-		background-color: darken($colorSecondary, abs($button-function-factor));
+		background-color: darken($color-blue, abs($button-function-factor));
 	}
 	@extend .button;
 }
@@ -82,7 +82,7 @@ a.button-send {
 	&:hover,
 	&:focus {
 		color: white;
-		background-color: darken($colorSecondary, abs($button-function-factor));
+		background-color: darken($color-blue, abs($button-function-factor));
 	}
 }
 
@@ -106,7 +106,7 @@ button.no-vertical-padding {
 }
 
 .button.background-offer {
-	background-color: color(2);
+	background-color: $color-green;
 	&:hover {
 		background-color: lighten($colorOffer, abs($button-function-factor));
 	}
@@ -132,12 +132,12 @@ button.no-vertical-padding {
 	}
 }
 .button-white.active {
-	background: $colorSecondary;
+	background: $color-blue;
 	color:#fff;
 	font-weight: bold;
 
 	&:focus {
-		background: darken($colorSecondary, 10%);
+		background: darken($color-blue, 10%);
 	}
 }
 .button-white[disabled],

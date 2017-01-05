@@ -12,11 +12,11 @@ $socialSize: 10px;
 		display: inline-block;
 		@include border-radius(50%);
 		@include transition(color 1s, background-color 1s, text-shadow 1s);
-		border: 2px solid nth($color, 1);
+		border: 2px solid $color-orange;
 		padding: 3px;
 		&:hover {
-			@include text-shadow(0 -1px nth($color, 3));
-			background-color: lighten(nth($color, 1), 5%);
+			@include text-shadow(0 -1px $color-dark-gray);
+			background-color: lighten($color-orange, 5%);
 			color: white !important;
 		}
 	}

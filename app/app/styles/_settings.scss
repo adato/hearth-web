@@ -1,34 +1,45 @@
+// The purpose of this file is to override foundation setting
 @import "foundation/functions";
-
-$radius: true;
+// Global
 $global-radius: 8px;
+
+// Colors
+$primary-color: $color-blue;
+$secondary-color: $color-orange;
+
+// Buttons
+$button-radius: $global-radius;
+$button-font-weight:600;
+$button-border-width:0.5px;
+$button-border-color:rgba(0,0,0,0.41);
+$button-tny: rem-calc(6);   // 10
+$button-sml: rem-calc(8);   // 14
+$button-med: rem-calc(10);   // 16
+$button-lrg: rem-calc(12);   // 18
+
+
+$fontSize: rem-calc(14);
 $base-font-size: 100%;
-$borderRadius: 4px;
-$colorLink: $colorBlue;
+$colorLink: $color-blue;
 
 $base-line-height: 100%;
-$body-bg: color(4);
+$body-bg: $color-light-gray;
 $body-font-color: lighten(black, 22%);
 $body-font-family: "Open Sans", "Geneva", "Tahoma", sans-serif;
 $global-font-size: 1rem;
 
-$primary-color: color(1);
-$secondary-color: color(2);
-
 $row-width: 960px;
 
 $hr-margin: rem-calc(1);
-$f-dropdown-border-color: color(3);
-$f-dropdown-font-color: color(3);
+$f-dropdown-border-color: $color-dark-gray;
+$f-dropdown-font-color: $color-dark-gray;
 $f-dropdown-font-size: $global-font-size;
 $form-label-font-size: $global-font-size;
-$input-font-color: nth($color,3);
+$input-font-color: $color-dark-gray;
 $input-font-size: $global-font-size;
-$input-border-color: nth($color,3);
+$input-border-color: $color-dark-gray;
 
 $button-function-factor: -10%;
-$button-border-width: 2px;
-$button-border-style: solid;  $button-radius: $global-radius;
 
 $ui-title-font-size: 16px;
 $ui-smaller-font-size: 12px;
@@ -66,76 +77,6 @@ $size-large: 25px;
 // font awesome icon used for loading
 $fa-loading-icon: '\f110';
 
-//
-// @import "foundation/functions";
-//
-// $radius: true;
-// $global-radius: 8px;
-// $base-font-size: 95%;
-//
-// $base-line-height: 150%;
-// $body-bg: color(4);
-// $body-font-color: lighten(black, 22%);
-// $body-font-family: "Open Sans", "Geneva", "Tahoma", sans-serif;
-// $global-font-size: 14px;
-//
-// $primary-color: color(1);
-// $secondary-color: color(2);
-//
-
-// $hr-margin: rem-calc(1);
-// $crumb-bg: white;
-//
-// $crumb-padding: rem-calc( 0 0 0 );
-// $crumb-border-size: 0px;
-// $crumb-font-size: rem-calc(10);
-// $crumb-slash: ">";
-//
-// $button-function-factor: -20%;
-//
-// $button-border-width: 2px;
-// $button-border-style: solid;  $button-radius: $global-radius;
-//
-// $f-dropdown-border-color: color(3);
-// $f-dropdown-font-color: color(3);
-// $f-dropdown-font-size: rem-calc(16);
-// $form-label-font-size: rem-calc(14);;
-//
-// $input-font-color: nth($color,3);
-// $input-font-size: rem-calc(16);
-//
-// $input-border-color: nth($color,3);
-// $reveal-modal-bg: color(4);
-//
-// $reveal-modal-padding: rem-calc(16);
-//
-// $reveal-close-font-size: rem-calc(18);
-// $reveal-close-top: $reveal-close-font-size /2;
-// $reveal-close-side: $reveal-close-font-size /2;
-// $sub-nav-font-size: rem-calc(16);
-// $sub-nav-font-color: color(5);
-//
-// $sub-nav-padding: rem-calc(3 16);
-// $sub-nav-border-radius: $global-radius;
-// $sub-nav-font-color-hover: color(5);
-// $sub-nav-active-bg: color(5);
-// $sub-nav-active-bg-hover: color(5);
-// $sub-nav-active-color: color(4);
-// $sub-nav-item-divider-margin: $sub-nav-font-size / 4;
-//
-// $topbar-bg-color: color(1);
-// $topbar-bg: $topbar-bg-color;
-//
-// $topbar-height: 65px;
-// $topbar-margin-bottom: 30px;
-//
-// $topbar-dropdown-bg: $topbar-bg-color;
-//
-// $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-color-hover:  $topbar-bg;
-// $topbar-link-bg-hover: $topbar-bg;$topbar-breakpoint: #{lower-bound($large-range)};
-// $topbar-media-query: $large-up;
-
 
 // =================================================
 // =================== TAB BAR =====================
@@ -143,8 +84,7 @@ $fa-loading-icon: '\f110';
 $tabbar-header-color: white !default;
 $tabbar-menu-icon-color: white !default;
 $tabbar-height: rem-calc(45) !default;
-$tabbar-bg: $colorOrange;
-// $tabbar-bg: color(1);
+$tabbar-bg: $color-orange;
 
 // =================================================
 // =================== TOP BAR =====================
@@ -176,7 +116,7 @@ $topbar-link-font-size: rem-calc(16);
 // ============== OFF CANVAS MENU ==================
 // =================================================
 
-$off-canvas-bg-active: $colorOrange;
+$off-canvas-bg-active: $color-orange;
 $off-canvas-label-border-bottom: none !default;
 $off-canvas-label-border-top: none !default;
 
