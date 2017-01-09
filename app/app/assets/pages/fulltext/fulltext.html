@@ -42,6 +42,8 @@
 								<i class="fa fa-clock-o"></i> {{item.updated_at | ago}}
 							</div>
 						</div>
+						<span class="label round" ng-bind=":: item._score"></span>
+
 						<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !item.isActive" class="error margin-top-small margin-bottom-small">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
 
 						<div class="info">
