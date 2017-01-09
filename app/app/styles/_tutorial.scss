@@ -89,8 +89,8 @@
 							width: 13px;
 							height: 13px;
 							&.flex-active {
-								background-color: $color-orange;
-								box-shadow: 0 0 4px $color-orange;
+								background-color: $secondary-color;
+								box-shadow: 0 0 4px $secondary-color;
 							}
 						}
 					}
@@ -116,8 +116,8 @@
 						}
 						;
 						i {
-							border-right: 2px solid $color-orange;
-							color: $color-orange;
+							border-right: 2px solid $secondary-color;
+							color: $secondary-color;
 							display: inline-block;
 							float: left;
 							font-size: 80px;

@@ -66,7 +66,7 @@
 			}
 			.descr .fa {
 				width: 8px;
-				color: $color-orange;
+				color: $secondary-color;
 				margin-right: 3 * $ui-small-grid-size;
 			}
 			.social {
@@ -76,7 +76,7 @@
 				margin-bottom: $ui-small-grid-size;
 				padding-right: $ui-small-grid-size;
 				.fa {
-					color: $color-blue;
+					color: $primary-color;
 					margin: 1px;
 				}
 				.link {
@@ -113,7 +113,7 @@
 				display: inline;
 			}
 			.ad-flag-container>a {
-				color: $color-dark-gray;
+				color: $quaternary-color;
 				margin-left: 20px;
 				padding:5px;
 				position:relative;
@@ -130,7 +130,7 @@
 		}
 		.text-container {
 			a {
-				color: $color-blue;
+				color: $primary-color;
 				font-weight: 600;
 			}
 			p {
@@ -142,11 +142,11 @@
 				display: inline-block;
 
 				&.offer {
-					color: $color-green;
+					color: $tertiary-color;
 				}
 
 				&.need {
-					color: $color-orange;
+					color: $secondary-color;
 				}
 			}
 		}
@@ -162,11 +162,11 @@
 		}
 		footer {
 			.reply-count-container .reply-info-link {
-				color: $color-dark-gray;
+				color: $quaternary-color;
 				text-decoration: underline;
 				margin-left: 3*$ui-small-grid-size;
 				&:hover {
-					color: $color-blue;
+					color: $primary-color;
 				}
 			}
 			.reply-button-container,
@@ -180,7 +180,7 @@
 			}
 			.reply-button-container {
 				button {
-					color: lighten($color-light-gray, 10%);
+					color: lighten($colorLightGray, 10%);
 					p {
 						margin: 0;
 						font-size: $ui-text-font-size;
@@ -250,7 +250,7 @@
 		.map-expand-toggle {
 			float: right;
 			a {
-				color: $color-blue;
+				color: $primary-color;
 			}
 		}
 /*		.map-container {
@@ -259,32 +259,32 @@
 	}
 	*[data-item-type="need"],
 	*[data-item-type="false"] {
-		color: $color-orange;
+		color: $secondary-color;
 	}
 	*[data-item-type="offer"],
 	*[data-item-type="true"] {
-		color: $color-green;
+		color: $tertiary-color;
 	}
 	button[data-item-type="need"],
 	button[data-item-type="false"] {
-		background: $color-orange;
+		background: $secondary-color;
 		&:hover {
-			background: lighten($color-orange, 10%);
+			background: lighten($secondary-color, 10%);
 		}
 		&:focus,
 		&:active {
-			background: darken($color-orange, 10%);
+			background: darken($secondary-color, 10%);
 		}
 	}
 	button[data-item-type="offer"],
 	button[data-item-type="true"] {
-		background: $color-green;
+		background: $tertiary-color;
 		&:hover {
-			background: lighten($color-green, 10%);
+			background: lighten($tertiary-color, 10%);
 		}
 		&:focus,
 		&:active {
-			background: darken($color-green, 10%);
+			background: darken($tertiary-color, 10%);
 		}
 	}
 }

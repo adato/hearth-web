@@ -46,14 +46,14 @@
 	font-size: 1rem !important;
 
 	.fa-inverse{
-		color: $color-orange;
+		color: $secondary-color;
 	}
 	&:hover{
 		.fa-square{
 			color: #ddd;
 		}
 		.fa-inverse{
-			color: $color-orange !important;
+			color: $secondary-color !important;
 		}
 	}
 }

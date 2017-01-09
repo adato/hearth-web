@@ -68,7 +68,7 @@
 		.conversation {
 			border-bottom: 1px solid #CCC;
 			&.active-bottom {
-				border-bottom-color: $color-orange;
+				border-bottom-color: $secondary-color;
 			}
 		}
 		.conversation {
@@ -127,12 +127,12 @@
 			&.active {
 				background-color: rgba(251, 127, 59, 0.10);
 				h2 {
-					color: $color-orange;
+					color: $secondary-color;
 				}
 				p {
 					color: black;
 				}
-				border-bottom-color: $color-orange;
+				border-bottom-color: $secondary-color;
 				.unreaded-count {
 				}
 			}
@@ -181,9 +181,9 @@
 		}
 		.conversation-detail {
 			a {
-				color: $color-blue;
+				color: $primary-color;
 				&:hover {
-					color: lighten($color-blue, 10);
+					color: lighten($primary-color, 10);
 				}
 			}
 			.conversation-detail-top {

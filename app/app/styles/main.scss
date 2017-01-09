@@ -1,18 +1,21 @@
 @import "kit/colors";
-
 @import "compass";
 @import "settings";
 
+
+
+
 /* assignment */ //TODO remove from here
-$colorOffer: $color-green;
-$colorNeed: $color-orange;
+$colorOffer: $tertiary-color;
+$colorNeed: $secondary-color;
 
-$colorDarkGray: $color-dark-gray;
-$colorLightGray: $color-light-gray;
+$colorDarkGray: $quaternary-color;
 
-$colorSuccess: $color-green-alt;
-$colorDanger: $color-red;
-$colorWarning: $color-yellow;
+
+// temporary settings
+$colorSuccess: #26AF34;
+$colorDanger: red;
+$colorWarning: #fcc000;
 
 /* from bootstrap */
 $state-danger-text: #a94442;

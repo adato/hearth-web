@@ -14,7 +14,7 @@
 			width: 500px;
 			min-height: 2.8rem;
 			padding: $size-medium;
-			border: 2px solid $color-orange;
+			border: 2px solid $secondary-color;
 			border-radius: $global-radius;
 			box-shadow: $defaultShadow;
 			background-color: white;
@@ -40,15 +40,15 @@
 		}
 		.inner {
 			a {
-				color: $color-blue;
+				color: $primary-color;
 			}
 			.social a.fa {
-				color: $color-blue;
+				color: $primary-color;
 				font-size: 20px;
 				line-height: 20px;
 			}
 			.count_accomplished {
-				color: $color-orange;
+				color: $secondary-color;
 				text-align: center;
 
 				// TODO kamil - too broad a usage to refactor atm. Remove when possible though.

@@ -4,14 +4,15 @@
 $global-radius: 8px;
 
 // Colors
-$primary-color: $color-blue;
-$secondary-color: $color-orange;
+$primary-color: $primary-color;
+$secondary-color: $secondary-color;
 
 // Buttons
 $button-radius: $global-radius;
 $button-font-weight:600;
 $button-border-width:0.5px;
 $button-border-color:rgba(0,0,0,0.41);
+
 $button-tny: rem-calc(6);   // 10
 $button-sml: rem-calc(8);   // 14
 $button-med: rem-calc(10);   // 16
@@ -20,10 +21,10 @@ $button-lrg: rem-calc(12);   // 18
 
 $fontSize: rem-calc(14);
 $base-font-size: 100%;
-$colorLink: $color-blue;
+$colorLink: $primary-color;
 
 $base-line-height: 100%;
-$body-bg: $color-light-gray;
+$body-bg: $colorLightGray;
 $body-font-color: lighten(black, 22%);
 $body-font-family: "Open Sans", "Geneva", "Tahoma", sans-serif;
 $global-font-size: 1rem;
@@ -31,13 +32,13 @@ $global-font-size: 1rem;
 $row-width: 960px;
 
 $hr-margin: rem-calc(1);
-$f-dropdown-border-color: $color-dark-gray;
-$f-dropdown-font-color: $color-dark-gray;
+$f-dropdown-border-color: $quaternary-color;
+$f-dropdown-font-color: $quaternary-color;
 $f-dropdown-font-size: $global-font-size;
 $form-label-font-size: $global-font-size;
-$input-font-color: $color-dark-gray;
+$input-font-color: $quaternary-color;
 $input-font-size: $global-font-size;
-$input-border-color: $color-dark-gray;
+$input-border-color: $quaternary-color;
 
 $button-function-factor: -10%;
 
@@ -84,7 +85,7 @@ $fa-loading-icon: '\f110';
 $tabbar-header-color: white !default;
 $tabbar-menu-icon-color: white !default;
 $tabbar-height: rem-calc(45) !default;
-$tabbar-bg: $color-orange;
+$tabbar-bg: $secondary-color;
 
 // =================================================
 // =================== TOP BAR =====================
@@ -116,7 +117,7 @@ $topbar-link-font-size: rem-calc(16);
 // ============== OFF CANVAS MENU ==================
 // =================================================
 
-$off-canvas-bg-active: $color-orange;
+$off-canvas-bg-active: $secondary-color;
 $off-canvas-label-border-bottom: none !default;
 $off-canvas-label-border-top: none !default;
 

@@ -12,7 +12,7 @@
 
 		.link-button {
 			font-weight: $ui-text-weight-bolder;
-			color: $color-blue;
+			color: $primary-color;
 		}
 	}
 	.ui-checkbox {
@@ -57,7 +57,7 @@ input.bottom-line-input:focus {
 .radio-container {
 	padding-bottom: $size-small;
 	span>small {
-		color:$color-dark-gray;
+		color:$quaternary-color;
 		font-size:85%;
 		padding-left:3px;
 		text-transform: none;
