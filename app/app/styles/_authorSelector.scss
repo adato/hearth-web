@@ -10,7 +10,7 @@
 		-moz-appearance: none;
 
 		&:focus {
-			border: 1px solid $color-blue;
+			border: 1px solid $primary-color;
 		}
 		&:disabled {
 			background-color: #ddd !important;

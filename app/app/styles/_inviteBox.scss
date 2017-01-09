@@ -41,7 +41,7 @@
 					text-align: center;
 					padding: $ui-small-grid-size;
 					i {
-						border: 2px solid $color-blue;
+						border: 2px solid $primary-color;
 						padding: 5px;
 						font-size: 150%;
 						line-height: 150%;
@@ -57,9 +57,9 @@
 					}
 					&:hover {
 						i {
-							background: lighten($color-blue, 20%);
+							background: lighten($primary-color, 20%);
 							color: white;
-							text-shadow: 0 -1px 1px darken($color-blue, 15%);
+							text-shadow: 0 -1px 1px darken($primary-color, 15%);
 						}
 					}
 				}

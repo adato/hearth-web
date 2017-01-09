@@ -92,7 +92,7 @@
 	padding-bottom: $size-small;
 }
 .table-with-icons .display-table-cell:first-child{
-	color: $color-orange;
+	color: $secondary-color;
 	padding-right: $size-small;
 	vertical-align: top;
 }
@@ -214,7 +214,7 @@
 	cursor: pointer;
 
 	&:hover{
-		color: $color-blue;
+		color: $primary-color;
 	}
 	&.touchable-small{
 		font-size: $global-font-size;
@@ -361,8 +361,8 @@ a.word-wrap{
 /* COLOR */
 .color-offer{color: $colorOffer;}
 .color-need{color: $colorNeed;}
-.color-primary{color: $color-orange;}
-.color-secondary{color: $color-blue;}
+.color-primary{color: $secondary-color;}
+.color-secondary{color: $primary-color;}
 .color-dark-gray{color: $colorDarkGray;}
 .color-light-gray{color: $colorLightGray;}
 
@@ -373,8 +373,8 @@ a.word-wrap{
 
 .background-offer{background-color: $colorOffer;}
 .background-need{background-color: $colorNeed;}
-.background-primary{background-color: $color-orange;}
-.background-secondary{background-color: $color-blue;}
+.background-primary{background-color: $secondary-color;}
+.background-secondary{background-color: $primary-color;}
 .background-white{background-color: #fff;}
 /* /COLOR */
 
@@ -387,11 +387,11 @@ a.link-secondary{
 }
 .link-primary,
 a.link-primary{
-	color: $color-orange;
+	color: $secondary-color;
 }
 .link-secondary,
 a.link-secondary{
-	color: $color-blue;
+	color: $primary-color;
 }
 /* /LINKS */
 
@@ -424,7 +424,7 @@ a.link-secondary{
 	align-items: center;
 	justify-content: center;
 	font: normal normal normal 24px/1 FontAwesome;
-	color: $color-blue;
+	color: $primary-color;
 	background-color: rgba(255,255,255,.4);
 	z-index: 1000;
 }

@@ -1,6 +1,6 @@
 .static-page-container {
 	a:not(.button) {
-		color: $color-blue;
+		color: $primary-color;
 	}
 
 	section.heading {
@@ -96,7 +96,7 @@
 }
 
 .static-page-container h3.new-terms {
-	background: $color-light-gray;
+	background: $colorLightGray;
 	padding: 25px;
 }
 
@@ -204,7 +204,7 @@
 	.panel {
 		margin-bottom:2 * $ui-small-grid-size;
 		margin-top:2 * $ui-small-grid-size;
-		background: $color-light-gray;
+		background: $colorLightGray;
 		background-size: 100% !important;
 		border-radius: $global-radius;
 		padding: 4 * $ui-small-grid-size;
@@ -264,7 +264,7 @@
 		margin-left:$ui-small-grid-size;
 	}
 	p.success {
-		color: $color-green-alt;
+		color: $colorSuccess;
 	}
 }
 

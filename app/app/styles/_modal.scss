@@ -233,7 +233,7 @@ body.ngdialog-open {
 		// }
 	}
 	a {
-		color: $color-blue;
+		color: $primary-color;
 
 		&.button {
 			color: #fff;
@@ -362,13 +362,13 @@ body.ngdialog-open {
 		hr {
 			margin-bottom: 15px;
 			border: none;
-			border-bottom: 1px solid $color-light-gray;
+			border-bottom: 1px solid $colorLightGray;
 		}
 		.text-right a {
-			color: $color-blue;
+			color: $primary-color;
 			margin-top: 11px;
 			&:hover {
-				color: darken($color-blue, 20%);
+				color: darken($primary-color, 20%);
 			}
 		}
 		.link-button {
@@ -381,8 +381,8 @@ body.ngdialog-open {
 		}
 		button {
 			outline: none;
-			background-color: $color-blue;
-			border-color: $color-blue;
+			background-color: $primary-color;
+			border-color: $primary-color;
 			padding: {
 				top: 5px;
 				bottom: 5px;
@@ -393,13 +393,13 @@ body.ngdialog-open {
 			transition: background-color 0.8s,
 			border-color 0.8s;
 			&:hover {
-				background-color: lighten($color-blue, abs($button-function-factor));
-				border-color: lighten($color-blue, abs($button-function-factor));
+				background-color: lighten($primary-color, abs($button-function-factor));
+				border-color: lighten($primary-color, abs($button-function-factor));
 			}
 			&:focus,
 			&:active {
-				background-color: darken($color-blue, abs($button-function-factor));
-				border-color: darken($color-blue, abs($button-function-factor));
+				background-color: darken($primary-color, abs($button-function-factor));
+				border-color: darken($primary-color, abs($button-function-factor));
 			}
 		}
 	}

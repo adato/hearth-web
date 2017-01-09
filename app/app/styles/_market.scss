@@ -3,7 +3,7 @@ $itemBorder: 1px solid #D7D7D7;
 
 .not-found-box {
 	a {
-		color: $color-blue;
+		color: $primary-color;
 		font-weight: $ui-text-weight-bolder;
 	}
 }
@@ -46,19 +46,19 @@ body {
 		}
 
 		&.offer {
-			border-left: $itemBorderWidth solid $color-green;
+			border-left: $itemBorderWidth solid $tertiary-color;
 			.label {
-				border-color: $color-green;
-				color: $color-green;
+				border-color: $tertiary-color;
+				color: $tertiary-color;
 				&.active,
 				&:hover {
-					background-color: $color-green;
+					background-color: $tertiary-color;
 					color: white;
 				}
 			}
 		}
 		&.need {
-			border-left: $itemBorderWidth solid $color-orange;
+			border-left: $itemBorderWidth solid $secondary-color;
 		}
 		.dropdown-container {
 			position: absolute;
@@ -75,7 +75,7 @@ body {
 		._name {
 			a {
 				display: block;
-				color: $color-orange;
+				color: $secondary-color;
 				clear: both;
 				padding-top: 10px;
 				word-wrap: break-word;
@@ -174,7 +174,7 @@ body {
 				}
 
 				.reply-info-link {
-					color: $color-orange;
+					color: $secondary-color;
 				}
 			}
 			.item-top {

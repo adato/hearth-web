@@ -11,12 +11,12 @@
 			display: inline-block;
 			border-radius: 50%;
 			@include transition(color 1s, background-color 1s, text-shadow 1s);
-			border: 2px solid $color-orange;
+			border: 2px solid $secondary-color;
 			padding: $size / 4;
 			padding-top: $size / 5;
 			&:hover {
-				@include text-shadow(0 -1px $color-dark-gray);
-				background-color: lighten($color-orange, 5%);
+				@include text-shadow(0 -1px $quaternary-color);
+				background-color: lighten($secondary-color, 5%);
 				color: white !important;
 			}
 			&.fa:before {

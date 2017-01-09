@@ -21,14 +21,14 @@ $max-modal-window-width:32em;
 		margin-top: 0px;
 	}
 	.success {
-		color: $color-green-alt;
+		color: $colorSuccess;
 	}
 	p {
 		text-align: center;
 	}
 	a,
 	a:visited {
-		color: $color-blue;
+		color: $primary-color;
 	}
 	.register-successful {
 		display: none;
@@ -53,24 +53,24 @@ $max-modal-window-width:32em;
 		padding: 10px;
 		padding-bottom: 1rem;
 		a {
-			border: 2px solid $color-blue;
+			border: 2px solid $primary-color;
 			border-radius: 50%;
 			padding: 8px;
 			font-size: 150%;
 			line-height: 150%;
 			margin-left: 10px;
 			margin-right: 10px;
-			color: $color-blue;
+			color: $primary-color;
 			display: inline-block;
 			width: 55px;
 			height: 55px;
 			transition: background-color .5s;
 		}
 		a:hover {
-			background: lighten($color-blue, 30%);
+			background: lighten($primary-color, 30%);
 		}
 		a:visited {
-			color: $color-blue;
+			color: $primary-color;
 		}
 	}
 	button {
@@ -108,7 +108,7 @@ $max-modal-window-width:32em;
 	.oauth-error {
 		padding:2*$ui-small-grid-size;
 		border-radius:$global-radius;
-		border:1px solid $color-green;
+		border:1px solid $tertiary-color;
 		opacity:1;
 	}
 }

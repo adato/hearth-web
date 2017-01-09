@@ -11,8 +11,8 @@ tags-input.textarea-height > div > .tags {
 
 input:focus,
 textarea:focus {
-	border: 1px solid $color-blue !important;
-	box-shadow: inset 0 0 5px $color-blue !important;
+	border: 1px solid $primary-color !important;
+	box-shadow: inset 0 0 5px $primary-color !important;
 }
 
 input[type="email"] {
@@ -72,21 +72,21 @@ textarea, input {
 	border-color .3s,
 	box-shadow .3s;
 	&:focus {
-		background: lighten($color-light-gray, 20%) !important;
+		background: lighten($colorLightGray, 20%) !important;
 	}
 	&::-webkit-input-placeholder {
-		color: $color-dark-gray;
+		color: $quaternary-color;
 	}
 	&:-moz-placeholder {
-		color: $color-dark-gray;
+		color: $quaternary-color;
 		opacity: 1;
 	}
 	&::-moz-placeholder {
-		color: $color-dark-gray;
+		color: $quaternary-color;
 		opacity: 1;
 	}
 	&:-ms-input-placeholder {
-		color: $color-dark-gray;
+		color: $quaternary-color;
 	}
 }
 
@@ -213,7 +213,7 @@ textarea, input {
 
 .cancel-changes,
 .cancel-changes:focus {
-	color: $color-blue;
+	color: $primary-color;
 	font-weight: bold;
 	&::before{
 		content: '\f00d';
@@ -225,7 +225,7 @@ textarea, input {
 
 .revert-changes,
 .revert-changes:focus {
-	color: $color-blue;
+	color: $primary-color;
 	font-weight: bold;
 	&::before{
 		content: '\f053';

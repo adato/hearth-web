@@ -18,14 +18,14 @@
 	}
 	.gift-receive {
 		font-size: 170%;
-		color: $color-orange;
+		color: $secondary-color;
 	}
 	.gift-give {
 		font-size: 170%;
-		color: $color-green;
+		color: $tertiary-color;
 	}
 	a {
-		color: $color-blue;
+		color: $primary-color;
 	}
 	.community-listings {
 		.applications {
@@ -40,7 +40,7 @@
 	.application {
 		@extend .clearfix;
 		margin-bottom: 5px;
-		background: lighten($color-blue, 45%);
+		background: lighten($primary-color, 45%);
 		padding: {
 			top: 10px;
 			bottom: 0px;
@@ -70,9 +70,9 @@
 				margin-top: 10px;
 			}
 			a {
-				color: darken($color-dark-gray, 20%);
+				color: darken($quaternary-color, 20%);
 				&:hover {
-					color: $color-blue;
+					color: $primary-color;
 				}
 			}
 		}
@@ -104,7 +104,7 @@
 	a {
 		@extend .clearfix;
 		font-size: 2em;
-		border: 2px solid $color-blue;
+		border: 2px solid $primary-color;
 		border-radius: 50%;
 		margin: .5rem;
 		padding: .5rem;
@@ -113,12 +113,12 @@
 		text-align: center;
 		display: inline-block;
 		&.yes:hover {
-			color: $color-green;
-			border-color: $color-green;
+			color: $tertiary-color;
+			border-color: $tertiary-color;
 		}
 		&.no:hover {
-			border-color: $color-orange;
-			color: $color-orange;
+			border-color: $secondary-color;
+			color: $secondary-color;
 		}
 	}
 }
