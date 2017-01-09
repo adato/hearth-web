@@ -16,7 +16,7 @@
 				line-height: 1.5;
 				text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
 				a {
-					color: darken(color(3), 40%);
+					color: darken($color-dark-gray, 40%);
 				}
 			}
 			div.short-about {
@@ -28,7 +28,7 @@
 				.fa {
 					display: inline-block;
 					margin-right: 10px;
-					color: color(1);
+					color: $color-orange;
 					margin-left: -27px;
 					float: left;
 				}
@@ -63,8 +63,8 @@
 				line-height: 1;
 				border: none;
 				border-radius: 50%;
-				color: color(4);
-				background: color(3);
+				color: $color-light-gray;
+				background: $color-dark-gray;
 				text-align: center;
 				box-shadow: inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
 				text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
@@ -87,10 +87,10 @@
 				hr {
 					margin: 10px;
 					&.orange {
-						border-color: lighten(color(1), 40);
+						border-color: lighten($color-orange, 40);
 					}
 					&.blue {
-						border-color: lighten(color(5), 30);
+						border-color: lighten($color-blue, 30);
 					}
 				}
 				&.vertical-center {
@@ -105,8 +105,8 @@
 				}
 				&.active,
 				&:hover {
-					background: mix(darken(color(1), 20%), darken(color(3), 10%));
-					border: 10px solid lighten(color(1), 20%);
+					background: mix(darken($color-orange, 20%), darken($color-dark-gray, 10%));
+					border: 10px solid lighten($color-orange, 20%);
 					box-shadow: none;
 					padding: 10px;
 				}
@@ -164,7 +164,7 @@
 				text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
 				position: relative;
 				top: 0.5em;
-				color: color(4);
+				color: $color-light-gray;
 				.bar:first-child {
 					border-top-left-radius: $global-radius;
 					border-bottom-left-radius: $global-radius;
@@ -188,7 +188,7 @@
 					float: left;
 					min-width: 70px;
 					max-width: 530px;
-					color: color(4);
+					color: $color-light-gray;
 					font-weight: bold;
 					box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
 					white-space: nowrap;
@@ -238,14 +238,14 @@
 	}
 	.gift-receive {
 		font-size: 170%;
-		color: color(1);
+		color: $color-orange;
 	}
 	.gift-give {
 		font-size: 170%;
-		color: color(2);
+		color: $color-green;
 	}
 	a {
-		color: color(5);
+		color: $color-blue;
 	}
 	.rating-reply,
 	.ratingReply {
@@ -388,12 +388,12 @@
 	flex-flow: row wrap;
 	width: 100%;
 	.grey {
-		color: darken(color(4), 30%);
+		color: darken($color-light-gray, 30%);
 	}
 
 	// @kamil - this needs to be cleared to use one global box style
 	.box {
-		background: lighten(color(4), 10%);
+		background: lighten($color-light-gray, 10%);
 
 		// @kamil - only disable top and horizontal paddings to not destroy the design, yet let the bottom padding to be applied from global styles
 		// padding: 0 0 1px 0;
@@ -408,7 +408,7 @@
 		overflow-y: visible;
 		h3 {
 			font-size: 120%;
-			color: color(3);
+			color: $color-dark-gray;
 			margin: 0;
 			padding: $size-small $size-big;
 		}
@@ -425,7 +425,7 @@
 		.messages {
 			text-align: center;
 			font-size: 130%;
-			border: 2px solid color(5);
+			border: 2px solid $color-blue;
 			padding: {
 				left: 30px;
 				top: 20px;
@@ -433,9 +433,9 @@
 				bottom: 20px;
 			}
 			.fa {
-				color: color(5);
+				color: $color-blue;
 				border-radius: 50%;
-				border: 2px solid lighten(color(5), 30%);
+				border: 2px solid lighten($color-blue, 30%);
 				padding: 8px;
 				display: inline-block;
 				margin-right: 15px;
@@ -452,10 +452,10 @@
 					right: 20px;
 				}
 				&.positive {
-					background: lighten(color(2), 45%);
+					background: lighten($color-green, 45%);
 				}
 				&.negative {
-					background: lighten(color(5), 45%);
+					background: lighten($color-blue, 45%);
 				}
 				small {
 					font-size: 0.85rem;
@@ -491,7 +491,7 @@
 				display: block;
 				transition: all 0.5s ease 0s;
 				&:hover {
-					color: darken(color(5), 20%);
+					color: darken($color-blue, 20%);
 				}
 			}
 			.ad {
@@ -507,7 +507,7 @@
 					vertical-align: super;
 				}
 				.ad-controls {
-					color: color(5);
+					color: $color-blue;
 					cursor: pointer;
 					float: right;
 					.fa {
@@ -515,7 +515,7 @@
 					}
 					transition: all 0.5s ease 0s;
 					.fa:hover {
-						color: darken(color(5), 20%);
+						color: darken($color-blue, 20%);
 					}
 				}
 			}
@@ -545,14 +545,14 @@
 			.descr {
 				.fa {
 					width: 8px;
-					color: color(1);
+					color: $color-orange;
 					margin-right: 15px;
 				}
 			}
 			.social {
 				font-size: 1.5rem;
 				.fa {
-					color: color(5);
+					color: $color-blue;
 					margin: 0 1px;
 				}
 				.fa:hover {
@@ -659,9 +659,9 @@
 				position: relative;
 				top: -3px;
 				width: initial;
-				background: darken(color(4), 30%);
-				color: lighten(color(4), 20%);
-				border-top: 2px solid darken(color(4), 20%);
+				background: darken($color-light-gray, 30%);
+				color: lighten($color-light-gray, 20%);
+				border-top: 2px solid darken($color-light-gray, 20%);
 				text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
 				min-width: 250px;
 				font-size: 1rem;
@@ -674,12 +674,12 @@
 				border-top-left-radius: $global-radius / 2;
 				border-top-right-radius: $global-radius / 2;
 				&:hover {
-					border-top: 2px solid darken(color(4), 30%);
-					background: darken(color(4), 40%);
+					border-top: 2px solid darken($color-light-gray, 30%);
+					background: darken($color-light-gray, 40%);
 				}
 				&.selected {
-					background: color(1);
-					border-top: 2px solid lighten(color(1), 20%);
+					background: $color-orange;
+					border-top: 2px solid lighten($color-orange, 20%);
 				}
 			}
 		}
@@ -699,7 +699,7 @@
 	&:after {
 		content: " ";
 		display: block;
-		border-bottom: 4px solid color(1);
+		border-bottom: 4px solid $color-orange;
 		width: 100%;
 	}
 }
@@ -721,9 +721,9 @@
 			margin-top: 20px;
 		}
 		a {
-			color: darken(color(3), 20%);
+			color: darken($color-dark-gray, 20%);
 			&:hover {
-				color: color(5);
+				color: $color-blue;
 			}
 		}
 		.name {
@@ -758,8 +758,8 @@
 }
 
 .profile-button {
-	background-color: color(5);
-	border-color: color(5);
+	background-color: $color-blue;
+	border-color: $color-blue;
 	top: 0;
 	vertical-align: bottom;
 	padding-left: $size-small;
@@ -779,23 +779,23 @@
 	&:hover,
 	&:focus,
 	&:visited {
-		background: darken(color(5), 20%);
-		border-color: darken(color(5), 20%);
+		background: darken($color-blue, 20%);
+		border-color: darken($color-blue, 20%);
 	}
 	&.button-red {
-		background: color(1);
-		border-color: color(1);
+		background: $color-orange;
+		border-color: $color-orange;
 		color: white;
 		&:hover {
-			background: darken(color(1), 20%);
-			border-color: darken(color(1), 20%);
+			background: darken($color-orange, 20%);
+			border-color: darken($color-orange, 20%);
 		}
 	}
 	&.solid {
 		opacity: 0.99;
 	}
 	&.outline {
-		color: color(5);
+		color: $color-blue;
 		opacity: .8;
 		background: white;
 		border-width: 2px;
@@ -808,7 +808,7 @@
 			;
 		}
 		&:hover {
-			color: darken(color(5), 20%);
+			color: darken($color-blue, 20%);
 		}
 	}
 	&.tall {

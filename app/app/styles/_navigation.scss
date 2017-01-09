@@ -8,7 +8,7 @@ $topBarImageSize: 1.8em;
 		&.active {
 			font-weight: bold;
 			color: white;
-			background-color: $colorOrange;
+			background-color: $color-orange;
 		}
 	}
 
@@ -72,7 +72,7 @@ $topBarImageSize: 1.8em;
 	width:100vw;
 	box-shadow: 0 2px 2px rgba(black, 0.3);
 	min-height: 72px;
-	background-color: $colorOrange;
+	background-color: $color-orange;
 
 	#searchContainer {
 		display: none;
@@ -292,7 +292,7 @@ $topBarImageSize: 1.8em;
 					position: absolute;
 					right: -5px;
 					top: 12px;
-					color: color(1);
+					color: $color-orange;
 					cursor: pointer;
 				}
 			}
@@ -314,18 +314,18 @@ $topBarImageSize: 1.8em;
 				}
 				& .header-item,
 				& .header-item > i{
-					color: lighten(color(1), 25%);
+					color: lighten($color-orange, 25%);
 					transition: color 1s, text-shadow 2s;
 				}
 				.avatar-image{
 					transition: opacity 1s;
-					box-shadow: 0 0 0px 2px lighten(color(1), 25%);
+					box-shadow: 0 0 0px 2px lighten($color-orange, 25%);
 				}
 				&>*{
 					display: inline-block;
 					text-align: center;
 					label {
-						color: lighten(color(1), 25%);
+						color: lighten($color-orange, 25%);
 						transition: color 1s, text-shadow 2s;
 						line-height: 1;
 						font-size: 13px;
@@ -336,14 +336,14 @@ $topBarImageSize: 1.8em;
 					}
 					&.active,
 					&:hover {
-						color: lighten(color(1), 50%) !important;
+						color: lighten($color-orange, 50%) !important;
 
 						label {
-							color: lighten(color(1), 50%);
+							color: lighten($color-orange, 50%);
 						}
 						.avatar-image{
 							opacity: 1;
-							box-shadow: 0 0 0px 2px lighten(color(1), 25%), 0 0 5px white;
+							box-shadow: 0 0 0px 2px lighten($color-orange, 25%), 0 0 5px white;
 						}
 					}
 				}
@@ -360,7 +360,7 @@ $topBarImageSize: 1.8em;
 					}
 					& > a:hover .messages-icon::after,
 					& > a.active .messages-icon::after {
-						color: lighten(color(1), 50%);
+						color: lighten($color-orange, 50%);
 					}
 					.messages-icon {
 						background: none;

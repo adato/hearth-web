@@ -21,14 +21,14 @@ $max-modal-window-width:32em;
 		margin-top: 0px;
 	}
 	.success {
-		color: color(6);
+		color: $color-green-alt;
 	}
 	p {
 		text-align: center;
 	}
 	a,
 	a:visited {
-		color: color(5);
+		color: $color-blue;
 	}
 	.register-successful {
 		display: none;
@@ -53,24 +53,24 @@ $max-modal-window-width:32em;
 		padding: 10px;
 		padding-bottom: 1rem;
 		a {
-			border: 2px solid color(5);
+			border: 2px solid $color-blue;
 			border-radius: 50%;
 			padding: 8px;
 			font-size: 150%;
 			line-height: 150%;
 			margin-left: 10px;
 			margin-right: 10px;
-			color: color(5);
+			color: $color-blue;
 			display: inline-block;
 			width: 55px;
 			height: 55px;
 			transition: background-color .5s;
 		}
 		a:hover {
-			background: lighten(color(5), 30%);
+			background: lighten($color-blue, 30%);
 		}
 		a:visited {
-			color: color(5);
+			color: $color-blue;
 		}
 	}
 	button {
@@ -108,52 +108,10 @@ $max-modal-window-width:32em;
 	.oauth-error {
 		padding:2*$ui-small-grid-size;
 		border-radius:$global-radius;
-		border:1px solid color(2);
+		border:1px solid $color-green;
 		opacity:1;
 	}
 }
-
-/*.terms {
-	display: block !important;
-	box-sizing: initial;
-	background: lighten(color(4), 10%);
-	border-top-right-radius: $global-radius;
-	border-bottom-right-radius: $global-radius;
-	border-left: 1px solid color(3);
-	position: absolute;
-	left: 99%;
-	top: 0px;
-	bottom: 0px;
-	width: $terms-width;
-	font-size: $ui-text-font-size;
-	padding: 1rem;
-	padding-right: .5rem;
-	text-align: left;
-	h3 {
-		font-size: $ui-title-font-size;
-		font-weight:bold;
-		&.new-terms { 
-			font-size: $ui-text-font-size;
-			padding:$ui-small-grid-size;
-			font-weight:normal;
-			background:color(4);
-		}
-	}
-	.scroll {
-		overflow-y: scroll;
-		height: 31em;
-		padding-right:5px;
-		* {
-			font-size:$ui-text-font-size;
-		}
-	}
-	p {
-		text-align: justify;
-	}
-	&.ng-hide {
-		opacity: 0;
-	}
-}*/
 
 .ngdialog {
 	.register-login-dialog {

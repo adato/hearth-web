@@ -6,7 +6,7 @@
 		margin-top: 6em;
 	}
 	h1 {
-		color: color(1);
+		color: $color-orange;
 		font-size: 1.5rem;
 	}
 	h2 {
@@ -25,10 +25,10 @@
 		font-weight: bold;
 		border: 0;
 		&.blue {
-			background: color(5);
-			background: linear-gradient(180deg, lighten(color(5), 10%) 30%, color(5) 70%);
+			background: $color-blue;
+			background: linear-gradient(180deg, lighten($color-blue, 10%) 30%, $color-blue 70%);
 			&:hover {
-				background: darken(color(5), 20%);
+				background: darken($color-blue, 20%);
 			}
 			i {
 				display: inline-block;

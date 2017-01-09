@@ -1,100 +1,72 @@
-@import "mixins/pallette-color";
-//@import "variables";
+@import "kit/colors";
 
-/* COLOR SETTINGS */
-/* declaration - these should only be used in the assignment below */
-$color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8, #26AF34;
-$colorOrange: color(1);
-$colorGreen: color(2);
-$color_darkGray: color(3);
-$color_lightGray: color(4);
-$colorBlue: color(5);
-$color_greenAlt: color(6);
-$color_lightBlue: #ebf5f7;
-$color_red: red;
-$color_yellow: #fcc000;
+@import "compass";
+@import "settings";
 
-/* assignment */
-$colorOffer: $colorGreen;
-$colorNeed: $colorOrange;
+/* assignment */ //TODO remove from here
+$colorOffer: $color-green;
+$colorNeed: $color-orange;
 
-$colorPrimary: $colorOrange;
-$colorSecondary: $colorBlue;
-$colorTertiary: $colorGreen;
-$colorQuaternary: $color_lightBlue;
+$colorDarkGray: $color-dark-gray;
+$colorLightGray: $color-light-gray;
 
-$colorDarkGray: $color_darkGray;
-$colorLightGray: $color_lightGray;
-
-$colorSuccess: $color_greenAlt;
-$colorDanger: $color_red;
-$colorWarning: $color_yellow;
+$colorSuccess: $color-green-alt;
+$colorDanger: $color-red;
+$colorWarning: $color-yellow;
 
 /* from bootstrap */
 $state-danger-text: #a94442;
 $state-danger-bg: #f2dede;
 
-/* /COLOR SETTINGS */
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
-@import "settings";
-$fontSize: rem-calc(14);
-@import "compass";
-// import Compass mixins
-
-/*@import "compass/reset";
-@import "compass/layout/stretching";
-@import "compass/layout/grid-background";
-@import "compass/utilities/general/min";
-@import "compass/css3/border-radius";
-@import "compass/css3/box-shadow";
-@import "compass/css3/transition";
-@import "compass/css3/font-face";
-@import "compass/css3/shared";
-@import "compass/css3/text-shadow";
-@import "compass/css3/transform";
-@import "compass/typography/links/link-colors";*/
 
 // import parts of Foundation framework
 @import "font-awesome";
 @import "foundation/components/grid",
-//  "foundation/components/accordion",
+  //  "foundation/components/accordion",
 "foundation/components/alert-boxes",
 "foundation/components/block-grid",
-//  "foundation/components/breadcrumbs",
+  //  "foundation/components/breadcrumbs",
 "foundation/components/button-groups",
 "foundation/components/buttons",
 "foundation/components/clearing",
 "foundation/components/dropdown",
-//  "foundation/components/dropdown-buttons",
-//  "foundation/components/flex-video",
+  //  "foundation/components/dropdown-buttons",
+  //  "foundation/components/flex-video",
 "foundation/components/forms",
 "foundation/components/inline-lists",
-//  "foundation/components/joyride",
-//  "foundation/components/keystrokes",
+  //  "foundation/components/joyride",
+  //  "foundation/components/keystrokes",
 "foundation/components/labels",
-//  "foundation/components/magellan",
+  //  "foundation/components/magellan",
 "foundation/components/orbit",
-//  "foundation/components/pagination",
-//  "foundation/components/panels",
-//  "foundation/components/pricing-tables",
+  //  "foundation/components/pagination",
+  //  "foundation/components/panels",
+  //  "foundation/components/pricing-tables",
 "foundation/components/progress-bars",
 "foundation/components/range-slider",
-//  "foundation/components/reveal",
-//  "foundation/components/side-nav",
-//  "foundation/components/split-buttons",
+  //  "foundation/components/reveal",
+  //  "foundation/components/side-nav",
+  //  "foundation/components/split-buttons",
 "foundation/components/sub-nav",
-// "foundation/components/switch",
+  // "foundation/components/switch",
 "foundation/components/switches",
 "foundation/components/tables",
-//  "foundation/components/tabs",
+  //  "foundation/components/tabs",
 "foundation/components/thumbs",
-//	"foundation/components/tooltips",
-//	"foundation/components/top-bar",
-//	"foundation/components/type",
+  //	"foundation/components/tooltips",
+  //	"foundation/components/top-bar",
+  //	"foundation/components/type",
 "foundation/components/offcanvas",
 "foundation/components/visibility";
+
+// allow radius for foundation button
+button, .button {
+  @include button($radius: true);
+}
+
 @import "mixins/social";
 @import "avatar";
 @import "navigation";
@@ -148,110 +120,117 @@ $fontSize: rem-calc(14);
 @import "notifyOverlay";
 @import "filesPicker";
 @import "uiSelect";
+@import "kit/button";
 
-html{
-	font-size: 14px;
+html {
+  font-size: 14px;
 }
+
 body {
-	background-image: inline-image("bg.png");
-	background-color: #faf8eb;
-	background-repeat: no-repeat;
-	background-position: 50% top;
-	.main-container {
-		display: block;
-		margin: auto;
-		margin-bottom: 2em;
-	}
-	font-family: $body-font-family;
-	-webkit-text-size-adjust: 100%; // for mobile
+  background-image: inline-image("bg.png");
+  background-color: #faf8eb;
+  background-repeat: no-repeat;
+  background-position: 50% top;
+  .main-container {
+    display: block;
+    margin: auto;
+    margin-bottom: 2em;
+  }
+  font-family: $body-font-family;
+  -webkit-text-size-adjust: 100%; // for mobile
 }
-.no-scroll{
-	overflow-y: hidden;
+
+.no-scroll {
+  overflow-y: hidden;
 }
+
 html.no-scroll,
-html.no-scroll body{
-	overflow: hidden;
-    position: relative;
-    height: 100%;
+html.no-scroll body {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
 }
+
 a.no-link,
-a.no-link:hover{
-	padding: 0 !important;
-	text-decoration: none !important;
-	background: transparent !important;
-	cursor: default !important;
+a.no-link:hover {
+  padding: 0 !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  cursor: default !important;
 }
 
 @import "hearthIcons";
 meta.foundation-data-attribute-namespace {
-	font-family: false;
+  font-family: false;
 }
 
 img.blur {
-	-webkit-filter: blur(2px);
-	-moz-filter: blur(2px);
-	-o-filter: blur(2px);
-	-ms-filter: blur(2px);
-	filter: blur(2px);
-	filter: url(/app/images/blur.svg#blur);
-	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='2');
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  filter: url(/app/images/blur.svg#blur);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='2');
 }
 
 .vis-hidden {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 .hide {
-	display: none;
+  display: none;
 }
 
 .text-in-input {
-	position: relative;
-	.fa {
-		position: absolute;
-		top: 0.783rem;
-		right: 0.5rem;
-		cursor: pointer;
-		padding-left: 10px;
-		padding-right: 10px;
-		&:hover {
-			opacity: 0.7;
-		}
-	}
+  position: relative;
+  .fa {
+    position: absolute;
+    top: 0.783rem;
+    right: 0.5rem;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 .capital {
-	* {
-		text-transform: capitalize;
-	}
+  * {
+    text-transform: capitalize;
+  }
 }
 
 .margin-top {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .alert-box {
-	transition-property: none;
-	&.error {
-		color: white;
-	}
+  transition-property: none;
+  &.error {
+    color: white;
+  }
 }
 
-.main-container{
-	line-height: 1.3;
+.main-container {
+  line-height: 1.3;
 }
 
 .loading {
-	@extend .clearfix;
-	position: relative;
-	font-size: 2rem;
-	opacity: 0.7;
-	/* height: 40px; */
-	.fa {
-		margin-right: 0.5rem;
-	}
+  @extend .clearfix;
+  position: relative;
+  font-size: 2rem;
+  opacity: 0.7;
+  /* height: 40px; */
+  .fa {
+    margin-right: 0.5rem;
+  }
 }
 
 .tab-bar .hearth-logo {
-	max-width: 150px;
+  max-width: 150px;
 }
+
+
