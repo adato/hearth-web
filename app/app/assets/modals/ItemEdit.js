@@ -7,62 +7,67 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http', '$q',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http, $q) {
 		var POST_LANGUAGE = 'postLanguage';
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.limitPixelSize = 200; // Pixels
 		$scope.maxImageSizeLimit = 5; // MB
-		// $scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
+
 		$scope.uploadResource = function(file) {
-			return Post.announceAttachment({
-				// config object for path
-				postId: $scope.post._id,
-			}, {
-				// object for payload
-				filename: file.name
-			}, function(data) {
-				// callback from $resource
-				// function for upload to s3
-				// and append info to scope items
-				var pathPrefix = (data.url + '/' + data.key).replace("${filename}", file.name);
+			return $q(function(resolve, reject) {
+				Post.announceAttachment({
+					postId: $scope.post._id,
+				}, {
+					filename: file.name
+				}, function(data) {
 
-				/*	this should append all file data as multipart --- it works, but all multipart data get into the file and it is unreadable
-
+					var safeData = angular.merge({}, data);
+					delete safeData.url;
+					delete safeData.host;
+					delete safeData.$promise;
+					delete safeData.$resolved;
 					var fd = new FormData();
-					fd.append('file', file);
-		
-					for (var i in data) {
-						var key = i;
-						var item = data[key];
-						if (typeof item !== 'function') fd.append(key, item);
-					};
-
-// this is another way to create FormData -- haven`t tried yet, may work better
-//				var fd = new FormData();
-//				fd.append('key', key);
-//				fd.append('Content-Type', file.type);
-//				fd.append('AWSAccessKeyId', data.key);
-//				fd.append('policy', data.policy);
-//				fd.append('signature', data['x-amz-signature']);
-//				fd.append("file", file);
-//				fd.append('acl', data.acl);
-
-				*/
-
-				// id does the request to S3, put data there
-				// if FormData is used, fd goes instead of file
-				return $http.put(pathPrefix, file, {
-					withCredentials: false,
-					headers: {
-						'Content-Type': file.type
+					for (var prop in safeData) {
+						if (data.hasOwnProperty(prop)) fd.append(prop, safeData[prop]);
 					}
-				});
+					fd.append('file', file);
 
+					// cleanup headers for upload call
+					var apiTokenHeader = $http.defaults.headers.common["X-API-TOKEN"];
+					delete $http.defaults.headers.common["X-API-TOKEN"];
+					var apiVersionHeader = $http.defaults.headers.common["X-API-VERSION"];
+					delete $http.defaults.headers.common["X-API-VERSION"];
+
+					$http.post(data.url, fd, {
+						withCredentials: false,
+						headers: {
+							'Content-Type': undefined
+						}
+					}).then(function(res) {
+
+						var fileLink = res.data.match('<Location>(.*?)</Location>');
+						resolve({
+							public_url: fileLink[1]
+						});
+
+					}, reject);
+
+					// return headers to their default values
+					// console.log('token', apiTokenHeader, 'version', apiVersionHeader);
+					$http.defaults.headers.common["X-API-TOKEN"] = apiTokenHeader;
+					$http.defaults.headers.common["X-API-VERSION"] = apiVersionHeader;
+
+				}, reject);
 			});
 		};
+
+		$scope.amazonTransform = function(res) {
+			return res.data.match('<Location>(.*?)</Location>')[1];
+		};
+
 		$scope.imagesCount = 0;
 		$scope.authorList;
 		$scope.imageSizesSum = 0;
@@ -300,7 +305,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		/**
 		 * Validate form before submit to API
 		 */
-		$scope.testForm = function(post) {
+		function testForm(post) {
 			var res = false;
 			$scope.createAdForm.$setDirty();
 
@@ -449,7 +454,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
 
-			if (!$scope.testForm(post)) {
+			if (!testForm(post)) {
 				$timeout(function() {
 					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
 					$scope.showInvalidPostMessage = true;
@@ -547,7 +552,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if ($scope.isInvalid) {
 				$scope.showInvalidPostMessage = true;
 				$timeout(function() {
-					$scope.testForm($scope.post);
+					testForm($scope.post);
 				}, 1000);
 			}
 		};

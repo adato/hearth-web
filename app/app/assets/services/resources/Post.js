@@ -115,39 +115,16 @@ angular.module('hearth.services').factory('Post', [
 					container: '.notify-report-container'
 				}
 			},
-			uploadAttachment: {
-				url: $$config.apiPath + '/posts/:postId/attachments',
-				method: 'POST',
-				headers: {
-					'Content-Type': undefined
-				},
-				errorNotify: false,
-				transformRequest: function(data) {
-					var fd = new FormData();
-					if (data.file) fd.append('file', data.file);
-					return fd;
-				}
-			},
+
+			// function to use to get presigned url for amazon direct upload
+			// resolves a json with
+			//  * url to upload images to
+			//  * presigned time-limited key that allows the upload
+			//  * other information required by cdn enabling the upload
 			announceAttachment: {
-				url: $$config.apiPath + '/health', // just any endpoint 
-				//url: $$config.apiPath + '/posts/:postId/attachments/presigned',
-				method: 'GET',
+				url: $$config.apiPath + '/posts/:postId/attachments/presigned',
+				method: 'POST',
 				errorNotify: false,
-				transformResponse: function() {
-					// return mock response here
-					return {
-						"key": "tmp_uploads/b6198f9e-8aed-4e99-ae09-6a6ba2706525/${filename}",
-						"success_action_status": "201",
-						"acl": "public-read",
-						"policy": "eyJleHBpcmF0aW9uIjoiMjAxNy0wMS0wM1QxNDo1NDowMVoiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJoZWFydGgtbmV0LXRvcG1vbmtzLWRldmVsb3BtZW50In0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCJ0bXBfdXBsb2Fkcy9iNjE5OGY5ZS04YWVkLTRlOTktYWUwOS02YTZiYTI3MDY1MjUvIl0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDEifSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJ4LWFtei1jcmVkZW50aWFsIjoiQUtJQUpPNkVOV0JDNzNaV0dPR0EvMjAxNzAxMDMvZXUtd2VzdC0xL3MzL2F3czRfcmVxdWVzdCJ9LHsieC1hbXotYWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsieC1hbXotZGF0ZSI6IjIwMTcwMTAzVDEzNTQwMVoifV19",
-						"x-amz-credential": "AKIAJO6ENWBC73ZWGOGA/20170103/eu-west-1/s3/aws4_request",
-						"x-amz-algorithm": "AWS4-HMAC-SHA256",
-						"x-amz-date": "20170103T135401Z",
-						"x-amz-signature": "69fa0f4dd2458f00a4dfb3bb6e27c022f875240583c2a63e90dce11f0d96c78a",
-						"url": "https://hearth-net-topmonks-development.s3-eu-west-1.amazonaws.com",
-						"host": "hearth-net-topmonks-development.s3-eu-west-1.amazonaws.com"
-					};
-				}
 			}
 		});
 	}
