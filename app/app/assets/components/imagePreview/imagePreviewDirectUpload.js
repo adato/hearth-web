@@ -7,7 +7,7 @@
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('imagePreview', [
+angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
 	'$timeout', '$parse', '$rootScope', 'ImageLib', '$log',
 	function($timeout, $parse, $rootScope, ImageLib, $log) {
 		return {
@@ -16,6 +16,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 			scope: {
 				files: '=?',
 				uploadResource: '=?',
+				uploadResTransform: '=',
 				fileSizes: '=?',
 				limit: '=',
 				uploadingNotifier: '&',
@@ -81,11 +82,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 					return false;
 				}
 
-				/**
-				 *	Pushes data into the scope.files object, which should be the controller model
-				 */
 				function pushResult(data, img) {
-					console.log(data, scope.singleFile);
 					if (scope.singleFile) {
 						scope.files = data;
 					} else {
@@ -101,12 +98,25 @@ angular.module('hearth.directives').directive('imagePreview', [
 						return scope.error.badSizePx = true;
 
 					// if there is not upload resource, upload images later
-					if (!scope.uploadResource) return pushResult({
-						file: imgFile.target.result,
-						toBeUploaded: fileItself
-					}, {
-						total: 0
-					});
+					if (!scope.uploadResource) {
+						var size = ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
+
+						var canvas = ImageLib.resize(img, size, true);
+						return ImageLib.cropSmart(canvas, size, function(resized) {
+
+							resized = ExifRestorer.restore(imgFile.target.result, resized);
+
+							if (resized.split(',').length == 1) {
+								resized = 'data:image/jpeg;base64,' + resized;
+							}
+							pushResult({
+								file: resized,
+								toBeUploaded: fileItself
+							}, {
+								total: 0
+							});
+						});
+					}
 
 					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize &&
 						imgFile.total > (limitSize * 1024 * 1024)
@@ -120,8 +130,10 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
-						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, fileItself, function(res) {
+
+						scope.uploadResource(fileItself).then(function(res) {
 							scope.uploading--;
+
 							pushResult(res, {
 								total: 0
 							});
@@ -130,7 +142,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 							scope.uploading--;
 							scope.error.uploadError = true;
 							$log.error('Error: ', err);
-							$('input', el).val("");
+							$('input', el).val('');
 						});
 					}, 50);
 				}
@@ -184,7 +196,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 				});
 
 				return el.bind('change', function(event) {
-					console.log(event);
 					previewImage(el, scope.limit); // 5 mb limit
 					if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 				});

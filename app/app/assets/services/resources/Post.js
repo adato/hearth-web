@@ -115,18 +115,16 @@ angular.module('hearth.services').factory('Post', [
 					container: '.notify-report-container'
 				}
 			},
-			uploadAttachment: {
-				url: $$config.apiPath + '/posts/:postId/attachments',
+
+			// function to use to get presigned url for amazon direct upload
+			// resolves a json with
+			//  * url to upload images to
+			//  * presigned time-limited key that allows the upload
+			//  * other information required by cdn enabling the upload
+			announceAttachment: {
+				url: $$config.apiPath + '/posts/:postId/attachments/presigned',
 				method: 'POST',
-				headers: {
-					'Content-Type': undefined
-				},
 				errorNotify: false,
-				transformRequest: function(data) {
-					var fd = new FormData();
-					if (data.file) fd.append('file', data.file);
-					return fd;
-				}
 			}
 		});
 	}
