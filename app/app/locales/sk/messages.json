@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 dni",
 			"ADS_ALL": "Všetky inzeráty",
-			"ADS_NEED": "Inzeráty prijmem",
-			"ADS_OFFER": "Inzeráty venujem",
+			"ADS_NEED": "Len želanie <small>(prijmem aj požičiam si)<\/small>",
+			"ADS_OFFER": "Len dary <small>(venujem i požičiam)<\/small>",
 			"BY_AUTHOR": "Podľa autora",
 			"BY_LOCATION": "Podľa miesta",
 			"BY_TIME": "Podľa času",
@@ -1758,8 +1758,8 @@
 	"RATING_POST_TITLE": "Společné inzeráty",
 	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
 	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
-	"LEND": "Půjčím",
-	"BORROW": "Půjčím si",
+	"LEND": "Požičiam",
+	"BORROW": "Požičiam si",
 	"MAILGUN_VALIDATION_DID_YOU_MEAN": "Mal(a) si na mysli ",
 	"LIGHTBOX_PREVIMAGE": "Predchádzajúci",
 	"LIGHTBOX_NEXTIMAGE": "Nasledujúci",
@@ -1776,8 +1776,8 @@
 		"CONNECTIONS": {
 			"COMMON_USERS": {
 				"one": "Spoločný známy",
-				"other": "{{ count }} spoločných známych:",
-				"few": "{{ count }} společní známí:"
+				"other": "<b>{{ count }}<\/b> spoločných známych:",
+				"few": "<b>{{ count }}<\/b> spoloční známi:"
 			},
 			"AND_X_OTHER": {
 				"one": "a 1 ďalší",
@@ -1786,10 +1786,18 @@
 			},
 			"COMMON_COMMUNITIES": {
 				"one": "Spoločná komunita",
-				"few": "{{ count }} spoločné komunity:",
-				"other": "{{ count }} spoločných komunit:"
+				"few": "<b>{{ count }}<\/b> spoločné komunity:",
+				"other": "<b>{{ count }}<\/b> spoločných komunit:"
 			}
 		}
 	},
-	"AND": "a"
+	"AND": "a",
+	"OFFER_LEND": "Venujem alebo požičiam",
+	"NEED_BORROW": "Prijmem alebo si požičiam",
+	"WE_NEED_BORROW": "Prijmeme alebo si požičiame",
+	"WE_OFFER_LEND": "Venujeme alebo požičiame",
+	"WE_BORROW": "Požičiame si",
+	"WE_LEND": "Požičiame",
+	"POST_BORROW_LEND_INFOTEXT": "Je to tu! Želali ste si to a my želania radi plníme. Po novom môžete nielen darovať, ale aj požičiavať.<br \/>\n<br \/>\n<em>Vyber si:<\/em> Venujem \/ Požičiam alebo oboje. Rovnako tak: Prijmem \/ Požičiam si alebo oboje. A idemeee!",
+	"LOAD_NEXT": "Načíst další"
 }

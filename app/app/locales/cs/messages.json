@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 dny",
 			"ADS_ALL": "Všechny dary a přání",
-			"ADS_NEED": "Jen přání",
-			"ADS_OFFER": "Jen dary",
+			"ADS_NEED": "Jen přání <small>(přijmu i půjčím si)<\/small>",
+			"ADS_OFFER": "Jen dary <small>(věnuji i půjčím)<\/small>",
 			"BY_AUTHOR": "Podle autora",
 			"BY_LOCATION": "Podle umístění",
 			"BY_TIME": "Podle času",
@@ -1776,8 +1776,9 @@
 		"CONNECTIONS": {
 			"COMMON_USERS": {
 				"one": "Společný známý",
-				"other": "{{ count }} společných známých:",
-				"few": "{{ count }} společní známí:"
+
+				"other": "<b>{{ count }}<\/b> společných známých:",
+				"few": "<b>{{ count }}<\/b> společní známí:"
 			},
 			"AND_X_OTHER": {
 				"one": "a 1 další",
@@ -1786,10 +1787,19 @@
 			},
 			"COMMON_COMMUNITIES": {
 				"one": "Společná komunita ",
-				"few": "{{ count }} společné komunity:",
-				"other": "{{ count }} společných komunit:"
+
+				"few": "<b>{{ count }}<\/b> společné komunity:",
+				"other": "<b>{{ count }}<\/b> společných komunit:"
 			}
 		}
 	},
-	"AND": "a"
+	"AND": "a",
+	"OFFER_LEND": "Věnuji nebo půjčím",
+	"NEED_BORROW": "Přijmu nebo si půjčím",
+	"WE_NEED_BORROW": "Přijmeme nebo si půjčíme",
+	"WE_OFFER_LEND": "Věnujeme nebo půjčíme",
+	"WE_BORROW": "Půjčíme si",
+	"WE_LEND": "Půjčíme",
+	"POST_BORROW_LEND_INFOTEXT": "Je to tady! Přáli jste si to a my přání plníme rádi. Nově si můžete nejen darovat, ale také půjčovat.<br \/>\n<br \/>\n<em>Vyber si:<\/em> Věnuji \/ Půjčím nebo obojí. Stejně tak: Přijmu \/ Půjčím si nebo obojí. A jedém!",
+	"LOAD_NEXT": "Načíst další"
 }

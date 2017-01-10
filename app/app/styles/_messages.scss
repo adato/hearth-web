@@ -244,19 +244,16 @@
 				.conversation-add-participants {
 					.user-picker {
 						margin-top: 10px;
+						display: flex;
 
 						.ui-select-container {
 							margin-bottom: 0;
 						}
 
-						.button-send {
-							float: right;
-							width: 25%;
-						}
-
 						&.filled {
 							.ui-select-container {
-								width: 75%;
+								flex: 1;
+								margin-right: 15px;
 							}
 						}
 					}

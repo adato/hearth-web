@@ -239,7 +239,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var actions = {
 				user: User.edit(transformedData).$promise
 			};
-			if ($scope.profile.avatar.toBeUploaded) actions.avatar = User.uploadAvatar({
+			if ($scope.profile.avatar && $scope.profile.avatar.toBeUploaded) actions.avatar = User.uploadAvatar({
 				_id: $scope.profile._id
 			}, $scope.profile.avatar.toBeUploaded, Auth.refreshUserInfo).$promise;
 			$q.all(actions).then(function(res) {

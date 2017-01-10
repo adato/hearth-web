@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 days",
 			"ADS_ALL": "All posts",
-			"ADS_NEED": "Needs only",
-			"ADS_OFFER": "Offers only",
+			"ADS_NEED": "Needs only <small>(wish and borrow)<\/small>",
+			"ADS_OFFER": "Offers only <small>(give and lend)<\/small>",
 			"BY_AUTHOR": "By author",
 			"BY_LOCATION": "By place",
 			"BY_TIME": "By time",
@@ -1743,8 +1743,9 @@
 		"CONNECTIONS": {
 			"COMMON_USERS": {
 				"one": "Also followed by ",
-				"other": "{{ count }} mutual connections: ",
-				"few": "{{ count }} společní známí:"
+
+				"other": "<b>{{ count }}<\/b> mutual connections: ",
+				"few": "<b>{{ count }}<\/b> mutual connections:"
 			},
 			"AND_X_OTHER": {
 				"one": "and one more",
@@ -1753,10 +1754,18 @@
 			},
 			"COMMON_COMMUNITIES": {
 				"one": "Also member in ",
-				"few": "Also member in {{ count }} communities:",
-				"other": "Also member in {{ count }} communities:"
+				"few": "Also member in <b>{{ count }}<\/b> communities:",
+				"other": "Also member in <b>{{ count }}<\/b> communities:"
 			}
 		}
 	},
-	"AND": "and"
+	"AND": "and",
+	"OFFER_LEND": "I give or lend",
+	"NEED_BORROW": "I wish or borrow",
+	"WE_NEED_BORROW": "We accept or borrow",
+	"WE_OFFER_LEND": "We give or lend",
+	"WE_BORROW": "We borrow",
+	"WE_LEND": "We lend",
+	"POST_BORROW_LEND_INFOTEXT": "It’s here! You wished for it and we’re happy to deliver. Now you can not only give, but also lend and borrow.<br \/>\n<br \/>\n<em>Take your pick:<\/em> I give\/lend or both. Also: I accept\/borrow or both. Let’s go!",
+	"LOAD_NEXT": "Načíst další"
 }

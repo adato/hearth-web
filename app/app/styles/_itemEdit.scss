@@ -43,7 +43,7 @@
 	font-size: $ui-text-font-size;
 	padding: $ui-grid-size;
 	@media #{$medium-up} {
-		width: 650px;
+		width: 680px;
 	}
 	textarea {
 		height: 85px;
@@ -72,7 +72,6 @@
 	}
 	button.button-send {
 		text-align: center;
-
 		&.red {
 			background: red;
 			color: white;
@@ -196,6 +195,17 @@
 	.keywords {
 		margin-bottom: 1rem;
 	}
+
+	/* only used once on itemEdit */
+	.margin-vertical-8 {
+		margin-left:8px;
+		margin-right:8px;
+	}
+	.button-type-switch>div {
+		line-height:35px;
+		float:left;
+	}
+
 	// any collapsible section
 	section.collapse {
 		&.collapse-expanded {
