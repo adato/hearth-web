@@ -447,6 +447,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			Conversations.get(params, function(res) {
 				conversationListLoading = false;
 				conversationListLoaded = true;
+				if (!res.conversations) return reject(false);
 				var conversationsCount = res.conversations.length;
 
 				// either clean up the conversation list
@@ -464,7 +465,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 						if (dict[conversationList[i]._id]) dict[conversationList[i]._id].alreadyPresent = true;
 
 						// take care of non-up-to-date conversations
-						if (conversationList[i].messages && dict[conversationList[i]._id] && conversationList[i].messages[conversationList[i].messages.length - 1]._id !== dict[conversationList[i]._id].message._id) {
+						if (conversationList[i].messages && dict[conversationList[i]._id] && dict[conversationList[i]._id].message && conversationList[i].messages[conversationList[i].messages.length - 1]._id !== dict[conversationList[i]._id].message._id) {
 							// TODO this hack can be removed with the introduction of flag instead of plain .messages deletion
 							// It basically just checks that we dont delete the conversation that we have opened
 							if ($state.params.id === conversationList[i]._id) {
