@@ -308,6 +308,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				index: i
 			};
 		}
+
 		return {
 			removed: [],
 			index: void 0

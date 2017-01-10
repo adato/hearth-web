@@ -28,7 +28,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// don't really know what this one is for
 		$scope.conversationLoadInProgress = false;
-		var allConversationsLoaded = false;
 
 		// the conversation list
 		$scope.conversations = false;
@@ -110,14 +109,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				}, 50);
 				return (cb && typeof(cb) === 'function' ? cb(res.conversations) : false);
 			});
-		};
+		}
 
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
-			if ($scope.conversationLoadInProgress || allConversationsLoaded) return false;
-
-			// disable loading bottom sooner that when at least some conversations are loaded
-			if (!($scope.conversations && $scope.conversations.length)) return false;
+			if ($scope.conversationLoadInProgress || $scope.allConversationsLoaded) {
+				return false;
+			}
 
 			$scope.conversationLoadInProgress = true;
 			var config = {
@@ -125,8 +123,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			};
 			extendParams(config);
 
-			ConversationAux.loadConversations(config).then(function(res) {
-				if (res.thatsAllFolks) allConversationsLoaded = true;
+			ConversationAux.loadConversations(params).then(function(res) {
+				if (res.thatsAllFolks) {
+					$scope.allConversationsLoaded = true;
+				}
+
 				$scope.conversationLoadInProgress = false;
 				$timeout(function() {
 					$scope.$broadcast('scrollbarResize');
@@ -143,11 +144,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		}
 
-		function loadCommunityConversations() {
-			Conversations.getCommunityConversations(function(res) {
-				$scope.communityConversations = res.communities;
-			});
-		}
+        function loadCommunityConversations() {
+          Conversations.getCommunityConversations(function(res) {
+            $scope.communityConversations = res.communities;
+          });
+        }
 
 		function init() {
 			$scope.reloading = true;
@@ -179,7 +180,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			$scope.notFound = false;
 			$scope.loadingBottom = false;
-			allConversationsLoaded = false;
+			$scope.allConversationsLoaded = false;
 
 			loadPostConversations();
 			loadCommunityConversations();
