@@ -172,8 +172,8 @@ button.active[disabled] .item-option-bg-type {
 }
 
 .faa-fade-in {
-  animation: fade-in 2s forwards ease-out;
-  -webkit-animation: fade-in 2s forwards ease-out;
+  animation: fade-in .4s forwards ease-out;
+  -webkit-animation: fade-in .4s forwards ease-out;
 }
 
 @keyframes fade-out {
@@ -193,8 +193,8 @@ button.active[disabled] .item-option-bg-type {
 }
 
 .faa-fade-out {
-  animation: fade-out 1.5s forwards;
-  -webkit-animation: fade-out 1.5s forwards;
+  animation: fade-out .4s forwards;
+  -webkit-animation: fade-out .4s forwards;
 }
 
 @-webkit-keyframes pulse {
