@@ -114,17 +114,6 @@ angular.module('hearth.services').factory('Post', [
 					code: 'NOTIFY.POST_HIDE_REPORT_FAILED',
 					container: '.notify-report-container'
 				}
-			},
-
-			// function to use to get presigned url for amazon direct upload
-			// resolves a json with
-			//  * url to upload images to
-			//  * presigned time-limited key that allows the upload
-			//  * other information required by cdn enabling the upload
-			announceAttachment: {
-				url: $$config.apiPath + '/posts/:postId/attachments/presigned',
-				method: 'POST',
-				errorNotify: false,
 			}
 		});
 	}

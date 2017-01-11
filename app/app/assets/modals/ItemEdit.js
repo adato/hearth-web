@@ -13,69 +13,35 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
-		$scope.limitPixelSize = 200; // Pixels
-		$scope.maxImageSizeLimit = 5; // MB
-
-		$scope.uploadResource = function(file) {
-			return $q(function(resolve, reject) {
-				Post.announceAttachment({
-					postId: $scope.post._id,
-				}, {
-					filename: file.name
-				}, function(data) {
-
-					var safeData = angular.merge({}, data);
-					delete safeData.url;
-					delete safeData.host;
-					delete safeData.$promise;
-					delete safeData.$resolved;
-					var fd = new FormData();
-					for (var prop in safeData) {
-						if (data.hasOwnProperty(prop)) fd.append(prop, safeData[prop]);
-					}
-					fd.append('file', file);
-
-					// cleanup headers for upload call
-					var apiTokenHeader = $http.defaults.headers.common["X-API-TOKEN"];
-					delete $http.defaults.headers.common["X-API-TOKEN"];
-					var apiVersionHeader = $http.defaults.headers.common["X-API-VERSION"];
-					delete $http.defaults.headers.common["X-API-VERSION"];
-
-					$http.post(data.url, fd, {
-						withCredentials: false,
-						headers: {
-							'Content-Type': undefined
-						}
-					}).then(function(res) {
-
-						var fileLink = res.data.match('<Location>(.*?)</Location>');
-						resolve({
-							public_url: fileLink[1]
-						});
-
-					}, reject);
-
-					// return headers to their default values
-					// console.log('token', apiTokenHeader, 'version', apiVersionHeader);
-					$http.defaults.headers.common["X-API-TOKEN"] = apiTokenHeader;
-					$http.defaults.headers.common["X-API-VERSION"] = apiVersionHeader;
-
-				}, reject);
-			});
-		};
-
-		$scope.amazonTransform = function(res) {
-			return res.data.match('<Location>(.*?)</Location>')[1];
-		};
 
 		$scope.imagesCount = 0;
 		$scope.authorList;
-		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
-		$scope.imageSizes = [];
 		$scope.character = $$config.postCharacter;
 		$scope.languageList = LanguageList.localizedList;
-
+		$scope.slide = {
+			files: false,
+			date: false,
+			lock: false,
+			communities: false,
+		};
+		$scope.newPost = false;
+		$scope.showError = {
+			files: {},
+			title: false,
+			text: false,
+			character: false,
+			locations: false,
+			valid_until: false
+		};
+		$scope.imageUploadOptions = {
+			uploadingQueue: $scope.imageUploading,
+			error: $scope.showError.files,
+			minSize: 200, // Pixels
+			limitMb: 5,
+			multiple: true,
+			resultPropName: 'public_url'
+		};
 
 		var OFFER = 'offer';
 		var LEND = 'lend';
@@ -138,22 +104,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
-		$scope.slide = {
-			files: false,
-			date: false,
-			lock: false,
-			communities: false,
-		};
-		$scope.newPost = false;
-		$scope.showError = {
-			files: {},
-			title: false,
-			text: false,
-			character: false,
-			locations: false,
-			valid_until: false
-		};
-
 		$scope.sending = false;
 		$scope.pauseSending = false;
 		$scope.twoStepForm = {
@@ -165,10 +115,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.closeThisDialog();
 			}
 		});
-
-		$scope.getImageSizes = function() {
-			return $scope.imageSizesSum;
-		};
 
 		$scope.togglePostType = function() {
 			if (!$scope.post.reply_count) $scope.post.type = $scope.post.type === OFFER ? NEED : OFFER;
@@ -191,20 +137,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// this will recount all images which are not market to be deleted
 		$scope.recountImages = function() {
 			$scope.imagesCount = 0;
-			$scope.imageSizesSum = 0;
 
 			$scope.post.attachments_attributes.forEach(function(item, index) {
 				if (!item.deleted) {
-					$scope.imageSizesSum += $scope.imageSizes[index];
 					$scope.imagesCount++;
 				}
 			});
 		};
 
-		$scope.updateImages = function() {
-			$scope.recountImages();
-			$scope.showError.files = {};
-		};
+		// $scope.updateImages = function() {
+		// 	$scope.recountImages();
+		// 	$scope.showError.files = {};
+		// };
 
 		// remove image from attachments array
 		// if image is already uploaded - mark him to be deleted
@@ -214,7 +158,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			if (!files[index]._id) {
 				files.splice(index, 1);
-				$scope.imageSizes.splice(index, 1);
 			} else {
 				files[index].deleted = true;
 			}
@@ -442,10 +385,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}, $scope.processErrorResult);
 		};
 
-		$scope.uploadingNotifierFunc = function(val) {
-			$scope.imageUploading = val;
-		};
-
 		$scope.save = function(post, activate) {
 			var postData;
 
@@ -582,7 +521,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.toggleLockField();
 		});
 
-		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
+		// $scope.$watch('post.attachments_attributes', $scope.updateImages, true);
+
 		//$scope.$on('postUpdated', $scope.refreshItemInfo); -- do not update post on save, it is handles automatically (by Ploski, 30.5.2016)
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
