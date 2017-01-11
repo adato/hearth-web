@@ -352,14 +352,24 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			loadServices[$scope.pageSegment](params, processData, processDataErr);
 
 			// refresh after new post created
-			if (!inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
+			if (!inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts' || $scope.pageSegment == 'posts')) {
 				$scope.$on('postCreated', function() {
-					$scope.refreshUser(true);
-					loadServices[$scope.pageSegment](params, processData, processDataErr);
+					$timeout(function() {
+						$scope.loadingData = false;
+						$scope.subPageLoaded = false;
+
+						$scope.refreshUser(true);
+						loadServices[$scope.pageSegment](params, processData, processDataErr)
+					}, 800);
 				});
 				$scope.$on('postUpdated', function() {
-					$scope.refreshUser(true);
-					loadServices[$scope.pageSegment](params, processData, processDataErr);
+					$timeout(function() {
+						$scope.loadingData = false;
+						$scope.subPageLoaded = false;
+
+						$scope.refreshUser(true);
+						loadServices[$scope.pageSegment](params, processData, processDataErr)
+					}, 800);
 				});
 
 				// added event listeners - dont add them again
