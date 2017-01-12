@@ -7,14 +7,6 @@ $quaternary-color: #7c766a;
 // temporary
 $colorLightGray: #f4f4f4;
 
-.ha-bg-primary {
-  background-color: $primary-color;
-}
-
-.ha-bg-secondary {
-  background-color: $secondary-color;
-}
-
 .ha-bg-tertiary {
   background-color: $tertiary-color;
 }
@@ -23,5 +15,8 @@ $colorLightGray: #f4f4f4;
   background-color: $quaternary-color;
 }
 
+.ha-bg-inverted {
+  background-color: invert($tertiary-color);
+}
 
 

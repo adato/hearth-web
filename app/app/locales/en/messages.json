@@ -1765,6 +1765,6 @@
 	"WE_OFFER_LEND": "We give or lend",
 	"WE_BORROW": "We borrow",
 	"WE_LEND": "We lend",
-	"POST_BORROW_LEND_INFOTEXT": "It’s here! You wished for it and we’re happy to deliver. Now you can not only give, but also lend and borrow.<br \/>\n<br \/>\n<em>Take your pick:<\/em> I give\/lend or both. Also: I accept\/borrow or both. Let’s go!",
+	"POST_BORROW_LEND_INFOTEXT": "It’s here! You wished for it and we’re happy to deliver. Now you can not only give, but also lend and borrow.<br \/>\n<br \/>\n<em>Take your pick:<\/em> I give \/ lend or both. Also: I borrow \/ wish or both. Let’s go!",
 	"LOAD_NEXT": "Načíst další"
 }

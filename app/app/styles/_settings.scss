@@ -9,15 +9,21 @@ $secondary-color: $secondary-color;
 
 // Buttons
 $button-radius: $global-radius;
-$button-font-weight:600;
-$button-border-width:0.5px;
-$button-border-color:rgba(0,0,0,0.41);
+$button-font-weight: 600;
 
-$button-tny: rem-calc(6);   // 10
-$button-sml: rem-calc(8);   // 14
-$button-med: rem-calc(10);   // 16
-$button-lrg: rem-calc(12);   // 18
+//$button-margin-bottom: rem-calc(20); There is set default margin bottom
 
+$button-tny: rem-calc(6); // 10
+$button-sml: rem-calc(8); // 14
+$button-med: rem-calc(7); // 16
+$button-lrg: rem-calc(12); // 18
+
+$button-function-factor: -10%;
+$button-bg-hover: lighten($primary-color, abs($button-function-factor));
+$secondary-button-bg-hover: lighten($secondary-color, abs($button-function-factor));
+
+
+// rest not checked
 
 $fontSize: rem-calc(14);
 $base-font-size: 100%;
@@ -40,8 +46,6 @@ $input-font-color: $quaternary-color;
 $input-font-size: $global-font-size;
 $input-border-color: $quaternary-color;
 
-$button-function-factor: -10%;
-
 $ui-title-font-size: 16px;
 $ui-smaller-font-size: 12px;
 $ui-text-font-size: $global-font-size;
@@ -55,8 +59,8 @@ $ui-color-disabled: #999;
 $ui-color-lighter: #999;
 $ui-input-height: 30px;
 $ui-button-height: 44px;
-$ui-input-error-color: darken(#ff782e,15%);
-$ui-box-shadow: 0px 0px 5px rgba(100,100,100,.5);
+$ui-input-error-color: darken(#ff782e, 15%);
+$ui-box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
 
 $ui-navbar-height: 100px;
 
@@ -77,7 +81,6 @@ $size-large: 25px;
 
 // font awesome icon used for loading
 $fa-loading-icon: '\f110';
-
 
 // =================================================
 // =================== TAB BAR =====================
@@ -112,7 +115,6 @@ $topbar-link-bg-active: scale-color($topbar-bg, $lightness: -14%);
 
 $topbar-link-font-size: rem-calc(16);
 
-
 // =================================================
 // ============== OFF CANVAS MENU ==================
 // =================================================
@@ -121,23 +123,19 @@ $off-canvas-bg-active: $secondary-color;
 $off-canvas-label-border-bottom: none !default;
 $off-canvas-label-border-top: none !default;
 
-
 // =================================================
 // ================ BREAKPOINTS ====================
 // =================================================
 
-
-$small-breakpoint:  em-calc(640px);
+$small-breakpoint: em-calc(640px);
 $medium-breakpoint: em-calc(959px);
-$large-breakpoint:  em-calc(1440px);
+$large-breakpoint: em-calc(1440px);
 $xlarge-breakpoint: em-calc(1920px);
 
-
-
-$small-range:   (0, $small-breakpoint); /* 0, 640px */
-$medium-range:  ($small-breakpoint  + em-calc(1), $medium-breakpoint); /* 641px, 960 */
-$large-range:   ($medium-breakpoint + em-calc(1), $large-breakpoint); /* 961px, 1440px */
-$xlarge-range:  ($large-breakpoint  + em-calc(1), $xlarge-breakpoint); /* 1441px, 1920px */
+$small-range: (0, $small-breakpoint); /* 0, 640px */
+$medium-range: ($small-breakpoint  + em-calc(1), $medium-breakpoint); /* 641px, 960 */
+$large-range: ($medium-breakpoint + em-calc(1), $large-breakpoint); /* 961px, 1440px */
+$xlarge-range: ($large-breakpoint  + em-calc(1), $xlarge-breakpoint); /* 1441px, 1920px */
 $xxlarge-range: ($xlarge-breakpoint + em-calc(1), em-calc(99999999)); /* 1921px, ... */
 $screen: "only screen";
 $small-up: $screen;

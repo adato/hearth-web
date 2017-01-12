@@ -1,3 +1,15 @@
-.secondary {
-  border-radius: 100px;
+.ha-button-primary {
+  &:focus,
+  &:active {
+    background-color: darken($primary-color, abs($button-function-factor)) !important;
+  }
+  @extend button,.button;
+}
+
+.ha-button-secondary {
+  &:focus,
+  &:active {
+    background-color: darken($secondary-color, abs($button-function-factor)) !important;
+  }
+  @extend .secondary;
 }
