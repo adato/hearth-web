@@ -4,14 +4,16 @@
 $global-radius: 8px;
 
 // Colors
-$primary-color: $primary-color;
-$secondary-color: $secondary-color;
+$primary-color: #1fb1e8;
+$secondary-color: #fa5800;
+$tertiary-color: #a7bd1d;
+$quaternary-color: #7c766a;
 
 // Buttons
 $button-radius: $global-radius;
 $button-font-weight: 600;
 
-//$button-margin-bottom: rem-calc(20); There is set default margin bottom
+$button-margin-bottom: rem-calc(0); //There is set default margin bottom
 
 $button-tny: rem-calc(6); // 10
 $button-sml: rem-calc(8); // 14
@@ -23,7 +25,10 @@ $button-bg-hover: lighten($primary-color, abs($button-function-factor));
 $secondary-button-bg-hover: lighten($secondary-color, abs($button-function-factor));
 
 
-// rest not checked
+// REST NOT CHECKED
+
+
+$colorLightGray: #f4f4f4;
 
 $fontSize: rem-calc(14);
 $base-font-size: 100%;
