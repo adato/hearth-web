@@ -14,7 +14,6 @@
 angular.module('hearth.services').factory('Presign', [
 	'$resource',
 	function($resource) {
-		// return $resource($$config.apiPath + '/presigned');
-		return $resource($$config.apiPath + '/posts/5873a44f2e5e710007d629b7/attachments/presigned');
+		return $resource($$config.apiPath + '/presigned');
 	}
 ]);
