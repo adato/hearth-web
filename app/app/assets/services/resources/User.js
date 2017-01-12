@@ -62,10 +62,22 @@ angular.module('hearth.services').factory('User', [
 				},
 				transformRequest: [function(image) {
 					var fd = new FormData();
-					fd.append('avatar[file]', image)
+					fd.append('avatar[file]', image);
 					return fd;
 				}]
 			},
+
+			// function to use to get presigned url for amazon direct upload
+			// resolves a json with
+			//  * url to upload images to
+			//  * presigned time-limited key that allows the upload
+			//  * other information required by aws enabling the upload
+			announceAvatarUpload: {
+				url: $$config.apiPath + '/users/avatar/presigned',
+				method: 'POST',
+				errorNotify: false
+			},
+
 			editSettings: {
 				method: 'PUT',
 				errorNotify: {

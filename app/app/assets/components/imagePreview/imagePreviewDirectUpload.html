@@ -1,0 +1,12 @@
+<div class="image-preview-container">
+	<div class="image-preview image-upload" ng-class="{uploading: uploadingQueue}">
+		<input class="file-upload-input" ng-if="options.multiple" multiple file-model="picFile" type="file" name="file" accept="image/*" />
+		<input class="file-upload-input" ng-if="!options.multiple" file-model="picFile" type="file" name="file" accept="image/*" />
+		<div class="file-upload-overlay"></div>
+		<div ng-transclude class="image-preview-content"></div>
+	</div>
+	<div ng-if="showErrors && error.badFormat" class="error animate-show" translate="ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: {{ allowedTypes.join(" , ") }} }"></div>
+	<div ng-if="showErrors && error.badMinSize" class="error animate-show" translate="ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize: {{ limit }}"></div>
+	<div ng-if="showErrors && error.badMinSizePx" class="error animate-show" translate="ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize: {{ options.limitPixelSize }}"></div>
+	<div ng-if="showErrors && error.uploadError" class="error animate-show" translate="ERROR_WHILE_UPLOADING"></div>
+</div>

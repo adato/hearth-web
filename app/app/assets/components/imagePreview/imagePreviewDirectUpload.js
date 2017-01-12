@@ -4,48 +4,122 @@
  * @ngdoc directive
  * @name hearth.directives.imagePreview
  * @description
+ *		options:
+ *			- minSize - limit in dimensions (in pixels) (square)
+ *			- limitMb - limit in file size (in MB)
+ *			- uploadingQueue - this property will be assigned an integer - how many more file are queued for upload, 0 if all is uploaded
+ *			- error - object to which to write errors
+ *					- badMinSize
+ *					- badSizePx
+ *					- uploadError
+ *					- badFormat
  * @restrict A
  */
-
 angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
-	'$timeout', '$parse', '$rootScope', 'ImageLib', '$log',
-	function($timeout, $parse, $rootScope, ImageLib, $log) {
+	'$log', 'PresignUploader',
+	function($log, PresignUploader) {
 		return {
 			transclude: true,
-			replace: true,
+			restrict: 'A',
 			scope: {
-				files: '=?',
-				uploadResource: '=?',
-				uploadResTransform: '=',
-				fileSizes: '=?',
-				limit: '=',
-				uploadingNotifier: '&',
-				error: '=?',
-				getImageSizes: '&',
-				limitPixelSize: '=',
-				singleFile: '=',
+				result: '=',
+				options: '=',
 			},
-			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" multiple file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
+			templateUrl: 'assets/components/imagePreview/imagePreviewDirectUpload.html',
 			link: function(scope, el, attrs) {
-				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
-				scope.showErrors = true;
-				scope.error = scope.error || {};
-				scope.uploading = 0;
 
-				// preview jen jednoho souboru? Nebo to budeme davat do pole
-				if (scope.singleFile) {
-					scope.files = scope.files || {};
-				} else {
-					scope.files = scope.files || [];
-				}
+				// if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
+
+
+				var IMAGE_TYPE = /image.*/;
+				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
+				var o = scope.options;
+
+				scope.showErrors = true;
+				o.error = o.error || {};
+				scope.uploadingQueue = 0;
+
+				scope.result = scope.result || (scope.multiple ? [] : {});
 
 				// if we want to show errors outside of directive
-				if (angular.isUndefined(scope.error))
-					scope.showErrors = false;
+				if (angular.isUndefined(o.error)) scope.showErrors = false;
+
+				/////////////////////////
+				/////////////////////////
+				/// BINDINGS
+
+				el.bind('change', function(event) {
+					previewImage(el, o.limitMb);
+				});
+
+				/////////////////////////
+				/////////////////////////
+				/// FUNCTIONS
+
+				function handleImageLoad(img, imgFile, limitSize, fileItself) {
+
+					if (img.width < o.minSize || img.height < o.minSize) {
+						return o.error.badSizePx = true;
+					}
+
+					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize && imgFile.total > (limitSize * 1024 * 1024)) {
+						return o.error.badMinSize = true;
+					}
+
+					scope.uploadingQueue++;
+
+					PresignUploader.upload({
+						file: fileItself
+					}).then(function(res) {
+						scope.uploadingQueue--;
+
+						var result = {
+							file: fileItself
+						};
+						result[o.resultPropName || 'url'] = res.url;
+
+						if (o.multiple) {
+							scope.result.push(result);
+						} else {
+							scope.result = result;
+						}
+
+						$('input', el).val('');
+					}, function(err) {
+						scope.uploadingQueue--;
+						o.error.uploadError = true;
+						$log.error('Error: ', err);
+						$('input', el).val('');
+					});
+				}
+
+				function previewImage(el, limitSize) {
+					var files = $(".file-upload-input", el)[0].files;
+
+					cleanErrors();
+
+					angular.forEach(files, function(file) {
+						if (isInvalidFile(file)) return false;
+
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							var imgFile = e.target.result;
+
+							if (!isInvalidFormat(file, imgFile)) {
+								// this will check image size
+								var image = new Image();
+								image.src = imgFile;
+								return image.onload = function() {
+									handleImageLoad(this, e, limitSize, file);
+								};
+							}
+						};
+						reader.readAsDataURL(file);
+					});
+				}
 
 				function isInvalidFile(file) {
 					var device = detectDevice();
-					var imageType = /image.*/;
 					if (!file)
 						return true;
 
@@ -56,8 +130,8 @@ angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
 							return true;
 						}
 
-						if (!file.type.match(imageType)) {
-							return scope.error.badFormat = true;
+						if (!file.type.match(IMAGE_TYPE)) {
+							return o.error.badFormat = true;
 						}
 					}
 
@@ -76,103 +150,10 @@ angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
 
 					if (!~scope.allowedTypes.indexOf(format)) {
 						// bad format
-						return scope.error.badFormat = true;
+						return o.error.badFormat = true;
 					}
 
 					return false;
-				}
-
-				function pushResult(data, img) {
-					if (scope.singleFile) {
-						scope.files = data;
-					} else {
-						scope.files.push(data);
-						scope.fileSizes.push(img.total);
-					}
-				}
-
-				function handleImageLoad(img, imgFile, limitSize, fileItself) {
-					var resized;
-
-					if (img.width < scope.limitPixelSize || img.height < scope.limitPixelSize)
-						return scope.error.badSizePx = true;
-
-					// if there is not upload resource, upload images later
-					if (!scope.uploadResource) {
-						var size = ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
-
-						var canvas = ImageLib.resize(img, size, true);
-						return ImageLib.cropSmart(canvas, size, function(resized) {
-
-							resized = ExifRestorer.restore(imgFile.target.result, resized);
-
-							if (resized.split(',').length == 1) {
-								resized = 'data:image/jpeg;base64,' + resized;
-							}
-							pushResult({
-								file: resized,
-								toBeUploaded: fileItself
-							}, {
-								total: 0
-							});
-						});
-					}
-
-					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize &&
-						imgFile.total > (limitSize * 1024 * 1024)
-					) {
-						return scope.error.badSize = true;
-					}
-
-					scope.uploading++;
-					scope.$apply();
-					$timeout(function() {
-
-						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
-						resized = ExifRestorer.restore(imgFile.target.result, resized);
-
-						scope.uploadResource(fileItself).then(function(res) {
-							scope.uploading--;
-
-							pushResult(res, {
-								total: 0
-							});
-							$('input', el).val('');
-						}, function(err) {
-							scope.uploading--;
-							scope.error.uploadError = true;
-							$log.error('Error: ', err);
-							$('input', el).val('');
-						});
-					}, 50);
-				}
-
-				function previewImage(el, limitSize) {
-					var files = $(".file-upload-input", el)[0].files;
-					scope.error = {};
-
-					angular.forEach(files, function(file) {
-						if (isInvalidFile(file)) {
-							return false;
-						}
-
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							var imgFile = e.target.result;
-
-							if (!isInvalidFormat(file, imgFile)) {
-								// this will check image size
-								var image = new Image();
-								image.src = imgFile;
-								return image.onload = function() {
-									handleImageLoad(this, e, limitSize, file);
-									scope.$apply();
-								};
-							}
-							scope.$apply();
-						};
-						reader.readAsDataURL(file);
-					});
 				}
 
 				// Detect client's device
@@ -188,17 +169,12 @@ angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
 					return brand;
 				}
 
-				scope.$watch("uploading", function(val) {
-					if (scope.uploadingNotifier)
-						scope.uploadingNotifier({
-							val: val
-						});
-				});
+				function cleanErrors() {
+					Object.keys(o.error).forEach(function(key) {
+						delete o.error[key];
+					});
+				}
 
-				return el.bind('change', function(event) {
-					previewImage(el, scope.limit); // 5 mb limit
-					if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
-				});
 			}
 		};
 	}
