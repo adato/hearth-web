@@ -96,7 +96,7 @@
 							{{:: 'ATTACHE_IMAGES' | translate }}
 						</span>
 						<span ng-if="imagesCount">
-							{{:: 'IMAGES' | translate }} ({{ imagesCount }})
+							{{:: 'IMAGES' | translate }} ({{ post.attachments_attributes.length || 0 }})
 						</span>
 					</label>
 					<div>
