@@ -5,7 +5,7 @@
 		<div class="file-upload-overlay"></div>
 		<div ng-transclude class="image-preview-content"></div>
 	</div>
-	<div ng-if="showErrors && error.badFormat" class="error animate-show" translate="ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: {{ allowedTypes.join(" , ") }} }"></div>
+	<div ng-if="showErrors && error.badFormat" class="error animate-show" translate="ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: {{ allowedTypes.join(' , ') }} }"></div>
 	<div ng-if="showErrors && error.badMinSize" class="error animate-show" translate="ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize: {{ limit }}"></div>
 	<div ng-if="showErrors && error.badMinSizePx" class="error animate-show" translate="ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize: {{ options.limitPixelSize }}"></div>
 	<div ng-if="showErrors && error.uploadError" class="error animate-show" translate="ERROR_WHILE_UPLOADING"></div>
