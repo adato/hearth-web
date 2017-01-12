@@ -224,6 +224,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 		function pushPost(containerPath, post, compiledTemplate) {
 			var scope = PostScope.getPostScope(post, $scope);
+			scope.inactivateTags = true;
 			compiledTemplate(scope, function(clone) {
 				// doesnt work when not delayed
 				$timeout(function() {
