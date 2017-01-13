@@ -1,9 +1,5 @@
 @import "compass";
-@import "kit/colors";
 @import "settings";
-
-
-
 
 /* assignment */ //TODO remove from here
 $colorOffer: $tertiary-color;
@@ -65,10 +61,10 @@ $webWidth: 960px;
 "foundation/components/offcanvas",
 "foundation/components/visibility";
 
-// allow radius for foundation button
-button, .button {
-  @include button($radius: true);
-}
+//// allow radius for foundation button
+//button, .button {
+//  @include button($radius: true);
+//}
 
 @import "mixins/social";
 @import "avatar";
@@ -123,7 +119,6 @@ button, .button {
 @import "notifyOverlay";
 @import "filesPicker";
 @import "uiSelect";
-@import "kit/button";
 
 html {
   font-size: 14px;

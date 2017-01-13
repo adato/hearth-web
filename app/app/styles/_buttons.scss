@@ -1,31 +1,76 @@
-//.button {
-//	min-width: 30 * $ui-small-grid-size;
-//	padding: 0px $ui-grid-size;
-//	margin: 0;
-//	font-weight: 600;
-//	height: $ui-button-height;
-//	line-height: $ui-button-height;
-//	text-align: center;
-//	font-size: $ui-text-font-size;
-//	border: none;
-//	border-radius: $global-radius;
-//	background: $primary-color;
-//	transition: all .3s;
-//	cursor: pointer;
-//	outline: none;
-//  &:hover {
-//    background-color: lighten($primary-color, abs($button-function-factor));
-//  }
-//	&:focus,
-//	&:active {
-//		background-color: darken($primary-color, abs($button-function-factor));
-//	}
-//
-//	@media #{$large-up} {
-//		height: $ui-input-height;
-//		line-height: $ui-input-height;
-//  }
-//}
+.button {
+  // allow radius for foundation button
+  @include button($radius: true);
+
+  // primary
+  &:focus,
+  &:active {
+    background-color: darken($primary-color, abs($button-function-factor)) !important;
+  }
+
+  &.inverse {
+    background-color: $button-font-color;
+    color: $primary-color;
+    border-width: 1px;
+  }
+
+  &.secondary {
+    &:focus,
+    &:active {
+      background-color: darken($secondary-color, abs($button-function-factor)) !important;
+    }
+    &.inverse {
+      background-color: $button-font-color !important;
+      color: $secondary-color !important;
+      border-color: $secondary-color;
+      border-width: 1px;
+    }
+  }
+
+  &.tertiary {
+    background-color: $tertiary-color;
+    &:focus,
+    &:active {
+      background-color: darken($tertiary-color, abs($button-function-factor)) !important;
+    }
+  }
+
+  &.quaternary {
+    background-color: $quaternary-color;
+    &:focus,
+    &:active {
+      background-color: darken($quaternary-color, abs($button-function-factor)) !important;
+    }
+  }
+
+  //	min-width: 30 * $ui-small-grid-size;
+  //	padding: 0px $ui-grid-size;
+  //	margin: 0;
+  //	font-weight: 600;
+  //	height: $ui-button-height;
+  //	line-height: $ui-button-height;
+  //	text-align: center;
+  //	font-size: $ui-text-font-size;
+  //	border: none;
+  //	border-radius: $global-radius;
+  //	background: $primary-color;
+  //	transition: all .3s;
+  //	cursor: pointer;
+  //	outline: none;
+  //  &:hover {
+  //    background-color: lighten($primary-color, abs($button-function-factor));
+  //  }
+  //	&:focus,
+  //	&:active {
+  //		background-color: darken($primary-color, abs($button-function-factor));
+  //	}
+  //
+  //	@media #{$large-up} {
+  //		height: $ui-input-height;
+  //		line-height: $ui-input-height;
+  //  }
+}
+
 //
 //.button2 {
 //	border-radius: $global-radius;
@@ -146,3 +191,4 @@
 //	background: $colorLightGray;
 //	border: $colorDarkGray;
 //}
+
