@@ -23,13 +23,10 @@ angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
 			restrict: 'A',
 			scope: {
 				result: '=',
-				options: '=',
+				options: '='
 			},
 			templateUrl: 'assets/components/imagePreview/imagePreviewDirectUpload.html',
 			link: function(scope, el, attrs) {
-
-				// if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
-
 
 				var IMAGE_TYPE = /image.*/;
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
