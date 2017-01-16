@@ -579,6 +579,10 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 	}
 }
 
+.post-image {
+	max-height: 120px;
+}
+
 /* @Kamil TODO - remove important after ditching v2 class */
 .info-box + .v2.user > .karma-bar {
 	margin-top: .3125rem !important;
