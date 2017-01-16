@@ -23,37 +23,63 @@ angular.module('hearth.services').factory('LocationJsonDataTransform', ['$window
 	 *	Remove json_data from locations[i]
 	 *	entity.locations[i] = entity.locations[i].json_data
 	 *	@param {String} entity - the JSON string containing all entity data
-	 *	@return {Object} transformed entity object with location json_data removed
+	 *	@return {Object} transformed entity object with location json_data removed. It is
+	 *	 either object, or array, or array embedded in object.[prop]
 	 */
 	function getLocationJson(entity) {
-		var opts = {};
-		if (typeof this !== 'undefined' && this.opts) opts = this.opts;
+		var opts = {},
+			hasProp = false,
+			ret = {};
+		if (typeof this !== 'undefined') opts = this;
 
 		try {
 			if ((typeof entity).toLowerCase() !== 'string') {
 				throw new Error("Invalid type of 'locations' for decoding");
 			}
-
-			var entityDecoded = $window.JSON.parse(entity);
+			var entityObj = $window.JSON.parse(entity);
 
 			// if the path to entity is set, use it instead of default
-			if (opts.prop && typeof entityDecoded[opts.prop] !== 'undefined' && entityDecoded[opts.prop]) {
-				entityDecoded = entityDecoded[opts.prop]; // use this path to entity
-			}
-			if (typeof entityDecoded.locations === 'undefined' || entityDecoded.locations === null || typeof entityDecoded.locations.length === 'undefined') {
-				throw new Error("Undefined or null entityLocations");
+			if (opts.prop && typeof entityObj[opts.prop] !== 'undefined' && entityObj[opts.prop]) {
+				entityObj = entityObj[opts.prop]; // use this path to entity
+				hasProp = true;
 			}
 
-			entityDecoded.locations.forEach(function(location, key) {
-				entityDecoded.locations[key] = (typeof location.json_data !== 'undefined' ? location.json_data : []);
-			});
-			return entityDecoded;
+			// decode it depending if it is an array or single object
+			if (Array.isArray && Array.isArray(entityObj)) {
+				for (var i in entityObj) {
+					entityObj[i] = decodeEntity(entityObj[i]);
+				}
+			} else {
+				entityObj = decodeEntity(entityObj);
+			}
+
+			// return value: either obj, or list embedded in obj
+			if (hasProp) {
+				ret[opts.prop] = entityObj;
+			} else {
+				ret = entityObj;
+			}
+			return ret;
 
 		} catch (e) {
 			throw new Error("An error ocured while parsing input data: " + e.message);
 		}
-
 	}
+
+	/**
+	 *	Single post location transform
+	 */
+	function decodeEntity(entity) {
+		if (typeof entity.locations == 'undefined' || entity.locations === null || typeof entity.locations.length === 'undefined') {
+			throw new Error("Undefined or null entityLocations");
+		}
+
+		entity.locations.forEach(function(location, key) {
+			entity.locations[key] = (typeof location.json_data !== 'undefined' ? location.json_data : []);
+		});
+		return entity;
+	}
+
 
 	/**
 	 *	Enwrap locations[i] into json_data
