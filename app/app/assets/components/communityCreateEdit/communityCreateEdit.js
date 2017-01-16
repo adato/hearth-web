@@ -37,6 +37,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					social_networks: [],
 				};
 
+				$scope.avatarUploadOpts = ProfileUtils.getUploadOpts();
+				$scope.avatarUploadOpts.uploadingQueue = $scope.imageUploading;
+				$scope.avatarUploadOpts.error = $scope.showError.avatar;
+
 				$scope.community = {};
 
 				$scope.confirmBox = $rootScope.confirmBox;
@@ -102,25 +106,32 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					});
 				};
 
-				var prepareDataIn = function(data) {
+				function prepareDataIn(data) {
 					return ProfileUtils.transformDataForUsage({
 						type: ProfileUtils.params.PROFILE_TYPES.COMMUNITY,
 						profile: data
 					});
 				};
 
+				function prepareWebs(data) {
+					var webs = [];
+					data.webs.forEach(function(web) {
+						if (web) webs.push(web);
+					});
+					return webs;
+				}
+
 				var prepareDataOut = function(data) {
 					var data = angular.copy(data);
-					var prepareWebs = function(data) {
-						var webs = [];
-						data.webs.forEach(function(web) {
-							if (web) webs.push(web);
-						});
-						data.webs = webs;
-					}
-					if (data.webs !== undefined) prepareWebs(data);
+					if (data.webs !== undefined) data.webs = prepareWebs(data);
 					ProfileUtils.single.joinInterests(data);
+
+					// avatar
+					if (data.avatar && data.avatar.public_avatar_url) {
+						data.public_avatar_url = data.avatar.public_avatar_url;
+					}
 					delete data.avatar;
+
 					return data;
 				};
 
@@ -207,9 +218,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					var actions = {
 						community: Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community)).$promise
 					};
-					if ($scope.community.avatar && $scope.community.avatar.toBeUploaded) actions.avatar = Community.uploadAvatar({
-						_id: $scope.community._id
-					}, $scope.community.avatar.toBeUploaded).$promise;
+
 					$q.all(actions)
 						.then(function(res) {
 								res = res.community;
