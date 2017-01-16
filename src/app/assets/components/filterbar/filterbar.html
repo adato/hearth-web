@@ -1,0 +1,29 @@
+<div class="clearfix filterbar-wrap">
+	<div class="clearfix filterbar-header">
+		<div class="insert-button-container small-12 large-3 hide-for-small hide-for-medium right">
+			<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button">
+				{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
+			</a>
+		</div>
+		<div class="small-12 medium-10 large-7 push-2 filter-left">
+			<div class="toggleFilter">
+				<a ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
+					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+					<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+					<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
+					<a ng-show="filterOn" class="cancelFilter" ng-click="cancelFilter()">
+						{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}
+					</a>
+				</a>
+				<span class="right">
+					<a ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
+					<a ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
+				</span>
+			</div>
+		</div>
+	</div>
+	<article class="filter-container large-10 push-2 medium-10 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+		<filter id="filter" class="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>
+	</article>
+	<div class="clear"></div>
+</div>

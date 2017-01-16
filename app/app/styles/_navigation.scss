@@ -268,7 +268,7 @@ $topBarImageSize: 1.8em;
 	nav.top-bar {
 		margin: 0 auto;
 		padding: 6px;
-		max-width:$webWidth;
+		max-width: $global-width;
 
 		.dropdown-container a{
 

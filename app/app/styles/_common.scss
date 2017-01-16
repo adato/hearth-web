@@ -129,8 +129,11 @@ a.link {
 .animate-show {
 	opacity: 1;
 	max-height: 2000px;
-	@include transition(max-height 0.8s, opacity 1s);
-	@include box-sizing(border-box);
+
+	// TODO: F6
+	// @include transition(max-height 0.8s, opacity 1s);
+	// @include box-sizing(border-box);
+
 	overflow: hidden;
 	&.ng-hide {
 		display: block !important;

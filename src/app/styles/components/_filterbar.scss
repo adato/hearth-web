@@ -1,0 +1,66 @@
+.filterbar-wrap {
+	margin-bottom: $ui-grid-size;
+
+	.filterbar-header {
+
+		.insert-button-container {
+			//float: right;
+			a {
+				padding: 0px;
+				overflow: hidden;
+				display: block;
+			}
+		}
+
+		.filter-left {
+			line-height: $ui-button-height;
+			background-color: white;
+			border-radius: 8px;
+			padding: 0 25px;
+			display: block;
+			overflow: hidden;
+			margin-right: 8px;
+			box-shadow: 0 0 5px rgba(100,100,100,.5);
+
+			a {
+				color: #1fb1e8;
+				font-weight: 600;
+
+				&.cancelFilter {
+					font-size: 12px;
+					margin-left: 10px;
+				}
+			}
+
+			@include breakpoint(large up) {
+				line-height: $ui-input-height;
+			}
+		}
+	}
+
+	.filter-container {
+		@extend .box;
+		padding: $ui-grid-size;
+		clear: both;
+		margin-top: 2 * $ui-small-grid-size;
+		max-height: 1000px;
+		transition: all .3s ease-in;
+	}
+	
+	.animated-hidden {
+		height: 0px;
+		max-height: 0px;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		overflow-y: hidden;
+		transition: all .3s ease-in;
+	}
+}
+
+@include breakpoint(medium up) {
+	.insert-button-container {
+		padding-left: 10px;
+	}
+}

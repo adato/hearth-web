@@ -1,0 +1,141 @@
+# Your project's server will run on localhost:xxxx at this port
+PORT: 8000
+
+# Autoprefixer will make sure your CSS works with these browsers
+COMPATIBILITY:
+  - "last 2 versions"
+  - "ie >= 9"
+  - "ios >= 7"
+
+# UnCSS will use these settings
+UNCSS_OPTIONS:
+  html:
+    - "src/**/*.html"
+  ignore:
+    - !!js/regexp .foundation-mq
+    - !!js/regexp ^\.is-.*
+
+# Gulp will reference these paths when it copies files
+PATHS:
+  # Path to dist folder
+  dist: "dist"
+  # Paths to files that should reside in the root directory
+  index:
+    - "app/index.html"
+    # this should copy root folder assests like favicons, robots.txt etc.
+    - "app/rootAssets/**/*"
+  # Paths to static assets that aren't images, CSS, or JavaScript
+  assets:
+    # assets to go to /assets folder
+    # When adding entries here, uncomment the `copy` task in gulpfile
+  # Paths to Sass libraries, which can then be loaded with @import
+  sass:
+    - "bower_components/foundation-sites/scss"
+    - "bower_components/motion-ui/src"
+  # Paths to JavaScript libraries, which are combined into one file
+  libs:
+    app:
+      js:
+        - "bower_components/jquery/dist/jquery.min.js"
+        - "bower_components/jquery.cookie/jquery.cookie.js"
+        - "bower_components/rollbar/dist/rollbar.min.js"
+        - "bower_components/angular/angular.min.js"
+        - "bower_components/angular-resource/angular-resource.min.js"
+        - "bower_components/angular-sanitize/angular-sanitize.min.js"
+        - "bower_components/angular-translate/angular-translate.min.js"
+        - "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"
+        - "bower_components/angular-ui-router/release/angular-ui-router.min.js"
+        - "bower_components/ngDialog/js/ngDialog.min.js"
+        - "app/libs/lemmon-slider.js"
+        - "bower_components/angular-cookie/angular-cookie.min.js"
+        - "bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"
+        - "bower_components/angular-flexslider/angular-flexslider.js"
+        - "bower_components/angularitics/dist/angulartics.min.js"
+        - "bower_components/angularitics/dist/angulartics-ga.min.js"
+        - "bower_components/angularitics/dist/angulartics-mixpanel.min.js"
+        - "bower_components/async/lib/async.js"
+        - "app/libs/jquery.autosize.js"
+        - "app/libs/jquery.mailgun_validator.js"
+        - "bower_components/fastclick/lib/fastclick.js"
+        - "bower_components/foundation/js/foundation.min.js"
+        - "bower_components/foundation-datepicker/js/foundation-datepicker.js"
+        - "bower_components/jquery-color/jquery.color.js"
+        - "bower_components/moment/min/moment.min.js"
+        - "bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"
+        - "bower_components/ng-slide-down/dist/ng-slide-down.min.js"
+        - "bower_components/satellizer/satellizer.min.js"
+        - "bower_components/SHA-1/sha1.js"
+        - "bower_components/select2/select2.min.js"
+        - "bower_components/ui-select/dist/select.min.js"
+        - "bower_components/angular-select2/dist/angular-select2.min.js"
+        - "bower_components/exif-js/exif.js"
+        - "bower_components/fancybox/source/jquery.fancybox.js"
+        # - "app/libs/jquery.tipsy/js/jquery.tipsy.min.js"
+        - "bower_components/jquery.tipsy/js/jquery.tipsy.min.js"
+        - "bower_components/flexslider/jquery.flexslider-min.js"
+        - "bower_components/smartcrop/smartcrop.js"
+        - "bower_components/ng-tags-input/ng-tags-input.min.js"
+        - "bower_components/markerclustererplus/dist/markerclusterer.min.js"
+        - "bower_components/angular-mobile-detect/dist/angular-mobile-detect.js"
+        - "bower_components/checklist-model/checklist-model.js"
+        - "bower_components/overlapping-marker-spiderfier/oms.js"
+        - "bower_components/angular-websocket/dist/angular-websocket.js"
+        - "bower_components/angular-actioncable/dist/angular-actioncable.js"
+        - "bower_components/international-phone-number/releases/international-phone-number.js"
+        - "bower_components/intl-tel-input/build/js/intlTelInput.js"
+        - "bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"
+      css:
+        - "bower_components/fancybox/source/jquery.fancybox.css"
+        - "bower_components/nanoscroller/bin/css/nanoscroller.css"
+        - "bower_components/intl-tel-input/build/css/intlTelInput.css"
+  javascript:
+    # Libraries required by Foundation
+    # - "bower_components/jquery/dist/jquery.js"
+    - "bower_components/what-input/dist/what-input.js"
+    # Core Foundation files
+    - "bower_components/foundation-sites/js/foundation.core.js"
+    - "bower_components/foundation-sites/js/foundation.util.*.js"
+    # Individual Foundation components
+    # If you aren't using a component, just remove it from the list
+    - "bower_components/foundation-sites/js/foundation.abide.js"
+    - "bower_components/foundation-sites/js/foundation.accordion.js"
+    - "bower_components/foundation-sites/js/foundation.accordionMenu.js"
+    - "bower_components/foundation-sites/js/foundation.drilldown.js"
+    - "bower_components/foundation-sites/js/foundation.dropdown.js"
+    - "bower_components/foundation-sites/js/foundation.dropdownMenu.js"
+    - "bower_components/foundation-sites/js/foundation.equalizer.js"
+    - "bower_components/foundation-sites/js/foundation.interchange.js"
+    - "bower_components/foundation-sites/js/foundation.magellan.js"
+    - "bower_components/foundation-sites/js/foundation.offcanvas.js"
+    - "bower_components/foundation-sites/js/foundation.orbit.js"
+    - "bower_components/foundation-sites/js/foundation.responsiveMenu.js"
+    - "bower_components/foundation-sites/js/foundation.responsiveToggle.js"
+    - "bower_components/foundation-sites/js/foundation.reveal.js"
+    - "bower_components/foundation-sites/js/foundation.slider.js"
+    - "bower_components/foundation-sites/js/foundation.sticky.js"
+    - "bower_components/foundation-sites/js/foundation.tabs.js"
+    - "bower_components/foundation-sites/js/foundation.toggler.js"
+    - "bower_components/foundation-sites/js/foundation.tooltip.js"
+    - "bower_components/foundation-sites/js/foundation.zf.responsiveAccordionTabs.js"
+    # Paths to project libs
+    # - "bower_components/modulename/filename.min.js"
+
+  # Paths to different file types - for use with watch etc.
+  src:
+    configs:
+      global: "common/config/global.js"
+      app:
+        localhost: "app/config/localhost.js"
+        development: "app/config/development.js"
+        staging: "app/config/staging.js"
+        production: "app/config/production.js"
+    app:
+      scss:
+        - "app/styles/**/*.scss"
+      js:
+        - "app/assets/**/*.js"
+      html:
+        # does not cover only assets, as there are also files in rootAssets and index.html
+        - "app/**/*.html"
+      img:
+        - "app/images/**/*"

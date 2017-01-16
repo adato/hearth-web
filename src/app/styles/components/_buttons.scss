@@ -1,0 +1,198 @@
+.button {
+  // allow radius for foundation button
+  // @include button($radius: true);
+
+  // primary
+  &:focus,
+  &:active {
+    // background-color: darken($primary-color, abs($button-function-factor)) !important;
+    background-color: scale-color($primary-color, $lightness: -15%);
+  }
+
+  &.inverse {
+    background-color: $button-color;
+    color: $primary-color;
+    border-width: 1px;
+  }
+
+  &.secondary {
+    &:focus,
+    &:active {
+    //   background-color: darken($secondary-color, abs($button-function-factor)) !important;
+        background-color: scale-color($secondary-color, $lightness: -15%);
+    }
+    &.inverse {
+      background-color: $button-color !important;
+      color: $secondary-color !important;
+      border-color: $secondary-color;
+      border-width: 1px;
+    }
+  }
+
+  &.tertiary {
+    background-color: $tertiary-color;
+    &:focus,
+    &:active {
+    //   background-color: darken($tertiary-color, abs($button-function-factor)) !important;
+        background-color: scale-color($tertiary-color, $lightness: -15%);
+    }
+  }
+
+  &.quaternary {
+    background-color: $quaternary-color;
+    &:focus,
+    &:active {
+    //   background-color: darken($quaternary-color, abs($button-function-factor)) !important;
+        background-color: scale-color($quaternary-color, $lightness: -15%);
+    }
+  }
+
+  //	min-width: 30 * $ui-small-grid-size;
+  //	padding: 0px $ui-grid-size;
+  //	margin: 0;
+  //	font-weight: 600;
+  //	height: $ui-button-height;
+  //	line-height: $ui-button-height;
+  //	text-align: center;
+  //	font-size: $ui-text-font-size;
+  //	border: none;
+  //	border-radius: $global-radius;
+  //	background: $primary-color;
+  //	transition: all .3s;
+  //	cursor: pointer;
+  //	outline: none;
+  //  &:hover {
+  //    background-color: lighten($primary-color, abs($button-function-factor));
+  //  }
+  //	&:focus,
+  //	&:active {
+  //		background-color: darken($primary-color, abs($button-function-factor));
+  //	}
+  //
+  //	@include breakpoint(large up) {
+  //		height: $ui-input-height;
+  //		line-height: $ui-input-height;
+  //  }
+}
+
+//
+//.button2 {
+//	border-radius: $global-radius;
+//	border-color: $primary-color;
+//	transition: border-color .3s, background-color .3s;
+//	background-color: $primary-color;
+//	border: 2px solid $primary-color;
+//	cursor: pointer;
+//	color: white;
+//	padding: 1em 1.5em;
+//	&:hover {
+//		background-color: darken($primary-color, abs($button-function-factor));
+//		border-color: darken($primary-color, abs($button-function-factor));
+//		color: white;
+//	}
+//}
+//
+//.button-icon {
+//	background-color: transparent;
+//	color: $primary-color;
+//	border-width: 0px;
+//	margin-bottom: 0px;
+//	padding: 0px;
+//	&:hover,
+//	&:focus,
+//	{
+//		background-color: transparent;
+//		color: $primary-color;
+//	}
+//}
+//
+//.button-send {
+//	display: inline-block;
+//	min-width: initial !important;
+//	color: white;
+//	border: none;
+//	border-radius: $global-radius;
+//	font-weight: bold;
+//	/*font-size: 1.2rem;*/
+//	/*margin: 0 0 1.25rem;*/
+//	/*padding: 0.5rem 2rem;*/
+//	background-color: $primary-color;
+//	transition: background-color 300ms ease-out 0s;
+//	cursor: pointer;
+//	opacity: 1;
+//	&:hover,
+//	&:focus {
+//		background-color: darken($primary-color, abs($button-function-factor));
+//	}
+//	@extend .button;
+//}
+//
+//a.button-send {
+//	&:hover,
+//	&:focus {
+//		color: white;
+//		background-color: darken($primary-color, abs($button-function-factor));
+//	}
+//}
+//
+//button.no-vertical-padding {
+//	padding-top: 0px !important;
+//	padding-bottom: 0px !important;
+//}
+//
+///* temp */
+//.button-need{background-color: $colorNeed;}
+//.button-need,
+///* /temp */
+//.button.background-need {
+//	&:hover {
+//		background-color: lighten($colorNeed, abs($button-function-factor));
+//	}
+//	&:focus,
+//	&:active {
+//		background-color: darken($colorNeed, abs($button-function-factor));
+//	}
+//}
+//
+//.button.background-offer {
+//	background-color: $tertiary-color;
+//	&:hover {
+//		background-color: lighten($colorOffer, abs($button-function-factor));
+//	}
+//	&:focus,
+//	&:active {
+//		background-color: darken($colorOffer, abs($button-function-factor));
+//	}
+//}
+//
+//.button-white {
+//	height: inherit;
+//	min-width: inherit;
+//	color: #666;
+//	background-color: #fff;
+//	border: 2px solid $colorLightGray;
+//	&:hover {
+//		color: #333;
+//		background-color: $colorLightGray;
+//	}
+//	&:focus {
+//		color: #333;
+//		background-color: darken($colorLightGray, 10%);
+//	}
+//}
+//.button-white.active {
+//	background: $primary-color;
+//	color:#fff;
+//	font-weight: bold;
+//
+//	&:focus {
+//		background: darken($primary-color, 10%);
+//	}
+//}
+//.button-white[disabled],
+//.button-white[disabled]:hover {
+//	color: $colorDarkGray;
+//	background: $colorLightGray;
+//	border: $colorDarkGray;
+//}
+

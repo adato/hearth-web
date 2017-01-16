@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html ng-app="hearth" class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html ng-app="hearth" class="no-js" ng-controller="BaseCtrl" ng-class="{'no-scroll': leftSidebarShown}">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- @if DEBUG -->
+	<title>HEARTH.net (debug)</title>
+	<!-- @endif -->
+	<title>HEARTH.net</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="description" content="Hearth.net - {{og_description}}">
+	<meta property="fb:page_id" content="277542219089599" />
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="{{og_title}}" />
+	<meta property="og:description" content="{{og_description}}" />
+	<meta property="og:url" content="{{og_url}}" />
+	<meta property="og:image" content="{{og_image}}" />
+	<meta property="og:image:width" ng-if="og_image && og_image_width" content="{{og_image_width}}" />
+	<meta property="og:image:height" ng-if="og_image && og_image_height" content="{{og_image_height}}" />
+
+	<link rel="stylesheet" type="text/css" href="/app/assets/css/app.css">
+
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<link rel="icon" type="image/x-icon" href="/app/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="/app/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/app/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/app/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/app/apple-touch-icon-144x144-precomposed.png">
+
+	<base href="/app/">
+
+	<!-- build:js /app/assets/config.min.js -->
+	<!-- <script src="/app/assets/config-local.js"></script> -->
+	<!-- <script src="/app/assets/config-global.js"></script> -->
+	<!-- <script src="/app/assets/utils/newRelic.js"></script> -->
+	<!-- endbuild -->
+	<script src="/app/assets/js/config.js"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" href="/app/vendor/flexslider/flexslider.css">
+	<link rel="stylesheet" type="text/css" href="/app/vendor/fancybox/source/jquery.fancybox.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/app/vendor/nanoscroller/bin/css/nanoscroller.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/app/vendor/intl-tel-input/build/css/intlTelInput.css" media="screen" /> -->
+	<link rel="stylesheet" type="text/css" href="/app/assets/css/libs.css" media="screen" />
+
+
+	<!-- <script src="/app/vendor/jquery/dist/jquery.min.js"></script>
+	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script> -->
+	<script src="/app/assets/js/libs.js"></script>
+
+	<script type="text/javascript">
+		document.write('<meta name="action-cable-url" content="' + $$config.websocket.url + '"/>');
+	</script>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// scripts to be loaded sooner
+		(function(){
+			'use strict';
+
+			var availableLangs = {en: false, cs: true, sk: true};
+			var navigatorLanguage = (window.navigator.userLanguage || window.navigator.language).slice(0,2);
+			window.preferredLanguage = $.cookie('language') || (availableLangs[navigatorLanguage] ? navigatorLanguage : $$config.defaultLanguage);
+
+			var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
+				($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+				'libraries=places,geometry&language=';
+			document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + window.preferredLanguage + '"><\/script>');
+		})();
+	</script>
+	<script type="text/javascript">
+		(function() {
+			'use strict';
+			// =================== ADATO GA ACCOUNT =======================
+			(function(i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-40070733-1', {
+				name: 'adato'
+			});
+			ga('adato.require', 'displayfeatures');
+			ga('adato.send', 'pageview');
+			// =================== ADATO MIXPANEL =======================
+			(function(f, b) {
+				if (!b.__SV) {
+					var a, e, i, g;
+					window.mixpanel = b;
+					b._i = [];
+					b.init = function(a, e, d) {
+						function f(b, h) {
+							var a = h.split(".");
+							2 == a.length && (b = b[a[0]], h = a[1]);
+							b[h] = function() {
+								b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+							}
+						}
+						var c = b;
+						"undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
+						c.people = c.people || [];
+						c.toString = function(b) {
+							var a = "mixpanel";
+							"mixpanel" !== d && (a += "." + d);
+							b || (a += " (stub)");
+							return a
+						};
+						c.people.toString = function() {
+							return c.toString(1) + ".people (stub)"
+						};
+						i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+						for (g = 0; g < i.length; g++) f(c, i[g]);
+						b._i.push([a, e, d])
+					};
+					b.__SV = 1.2;
+					a = f.createElement("script");
+					a.type = "text/javascript";
+					a.async = !0;
+					a.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+					e = f.getElementsByTagName("script")[0];
+					e.parentNode.insertBefore(a, e)
+				}
+			})(document, window.mixpanel || []);
+			mixpanel.init($$config.mixpanel.token);
+		})();
+	</script>
+	<script src="//connect.facebook.net/en_US/sdk.js"></script>
+	<!--[if lt IE 10]>
+    <div class="chromeframe">
+      <div class="reason">
+        <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
+      </div>
+    </div>
+  <![endif]-->
+	<div id="all" ng-include="'assets/pages/init.html'"></div>
+
+	<!-- <script src="/app/vendor/rollbar/dist/rollbar.min.js"></script>
+	<script src="/app/vendor/angular/angular.min.js"></script>
+	<script src="/app/vendor/angular-resource/angular-resource.min.js"></script>
+	<script src="/app/vendor/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="/app/vendor/angular-translate/angular-translate.min.js"></script>
+	<script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+	<script src="/app/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="/app/vendor/ngDialog/js/ngDialog.min.js"></script>
+	<script src="/app/libs/lemmon-slider.js"></script>
+	<script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
+	<script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+	<script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
+	<script src="/app/vendor/angularitics/dist/angulartics.min.js"></script>
+	<script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
+	<script src="/app/vendor/angularitics/dist/angulartics-mixpanel.min.js"></script>
+	<script src="/app/vendor/async/lib/async.js"></script>
+	<script src="/app/libs/jquery.autosize.js"></script>
+	<script src="/app/libs/jquery.mailgun_validator.js"></script>
+	<script src="/app/vendor/fastclick/lib/fastclick.js"></script>
+	<script src="/app/vendor/foundation/js/foundation.min.js"></script>
+	<script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
+	<script src="/app/vendor/jquery-color/jquery.color.js"></script>
+	<script src="/app/vendor/moment/min/moment.min.js"></script>
+	<script src="/app/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
+	<script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
+	<script src="/app/vendor/satellizer/satellizer.min.js"></script>
+	<script src="/app/vendor/SHA-1/sha1.js"></script>
+	<script src="/app/vendor/select2/select2.min.js"></script>
+	<script src="/app/vendor/ui-select/dist/select.min.js"></script>
+	<script src="/app/vendor/angular-select2/dist/angular-select2.min.js"></script>
+	<script src="/app/vendor/exif-js/exif.js"></script>
+	<script src="/app/vendor/fancybox/source/jquery.fancybox.js"></script>
+	<script src="/app/vendor/jquery.tipsy/js/jquery.tipsy.min.js"></script>
+	<script src="/app/vendor/flexslider/jquery.flexslider-min.js"></script>
+	<script src="/app/vendor/smartcrop/smartcrop.js"></script>
+	<script src="/app/vendor/ng-tags-input/ng-tags-input.min.js"></script>
+	<script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
+	<script src="/app/vendor/angular-mobile-detect/dist/angular-mobile-detect.js"></script>
+	<script src="/app/vendor/checklist-model/checklist-model.js"></script>
+	<script src="/app/vendor/overlapping-marker-spiderfier/oms.js"></script>
+	<script src="/app/vendor/angular-websocket/dist/angular-websocket.js"></script>
+	<script src="/app/vendor/angular-actioncable/dist/angular-actioncable.js"></script>
+	<script src="/app/vendor/international-phone-number/releases/international-phone-number.js"></script>
+	<script src="/app/vendor/intl-tel-input/build/js/intlTelInput.js"></script>
+	<script src="/app/vendor/intl-tel-input/lib/libphonenumber/build/utils.js"></script> -->
+
+	<script src="/app/assets/js/app.js"></script>
+
+</body>
+</html>

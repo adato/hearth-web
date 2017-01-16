@@ -1,0 +1,113 @@
+
+html {
+  font-size: 14px;
+}
+
+body {
+  background-image: inline-image("bg.png");
+  background-color: #faf8eb;
+  background-repeat: no-repeat;
+  background-position: 50% top;
+  .main-container {
+    display: block;
+    margin: auto;
+    margin-bottom: 2em;
+  }
+  font-family: $body-font-family;
+  -webkit-text-size-adjust: 100%; // for mobile
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+a.no-link,
+a.no-link:hover {
+  padding: 0 !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  cursor: default !important;
+}
+
+@import "hearthIcons";
+meta.foundation-data-attribute-namespace {
+  font-family: false;
+}
+
+img.blur {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  filter: url(/app/images/blur.svg#blur);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='2');
+}
+
+.vis-hidden {
+  visibility: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+.text-in-input {
+  position: relative;
+  .fa {
+    position: absolute;
+    top: 0.783rem;
+    right: 0.5rem;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.capital {
+  * {
+    text-transform: capitalize;
+  }
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.alert-box {
+  transition-property: none;
+  &.error {
+    color: white;
+  }
+}
+
+.main-container {
+  line-height: 1.3;
+}
+
+.loading {
+  @extend .clearfix;
+  position: relative;
+  font-size: 2rem;
+  opacity: 0.7;
+  /* height: 40px; */
+  .fa {
+    margin-right: 0.5rem;
+  }
+}
+
+.tab-bar .hearth-logo {
+  max-width: 150px;
+}
+
+

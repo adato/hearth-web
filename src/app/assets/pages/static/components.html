@@ -1,0 +1,406 @@
+<div class="v2">
+	<style>
+		.component {
+			margin-bottom: 2em;
+			background: rgba(120, 120, 120, .1);
+			padding: 1em;
+			border-radius: 8px;
+		}
+		
+		code {
+			color: #5E5D5E;
+		}
+		
+		.deprecated {
+			display: inline-block;
+			margin-top: 20px;
+			opacity: .8;
+			color: #999;
+		}
+		
+		.deprecated:before {
+			content: "deprecated:";
+			color: red;
+		}
+		
+		.move-bot {
+			top: 0 !important;
+		}
+	</style>
+	<div class="component component-box row">
+		<div class="large-6 columns">
+			<p>
+				Z hlediska automobilismu třeba největší zlo za posledních deset let na území Prahy měl být tunelový komplex Blanka, z celosvětového hlediska pak aktuálně „podvodné“ motory Volkswagen (a Škoda), které v provozu nesplňují nejnovější a nejtvrdší emisní limity,
+				ale při kontrolách… Zobrazit celý text
+			</p>
+		</div>
+		<div class="large-6 columns">
+			<h4>Paragraph</h4>
+			<code ng-non-bindable>
+				&lt;p&gt;
+				<br /> ...
+				<br /> &lt;/p&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-link row">
+		<div class="large-6 columns">
+			<a href="#">Link</a>
+		</div>
+		<div class="large-6 columns">
+			<h4>Link</h4>
+			<code>
+				&lt;a href="#"&gt;Link&lt;/a&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-button row">
+		<div class="large-6 columns">
+			<button type="button" class="button">Button</button>
+			<a href="#" class="button">Link</a>
+		</div>
+		<div class="large-6 columns">
+			<h4>Button</h4>
+			<code>
+				&lt;button type="button" class="button"&gt;Button&lt;/button&gt;
+				<br> &lt;a href="#" class="button"&gt;Link&lt;/a&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-box row">
+		<div class="large-6 columns">
+			<karma-bar for="components.author"></karma-bar>
+		</div>
+		<div class="large-6 columns">
+			<h4>Karma bar</h4>
+			<code>
+				&lt;karma-bar for=&quot;components.author&quot;&gt;&lt;/karma-bar&gt;
+			</code>
+			<code class="deprecated">
+				&lt;karma-bar up=&quot;components.author.up_votes&quot; down=&quot;components.author.down_votes&quot;&gt;&lt;/karma-bar&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-box row">
+		<div class="large-6 columns">
+			<span class="dropdown-container">
+				<a dropdown="#some-dropdown-id">
+					<i class="fa fa-chevron-down"></i>
+				</a>
+				<div class="dropdown arrow-left" id="some-dropdown-id">
+					Left positioned
+				</div>
+			</span> or
+			<span class="dropdown-container">
+				<a dropdown="#some-dropdown-id2">
+					<i class="fa fa-chevron-down"></i>
+				</a>
+				<div class="dropdown arrow-right" id="some-dropdown-id2">
+					Right positioned
+				</div>
+			</span>
+		</div>
+		<div class="large-6 columns">
+			<h4>Dropdown</h4>
+			<h5>Left arrow</h5>
+			<code>
+				&lt;span class=&quot;dropdown-container&quot;&gt;
+				<br /> &nbsp;&nbsp;&lt;a dropdown=&quot;#some-dropdown-id&quot;&gt;
+				<br /> &nbsp;&nbsp;&nbsp;&nbsp;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;
+				<br /> &nbsp;&nbsp;&lt;/a&gt;
+				<br /> &nbsp;&nbsp;&lt;div class=&quot;dropdown
+				<b>arrow-left</b>&quot; id=&quot;some-dropdown-id&quot;&gt;
+				<br /> &nbsp;&nbsp;&nbsp;&nbsp;...
+				<br /> &nbsp;&nbsp;&lt;/div&gt;
+				<br /> &lt;/span&gt;
+			</code>
+			<br>
+			<h5>Right arrow</h5>
+			<code>
+				&lt;span class=&quot;dropdown-container&quot;&gt;
+				<br /> &nbsp;&nbsp;&lt;a dropdown=&quot;#some-dropdown-id&quot;&gt;
+				<br /> &nbsp;&nbsp;&nbsp;&nbsp;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;
+				<br /> &nbsp;&nbsp;&lt;/a&gt;
+				<br /> &nbsp;&nbsp;&lt;div class=&quot;dropdown
+				<b>arrow-right</b>&quot; id=&quot;some-dropdown-id&quot;&gt;
+				<br /> &nbsp;&nbsp;&nbsp;&nbsp;...
+				<br /> &nbsp;&nbsp;&lt;/div&gt;
+				<br /> &lt;/span&gt;
+			</code>
+		</div>
+	</div>
+	<!-- 	<div class="component component-box row">
+	</div>
+	<div class="component component-box row">
+	</div>
+	<div class="component component-box row">
+	</div>
+	<div class="component component-box row">
+	</div>-->
+	<div class="component component-box row">
+		<div class="large-6 columns">
+			<div class="date" title="{{:: components.author.updated_at | date:DATETIME_FORMATS.medium}}">
+				<i class="fa fa-clock-o"></i> &nbsp; {{:: components.author.updated_at | ago }}
+			</div>
+		</div>
+		<div class="large-6 columns">
+			<h4>Time</h4>
+			<code ng-non-bindable>
+				&lt;div class=&quot;date&quot; title=&quot;&#123;&#123; updated_at | date:DATETIME_FORMATS.medium}}&quot;&gt;
+				<br /> &lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt;
+				<br /> &#123;&#123;updated_at | ago }}&lt;/div&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-box row">
+		<div class="large-6 columns">
+			<div class="box" style="width:300px; height:80px;">
+				There is content in this panel
+			</div>
+		</div>
+		<div class="large-6 columns">
+			<h4>Panel</h4>
+			<code>
+				&lt;div class="box"&gt;&lt;/div&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-avatar row">
+		<div class="large-6 columns">
+			<avatar type="author._type" src="author.avatar_mini" size="mini" href="'#'" /></avatar>
+			<avatar type="author._type" src="author.avatar_medium" size="medium" href="'#'" /></avatar>
+			<avatar type="author._type" src="author.avatar_large" size="large" href="'#'" /></avatar>
+		</div>
+		<div class="large-6 columns">
+			<h4>Avatar</h4>
+			<code>
+				var author = { type: 'User', avatar_src: 'http://.....' };
+				<br>
+				<br> &lt;avatar type="author.type" src="author.avatar_src" size="mini" href="#"&gt;&lt;/avatar&gt;
+				<br>
+				<br> &lt;avatar type="author.type" src="author.avatar_src" size="medium" href="#"&gt;&lt;/avatar&gt;
+				<br>
+				<br> &lt;avatar type="author.type" src="author.avatar_src" size="large" href="#"&gt;&lt;/avatar&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-avatar row">
+		<div class="large-6 columns">
+			<div info-box="loggedUser">
+				<avatar type="loggedUser._type" src="author.avatar_large" size="medium" href="'#'"></avatar>
+			</div>
+		</div>
+		<div class="large-6 columns">
+			<h4>Avatar with infobox</h4>
+			<code>
+
+				&lt;div info-box=&quot;loggedUser&quot;&gt;
+				<br> &nbsp;&nbsp;&lt;avatar type="author.type" src="author.avatar_src" size="medium" href="#"&gt;&lt;/avatar&gt;
+				<br> &lt;/div&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-tabs row">
+		<div class="large-6 columns">
+			<div class="bottom-tabs">
+				<ul>
+					<li>
+						<a href="#" class="selected">Odkaz 1</a>
+					</li>
+					<li>
+						<a href="#">Odkaz 2</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="large-6 columns">
+			<h4>Tabbed links</h4>
+			<code>
+				&lt;div class="bottom-tabs"&gt;
+				<br/> &nbsp;&lt;ul&gt;
+				<br/> &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="selected"&gt;Odkaz 1&lt;/a&gt;&lt;/li&gt;
+				<br/> &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Odkaz 2&lt;/a&gt;&lt;/li&gt;
+				<br/> &nbsp;&lt;/ul&gt;
+				<br/> &lt;/div&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-inputs row">
+		<div class="large-6 columns" style="background:#fff; padding-bottom:15px;">
+			<form name="form">
+				<h4>&nbsp;</h4>
+				<div class="alert-box alert radius">
+					<i class="fa fa-exclamation-triangle"></i> Error!</div>
+				<br>
+				<br>
+				<br>
+				<input type="text" required placeholder="Type here" ng-model="components.textinput">
+
+				<br>
+				<br>
+				<input type="email" name="email" placeholder="Type email" ng-model="components.email" class="form-control" required ng-blur="showError.email = true" ng-focus="showError.email = false">
+				<p class="error" ng-show="showError.email">
+					<span ng-show="form.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+				</p>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<input-max-length input-type="input" show-counter="false" min-length="0" max-length="12" required="true" placeholder="Type here to input [min=0, max=12, counter=false]" model="components.text.input" name="textInput"></input-max-length>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="50" placeholder="Type here to textarea min=3, max=50, counter=true" model="components.text.textarea" name="textTextarea"></input-max-length>
+
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
+					<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+				</tags-input>
+				<br>
+				<br>
+				<br>
+				<checkbox model="components.checkbox" on-update="void()" value="1">Checkbox item 1</checkbox>
+				<checkbox model="components.checkbox" on-update="void()" value="2">Checkbox item 2</checkbox> {{ components.checkbox }}
+				<br>
+				<br>
+				<radio model="components.radio" type="radio" value="false" value-off="true" checked="!components.radio">Radio item 1</radio>
+				<radio model="components.radio" type="radio" value="true" value-off="false" checked="components.radio">Radio item 2</radio>
+				{{ components.radio }}
+				<br>
+				<br>
+				<button class="button button-send" type="submit">{{ 'SUBMIT' | translate }}</button>
+			</form>
+		</div>
+		<div class="large-6 columns">
+			<h4>Forms</h4>
+			<h5>Form error</h5>
+			<code>
+				&lt;div class="alert-box alert radius"&gt;&lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; Error!&lt;/div&gt;
+			</code>
+			<br>
+			<br>
+			<h5>Text input</h5>
+			<code>
+				&lt;input type="text" required placeholder="Type here"&gt;
+			</code>
+			<br>
+			<br>
+			<h5>Email input with validation</h5>
+			<code>&lt;input type=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Type email&quot; ng-model=&quot;components.email&quot; class=&quot;form-control&quot; required ng-blur=&quot;showError.email = true&quot; ng-focus=&quot;showError.email = false&quot;&gt;
+				<br>&lt;p class=&quot;error&quot; ng-show=&quot;showError.email&quot;&gt;
+				<br>&nbsp;&nbsp;&nbsp;&lt;span ng-show=&quot;form.email.$error.email&quot;&gt;validation message&lt;/span&gt;
+				<br>&lt;/p&gt;
+			</code>
+			<br>
+			<br>
+			<br>
+
+			<h5>Input Min and Max Length</h5>
+			<code>
+				&lt;input-max-length input-type="input" show-counter="false" min-length="0" max-length="12" required="true" placeholder="Type here to input [min=0, max=12, counter=false, required=true]" model="components.text.input" name="textInput"&gt;&lt;/input-max-length&gt;
+			</code>
+			<br>
+			<br>
+			<br>
+
+			<h5>Textarea Min and Max Length</h5>
+			<code>
+				&lt;input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="50" placeholder="Type here to textarea min=3, max=50, counter=true" model="components.text.textarea" name="textTextarea"&gt;&lt;/input-max-length&gt;
+			</code>
+			<br>
+			<br>
+			<br>
+
+
+			<h5>Tags input. (ngTagsInput) </h5>
+			<code>
+				&lt;tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2"
+				max-length="20"&gt;
+				<br> &nbsp;&nbsp;&lt;auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"&gt;&lt;/auto-complete&gt;
+				<br> &lt;/tags-input&gt;
+			</code>
+			<h5>Checkbox:</h5>
+			<code>&lt;checkbox model="components.checkbox" on-update="void()" value="1"&gt;Checkbox item 1&lt;/checkbox&gt;</code>
+			<h5>Radio:</h5>
+			<code>&lt;radio model="components.radio" type="radio" value="true" value-off="false" checked="components.radio"&gt;Radio item 2&lt;/radio&gt;</code>
+		</div>
+	</div>
+	<div class="component component-collapse row">
+		<div class="large-6 columns">
+			<section class="collapse" lazy-render duration="0.5">
+				<label class="collapse-trigger" slide-trigger="components.expandGroup">
+					Click here to expand this group
+					<span ng-if="components.expandGroup">(expanded)</span>
+				</label>
+				<div ng-slide-down="components.expandGroup" lazy-render duration="0.5">
+					<div style="padding:1em; font-weight:bold; font-size:large;">
+						This group is now expanded
+					</div>
+				</div>
+				<div class="clear"></div>
+			</section>
+		</div>
+		<div class="large-6 columns">
+			<h4>Expandable group</h4>
+			<code>
+				&lt;section class="collapse" lazy-render duration="0.2"&gt;
+				<br> &nbsp;&lt;label class="collapse-trigger" slide-trigger="components.expandGroup"&gt;
+				<br> &nbsp;&nbsp;&nbsp;Click here to expand this group &lt;span ng-if="components.expandGroup"&gt;(expanded)&lt;/span&gt;
+				<br> &nbsp;&lt;/label&gt;
+				<br> &nbsp;&lt;div ng-slide-down="components.expandGroup" lazy-render duration="0.2"&gt;
+				<br> &nbsp;&nbsp;&nbsp;This group is now expanded
+				<br> &nbsp;&lt;/div&gt;
+				<br> &nbsp;&lt;div class="clear"&gt;&lt;/div&gt;
+				<br> &lt;/section&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-author-selector row">
+		<div class="large-6 columns">
+			<author-selector ng-disabled="components.authorSelectorDisabled" class="" author-id="components.selectedEntity" author="loggedUser" author-list="components.authorList"></author-selector>
+			{{components.selectedEntity}}
+		</div>
+		<div class="large-6 columns">
+			<h4>Author selector</h4>
+			<code>
+				&lt;author-selector ng-disabled="components.authorSelectorDisabled" author-id="MODEL" author="loggedUser" author-list="components.authorList"&gt;&lt;/author-selector&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-timeago row">
+		<div class="large-6 columns">
+			<h1>Heading</h1>
+			<h2>Subheading</h2>
+			<h3>Subsubheading</h3>
+			<h4>Subsubsubheading</h4>
+			<h5>Subsubsubsubheading</h5>
+			<p>Default paragraph</p>
+		</div>
+		<div class="large-6 columns">
+			<h4>Headings</h4>
+			<code>
+				&lt;h1&gt;Heading&lt;/h1&gt;
+				<br> &lt;h2&gt;Subheading&lt;/h2&gt;
+				<br> &lt;h3&gt;Subsubheading&lt;/h3&gt;
+				<br> &lt;h4&gt;Subsubsubheading&lt;/h4&gt;
+				<br> &lt;h5&gt;Subsubsubsubheading&lt;/h5&gt;
+				<br> &lt;p&gt;Default paragraph&lt;/p&gt;
+			</code>
+		</div>
+	</div>
