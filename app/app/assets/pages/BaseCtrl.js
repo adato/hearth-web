@@ -316,8 +316,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				query: null,
 				type: null
 			}, {
-				reload: true
+				reload: false
 			});
+			$scope.$broadcast('reloadMarketplace');
 		};
 
 		/**
