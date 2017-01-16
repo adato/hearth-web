@@ -17,9 +17,6 @@
 					<div class='item-status-bar' ng-if="item.state === 'suspended'">
 						<span ng-if="item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
 					</div>
-					<div class="item-status-bar" ng-if="(!userHasRight('post.suspend')) && item.state == 'suspended'">
-						<span>{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
-					</div>
 				</div>
 				<div class="column small-12 large-8" ng-init="local.showMap = false">
 					<section class="box padding-none margin-bottom-large">

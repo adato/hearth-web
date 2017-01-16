@@ -44,9 +44,11 @@ angular.module('hearth.services').factory('UniqueFilter', function() {
 		this.removeDuplicities = function(items) {
 			var out = [];
 
-			items.forEach(function(item) {
-				if (!self.isInIdList(item._id)) out.push(item);
-			});
+			if (typeof items.forEach === 'function') {
+				items.forEach(function(item) {
+					if (!self.isInIdList(item._id)) out.push(item);
+				});
+			}
 			return out;
 		};
 
