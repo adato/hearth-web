@@ -36,7 +36,6 @@ a.no-link:hover {
   cursor: default !important;
 }
 
-@import "hearthIcons";
 meta.foundation-data-attribute-namespace {
   font-family: false;
 }
@@ -47,7 +46,7 @@ img.blur {
   -o-filter: blur(2px);
   -ms-filter: blur(2px);
   filter: blur(2px);
-  filter: url(/app/images/blur.svg#blur);
+  filter: url(/app/assets/img/blur.svg#blur);
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='2');
 }
 

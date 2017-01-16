@@ -1,5 +1,5 @@
 <section id="navigation">
-	<aside class="left-off-canvas-menu">
+	<aside class="off-canvas position-left" data-off-canvas>
 		<ul class="off-canvas-list">
 			<li ng-if=":: loggedUser._id" class="tab-bar log-info">
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
@@ -131,12 +131,12 @@
 
 		<div id="notify-top"></div>
 
-		<nav class="column tab-bar tab-bar-closed hide-for-large-up">
+		<nav class="column tab-bar tab-bar-closed hide-for-large">
 			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click="toggleSidebar(); mixpanelTrackMenu()">
 				<i class="fa fa-bars"></i>
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-				<img class="hearth-logo" src="/app/images/logo.png">
+				<img class="hearth-logo" src="/app/assets/img/logo.png">
 			</a>
 
 			<div class="small-icons header-right">
@@ -157,12 +157,12 @@
 			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
 
 			<div class="row">
-				<div class="column large-3 show-for-large-up">
+				<div class="column large-3 show-for-large">
 					<a ng-click="reloadToMarketplace()" href="" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-						<img class="zurb-logo-mobile" src="/app/images/logo.png" width="200">
+						<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="200">
 					</a>
 				</div>
-				<div class="hide-for-large-up small-search column small-12 medium-12">
+				<div class="hide-for-large small-search column small-12 medium-12">
 					<form ng-submit="search(searchQuery)">
 						<span class="search-button-container">
 							<a class="search-submit button" ng-click="search(searchQuery)">{{:: 'SEARCH' | translate }}</a>
@@ -172,19 +172,19 @@
 						</div>
 					</form>
 				</div>
-				<div class="column large-3 show-for-large-up text-right">
+				<div class="column large-3 show-for-large text-right">
 					<a href="#" class="button-send" ng-click="editItem(null)"> {{:: 'TOP_BAR.ADD_NEW_POST' | translate }} </a>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</div>
 
-		<nav class="top-bar show-for-large-up" data-topbar ng-cloak>
+		<nav class="top-bar show-for-large" data-topbar ng-cloak>
 			<!-- this is desktop topbar, visible all the time -->
 
 			<section class="bar-columns logo-column">
 				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
-					<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150" height="28">
+					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
 				</a>
 			</section>
 
@@ -193,7 +193,7 @@
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
-			<section class="bar-columns icons-column">
+			<section class="bar-columns icons-column display-flex">
 				<a ng-click="reloadToMarketplace()" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
@@ -248,7 +248,7 @@
 						<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 						<label>{{:: loggedUser.name | ellipsis:12 }}</label>
 					</a>
-					<ul class="dropdown user-dropdown" id="profile-drop" title="{{:: loggedUser.name }}">
+					<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
 						<li>
 							<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
 								<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
@@ -283,7 +283,7 @@
 						<i class="fa fa-question-circle"></i>
 						<label>{{::'TOP_BAR_ABOUT' | translate}}</label>
 					</a>
-					<ul class="dropdown" id="about-drop">
+					<ul class="dropdown menu vertical" id="about-drop" data-dropdown-menu>
 						<li>
 							<a ng-href="{{:: basePath }}terms">{{:: 'MENU.TERMS' | translate}}</a>
 						</li>

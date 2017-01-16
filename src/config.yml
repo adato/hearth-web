@@ -16,7 +16,8 @@ UNCSS_OPTIONS:
     - !!js/regexp ^\.is-.*
 
 LOCALE:
-  getPath: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ"
+  getPath:
+    uri: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ"
   languages:
     cs: "cs_CZ"
     sk: "sk_SK"
@@ -31,10 +32,12 @@ PATHS:
     - "app/index.html"
     # this should copy root folder assests like favicons, robots.txt etc.
     - "app/rootAssets/**/*"
+  fonts:
   # Paths to static assets that aren't images, CSS, or JavaScript
+  - "app/fonts/**/*"
   assets:
     # assets to go to /assets folder
-    # When adding entries here, uncomment the `copy` task in gulpfile
+    # - "app/"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "bower_components/foundation-sites/scss"

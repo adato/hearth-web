@@ -89,19 +89,19 @@ a.user{
 }
 .item-option-bg-offer > i,
 .item-option-bg-need > i{
-	background-image: url('/app/images/icons/heart.svg');
+	background-image: url('/app/assets/img/icons/heart.svg');
 }
 button.active .item-option-bg-offer > i,
 button.active .item-option-bg-need > i{
-	background-image: url('/app/images/icons/heart-clr.svg');
+	background-image: url('/app/assets/img/icons/heart-clr.svg');
 }
 .item-option-bg-borrow > i,
 .item-option-bg-lend > i{
-	background-image: url('/app/images/icons/clock.svg');
+	background-image: url('/app/assets/img/icons/clock.svg');
 }
 button.active .item-option-bg-borrow > i,
 button.active .item-option-bg-lend > i{
-	background-image: url('/app/images/icons/clock-clr.svg');
+	background-image: url('/app/assets/img/icons/clock-clr.svg');
 }
 .item-option-bg-need,
 .item-option-bg-borrow {
@@ -670,11 +670,11 @@ button p {
 			}
 		}
 		.post-detail.offer:before {
-			background:url(/app/images/arrow-give.svg);
+			background:url(/app/assets/img/arrow-give.svg);
 			background-size:100%;
 		}
 		.post-detail.need:before {
-			background:url(/app/images/arrow-receive.svg);
+			background:url(/app/assets/img/arrow-receive.svg);
 			background-size:100%;
 		}
 	}

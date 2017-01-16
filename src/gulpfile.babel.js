@@ -9,6 +9,12 @@ import rimraf   from 'rimraf';
 import sherpa   from 'style-sherpa';
 import yaml     from 'js-yaml';
 import fs       from 'fs';
+// import url      from 'url';
+import spamw    from 'connect-history-api-fallback';
+
+// for whichever FRICKIN' reason, the gulp-download module (https://github.com/Metrime/gulp-download/blob/master/index.js)
+// when downloaded through npm, results in a slightly different code than what can be found on git, so it has been downloaded
+const download = require('./hearth_modules/download');
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -31,21 +37,22 @@ function loadConfig() {
   return yaml.load(ymlFile);
 }
 
+gulp.task('locales', gulp.series(locales));
+
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
   gulp.series(
     clean,
+    'locales',
     gulp.parallel(
       templates,
       sass,
       configs,
       javascript,
       images,
-      // copy, // empty task ATM
+      copyFonts,
+      // copy,
       copyRoot,
-
-      // fetch locale
-      locales,
 
       // external libs
       appLibsJs,
@@ -64,25 +71,6 @@ gulp.task('default',
 // Run just the sass task
 // .. mainly for foundation v5 to v6 upgrade purposes
 gulp.task('sass', gulp.series(sass));
-gulp.task('locale', gulp.series(locales));
-
-const localeGetters = (function() {
-  var arr = [];
-  console.log(LOCALE.languages);
-  Object.keys(LOCALE.languages).forEach(lang => {
-    var path = LOCALE.getPath.replace('{langVal}', LOCALE.languages[lang]);
-    arr.push(
-      function() {
-        return $.gulpRemoteSrc(path)
-          .pipe(gulp.dest(PATHS.dist + '/locale/' + lang + '/messages'))
-      }
-    );
-  });
-  return arr;
-})();
-gulp.task('locales',
-  gulp.parallel(...localeGetters)
-);
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -99,9 +87,15 @@ function copy() {
 }
 
 // APP ROOT
-function copyRoot(path) {
+function copyRoot() {
   return gulp.src(PATHS.index)
     .pipe(gulp.dest(PATHS.dist + '/app'));
+}
+
+// APP FONTS
+function copyFonts() {
+  return gulp.src(PATHS.fonts)
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/fonts'));
 }
 
 // Copy page templates into finished HTML files
@@ -198,6 +192,20 @@ function javascript() {
     .pipe(gulp.dest(PATHS.dist + '/app/assets/js'));
 }
 
+// APP LOCALES
+// download locales from given url and save
+function locales() {
+  var paths = [];
+  Object.keys(LOCALE.languages).forEach(lang => {
+    paths.push({
+      file: lang + '.json',
+      url: LOCALE.getPath.uri.replace('{langVal}', LOCALE.languages[lang])
+    });
+  });
+  return download(paths)
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/locale/'))
+}
+
 // APP IMG
 // Copy images to the "dist" folder
 // In production, the images are compressed
@@ -212,7 +220,17 @@ function images() {
 // Start a server with BrowserSync to preview the site in
 function server(done) {
   browser.init({
-    server: PATHS.dist, port: PORT
+    server: {
+      baseDir: PATHS.dist,
+
+      // to allow single-page mode, use middleware
+      // that serves index file whenever it doesn't find what it's
+      // been looking for
+      middleware: [ spamw({
+        index: '/app/index.html'
+      }) ],
+    },
+    port: PORT,
   });
   done();
 }
