@@ -318,6 +318,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						Community.patch({
 							_id: $scope.community._id,
 							allow_message_to_members: $scope.community.allow_message_to_members
+						}, function(res) {
+							Notify.addSingleTranslate('NOTIFY.COMMUNITY_' + ($scope.community._id ? 'UPDATE' : 'CREATE') + '_SUCCESS', Notify.T_SUCCESS);
 						});
 					});
 				};

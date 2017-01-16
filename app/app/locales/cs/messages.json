@@ -1776,6 +1776,7 @@
 		"CONNECTIONS": {
 			"COMMON_USERS": {
 				"one": "Společný známý",
+
 				"other": "<b>{{ count }}<\/b> společných známých:",
 				"few": "<b>{{ count }}<\/b> společní známí:"
 			},
@@ -1786,6 +1787,7 @@
 			},
 			"COMMON_COMMUNITIES": {
 				"one": "Společná komunita ",
+
 				"few": "<b>{{ count }}<\/b> společné komunity:",
 				"other": "<b>{{ count }}<\/b> společných komunit:"
 			}
