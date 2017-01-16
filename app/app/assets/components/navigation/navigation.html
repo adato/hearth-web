@@ -250,11 +250,11 @@
 					</a>
 					<ul class="dropdown user-dropdown" id="profile-drop" title="{{:: loggedUser.name }}">
 						<li>
-							<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}">
+							<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
 								<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
 						</li>
 						<li>
-							<a ng-href="{{:: basePath }}profile-edit">
+							<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
 								<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
 						</li>
 						<li>

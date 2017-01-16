@@ -7,30 +7,18 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http', '$q',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http, $q) {
 		var POST_LANGUAGE = 'postLanguage';
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
-		$scope.limitPixelSize = 200; // Pixels
-		$scope.maxImageSizeLimit = 5; // MB
-		// $scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
-		$scope.uploadResource = function(file) {
-			return Post.uploadAttachment({
-				postId: $scope.post._id
-			}, {
-				file: file
-			});
-		};
+
 		$scope.imagesCount = 0;
 		$scope.authorList;
-		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
-		$scope.imageSizes = [];
 		$scope.character = $$config.postCharacter;
 		$scope.languageList = LanguageList.localizedList;
-
 		$scope.slide = {
 			files: false,
 			date: false,
@@ -46,9 +34,81 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			locations: false,
 			valid_until: false
 		};
+		$scope.imageUploadOptions = {
+			uploadingQueue: $scope.imageUploading,
+			error: $scope.showError.files,
+			minSize: 200, // Pixels
+			limitMb: 5,
+			multiple: true,
+			resultPropName: 'public_url'
+		};
+
+		var OFFER = 'offer';
+		var LEND = 'lend';
+		var BORROW = 'borrow';
+		var NEED = 'need';
+
+		var GIFT = 'gift';
+		var LOAN = 'loan';
+		var ANY = 'any';
+
+		// put into two groups so that it is easier to responsively display as required
+		$scope.itemTypeOptions = [
+			[OFFER, LEND],
+			[BORROW, NEED]
+		];
+		$scope.postTypes = $$config.postTypes;
+
+		/**
+		 *	Function that takes care of correct behaviour of the `type` and `exact_type` picker
+		 *
+		 *	- {String} itemType [offer, lend, borrow, need] [required]
+		 *	- {Object} post [required] the post on which the `type` is being set
+		 */
+		$scope.setItemTypeActive = function(paramObject) {
+			paramObject = paramObject || {};
+			if (!(paramObject.itemType && paramObject.post)) throw new TypeError('itemType and post are both required for setting item type and exact_type.');
+			var post = paramObject.post;
+			if (paramObject.itemType === OFFER) {
+				if (post.type === OFFER) {
+					if (post.exact_type === GIFT) return;
+					else if (post.exact_type === ANY) return post.exact_type = LOAN;
+					else if (post.exact_type === LOAN) post.exact_type = ANY;
+				} else {
+					post.exact_type = GIFT;
+				}
+				post.type = OFFER;
+			} else if (paramObject.itemType === LEND) {
+				if (post.exact_type === ANY && post.type === OFFER) {
+					post.exact_type = GIFT;
+				} else {
+					post.exact_type = post.exact_type === GIFT ? (post.type === OFFER ? ANY : LOAN) : LOAN;
+				}
+				post.type = OFFER;
+			} else if (paramObject.itemType === NEED) {
+				if (post.type === NEED) {
+					if (post.exact_type === GIFT) return;
+					if (post.exact_type === ANY) return post.exact_type = LOAN;
+					if (post.exact_type === LOAN) post.exact_type = ANY;
+				} else {
+					post.exact_type = GIFT;
+				}
+				post.type = NEED;
+			} else if (paramObject.itemType === BORROW) {
+				if (post.exact_type === ANY && post.type === NEED) {
+					post.exact_type = GIFT;
+				} else {
+					post.exact_type = post.exact_type === GIFT ? (post.type === NEED ? ANY : LOAN) : LOAN;
+				}
+				post.type = NEED;
+			}
+		};
 
 		$scope.sending = false;
 		$scope.pauseSending = false;
+		$scope.twoStepForm = {
+			step2: false
+		}
 
 		$rootScope.$on('removeAd', function(info, id) {
 			if (id == $scope.post._id) {
@@ -56,13 +116,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		});
 
-		$scope.getImageSizes = function() {
-			return $scope.imageSizesSum;
-		};
-
 		$scope.togglePostType = function() {
-			if (!$scope.post.reply_count)
-				$scope.post.type = !$scope.post.type;
+			if (!$scope.post.reply_count) $scope.post.type = $scope.post.type === OFFER ? NEED : OFFER;
 		};
 
 		$scope.queryKeywords = function($query) {
@@ -82,20 +137,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// this will recount all images which are not market to be deleted
 		$scope.recountImages = function() {
 			$scope.imagesCount = 0;
-			$scope.imageSizesSum = 0;
 
 			$scope.post.attachments_attributes.forEach(function(item, index) {
 				if (!item.deleted) {
-					$scope.imageSizesSum += $scope.imageSizes[index];
 					$scope.imagesCount++;
 				}
 			});
 		};
 
-		$scope.updateImages = function() {
-			$scope.recountImages();
-			$scope.showError.files = {};
-		};
+		// $scope.updateImages = function() {
+		// 	$scope.recountImages();
+		// 	$scope.showError.files = {};
+		// };
 
 		// remove image from attachments array
 		// if image is already uploaded - mark him to be deleted
@@ -105,7 +158,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			if (!files[index]._id) {
 				files.splice(index, 1);
-				$scope.imageSizes.splice(index, 1);
 			} else {
 				files[index].deleted = true;
 			}
@@ -172,9 +224,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
-				$scope.slide.communities = !!post.related_communities.length
-
-				post.type = post.type == 'offer';
+				$scope.slide.communities = !!post.related_communities.length;
 			}
 			return post;
 		}
@@ -198,7 +248,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		/**
 		 * Validate form before submit to API
 		 */
-		$scope.testForm = function(post) {
+		function testForm(post) {
 			var res = false;
 			$scope.createAdForm.$setDirty();
 
@@ -335,10 +385,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}, $scope.processErrorResult);
 		};
 
-		$scope.uploadingNotifierFunc = function(val) {
-			$scope.imageUploading = val;
-		};
-
 		$scope.save = function(post, activate) {
 			var postData;
 
@@ -347,7 +393,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
 
-			if (!$scope.testForm(post)) {
+			if (!testForm(post)) {
 				$timeout(function() {
 					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
 					$scope.showInvalidPostMessage = true;
@@ -360,7 +406,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				angular.copy(post), {
 					valid_until: (post.valid_until) ? convertDateToIso(post.valid_until, $scope.dateFormat) : post.valid_until,
 					id: $scope.post._id,
-					type: post.type ? 'offer' : 'need'
+					// type: post.type ? 'offer' : 'need'
 				}
 			);
 
@@ -372,7 +418,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$.cookie(POST_LANGUAGE, post.language);
 
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
-
 				// if it is save&activate button
 				// call prolong or resume endpoints first
 				switch (activate && post.state) {
@@ -392,7 +437,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		function modifyDateFormat(dateFormat) {
-
 			dateFormat = dateFormat.replace(/yyyy/g, 'y');
 			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
 			return dateFormat;
@@ -447,7 +491,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if ($scope.isInvalid) {
 				$scope.showInvalidPostMessage = true;
 				$timeout(function() {
-					$scope.testForm($scope.post);
+					testForm($scope.post);
 				}, 1000);
 			}
 		};
@@ -477,7 +521,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.toggleLockField();
 		});
 
-		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
+		// $scope.$watch('post.attachments_attributes', $scope.updateImages, true);
+
 		//$scope.$on('postUpdated', $scope.refreshItemInfo); -- do not update post on save, it is handles automatically (by Ploski, 30.5.2016)
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}

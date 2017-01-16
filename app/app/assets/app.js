@@ -12,7 +12,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 	]).config([
 		'$compileProvider', '$httpProvider',
 		function($compileProvider, $httpProvider) {
-			$compileProvider.debugInfoEnabled($$config.disableDebugInfo);
+			$compileProvider.debugInfoEnabled($$config.angularDebugInfoEnabled);
 			$httpProvider.useApplyAsync(true);
 		}
 	]).config([

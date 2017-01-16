@@ -89,11 +89,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.pageChangeWithScroll = false;
 		};
 
+		var locationSearch;
+		var searchParamsRetainer = {
+			'messages': 1,
+			'messages.new': 1,
+			'messages.detail': 1
+		};
+
 		/**
 		 * When started routing to another page, compare routes and if they differ
 		 * scroll to top of the page, if not, refresh page with fixed height
 		 */
-		$rootScope.$on("$stateChangeStart", function(event, next) {
+		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+
+			// retain optional state params on specified route groups
+			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
+				locationSearch = $location.search();
+			} else {
+				locationSearch = void 0;
+			}
+
 			// when changed route, load conversation counters
 			//Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();
@@ -110,7 +125,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (!$rootScope.addressNew) return $rootScope.top(0, 1);
 
 			$rootScope.addressOld = $rootScope.addressNew;
-			$rootScope.addressNew = next.originalPath;
+			$rootScope.addressNew = toState.originalPath;
 
 			var r1 = $rootScope.addressOld.split($$config.basePath);
 			var r2 = $rootScope.addressNew.split($$config.basePath);
@@ -131,6 +146,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * and add class of given controller to wrapping div container
 		 */
 		$rootScope.$on("$stateChangeSuccess", function(ev, current) {
+
+			if (locationSearch) $location.search(locationSearch);
+
 			$rootScope.pageName = $state.current.name;
 			$scope.segment = current.name;
 
@@ -456,9 +474,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					$rootScope.openEditForm(scope);
 				});
 			} else {
-
 				Post.createDraft({}, function(draft) {
 					scope.post = draft;
+					scope.post.type = null; // because editItem dialog should start without anything selected 
 					scope.isDraft = true;
 					scope.postOrig = null;
 					$rootScope.openEditForm(scope);

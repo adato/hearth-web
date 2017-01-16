@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 dny",
 			"ADS_ALL": "Všechny dary a přání",
-			"ADS_NEED": "Jen přání",
-			"ADS_OFFER": "Jen dary",
+			"ADS_NEED": "Jen přání <small>(přijmu i půjčím si)<\/small>",
+			"ADS_OFFER": "Jen dary <small>(věnuji i půjčím)<\/small>",
 			"BY_AUTHOR": "Podle autora",
 			"BY_LOCATION": "Podle umístění",
 			"BY_TIME": "Podle času",
@@ -271,7 +271,8 @@
 			"ARCHIVE": "Archivované konverzace",
 			"USERS_POSTS": "Zprávy od uživatelů",
 			"COMMUNITIES_POSTS": "Zprávy od komunit",
-			"POST_ADMIN": "Správcovské konverzace"
+			"POST_ADMIN": "Správcovské konverzace",
+			"COMMUNITY": "Konverzace v mých komunitách"
 		},
 		"DELETE_CONVERSATION": "Smazat konverzaci",
 		"LEAVE_CONVERSATION": "Opustit konverzaci",
@@ -1770,5 +1771,35 @@
 		}
 	},
 	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
-	"count-of-wished-and-gifts": "Počet darů a přání: {{value}}"
+	"count-of-wished-and-gifts": "Počet darů a přání: {{value}}",
+	"INFOBOX": {
+		"CONNECTIONS": {
+			"COMMON_USERS": {
+				"one": "Společný známý",
+
+				"other": "<b>{{ count }}<\/b> společných známých:",
+				"few": "<b>{{ count }}<\/b> společní známí:"
+			},
+			"AND_X_OTHER": {
+				"one": "a 1 další",
+				"few": "a {{ count }} další",
+				"other": "a další {{ count }}"
+			},
+			"COMMON_COMMUNITIES": {
+				"one": "Společná komunita ",
+
+				"few": "<b>{{ count }}<\/b> společné komunity:",
+				"other": "<b>{{ count }}<\/b> společných komunit:"
+			}
+		}
+	},
+	"AND": "a",
+	"OFFER_LEND": "Věnuji nebo půjčím",
+	"NEED_BORROW": "Přijmu nebo si půjčím",
+	"WE_NEED_BORROW": "Přijmeme nebo si půjčíme",
+	"WE_OFFER_LEND": "Věnujeme nebo půjčíme",
+	"WE_BORROW": "Půjčíme si",
+	"WE_LEND": "Půjčíme",
+	"POST_BORROW_LEND_INFOTEXT": "Je to tady! Přáli jste si to a my přání plníme rádi. Nově si můžete nejen darovat, ale také půjčovat.<br \/>\n<br \/>\n<em>Vyber si:<\/em> Věnuji \/ Půjčím nebo obojí. Stejně tak: Přijmu \/ Půjčím si nebo obojí. A jedém!",
+	"LOAD_NEXT": "Načíst další"
 }
