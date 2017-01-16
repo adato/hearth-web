@@ -8,11 +8,42 @@
 
 angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', '$window', function(Karma, MottoLength, $window) {
 
-	var factory = {};
-
 	var PROFILE_TYPES = {
 		USER: 'user',
 		COMMUNITY: 'community'
+	};
+
+	var MAX_MOTTO_LENGTH = MottoLength;
+
+	var factory = {
+		transformDataForUsage: transformDataForUsage,
+		transformDataForSaving: transformDataForSaving,
+		single: {
+			copyMottoIfNecessary: copyMottoIfNecessary,
+			fillWebs: fillWebs,
+			joinInterests: joinInterests,
+			splitInterests: splitInterests
+		},
+		params: {
+			PROFILE_TYPES: PROFILE_TYPES,
+			MAX_MOTTO_LENGTH: MAX_MOTTO_LENGTH
+		},
+		getUploadOpts: getUploadOpts
+	};
+
+	return factory;
+
+	/////////////////
+
+	/**
+	 *	Function returning some basic settings for avatar upload
+	 */
+	function getUploadOpts() {
+		return {
+			minSize: 400, // Pixels
+			limitMb: 5,
+			resultPropName: 'public_avatar_url'
+		};
 	}
 
 	/**
@@ -59,9 +90,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		return paramObject.profile;
 	}
 
-	// SETUP
-	var MAX_MOTTO_LENGTH = MottoLength;
-
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
@@ -70,8 +98,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		}
 		return profile;
 	}
-
-
 
 	function fillWebs(profile) {
 		if (!profile.webs || !profile.webs.length) profile.webs = [''];
@@ -92,22 +118,5 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		// profile.interests = profile.interests.join(',');
 		return profile;
 	}
-
-	// FUNCTION EXPOSITION
-	factory.transformDataForUsage = transformDataForUsage;
-	factory.transformDataForSaving = transformDataForSaving;
-	factory.single = {
-		copyMottoIfNecessary: copyMottoIfNecessary,
-		fillWebs: fillWebs,
-		joinInterests: joinInterests,
-		splitInterests: splitInterests
-	};
-	factory.params = {
-		PROFILE_TYPES: PROFILE_TYPES,
-		MAX_MOTTO_LENGTH: MAX_MOTTO_LENGTH
-	};
-
-	// RETURN
-	return factory;
 
 }]);
