@@ -67,10 +67,10 @@
 				</span>
 			</h2>
 			<section class="change-pass">
-				<div ng-if="isSocial()">
+				<div ng-if="!presentPassword">
 					{{:: 'CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH' | translate }}
 				</div>
-				<div ng-if="!isSocial()">
+				<div ng-if="presentPassword">
 					<div class="fleft large-6 small-12 medium-6">
 						<div class="fleft large-11 small-12 medium-11">
 							<label for="oldPass">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
