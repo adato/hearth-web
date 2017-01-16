@@ -11,7 +11,7 @@
 					<img class="preview" ng-if="!community.avatar.file && community.avatar.large" ng-src="{{community.avatar.large}}" resized-thumbnail-image />
 					<div class="text">
 						<span class="fa fa-plus-square-o"></span>
-						<span>{{:: 'CHOOSE_AVATAR_FILE' | translate}}</span>
+						<span>{{:: 'CHOOSE_AVATAR_FILE' | translate }}</span>
 					</div>
 				</div>
 			</div>
@@ -183,10 +183,11 @@
 				</span>
 			</h2>
 			<section class="">
-				<form ng-submit="saveCommunityConversationSettings(messageSettings)" name="communityConversationSettings">
-					<checkbox id="allowSendingToMembers" name="allowSendingToMembers" model="community.allow_message_to_members" value="true" value-off="false" on-update="saveCommunityConversationSettings()">
+				<form ng-submit="saveCommunityConversationSettings(messageSettings)" name="communityConversationSettings" class="display-medium-flex flex-space-between flex-wrap flex-divided-large">
+					<checkbox id="allowSendingToMembers" name="allowSendingToMembers" model="community.allow_message_to_members" value="true" value-off="false">
 						{{:: 'CONVERSATION.SETTINGS.ALLOW_SENDING_TO_MEMBERS' | translate }}
 					</checkbox>
+					<button type="submit" class="button-send">{{:: 'SAVE' | translate }}</button>
 				</form>
 			</section>
 		</div>
