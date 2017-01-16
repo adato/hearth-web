@@ -44,6 +44,9 @@ gulp.task('build',
       // copy, // empty task ATM
       copyRoot,
 
+      // fetch locale
+      locales,
+
       // external libs
       appLibsJs,
       jQuery,
@@ -60,22 +63,21 @@ gulp.task('default',
 
 // Run just the sass task
 // .. mainly for foundation v5 to v6 upgrade purposes
-gulp.task('sass',
-  gulp.series(sass)
-);
+gulp.task('sass', gulp.series(sass));
+gulp.task('locale', gulp.series(locales));
 
 const localeGetters = (function() {
   var arr = [];
-  LOCALE.languages.forEach(lang => {
-    var path = LOCALE.getPath.replace('{langVal}', lang);
+  console.log(LOCALE.languages);
+  Object.keys(LOCALE.languages).forEach(lang => {
+    var path = LOCALE.getPath.replace('{langVal}', LOCALE.languages[lang]);
     arr.push(
       function() {
         return $.gulpRemoteSrc(path)
           .pipe(gulp.dest(PATHS.dist + '/locale/' + lang + '/messages'))
-
       }
     );
-  }
+  });
   return arr;
 })();
 gulp.task('locales',
