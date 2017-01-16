@@ -240,6 +240,24 @@
 						}
 					}
 				}
+
+				.conversation-add-participants {
+					.user-picker {
+						margin-top: 10px;
+						display: flex;
+
+						.ui-select-container {
+							margin-bottom: 0;
+						}
+
+						&.filled {
+							.ui-select-container {
+								flex: 1;
+								margin-right: 15px;
+							}
+						}
+					}
+				}
 			}
 			.message-head {
 				// font-size: 14px;

@@ -89,11 +89,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.pageChangeWithScroll = false;
 		};
 
+		var locationSearch;
+		var searchParamsRetainer = {
+			'messages': 1,
+			'messages.new': 1,
+			'messages.detail': 1
+		};
+
 		/**
 		 * When started routing to another page, compare routes and if they differ
 		 * scroll to top of the page, if not, refresh page with fixed height
 		 */
-		$rootScope.$on("$stateChangeStart", function(event, next) {
+		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+
+			// retain optional state params on specified route groups
+			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
+				locationSearch = $location.search();
+			} else {
+				locationSearch = void 0;
+			}
+
 			// when changed route, load conversation counters
 			//Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();
@@ -110,7 +125,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (!$rootScope.addressNew) return $rootScope.top(0, 1);
 
 			$rootScope.addressOld = $rootScope.addressNew;
-			$rootScope.addressNew = next.originalPath;
+			$rootScope.addressNew = toState.originalPath;
 
 			var r1 = $rootScope.addressOld.split($$config.basePath);
 			var r2 = $rootScope.addressNew.split($$config.basePath);
@@ -131,6 +146,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * and add class of given controller to wrapping div container
 		 */
 		$rootScope.$on("$stateChangeSuccess", function(ev, current) {
+
+			if (locationSearch) $location.search(locationSearch);
+
 			$rootScope.pageName = $state.current.name;
 			$scope.segment = current.name;
 
@@ -456,9 +474,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					$rootScope.openEditForm(scope);
 				});
 			} else {
-
 				Post.createDraft({}, function(draft) {
 					scope.post = draft;
+					scope.post.type = null; // because editItem dialog should start without anything selected 
 					scope.isDraft = true;
 					scope.postOrig = null;
 					$rootScope.openEditForm(scope);
@@ -493,50 +511,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				cb && cb(post); // if callback given, call it
 			}, function() {
 				$rootScope.globalLoading = false;
-			});
-		};
-
-		/**
-		 * Function will hide item from marketplace
-		 */
-		$rootScope.hideItem = function(post, cb) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			$rootScope.globalLoading = true;
-			Post.hide({
-				id: post._id
-			}, function(res) {
-				if ($state.is('market')) {
-					$rootScope.$broadcast("itemDeleted", post);
-				}
-
-				Notify.addSingleTranslate('NOTIFY.POST_HID_SUCCESFULLY', Notify.T_SUCCESS);
-				$rootScope.globalLoading = false;
-
-				cb && cb(post); // if callback given, call it
-			}, function() {
-				$rootScope.globalLoading = false;
-			});
-		};
-
-		/**
-		 * Function will show modal window with reply form to given post
-		 */
-		$rootScope.replyItem = function(post) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			var scope = $scope.$new();
-			scope.post = post;
-
-			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemReply.html',
-				controller: 'ItemReply',
-				scope: scope,
-				closeByDocument: false,
-				closeByEscape: true,
-				showClose: false
 			});
 		};
 
@@ -578,46 +552,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				closeByDocument: false,
 				closeByEscape: true,
 				showClose: false
-			});
-		};
-
-		/**
-		 * Function will add item to users bookmarks
-		 */
-		$rootScope.addItemToBookmarks = function(post) {
-			if (post.is_bookmarked)
-				return false;
-
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			UserBookmarks.add({
-				'postId': post._id
-			}, function(res) {
-				if (res.ok === true) {
-					post.is_bookmarked = !post.is_bookmarked;
-					Notify.addSingleTranslate('NOTIFY.POST_BOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
-				}
-			});
-		};
-
-		/**
-		 * Function will remove item from users bookmarks
-		 */
-		$rootScope.removeItemFromBookmarks = function(post) {
-			if (!post.is_bookmarked)
-				return false;
-
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
-
-			UserBookmarks.remove({
-				'postId': post._id
-			}, function(res) {
-				if (res.ok === true) {
-					post.is_bookmarked = !post.is_bookmarked;
-					Notify.addSingleTranslate('NOTIFY.POST_UNBOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
-				}
 			});
 		};
 

@@ -92,6 +92,19 @@
 			.title {
 				font-size: rem-calc(22);
 
+				.item-option-bg-type {
+					float: left;
+					margin: 3px 10px 0 0;
+					width: 20px;
+					height: 20px;
+				}
+
+				.item-option-bg-type > i {
+					width: 12px;
+					height: 12px;
+					background-size: 12px 12px;
+				}
+
 				a {
 					color: color(5);
 					font-weight: 600;

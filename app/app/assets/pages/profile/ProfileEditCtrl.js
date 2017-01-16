@@ -21,7 +21,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			contact_email: false,
 			message: false,
 			social_networks: [],
+			avatar: {}
 		};
+		$scope.avatarUploadOpts = ProfileUtils.getUploadOpts();
+		$scope.avatarUploadOpts.uploadingQueue = $scope.imageUploading;
+		$scope.avatarUploadOpts.error = $scope.showError.avatar;
 
 		$scope.parameters = ProfileUtils.params;
 
@@ -182,6 +186,10 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.user_languages.push(userLang.code);
 			});
 
+			// avatar
+			if (data.avatar && data.avatar.public_avatar_url) {
+				data.public_avatar_url = data.avatar.public_avatar_url;
+			}
 			delete data.avatar;
 
 			return data;
@@ -239,9 +247,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var actions = {
 				user: User.edit(transformedData).$promise
 			};
-			if ($scope.profile.avatar.toBeUploaded) actions.avatar = User.uploadAvatar({
-				_id: $scope.profile._id
-			}, $scope.profile.avatar.toBeUploaded, Auth.refreshUserInfo).$promise;
+
 			$q.all(actions).then(function(res) {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;

@@ -55,7 +55,7 @@
 	</script>
 </head>
 
-<body ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': ''))]" ng-keydown="escapeKey($event)">
+<body>
 	<script type="text/javascript">
 		// scripts to be loaded sooner
 		(function(){
@@ -223,6 +223,7 @@
 	<script src="/app/assets/services/resources/Password.js"></script>
 	<script src="/app/assets/services/resources/Post.js"></script>
 	<script src="/app/assets/services/resources/PostReplies.js"></script>
+	<script src="/app/assets/services/resources/Presign.js"></script>
 	<script src="/app/assets/services/resources/Session.js"></script>
 	<script src="/app/assets/services/resources/Tutorial.js"></script>
 	<script src="/app/assets/services/resources/User.js"></script>
@@ -270,6 +271,8 @@
 	<script src="/app/assets/services/OpenGraph.js"></script>
 	<script src="/app/assets/services/PageTitle.js"></script>
 	<script src="/app/assets/services/PostsService.js"></script>
+	<script src="/app/assets/services/PostScope.js"></script>
+	<script src="/app/assets/services/PresignUploader.js"></script>
 	<script src="/app/assets/services/ProfileProgress.js"></script>
 	<script src="/app/assets/services/ProfileUtils.js"></script>
 	<script src="/app/assets/services/ResponseErrors.js"></script>
@@ -325,6 +328,7 @@
 	<script src="/app/assets/components/ngEnter/ngEnter.js"></script>
 	<script src="/app/assets/components/imagePreview/fileModel.js"></script>
 	<script src="/app/assets/components/imagePreview/imagePreview.js"></script>
+	<script src="/app/assets/components/imagePreview/imagePreviewDirectUpload.js"></script>
 	<script src="/app/assets/components/imagePreview/ImageLib.js"></script>
 	<script src="/app/assets/components/resizedThumbnailImage/resizedThumbnailImage.js"></script>
 	<script src="/app/assets/components/exifRotated/exifRotated.js"></script>
@@ -350,6 +354,7 @@
 	<script src="/app/assets/components/authorSelector/authorSelector.js"></script>
 	<script src="/app/assets/components/conversationDetail/conversationDetail.js"></script>
 	<script src="/app/assets/components/conversationAdd/conversationAdd.js"></script>
+	<script src="/app/assets/components/conversationAddParticipants/conversationAddParticipants.js"></script>
 	<script src="/app/assets/components/infoBox/infoBox.js"></script>
 	<script src="/app/assets/components/customScrollbar/customScrollbar.js"></script>
 	<script src="/app/assets/components/scrollToViewOnHash/scrollToViewOnHash.js"></script>
@@ -369,6 +374,9 @@
 	<script src="/app/assets/components/validatedCheckbox/validatedCheckbox.js"></script>
 	<script src="/app/assets/components/withErrors/withErrors.js"></script>
 	<script src="/app/assets/components/ctrlEnterSubmit/ctrlEnterSubmit.js"></script>
+	<script src="/app/assets/components/mailgunValidator/mailgunValidator.js"></script>
+	<script src="/app/assets/components/suspendable/suspendable.js"></script>
+
 	<script src="/app/assets/utils/ExifRestorer.js"></script>
 	<script src="/app/assets/utils/eventPause.js"></script>
 	<script src="/app/assets/components/abTest/abTest.js"></script>
@@ -421,6 +429,7 @@
 	<script src="/app/assets/modals/ConfirmBox.js"></script>
 	<script src="/app/assets/modals/ItemSuspend.js"></script>
 	<script src="/app/assets/constants/MottoLength.js"></script>
+	<script src="/app/assets/constants/MarketPostCount.js"></script>
 	<script src="/app/assets/utils/tracking.js"></script>
 	<!-- endbuild -->
 

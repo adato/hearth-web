@@ -34,10 +34,10 @@ angular.module('hearth.services').factory('User', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/users/:user_id/posts',
-				method: 'GET',
-				// transformResponse: [LocationJsonDataTransform.getLocationJson.bind({
-				// 	prop: 'data'
-				// })]
+				method: 'GET'
+					// transformResponse: [LocationJsonDataTransform.getLocationJson.bind({
+					// 	prop: 'data'
+					// })]
 			},
 			getConnections: {
 				url: $$config.apiPath + '/users/connections',
@@ -62,10 +62,22 @@ angular.module('hearth.services').factory('User', [
 				},
 				transformRequest: [function(image) {
 					var fd = new FormData();
-					fd.append('avatar[file]', image)
+					fd.append('avatar[file]', image);
 					return fd;
 				}]
 			},
+
+			// function to use to get presigned url for amazon direct upload
+			// resolves a json with
+			//  * url to upload images to
+			//  * presigned time-limited key that allows the upload
+			//  * other information required by aws enabling the upload
+			announceAvatarUpload: {
+				url: $$config.apiPath + '/users/avatar/presigned',
+				method: 'POST',
+				errorNotify: false
+			},
+
 			editSettings: {
 				method: 'PUT',
 				errorNotify: {
@@ -74,7 +86,7 @@ angular.module('hearth.services').factory('User', [
 			},
 			remove: {
 				method: 'DELETE',
-				nointercept: true,
+				nointercept: true
 			},
 			setClosedFilter: {
 				url: $$config.apiPath + '/close_filter',
@@ -118,7 +130,7 @@ angular.module('hearth.services').factory('User', [
 				method: 'PATCH',
 				errorNotify: {
 					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
-				},
+				}
 			}
 
 		});

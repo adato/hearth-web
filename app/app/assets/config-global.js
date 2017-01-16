@@ -53,12 +53,36 @@ window['$$config'] = {
 	},
 	postTypes: {
 		User: {
+			gift: {
+				need: 'NEED',
+				offer: 'OFFER'
+			},
+			loan: {
+				need: 'BORROW',
+				offer: 'LEND'
+			},
+			any: {
+				need: 'NEED_BORROW',
+				offer: 'OFFER_LEND'
+			},
 			need: 'DOES_WISH',
 			offer: 'DOES_GIVE',
 			false: 'DOES_WISH',
 			true: 'DOES_GIVE'
 		},
 		Community: {
+			gift: {
+				need: 'WE_NEED',
+				offer: 'WE_OFFER'
+			},
+			loan: {
+				need: 'WE_BORROW',
+				offer: 'WE_LEND'
+			},
+			any: {
+				need: 'WE_NEED_BORROW',
+				offer: 'WE_OFFER_LEND'
+			},
 			need: 'WE_NEED',
 			offer: 'WE_OFFER',
 			false: 'WE_NEED',

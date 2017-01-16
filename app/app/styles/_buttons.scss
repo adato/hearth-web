@@ -115,3 +115,34 @@ button.no-vertical-padding {
 		background-color: darken($colorOffer, abs($button-function-factor));
 	}
 }
+
+.button-white {
+	height: inherit;
+	min-width: inherit;
+	color: #666;
+	background-color: #fff;
+	border: 2px solid $colorLightGray;
+	&:hover {
+		color: #333;
+		background-color: $colorLightGray;
+	}
+	&:focus {
+		color: #333;
+		background-color: darken($colorLightGray, 10%);
+	}
+}
+.button-white.active {
+	background: $colorSecondary;
+	color:#fff;
+	font-weight: bold;
+
+	&:focus {
+		background: darken($colorSecondary, 10%);
+	}
+}
+.button-white[disabled],
+.button-white[disabled]:hover {
+	color: $colorDarkGray;
+	background: $colorLightGray;
+	border: $colorDarkGray;
+}

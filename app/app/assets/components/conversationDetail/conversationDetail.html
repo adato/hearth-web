@@ -24,7 +24,8 @@
 					<a ng-if="!info.is_archived" ng-click="confirmBox('MESSAGES.ARCHIVE_CONFIRM.LABEL', 'MESSAGES.ARCHIVE_CONFIRM.TEXT', archiveConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.ARCHIVE_CONVERSATION' | translate }}</a>
 					<a ng-if="info.is_member" ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
 					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{:: 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
-					<a ng-show="info.read" ng-click="markConversationAsUnread(info)" class="action-link divider">Označit za nepřečtenou</a>
+					<a ng-show="info.read" ng-click="markConversationAsUnread(info)" class="action-link divider">{{:: 'MESSAGES.MARK_CONVERSATION_AS_UNREAD' | translate}}</a>
+					<a ng-click="toggleParticipantsForm()" class="action-link">{{:: 'MESSAGES.ADD_PARTICIPANT' | translate}}</a>
 				</div>
 			</span>
 			<div class="clear"></div>
@@ -46,6 +47,10 @@
 					</div>
 				</div>
 				<div class="clear"></div>
+			</div>
+			<div ng-if="showParticipantsForm" class="conversation-add-participants">
+				<hr />
+				<conversation-add-participants users="info.participants" conversation="info" toggle-participants-form="toggleParticipantsForm()"></conversation-add-participants>
 			</div>
 			<hr />
 		</div>

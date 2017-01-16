@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService',
-	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService) {
+	'$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount',
+
+	function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -29,10 +30,19 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		$scope.postTypes = $$config.postTypes;
 		$scope.data = [];
 		$scope.loadingData = false;
+
+		$scope.userPostCount = {
+			'active': 0,
+			'inactive': 0
+		};
+		$scope.userBookmarkCount = 0; // default zero counters
+
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
 		var inited = false;
 		$scope.subPageLoaded = false;
+
+		var templatePath = 'assets/components/item/items/post.html';
 
 		$scope.paginate = function(params) {
 			params.offset = $scope.data.length;
@@ -43,7 +53,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			if (params.limit) return params;
 
 			params.offset = $scope.data.length;
-			params.limit = 15;
+			params.limit = MarketPostCount;
 			return params;
 		};
 
@@ -180,17 +190,29 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		}
 
 		function loadBookmarks(params, done, doneErr) {
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+			var compiledTemplate;
+
+			$scope.userBookmarkCount = 0;
+
 			$scope.addPagination(params);
 			params.user_id = undefined;
-			UserBookmarks.query(params, function(res) {
-				$scope.postsBookmarked = [];
 
-				res.forEach(function(item) {
-					$scope.postsBookmarked.push(item);
-				});
+			$templateRequest(templateUrl).then(function(template) {
+				var compiledTemplate = $compile(template);
 
-				finishLoading();
-			}, doneErr);
+				// fetch posts
+				UserBookmarks.query(params, function(res) {
+					$scope.postsBookmarked = [];
+
+					res.forEach(function(item) {
+						$scope.userBookmarkCount++;
+						pushPost('.profile-common .ads-listing', item, compiledTemplate);
+					});
+
+					finishLoading();
+				}, doneErr);
+			});
 		}
 
 		function loadUserReplies(params, done, doneErr) {
@@ -200,20 +222,49 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			}, doneErr);
 		}
 
+		function pushPost(containerPath, post, compiledTemplate) {
+			var scope = PostScope.getPostScope(post, $scope);
+			scope.inactivateTags = true;
+			compiledTemplate(scope, function(clone) {
+				// doesnt work when not delayed
+				$timeout(function() {
+					$(containerPath).append(clone[0]);
+					$timeout(function() {
+						$('#post_' + post._id).show();
+					});
+				}, 100);
+			});
+		}
+
+		// load posts of user
+		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadUserPosts(params, done, doneErr) {
-			User.getPosts(params, function(res) {
-				$scope.postsActive = [];
-				$scope.postsInactive = [];
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+			var compiledTemplate;
 
-				res.data.forEach(function(item) {
-					if ($rootScope.isPostActive(item))
-						$scope.postsActive.push(item);
-					else
-						$scope.postsInactive.push(item);
-				});
+			// counter for template
+			$scope.userPostCount = {
+				'active': 0,
+				'inactive': 0
+			};
 
-				finishLoading();
-			}, doneErr);
+			$templateRequest(templateUrl).then(function(template) {
+				var compiledTemplate = $compile(template);
+
+				// fetch posts
+				User.getPosts(params, function(res) {
+					res.data.forEach(function(item) {
+						if ($rootScope.isPostActive(item)) {
+							$scope.userPostCount.active++;
+							pushPost('#profile-ads-listing-active', item, compiledTemplate);
+						} else {
+							$scope.userPostCount.inactive++;
+							pushPost('#profile-ads-listing-inactive', item, compiledTemplate);
+						}
+					});
+					finishLoading();
+				}, doneErr);
+			});
 		}
 
 		$scope.refreshItemInfo = function($event, itemNew) {

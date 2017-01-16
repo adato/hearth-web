@@ -77,6 +77,15 @@ angular.module('hearth.services').factory('Conversations', [
 				url: $$config.apiPath + '/conversations/:id/users',
 				method: 'GET'
 			},
+			addParticipants: {
+				url: $$config.apiPath + '/conversations/:conversation_id/participants?:ids',
+				method: 'POST',
+				ignoreLoadingBar: true,
+				params: {
+					conversation_id: '@conversation_id',
+					'id[]': '@ids'
+				}
+			},
 			reply: {
 				url: $$config.apiPath + '/conversations',
 				method: 'POST',
@@ -133,6 +142,10 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/conversations/posts',
+				method: 'GET'
+			},
+			getCommunityConversations: {
+				url: $$config.apiPath + '/conversations/communities',
 				method: 'GET'
 			},
 			downloadAttachment: {

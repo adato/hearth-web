@@ -18,6 +18,7 @@
 	.ui-checkbox {
 		display: inline-block;
 	}
+
 }
 
 .bottom-line-input {
@@ -55,6 +56,12 @@ input.bottom-line-input:focus {
 }
 .radio-container {
 	padding-bottom: $size-small;
+	span>small {
+		color:color(3);
+		font-size:85%;
+		padding-left:3px;
+		text-transform: none;
+	}
 }
 
 

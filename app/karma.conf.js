@@ -13,7 +13,7 @@ module.exports = function (config) {
     files: [
 
       // Load config stuff for the environment
-      'test/spec/setup.js',
+      'test/unit/setup.js',
       'configuration/development.js',
       'app/assets/config-global.js',
 
@@ -167,6 +167,7 @@ module.exports = function (config) {
       'app/assets/services/ViewPort.js',
       'app/assets/services/ViewportUtils.js',
       'app/assets/filters/filters.js',
+      'app/assets/services/PostScope.js',
       'app/assets/components/navigation/navigation.js',
       'app/assets/components/ratingReply/ratingReply.js',
       'app/assets/components/analyticsCustom/analyticsCustom.js',
@@ -252,6 +253,7 @@ module.exports = function (config) {
       'app/assets/components/geo/locations.js',
       'app/assets/components/searchMap/searchMap.js',
       'app/assets/components/geo/map.js',
+      'app/assets/components/suspendable/suspendable.js',
       'app/assets/pages/static/ComponentsCtrl.js',
       'app/assets/pages/BaseCtrl.js',
       'app/assets/pages/map/MapCtrl.js',
@@ -297,13 +299,14 @@ module.exports = function (config) {
       'app/assets/modals/ConfirmBox.js',
       'app/assets/modals/ItemSuspend.js',
       'app/assets/constants/MottoLength.js',
+      'app/assets/constants/MarketPostCount.js',
       'node_modules/karma-read-json/karma-read-json.js',
 
       // load JSONs
       {pattern: 'app/locales/**/*.json', included: false},
 
       // application tests
-      'test/spec/**/**/*.spec.js',
+      'test/unit/**/**/*.spec.js',
 
       // application HTML
       'app/assets/components/**/*.html'
@@ -335,7 +338,7 @@ module.exports = function (config) {
 
     junitReporter: {
       outputDir: 'test', // results will be saved as $outputDir/$browserName.xml
-      outputFile: 'test-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      outputFile: 'unit-tests-result.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
       useBrowserName: false // add browser name to report and classes names
     },
 

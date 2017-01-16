@@ -8,8 +8,8 @@
 		"FILTER": {
 			"3_DAYS": "3 days",
 			"ADS_ALL": "All posts",
-			"ADS_NEED": "Needs only",
-			"ADS_OFFER": "Offers only",
+			"ADS_NEED": "Needs only <small>(wish and borrow)<\/small>",
+			"ADS_OFFER": "Offers only <small>(give and lend)<\/small>",
 			"BY_AUTHOR": "By author",
 			"BY_LOCATION": "By place",
 			"BY_TIME": "By time",
@@ -271,7 +271,8 @@
 			"ARCHIVE": "Archived conversations",
 			"USERS_POSTS": "Messages from Users",
 			"COMMUNITIES_POSTS": "Messages from Communities",
-			"POST_ADMIN": "Admin Conversations"
+			"POST_ADMIN": "Admin Conversations",
+			"COMMUNITY": "Konverzace v mých komunitách"
 		},
 		"DELETE_CONVERSATION": "Delete conversation",
 		"LEAVE_CONVERSATION": "Leave conversation",
@@ -526,10 +527,8 @@
 	"author": "Author",
 	"community": "communities",
 	"POSTS_COUNT_PL": {
-		"one": {
-			"one": "<p>Currently <strong>{{value}}<\/strong> active post<\/p>",
-			"other": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>"
-		}
+		"one": "<p>Currently <strong>{{value}}<\/strong> active post<\/p>",
+		"other": "<p>Currently&nbsp;<strong>{{value}}<\/strong>&nbsp;active posts<\/p>"
 	},
 	"FILTER_ADS": "Filter posts",
 	"FILTER_IS_ON": "Filter (active)",
@@ -1739,5 +1738,34 @@
 		}
 	},
 	"SIGNUP_BLOCKED_EMAIL_ERROR": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět<\/a>.",
-	"count-of-wished-and-gifts": "Count of gifts and wishes: {{value}}"
+	"count-of-wished-and-gifts": "Count of gifts and wishes: {{value}}",
+	"INFOBOX": {
+		"CONNECTIONS": {
+			"COMMON_USERS": {
+				"one": "Also followed by ",
+
+				"other": "<b>{{ count }}<\/b> mutual connections: ",
+				"few": "<b>{{ count }}<\/b> mutual connections:"
+			},
+			"AND_X_OTHER": {
+				"one": "and one more",
+				"few": "and {{ count }} more",
+				"other": "and {{ count }} more"
+			},
+			"COMMON_COMMUNITIES": {
+				"one": "Also member in ",
+				"few": "Also member in <b>{{ count }}<\/b> communities:",
+				"other": "Also member in <b>{{ count }}<\/b> communities:"
+			}
+		}
+	},
+	"AND": "and",
+	"OFFER_LEND": "I give or lend",
+	"NEED_BORROW": "I wish or borrow",
+	"WE_NEED_BORROW": "We accept or borrow",
+	"WE_OFFER_LEND": "We give or lend",
+	"WE_BORROW": "We borrow",
+	"WE_LEND": "We lend",
+	"POST_BORROW_LEND_INFOTEXT": "It’s here! You wished for it and we’re happy to deliver. Now you can not only give, but also lend and borrow.<br \/>\n<br \/>\n<em>Take your pick:<\/em> I give\/lend or both. Also: I accept\/borrow or both. Let’s go!",
+	"LOAD_NEXT": "Načíst další"
 }
