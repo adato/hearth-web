@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', '$translate',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, $translate) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -53,6 +53,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			}, function(data) {
 				$scope.item = data;
 
+				$scope.setTitle();
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
 				else
@@ -101,12 +102,17 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		$scope.setTitle = function() {
+			var title = $translate.instant($scope.postTypes[$scope.item.author._type][$scope.item.type]) + ' ' + $scope.item.title;
+			PageTitle.setTranslate('', title);
+		};
+
 		$scope.initMap = function() {
 			$timeout(function() {
 				$scope.$broadcast('initMap');
 				$scope.$broadcast('showMarkersOnMap');
 			});
-		}
+		};
 
 		$scope.$watch('page.currentPageSegment', function(newval, oldval) {
 			if (newval == 'detail.map') $scope.initMap();
