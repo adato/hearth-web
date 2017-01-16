@@ -1743,6 +1743,7 @@
 		"CONNECTIONS": {
 			"COMMON_USERS": {
 				"one": "Also followed by ",
+
 				"other": "<b>{{ count }}<\/b> mutual connections: ",
 				"few": "<b>{{ count }}<\/b> mutual connections:"
 			},
