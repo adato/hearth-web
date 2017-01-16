@@ -35,9 +35,11 @@ PATHS:
   # Paths to JavaScript libraries, which are combined into one file
   libs:
     app:
-      js:
+      # Handled separately
+      jq:
         - "bower_components/jquery/dist/jquery.min.js"
         - "bower_components/jquery.cookie/jquery.cookie.js"
+      js:
         - "bower_components/rollbar/dist/rollbar.min.js"
         - "bower_components/angular/angular.min.js"
         - "bower_components/angular-resource/angular-resource.min.js"

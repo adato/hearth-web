@@ -152,12 +152,19 @@ function appLibsJs() {
     .pipe($.concat('libs.js'))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/js'))
 }
+// jQuery is handled separately, as it is required to have it loaded in head,
+// apart from all other code that has to be loaded at the end of body
+function jQuery() {
+  return gulp.src(PATHS.libs.app.jq)
+    .pipe($.concat('jquery.js'))
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/js'))
+}
 
 // APP JS
 // Combine JavaScript into one file
 // In production, the file is minified
 function javascript() {
-  return gulp.src([PATHS.src.app.js, PATHS.javascript])
+  return gulp.src(PATHS.src.app.js, PATHS.javascript)
     .pipe($.sourcemaps.init())
     .pipe($.babel({ignore: ['what-input.js']}))
     .pipe($.concat('app.js'))

@@ -42,6 +42,12 @@
 	<!-- <script src="/app/assets/config-global.js"></script> -->
 	<!-- <script src="/app/assets/utils/newRelic.js"></script> -->
 	<!-- endbuild -->
+	<script>
+		// prevent strict mode errors from lame new relic code
+		window.NREUM = {};
+		window.newrelic = {};
+		window.__nr_require = {};
+	</script>
 	<script src="/app/assets/js/config.js"></script>
 
 	<!-- <link rel="stylesheet" type="text/css" href="/app/vendor/flexslider/flexslider.css">
@@ -53,7 +59,7 @@
 
 	<!-- <script src="/app/vendor/jquery/dist/jquery.min.js"></script>
 	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script> -->
-	<script src="/app/assets/js/libs.js"></script>
+	<script src="/app/assets/js/jquery.js"></script>
 
 	<script type="text/javascript">
 		document.write('<meta name="action-cable-url" content="' + $$config.websocket.url + '"/>');
@@ -195,6 +201,8 @@
 	<script src="/app/vendor/intl-tel-input/build/js/intlTelInput.js"></script>
 	<script src="/app/vendor/intl-tel-input/lib/libphonenumber/build/utils.js"></script> -->
 
+	<script src="/app/assets/js/libs.js"></script>
+	<script src="/app/assets/templates/templates.js"></script>
 	<script src="/app/assets/js/app.js"></script>
 
 </body>

@@ -1,9 +1,36 @@
 'use strict';
 
-angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
-		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
-		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber'
+angular.module('hearth', [
+		'hearth.services',
+		'hearth.filters',
+		'hearth.directives',
+		'hearth.controllers',
+		'hearth.constants',
+		'hearth.utils',
+		'hearth.geo',
+		'hearth.messages',
+		'hearth.templates',
+
+		'ngSanitize',
+		'ngResource',
+		'ngDialog',
+		'tmh.dynamicLocale',
+		'ui.select',
+		'ui.router',
+		'angular-flexslider',
+		'pascalprecht.translate',
+		'ng-slide-down',
+		'angulartics',
+		'angulartics.mixpanel',
+		'angulartics.google.analytics',
+		'ngTagsInput',
+		'ipCookie',
+		'satellizer',
+		'MobileDetect',
+		'checklist-model',
+		'rt.select2',
+		'ngActionCable',
+		'internationalPhoneNumber'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
@@ -116,9 +143,9 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 				});
 
 			// Watch for unauth responses
-			$httpProvider.interceptors.push('HearthLoginInterceptor');
-			$httpProvider.interceptors.push('ApiErrorInterceptor');
-			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
+			// $httpProvider.interceptors.push('HearthLoginInterceptor');
+			// $httpProvider.interceptors.push('ApiErrorInterceptor');
+			// $httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 		}
 	]).config(['$provide', 'ipnConfig',
 		function($provide, ipnConfig) {
@@ -135,8 +162,12 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 			ipnConfig.skipUtilScriptDownload = true;
 		}
-	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
+	]).run(['$rootScope',
+		// 'Auth',
+		'$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
+		function($rootScope,
+			// Auth,
+			$location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
@@ -183,72 +214,76 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			 * This will init session of user
 			 */
 			function initSession(done) {
-				// get session info from API
-				Auth.init(function() {
 
-					// enrich rootScope with user/community credentials
-					angular.extend($rootScope, Auth.getSessionInfo());
-
-					// if is logged, check if he wanted to see some restricted page
-					if ($rootScope.loggedUser._id) {
-						if (!$.cookie('forceRefresh')) {
-							var cookies = $.cookie();
-
-							for (var cookie in cookies) {
-								$.removeCookie(cookie);
-							}
-
-							$.cookie('forceRefresh', Date.now(), {
-								expires: 30 * 12 * 20,
-								path: '/'
-							});
-
-							Auth.logout(function() {
-								location.reload("/login");
-							});
-						}
-
-						UnauthReload.checkLocation();
-					} else {
-						$.cookie('forceRefresh', Date.now(), {
-							expires: 30 * 12 * 20,
-							path: '/'
-						});
-					}
-					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
-						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
-							mixpanel.identify($rootScope.loggedUser._id);
-							mixpanel.people.set({
-								"$name": $rootScope.loggedUser.name,
-								"$email": $rootScope.loggedUser.email,
-								"$device-type": getDevice()
-							});
-						} else {
-							mixpanel.people.set({
-								"$device-type": getDevice()
-							});
-						}
-					}
-
-					$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
-					done(null, $rootScope.loggedUser);
-				}, function(err) {
-					$log.error(err.status, err.statusText, err.data);
-					Rollbar.error("HEARTH: session critical error occured", {
-						status: err.status,
-						statusText: err.statusText,
-						data: err.data
-					});
-
-					$('#criticalError').fadeIn();
-					bindCriticalReloadEvent();
-					$rootScope.isCriticalError = true;
-
-					var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data) {
-						offEvent();
-						setTimeout(bindCriticalReloadEvent);
-					});
-				});
+				// TEMP
+				return done(null, $rootScope.loggedUser);
+				//
+				// // get session info from API
+				// Auth.init(function() {
+				//
+				// 	// enrich rootScope with user/community credentials
+				// 	angular.extend($rootScope, Auth.getSessionInfo());
+				//
+				// 	// if is logged, check if he wanted to see some restricted page
+				// 	if ($rootScope.loggedUser._id) {
+				// 		if (!$.cookie('forceRefresh')) {
+				// 			var cookies = $.cookie();
+				//
+				// 			for (var cookie in cookies) {
+				// 				$.removeCookie(cookie);
+				// 			}
+				//
+				// 			$.cookie('forceRefresh', Date.now(), {
+				// 				expires: 30 * 12 * 20,
+				// 				path: '/'
+				// 			});
+				//
+				// 			Auth.logout(function() {
+				// 				location.reload("/login");
+				// 			});
+				// 		}
+				//
+				// 		UnauthReload.checkLocation();
+				// 	} else {
+				// 		$.cookie('forceRefresh', Date.now(), {
+				// 			expires: 30 * 12 * 20,
+				// 			path: '/'
+				// 		});
+				// 	}
+				// 	if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
+				// 		if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
+				// 			mixpanel.identify($rootScope.loggedUser._id);
+				// 			mixpanel.people.set({
+				// 				"$name": $rootScope.loggedUser.name,
+				// 				"$email": $rootScope.loggedUser.email,
+				// 				"$device-type": getDevice()
+				// 			});
+				// 		} else {
+				// 			mixpanel.people.set({
+				// 				"$device-type": getDevice()
+				// 			});
+				// 		}
+				// 	}
+				//
+				// 	$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
+				// 	done(null, $rootScope.loggedUser);
+				// }, function(err) {
+				// 	$log.error(err.status, err.statusText, err.data);
+				// 	Rollbar.error("HEARTH: session critical error occured", {
+				// 		status: err.status,
+				// 		statusText: err.statusText,
+				// 		data: err.data
+				// 	});
+				//
+				// 	$('#criticalError').fadeIn();
+				// 	bindCriticalReloadEvent();
+				// 	$rootScope.isCriticalError = true;
+				//
+				// 	var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data) {
+				// 		offEvent();
+				// 		setTimeout(bindCriticalReloadEvent);
+				// 	});
+				// });
 			}
 
 			/**
