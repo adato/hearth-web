@@ -146,66 +146,66 @@ angular.module('hearth.filters', [])
  * @description Returns original string (url) without http(s):// protocol
  */
 .filter('protocolfree', function() {
-		return function(input) {
-			return input.replace("http://", "").replace("https://", "");
+	return function(input) {
+		return input.replace("http://", "").replace("https://", "");
+	}
+})
+.filter('minMax', ['$log', function($log) {
+	return function(input, min, max, postfix, blank) {
+		var val = parseInt(input);
+		var out = '';
+		var postfixAdded = false;
+
+		if (!postfix && postfix != '') postfix = '+';
+		if (val < min) {
+			out = blank ? '' : min;
+		} else if (val > max) {
+			out = max + postfix;
+			postfixAdded = true;
+		} else {
+			out = val;
 		}
-	})
-	.filter('minMax', ['$log', function($log) {
-		return function(input, min, max, postfix, blank) {
-			var val = parseInt(input);
-			var out = '';
-			var postfixAdded = false;
 
-			if (!postfix && postfix != '') postfix = '+';
-			if (val < min) {
-				out = blank ? '' : min;
-			} else if (val > max) {
-				out = max + postfix;
-				postfixAdded = true;
-			} else {
-				out = val;
-			}
+		// this will check if count is number, if no we will return original value and track error to rollbar
+		// if postfix is added due to max value, it will not be checked (to avoid false reporting)
+		if (isNaN(out) && !postfixAdded) {
+			var err = {
+				min: min,
+				max: max,
+				postfix: postfix,
+				blank: blank,
+				val: val,
+				out: out
+			};
 
-			// this will check if count is number, if no we will return original value and track error to rollbar
-			// if postfix is added due to max value, it will not be checked (to avoid false reporting)
-			if (isNaN(out) && !postfixAdded) {
-				var err = {
-					min: min,
-					max: max,
-					postfix: postfix,
-					blank: blank,
-					val: val,
-					out: out
-				};
+			$log.error('Messages count is NaN | In:', input,
+				'Min:', min,
+				'Max:', max,
+				'Postfix:', postfix,
+				'Blank:', blank,
+				'Val:', val,
+				'Out:', out);
 
-				$log.error('Messages count is NaN | In:', input,
-					'Min:', min,
-					'Max:', max,
-					'Postfix:', postfix,
-					'Blank:', blank,
-					'Val:', val,
-					'Out:', out);
+			Rollbar.error("HEARTH: Error while displaying minmax count value (eg. messages count)", {
+				errorData: err,
+			});
 
-				Rollbar.error("HEARTH: Error while displaying minmax count value (eg. messages count)", {
-					errorData: err,
-				});
-
-				out = input;
-			}
-
-			return out;
+			out = input;
 		}
-	}])
-	.filter('highlight', function($sce) {
-		return function(text, phrase) {
-			if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
-				'<span class="highlighted">$1</span>')
 
-			return $sce.trustAsHtml(text)
-		}
-	})
-	.filter('to_trusted', ['$sce', function($sce) {
-		return function(text) {
-			return $sce.trustAsHtml(text);
-		};
-	}]);
+		return out;
+	}
+}])
+.filter('highlight', function($sce) {
+	return function(text, phrase) {
+		if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
+			'<span class="highlighted">$1</span>')
+
+		return $sce.trustAsHtml(text)
+	}
+})
+.filter('to_trusted', ['$sce', function($sce) {
+	return function(text) {
+		return $sce.trustAsHtml(text);
+	};
+}]);

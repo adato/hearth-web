@@ -15,6 +15,13 @@ UNCSS_OPTIONS:
     - !!js/regexp .foundation-mq
     - !!js/regexp ^\.is-.*
 
+LOCALE:
+  getPath: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ"
+  languages:
+    cs: "cs_CZ"
+    sk: "sk_SK"
+    en: "en_US"
+
 # Gulp will reference these paths when it copies files
 PATHS:
   # Path to dist folder
@@ -39,6 +46,7 @@ PATHS:
       jq:
         - "bower_components/jquery/dist/jquery.min.js"
         - "bower_components/jquery.cookie/jquery.cookie.js"
+        - "app/libs/**/*.js"
       js:
         - "bower_components/rollbar/dist/rollbar.min.js"
         - "bower_components/angular/angular.min.js"

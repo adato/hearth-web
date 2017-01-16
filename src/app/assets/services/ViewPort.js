@@ -101,6 +101,5 @@ angular.module('hearth.services').service('Viewport', [
 		recountHeight();
 		angular.element($window).bind('resize', recountHeight);
 
-		return this;
 	}
 ]);

@@ -6,7 +6,7 @@
  * @description
  */
 
-angular.module('hearth.services').service('timeAgoService', [
+angular.module('hearth.services').factory('timeAgoService', [
 	'$interval', '$translate', '$rootScope',
 	function($interval, $translate, $rootScope) {
 		var ref;

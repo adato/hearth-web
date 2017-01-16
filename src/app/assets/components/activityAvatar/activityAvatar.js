@@ -6,7 +6,6 @@
  * @description
  * @restrict E
  */
-
 angular.module('hearth.directives').directive('activityAvatar', [
 	function() {
 		return {

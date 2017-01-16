@@ -27,6 +27,5 @@ angular.module('hearth.services').service('FormValidator', [
 			return valid;
 		};
 
-		return this;
 	}
 ]);

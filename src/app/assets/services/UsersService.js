@@ -189,6 +189,5 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		return this;
 	}
 ]);

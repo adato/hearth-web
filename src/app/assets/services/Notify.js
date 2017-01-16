@@ -200,6 +200,5 @@ angular.module('hearth.services').service('Notify', ['$translate', '$log',
 			self.addSingleTranslate(config.code || 'NOTIFY.API_ERROR', config.type || self.T_ERROR, config.container || null);
 		};
 
-		return this;
 	}
 ]);

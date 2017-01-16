@@ -68,6 +68,5 @@ angular.module('hearth.services').service('Validators', [
 			return ret;
 		}
 
-		return this;
 	}
 ]);

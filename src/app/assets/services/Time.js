@@ -36,6 +36,5 @@ angular.module('hearth.services').service('Time', [
 			return moment().diff(moment(date), type || 'days')
 		};
 
-		return this;
 	}
 ]);

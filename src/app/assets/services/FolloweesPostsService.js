@@ -19,6 +19,5 @@ angular.module('hearth.services').service('FolloweesPostsService', [
 			});
 			return deferred.promise;
 		};
-		return this;
 	}
 ]);

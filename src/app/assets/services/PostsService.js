@@ -64,6 +64,5 @@ angular.module('hearth.services').service('PostsService', [
 			});
 			return deferred.promise;
 		};
-		return this;
 	}
 ]);

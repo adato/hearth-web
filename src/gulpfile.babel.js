@@ -24,7 +24,7 @@ const BROWSER_RELOAD = !!(yargs.argv.reload);
 const ENVIRONMENT = yargs.argv.target || 'localhost';
 
 // Load settings from settings.yml
-const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS } = loadConfig();
+const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS, LOCALE } = loadConfig();
 
 function loadConfig() {
   let ymlFile = fs.readFileSync('config.yml', 'utf8');
@@ -43,7 +43,10 @@ gulp.task('build',
       images,
       // copy, // empty task ATM
       copyRoot,
+
+      // external libs
       appLibsJs,
+      jQuery,
       appLibsCss
     )
     // styleGuide
@@ -59,6 +62,24 @@ gulp.task('default',
 // .. mainly for foundation v5 to v6 upgrade purposes
 gulp.task('sass',
   gulp.series(sass)
+);
+
+const localeGetters = (function() {
+  var arr = [];
+  LOCALE.languages.forEach(lang => {
+    var path = LOCALE.getPath.replace('{langVal}', lang);
+    arr.push(
+      function() {
+        return $.gulpRemoteSrc(path)
+          .pipe(gulp.dest(PATHS.dist + '/locale/' + lang + '/messages'))
+
+      }
+    );
+  }
+  return arr;
+})();
+gulp.task('locales',
+  gulp.parallel(...localeGetters)
 );
 
 // Delete the "dist" folder

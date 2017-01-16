@@ -40,6 +40,5 @@ angular.module('hearth.services').service('KeywordsService', [
 			});
 			return deferred.promise;
 		};
-		return this;
 	}
 ]);

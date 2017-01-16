@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.CommunityListCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('CommunitiesCtrl', [
@@ -21,7 +21,6 @@ angular.module('hearth.controllers').controller('CommunitiesCtrl', [
 			$(".community-list-add-button").slideToggle();
 			$(".community-list-add-form").toggle();
 		};
-
 
 		UnauthReload.check();
 	}

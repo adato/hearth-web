@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 
 		$scope.getCheckedCommunities = function() {
 			// if we have only one community to remove post from,
-			// return it as a default community	
+			// return it as a default community
 			if ($scope.communitiesCount == 1)
 				return [$scope.communityObj._id];
 

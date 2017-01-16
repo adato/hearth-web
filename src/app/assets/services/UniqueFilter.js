@@ -52,6 +52,5 @@ angular.module('hearth.services').factory('UniqueFilter', function() {
 			return out;
 		};
 
-		return this;
 	};
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @ngdoc service 
+ * @ngdoc factory
  * @name hearth.services.PostScope
  * @description new post scope can be created using this service
  */
@@ -10,11 +10,19 @@ angular.module('hearth.services').service('PostScope', [
 	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale',
 	function($rootScope, ItemServices, $filter, Filter, $locale) {
 
+		var factory = {
+			getPostScope: getPostScope
+		};
+
+		return factory;
+
+		///////////////
+
 		function getPostScope(post, $scope) {
 			var author = post;
 			if (post._type == 'Post') author = post.author;
 
-			// creates new isolated scope 
+			// creates new isolated scope
 			var scope = $scope.$new(true);
 
 			scope.keywords = $scope.keywordsActive;
@@ -61,8 +69,5 @@ angular.module('hearth.services').service('PostScope', [
 			return scope;
 		}
 
-		return {
-			'getPostScope': getPostScope
-		};
 	}
 ]);

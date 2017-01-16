@@ -32,6 +32,5 @@ angular.module('hearth.services').service('HearthCrowdfundingBanner', [
 		this.titleBannerIsClosed = ($.cookie('crowdsourcing-banner') === 'true');
 		this.isDisplayed = false;
 
-		return this;
 	}
 ]);

@@ -19,6 +19,5 @@ angular.module('hearth.services').service('FulltextService', [
 			});
 			return deferred.promise;
 		};
-		return this;
 	}
 ]);

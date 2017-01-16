@@ -26,7 +26,6 @@ angular.module('hearth.services').service('Facebook', [
 		};
 
 		this.init();
-		return this;
 
 	}
 ]);
