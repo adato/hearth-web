@@ -17,7 +17,8 @@ UNCSS_OPTIONS:
 
 LOCALE:
   getPath:
-    uri: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ"
+    app: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ"
+    landing: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=landing&fallback=cs_CZ"
   languages:
     cs: "cs_CZ"
     sk: "sk_SK"
@@ -27,6 +28,8 @@ LOCALE:
 PATHS:
   # Path to dist folder
   dist: "dist"
+  # Path for files dynamically required for build
+  temp: ".tmp"
   # Paths to files that should reside in the root directory
   index:
     - "app/index.html"
@@ -34,10 +37,7 @@ PATHS:
     - "app/rootAssets/**/*"
   fonts:
   # Paths to static assets that aren't images, CSS, or JavaScript
-  - "app/fonts/**/*"
-  assets:
-    # assets to go to /assets folder
-    # - "app/"
+    - "app/fonts/**/*"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "bower_components/foundation-sites/scss"
@@ -142,6 +142,11 @@ PATHS:
         development: "app/config/development.js"
         staging: "app/config/staging.js"
         production: "app/config/production.js"
+      landing:
+        localhost: "landing/config/development.js"
+        development: "landing/config/development.js"
+        staging: "landing/config/staging.js"
+        production: "landing/config/production.js"
     app:
       scss:
         - "app/styles/**/*.scss"
@@ -152,3 +157,14 @@ PATHS:
         - "app/**/*.html"
       img:
         - "app/images/**/*"
+    landing:
+      index: "landing/html"
+      css:
+        - "landing/css/**/*.css"
+      img:
+        - "landing/img/**/*.*"
+      fonts:
+        - "landing/fonts/**/*.*"
+      js:
+        - "landing/js/libs.js"
+        - "landing/js/**/*.js"

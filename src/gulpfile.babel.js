@@ -9,8 +9,9 @@ import rimraf   from 'rimraf';
 import sherpa   from 'style-sherpa';
 import yaml     from 'js-yaml';
 import fs       from 'fs';
-// import url      from 'url';
 import spamw    from 'connect-history-api-fallback';
+
+const i18nStatic = require('./hearth_modules/gulp-node-static-i18n');
 
 // for whichever FRICKIN' reason, the gulp-download module (https://github.com/Metrime/gulp-download/blob/master/index.js)
 // when downloaded through npm, results in a slightly different code than what can be found on git, so it has been downloaded
@@ -27,7 +28,12 @@ const PRODUCTION = !!(yargs.argv.production);
 const BROWSER_RELOAD = !!(yargs.argv.reload);
 
 // TODO: This clashes a bit with foundation's PRODUCTION flag .. but whatever ATM
-const ENVIRONMENT = yargs.argv.target || 'localhost';
+// valid environments should be:
+//    development
+//    staging
+//    production
+const DEFAULT_ENVIRONMENT = 'localhost';
+const ENVIRONMENT = yargs.argv.target || DEFAULT_ENVIRONMENT;
 
 // Load settings from settings.yml
 const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS, LOCALE } = loadConfig();
@@ -37,40 +43,55 @@ function loadConfig() {
   return yaml.load(ymlFile);
 }
 
-gulp.task('locales', gulp.series(locales));
+// Build app
+gulp.task('app',
+  gulp.parallel(
+    localesApp, // download locales
+    templates,  // concat templates
+    sass,       // create css
+    configs,    // concat configs
+    javascript, // concat [+uglify] js
+    images,     // minify images
+    copyFonts,  // copy font files
+    copyRoot,   // copy other assets that don't undergo any processing
+    appLibsJs,  // concat external libs js that go to bottom of <body />
+    jQuery,     // concat external libs js that go to <head />
+    appLibsCss  // concat external libs css
+  )
+);
+
+// Build landing page
+gulp.task('landingPage',
+  gulp.series(
+    // localesLanding,
+    gulp.parallel(
+      templatesLanding,
+      javascriptLanding,
+      cssLanding,
+      copyFontsLanding,
+      imagesLanding
+    )
+  )
+);
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
   gulp.series(
     clean,
-    'locales',
-    gulp.parallel(
-      templates,
-      sass,
-      configs,
-      javascript,
-      images,
-      copyFonts,
-      // copy,
-      copyRoot,
-
-      // external libs
-      appLibsJs,
-      jQuery,
-      appLibsCss
-    )
-    // styleGuide
+    'app',
+    'landingPage'
   )
 );
 
-// Build the site, run the server, and watch for file changes
+// Just run the server and watch w/o building anything
+gulp.task('server',
+  gulp.series(server, watch)
+);
+
+// Build the site, landing page, run the server, and watch for file changes
 gulp.task('default',
   gulp.series('build', server, watch)
 );
-
-// Run just the sass task
-// .. mainly for foundation v5 to v6 upgrade purposes
-gulp.task('sass', gulp.series(sass));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -78,67 +99,39 @@ function clean(done) {
   rimraf(PATHS.dist, done);
 }
 
-// APP COPY
-// Copy files out of the assets folder
-// This task skips over the "img", "js", and "scss" folders, which are parsed separately
-function copy() {
-  return gulp.src(PATHS.assets)
-    .pipe(gulp.dest(PATHS.dist + '/app/assets'));
+/////////////////////
+//
+// JAVASCRIPTS
+
+// App js
+// Combine JavaScript into one file
+// In production, the file is minified
+function javascript() {
+  return gulp.src(PATHS.src.app.js, PATHS.javascript)
+    .pipe($.sourcemaps.init())
+    .pipe($.babel({ignore: ['what-input.js']}))
+    .pipe($.concat('app.js'))
+    .pipe($.if(PRODUCTION, $.uglify()
+      .on('error', e => { console.log(e); })
+    ))
+    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/js'));
 }
 
-// APP ROOT
-function copyRoot() {
-  return gulp.src(PATHS.index)
-    .pipe(gulp.dest(PATHS.dist + '/app'));
+function javascriptLanding() {
+  // return gulp.src([PATHS.src.configs.landing[ENVIRONMENT]], PATHS.src.landing.js)
+  var paths = PATHS.src.landing.js;
+  paths.unshift(PATHS.src.configs.landing[ENVIRONMENT]);
+  return gulp.src(paths)
+    .pipe($.concat('main.js'))
+    .pipe(gulp.dest(PATHS.dist + '/js'))
 }
 
-// APP FONTS
-function copyFonts() {
-  return gulp.src(PATHS.fonts)
-    .pipe(gulp.dest(PATHS.dist + '/app/assets/fonts'));
-}
+/////////////////////
+//
+// CSS
 
-// Copy page templates into finished HTML files
-// function pages() {
-//   return gulp.src('src/pages/**/*.{html,hbs,handlebars}')
-//     .pipe(panini({
-//       root: 'src/pages/',
-//       layouts: 'src/layouts/',
-//       partials: 'src/partials/',
-//       data: 'src/data/',
-//       helpers: 'src/helpers/'
-//     }))
-//     .pipe(gulp.dest(PATHS.dist));
-// }
-
-// Load updated HTML templates and partials into Panini
-// function resetPages(done) {
-//   panini.refresh();
-//   done();
-// }
-
-// APP TEMPLATES
-function templates() {
-  // console.log($);
-  return gulp.src(PATHS.src.app.html)
-    .pipe($.angularTemplatecache({
-      module: 'hearth.templates',
-      standalone: true
-    }))
-    .pipe(gulp.dest(PATHS.dist + '/app/assets/templates'));
-}
-
-// Generate a style guide from the Markdown content and HTML template in styleguide/
-// function styleGuide(done) {
-//   sherpa('app/styleguide/index.md', {
-//     output: PATHS.dist + '/styleguide.html',
-//     template: 'app/styleguide/template.html'
-//   }, done);
-// }
-
-// APP CSS
-// Compile Sass into CSS
-// In production, the CSS is compressed
+// App compile Sass into CSS, In production, the CSS is compressed
 function sass() {
   return gulp.src('app/styles/app.scss')
     .pipe($.sourcemaps.init())
@@ -154,11 +147,86 @@ function sass() {
     .pipe($.if(PRODUCTION, $.cssnano()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/css'))
-    .pipe(browser.reload({ stream: true }))
-    ;
+    .pipe(browser.reload({ stream: true }));
 }
 
-// APP LIBS
+// Landing page css concat + minify
+function cssLanding() {
+  return gulp.src(PATHS.src.landing.css)
+    .pipe($.concat('main.css'))
+    .pipe($.cssnano())
+    .pipe(gulp.dest(PATHS.dist + '/css'));
+}
+
+/////////////////////
+//
+// TEMPLATES
+
+// App
+function templates() {
+  return gulp.src(PATHS.src.app.html)
+    .pipe($.angularTemplatecache({
+      module: 'hearth.templates',
+      standalone: true
+    }))
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/templates'));
+}
+
+// Landing page
+// this doesn't work as a gulp plugin should, but it works as required, so .. whatever
+function templatesLanding() {
+  return gulp.src(PATHS.src.landing.index)
+    .pipe(i18nStatic({
+      baseDir: PATHS.src.landing.index,
+      outputDir: PATHS.dist,
+      locales: ['en', 'cs', 'sk'],
+      locale: 'en',
+      localesPath: PATHS.temp + '/locales/landing',
+      selector: '[t]',
+      allowHtml: true,
+      removeAttr: true
+    }));
+}
+
+/////////////////////
+//
+// LOCALES
+
+function getLocalePaths(opts = {}) {
+  var pathId;
+  if (typeof opts === 'string') {
+    pathId = opts;
+  } else {
+    pathId = opts.id;
+  }
+  if (!pathId) throw new TypeError('Locale ID may not be undefined.');
+  var paths = [];
+  Object.keys(LOCALE.languages).forEach(lang => {
+    paths.push({
+      file: (opts.createFolders ? lang + '/index' : lang) + '.json',
+      url: LOCALE.getPath[pathId].replace('{langVal}', LOCALE.languages[lang])
+    });
+  });
+  return paths;
+}
+
+// App locales
+function localesApp() {
+  return download(getLocalePaths('app'))
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/locale/'))
+}
+
+// Landing locales
+function localesLanding() {
+  return download(getLocalePaths({id: 'landing', createFolders: true}))
+  .pipe(gulp.dest(PATHS.temp + '/locales/landing'))
+}
+
+/////////////////////
+//
+// LIBRARIES
+
+// App
 function appLibsCss() {
   return gulp.src(PATHS.libs.app.css)
     .pipe($.concat('libs.css'))
@@ -177,36 +245,10 @@ function jQuery() {
     .pipe(gulp.dest(PATHS.dist + '/app/assets/js'))
 }
 
-// APP JS
-// Combine JavaScript into one file
-// In production, the file is minified
-function javascript() {
-  return gulp.src(PATHS.src.app.js, PATHS.javascript)
-    .pipe($.sourcemaps.init())
-    .pipe($.babel({ignore: ['what-input.js']}))
-    .pipe($.concat('app.js'))
-    .pipe($.if(PRODUCTION, $.uglify()
-      .on('error', e => { console.log(e); })
-    ))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist + '/app/assets/js'));
-}
+/////////////////////
+//
+// IMAGES
 
-// APP LOCALES
-// download locales from given url and save
-function locales() {
-  var paths = [];
-  Object.keys(LOCALE.languages).forEach(lang => {
-    paths.push({
-      file: lang + '.json',
-      url: LOCALE.getPath.uri.replace('{langVal}', LOCALE.languages[lang])
-    });
-  });
-  return download(paths)
-    .pipe(gulp.dest(PATHS.dist + '/app/assets/locale/'))
-}
-
-// APP IMG
 // Copy images to the "dist" folder
 // In production, the images are compressed
 function images() {
@@ -217,6 +259,53 @@ function images() {
     .pipe(gulp.dest(PATHS.dist + '/app/assets/img'));
 }
 
+function imagesLanding() {
+  return gulp.src(PATHS.src.landing.img)
+    .pipe($.if(PRODUCTION, $.imagemin({
+      progressive: true
+    })))
+    .pipe(gulp.dest(PATHS.dist + '/img'));
+}
+
+/////////////////////
+//
+// CONFIGS
+
+// App configs
+function configs() {
+  return gulp.src([
+    PATHS.src.configs.app[ENVIRONMENT],
+    PATHS.src.configs.global,
+  ])
+    .pipe($.concat('config.js'))
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/js'));
+}
+
+/////////////////////
+//
+// COPY
+
+// App root
+function copyRoot() {
+  return gulp.src(PATHS.index)
+    .pipe(gulp.dest(PATHS.dist + '/app'));
+}
+// App fonts
+function copyFonts() {
+  return gulp.src(PATHS.fonts)
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/fonts'));
+}
+
+// Landing page fonts
+function copyFontsLanding() {
+  return gulp.src(PATHS.src.landing.fonts)
+    .pipe(gulp.dest(PATHS.dist + '/fonts'));
+}
+
+////////////////////////////////////////
+//
+// SERVER, RELOAD & WATCH
+
 // Start a server with BrowserSync to preview the site in
 function server(done) {
   browser.init({
@@ -226,9 +315,10 @@ function server(done) {
       // to allow single-page mode, use middleware
       // that serves index file whenever it doesn't find what it's
       // been looking for
-      middleware: [ spamw({
-        index: '/app/index.html'
-      }) ],
+      // middleware: [ spamw({
+        // index: '/app/index.html'
+        // index: '/index.html'
+      // }) ],
     },
     port: PORT,
   });
@@ -246,31 +336,11 @@ function getSeries(...args) {
   return gulp.series(...args);
 }
 
-// APP CONFIGS
-function configs() {
-  return gulp.src([
-    PATHS.src.configs.app[ENVIRONMENT],
-    PATHS.src.configs.global,
-  ])
-    .pipe($.concat('config.js'))
-    .pipe(gulp.dest(PATHS.dist + '/app/assets/js'));
-}
-
 // Watch for changes to static assets, pages, Sas)s, and JavaScript
 function watch() {
-  gulp.watch(PATHS.assets, copy);
-
-  // template handling is different from foundation default
-  // gulp.watch('src/pages/**/*.html').on('all', getSeries(pages));
-  // gulp.watch('src/{layouts,partials}/**/*.html').on('all', getSeries(resetPages, pages));
   gulp.watch(PATHS.src.app.html).on('all', getSeries(templates, copyRoot));
-
   gulp.watch(['/common/config/**/*.js', '/app/config/**/*.js']).on('all', getSeries(configs));
-
   gulp.watch(PATHS.src.app.scss).on('all', getSeries(sass));
   gulp.watch(PATHS.src.app.js).on('all', getSeries(javascript));
   gulp.watch(PATHS.src.app.img).on('all', getSeries(images));
-
-  // styleguide is unneded atm .. kept for future reference in case we want to make UI-kit from it or anything
-  // gulp.watch('app/styleguide/**').on('all', getSeries(styleGuide));
 }

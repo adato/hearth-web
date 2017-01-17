@@ -4,3 +4,6 @@ npm-debug.log
 bower_components
 dist
 *.swp
+.tmp
+.idea
+Thumbs.db

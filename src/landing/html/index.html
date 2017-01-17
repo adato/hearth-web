@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='author' content='Hearth.net' />
+
+	<meta property='og:type' content='website'>
+    <meta property='og:title' content='Hearth.net'>
+    <meta property='og:description' content='Prostor, kde dávat, znamená dostat mnohem víc'>
+    <meta property='og:url' content='https://www.hearth.net/'>
+    <meta property='og:image' content='https://www.hearth.net/app/images/facebook-sharing-image.jpg' />
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='630' />
+
+	<title>Hearth.net</title>
+
+	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+	<link rel='stylesheet' type='text/css' href='./css/main.css' />
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Raleway&amp;subset=latin-ext" rel="stylesheet">
+
+
+	<script>
+
+		//
+		//	GOOGLE ANALYTICS INIT
+		//
+		var _gaq=[['_setAccount','UA-40070733-1'],['_trackPageview']];
+		(function(d,t){
+			var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)
+		}(document,'script'));
+
+		//
+		//	LIBS INIT
+		//
+		window.aeg = {
+			cookieFactory: {
+				get: cookieGet,
+				set: cookieSet,
+				remove: cookieRemove
+			}
+		};
+
+		function cookieGet(cname) {
+			var name = cname + '=';
+			var cookies = document.cookie.split(';');
+			for (var i = 0;i < cookies.length;i++) {
+				var c = cookies[i];
+				while (c.charAt(0) === ' ') c = c.substring(1);
+				if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+			}
+			return '';
+		}
+
+		function cookieRemove(cname, path) {
+			document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + (path ? path : '/');
+		}
+
+		function cookieSet(cname, cvalue, path) {
+			document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT; path=' + (path ? path : '/');
+		}
+
+		//
+		//	LANGUAGE LOGIC + REDIRECT
+		//
+		(function(window) {
+			'use strict'
+
+			var cookieFactory = window.aeg.cookieFactory;
+
+			var en = 'en',
+				cs = 'cs',
+				sk = 'sk';
+
+			var defaultLanguage = en,
+				languageCookie = 'language';
+
+			// all langs except default en language
+			// what langs can be specified in url as /lang/...
+			var langsAvailable = [cs, sk];
+
+			var langTranslationMap = {};
+			langTranslationMap[en] = en;
+			langTranslationMap[cs] = cs;
+			langTranslationMap[sk] = sk;
+
+			var langPathMap = {};
+			langPathMap[en] = '/';
+			langPathMap[cs] = '/cs/';
+			langPathMap[sk] = '/sk/';
+
+			// expose changeLanguage function and variables to templates
+			window.changeLanguage = changeLanguage;
+			window.language = langTranslationMap;
+
+			/**
+			 *	LANGUAGE IMPORTANCE
+			 *
+			 *		1. cookie
+			 *		2. browser language
+			 *		3. default language - EN
+			 */
+
+			// language based on browser settings
+			var langBrowser = window.navigator.userLanguage || window.navigator.language;
+			langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;
+			langBrowser = (langTranslationMap[langBrowser]) ? langTranslationMap[langBrowser] : defaultLanguage;
+
+			// language based on url path
+			var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split('/').slice(0, 1).toString();
+			if (langsAvailable.indexOf(langUrl) == -1) langUrl = defaultLanguage;
+
+			// ASSIGN LANG ATTRIBUTE TO HTML TAG
+			document.querySelector('html').setAttribute('lang', langUrl);
+
+			init();
+
+			/////////////////
+
+			function init() {
+				if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
+					return 'Tinky Winky!';
+				} else {
+					// if there is not set language in cookie yet
+					// use language from browser
+					if (!cookieFactory.get(languageCookie)) {
+						changeLanguage(langBrowser);
+					}
+					// if we are not on right url, redirect
+					var cookieLang = cookieFactory.get(languageCookie);
+					if (langUrl !== cookieLang) {
+						changeLanguage(cookieLang, true);
+					}
+				}
+			}
+
+			function changeLanguage(lang, relocate) {
+				cookieFactory.set(languageCookie, lang, '/');
+				if (!relocate) return true;
+				window.location = langPathMap[lang];
+			}
+
+		})(window);
+	</script>
+
+</head>
+<body class='border-box-sized' id='top'>
+	<div class='header-wrapper'>
+		<div class='flex flex-stretch-content'>
+			<div class='nav-clickable flex position-relative small-only'>
+				<button class='hamburger hamburger--spring flex' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{applyActiveToSelf: true}' deactivate-after-link-usage>
+					<span class='hamburger-box'>
+						<span class='hamburger-inner'></span>
+					</span>
+				</button>
+				<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
+					<ul class='margin-none padding-none'>
+						<li>
+							<a href='#jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
+						</li>
+						<li>
+							<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<a href='#top' class='logo medium-up'></a>
+		</div>
+		<nav class='flex flex-stretch-content'>
+			<ul class='main-navigation medium-up'>
+				<li>
+					<a href='#jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
+				</li>
+				<li>
+					<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+				</li>
+			</ul>
+			<div class='flex' user-not-logged style='display: none'>
+				<a href='/app/login' class='color-primary nav-item has-hover-effect' t='LANDING_PAGE.MENU.LOGIN'>
+					Přihlášení
+				</a>
+				<a href='/app/register' class='button nav-item special' t='LANDING_PAGE.MENU.REGISTER'>
+					Registrace
+				</a>
+			</div>
+			<div class='flex position-relative' user-logged id='profileSection' style='display: none'>
+				<img class='avatar cursor-pointer' profile-image dropdown='profile-box' />
+				<div class='hover-window padding-none window-align-right' id='profile-box'>
+					<div class='padding-horizontal-medium padding-vertical-small text-emphasize' profile-name></div>
+					<div class='hr margin-vertical-none'></div>
+					<ul class='margin-none padding-medium sub-link-list'>
+						<li>
+							<a class='nav-item' href='/app'>
+								<i class='fa fa-fw hearth-flame margin-right-small'></i>
+								<span t='LANDING_PAGE.MENU.MARKETPLACE'>Podívat se na tržiště</span>
+							</a>
+						</li>
+						<li>
+							<a class='nav-item' href='/app/messages'>
+								<i class='fa fa-fw fa-envelope-o margin-right-small'></i>
+								<div class='flex flex-space-between flex-1'>
+									<span t='LANDING_PAGE.MENU.MESSAGES'>Zprávy</span>
+									<div class='badge background-primary' message-count></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class='nav-item' profile-link>
+								<i class='fa fa-fw fa-user margin-right-small'></i>
+								<span t='LANDING_PAGE.MENU.PROFILE'>Profil</span>
+							</a>
+						</li>
+						<li>
+							<a class='nav-item' href='/app/profile-edit'>
+								<i class='fa fa-fw fa-edit margin-right-small'></i>
+								<span t='LANDING_PAGE.MENU.EDIT_PROFILE'>Upravit profil</span>
+							</a>
+						</li>
+						<li>
+							<a class='nav-item' href='/app/profile-settings'>
+								<i class='fa fa-fw fa-cog margin-right-small'></i>
+								<span t='LANDING_PAGE.MENU.SETTINGS'>Nastavení</span>
+							</a>
+						</li>
+						<li>
+							<a class='nav-item' href='#' logout>
+								<i class='fa fa-fw fa-sign-out margin-right-small'></i>
+								<span t='LANDING_PAGE.MENU.LOGOUT'>Odhlásit se</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div user-not-logged>
+				<div class='nav-clickable language-wrapper'>
+					<div class='language-toggle flex' dropdown='myBigLanguagePanel'>
+						<div class='flag'></div>
+					</div>
+					<div class='flex hover-window language-panel window-align-right' id='myBigLanguagePanel'>
+						<li>
+							<a href='javascript:changeLanguage(language.cs, true)' class='language-option flex lang-cs nav-item' id='language-cs'>
+								<div class='flag flag-cs display-inline-block'></div>
+								<div class='display-inline-block'>Česky</div>
+							</a>
+						</li>
+						<li>
+							<a href='javascript:changeLanguage(language.sk, true)' class='language-option flex lang-sk nav-item' id='language-sk'>
+								<div class='flag flag-sk display-inline-block'></div>
+								<div class='display-inline-block'>Slovensky</div>
+							</a>
+						</li>
+						<li>
+							<a href='javascript:changeLanguage(language.en, true)' class='language-option flex lang-en nav-item' id='language-en'>
+								<div class='flag flag-en display-inline-block'></div>
+								<div class='display-inline-block'>English</div>
+							</a>
+						</li>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class='jumbo-wrapper overflow-hidden' jumbo-wrapper>
+		<!--
+			HERE COME JUMBO IMAGES FROM JS
+		-->
+		<header class='flex flex-space-between full-height position-relative'>
+			<div class='jumbo'>
+				<div class='small-only text-align-center'>
+					<i class='button-flame large'></i>
+				</div>
+				<h1 t='LANDING_PAGE.SLOGAN.SPACE_FOR_PEOPLE_WITH_OPEN_HEART'>Prostor pro lidi<br />s otevřeným srdcem</h1>
+				<h2 class='subheader' t='LANDING_PAGE.SLOGAN.JOY_TO_GIVE_HAPPINESS_TO_ACCEPT'>Radost dát, štěstí přijmout</h2>
+				<a href='/app' class='button'>
+					<i class='button-flame'></i>
+					<span t='LANDING_PAGE.ENTER'>Vstupte</span>
+				</a>
+				<div class='dotstyle-wrapper' style='visibility: hidden;'>
+					<div class='dotstyle dotstyle-dotmove'>
+						<ul>
+							<!--
+								HERE COME DOTS FROM JS
+							-->
+							<li><!-- dummy dot - has design purpose - DO NOT REMOVE --></li>
+						</ul>
+					</div>
+				</div>
+				<a href='#give-accept-meet' class='decorated-circle-flame background-alternate display-block' id='give-accept-meet'></a>
+			</div>
+			<div class='slash background-alternate'></div>
+		</header>
+	</div>
+	<div class='section background-alternate contains-slash'>
+		<section class='overflow-hidden'>
+			<div class='flex flex-space-between balls-3 small-constrict-ball' id='give-accept-meet-section'>
+				<div class='ball ball-background-primary'>
+					<svg viewBox='0 0 100 100'>
+						<g>
+							<circle cx='50' cy='50' r='50'></circle>
+						</g>
+						<switch>
+							<foreignObject x='0' y='0' width='100' height='100'>
+								<div class='flex text-align-center full-height'>
+									<p xmlns='http://www.w3.org/1999/xhtml' t='LANDING_PAGE.SLOGAN.GIVE_WHAT_YOU_HAVE_OR_CAN_DO'>
+										<strong>Darujte</strong>,<br />co máte a<br />umíte
+									</p>
+								</div>
+							</foreignObject>
+						</switch>
+					</svg>
+				</div>
+				<div class='ball ball-background-secondary'>
+					<svg viewBox='0 0 100 100'>
+						<g>
+							<circle cx='50' cy='50' r='50'></circle>
+						</g>
+						<switch>
+							<foreignObject x='0' y='0' width='100' height='100'>
+								<div class='flex text-align-center full-height'>
+									<p xmlns='http://www.w3.org/1999/xhtml' t='LANDING_PAGE.SLOGAN.ACCEPT_WHAT_YOU_ARE_LACKING'>
+										<strong>Přijměte</strong>,<br />co vám<br />chybí
+									</p>
+								</div>
+							</foreignObject>
+						</switch>
+					</svg>
+				</div>
+				<div class='ball ball-background-tertiary'>
+					<svg viewBox='0 0 100 100'>
+						<g>
+							<circle cx='50' cy='50' r='50'></circle>
+						</g>
+						<switch>
+							<foreignObject x='0' y='0' width='100' height='100'>
+								<div class='flex text-align-center full-height'>
+									<p xmlns='http://www.w3.org/1999/xhtml' t='LANDING_PAGE.SLOGAN.MEET_NEW_FRIENDS'>
+										<strong>Poznejte</strong><br />nové<br />přátele
+									</p>
+								</div>
+							</foreignObject>
+						</switch>
+					</svg>
+				</div>
+			</div>
+		</section>
+		<section>
+			<h1 t='LANDING_PAGE.SECTION.SHARE_WISHES.SHARE_WISHES_AND_GIFTS'>Sdílejte dary a přání</h1>
+			<p class='text-align-center' t='LANDING_PAGE.SECTION.SHARE_WISHES.WHAT_FULFILLS_US'>
+				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />
+				Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
+			</p>
+			<div class='text-align-center'>
+				<a href='/app' class='button alt' t='LANDING_PAGE.ENTER'>
+					Vstupte
+				</a>
+			</div>
+		</section>
+		<section class='masonry-alt' id='section-marketplace'>
+			<h1 t='LANDING_PAGE.SECTION.MARKETPLACE.POSSIBILITIES_ARE_ENDLESS'>Možnosti jsou nepřeberné...</h1>
+			<div class='medium-flex'>
+				<div class='flex-1 masonry-wrapper'>
+					<a href='/app/?keywords=kniha' class='flex masonry-item masonry-hover-zoom' id='image-mp-1'>
+						<div class='image-target'></div>
+						<div class='flex-1 flex flex-column'>
+							<h2>knihy, knížky a jiné čtivo</h2>
+						</div>
+					</a>
+				</div>
+				<div class='flex-1 masonry-wrapper'>
+					<a href='/app/?keywords=prevoz' class='flex masonry-item masonry-hover-zoom' id='image-mp-2'>
+						<div class='image-target'></div>
+						<div class='flex-1 flex flex-column'>
+							<h2>doprava a převoz nejen darů</h2>
+						</div>
+					</a>
+				</div>
+				<div class='flex-1 masonry-wrapper'>
+					<a href='/app/?keywords=zahrada' class='flex masonry-item masonry-hover-zoom' id='image-mp-3'>
+						<div class='image-target'></div>
+						<div class='flex-1 flex flex-column'>
+							<h2>rostlinky a vybavení na zahradu</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class='medium-flex'>
+				<div class='flex-1 masonry-wrapper'>
+					<a href='/app/?keywords=kurz' class='flex masonry-item masonry-hover-zoom' id='image-mp-4'>
+						<div class='image-target'></div>
+						<div class='flex-1 flex flex-column'>
+							<h2>kurzy a vzdělávání</h2>
+						</div>
+					</a>
+				</div>
+				<div class='flex-1 masonry-wrapper'>
+					<a href='/app/?keywords=obleceni' class='flex masonry-item masonry-hover-zoom' id='image-mp-5'>
+						<div class='image-target'></div>
+						<div class='flex-1 flex flex-column'>
+							<h2>oblečení všeho druhu</h2>
+						</div>
+					</a>
+				</div>
+				<div class='flex-1 masonry-wrapper'>
+					<a href='/app/?keywords=jazyk' class='flex masonry-item masonry-hover-zoom' id='image-mp-6'>
+						<div class='image-target'></div>
+						<div class='flex-1 flex flex-column'>
+							<h2>překlady a jazykové lekce</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+		<section id='jak-na-to' class='text-align-center'>
+			<h1 t='LANDING_PAGE.SECTION.HOW_TO.HOW_TO'>Jak na to</h1>
+			<div class='bulletize-paragraphs'>
+				<p t='LANDING_PAGE.SECTION.HOW_TO.GIVE_WHAT_YOU_HAVE_OR_CAN_DO'>
+					<strong>Darujte, co máte a umíte</strong><br />
+					Co vy považujete za samozřejmé, udělá druhému radost.<br />
+					Co udělá druhému radost, vám dá pocit štěstí.
+				</p>
+				<p t='LANDING_PAGE.SECTION.HOW_TO.ACCEPT_WHAT_YOU_ARE_LACKING'>
+					<strong>Přijměte, co vám chybí</strong><br />
+					Nebojte se požádat o to, co vás potěší.<br />
+					Díky vám zažije někdo jiný pocit štěstí z nabídnutého daru.
+				</p>
+				<p t='LANDING_PAGE.SECTION.HOW_TO.MEET_NEW_FRIENDS'>
+					<strong>Poznejte nové přátele</strong><br />
+					Nejste v tom sami. Je nás víc, kteří věří,<br />
+					že sdílet radost ze života je naprosto přirozené.
+				</p>
+			</div>
+		</section>
+		<section>
+			<div class='text-align-center'>
+				<a href='/app/register' class='button alt' t='LANDING_PAGE.LETS_DO_IT'>
+					Jdu do toho!
+				</a>
+			</div>
+		</section>
+		<div class='slash'></div>
+	</div>
+	<div class='section contains-slash'>
+		<section>
+			<h1 t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE_WHO_LIKE_US'>Mají nás rádi</h1>
+			<div class='text-align-center large-quote'>“</div>
+
+			<div class='text-center'>
+			    <div class='flex'>
+			        <div class='max-500 min-500 flex flex-medium-column flex-align-start flex-large-align-center' tabs id='testimonialsWrapper'>
+			            <div class='medium-flex flex-1 full-width'>
+							<!-- TESTIMONIAL SETUP -->
+								<div hidden data-attr-t
+									person-id='barta'
+									position-short-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.BARTA.POSITION.SHORT'
+									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.BARTA.POSITION.LONG'
+									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.BARTA.TEXT'
+								></div>
+								<div hidden data-attr-t
+									person-id='hajzler'
+									position-short-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.HAJZLER.POSITION.SHORT'
+									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.HAJZLER.POSITION.LONG'
+									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.HAJZLER.TEXT'
+								></div>
+								<div hidden data-attr-t
+									person-id='panek'
+									position-short-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.PANEK.POSITION.SHORT'
+									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.PANEK.POSITION.LONG'
+									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.PANEK.TEXT'
+								></div>
+								<div hidden data-attr-t
+									person-id='vaclavek'
+									position-short-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.VACLAVEK.POSITION.SHORT'
+									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.VACLAVEK.POSITION.LONG'
+									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.VACLAVEK.TEXT'
+								></div>
+								<div hidden data-attr-t
+									person-id='fellmer'
+									position-short-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.FELLMER.POSITION.SHORT'
+									position-long-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.FELLMER.POSITION.LONG'
+									text-t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE.FELLMER.TEXT'
+								></div>
+							<!-- /TESTIMONIAL SETUP -->
+
+			                <!-- Nav tabs -->
+			                <ul class='nav nav-justified' id='nav-tabs' role='tablist' tab-headers>
+								<!--
+									HERE COME TESTIMONIAL HEADERS FROM JS
+								-->
+			                </ul>
+			            </div>
+			            <div class='medium-flex flex-2 margin-horizontal-large' id='testimonials'>
+			                <!-- Tab panes -->
+			                <div class='tab-content' id='tabs-collapse' tab-content>
+			                    <!--
+									HERE COME TESTIMONIAL CONTENTS FROM JS
+								-->
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+		</section>
+		<div class='slash background-alternate' blog-post-section></div>
+	</div>
+	<div class='section contains-slash background-alternate' id='from-our-blog' blog-post-section>
+		<section id='target-deje-se'>
+			<h1 t='LANDING_PAGE.SECTION.GET_INSPIRED.GET_INSPIRED'>Inspirujte se</h1>
+			<div translation-holder--read-on-our-blog data-attr-t translation-t='LANDING_PAGE.SECTION.GET_INSPIRED.READ_ON_OUR_BLOG'></div>
+			<div class='medium-flex flex-align-start flex-medium-divide' blog-posts-wrapper>
+				<!--
+					HERE COME BLOG POSTS
+				-->
+			</div>
+		</section>
+		<div class='slash'></div>
+	</div>
+	<div class='section' id='podpor-nas'>
+		<section>
+			<h1 t='LANDING_PAGE.SECTION.SUPPORT_US.SUPPORT_HEARTH'>Podpoř Hearth</h1>
+			<p class='standard-p' t='LANDING_PAGE.SECTION.SUPPORT_US.DOES_HEARTH_GIVE_YOU_JOY'>
+				Dělá ti Hearth radost? Poznáváš tu fajn lidi? Budeme šťastní, pokud se k nám přidáš
+				a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
+			</p>
+			<div class='medium-flex flex-align-start flex-medium-divide' style="margin-top: 60px;">
+				<div class='flex-div flex-1 blog-block'>
+					<p><strong t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.HEADER'>Přispěj finančně</strong></p>
+					<p t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.TEXT'>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš. Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>
+					<p class='text-align-center margin-top-medium'>
+						<a href='/app/support-us?open-modal=support-us-modal-pay' class='color-primary' t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.LINK'>Daruji pro Hearth</a>
+					</p>
+				</div>
+				<div class='flex-div flex-1 blog-block'>
+					<p><strong t='LANDING_PAGE.SECTION.SUPPORT_US.CREATIVELY.HEADER'>Vytvářej s námi</strong></p>
+					<p t='LANDING_PAGE.SECTION.SUPPORT_US.CREATIVELY.TEXT'>Jestli se vyznáš v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku a chceš nám dát třeba i pár hodin svého času a zkušeností, rádi tě přivítáme do našeho týmu.</p>
+					<p class='text-align-center margin-top-medium'>
+						<a href='/app/support-us?open-modal=support-us-modal-write-us' class='color-primary' t='LANDING_PAGE.SECTION.SUPPORT_US.CREATIVELY.LINK'>Jdu do toho</a>
+					</p>
+				</div>
+				<div class='flex-div flex-1 blog-block'>
+					<p><strong t='LANDING_PAGE.SECTION.SUPPORT_US.ENDORSE.HEADER'>Dej o nás vědět</strong></p>
+					<p t='LANDING_PAGE.SECTION.SUPPORT_US.ENDORSE.TEXT'>Pokud máš možnost představit štědrou sociální síť lidem okolo sebe a pozvat je do Hearth.net, rádi ti s tím pomůžeme. Pro začátek máme tři možnosti a vyber si, kterou začneš.</p>
+					<p class='text-align-center margin-top-medium'>
+						<a href='/app/support-us?open-modal=support-us-modal-endorse' class='color-primary' t='LANDING_PAGE.SECTION.SUPPORT_US.ENDORSE.LINK'>Budu šířit</a>
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class='section footer'>
+		<section>
+			<h1 t='LANDING_PAGE.SECTION.CONTACT.CONTACT'>Kontakt</h1>
+			<p class='standard-p' t='LANDING_PAGE.SECTION.CONTACT.WE_CREATE_SPACE'>
+				Vytváříme prostor, kde jsou hodnoty jako laskavost a štědrost přirozenou součástí života. Zdarma a bez reklam pro všechny. Budeme šťastní, pokud se k nám přidáte a pomůžete dalším lidem otevřít jejich srdce. <a href='/app' class='color-primary'>Přidáte se?</a>
+			</p>
+			<div class='medium-flex flex-align-start flex-stretch-content small-text-align-center flex-medium-divide'>
+				<div class='flex-div flex-1'>
+					<div class='hr'></div>
+
+					<div class='text-emphasize margin-bottom-medium'>Adato</div>
+					<div class='medium-flex flex-align-start'>
+						<p class='flex-1 text-muted margin-top-none margin-bottom-medium'>
+							Adato Paradigma, o.s.<br />
+							Nádražní 740/56<br />
+							PSČ 150 00, Praha<br />
+							Česká republika
+						</p>
+						<div class='flex-1'>
+							<div><a href='http://adato.cz/' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.ABOUT_US'>O nás</a></div>
+							<div><a href='http://adato.cz/pribeh/' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.STORY'>Příběh</a></div>
+							<div><a href='http://adato.cz/kontakt/' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.PEOPLE_IN_ADATO'>Lidé v Adato</a></div>
+						</div>
+					</div>
+				</div>
+				<div class='flex-div flex-1'>
+					<div class='hr'></div>
+
+					<div class='text-emphasize margin-bottom-medium'>Hearth.net</div>
+					<div class='medium-flex flex-align-start'>
+						<div class='flex-1'>
+							<div><a href='/app/support-us' class='text-muted' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a></div>
+							<div><a href='/app/custodians' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.CUSTODIANS'>Hearth správci</a></div>
+							<div><a href='/app/feedback' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.CONNECT_WITH_US'>Spoj se s námi</a></div>
+						</div>
+						<div class='flex-1'>
+							<div><a href='/app/terms' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.TERMS_OF_USE'>Podmínky použití</a></div>
+							<div><a href='/app/faq' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.FAQ'>Časté dotazy</a></div>
+							<div><a href='/app/taxes' class='text-muted' t='LANDING_PAGE.SECTION.CONTACT.GIVING_AND_TAXES'>Darování a daně</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class='divider-main'></div>
+		<section class='text-align-center'>
+			<div class='social-bar flex flex-center flex-wrap'>
+				<a target='_blank' href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko' title='Hearthí Facebook fanpage'><i class='fa fa-fw fa-2x fa-facebook'></i></a>
+				<a target='_blank' href='https://plus.google.com/105519310550753411853/posts' title='Hearthí Google Plus účet'><i class='fa fa-fw fa-2x fa-google-plus'></i></a>
+				<a target='_blank' href='https://twitter.com/hearth_net' title='Hearthí Twitter účet'><i class='fa fa-fw fa-2x fa-twitter'></i></a>
+				<a target='_blank' href='https://www.youtube.com/user/hearthnetcrsr' title='Náš YouTube kanál'><i class='fa fa-fw fa-2x fa-youtube'></i></a>
+				<a target='_blank' href='//instagram.com/artofhearth' title='Účet na Instagramu'><i class='fa fa-fw fa-2x fa-instagram'></i></a>
+				<a target='_blank' href='mailto:info@hearth.net' title='Napište nám e-mail'><i class='fa fa-fw fa-2x fa-envelope'></i></a>
+			</div>
+		</section>
+	</div>
+
+	<script src='./js/main.js'></script>
+
+</body>
+</html>
