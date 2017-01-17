@@ -173,7 +173,12 @@ angular.module('hearth.geo').directive('map', [
 					Post.get({
 						postId: marker.info[I_ID]
 					}, function(data) {
-						data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
+
+						if (data.author.avatar === null || typeof data.author.avatar === 'undefined') {
+							data.author.avatar = {
+								normal: (data.author._type == 'Community' ? $$config.defaultCommunityAvatar : $$config.defaultUserAvatar)
+							};
+						}
 
 						if (data.author._type == 'Community') {
 							data.adType = (data.type === 'need' ? 'WE_NEED' : 'WE_OFFER');
