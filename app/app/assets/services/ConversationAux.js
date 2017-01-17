@@ -434,7 +434,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			if (conversationListLoading) return conversationGetBuffer.push([resolve, reject]);
 
 			conversationListLoading = true;
-			var limit = (paramObject.limit || conversationGetLimit);
+			var limit = (paramObject.socketReinit && conversationList.length ? conversationList.length : (paramObject.limit || conversationGetLimit));
 			var params = {
 				limit: limit,
 				offset: paramObject.offset || 0
