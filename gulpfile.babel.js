@@ -84,8 +84,13 @@ gulp.task('build',
   )
 );
 
-// Just run the server and watch w/o building anything
+// Just run the server
 gulp.task('server',
+  gulp.series(server)
+);
+
+// Just run the server and watch w/o building anything
+gulp.task('dev',
   gulp.series(server, watch)
 );
 
