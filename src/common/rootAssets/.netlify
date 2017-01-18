@@ -1,0 +1,18 @@
+{
+	"development": {
+		"site_id":"a6edec0d-c776-4152-9034-f58f05759d3b",
+		"path":"./"
+	},
+	"beta": {
+		"site_id":"7638086c-0743-4730-87d9-5f5dc988d2db",
+		"path":"./"
+	},
+	"staging": {
+		"site_id":"8f5dcdda-d179-4c5b-9b84-b1d5bfedf9a5",
+		"path":"./"
+	},
+	"production": {
+		"site_id":"03bde17d-2710-494c-8374-536d95c69799",
+		"path":"./"
+	}
+}

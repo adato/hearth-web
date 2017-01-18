@@ -78,8 +78,11 @@ gulp.task('landingPage',
 gulp.task('build',
   gulp.series(
     clean,
-    'app',
-    'landingPage'
+    gulp.parallel(
+      'app',
+      'landingPage',
+      copyCommonRoot
+    )
   )
 );
 
@@ -285,11 +288,18 @@ function configs() {
 //
 // COPY
 
+// Common root
+function copyCommonRoot() {
+  return gulp.src(PATHS.common.assets)
+    .pipe(gulp.dest(PATHS.dist));
+}
+
 // App root
 function copyRoot() {
   return gulp.src(PATHS.index)
     .pipe(gulp.dest(PATHS.dist + '/app'));
 }
+
 // App fonts
 function copyFonts() {
   return gulp.src(PATHS.fonts)
@@ -311,6 +321,13 @@ function server(done) {
   browser.init({
     server: {
       baseDir: PATHS.dist,
+
+      directory: true
+
+      // https: {
+      //   key: "/cert/server.key",
+      //   cert: "/cert/server.crt"
+      // }
 
       // to allow single-page mode, use middleware
       // that serves index file whenever it doesn't find what it's

@@ -1,65 +1,114 @@
-# ZURB Template
+Hearth (Front end)
+==================
+Front and app is based on Angular.
+ 
+Dependencies:
+* ruby 
+* sass
+* compass
+* zurb-foundation
+* node
 
-[![devDependency Status](https://david-dm.org/zurb/foundation-zurb-template/dev-status.svg)](https://david-dm.org/zurb/foundation-zurb-template#info=devDependencies)
-
-**Please open all issues with this template on the main [Foundation for Sites](https://github.com/zurb/foundation-sites/issues) repo.**
-
-This is the official ZURB Template for use with [Foundation for Sites](http://foundation.zurb.com/sites). We use this template at ZURB to deliver static code to our clients. It has a Gulp-powered build system with these features:
-
-- Handlebars HTML templates with Panini
-- Sass compilation and prefixing
-- JavaScript concatenation
-- Built-in BrowserSync server
-- For production builds:
-  - CSS compression
-  - JavaScript compression
-  - Image compression
-
-## Installation
-
-To use this template, your computer needs:
-
-- [NodeJS](https://nodejs.org/en/) (0.12 or greater)
-- [Git](https://git-scm.com/)
-
-This template can be installed with the Foundation CLI, or downloaded and set up manually.
-
-### Using the CLI
-
-Install the Foundation CLI with this command:
-
-```bash
-npm install foundation-cli --global
+How install ruby dependecies
+```shell
+cd project/web
+bundle 
 ```
-
-Use this command to set up a blank Foundation for Sites project with this template:
-
-```bash
-foundation new --framework sites --template zurb
-```
-
-The CLI will prompt you to give your project a name. The template will be downloaded into a folder with this name.
-
-### Manual Setup
-
-To manually set up the template, first download it with Git:
-
-```bash
-git clone https://github.com/zurb/foundation-zurb-template projectname
-```
-
-Then open the folder in your command line, and install the needed dependencies:
-
-```bash
-cd projectname
+ 
+How to run server
+```shell
+cd project/web/app
 npm install
-bower install
+grunt serve
 ```
 
-Finally, run `npm start` to run Gulp. Your finished site will be created in a folder called `dist`, viewable at this URL:
-
+Favicon location
 ```
-http://localhost:8000
+Prod. Facebook APP
+https://developers.facebook.com/apps/277542219089599/app-details/
+
+Stage Facebook APP
+https://developers.facebook.com/apps/769756073037691/app-details/
+
+Dev Facebook APP
+https://developers.facebook.com/apps/1495788017321716/app-details/
+
+App favicon
+/web/app/app/apple-touch-icon-114x114-precomposed.png
+/web/app/app/google-product-logo.png
+/web/app/app/apple-touch-icon-144x144-precomposed.png
+/web/app/app/apple-touch-icon-57x57-precomposed.png
+/web/app/app/apple-touch-icon-72x72-precomposed.png
+
+Landing page favicon
+/web/web/app/apple-touch-icon-114x114-precomposed.png
+/web/web/app/google-product-logo.png
+/web/web/app/apple-touch-icon-144x144-precomposed.png
+/web/web/app/apple-touch-icon-57x57-precomposed.png
+/web/web/app/apple-touch-icon-72x72-precomposed.png
 ```
 
-To create compressed, production-ready assets, run `npm run build`.
+
+Testing with Protractor
+-----------------------
+For end2end testing we use Protractor tool which is build on top of selenium. 
+
+### Setup
+
+Use npm to install all dependencies together with protractor and webdriver-manager tools which are needed for end2end testing.
+```
+cd web/app
+npm install
+./node_modules/.bin/webdriver-manager update
+```
+
+The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running.
+
+### Run tests
+
+Run frontend app first:
+```
+npm start
+```
+
+Then you can run all tests using:
+```
+npm test
+```
+
+Or pick only one test suite from suite list in web/app/protractor.js file, eg.:
+```
+npm test -- --suite=unauth
+```
+
+Testing with Karma
+------------------
+### Run tests
+Run the tests from the web/app directory.
+```
+karma start
+```
+It will search for the karma.spec.js in the current directory.
+If you want to specify the config file, run 
+```
+karma start xxx.spec.js
+```
+
+### Structure and important files location
+* /app/karma.conf.js - configuration file
+* /app/test/unit/setup.js - additional setup for the test environment
+* /app/test/unit - root directory for unit tests
+
+### Examples
+* app/test/spec/assets/components/avatar/avatar.spec.js -  setup of the directive test. 
+
+Contact
+-------
+
+Hearth is owned by the [Adato Paradigma, o.s.](http://www.adato.cz), a
+not-for-profit organization registered in the Czech Republic. Parts
+of Hearth will be released under the [Affero General Public
+License](http://www.gnu.org/licenses/agpl-3.0.html).
+Currently, Heart is developed by Czech IT company
+[TopMonks](http://www.topmonks.cz).
+
