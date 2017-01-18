@@ -323,23 +323,22 @@ function copyFontsLanding() {
 function server(done) {
   browser.init({
     server: {
-      baseDir: PATHS.dist,
-
-      // directory: true
-
-      // https: {
-      //   key: "/cert/server.key",
-      //   cert: "/cert/server.crt"
-      // }
-
-      // to allow single-page mode, use middleware
-      // that serves index file whenever it doesn't find what it's
-      // been looking for
-      // middleware: [ spamw({
-        // index: '/app/index.html'
-        // index: '/index.html'
-      // }) ],
+      baseDir: PATHS.dist
     },
+    middleware: [
+      function(req, res, next) {
+        if (
+          req.url.indexOf('/app/') >= 0
+          && req.url.indexOf('/app/assets/') < 0
+          && req.url !== '/app/'
+        ) {
+          req.url = '/app/';
+        }
+        return next();
+      }
+    ],
+    startPath: '/app',
+    // open: 'external', // 192.168.99.1
     port: PORT,
   });
   done();
