@@ -1,9 +1,9 @@
+.DS_Store
 node_modules
+npm-debug.log
+bower_components
 dist
+*.swp
 .tmp
-.sass-cache
-app/app/vendor
-target/
-public
 .idea
 Thumbs.db
