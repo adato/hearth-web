@@ -8,6 +8,7 @@
     "app": "gulp app",
     "lp": "gulp landingPage",
     "server": "gulp server",
+    "dev": "gulp dev",
     "build": "gulp build",
     "pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & sleep 2",
     "windows_pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & timeout 2",

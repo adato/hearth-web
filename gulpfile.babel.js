@@ -325,7 +325,7 @@ function server(done) {
     server: {
       baseDir: PATHS.dist,
 
-      directory: true
+      // directory: true
 
       // https: {
       //   key: "/cert/server.key",

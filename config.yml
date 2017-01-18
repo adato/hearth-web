@@ -159,7 +159,7 @@ PATHS:
         # does not cover only assets, as there are also files in rootAssets and index.html
         - "app/**/*.html"
       img:
-        - "app/images/**/*"
+        - "app/assets/img/**/*"
     landing:
       index: "landing/html"
       css:

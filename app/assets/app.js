@@ -1,9 +1,36 @@
 'use strict';
 
-angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
-		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
-		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber'
+angular.module('hearth', [
+		'hearth.services',
+		'hearth.filters',
+		'hearth.directives',
+		'hearth.controllers',
+		'hearth.constants',
+		'hearth.utils',
+		'hearth.geo',
+		'hearth.messages',
+		'hearth.templates',
+
+		'ngSanitize',
+		'ngResource',
+		'ngDialog',
+		'tmh.dynamicLocale',
+		'ui.select',
+		'ui.router',
+		'angular-flexslider',
+		'pascalprecht.translate',
+		'ng-slide-down',
+		'angulartics',
+		'angulartics.mixpanel',
+		'angulartics.google.analytics',
+		'ngTagsInput',
+		'ipCookie',
+		'satellizer',
+		'MobileDetect',
+		'checklist-model',
+		'rt.select2',
+		'ngActionCable',
+		'internationalPhoneNumber'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
@@ -30,8 +57,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 			// $translateProvider.useStorage('SessionLanguageStorage');
 			$translateProvider.useStaticFilesLoader({
-				prefix: 'locales/',
-				suffix: '/messages.json'
+				prefix: 'assets/locale/',
+				suffix: '.json'
 			});
 		}
 	]).config([
