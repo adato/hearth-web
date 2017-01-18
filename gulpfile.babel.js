@@ -5,10 +5,8 @@ import yargs    from 'yargs';
 import browser  from 'browser-sync';
 import gulp     from 'gulp';
 import rimraf   from 'rimraf';
-import sherpa   from 'style-sherpa';
 import yaml     from 'js-yaml';
 import fs       from 'fs';
-import spamw    from 'connect-history-api-fallback';
 
 const i18nStatic = require('./hearth_modules/gulp-node-static-i18n');
 
