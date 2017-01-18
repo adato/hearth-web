@@ -10,7 +10,10 @@
     "server": "gulp server",
     "dev": "gulp dev",
     "build": "gulp build",
-    "production": "npm install && node_modules/.bin/bower install && npm run build",
+    "install": "npm install && node_modules/.bin/bower install",
+    "development": "npm run install && npm run build --target=development",
+    "staging": "npm run install && npm run build --target=staging",
+    "production": "npm run install && npm run build --target=production",
     "pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & sleep 2",
     "windows_pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & timeout 2",
     "test": "./node_modules/.bin/protractor protractor.js"
