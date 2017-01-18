@@ -10,7 +10,7 @@
     "server": "gulp server",
     "dev": "gulp dev",
     "build": "gulp build",
-    "install": "npm install && node_modules/.bin/bower install",
+    "install": "node_modules/.bin/bower install",
     "development": "npm run install && npm run build --target=development",
     "staging": "npm run install && npm run build --target=staging",
     "production": "npm run install && npm run build --target=production",

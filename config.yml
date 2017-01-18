@@ -33,6 +33,7 @@ PATHS:
   # Paths to files that should reside in the root directory
   common:
     assets:
+      - "common/rootAssets/.netlify"
       - "common/rootAssets/**/*"
   index:
     - "app/index.html"

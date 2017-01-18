@@ -58,7 +58,7 @@ gulp.task('app',
 // Build landing page
 gulp.task('landingPage',
   gulp.series(
-    // localesLanding,
+    localesLanding,
     gulp.parallel(
       templatesLanding,
       javascriptLanding,
