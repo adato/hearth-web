@@ -5,14 +5,14 @@
 		<div class="row v-m-small">
 			<div info-box="item">
 				<avatar class="_avatar small-2 medium-12 column" href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item._type"></avatar>
-				<div class="_name show-for-medium-up">
+				<div class="_name show-for-medium">
 					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{item.name}}</a>
 				</div>
 			</div>
 			<div class="_karma small-3 medium-12 columns">
 				<karma-bar for="item"></karma-bar>
 			</div>
-			<div class="time small-6 columns hidden-for-medium-up">
+			<div class="time small-6 columns hidden-for-medium">
 				<span>{{item.created_at | ago}}</span>
 			</div>
 		</div>
@@ -22,7 +22,7 @@
 	<div class="medium-10 columns item-body">
 		<div class="_content">
 			<div class="_title clearfix">
-				<div class="time right show-for-medium-up">
+				<div class="time right show-for-medium">
 					{{item.created_at | ago}}
 				</div>
 				<h2>

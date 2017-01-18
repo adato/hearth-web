@@ -20,19 +20,17 @@ const download = require('./hearth_modules/download');
 // Load all Gulp plugins into one variable
 const $ = plugins();
 
-// Check for --production flag
-const PRODUCTION = !!(yargs.argv.production);
-
 // Check for --reload flag
 // Causes browser reload on file changes
 const BROWSER_RELOAD = !!(yargs.argv.reload);
 
-// TODO: This clashes a bit with foundation's PRODUCTION flag .. but whatever ATM
-// valid environments should be:
-//    development
-//    staging
-//    production
-const DEFAULT_ENVIRONMENT = 'localhost';
+const LOCAL_ENV = 'localhost'
+const DEV_ENV = 'development';
+const STAGE_ENV = 'staging';
+const PROD_ENV = 'production';
+
+const DEFAULT_ENVIRONMENT = LOCAL_ENV;
+
 const ENVIRONMENT = yargs.argv.target || DEFAULT_ENVIRONMENT;
 
 // Load settings from settings.yml
@@ -114,10 +112,10 @@ function javascript() {
     .pipe($.sourcemaps.init())
     .pipe($.babel({ignore: ['what-input.js']}))
     .pipe($.concat('app.js'))
-    .pipe($.if(PRODUCTION, $.uglify()
+    .pipe($.if(ENVIRONMENT === PROD_ENV, $.uglify()
       .on('error', e => { console.log(e); })
     ))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    .pipe($.if(!ENVIRONMENT === PROD_ENV, $.sourcemaps.write()))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/js'));
 }
 
@@ -146,9 +144,9 @@ function sass() {
       browsers: COMPATIBILITY
     }))
     // Comment in the pipe below to run UnCSS in production
-    //.pipe($.if(PRODUCTION, $.uncss(UNCSS_OPTIONS)))
-    .pipe($.if(PRODUCTION, $.cssnano()))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    //.pipe($.if(ENVIRONMENT === PROD_ENV, $.uncss(UNCSS_OPTIONS)))
+    .pipe($.if(ENVIRONMENT === PROD_ENV, $.cssnano()))
+    .pipe($.if(!ENVIRONMENT === PROD_ENV, $.sourcemaps.write()))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/css'))
     .pipe(browser.reload({ stream: true }));
 }
@@ -256,7 +254,7 @@ function jQuery() {
 // In production, the images are compressed
 function images() {
   return gulp.src(PATHS.src.app.img)
-    .pipe($.if(PRODUCTION, $.imagemin({
+    .pipe($.if(ENVIRONMENT === PROD_ENV, $.imagemin({
       progressive: true
     })))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/img'));
@@ -264,7 +262,7 @@ function images() {
 
 function imagesLanding() {
   return gulp.src(PATHS.src.landing.img)
-    .pipe($.if(PRODUCTION, $.imagemin({
+    .pipe($.if(ENVIRONMENT === PROD_ENV, $.imagemin({
       progressive: true
     })))
     .pipe(gulp.dest(PATHS.dist + '/img'));
