@@ -1,4 +1,4 @@
-var testFolder = './test/e2e/';
+var testFolder = './app/test/e2e/';
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   allScriptsTimeout: 60000,
