@@ -96,7 +96,7 @@
 							{{:: 'ATTACHE_IMAGES' | translate }}
 						</span>
 						<span ng-if="imagesCount">
-							{{:: 'IMAGES' | translate }} ({{ imagesCount }})
+							{{:: 'IMAGES' | translate }} ({{ post.attachments_attributes.length || 0 }})
 						</span>
 					</label>
 					<div>
@@ -106,11 +106,10 @@
 								<a ng-click="removeImage($index)" title="{{:: 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
 									<i class="fa fa-times"></i>
 								</a>
-								<img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" />
+								<img exif-rotated resized-thumbnail-image ng-src="{{ file.normal || file.public_url }}" title='file' />
 							</li>
 							<li class="file-upload">
-								<div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource'
-												limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
+								<div image-preview-direct-upload options="imageUploadOptions" result="post.attachments_attributes">
 									<i class="fa fa-plus"></i>
 									<i class="fa fa-spinner fa-spin"></i>
 								</div>

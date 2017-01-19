@@ -47,6 +47,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// weird approach, but whatever
 			$scope.filter.post_id = query[0] === 'as_replies_post' ? query[1] : void 0;
+			$scope.filter.community_id = query[0] === 'community_id' ? query[1] : void 0;
 
 			var filter = {
 				key: query[0],
@@ -70,13 +71,20 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 		}
 
-		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'];
+		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'users_posts', 'community_id'];
 
-		function setParams() {
-			var params = {};
+		/**
+		 *	Function that extend a param object for loading conversations with current filters
+		 *	@param {Object} filter [optional]
+		 *	@return {Object} filter - extended filter param
+		 */
+		function extendParams(params) {
+			params = params || {};
 			var searchParams = $location.search();
 			if (searchParams.as_replies_post) {
 				params.post_id = searchParams.as_replies_post;
+			} else if (searchParams.community_id) {
+				params.community_id = searchParams.community_id;
 			} else {
 				for (var i = filterTypes.length; i--;) {
 					if (searchParams[filterTypes[i]]) {
@@ -85,13 +93,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					}
 				}
 			}
-			$scope.params = params;
+			return params;
 		}
 
 		function loadConversations(cb) {
-			var params = $scope.params;
-			params.wipe = true;
-
+			var params = {
+				wipe: true
+			};
+			extendParams(params);
 			ConversationAux.loadConversations(params).then(function(res) {
 				$scope.conversations = res.conversations;
 				$timeout(function() {
@@ -104,22 +113,20 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// load another batch to the bottom of list when scrolled down
 		$scope.loadBottom = function() {
-			if ($scope.conversationLoadInProgress || $scope.allConversationsLoaded) {
-				return false;
-			}
+			if ($scope.conversationLoadInProgress || $scope.allConversationsLoaded) return false;
+
+			// disable loading bottom sooner that when at least some conversations are loaded
+			if (!($scope.conversations && $scope.conversations.length)) return false;
 
 			$scope.conversationLoadInProgress = true;
-			var params = $scope.params;
-			params.wipe = false;
-			params.offset = $scope.conversations ? $scope.conversations.length : 0;
+			var config = {
+				offset: ($scope.conversations ? $scope.conversations.length : 0)
+			};
+			extendParams(config);
 
-			ConversationAux.loadConversations(params).then(function(res) {
-				if (res.thatsAllFolks) {
-					$scope.allConversationsLoaded = true;
-				}
-
+			ConversationAux.loadConversations(config).then(function(res) {
+				if (res.thatsAllFolks) $scope.allConversationsLoaded = true;
 				$scope.conversationLoadInProgress = false;
-
 				$timeout(function() {
 					$scope.$broadcast('scrollbarResize');
 					$scope.$broadcast('classIfOverflowContentResize');
@@ -135,6 +142,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		}
 
+		function loadCommunityConversations() {
+			Conversations.getCommunityConversations(function(res) {
+				$scope.communityConversations = res.communities;
+			});
+		}
+
 		function init() {
 			$scope.reloading = true;
 			// set conversation to false, so that template ng-ifs evaluate correctly and show loading
@@ -143,47 +156,60 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// set filter select-box to correct value
 			// TODO - refactor those filters
 			var searchParams = $location.search();
-			var filterSet = false;
+
+			// clean-up filter
+			$scope.filter = {};
 
 			if (searchParams.as_replies_post) {
 				$scope.filter.type = 'as_replies_post:' + searchParams.as_replies_post;
 				$scope.filter.post_id = searchParams.as_replies_post;
-				filterSet = true;
+			} else if (searchParams.community_id) {
+				$scope.filter.type = 'community_id:' + searchParams.community_id;
+				$scope.filter.community_id = searchParams.community_id;
 			} else {
 				for (var i = filterTypes.length; i--;) {
 					if (searchParams[filterTypes[i]]) {
 						$scope.filter.type = filterTypes[i];
 						$scope.filter.post_id = void 0;
-						filterSet = true;
 						break;
 					}
 				}
 			}
-
-			setParams();
-
-			// State contains selected conversation id. Have to delete conversation id from the state to avoid adding of the selected
-			// conversation to the conversationList and display message in another filter.
-			$state.go('messages', {
-				notify: false
-			});
-
 
 			$scope.notFound = false;
 			$scope.loadingBottom = false;
 			$scope.allConversationsLoaded = false;
 
 			loadPostConversations();
+			loadCommunityConversations();
 
 			loadConversations(function(res) {
 				$scope.loaded = true;
 				$scope.reloading = false;
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()))
-					$state.go('messages.detail', {
-						id: $state.params.id ? $state.params.id : (res.length ? res[0]._id : void 0)
-					});
-			});
 
+				// if we have an id in the url but the result of get conversations is empty
+				// that means we do not wish to display the conversation
+				if (!res.length) {
+					return $state.go('messages', {
+						notify: false
+					});
+				}
+
+				var currConvInList = currentConvIsInTheList(res);
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) || !currConvInList) {
+					$state.go('messages.detail', {
+						id: $state.params.id && currConvInList ? $state.params.id : res[0]._id
+					});
+				}
+			});
+		}
+
+		function currentConvIsInTheList(list) {
+			if (!list) return;
+			for (var i = list.length; i--;) {
+				if (list[i] && (list[i]._id === $state.params.id)) return true;
+			}
+			return false;
 		}
 
 		UnauthReload.check();
