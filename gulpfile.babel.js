@@ -30,6 +30,8 @@ const DEFAULT_ENVIRONMENT = LOCAL_ENV;
 
 const ENVIRONMENT = yargs.argv.target || DEFAULT_ENVIRONMENT;
 
+const HOST = yargs.argv.host || null;
+
 // Load settings from settings.yml
 const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS, LOCALE } = loadConfig();
 
@@ -322,6 +324,7 @@ function server(done) {
     server: {
       baseDir: PATHS.dist
     },
+    host: HOST,
     middleware: [
       function(req, res, next) {
         if (
