@@ -207,7 +207,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					var actions = {
 						community: Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community)).$promise
 					};
-					if ($scope.community.avatar.toBeUploaded) actions.avatar = Community.uploadAvatar({
+					if ($scope.community.avatar && $scope.community.avatar.toBeUploaded) actions.avatar = Community.uploadAvatar({
 						_id: $scope.community._id
 					}, $scope.community.avatar.toBeUploaded).$promise;
 					$q.all(actions)
