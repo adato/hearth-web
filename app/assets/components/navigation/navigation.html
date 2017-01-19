@@ -193,7 +193,7 @@
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
-			<section class="bar-columns icons-column display-flex">
+			<section class="bar-columns icons-column">
 				<a ng-click="reloadToMarketplace()" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
@@ -283,7 +283,7 @@
 						<i class="fa fa-question-circle"></i>
 						<label>{{::'TOP_BAR_ABOUT' | translate}}</label>
 					</a>
-					<ul class="dropdown menu vertical" data-dropdown-menu id="about-drop">
+					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop">
 						<li>
 							<a ng-href="{{:: basePath }}terms">{{:: 'MENU.TERMS' | translate}}</a>
 						</li>

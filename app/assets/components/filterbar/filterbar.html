@@ -1,11 +1,11 @@
 <div class="clearfix filterbar-wrap">
 	<div class="clearfix filterbar-header">
-		<div class="insert-button-container small-12 large-3 hide-for-small hide-for-medium right">
+		<div class="insert-button-container small-12 large-3 show-for-large right">
 			<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button">
 				{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
 			</a>
 		</div>
-		<div class="small-12 medium-10 large-7 push-2 filter-left">
+		<div class="small-12 medium-10 large-7 medium-push-2 filter-left">
 			<div class="toggleFilter">
 				<a ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
 					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	</div>
-	<article class="filter-container large-10 push-2 medium-10 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+	<article class="filter-container large-10 medium-push-2 medium-10 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
 		<filter id="filter" class="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>
 	</article>
 	<div class="clear"></div>

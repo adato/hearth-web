@@ -314,17 +314,17 @@ module.exports = function (config) {
       'dist/app/assets/templates/templates.js'
     ],
 
-    ngHtml2JsPreprocessor: {
-      //
-      stripPrefix: 'app/',
-      moduleName: 'htmlTemplates'
-    },
+    // ngHtml2JsPreprocessor: {
+    //   //
+    //   stripPrefix: 'app/',
+    //   moduleName: 'htmlTemplates'
+    // },
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'app/assets/components/**/*.html': ['ng-html2js']
-    },
+    // preprocessors: {
+    //   'app/assets/components/**/*.html': ['ng-html2js']
+    // },
 
     proxies: {
       // return fake file from the running container, version.txt is not available

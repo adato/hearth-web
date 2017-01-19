@@ -358,7 +358,7 @@ function getSeries(...args) {
 // Watch for changes to static assets, pages, Sas)s, and JavaScript
 function watch() {
   gulp.watch(PATHS.src.app.html).on('all', getSeries(templates, copyRoot));
-  gulp.watch(['/common/config/**/*.js', '/app/config/**/*.js']).on('all', getSeries(configs));
+  gulp.watch(['common/config/**/*.js', 'app/config/**/*.js']).on('all', getSeries(configs));
   gulp.watch(PATHS.src.app.scss).on('all', getSeries(sass));
   gulp.watch(PATHS.src.app.js).on('all', getSeries(javascript));
   gulp.watch(PATHS.src.app.img).on('all', getSeries(images));

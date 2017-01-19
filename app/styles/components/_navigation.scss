@@ -350,6 +350,7 @@ $topBarImageSize: 1.8em;
 				}
 				.top-bar-messages {
 					display: inline-block;
+
 					.messages-icon::after {
 						color: #ffa97a;
 						left: 0;
@@ -371,7 +372,7 @@ $topBarImageSize: 1.8em;
 						z-index: 1;
 						height: 30px;
 						width: 30px;
-						top: 5px;
+						top: -5px;
 						display: inline-block;
 					}
 				}
@@ -393,7 +394,7 @@ $topBarImageSize: 1.8em;
 #navigation {
 	& .dropdown {
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-		left: 6px;
+		// left: 6px;
 		.fa {
 			width: $fontSize;
 		}

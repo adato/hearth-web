@@ -63,6 +63,7 @@ textarea, input {
 		bottom: 0;
 	}
 
+	max-width: inherit;
 	font-size: 14px;
 	box-shadow: none !important;
 	height: $ui-input-height;

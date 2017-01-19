@@ -42,6 +42,7 @@ PATHS:
   fonts:
   # Paths to static assets that aren't images, CSS, or JavaScript
     - "app/fonts/**/*"
+    - "bower_components/components-font-awesome/fonts"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "bower_components/foundation-sites/scss"
@@ -105,6 +106,7 @@ PATHS:
         - "bower_components/fancybox/source/jquery.fancybox.css"
         - "bower_components/nanoscroller/bin/css/nanoscroller.css"
         - "bower_components/intl-tel-input/build/css/intlTelInput.css"
+        - "bower_components/components-font-awesome/css/font-awesome.min.css"
   javascript:
     # Libraries required by Foundation
     # - "bower_components/jquery/dist/jquery.js"
@@ -160,7 +162,7 @@ PATHS:
         # does not cover only assets, as there are also files in rootAssets and index.html
         - "app/**/*.html"
       img:
-        - "app/assets/img/**/*"
+        - "app/images/**/*"
     landing:
       index: "landing/html"
       css:

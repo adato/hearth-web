@@ -5,39 +5,35 @@
 			display: inline-block;
 		}
 		.dropdown:before {
+			content: '';
+			position: absolute;
+			top: -12px; right: 20px;
+			width: 0; height: 0;
+			display: block;
+			border-width: 6px;
+			border-style: inset inset solid;
+			border-color: transparent transparent white;
+			border-image: none;
 			-moz-border-bottom-colors: none;
 			-moz-border-left-colors: none;
 			-moz-border-right-colors: none;
 			-moz-border-top-colors: none;
-			border-color: transparent transparent white;
-			border-image: none;
-			border-style: inset inset solid;
-			border-width: 6px;
-			content: "";
-			display: block;
-			height: 0;
-			left: 20px;
-			position: absolute;
-			top: -10px;
-			width: 0;
 			z-index: 99;
 		}
 		.dropdown:after {
+			content: '';
+			position: absolute;
+			top: -14px; right: 19px;
+			width: 0; height: 0;
+			display: block;
+			border-width: 7px;
+			border-style: inset inset solid;
+			border-color: transparent transparent #7c766a;
+			border-image: none;
 			-moz-border-bottom-colors: none;
 			-moz-border-left-colors: none;
 			-moz-border-right-colors: none;
 			-moz-border-top-colors: none;
-			border-color: transparent transparent #7c766a;
-			border-image: none;
-			border-style: inset inset solid;
-			border-width: 7px;
-			content: "";
-			display: block;
-			height: 0;
-			left: 19px;
-			position: absolute;
-			top: -12px;
-			width: 0;
 			z-index: 98;
 		}
 		.dropdown {
@@ -47,7 +43,12 @@
 			// @include box-shadow(0 0px 2px 1px rgba(black, 0.2));
 
 			position: absolute;
-			left: 0px;
+
+			// left: 0px;
+			right: -10px;
+			left: auto;
+			// top: 4px;
+
 			background: none repeat scroll 0 0 white;
 			border: 1px solid #7c766a;
 			font-size: $ui-text-font-size;
