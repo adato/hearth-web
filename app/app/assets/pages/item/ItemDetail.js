@@ -103,7 +103,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.setTitle = function() {
-			var title = $translate.instant($scope.postTypes[$scope.item.author._type][$scope.item.type]) + ' ' + $scope.item.title;
+			var entity = ($scope.item.author ? $scope.item.author._type : 'User');
+			var title = $translate.instant($scope.postTypes[entity][$scope.item.type]) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);
 		};
 
