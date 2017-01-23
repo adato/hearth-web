@@ -29,6 +29,7 @@ angular.module('hearth.services').factory('Community', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/communities/:communityId/posts',
+
 				method: 'GET',
 				transformResponse: [LocationJsonDataTransform.getLocationJson.bind({
 					prop: 'data'

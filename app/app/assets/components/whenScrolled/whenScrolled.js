@@ -32,6 +32,9 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					if (angular.element('body').hasClass('ngdialog-open')) return false;
 
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
+
+					// @kamil TODO - the following line may throw error on el.height(), saying that el is undefined OR null - WHY??
+					if (!el || typeof el.height !== 'function') console.warn('EL in whenScrolled', el);
 					if (childHeight - el.height() - el.scrollTop() - offset <= 0) {
 						scope.$root.debug && $log.log('whenScrolled is calling load() function');
 						scope.whenScrolled();

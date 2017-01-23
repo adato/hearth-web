@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService',
-	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService) {
+	'$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', 'ProfileUtils',
+	function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, ProfileUtils) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -29,10 +29,19 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		$scope.postTypes = $$config.postTypes;
 		$scope.data = [];
 		$scope.loadingData = false;
+
+		$scope.userPostCount = {
+			'active': 0,
+			'inactive': 0
+		};
+		$scope.userBookmarkCount = 0; // default zero counters
+
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
 		var inited = false;
 		$scope.subPageLoaded = false;
+
+		var templatePath = 'assets/components/item/items/post.html';
 
 		$scope.paginate = function(params) {
 			params.offset = $scope.data.length;
@@ -43,7 +52,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			if (params.limit) return params;
 
 			params.offset = $scope.data.length;
-			params.limit = 15;
+			params.limit = MarketPostCount;
 			return params;
 		};
 
@@ -180,17 +189,14 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		}
 
 		function loadBookmarks(params, done, doneErr) {
-			$scope.addPagination(params);
-			params.user_id = undefined;
-			UserBookmarks.query(params, function(res) {
-				$scope.postsBookmarked = [];
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 
-				res.forEach(function(item) {
-					$scope.postsBookmarked.push(item);
-				});
-
-				finishLoading();
-			}, doneErr);
+			$scope.bookmarkOptions = {
+				getData: UserBookmarks.query,
+				getParams: params,
+				templateUrl: templateUrl,
+				cb: finishLoading
+			};
 		}
 
 		function loadUserReplies(params, done, doneErr) {
@@ -200,20 +206,60 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			}, doneErr);
 		}
 
+		// helper variables for getting post list
+		var getPostsStatus = {
+			running: false
+		};
+		$scope.getPostsFinished;
+		var getPostsResult = {
+			active: [],
+			inactive: []
+		};
+		var getPostsQ = [];
+
+		// load posts of user
+		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadUserPosts(params, done, doneErr) {
-			User.getPosts(params, function(res) {
-				$scope.postsActive = [];
-				$scope.postsInactive = [];
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+			// var compiledTemplate;
 
-				res.data.forEach(function(item) {
-					if ($rootScope.isPostActive(item))
-						$scope.postsActive.push(item);
-					else
-						$scope.postsInactive.push(item);
-				});
+			// counter for template
+			$scope.userPostCount = {
+				active: 0,
+				inactive: 0
+			};
 
-				finishLoading();
-			}, doneErr);
+			finishLoading();
+
+			$scope.postListActiveOptions = {
+				getData: ProfileUtils.getPosts.bind(null, {
+					active: true,
+					params: params,
+					resource: User.getPosts,
+					getPostsStatus: getPostsStatus,
+					getPostsFinished: $scope.getPostsFinished,
+					getPostsResult: getPostsResult,
+					getPostsQ: getPostsQ,
+					postCount: $scope.userPostCount
+				}),
+				templateUrl: templateUrl,
+				cb: finishLoading
+			};
+
+			$scope.postListInactiveOptions = {
+				getData: ProfileUtils.getPosts.bind(null, {
+					params: params,
+					resource: User.getPosts,
+					getPostsStatus: getPostsStatus,
+					getPostsFinished: $scope.getPostsFinished,
+					getPostsResult: getPostsResult,
+					getPostsQ: getPostsQ,
+					postCount: $scope.userPostCount
+				}),
+				disableLoading: true,
+				templateUrl: templateUrl
+			};
+
 		}
 
 		$scope.refreshItemInfo = function($event, itemNew) {
@@ -300,17 +346,25 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 			loadServices[$scope.pageSegment](params, processData, processDataErr);
 
-			// refresh after new post created
-			if (!inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
-				$scope.$on('postCreated', function() {
+			var timeoutReloadFunction = function() {
+				return $timeout(function() {
+					$scope.loadingData = false;
+					$scope.subPageLoaded = false;
 					$scope.refreshUser(true);
-					loadServices[$scope.pageSegment](params, processData, processDataErr);
-				});
-				$scope.$on('postUpdated', function() {
-					$scope.refreshUser(true);
-					loadServices[$scope.pageSegment](params, processData, processDataErr);
-				});
+					loadServices[$scope.pageSegment](params, processData, processDataErr)
+				}, 800);
+			}
 
+			// refresh after new post created
+			if (!inited) {
+				if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts' || $scope.pageSegment == 'posts') {
+					$scope.$on('postCreated', timeoutReloadFunction);
+					$scope.$on('postUpdated', timeoutReloadFunction);
+				};
+
+				if ($scope.pageSegment == 'profile.bookmarks' || $scope.pageSegment == 'bookmarks') {
+					$scope.$on('postUnbookmarked', timeoutReloadFunction);
+				}
 				// added event listeners - dont add them again
 				inited = true;
 			}

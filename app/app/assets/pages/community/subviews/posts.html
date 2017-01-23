@@ -1,7 +1,9 @@
 <div class="bottom-tabs"></div>
 <div class="clear"></div>
-<div ng-if="subPageLoaded">
-	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
+<div ng-show="subPageLoaded" ng-init="manualInit()">
+
+
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="loaded && mine && ! communityPostCount.active && ! communityPostCount.inactive && getPostsFinished">
 		<div class="item">
 			<p>{{:: 'COMMUNITY.POSTS.NO_POSTS_ADMIN' | translate }}</p>
 			<p>
@@ -11,17 +13,18 @@
 			</p>
 		</div>
 	</div>
-	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="loaded && ! mine && ! postsActive.length && ! postsInactive.length">
+
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="loaded && ! mine && !communityPostCount.active && getPostsFinished">
 		<div class="item">
 			<p>{{:: 'COMMUNITY.POSTS.NO_POSTS_OTHER' | translate }}</p>
 		</div>
 	</div>
-	<div class="ads-listing active">
-		<item item='item' ng-repeat="(id, item) in postsActive track by item._id" community="null" user="loggedUser" inactivate-tags='true'></item>
+	<item-list options="communityPostListActiveOptions"></item-list>
+
+	<div ng-if="mine && communityPostCount.inactive" class="ads-listing inactive">
+		<h3>{{:: 'POSTS_INACTIVE' | translate }}</h3>
 	</div>
-	<div ng-if="mine && postsInactive.length" class="ads-listing inactive">
-		<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>
-		<item item='item' ng-repeat="(id, item) in postsInactive track by item._id" community="null" user="loggedUser" inactivate-tags='true'></item>
-	</div>
+	<item-list options="communityPostListInactiveOptions"></item-list>
+
 </div>
 <div loading show="!subPageLoaded"></div>

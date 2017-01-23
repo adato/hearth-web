@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log', 'UsersCommunitiesService',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log, UsersCommunitiesService) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', '$q',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, $q) {
 		angular.extend($scope, ItemServices);
 		$scope.activityShow = false;
 		$scope.loadingData = false;
@@ -25,6 +25,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'received-ratings': loadReceivedRatings,
 			'given-ratings': loadGivenRatings,
 		};
+		var templatePath = 'assets/components/item/items/post.html';
 
 		$scope.loadBottom = function() {
 			$scope.loadingData = true;
@@ -191,24 +192,76 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			CommunityApplicants.query(obj, processData, doneErr);
 		}
 
-		function loadCommunityPosts(id, doneErr) {
-			Community.getPosts({
-				communityId: id
-			}, function(res) {
-				$scope.postsActive = [];
-				$scope.postsInactive = [];
-
-				res.data.forEach(function(item) {
-					if ($rootScope.isPostActive(item)) {
-						$scope.postsActive.push(item);
-					} else {
-						$scope.postsInactive.push(item);
-					}
-				});
-
-				finishLoading();
-			}, doneErr);
+		function pushPost(containerPath, post, compiledTemplate) {
+			var scope = PostScope.getPostScope(post, $scope);
+			compiledTemplate(scope, function(clone) {
+				// doesnt work when not delayed
+				$timeout(function() {
+					$(containerPath).append(clone[0]);
+					$timeout(function() {
+						$('#post_' + post._id).show();
+					});
+				}, 100);
+			});
 		}
+
+		// helper variables for getting post list
+		var getPostsStatus = {
+			running: false
+		};
+		$scope.getPostsFinished;
+		var getPostsResult = {
+			active: [],
+			inactive: []
+		};
+		var getPostsQ = [];
+
+		// load posts of community
+		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
+		function loadCommunityPosts(id, doneErr) {
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+
+			// counter for template
+			$scope.communityPostCount = {
+				'active': 0,
+				'inactive': 0
+			};
+			// finishLoading();
+
+			$scope.communityPostListActiveOptions = {
+				getData: ProfileUtils.getPosts.bind(null, {
+					params: {
+						communityId: id
+					},
+					resource: Community.getPosts,
+					getPostsStatus: getPostsStatus,
+					getPostsFinished: $scope.getPostsFinished,
+					getPostsResult: getPostsResult,
+					getPostsQ: getPostsQ,
+					postCount: $scope.communityPostCount,
+					active: true
+				}),
+				templateUrl: templateUrl,
+				cb: finishLoading,
+			};
+
+			$scope.communityPostListInactiveOptions = {
+				getData: ProfileUtils.getPosts.bind(null, {
+					params: {
+						communityId: id
+					},
+					resource: Community.getPosts,
+					getPostsStatus: getPostsStatus,
+					getPostsFinished: $scope.getPostsFinished,
+					getPostsResult: getPostsResult,
+					getPostsQ: getPostsQ,
+					postCount: $scope.communityPostCount
+				}),
+				disableLoading: true,
+				templateUrl: templateUrl,
+			};
+		}
+
 
 		$scope.refreshItemInfo = function($event, itemNew) {
 			$scope.posts.data.forEach(function(item, key) {
@@ -336,12 +389,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			}
 
 			// refresh after new post created
-			if (!inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
+			if (!inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts' || $scope.pageSegment == 'posts')) {
 				$scope.$on('postCreated', function() {
-					loadService($stateParams.id, processData, processDataErr);
+					$scope.loadingData = false;
+					$scope.subPageLoaded = false;
+
+					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
 				});
 				$scope.$on('postUpdated', function() {
-					loadService($stateParams.id, processData, processDataErr);
+					$scope.loadingData = false;
+					$scope.subPageLoaded = false;
+
+					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
 				});
 
 				// added event listeners - dont add them again

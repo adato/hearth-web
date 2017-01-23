@@ -14,15 +14,15 @@ angular.module('hearth.directives').directive('imagePreview', [
 			transclude: true,
 			replace: true,
 			scope: {
-				files: "=?",
-				uploadResource: "=?",
-				fileSizes: "=?",
-				limit: "=",
-				uploadingNotifier: "&",
-				error: "=?",
-				getImageSizes: "&",
-				limitPixelSize: "=",
-				singleFile: "=",
+				files: '=?',
+				uploadResource: '=?',
+				fileSizes: '=?',
+				limit: '=',
+				uploadingNotifier: '&',
+				error: '=?',
+				getImageSizes: '&',
+				limitPixelSize: '=',
+				singleFile: '=',
 			},
 			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" multiple file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
 			link: function(scope, el, attrs) {
@@ -81,6 +81,9 @@ angular.module('hearth.directives').directive('imagePreview', [
 					return false;
 				}
 
+				/**
+				 *	Pushes data into the scope.files object, which should be the controller model
+				 */
 				function pushResult(data, img) {
 					if (scope.singleFile) {
 						scope.files = data;
@@ -97,24 +100,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 						return scope.error.badSizePx = true;
 
 					// if there is not upload resource, upload images later
-					if (!scope.uploadResource) {
-						var size = ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
-
-						var canvas = ImageLib.resize(img, size, true);
-						return ImageLib.cropSmart(canvas, size, function(resized) {
-
-							resized = ExifRestorer.restore(imgFile.target.result, resized);
-
-							if (resized.split(',').length == 1)
-								resized = 'data:image/jpeg;base64,' + resized;
-							pushResult({
-								file: resized,
-								toBeUploaded: fileItself
-							}, {
-								total: 0
-							});
-						});
-					}
+					if (!scope.uploadResource) return pushResult({
+						file: imgFile.target.result,
+						toBeUploaded: fileItself
+					}, {
+						total: 0
+					});
 
 					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize &&
 						imgFile.total > (limitSize * 1024 * 1024)

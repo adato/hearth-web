@@ -5,8 +5,8 @@ function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-var emalRandomId = getRandomInt(1, 99999999999999999);
-var testAccountPassword = ''
+var emailRandomId = getRandomInt(1, 99999999999999999);
+
 module.exports = {
 	options: {
 		testPassword: 'testovaci',
@@ -14,33 +14,41 @@ module.exports = {
 		local: {
 			baseUrl: 'https://0.0.0.0:9000/app',
 			appPath: '/',
-			loginName: 'hearth@mailinator.com', // test user email
-			loginPassword: 'tester', 			// test user password
-			loginFullName: 'E2E tester',
+      name: 'Hearth',
+      surname: '' ,
+			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+			loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
+			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		jenkins: {
 			baseUrl: 'https://jenkins:9000/app',
 			appPath: '/',
-			loginName: 'hearth@mailinator.com', // test user email
-			loginPassword: 'tester', 			// test user password
-			loginFullName: 'E2E tester',
+      name: 'Jenkins',
+      surname: '' ,
+      loginName: 'jenkins.uzivatel@mailinator.com', // test user email
+      loginPassword: 'jenkins.uzivatel@mailinator.com', 			// test user password
+      loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		dev: {
 			baseUrl: 'http://dev.hearth.net/app',
 			appPath: '/',
-			loginName: 'hearth@mailinator.com', // test user email
-			loginPassword: 'tester', 			// test user password
-			loginFullName: 'E2E tester',
+      name: 'Hearth',
+      surname: '' ,
+      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+      loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
+      loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		stage: {
 			baseUrl: 'http://stage.hearth.net/app',
 			appPath: '/',
-			loginName: 'hearth-staging@mailinator.com', // test user email
-			loginPassword: 'tester', 		// test user password
-			loginFullName: 'E2E tester',
+      name: 'Hearth',
+      surname: '' ,
+      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+      loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
+      loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		}
 	},
@@ -53,7 +61,7 @@ module.exports = {
 		element(by.model('data.username')).sendKeys(this.config().loginName);
 		element(by.model('data.password')).sendKeys(this.config().loginPassword);
 		element(by.css('button.button-send')).click();
-		browser.driver.sleep(2000);
+		// browser.driver.sleep(2000);
 	},
 	logout: function () {
 		this.navigateTo('');
@@ -111,7 +119,7 @@ module.exports = {
 		    tlsOptions: { rejectUnauthorized: false },
 		    mailbox: "Tests", // mailbox to monitor
 		    // searchFilter: ["UNSEEN", "FLAGGED"], // the search filter being used after an IDLE notification has been retrieved
-		    markSeen: true, // all fetched email willbe marked as seen and not fetched next time
+		    markSeen: true // all fetched email will be marked as seen and not fetched next time
 		    // fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
 		    // mailParserOptions: {streamAttachments: true}, // options to be passed to mailParser lib.
 		    // attachments: true, // download attachments as they are encountered to the project directory
@@ -140,6 +148,6 @@ module.exports = {
 	},
 	getRandomInt: getRandomInt,
 	getTestEmail: function () {
-		return 'testovaci+'+emalRandomId+'@hearth.net';
+		return 'testovaci+'+emailRandomId+'@hearth.net';
 	}
 };
