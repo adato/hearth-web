@@ -57,7 +57,7 @@ angular.module('hearth.directives').directive('itemList', [
 						});
 						content.innerHTML = '';
 						content.appendChild(fragment);
-						if (typeof scope.options.cb === 'function') scope.options.cb();
+						if (typeof scope.options.cb === 'function') scope.options.cb(items);
 					}).catch(function(err) {
 						scope.loading = false;
 						console.log('Error getting items:', err);

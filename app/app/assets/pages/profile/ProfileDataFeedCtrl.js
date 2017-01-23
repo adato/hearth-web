@@ -195,7 +195,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				getData: UserBookmarks.query,
 				getParams: params,
 				templateUrl: templateUrl,
-				cb: finishLoading
+				cb: function(bookmarks) {
+					$scope.userBookmarkCount = bookmarks.length;
+					finishLoading()
+				}
 			};
 		}
 
