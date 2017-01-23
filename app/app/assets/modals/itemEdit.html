@@ -118,9 +118,9 @@
 						<div class="clear"></div>
 						<div class="clear error" ng-show="showError.files">
 							<span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \ 'JPG, JPEG, PNG, GIF\'} " }}</span>
-							<span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
+							<span ng-if="showError.files.badMaxSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize:"+limitMb+"}" }}</span>
 							<span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
-							<span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize:"+limitPixelSize+"}" }}</span>
+							<span ng-if="showError.files.badMinSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize:"+limitPixelSize+"}" }}</span>
 							<span ng-if="showError.files.uploadError">{{ "ERROR_WHILE_UPLOADING" | translate }}</span>
 						</div>
 					</div>

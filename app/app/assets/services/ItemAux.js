@@ -74,6 +74,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_bookmarked = !post.is_bookmarked;
+					$rootScope.$broadcast('postBookmarked');
 					Notify.addSingleTranslate('NOTIFY.POST_BOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
 				}
 			});
@@ -94,6 +95,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_bookmarked = !post.is_bookmarked;
+					$rootScope.$broadcast('postUnbookmarked');
 					Notify.addSingleTranslate('NOTIFY.POST_UNBOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
 					$rootScope.$emit('item.removedFromBookmarks', post);
 					$rootScope.$emit('itemList.refresh');

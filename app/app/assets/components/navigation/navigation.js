@@ -20,6 +20,7 @@ angular.module('hearth.directives').directive('navigation', [
 				$scope.searchQuery = {
 					query: $location.search().query
 				};
+				$scope.basePath = $$config.basePath;
 
 				$scope.mixpanelTrack = function(item, type) {
 					$analytics.eventTrack('Community clicked', {
