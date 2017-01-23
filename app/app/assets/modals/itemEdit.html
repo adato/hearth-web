@@ -24,7 +24,7 @@
 			<div class="error" ng-if="showInvalidPostMessage">{{:: 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
 
 			<div class="first-step-container row">
-				<p ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" class="padding-horizontal-tiny" ng-class="twoStepForm.step2 || !isDraft? 'faa-fade-out' : ''"></p>
+				<p ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" class="padding-horizontal-tiny" ng-show="isDraft" ng-class="{'faa-fade-out' : twoStepForm.step2}"></p>
 				<section id="type-switch-container" class="display-flex overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload">
 					<div class="display-medium-flex flex-divide-medium flex-div flex-1" ng-repeat="itemOptionGroup in itemTypeOptions">
 						<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex form-section flex-div flex-medium-divide flex-1 margin-vertical-8" ng-repeat="itemOption in itemOptionGroup">
@@ -51,7 +51,7 @@
 				</section>
 			</div>
 
-			<div class="second-step-container faa-fade-in" ng-if="twoStepForm.step2 || !isDraft">
+			<div class="second-step-container" ng-if="twoStepForm.step2 || !isDraft" ng-class="{ 'faa-fade-in': isDraft }">
 				<!-- show either for editform, or for step2 of insert form -->
 				<section class="author display-flex flex-wrap row">
 					<div class="form-section column small-12 medium-6" ng-show="authorList.length > 1">
@@ -96,7 +96,7 @@
 							{{:: 'ATTACHE_IMAGES' | translate }}
 						</span>
 						<span ng-if="imagesCount">
-							{{:: 'IMAGES' | translate }} ({{ imagesCount }})
+							{{:: 'IMAGES' | translate }} ({{ post.attachments_attributes.length || 0 }})
 						</span>
 					</label>
 					<div>
@@ -106,11 +106,10 @@
 								<a ng-click="removeImage($index)" title="{{:: 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
 									<i class="fa fa-times"></i>
 								</a>
-								<img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" />
+								<img exif-rotated resized-thumbnail-image ng-src="{{ file.normal || file.public_url }}" title='file' />
 							</li>
 							<li class="file-upload">
-								<div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource'
-												limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
+								<div image-preview-direct-upload options="imageUploadOptions" result="post.attachments_attributes">
 									<i class="fa fa-plus"></i>
 									<i class="fa fa-spinner fa-spin"></i>
 								</div>

@@ -91,16 +91,16 @@ a.user{
 .item-option-bg-need > i{
 	background-image: url('/app/images/icons/heart.svg');
 }
-.active .item-option-bg-offer > i,
-.active .item-option-bg-need > i{
+button.active .item-option-bg-offer > i,
+button.active .item-option-bg-need > i{
 	background-image: url('/app/images/icons/heart-clr.svg');
 }
 .item-option-bg-borrow > i,
 .item-option-bg-lend > i{
 	background-image: url('/app/images/icons/clock.svg');
 }
-.active .item-option-bg-borrow > i,
-.active .item-option-bg-lend > i{
+button.active .item-option-bg-borrow > i,
+button.active .item-option-bg-lend > i{
 	background-image: url('/app/images/icons/clock-clr.svg');
 }
 .item-option-bg-need,
@@ -172,8 +172,8 @@ button.active[disabled] .item-option-bg-type {
 }
 
 .faa-fade-in {
-  animation: fade-in 2s forwards ease-out;
-  -webkit-animation: fade-in 2s forwards ease-out;
+  animation: fade-in .4s forwards ease-out;
+  -webkit-animation: fade-in .4s forwards ease-out;
 }
 
 @keyframes fade-out {
@@ -193,8 +193,8 @@ button.active[disabled] .item-option-bg-type {
 }
 
 .faa-fade-out {
-  animation: fade-out 1.5s forwards;
-  -webkit-animation: fade-out 1.5s forwards;
+  animation: fade-out .4s forwards;
+  -webkit-animation: fade-out .4s forwards;
 }
 
 @-webkit-keyframes pulse {
@@ -577,6 +577,10 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 			color: white;
 		}
 	}
+}
+
+.post-image {
+	max-height: 120px;
 }
 
 /* @Kamil TODO - remove important after ditching v2 class */

@@ -114,19 +114,6 @@ angular.module('hearth.services').factory('Post', [
 					code: 'NOTIFY.POST_HIDE_REPORT_FAILED',
 					container: '.notify-report-container'
 				}
-			},
-			uploadAttachment: {
-				url: $$config.apiPath + '/posts/:postId/attachments',
-				method: 'POST',
-				headers: {
-					'Content-Type': undefined
-				},
-				errorNotify: false,
-				transformRequest: function(data) {
-					var fd = new FormData();
-					if (data.file) fd.append('file', data.file);
-					return fd;
-				}
 			}
 		});
 	}

@@ -197,29 +197,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				templateUrl: templateUrl,
 				cb: finishLoading
 			};
-
-			// var compiledTemplate;
-			//
-			// $scope.userBookmarkCount = 0;
-			//
-			// $scope.addPagination(params);
-			// params.user_id = undefined;
-			//
-			// $templateRequest(templateUrl).then(function(template) {
-			// 	var compiledTemplate = $compile(template);
-			//
-			// 	// fetch posts
-			// 	UserBookmarks.query(params, function(res) {
-			// 		$scope.postsBookmarked = [];
-			//
-			// 		res.forEach(function(item) {
-			// 			$scope.userBookmarkCount++;
-			// 			pushPost('.profile-common .ads-listing', item, compiledTemplate);
-			// 		});
-			//
-			// 		finishLoading();
-			// 	}, doneErr);
-			// });
 		}
 
 		function loadUserReplies(params, done, doneErr) {
@@ -228,19 +205,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				done(res.replies);
 			}, doneErr);
 		}
-
-		// function pushPost(containerPath, post, compiledTemplate) {
-		// 	var scope = PostScope.getPostScope(post, $scope);
-		// 	compiledTemplate(scope, function(clone) {
-		// 		// doesnt work when not delayed
-		// 		$timeout(function() {
-		// 			$(containerPath).append(clone[0]);
-		// 			$timeout(function() {
-		// 				$('#post_' + post._id).show();
-		// 			});
-		// 		}, 100);
-		// 	});
-		// }
 
 		// helper variables for getting post list
 		var getPostsStatus = {
