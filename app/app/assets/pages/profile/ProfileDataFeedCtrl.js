@@ -379,6 +379,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 		$scope.$on('userRatingsAdded', $scope.addUserRating);
 		$scope.$on('itemDeleted', $scope.removeItemFromList);
+		$rootScope.$on('item.removedFromBookmarks', $scope.removeItemFromList);
 		$scope.$on('profileTopPanelLoaded', init);
 		init();
 	}

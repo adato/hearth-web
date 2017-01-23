@@ -64,6 +64,12 @@ angular.module('hearth.directives').directive('itemList', [
 					});
 				}
 
+				var listener = $rootScope.$on('itemList.refresh', init);
+
+				scope.$on('$destroy', function() {
+					listener();
+				});
+
 			}
 		}
 	}

@@ -95,6 +95,8 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				if (res.ok === true) {
 					post.is_bookmarked = !post.is_bookmarked;
 					Notify.addSingleTranslate('NOTIFY.POST_UNBOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
+					$rootScope.$emit('item.removedFromBookmarks', post);
+					$rootScope.$emit('itemList.refresh');
 				}
 			});
 		}
