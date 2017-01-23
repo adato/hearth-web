@@ -97,7 +97,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						id: id
 					}, function(res) {
 						$scope.sendingActionRequest = false;
-						// $scope.$emit('conversationRemoved', id);
 
 						Notify.addSingleTranslate('NOTIFY.CONVERSATION_' + type + '_SUCCESS', Notify.T_SUCCESS);
 					}, function(err) {
@@ -112,7 +111,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 				// use sendActionRequest to delete conversation
 				$scope.deleteConversation = function(id) {
-					sendActionRequest(id, 'DELETE', Conversations.remove);
+					sendActionRequest(id, 'DELETE', Conversations.delete);
 				};
 
 				// use sendActionRequest to archive conversation
