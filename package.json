@@ -8,6 +8,7 @@
     "app": "gulp app",
     "lp": "gulp landingPage",
     "server": "gulp server",
+    "s_info": "^^^^^^^^^^^ To run a server on a given port, use npm 2.0's syntax: i.e. `$ npm run server -- --host=0.0.0.0`",
     "dev": "gulp dev",
     "build": "gulp build",
     "install": "node_modules/.bin/bower install",
@@ -16,7 +17,8 @@
     "production": "npm run install && npm run build --target=production",
     "pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & sleep 2",
     "windows_pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & timeout 2",
-    "test": "./node_modules/.bin/protractor protractor.js"
+    "test": "./node_modules/.bin/protractor protractor.js",
+    "karma": "./node_modules/.bin/karma start"
   },
   "author": "Anton Gaspari <gaspari@russiamail.com>",
   "license": "UNLICENSED",

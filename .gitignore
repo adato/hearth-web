@@ -7,3 +7,5 @@ dist
 .tmp
 .idea
 Thumbs.db
+.sass-cache
+test
