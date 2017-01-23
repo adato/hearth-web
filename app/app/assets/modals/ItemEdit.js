@@ -34,11 +34,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			locations: false,
 			valid_until: false
 		};
+
+		$scope.limitMb = 5;
+		$scope.limitPixelSize = 200;
 		$scope.imageUploadOptions = {
 			uploadingQueue: $scope.imageUploading,
 			error: $scope.showError.files,
-			minSize: 200, // Pixels
-			limitMb: 5,
+			minSize: $scope.limitPixelSize, // Pixels
+			limitMb: $scope.limitMb,
 			multiple: true,
 			resultPropName: 'public_url'
 		};
