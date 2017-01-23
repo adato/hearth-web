@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale',
-	function($rootScope, ItemServices, $filter, Filter, $locale) {
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics',
+	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics) {
 
 		function getPostScope(post, $scope) {
 			var author = post;
@@ -58,6 +58,16 @@ angular.module('hearth.services').service('PostScope', [
 			scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
 
 			scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until, moment.ISO_8601).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+
+
+			scope.analytics = function(event) {
+				$analytics.eventTrack(event + ' (Post)', {
+					'is_mine': scope.mine,
+					'type': scope.item.type,
+					'exact_type': scope.item.exact_type,
+				});
+			}
+
 			return scope;
 		}
 
