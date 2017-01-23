@@ -40,6 +40,11 @@
 		flex: 1;
 		min-width: 300px;
 
+    .loading {
+      margin-top: 5px;
+      font-size: 1.2rem;
+    }
+
 		.nano-content {
 			outline: none !important;
 			.no-result {

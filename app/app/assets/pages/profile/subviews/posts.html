@@ -1,7 +1,7 @@
 </div>
 <div ng-include="'assets/pages/profile/subviews/postPanel.html'"></div>
 <div ng-if="subPageLoaded">
-	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! userPostCount.active && ! userPostCount.inactive">
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! userPostCount.active && ! userPostCount.inactive && getPostsFinished">
 		<div class="item">
 			<p>{{:: 'PROFILE.POSTS.NO_POSTS_ME' | translate }}</p>
 			<p>
@@ -12,18 +12,17 @@
 		</div>
 	</div>
 
-	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! mine && !userPostCount.active">
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! mine && !userPostCount.active && getPostsFinished">
 		<div class="item">
 			<p>{{:: 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}</p>
 		</div>
 	</div>
-	<div id="profile-ads-listing-active" class="ads-listing active">
-	</div>
+	<item-list options="postListActiveOptions"></item-list>
 
 	<div ng-if="mine && userPostCount.inactive" class="ads-listing inactive">
 		<h3>{{:: 'POSTS_INACTIVE' | translate }}</h3>
 	</div>
-	<div id="profile-ads-listing-inactive">
-	</div>
+	<item-list options="postListInactiveOptions"></item-list>
+
 </div>
 <div loading show="!subPageLoaded"></div>
