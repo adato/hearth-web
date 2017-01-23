@@ -9,7 +9,7 @@
  *			- limitMb - limit in file size (in MB)
  *			- uploadingQueue - this property will be assigned an integer - how many more file are queued for upload, 0 if all is uploaded
  *			- error - object to which to write errors
- *					- badMinSize
+ *					- badMaxSize
  *					- badMinSizePx
  *					- uploadError
  *					- badFormat
@@ -61,7 +61,7 @@ angular.module('hearth.directives').directive('imagePreviewDirectUpload', [
 
 					// if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize && imgFile.total > (limitSize * 1024 * 1024)) {
 					if (imgFile.total > (limitSize * 1024 * 1024)) {
-						return o.error.badMinSize = true;
+						return o.error.badMaxSize = true;
 					}
 
 					scope.uploadingQueue++;
