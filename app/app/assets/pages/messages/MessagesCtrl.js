@@ -26,7 +26,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// loading for conversation list and conversation detail (used during changing of filters)
 		$scope.reloading = false;
 
-		// don't really know what this one is for
+		// loading next batch of conversations
 		$scope.conversationLoadInProgress = false;
 
 		// the conversation list
