@@ -102,6 +102,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			};
 			extendParams(params);
 			ConversationAux.loadConversations(params).then(function(res) {
+				if (res.thatsAllFolks) $scope.allConversationsLoaded = true;
 				$scope.conversations = res.conversations;
 				$timeout(function() {
 					$scope.$broadcast('scrollbarResize');
