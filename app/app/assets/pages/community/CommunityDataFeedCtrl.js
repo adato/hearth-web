@@ -205,99 +205,61 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			});
 		}
 
-		var getPostsRunning;
-		var getPostsFinished;
+		// helper variables for getting post list
+		var getPostsStatus = {
+			running: false
+		};
+		$scope.getPostsFinished;
 		var getPostsResult = {
 			active: [],
 			inactive: []
 		};
 		var getPostsQ = [];
-		/**
-		 *	- {Int} id - community id
-		 *	- {Boolean} active - get active/passive posts
-		 */
-		function getPosts(opts) {
-			return $q(function(resolve, reject) {
-				if (getPostsFinished) {
-					resolve(getPostsResult[opts.active ? 'active' : 'inactive']);
-				} else {
-					if (getPostsRunning) {
-						getPostsQ.push([resolve, reject]);
-					} else {
-						getPostsRunning = true;
-						Community.getPosts({
-							communityId: opts.id
-						}, function(res) {
-							getPostsFinished = true;
-							getPostsRunning = false;
-							res.data.forEach(function(item) {
-								if ($rootScope.isPostActive(item)) {
-									$scope.communityPostCount.active++;
-									getPostsResult.active.push(item);
-								} else {
-									$scope.communityPostCount.inactive++;
-									getPostsResult.inactive.push(item);
-								}
-							});
-							resolve(getPostsResult[opts.active ? 'active' : 'inactive']);
-							if (getPostsQ.length) {
-								getPostsQ.splice(getPostsQ.length, 1)[0](getPostsResult[opts.active ? 'active' : 'inactive']);
-							}
-						}, function(err) {
-							reject(getPostsResult[opts.active ? 'active' : 'inactive']);
-							if (getPostsQ.length) {
-								getPostsQ.splice(getPostsQ.length, 1)[1](getPostsResult[opts.active ? 'active' : 'inactive']);
-							}
-						});
-					}
-				}
-			});
-		}
 
 		// load posts of community
 		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadCommunityPosts(id, doneErr) {
+			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 
 			// counter for template
 			$scope.communityPostCount = {
 				'active': 0,
 				'inactive': 0
 			};
-			finishLoading();
+			// finishLoading();
 
 			$scope.communityPostListActiveOptions = {
-				getData: getPosts.bind(null, {
-					id: id,
+				getData: ProfileUtils.getPosts.bind(null, {
+					params: {
+						communityId: id
+					},
+					resource: Community.getPosts,
+					getPostsStatus: getPostsStatus,
+					getPostsFinished: $scope.getPostsFinished,
+					getPostsResult: getPostsResult,
+					getPostsQ: getPostsQ,
+					postCount: $scope.communityPostCount,
 					active: true
 				}),
-				templateUrl: $sce.getTrustedResourceUrl(templatePath)
+				templateUrl: templateUrl,
+				cb: finishLoading,
 			};
-			return false;
 
-			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
-			var compiledTemplate;
-
-			$templateRequest(templateUrl).then(function(template) {
-				var compiledTemplate = $compile(template);
-
-				// fetch posts
-				Community.getPosts({
-					communityId: id
-				}, function(res) {
-					finishLoading();
-					$timeout(function() {
-						res.data.forEach(function(item) {
-							if ($rootScope.isPostActive(item)) {
-								$scope.communityPostCount.active++;
-								pushPost('#profile-ads-listing-active', item, compiledTemplate);
-							} else {
-								$scope.communityPostCount.inactive++;
-								pushPost('#profile-ads-listing-inactive', item, compiledTemplate);
-							}
-						});
-					}, 10);
-				}, doneErr);
-			});
+			$scope.communityPostListInactiveOptions = {
+				getData: ProfileUtils.getPosts.bind(null, {
+					params: {
+						communityId: id
+					},
+					resource: Community.getPosts,
+					getPostsStatus: getPostsStatus,
+					getPostsFinished: $scope.getPostsFinished,
+					getPostsResult: getPostsResult,
+					getPostsQ: getPostsQ,
+					postCount: $scope.communityPostCount
+				}),
+				disableLoading: true,
+				templateUrl: templateUrl,
+			};
 		}
 
 
