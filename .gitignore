@@ -7,3 +7,4 @@ target/
 public
 .idea
 Thumbs.db
+bower_components

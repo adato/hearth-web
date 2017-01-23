@@ -1,12 +1,15 @@
 <div ng-include="'assets/pages/profile/subviews/postPanel.html'"></div>
-<div ng-if="subPageLoaded">
+<div ng-show="subPageLoaded">
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && userBookmarkCount == 0">
 		<div class="item">
 			<p>{{:: 'PROFILE.POSTS.NO_POSTS_BOOKMARKED' | translate }}</p>
 		</div>
 	</div>
-	<div class="ads-listing active">
-		<!-- items injected here -->
-	</div>
+
+	<!-- <div class="ads-listing active">
+		items injected here
+	</div> -->
+	<item-list options="bookmarkOptions"></item-list>
+
 </div>
 <div loading show="!subPageLoaded"></div>
