@@ -389,12 +389,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			}
 
 			// refresh after new post created
-			if (!inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
+			if (!inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts' || $scope.pageSegment == 'posts')) {
 				$scope.$on('postCreated', function() {
-					loadService($stateParams.id, processData, processDataErr);
+					$scope.loadingData = false;
+					$scope.subPageLoaded = false;
+
+					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
 				});
 				$scope.$on('postUpdated', function() {
-					loadService($stateParams.id, processData, processDataErr);
+					$scope.loadingData = false;
+					$scope.subPageLoaded = false;
+
+					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
 				});
 
 				// added event listeners - dont add them again

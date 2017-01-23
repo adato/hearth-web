@@ -346,17 +346,25 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 			loadServices[$scope.pageSegment](params, processData, processDataErr);
 
-			// refresh after new post created
-			if (!inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
-				$scope.$on('postCreated', function() {
+			var timeoutReloadFunction = function() {
+				return $timeout(function() {
+					$scope.loadingData = false;
+					$scope.subPageLoaded = false;
 					$scope.refreshUser(true);
-					loadServices[$scope.pageSegment](params, processData, processDataErr);
-				});
-				$scope.$on('postUpdated', function() {
-					$scope.refreshUser(true);
-					loadServices[$scope.pageSegment](params, processData, processDataErr);
-				});
+					loadServices[$scope.pageSegment](params, processData, processDataErr)
+				}, 800);
+			}
 
+			// refresh after new post created
+			if (!inited) {
+				if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts' || $scope.pageSegment == 'posts') {
+					$scope.$on('postCreated', timeoutReloadFunction);
+					$scope.$on('postUpdated', timeoutReloadFunction);
+				};
+
+				if ($scope.pageSegment == 'profile.bookmarks' || $scope.pageSegment == 'bookmarks') {
+					$scope.$on('postUnbookmarked', timeoutReloadFunction);
+				}
 				// added event listeners - dont add them again
 				inited = true;
 			}
