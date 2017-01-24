@@ -11,13 +11,11 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // deps
-      // 'node_modules/karma-read-json/karma-read-json.js',
 
       // Load config stuff for the environment
       'test/unit/setup.js',
 
-      // application JS
+      // application config
       'dist/app/assets/js/config.js',
 
       // 'dist/app/assets/js/jquery.js',
@@ -33,9 +31,8 @@ module.exports = function (config) {
       'app/libs/utils/emails.js',
       'app/libs/utils/jqueryQueryParams.js',
       'app/libs/utils/newRelic.js',
-      // 'app/libs/utils/tracking.js',
+      // 'app/libs/utils/tracking.js', <<< this is WRONG .. doesn't allow tests to finish
       'app/libs/utils/oms.min.js',
-
 
 
       'dist/app/assets/js/libs.js',
@@ -43,21 +40,12 @@ module.exports = function (config) {
       // test only deps
       'bower_components/angular-mocks/angular-mocks.js',
 
+      // application JS
       'dist/app/assets/js/app.js',
       'dist/app/assets/templates/templates.js',
 
-      'test/unit/karma-test-example.spec.js',
-
       // application tests
-      // 'test/unit/assets/services/ConversationAux.spec.js', // << temp debug
       'test/unit/**/*.spec.js',
-
-      // load JSONs
-      // {pattern: 'app/assets/locales/**/*.json', included: false},
-
-      // Load config stuff for the environment
-      // 'configuration/development.js',
-      // 'app/assets/config-global.js',
     ],
 
     preprocessors: {
@@ -128,5 +116,3 @@ module.exports = function (config) {
     concurrency: Infinity
   })
 };
-
-// Karma configuration

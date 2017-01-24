@@ -1,22 +1,9 @@
 describe('item directive - market place item', function () {
-  var $compile,
-    $rootScope,
-    $httpBackend;
+  var $compile;
+  var $rootScope;
+  var $httpBackend;
 
-  beforeEach(function () {
-    module('hearth');
-
-    // 3rd party
-    module('pascalprecht.translate');
-    module('ui.router.state');
-    module('ngResource');
-    module('ngDialog');
-    module('angulartics');
-    module('tmh.dynamicLocale');
-    module('ngActionCable');
-    module('ngSanitize');
-    module('hearth.templates');
-  });
+  beforeEach(module('hearth'));
 
   beforeEach(inject(function ($injector, _$compile_, _$rootScope_, $controller) {
     $compile = _$compile_;
@@ -24,11 +11,11 @@ describe('item directive - market place item', function () {
 
     $httpBackend = $injector.get('$httpBackend');
 
-    $httpBackend.whenGET(API_SESSION_PATH).respond(function () {
+    $httpBackend.whenGET(PATH.API_SESSION).respond(function () {
       return [200, ['success'], {}];
     });
 
-    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
+    $httpBackend.whenGET(PATH.MESSAGES_JSON_EN_WHEN).respond(PATH.MESSAGES_JSON_EN_RESPONSE);
   }));
 
 

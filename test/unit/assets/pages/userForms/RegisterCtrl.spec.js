@@ -21,7 +21,7 @@ describe('Register controller', function () {
 
     $httpBackend.whenGET(/^https:\/\/api.dev.hearth.net\/session/).respond();
 
-    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
+    $httpBackend.whenGET(PATH.MESSAGES_JSON_EN_WHEN).respond(PATH.MESSAGES_JSON_EN_RESPONSE);
     $httpBackend.flush();
   }));
 

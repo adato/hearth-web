@@ -1,7 +1,7 @@
 describe('ConversationAux factory', function() {
 	var convFactory;
 
-	beforeEach(angular.mock.module('hearth'));
+	beforeEach(module('hearth'));
 
 	beforeEach(inject(function(_ConversationAux_) {
 		convFactory = _ConversationAux_;
