@@ -1,7 +1,7 @@
 describe('Access to Hearth blocked by IP address', function () {
-  var $window,
-    $httpBackend,
-    $http;
+  var $window;
+  var $httpBackend;
+  var $http;
 
   beforeEach(module('hearth', function ($provide) {
     $provide.value('$window', {location: {href: ''}});
@@ -21,6 +21,7 @@ describe('Access to Hearth blocked by IP address', function () {
 
     $httpBackend.whenGET(/^(http|https)/).respond();
     // $httpBackend.whenGET('locales/en/messages.json').respond('app/locales/en/messages.json');
+    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
     $httpBackend.whenGET('assets/components/geo/markerTooltip.html').respond();
     $httpBackend.whenGET('assets/pages/static/error404.html').respond();
     $httpBackend.flush();

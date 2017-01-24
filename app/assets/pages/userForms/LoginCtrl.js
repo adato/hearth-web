@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth', 'Notify',
-	function($scope, $location, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth, Notify) {
+	'$scope', '$location', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth', 'Notify', '$window',
+	function($scope, $location, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth, Notify, $window) {
 		var resendingEmail = false;
 		var invalidEmail = null;
 		$scope.data = {
@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		$scope.oauthLogin = function(provider) {
 			$auth.authenticate(provider, {
-				language: preferredLanguage
+				language: $window.preferredLanguage
 			}).then(function(response) {
 				if (response.status == 200) {
 					Auth.setOAuth(true);

@@ -52,7 +52,7 @@ angular.module('hearth', [
 			// tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
 			tmhDynamicLocaleProvider.localeLocationPattern('//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_{{locale}}.js');
 			// configure translate provider - where language constants are
-			$translateProvider.preferredLanguage(preferredLanguage || 'en');
+			$translateProvider.preferredLanguage(window.preferredLanguage || 'en');
 			$translateProvider.useSanitizeValueStrategy(null);
 
 			// $translateProvider.useStorage('SessionLanguageStorage');
@@ -130,7 +130,7 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
-			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
+			$httpProvider.defaults.headers.common['Accept-Language'] = $window.preferredLanguage;
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API
@@ -162,8 +162,8 @@ angular.module('hearth', [
 
 			ipnConfig.skipUtilScriptDownload = true;
 		}
-	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
+	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window',
+		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
@@ -174,28 +174,28 @@ angular.module('hearth', [
 			/**
 			 * This will cache some files at start
 			 */
-			function cacheFiles(done) {
-
-				// cache tooltip in MAP -- DEPRECATED -- remove when map will be refactored
-				$http.get('assets/components/geo/markerTooltip.html', {
-					cache: $templateCache
-				});
-				done(null);
-			}
+			// function cacheFiles(done) {
+			//
+			// 	// cache tooltip in MAP -- DEPRECATED -- remove when map will be refactored
+			// 	$http.get('assets/components/geo/markerTooltip.html', {
+			// 		cache: $templateCache
+			// 	});
+			// 	done(null);
+			// }
 
 			/**
 			 * This will init app language
 			 */
 			function initLanguage(done) {
 				// $translate.use(preferredLanguage); // already loaded from config
-				tmhDynamicLocale.set(preferredLanguage);
+				tmhDynamicLocale.set($window.preferredLanguage);
 
 				var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data) {
 					offEvent(); // unregister event listener
 					LanguageSwitch.init();
-					$rootScope.language = preferredLanguage;
+					$rootScope.language = $window.preferredLanguage;
 					$rootScope.languageInited = true;
-					$rootScope.$broadcast("initLanguageSuccess", preferredLanguage);
+					$rootScope.$broadcast("initLanguageSuccess", $window.preferredLanguage);
 					done(null, data);
 				});
 			}
@@ -302,7 +302,7 @@ angular.module('hearth', [
 				language: initLanguage, // download language files
 				session: initSession, // get user session from api
 				openGraph: initOpenGraph, // fill default og info
-				cacheFiles: cacheFiles, // cache some files at start
+				// cacheFiles: cacheFiles, // cache some files at start
 			}, function(err, init) {
 				$urlRouter.sync();
 				$urlRouter.listen();

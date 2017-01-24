@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			$scope.showError.blockedUserByEmail = false;
 
 			$auth.authenticate(provider, {
-				language: preferredLanguage,
+				language: $window.preferredLanguage,
 				user_action: 'register'
 			}).then(function(response) {
 				if (response.status == 200) {

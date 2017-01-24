@@ -187,6 +187,7 @@ function templatesLanding() {
       locales: ['en', 'cs', 'sk'],
       locale: 'en',
       localesPath: PATHS.temp + '/locales/landing',
+
       selector: '[t]',
       allowHtml: true,
       removeAttr: true
@@ -223,7 +224,7 @@ function localesApp() {
 
 // Landing locales
 function localesLanding() {
-  return download(getLocalePaths({id: 'landing', createFolders: true}))
+  return download(getLocalePaths('landing'))
   .pipe(gulp.dest(PATHS.temp + '/locales/landing'))
 }
 

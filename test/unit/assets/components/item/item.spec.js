@@ -15,7 +15,7 @@ describe('item directive - market place item', function () {
     module('tmh.dynamicLocale');
     module('ngActionCable');
     module('ngSanitize');
-    module('htmlTemplates');
+    module('hearth.templates');
   });
 
   beforeEach(inject(function ($injector, _$compile_, _$rootScope_, $controller) {
@@ -28,7 +28,7 @@ describe('item directive - market place item', function () {
       return [200, ['success'], {}];
     });
 
-    // $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
+    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
   }));
 
 

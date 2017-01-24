@@ -20,10 +20,8 @@ describe('Register controller', function () {
     $httpBackend.whenPOST('https://api.dev.hearth.net/users?referrals[]=').respond(403, blockEmailResponse);
 
     $httpBackend.whenGET(/^https:\/\/api.dev.hearth.net\/session/).respond();
-    $httpBackend.whenGET('locales/en/messages.json').respond('app/locales/en/messages.json');
-    $httpBackend.whenGET('assets/components/geo/markerTooltip.html').respond();
-    $httpBackend.whenGET('assets/pages/market/market.html').respond();
-    $httpBackend.whenGET('assets/pages/static/error404.html').respond();
+
+    $httpBackend.whenGET(MESSAGES_JSON_EN_WHEN).respond(MESSAGES_JSON_EN_RESPONSE);
     $httpBackend.flush();
   }));
 

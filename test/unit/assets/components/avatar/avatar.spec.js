@@ -5,10 +5,13 @@ describe('avatar directive', function() {
     $httpBackend,
     template;
 
-  beforeEach(module('hearth.directives'));
+  beforeEach(() => {
+    module('hearth.directives')
+    module('hearth.templates')
+  });
 
   // When templateUrl is used in directive, it is needed to load htmlTemplates module to preprocess html2js
-  beforeEach(module('htmlTemplates'));
+  // beforeEach(module('htmlTemplates'));
 
   // Uncomment to check, that the template is loaded into the $templateCache
   // beforeEach(inject(function($templateCache) {

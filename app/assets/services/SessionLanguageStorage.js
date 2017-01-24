@@ -7,11 +7,11 @@
  */
 
 angular.module('hearth.services').factory('SessionLanguageStorage', [
-	'$session', '$log',
-	function($session, $log) {
+	'$session', '$log', '$window',
+	function($session, $log, $window) {
 		var changeSessionLanguage, language, session;
 		session = null;
-		language = preferredLanguage;
+		language = $window.preferredLanguage;
 		changeSessionLanguage = function() {
 			if (!session) {
 				return;

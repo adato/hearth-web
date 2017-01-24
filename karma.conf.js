@@ -15,26 +15,67 @@ module.exports = function (config) {
       // 'node_modules/karma-read-json/karma-read-json.js',
 
       // Load config stuff for the environment
-      // 'app/test/unit/setup.js',
+      'test/unit/setup.js',
 
       // application JS
       'dist/app/assets/js/config.js',
+
       // 'dist/app/assets/js/jquery.js',
-      // 'dist/app/assets/js/libs.js',
-      // 'dist/app/assets/js/app.js',
+      'bower_components/jquery/dist/jquery.min.js',
+      'bower_components/jquery.cookie/jquery.cookie.js',
+      'bower_components/jquery-autosize/jquery.autosize.min.js',
+      'app/libs/jquery.mailgun_validator.js',
+      'app/libs/jquery.tipsy.js',
+      'app/libs/lemmon-slider.js',
+      'app/libs/utils/device.js',
+      'app/libs/utils/ExifRestorer.js',
+      'app/libs/utils/eventPause.js',
+      'app/libs/utils/emails.js',
+      'app/libs/utils/jqueryQueryParams.js',
+      'app/libs/utils/newRelic.js',
+      // 'app/libs/utils/tracking.js',
+      'app/libs/utils/oms.min.js',
 
-      // application HTML
-      // 'dist/app/assets/templates/templates.js',
 
-      'app/test/unit/karma-test-example.spec.js',
+
+      'dist/app/assets/js/libs.js',
+
+      // test only deps
+      'bower_components/angular-mocks/angular-mocks.js',
+
+      'dist/app/assets/js/app.js',
+      'dist/app/assets/templates/templates.js',
+
+      'test/unit/karma-test-example.spec.js',
 
       // application tests
-      // 'app/test/unit/assets/services/ConversationAux.spec.js', // << temp debug
-      // 'app/test/unit/**/*.spec.js',
+      // 'test/unit/assets/services/ConversationAux.spec.js', // << temp debug
+      'test/unit/**/*.spec.js',
 
       // load JSONs
       // {pattern: 'app/assets/locales/**/*.json', included: false},
+
+      // Load config stuff for the environment
+      // 'configuration/development.js',
+      // 'app/assets/config-global.js',
     ],
+
+    preprocessors: {
+      'test/unit/**/*.spec.js': ['babel']
+    },
+
+    // babelPreprocessor: {
+    //   options: {
+    //     presets: ['es2015'],
+    //     sourceMap: 'inline'
+    //   },
+    //   filename: function (file) {
+    //     return file.originalPath.replace(/\.js$/, '.es5.js');
+    //   },
+    //   sourceFileName: function (file) {
+    //     return file.originalPath;
+    //   }
+    // },
 
     proxies: {
       // return fake file from the running container, version.txt is not available
