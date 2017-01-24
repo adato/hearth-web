@@ -25,7 +25,7 @@
 							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
 						<a ui-sref='messages.detail({id: item._id, "mark-as-read": true})' class="conversation" ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}"
-										ng-repeat="item in conversations" last-item-visible last-visible="loadBottom()">
+										ng-repeat="item in conversations" last-item-shown="loadBottom()">
 							<div class=" avatars ">
 								<avatar ng-if="item.participants.length==1 " src="person.avatar.normal " size="normal " type="person._type " ng-repeat="person in item.participants "></avatar>
 								<avatar ng-if="item.participants.length> 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
