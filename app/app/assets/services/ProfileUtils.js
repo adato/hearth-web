@@ -41,7 +41,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	function getUploadOpts() {
 		return {
 			minSize: 400, // Pixels
-			limitMb: 5,
+			limitMb: 20,
 			resultPropName: 'public_avatar_url'
 		};
 	}

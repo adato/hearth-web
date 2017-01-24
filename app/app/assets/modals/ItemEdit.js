@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			valid_until: false
 		};
 
-		$scope.limitMb = 5;
+		$scope.limitMb = 20;
 		$scope.limitPixelSize = 200;
 		$scope.imageUploadOptions = {
 			uploadingQueue: $scope.imageUploading,
