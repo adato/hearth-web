@@ -1,25 +1,30 @@
 'use strict';
-
-angular.module('hearth.directives').directive('lastItemVisible', [
+/**
+ * @ngdoc directive
+ * @name hearth.directives.lastItemShown
+ * @description Check, if element is visible in the view area. If the element is shown, lastItemShown is triggered.
+ * @restrict A
+ */
+angular.module('hearth.directives').directive('lastItemShown', [
 	"$timeout", "ViewportUtils",
 	function($timeout, ViewportUtils) {
 		return {
 			restrict: 'A',
 			scope: {
-				lastVisible: '&'
+				lastItemShown: '&'
 			},
 			link: function(scope, el) {
 				var watcher;
 				if (scope.$parent.$last) {
 					$timeout(function() {
 						if (ViewportUtils.isInViewport(el[0])) {
-							scope.lastVisible();
+							scope.lastItemShown();
 						}
 					}, 100);
 
 					watcher = angular.element(el[0].parentNode.parentNode);
 					watcher.on('scroll', function() {
-						return ViewportUtils.isInViewport(el[0]) ? scope.lastVisible() : false;
+						return ViewportUtils.isInViewport(el[0]) ? scope.lastItemShown() : false;
 					});
 
 				}
@@ -27,8 +32,7 @@ angular.module('hearth.directives').directive('lastItemVisible', [
 				scope.$on('conversationRemoved', function() {
 					if (scope.$parent.$last) {
 						if (ViewportUtils.isInViewport(el[0])) {
-							console.log("REMOVED ");
-							scope.lastVisible();
+							scope.lastItemShown();
 						}
 					}
 				});
