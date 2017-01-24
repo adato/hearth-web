@@ -296,7 +296,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			if (paramObject.redirectIfActiveWindow) {
 				// wait a cycle so that the conversation is really removed before taking any action
 				$timeout(function() {
-					$rootScope.$emit('conversationRemoved', {
+					$rootScope.$broadcast('conversationRemoved', {
 						id: conversationId
 					});
 				});
