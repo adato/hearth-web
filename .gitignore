@@ -8,3 +8,5 @@ public
 .idea
 Thumbs.db
 bower_components
+test
+npm-debug.log
