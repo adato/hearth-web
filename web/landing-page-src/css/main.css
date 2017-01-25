@@ -1,5 +1,5 @@
 html{
-	font: 20px/1.25 'Merriweather Sans', Helvetica, Arial, sans-serif;
+	font: 20px/1.25 'Merriweather', Helvetica, Arial, sans-serif;
 	scroll-behavior: smooth;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
@@ -15,7 +15,7 @@ h1{
 }
 @media (min-width: 768px){
 	html{
-		font: 20px/1.6 'Merriweather Sans', Helvetica, Arial, sans-serif;
+		font: 20px/1.6 'Merriweather', Helvetica, Arial, sans-serif;
 	}
 	h1{
 		font-size: 48px;
@@ -385,15 +385,15 @@ a.masonry-item:hover .button,
 }
 html[lang='en'] .language-toggle .flag,
 .flag.flag-en{
-	background-image: url('../img/flags/flag-english.svg');
+	background-image: url('../img/flags/flag-english.png');
 }
 html[lang='cs'] .language-toggle .flag,
 .flag.flag-cs{
-	background-image: url('../img/flags/flag-czech.svg');
+	background-image: url('../img/flags/flag-czech.png');
 }
 html[lang='sk'] .language-toggle .flag,
 .flag.flag-sk{
-	background-image: url('../img/flags/flag-slovak.svg');
+	background-image: url('../img/flags/flag-slovak.png');
 }
 html[lang='cs'] #large-language-panel #language-large-cs,
 html[lang='cs'] .language-panel .lang-cs,
@@ -864,9 +864,19 @@ a.masonry-item{
 	.min-500{ min-width: 500px; }
 }
 .max-500{ max-width: 500px; margin: 0 auto; }
+
+/* solves weird IE bug */
+#testimonials .lead {
+	max-width: 500px;
+}
+
 @media (min-width: 1200px){
 	.min-500{ min-width: 800px; }
 	.max-500{ max-width: 800px; }
+
+	/* solves weird IE bug */
+	#testimonials .lead { max-width: 800px; }
+
 	#testimonials .tab-pane{
 		text-align: center;
 	}

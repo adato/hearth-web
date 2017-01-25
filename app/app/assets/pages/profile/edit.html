@@ -1,9 +1,9 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
 	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
 		<div class="right small-12 large-5 medium-12 columns" ng-cloak>
-			<div image-preview files="profile.avatar" limit="5" limit-pixel-size="400" single-file="true">
-				<img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated/>
-				<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image/>
+			<div image-preview-direct-upload result="profile.avatar" options="avatarUploadOpts">
+				<img class="preview" ng-if="profile.avatar.public_avatar_url" ng-src="{{ profile.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated/>
+				<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{ profile.avatar.large }}" resized-thumbnail-image/>
 
 				<div class="text">
 					<span class="fa fa-plus-square-o"></span>

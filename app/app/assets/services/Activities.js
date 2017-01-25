@@ -55,7 +55,5 @@ angular.module('hearth.services').service('Activities', [
 
 			return data;
 		};
-
-		return this;
 	}
 ]);

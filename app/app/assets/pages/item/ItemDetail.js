@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', '$translate',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, $translate) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -53,6 +53,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			}, function(data) {
 				$scope.item = data;
 
+				$scope.setTitle();
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
 				else
@@ -61,7 +62,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				// if there are post data, process them
 				if (data.text) {
 					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
-					var postType = $filter('translate')($scope.postTypes[data.author._type][data.type]);
+					var postType = $filter('translate')($scope.postTypes[data.author._type][data.exact_type][data.type]);
 					var title = 'Hearth.net: ' + postType + ' ' + data.title + ' (' + data.author.name + ')';
 
 					OpenGraph.set(title, data.text || "", null, image.large, image.size);
@@ -101,12 +102,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		$scope.setTitle = function() {
+			var entity = ($scope.item.author ? $scope.item.author._type : 'User');
+			var title = $translate.instant($scope.postTypes[entity][$scope.item.type]) + ' ' + $scope.item.title;
+			PageTitle.setTranslate('', title);
+		};
+
 		$scope.initMap = function() {
 			$timeout(function() {
 				$scope.$broadcast('initMap');
 				$scope.$broadcast('showMarkersOnMap');
 			});
-		}
+		};
 
 		$scope.$watch('page.currentPageSegment', function(newval, oldval) {
 			if (newval == 'detail.map') $scope.initMap();

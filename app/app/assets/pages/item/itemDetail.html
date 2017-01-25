@@ -17,9 +17,6 @@
 					<div class='item-status-bar' ng-if="item.state === 'suspended'">
 						<span ng-if="item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
 					</div>
-					<div class="item-status-bar" ng-if="(!userHasRight('post.suspend')) && item.state == 'suspended'">
-						<span>{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
-					</div>
 				</div>
 				<div class="column small-12 large-8" ng-init="local.showMap = false">
 					<section class="box padding-none margin-bottom-large">
@@ -34,16 +31,7 @@
 											<div bubble-placeholder="hide-post"></div>
 											<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'})" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none margin-left-medium round gray"
 															title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}" test-beacon="marketplace-item-dropdown-toggle">
-
-												<!-- variant = 0 nebo 1, name = pojmenovani testu -->
-												<ab-test variant="0" name="'sipka'">
-													<i class="fa fa-fw fa-chevron-down"></i>
-												</ab-test>
-
-												<ab-test variant="1" name="'trojtecka'">
-													<i class="fa fa-fw fa-ellipsis-v"></i>
-												</ab-test>
-
+												<i class="fa fa-fw fa-chevron-down"></i>
 											</span>
 										</div>
 										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;">
@@ -111,7 +99,7 @@
 							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
 								<li ng-repeat="photo in item.attachments_attributes track by $index">
 									<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}">
-										<img ng-src="{{photo.normal}}" />
+										<img class="post-image" ng-src="{{ photo.normal }}" />
 									</a>
 								</li>
 							</ul>

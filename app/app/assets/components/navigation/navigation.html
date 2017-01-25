@@ -17,7 +17,7 @@
 				<label class="first">Menu</label>
 			</li>
 			<li>
-				<a ng-click="reloadToMarketplace()" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+				<a ng-click="reloadToMarketplace()" ng-href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
@@ -135,8 +135,8 @@
 			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click="toggleSidebar(); mixpanelTrackMenu()">
 				<i class="fa fa-bars"></i>
 			</a>
-			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-				<img class="hearth-logo" src="/app/images/logo.png">
+			<a ng-click="reloadToMarketplace()" ng-href="{{:: basePath }}" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+				<img class="hearth-logo" ng-src="{{:: basePath }}/images/logo.png">
 			</a>
 
 			<div class="small-icons header-right">
@@ -144,7 +144,7 @@
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block">
-					<i class="fa fa-fw fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+					<i class="fa fa-fw fa-plus-circle" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
 					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
@@ -158,8 +158,8 @@
 
 			<div class="row">
 				<div class="column large-3 show-for-large-up">
-					<a ng-click="reloadToMarketplace()" href="" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-						<img class="zurb-logo-mobile" src="/app/images/logo.png" width="200">
+					<a ng-click="reloadToMarketplace()" ng-href="{{:: basePath }}" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+						<img class="zurb-logo-mobile" ng-src="{{:: basePath }}/images/logo.png" width="200">
 					</a>
 				</div>
 				<div class="hide-for-large-up small-search column small-12 medium-12">
@@ -183,8 +183,8 @@
 			<!-- this is desktop topbar, visible all the time -->
 
 			<section class="bar-columns logo-column">
-				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
-					<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150" height="28">
+				<a ng-click="reloadToMarketplace()" ng-href="{{:: basePath }}" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
+					<img class="zurb-logo-mobile" ng-src="{{:: basePath }}/images/logo.png" width="150" height="28">
 				</a>
 			</section>
 
@@ -194,7 +194,7 @@
 			</section>
 
 			<section class="bar-columns icons-column">
-				<a ng-click="reloadToMarketplace()" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+				<a ng-click="reloadToMarketplace()" ui-sref="market" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
 				</a>
@@ -341,7 +341,6 @@
 					<label>{{:: 'TOP_BAR_SIGN_IN' | translate }}</label>
 				</a>
 			</section>
-
 			<div class="clear"></div>
 		</nav>
 	</div>
