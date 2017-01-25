@@ -195,7 +195,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				getData: UserBookmarks.query,
 				getParams: params,
 				templateUrl: templateUrl,
-				cb: finishLoading
+				cb: function(bookmarks) {
+					$scope.userBookmarkCount = bookmarks.length;
+					finishLoading()
+				}
 			};
 		}
 
@@ -384,6 +387,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 		$scope.$on('userRatingsAdded', $scope.addUserRating);
 		$scope.$on('itemDeleted', $scope.removeItemFromList);
+		$rootScope.$on('item.removedFromBookmarks', $scope.removeItemFromList);
 		$scope.$on('profileTopPanelLoaded', init);
 		init();
 	}
