@@ -32,8 +32,11 @@ angular.module('hearth.directives').directive('itemList', [
 				init();
 
 				function init() {
+					scope.options = scope.options || {};
 					if (typeof scope.options.getData !== 'function') throw new TypeError('Unsupported itemList setup');
+
 					var items;
+					content.innerHTML = '';
 
 					// call for data
 					var promise = scope.options.getData(scope.options.getParams || {})
