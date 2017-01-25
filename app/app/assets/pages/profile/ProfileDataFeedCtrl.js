@@ -366,17 +366,22 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				};
 
 				if ($scope.pageSegment == 'profile.bookmarks' || $scope.pageSegment == 'bookmarks') {
-					$scope.$on('postUnbookmarked', timeoutReloadFunction);
+					$rootScope.$on('postUnbookmarked', removeItem);
 				}
 				// added event listeners - dont add them again
 				inited = true;
 			}
 		}
 
+		function removeItem($event, item) {
+			$("#post_" + item._id).slideUp('slow');
+			$rootScope.$emit('itemList.refresh');
+		}
+
 		// only hide post .. may be used later for delete revert
 		$scope.removeItemFromList = function($event, item) {
-			$("#post_" + item._id).slideUp("slow", function() {});
-			$scope.$emit("profileRefreshUserNoSubpage");
+			removeItem($event, item);
+			$scope.$emit('profileRefreshUserNoSubpage');
 		};
 
 		// will add new rating to data array
@@ -387,7 +392,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 		$scope.$on('userRatingsAdded', $scope.addUserRating);
 		$scope.$on('itemDeleted', $scope.removeItemFromList);
-		$rootScope.$on('item.removedFromBookmarks', $scope.removeItemFromList);
 		$scope.$on('profileTopPanelLoaded', init);
 		init();
 	}
