@@ -1,14 +1,14 @@
 <article class="row fulltext" when-scrolled="load(1)" offset="300" loading-in-progress="!loaded">
 	<filterbar-fulltext></filterbar-fulltext>
 
-	<section class="large-12 small-12 medium-12  columns box margin-bottom-20">
-		<section class="large-12 small-12 medium-12 columns">
+	<section class="small-12  columns box margin-bottom-20">
+		<section class="small-12 columns">
 			<header>
 				<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {counter: totalCounter, value: queryText}"></div>
 			</header>
 		</section>
 
-		<div ng-if="!items.length && loaded" class="large-12 small-12 medium-12 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
+		<div ng-if="!items.length && loaded" class="small-12 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
 
 		<section id="fulltextSearchResults">
 			<article ng-repeat="item in items" class="row search-item" ng-class="{'inactive': item._type == 'Post' && !item.isActive}" ng-switch="item._type">

@@ -40,9 +40,8 @@ PATHS:
     # this should copy root folder assests like favicons, robots.txt etc.
     - "app/rootAssets/**/*"
   fonts:
-  # Paths to static assets that aren't images, CSS, or JavaScript
     - "app/fonts/**/*"
-    - "bower_components/components-font-awesome/fonts"
+    - "bower_components/components-font-awesome/fonts/*"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "bower_components/foundation-sites/scss"

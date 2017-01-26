@@ -1,11 +1,11 @@
 <div>
-	<section ng-if="errorLoading == 404" class="box padding-top large-6 small-6 medium-6 margin-auto text-center">
+	<section ng-if="errorLoading == 404" class="box padding-top small-6 margin-auto text-center">
 		<p class="margin-0">{{:: 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
 	</section>
 	<div class="row margin-bottom-20 profile-edit-common" ng-show="loaded">
 		<div class="communities-notify-area"></div>
 		<form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
-			<div class="right-column small-12 large-5 small-5 medium-5 columns push-7" ng-cloak>
+			<div class="right-column small-12 large-5 small-5 medium-5 columns medium-push-7" ng-cloak>
 				<div image-preview-direct-upload result="community.avatar" options="avatarUploadOpts">
 					<img class="preview" ng-if="community.avatar.public_avatar_url" ng-src="{{ community.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated />
 					<img class="preview" ng-if="!community.avatar.public_avatar_url && community.avatar.large" ng-src="{{ community.avatar.large }}" resized-thumbnail-image />
@@ -15,7 +15,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="fleft small-12 large-7 small-7 medium-7 pull-5 alt-bg">
+			<div class="fleft small-12 large-7 small-7 medium-7 medium-pull-5 alt-bg">
 				<h2 class="hide-border">
 					<span class="content">
 						<span class="fa fa-users"></span>
