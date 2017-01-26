@@ -6,7 +6,7 @@
  * @description Helper class for all Hearth profiles (user himself, other users, community profiles...)
  */
 
-angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', '$window', function(Karma, MottoLength, $window) {
+angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', '$window', '$q', '$rootScope', function(Karma, MottoLength, $window, $q, $rootScope) {
 
 	var PROFILE_TYPES = {
 		USER: 'user',
@@ -24,6 +24,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 			joinInterests: joinInterests,
 			splitInterests: splitInterests
 		},
+		getPosts: getPosts,
 		params: {
 			PROFILE_TYPES: PROFILE_TYPES,
 			MAX_MOTTO_LENGTH: MAX_MOTTO_LENGTH
@@ -41,9 +42,54 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	function getUploadOpts() {
 		return {
 			minSize: 400, // Pixels
-			limitMb: 5,
+			limitMb: 20,
 			resultPropName: 'public_avatar_url'
 		};
+	}
+
+	/**
+	 *	- {Int} id - community id
+	 *	- {Boolean} active - get active/passive posts
+	 *	- {$resource} resource
+	 *	- {function} cb - callback to call on finish
+	 */
+	function getPosts(opts) {
+		return $q(function(resolve, reject) {
+			var type = opts.active ? 'active' : 'inactive';
+			if (opts.getPostsFinished) {
+				resolve(opts.getPostsResult[type]);
+			} else {
+				if (opts.getPostsStatus.running) {
+					opts.getPostsQ.push([resolve, reject, type]);
+				} else {
+					opts.getPostsStatus.running = true;
+					opts.resource(opts.params || {}, function(res) {
+						opts.getPostsFinished = true;
+						opts.getPostsStatus.running = false;
+						res.data.forEach(function(item) {
+							if ($rootScope.isPostActive(item)) {
+								opts.postCount.active++;
+								opts.getPostsResult.active.push(item);
+							} else {
+								opts.postCount.inactive++;
+								opts.getPostsResult.inactive.push(item);
+							}
+						});
+						resolve(opts.getPostsResult[type]);
+						if (opts.getPostsQ.length) {
+							var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[0];
+							r[0](opts.getPostsResult[r[2]]);
+						}
+					}, function(err) {
+						reject(opts.getPostsResult[type]);
+						if (opts.getPostsQ.length) {
+							var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[1]
+							r[0](opts.getPostsResult[r[2]]);
+						}
+					});
+				}
+			}
+		});
 	}
 
 	/**

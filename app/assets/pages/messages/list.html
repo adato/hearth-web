@@ -18,17 +18,17 @@
 	<div class="messages-container display-flex flex-align-start" ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}" ng-if="!reloading" dynamic-height offset="0" container=".messages" min-height="340">
 		<div id="about" class="conversations" ng-if="conversations.length" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
 			<div class="nano" custom-scrollbar>
-				<div class="nano-content" when-scrolled="loadBottom()" loading-in-progress="conversationLoadInProgress" inner-scrolling="true">
+				<div class="nano-content" inner-scrolling="true">
 					<div class="nano-content-inner">
 						<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == $state.params.id}"></div>
 						<div class="text-center no-result" ng-if="!conversations.length">
 							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
 						<a ui-sref='messages.detail({id: item._id, "mark-as-read": true})' class="conversation" ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}"
-										ng-repeat="item in conversations">
-							<div class="avatars">
-								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="normal" type="person._type" ng-repeat="person in item.participants"></avatar>
-								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
+										ng-repeat="item in conversations" last-item-shown="loadBottom()">
+							<div class=" avatars ">
+								<avatar ng-if="item.participants.length==1 " src="person.avatar.normal " size="normal " type="person._type " ng-repeat="person in item.participants "></avatar>
+								<avatar ng-if="item.participants.length> 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
 								<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
 								<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
 							</div>
@@ -60,6 +60,7 @@
 							</div>
 							<div class="clear"></div>
 						</a>
+						<div loading show="conversationLoadInProgress"></div>
 					</div>
 				</div>
 			</div>

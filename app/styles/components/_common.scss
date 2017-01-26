@@ -96,7 +96,7 @@
 		.box-section{
 			padding: $size-large;
 			margin-bottom: $size-small;
-			background-color: #ebf5f7;
+			background-color: $quaternary-color;
 
 			.display-table-cell.user{
 				padding-top: $size-small;
@@ -129,11 +129,8 @@ a.link {
 .animate-show {
 	opacity: 1;
 	max-height: 2000px;
-
-	// TODO: F6
 	// @include transition(max-height 0.8s, opacity 1s);
 	// @include box-sizing(border-box);
-
 	overflow: hidden;
 	&.ng-hide {
 		display: block !important;
@@ -275,10 +272,7 @@ input:not([type]),
 input[type='text'],
 textarea {
 	border: 1px solid darken($colorLightGray, 20%);
-
-	// TODO: F6
 	// @include transition(background-color, 0.5s);
-
 	box-shadow: none;
 	&:focus {
 		background-color: white;

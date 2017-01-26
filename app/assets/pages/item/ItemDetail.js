@@ -62,7 +62,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				// if there are post data, process them
 				if (data.text) {
 					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
-					var postType = $filter('translate')($scope.postTypes[data.author._type][data.type]);
+					var postType = $filter('translate')($scope.postTypes[data.author._type][data.exact_type][data.type]);
 					var title = 'Hearth.net: ' + postType + ' ' + data.title + ' (' + data.author.name + ')';
 
 					OpenGraph.set(title, data.text || "", null, image.large, image.size);
@@ -103,7 +103,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.setTitle = function() {
-			var title = $translate.instant($scope.postTypes[$scope.item.author._type][$scope.item.type]) + ' ' + $scope.item.title;
+			var entity = ($scope.item.author ? $scope.item.author._type : 'User');
+			var title = $translate.instant($scope.postTypes[entity][$scope.item.type]) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);
 		};
 

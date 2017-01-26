@@ -37,7 +37,7 @@
 		<div class="highlights">
 			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
 			<span class="shadow large">
-				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
+				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'bookmarks' || activePage == 'replies')}" class="bubble large">
 					<span>
 						<b>{{info.post_count.offers}}</b>
 						<br> {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count.offers) | translate }}

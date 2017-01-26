@@ -225,11 +225,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$('#market-item-list').html('');
 
 			InfiniteScrollPagination.init();
-
 			$scope.load();
 		}
 
 		$scope.$on('filterApplied', $scope.refreshPosts);
+		$scope.$on('reloadMarketplace', $scope.refreshPosts);
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;

@@ -6,25 +6,16 @@
 	}
 	overflow: hidden;
 	padding: 0;
-
-	// TODO: F6
 	// @include border-radius;
-
 	.meter {
-
-		// TODO: F6
 		// @include transition(width 1s);
 		// @include border-radius(0 !important);
-
 	}
 	.text {
 		white-space: nowrap;
 		color: $colorLightGray;
 		position: absolute;
-
-		// TODO: F6
-		// @include text-shadow(1px 1px 2px $progress-bar-border-color, -1px -1px 2px $progress-bar-border-color, -1px 1px 2px $progress-bar-border-color, 1px -1px 2px $progress-bar-border-color);
-
+		@include text-shadow(1px 1px 2px $progress-bar-border-color, -1px -1px 2px $progress-bar-border-color, -1px 1px 2px $progress-bar-border-color, 1px -1px 2px $progress-bar-border-color);
 		margin: {
 			margin-left: 1em;
 		}

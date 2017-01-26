@@ -98,6 +98,10 @@ gulp.task('default',
   gulp.series('build', server, watch)
 );
 
+gulp.task('sass',
+  gulp.series(sass)
+);
+
 // Delete the "dist" folder
 // This happens every time a build starts
 function clean(done) {

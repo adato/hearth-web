@@ -97,11 +97,7 @@
 
 @include breakpoint(large up) {
 	#notify-top .alert-inner {
-
-		// TODO: F6
 		width: $global-width - 20px;
-		// width: $global-width - 1.25rem;
-
 		margin: auto;
 		position: relative;
 	}
@@ -111,8 +107,6 @@
 	#notify-top i.close { margin-right:15px;}
 }
 
-// TODO: F6
 @media only screen and (min-width:$global-width) and (max-width:$global-width + 10px) {
-// @media only screen and (min-width:$global-width) and (max-width:$global-width + .625rem) {
 	#notify-top i.close { margin-right:10px;} // sorry this is terrible hack but otherwise close button would be too close to edge of screen
 }

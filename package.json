@@ -11,6 +11,7 @@
     "s_info": "^^^^^^^^^^^ To run a server on a given port, use npm 2.0's syntax: i.e. `$ npm run server -- --host=0.0.0.0`",
     "dev": "gulp dev",
     "build": "gulp build",
+    "sass": "gulp sass",
     "install": "node_modules/.bin/bower install",
     "development": "npm run install && npm run build --target=development",
     "staging": "npm run install && npm run build --target=staging",

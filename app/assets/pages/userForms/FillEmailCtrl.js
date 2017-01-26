@@ -3,16 +3,16 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.FillEmailCtrl
- * @description
+ * @description 
  */
 
 angular.module('hearth.controllers').controller('FillEmailCtrl', [
-	'$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$stateParams', '$window',
-	function($scope, Auth, $location, ResponseErrors, Email, Notify, $stateParams, $window) {
+	'$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$stateParams',
+	function($scope, Auth, $location, ResponseErrors, Email, Notify, $stateParams) {
 		$scope.twitter_token = false;
 		$scope.data = {
 			email: '',
-			language: $window.preferredLanguage
+			language: preferredLanguage
 		};
 		$scope.showError = {
 			email: false
@@ -39,7 +39,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
 		$scope.validateEmail = function(form, cbValid, cbInvalid) {
 
-			// if email is invalid
+			// if email is invalid 
 			if ($scope.fillEmailForm.email.length) {
 				cbInvalid && cbInvalid('email invalid');
 			} else {
@@ -54,7 +54,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
 			// is email valid?
 			$scope.validateEmail($scope.data, function() {
-				// valid email, ready to go on ...
+				// valid email, ready to go on ... 
 
 				return Auth.completeEmailForRegistration($scope.data, function() { // success
 					$scope.sending = false;
