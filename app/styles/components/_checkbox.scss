@@ -1,0 +1,15 @@
+.ui-checkbox {
+	margin-right: $size-big;
+	.fa {
+		width: rem-calc(16);
+		font-size: rem-calc(16);
+		color: $primary-color;
+	}
+	&[disabled]{
+		cursor: default !important;
+		color: $colorDarkGray !important;
+		& > .fa{
+			color: lighten($primary-color, 25%);
+		}
+	}
+}

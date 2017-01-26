@@ -1,0 +1,142 @@
+.community-view {
+	max-width: $global-width;
+	padding-bottom: 100px;
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	.clearfix {
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+	.posts-count strong {
+		line-height: 55px;
+		font-size: 55px;
+	}
+	.gift-receive {
+		font-size: 170%;
+		color: $secondary-color;
+	}
+	.gift-give {
+		font-size: 170%;
+		color: $tertiary-color;
+	}
+	a {
+		color: $primary-color;
+	}
+	.community-listings {
+		.applications {
+			@extend .community-applications-list;
+			padding-bottom: 0.1px; // fix for not shown bottom space
+			overflow: visible;
+		}
+	}
+}
+
+.community-applications-list {
+	.application {
+		@extend .clearfix;
+		margin-bottom: 5px;
+		background: lighten($primary-color, 45%);
+		padding: {
+			top: 10px;
+			bottom: 0px;
+			left: 20px;
+			right: 20px;
+		}
+		small {
+			font-size: 0.85rem;
+			line-height: 125%;
+		}
+		.applications-item {
+			position: relative;
+		}
+		.applications-text {
+			font-size: 1.2rem;
+			line-height: 125%;
+			position: relative;
+			top: 10px;
+			padding-right: 150px;
+			margin: {
+				top: 10px;
+				bottom: 10px;
+				left: 110px;
+			}
+			.applications-from {
+				display: inline-block;
+				margin-top: 10px;
+			}
+			a {
+				color: darken($quaternary-color, 20%);
+				&:hover {
+					color: $primary-color;
+				}
+			}
+		}
+		.applications-buttons {
+			@extend .community-applications-buttons;
+			position: absolute;
+			right: 0;
+			top: 0;
+			.fa{
+				vertical-align: top;
+			}
+		}
+		.date {
+			float: right;
+		}
+	}
+	.buttons {
+		clear: both;
+	}
+	button {
+		margin: {
+			left: auto;
+			right: auto;
+		}
+	}
+}
+
+.community-applications-buttons {
+	a {
+		@extend .clearfix;
+		font-size: 2em;
+		border: 2px solid $primary-color;
+		border-radius: 50%;
+		margin: .5rem;
+		padding: .5rem;
+		width: 3.2rem;
+		height: 3.2rem;
+		text-align: center;
+		display: inline-block;
+		&.yes:hover {
+			color: $tertiary-color;
+			border-color: $tertiary-color;
+		}
+		&.no:hover {
+			border-color: $secondary-color;
+			color: $secondary-color;
+		}
+	}
+}
+
+#communityForm section.who textarea,
+#communityForm section .interests-input textarea {
+	min-height:70px;
+	height:70px;
+}
+
+.mine-community {
+	.others {
+		display: none;
+	}
+}
+
+.others-community {
+	.mine {
+		display: none;
+	}
+}

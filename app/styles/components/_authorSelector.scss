@@ -1,0 +1,19 @@
+.author-selector {
+	// @kamil - this does not belong here, but to forms.scss
+	select {
+		outline: none;
+		border-radius: $global-radius;
+		height: $ui-input-height;
+		line-height: $ui-text-font-size;
+		padding: 0 $size-medium;
+		font-weight: 600;
+		-moz-appearance: none;
+
+		&:focus {
+			border: 1px solid $primary-color;
+		}
+		&:disabled {
+			background-color: #ddd !important;
+		}
+	}
+}

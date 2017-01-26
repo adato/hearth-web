@@ -1,0 +1,513 @@
+.select-style {
+	position: relative;
+	top: 2px;
+	width: unset;
+	min-width: 120px;
+	background-color: white;
+	border: 1px solid #d7d7d7;
+	border-radius: 8px;
+	box-shadow: 0 0 7px #ddd inset;
+	z-index: 20;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+}
+
+.green {
+	color: #a7bd1d;
+}
+
+.red {
+	color: #fa5800;
+}
+
+.action-link {
+	color: #20b1ea;
+	font-weight: bold;
+
+	&.divider {
+		border-top: 1px solid #ddd;
+		padding-top: 10px;
+	}
+}
+
+.moveUp {
+	position: relative;
+	top: -15px;
+}
+
+.overflow-hidden{
+	overflow: hidden
+}
+
+.box {
+	background-color: white;
+	border-radius: $global-radius;
+	padding: $ui-grid-size;
+	box-shadow: $ui-box-shadow;
+
+	/* @kamil todo - delete if nothing breaks without it*/
+	.header {
+		background-color: $secondary-color;
+		color: $colorLightGray;
+		border: {
+			bottom: 1px solid $quaternary-color;
+		}
+		padding: 1em;
+		margin-bottom: 1em;
+		margin: {
+			left: -20px;
+			right: -20px;
+		}
+	}
+	/* /todo */
+
+	.box-content{
+		padding: $size-large $size-large 0;
+
+		a{
+			color: $primary-color;
+		}
+	}
+	&.no-result p{
+		margin: 1.25rem 0.5rem;
+	}
+
+	&.sectioned-box{
+		padding: 0 0 $size-small 0;
+
+		header{
+			padding: $size-medium $size-large;
+			margin-bottom: 0;
+
+			h1{
+				font-size: $global-font-size;
+			}
+		}
+		.box-section{
+			padding: $size-large;
+			margin-bottom: $size-small;
+			background-color: $quaternary-color;
+
+			.display-table-cell.user{
+				padding-top: $size-small;
+				padding-right: $size-big;
+			}
+		}
+	}
+	footer{
+		border-bottom-left-radius: $global-radius;
+		border-bottom-right-radius: $global-radius;
+	}
+}
+
+.item {
+	@extend .box;
+}
+
+.link-button {
+	display: block;
+	margin-top: rem-calc(8);
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+a.link {
+	margin: 8px 8px 8px 0px;
+}
+
+.animate-show {
+	opacity: 1;
+	max-height: 2000px;
+	// @include transition(max-height 0.8s, opacity 1s);
+	// @include box-sizing(border-box);
+	overflow: hidden;
+	&.ng-hide {
+		display: block !important;
+		max-height: 0;
+		opacity: 0;
+	}
+}
+
+.remove {
+	position: absolute;
+	top: rem-calc(18 / 3);
+	right: rem-calc(7);
+	color: $quaternary-color;
+	cursor: pointer;
+	font-size: rem-calc(18);
+	transition: color 0.8s;
+	&:hover {
+		color: darken($quaternary-color, 20%);
+	}
+}
+
+.file-upload {
+	z-index: 1;
+	display: block;
+	width: 100%;
+	//height: $button-height;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+}
+
+.file-upload-input {
+	&::-ms-browse {
+		width: 1000px;
+	}
+	cursor: pointer;
+	// height: $button-height;
+	opacity: 0;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	left: 0;
+	z-index: 9;
+}
+
+.image-upload {
+	.file-upload-overlay {
+		display: none;
+	}
+	&.uploading {
+		.file-upload-overlay {
+			display: block;
+			cursor: default;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 10;
+		}
+	}
+}
+
+.attachments {
+	li {
+		list-style-type: none;
+		a {
+			display: block;
+		}
+		img {
+			max-height: 185px;
+		}
+	}
+}
+
+.file-upload-pogress {
+	.progress {
+		left: -3px;
+		margin-top: 20px;
+		position: relative;
+	}
+}
+
+.show-for-scrolled {
+	display: none;
+}
+
+.scrolled {
+	.MarketCtrl {
+		.show-for-scrolled {
+			display: block;
+		}
+	}
+	.MarketCtrl {
+		.hide-for-scrolled {
+			display: none;
+		}
+	}
+}
+
+.scrolled {
+	.move2top.show-for-scrolled {
+		opacity: 1;
+	}
+	.move2top.hide-for-scrolled {
+		opacity: 0;
+	}
+}
+
+.move2top.show-for-scrolled {
+	opacity: 0;
+}
+
+.move2top {
+	height: 2 * $fontSize;
+	width: 4 * $fontSize;
+	position: fixed;
+	cursor: pointer;
+	right: $fontSize;
+	text-align: center;
+	bottom: 10%;
+	font-size: 10px;
+	opacity: 1;
+	display: block;
+	.fa {
+		font-size: 2 * $fontSize;
+		display: block;
+	}
+	color: $quaternary-color;
+	transition: opacity 0.8s;
+	&:hover {
+		color: darken($quaternary-color, 20%);
+	}
+}
+
+input:not([type]),
+input[type='text'],
+textarea {
+	border: 1px solid darken($colorLightGray, 20%);
+	// @include transition(background-color, 0.5s);
+	box-shadow: none;
+	&:focus {
+		background-color: white;
+		box-shadow: none;
+		border: 1px solid darken($colorLightGray, 40%);
+	}
+}
+
+.fleft {
+	float: left;
+}
+
+.fright {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.clear-right {
+	clear: right;
+}
+
+.hidden {
+	display: none;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.datepicker {
+	border: 1px solid $primary-color !important;
+	border-radius: $global-radius;
+	thead {
+		tr {
+			th {
+				color: $primary-color !important;
+			}
+		}
+	}
+	td {
+		&.active {
+			background-color: $primary-color !important;
+		}
+	}
+}
+
+.tleft {
+	text-align: left;
+}
+
+.tright {
+	text-align: right;
+}
+
+input::-ms-clear,
+input::-ms-reveal,
+textarea::-ms-clear {
+	display: none;
+}
+
+.globalLoading {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.63);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+	.loading {
+		color: white;
+		width: 100%;
+		text-align: center;
+		margin-top: -20px;
+		position: absolute;
+		top: 50%;
+	}
+}
+
+.padding-small{padding: $size-small;}
+.padding-small-vertical{padding-top: $size-small; padding-bottom: $size-small;}
+.padding-small-horizontal{padding-right: $size-small; padding-left: $size-small;}
+
+.padding-medium{padding: $size-medium;}
+.padding-medium-vertical{padding-top: $size-medium; padding-bottom: $size-medium;}
+.padding-medium-horizontal{padding-right: $size-medium; padding-left: $size-medium;}
+
+.padding-large{padding: 1$size-large;}
+
+.margin-small-right{margin-right: $size-small;}
+
+/* todo remove */
+.padding-top {
+	padding-top: 1rem;
+}
+
+.padding-bottom {
+	padding-bottom: 1rem;
+}
+
+.padding-bottom-3 {
+	padding-bottom: 0.3rem;
+}
+
+.padding-left-0 {
+	padding-left: 0px;
+}
+/* /todo remove */
+
+.hyphenate {
+	-ms-word-break: break-word;
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
+
+button.disabled,
+button[disabled],
+.button.disabled,
+.button[disabled] {
+	background-color: lighten($primary-color, 30%);
+	&:hover {
+		background-color: lighten($primary-color, 30%);
+	}
+}
+
+.elevated-authority-function,
+a.elevated-authority-function{
+	color: $state-danger-text !important;
+	background-color: $state-danger-bg !important;
+}
+.elevated-authority-function:hover,
+.elevated-authority-function:focus,
+a.elevated-authority-function:hover,
+a.elevated-authority-function:focus{
+	background-color: darken($state-danger-bg, 5%) !important;
+}
+.elevated-authority-function:active,
+a.elevated-authority-function:active{
+	background-color: darken($state-danger-bg, 10%) !important;
+}
+
+/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability
+to remove !important would be also nice .. someday */
+button.neutral,
+button.neutral:disabled{
+	background-color: darken($colorLightGray, 20%) !important;
+}
+button.neutral:hover,
+button.neutral:focus{
+	background-color: $quaternary-color !important;
+}
+/* /kamil */
+
+.margin-auto {
+	margin: auto;
+}
+
+.margin-left-10 {
+	margin-left: 10px;
+}
+.margin-right-20 {
+	margin-right: 20px;
+}
+.margin-top-10 {
+	margin-top: 10px;
+}
+.margin-top-20 {
+	margin-top: 20px;
+}
+
+.margin-0 {
+	margin: 0px;
+}
+
+.padding-0 {
+	margin: 0px;
+}
+
+.label-block {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.label-checked {
+	font-weight: bold;
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+
+.animated-hidden {
+	max-height: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	overflow: hidden;
+}
+
+.image-preview-content {
+	img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.styled-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	.list-item{
+		margin: 0;
+		padding: .3125rem;
+		list-style: none;
+	}
+}
+#fb-root>.fb_dialog {
+	z-index:100000 !important; // set higher than 999999 (which is ngdialog)
+}
+
+.exit-off-canvas{
+	transition: .5s all;
+}
+.no-scroll .exit-off-canvas{
+	background-color: rgba(0,0,0,.7) !important;
+}
