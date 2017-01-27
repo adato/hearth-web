@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# Prerequisities:
+# sudo npm --global foundation-cli
+#
+#
 
 ENV="$1"
 
@@ -15,7 +20,7 @@ fi
 set -e -E
 #build all
 npm install
-npm install karma
+#npm install karma gulp-cli bower
 node_modules/bower/bin/bower --allow-root install
 npm run build --target=$ENV
 
