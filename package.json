@@ -59,6 +59,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-safari-launcher": "^1.0.0",
     "karma-spec-reporter": "0.0.26",
+    "mail-listener2": "^0.1.8",
     "rimraf": "^2.4.3",
     "static-i18n": "^0.1.16",
     "yargs": "^3.8.0"
