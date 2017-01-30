@@ -20,7 +20,7 @@
 </div>
 <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
 
-<div class="off-canvas-wrap" ng-class='{"move-right": leftSidebarShown}'>
+<div class="off-canvas-wrap" ng-class='{"move-right": leftSidebarShown}' test-beacon="off-canvas-wrapper">
 	<div class="fixed off-canvas-fixed">
 		<navigation ng-if="initFinished"></navigation>
 		<a class="exit-off-canvas" ng-click='toggleSidebar(false)'></a>

@@ -19,6 +19,8 @@
     "pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & sleep 2",
     "windows_pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & timeout 2",
     "test": "./node_modules/.bin/protractor protractor.js",
+    "goshorty": "./node_modules/.bin/protractor protractor.js",
+    "goparty": "./node_modules/protractor/bin/webdriver-manager start",
     "karma": "./node_modules/.bin/karma start"
   },
   "author": "Anton Gaspari <gaspari@russiamail.com>",

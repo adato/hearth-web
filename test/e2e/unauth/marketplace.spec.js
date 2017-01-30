@@ -139,13 +139,14 @@ describe('hearth unauth marketplace', function () {
 
   // specific for mobile and tablet
   function navigationTest(type) {
-    var container = element(by.css('div.off-canvas-wrap'));
+    var container = element(by.css('[test-beacon="off-canvas-wrapper"]'));
     var topBar = element(by.css('nav.tab-bar'));
     var searchBar = element(by.css('div.mobile-top-search-bar-container'));
     var iconAdd = element(by.css('nav [test-beacon="open-new-post-dialog-toggle-mobile"]'));
     var iconSearch = element(by.css('nav [test-beacon="search-bar-toggle-mobile"]'));
     var toggleButton = element(by.css('nav.tab-bar>a.left-off-canvas-toggle'));
-    var leftSidebar = element(by.css('aside.left-off-canvas-menu'));
+    // var leftSidebar = element(by.css('aside.left-off-canvas-menu'));
+    var leftSidebar = element(by.css('[test-beacon="off-canvas-content"]'));
 
     var topBarDesktop = element(by.css('nav.top-bar'));
     var searchBoxDesktop = element(by.css('nav.top-bar #searchBox'));

@@ -15,18 +15,18 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			$scope.loading = false;
 		};
 
-		var ACCEPTED_MODAL_VALUES = ['support-us-modal-pay', 'support-us-modal-write-us', 'support-us-modal-endorse'],
-			MODAL_KEY = 'open-modal';
+		const ACCEPTED_MODAL_VALUES = ['support-us-modal-pay', 'support-us-modal-write-us', 'support-us-modal-endorse'];
+		const MODAL_KEY = 'open-modal';
 
 		$scope.feedbackData = {
 			text: '',
 			email: ''
-		}
+		};
 
 		$scope.contactData = {
 			text: '',
 			email: ''
-		}
+		};
 
 		$scope.postalAddressData = {
 			email: '',
@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			street: '',
 			city: '',
 			psc: ''
-		}
+		};
 
 		$scope.logos = [
 			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a>',
@@ -50,7 +50,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 
 		$scope.getLogo = function(index) {
 			return $sce.trustAsHtml($scope.logos[index]);
-		}
+		};
 
 		$scope.openModal = function(templateId, controller) {
 			var ngDialogOptions = {
@@ -64,7 +64,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			}
 
 			ngDialog.open(ngDialogOptions);
-		}
+		};
 
 
 		$scope.submitEmailWithPostalData = function() {
@@ -77,11 +77,11 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 					", " + $scope.postalAddressData.city + ", " + $scope.postalAddressData.psc + "\n\n" +
 					"(Odesláno z formuláře v sekci Podpořte nás)",
 				email: $scope.postalAddressData.email
-			}
+			};
 			sendFeedback(function() {
 				$scope.addressDataEmailSent = true;
 			});
-		}
+		};
 
 		$scope.submitEmailWithContactData = function() {
 			$scope.feedbackData = {
@@ -90,26 +90,26 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 					"Kontakt na mne: " + $scope.contactData.email + "\n\n" +
 					"(Odesláno z formuláře v sekci Podpořte nás)",
 				email: $scope.contactData.email
-			}
+			};
 			sendFeedback(function() {
 				$scope.contactDataEmailSent = true;
 			});
-		}
+		};
 
 		var sendFeedback = function(done) {
 			Feedback.add($scope.feedbackData, function() {
 				done();
 			}, function() {
 				$log.error('Error sending feedback data');
-			})
-		}
+			});
+		};
 
 		var prefillEmail = function() {
 			Auth.refreshUserInfo();
 			var email = $rootScope.loggedUser.email;
 			$scope.contactData.email = email;
 			$scope.postalAddressData.email = email;
-		}
+		};
 
 		$scope.modalInit = function(modalId) {
 			if ($location.search()[MODAL_KEY] && ACCEPTED_MODAL_VALUES.indexOf($location.search()[MODAL_KEY]) > -1 && $location.search()[MODAL_KEY] === modalId) {
@@ -117,11 +117,11 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 					$scope.openModal($location.search()[MODAL_KEY]);
 				}, 10);
 			}
-		}
+		};
 
 		$scope.init = function() {
 			if ($rootScope.loggedUser._id) prefillEmail();
-		}
+		};
 
 		$scope.init();
 

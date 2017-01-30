@@ -13,7 +13,7 @@ angular.module('hearth.controllers').controller('TermsCtrl', [
 		var termFile = '/terms.html';
 
 		$scope.init = function() {
-			$scope.termsPath = '/app/locales/' + $rootScope.language + termFile;
+			$scope.termsPath = '/app/assets/locales/' + $rootScope.language + termFile;
 		};
 
 		$scope.$on('initFinished', $scope.init);

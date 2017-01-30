@@ -1,5 +1,5 @@
 var randomNumber = protractor.helpers.getRandomInt(100, 999);
-
+var beacon = require('../utils.js').beacon;
 
 describe('user profile', function() {
 
@@ -63,7 +63,6 @@ describe('user profile', function() {
 		} else {
 			return el.sendKeys(protractor.Key.ENTER);
 		}
-
 	}
 
 	function clearTagInput(input) {
@@ -153,6 +152,9 @@ describe('user profile', function() {
 
 	it('should be able to change languages', function () {
 		// languages
+    const LANG_SELECTOR = 'language-section';
+    const LANG_INPUT = beacon(LANG_SELECTOR);
+    log(LANG_INPUT);
 		clearTagInput('section.languages');
 		addTagToInput('section.languages', 'espe'); // esperanto
 		browser.sleep(200);

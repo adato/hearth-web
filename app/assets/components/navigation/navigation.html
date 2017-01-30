@@ -1,6 +1,6 @@
 <section id="navigation">
-	<aside class="off-canvas position-left" data-off-canvas>
-		<ul class="off-canvas-list">
+	<aside class="off-canvas position-left" data-off-canvas test-beacon="off-canvas-content">
+		<ul class="submenu menu vertical">
 			<li ng-if=":: loggedUser._id" class="tab-bar log-info">
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
@@ -38,9 +38,9 @@
 				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">{{:: 'SIGNUP' | translate }}</a>
 			</li>
 		</ul>
-		<ul class="off-canvas-list" ng-show="loggedUser._id">
+		<ul class="menu vertical" ng-show="loggedUser._id">
 			<li>
-				<label class="first">{{:: loggedUser.name | ellipsis:15}}</label>
+				<label class="title">{{:: loggedUser.name | ellipsis:15}}</label>
 			</li>
 			<li>
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profile.default', {id: loggedUser._id})}">
@@ -67,7 +67,7 @@
 					<i class="fa fa-sign-out"></i> {{:: 'LOGOUT'| translate }}</a>
 			</li>
 		</ul>
-		<ul class="off-canvas-list">
+		<ul class="menu vertical">
 			<li>
 				<label>{{:: 'TOP_BAR_ABOUT' | translate}} </label>
 			</li>
@@ -93,7 +93,7 @@
 				<a ui-sref="taxes" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('taxes')}">{{:: 'MENU.TAXES' | translate}}</a>
 			</li>
 		</ul>
-		<ul class="off-canvas-list socials">
+		<ul class="menu vertical socials">
 			<li>
 				<label>{{:: 'SOCIAL_NETWORKS' | translate}} </label>
 			</li>
@@ -133,9 +133,9 @@
 
 		<nav class="column tab-bar tab-bar-closed hide-for-large">
 			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click="toggleSidebar(); mixpanelTrackMenu()">
-				<!-- <i class="fa fa-bars"></i> -->
+				<i class="fa fa-bars"></i>
 			</a>
-			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+			<a ng-click="reloadToMarketplace()" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 				<img class="hearth-logo" src="/app/assets/img/logo.png">
 			</a>
 

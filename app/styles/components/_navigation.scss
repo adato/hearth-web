@@ -373,8 +373,13 @@ $topBarImageSize: 1.8em;
 						z-index: 1;
 						height: 30px;
 						width: 30px;
-						top: -5px;
+						top: -10px;
 						display: inline-block;
+
+						& > span {
+							position: relative;
+							top: 10px;
+						}
 					}
 				}
 				.avatar {
@@ -473,6 +478,19 @@ $topBarImageSize: 1.8em;
 	font-weight: normal;
 	text-decoration: inherit;
 	transition: color 1s, text-shadow 2s;
+}
+
+.off-canvas label {
+    display: block;
+    padding: .3rem .9375rem;
+    color: #999;
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-weight: 700;
+    background: #444;
+    border-top: none;
+    border-bottom: none;
+    margin: 0
 }
 
 /* @kamil - temporary workaround against breaking of navigation on screens smaller than 370px */
