@@ -16,6 +16,10 @@ angular.module('hearth').config([
 		});
 
 		$stateProvider
+      .state('kit', {
+        url: '/kit',
+        templateUrl: 'kit.html',
+      })
 			.state('market', {
 				url: '/?query&type',
 				params: {
@@ -24,11 +28,6 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/market/market.html',
 				controller: 'MarketCtrl',
 				reloadOnSearch: false
-			})
-			.state('market-old', {
-				url: '/old',
-				templateUrl: 'assets/pages/market/_market.html',
-				controller: '_MarketCtrl',
 			})
 			.state('market-refresh', {
 				url: "/market",

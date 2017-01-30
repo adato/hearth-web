@@ -12,7 +12,7 @@
 			<option value="as_replies_post:{{post._id}}" ng-repeat="post in postConversations.posts" ng-selected="filter.post_id === post._id">&ndash; {{:: post.type | uppercase | translate }} {{:: post.title }}</option>
 			<option value="archived" ng-selected="filter.type == 'archived'">{{:: 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
 		</select>
-		<a class="button-send display-block nowrap margin-bottom-small flex-div" ui-sref="messages.new">{{:: 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+		<a class="button display-block nowrap margin-bottom-small flex-div" ui-sref="messages.new">{{:: 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
 	</div>
 	<div loading show="reloading"></div>
 	<div class="messages-container display-flex flex-align-start" ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}" ng-if="!reloading" dynamic-height offset="0" container=".messages" min-height="340">

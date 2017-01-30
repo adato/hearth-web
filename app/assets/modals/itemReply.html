@@ -26,15 +26,15 @@
 				</div>
 			</div>
 			<div class="bottom display-flex flex-reverse flex-space-between">
-				<button class="button-send" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SUBMIT' | translate }}</button>
-				<a ng-click="close()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
+				<button class="button" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SUBMIT' | translate }}</button>
+				<a ng-click="close()" class="revert-changes" tabindex="0">{{:: 'CANCEL' | translate }}</a>
 			</div>
 		</div>
 	</form>
 	<div class="reply-ad success success-msg hidden">
 		<p>{{:: 'SEND_REPLY_SUCCESS' | translate }}</p>
 		<section class="bottom display-flex flex-reverse flex-space-between">
-			<button class="button-send" ng-click="close()">{{:: 'CLOSE' | translate }}</button>
+			<button class="button" ng-click="close()">{{:: 'CLOSE' | translate }}</button>
 		</section>
 	</div>
 </div>

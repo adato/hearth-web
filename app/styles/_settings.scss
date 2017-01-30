@@ -110,6 +110,7 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #cc4b37,
 );
+$secondary-color: #fa5800;
 $tertiary-color: #a7bd1d;
 $quaternary-color: #7c766a;
 $light-gray: #f4f4f4;
@@ -133,8 +134,8 @@ $print-transparent-backgrounds: true;
 @include add-foundation-colors;
 
 // custom temp
-$colorOffer: $secondary-color;
-$colorNeed: $tertiary-color;
+$colorOffer: $tertiary-color;
+$colorNeed: $secondary-color;
 $colorLightGray: $light-gray;
 $colorDarkGray: $quaternary-color;
 $colorLink: $primary-color;
@@ -314,12 +315,12 @@ $button-fill: solid;
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
-$button-color-alt: $black;
+$button-color-alt: $white;
 $button-radius: $global-radius;
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
-  default: 0.9rem,
+  default: 0.75rem,
   large: 1.25rem,
 );
 $button-palette: $foundation-palette;

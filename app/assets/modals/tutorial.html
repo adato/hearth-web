@@ -8,7 +8,7 @@
 		<article class="opening text-center" ng-if="! slider">
 			<h3>{{:: 'TUTORIAL_HEADER' | translate }}</h3>
 			<br />
-			<button ng-click="showMeMagic()">{{:: 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
+			<button class="button" ng-click="showMeMagic()">{{:: 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
 		</article>
 		<section class="slider" ng-if="slider">
 			<div class="flexslider" flexslider ng-if="loaded">

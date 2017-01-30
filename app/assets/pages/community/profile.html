@@ -11,24 +11,24 @@
 				</a>
 			</h1>
 			<div class="button-bar">
-				<button ng-if="!mine" class="profile-button tall solid" ng-click="openUserRatingForm()">
+				<button ng-if="!mine" class="button large" ng-click="openUserRatingForm()">
 					{{:: 'THUMB_UP' | translate }}
 				</button>
-				<button class="profile-button tall outline" ng-if="!mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
+				<button class="button inverse large" ng-if="!mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
 					<i class="fa fa-minus"></i> {{:: 'LEAVE_COMMUNITY' | translate}}
 				</button>
-				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall outline">
+				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="button inverse large">
 					<i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLY' | translate}}
 				</button>
-				<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
+				<button ng-if="!mine && info.is_applicant" class="button inverse large">
 					<i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
 				</button>
 				<a href="{{:: communityLink }}/invite-friends" class="right" ng-if="false">
-					<button class="profile-button tall">
+					<button class="button large">
 						<i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
 				</a>
 				<a ng-if="mine" href="{{:: communityLink }}/edit">
-					<button class="profile-button button-red tall">
+					<button class="button secondary large">
 						<i class="fa fa-gears"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}
 					</button>
 				</a>

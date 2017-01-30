@@ -45,9 +45,9 @@
 				<section class="display-flex flex-space-between flex-reverse" ng-if="isDraft && !twoStepForm.step2">
 					<!-- show only for "create item" where post.type and exact_type are not choosen -->
 					<div class="nowrap">
-						<button ng-disabled="!post.exact_type || !post.type" class="primary button button-send" type="button" ng-click="twoStepForm.step2 = true">{{:: 'CONTINUE' | translate }}</button>
+						<button ng-disabled="!post.exact_type || !post.type" class="button" type="button" ng-click="twoStepForm.step2 = true">{{:: 'CONTINUE' | translate }}</button>
 					</div>
-					<a href="" ng-click="closeEdit()">{{:: 'CLOSE' | translate }}</a>
+					<a href="" ng-click="closeEdit()" class="revert-changes">{{:: 'CANCEL' | translate }}</a>
 				</section>
 			</div>
 
@@ -230,8 +230,8 @@
 				</section>
 				<section class="display-flex flex-space-between flex-reverse">
 					<div class="nowrap">
-						<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send" ng-disabled="sending" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE_AND_ACTIVATE' | translate }}</button>
-						<button class="primary button button-send margin-left-10" ng-disabled="sending" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE' | translate }}</button>
+						<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="button" ng-disabled="sending" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE_AND_ACTIVATE' | translate }}</button>
+						<button class="button" ng-disabled="sending" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE' | translate }}</button>
 					</div>
 					<a href="" ng-click="closeEdit()">{{:: 'CLOSE' | translate }}</a>
 				</section>

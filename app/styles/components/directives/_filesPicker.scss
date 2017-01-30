@@ -68,19 +68,6 @@ img.image-upload-preview{
 .file-remover:focus .file-remove-background{
 	color: darken($alert-color, 20%);
 }
-.files-upload-label {
-	display: inline-block;
-	font-weight: $ui-text-weight-bolder;
-
-	&.button-files {
-		background: $colorDarkGray;
-		margin-right: 20px;
-
-		&:hover {
-			background: darken($colorDarkGray, 20%);
-		}
-	}
-}
 .form-section label.files-upload-label{
 	margin-bottom: $size-small !important;
 }

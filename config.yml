@@ -37,6 +37,7 @@ PATHS:
       - "common/rootAssets/**/*"
   index:
     - "app/index.html"
+    - "app/kit.html"
     # this should copy root folder assests like favicons, robots.txt etc.
     - "app/rootAssets/**/*"
   fonts:
