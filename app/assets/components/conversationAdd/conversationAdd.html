@@ -39,12 +39,12 @@
 			</div>
 		</div>
 		<div id="message-footer" class="display-flex flex-space-between flex-reverse">
-			<div class="display-flex flex-reverse">
-				<button ng-disabled="sendingMessage" type="submit" class="button-send">
+			<div class="display-flex flex-reverse flex-divide-medium">
+				<button ng-disabled="sendingMessage" type="submit" class="button flex-div">
 					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
 					{{:: 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
 				</button>
-				<files-picker ng-model="message.attachments_attributes" files-multiple="true"></files-picker>
+				<files-picker ng-model="message.attachments_attributes" class="flex-div" files-multiple="true"></files-picker>
 			</div>
 			<div>
 				<a ui-sref="messages.detail({id: getFirstConversationId()})" class="revert-changes">{{:: 'CANCEL' | translate }}</a>

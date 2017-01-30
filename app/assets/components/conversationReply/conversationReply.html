@@ -20,12 +20,12 @@
 			</div>
 		</div>
 		<div id="message-footer" class="display-flex flex-space-between flex-reverse">
-			<div class="display-flex flex-reverse">
-				<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">
+			<div class="display-flex flex-reverse flex-divide-medium">
+				<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button flex-div">
 					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
 					{{:: 'SEND' | translate }}
 				</button>
-				<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
+				<files-picker ng-model="reply.attachments_attributes" files-multiple="true" class="flex-div"></files-picker>
 			</div>
 			<div>
 				<a class="hide-for-large cancel-changes" ui-sref="messages">{{:: 'CLOSE' | translate }}</a>

@@ -166,7 +166,7 @@
 				<br />
 				<section>
 					<div class="display-flex flex-reverse flex-space-between">
-						<button type="submit" class="button-send right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+						<button type="submit" class="button right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
 						<a ng-if="!community._id" tabindex="0" ng-click="close()" class="revert-changes">{{:: 'CANCEL_ADD_COMMUNITY' | translate }}</a>
 						<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
 					</div>
@@ -203,8 +203,7 @@
 					{{:: 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }} &nbsp;
 					<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
 				</span>
-				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community"
-								analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button right" analytics-custom analytics-event="delegate admin community" analytics-category="My community" analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
 			</section>
 			<section class="change-admin" ng-if="community.member_count == 1">
 				<br /> {{:: 'COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS' | translate }}
@@ -229,7 +228,7 @@
 				<p class="small-8 fleft" ng-if="community.member_count == 1">
 					{{:: 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
 				</p>
-				<button ng-click="confirmBox('COMMUNITY.COMMUNITY_REMOVE_LABEL', 'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE', delete, null, this)" class="button-send right">{{:: 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
+				<button ng-click="confirmBox('COMMUNITY.COMMUNITY_REMOVE_LABEL', 'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE', delete, null, this)" class="button right">{{:: 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
 			</section>
 		</div>
 		<div class="clear"></div>

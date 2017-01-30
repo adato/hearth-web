@@ -110,6 +110,7 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #cc4b37,
 );
+$secondary-color: #fa5800;
 $tertiary-color: #a7bd1d;
 $quaternary-color: #7c766a;
 $light-gray: #f4f4f4;
@@ -119,13 +120,13 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'Open Sans','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: .25rem; // default is 0
+$global-radius: 0.5714rem; // default is 0
 $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;
@@ -133,8 +134,8 @@ $print-transparent-backgrounds: true;
 @include add-foundation-colors;
 
 // custom temp
-$colorOffer: $secondary-color;
-$colorNeed: $tertiary-color;
+$colorOffer: $tertiary-color;
+$colorNeed: $secondary-color;
 $colorLightGray: $light-gray;
 $colorDarkGray: $quaternary-color;
 $colorLink: $primary-color;
@@ -189,11 +190,11 @@ $header-styles: (
     'h6': ('font-size': 16),
   ),
   medium: (
-    'h1': ('font-size': 48),
-    'h2': ('font-size': 40),
+    'h1': ('font-size': 40), //48
+    'h2': ('font-size': 32), //40
     'h3': ('font-size': 31),
     'h4': ('font-size': 25),
-    'h5': ('font-size': 20),
+    'h5': ('font-size': 16), // 20
     'h6': ('font-size': 16),
   ),
 );
@@ -308,19 +309,19 @@ $breadcrumbs-item-slash: true;
 // 11. Button
 // ----------
 
-$button-padding: 0.85em 1em;
+$button-padding: 0.55em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
-$button-color-alt: $black;
+$button-color-alt: $white;
 $button-radius: $global-radius;
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
-  default: 0.9rem,
-  large: 1.25rem,
+  default: 0.95rem,
+  large: 1rem,
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
@@ -432,9 +433,9 @@ $input-prefix-background: $light-gray;
 $input-prefix-border: 1px solid $medium-gray;
 $input-prefix-padding: 1rem;
 $form-label-color: $black;
-$form-label-font-size: rem-calc(14);
+$form-label-font-size: rem-calc(16);
 $form-label-font-weight: $global-weight-normal;
-$form-label-line-height: 1.8;
+$form-label-line-height: 1.5;
 $select-background: $white;
 $select-triangle-color: $dark-gray;
 $select-radius: $global-radius;

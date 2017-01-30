@@ -182,7 +182,7 @@
 									</div>
 								</div>
 								<div class="padding-right-large" ng-if="(!item.is_replied && !mine) || (item.is_replied)">
-									<button ng-if="!item.is_replied && !mine" ng-click="ItemAux.replyItem(item); analytics('Reply clicked');" class="button" ng-class=":: 'background-' + item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
+									<button ng-if="!item.is_replied && !mine" ng-click="ItemAux.replyItem(item); analytics('Reply clicked');" class="button" ng-class=":: item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 									</span>

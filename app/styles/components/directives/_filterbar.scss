@@ -6,7 +6,6 @@
 		.insert-button-container {
 			//float: right;
 			a {
-				padding: 0px;
 				overflow: hidden;
 				display: block;
 			}
@@ -46,7 +45,7 @@
 		max-height: 1000px;
 		transition: all .3s ease-in;
 	}
-	
+
 	.animated-hidden {
 		height: 0px;
 		max-height: 0px;

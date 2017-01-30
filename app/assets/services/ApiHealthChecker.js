@@ -111,7 +111,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			$rootScope.isMaintenanceMode = false;
 			$rootScope.isOfflineMode = true;
 
-			$.eventManager.disableAll($("*").not('.dontDisable'));
+			$.eventManager.disableAll($("*").not('.dont-disable'));
 
 			$('a').on('click.myDisable', function(e) {
 				e.preventDefault();
@@ -122,7 +122,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		this.unsetOfflineMode = function() {
 			$('a').off('click.myDisable');
 
-			$.eventManager.enableAll($("*").not('.dontDisable'));
+			$.eventManager.enableAll($("*").not('.dont-disable'));
 			$rootScope.isOfflineMode = false;
 			$rootScope.isMaintenanceMode = false;
 			$rootScope.$broadcast('ev:online');

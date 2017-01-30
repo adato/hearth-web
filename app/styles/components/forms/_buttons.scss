@@ -1,78 +1,116 @@
 .button {
   margin: 0;
+  font-weight: bold;
+  font-family: $body-font-family;
+
+  &.large {
+    padding: 1.5em 1em;
+  }
 
   // primary
   &:focus,
   &:active {
-    // background-color: darken($primary-color, abs($button-function-factor)) !important;
-    background-color: scale-color($primary-color, $lightness: -15%);
+    background-color: scale-color($primary-color, $lightness: -10%) !important;
   }
-
-  &.inverse {
-    background-color: $button-color;
-    color: $primary-color;
-    border-width: 1px;
+  &:hover {
+    background-color: scale-color($primary-color, $lightness: 10%);
   }
 
   &.secondary {
+    color: #fefefe;
     &:focus,
     &:active {
-    //   background-color: darken($secondary-color, abs($button-function-factor)) !important;
-        background-color: scale-color($secondary-color, $lightness: -15%);
+      background-color: scale-color($secondary-color, $lightness: -10%) !important;
     }
-    &.inverse {
-      background-color: $button-color !important;
-      color: $secondary-color !important;
-      border-color: $secondary-color;
-      border-width: 1px;
+    &:hover {
+      background-color: scale-color($secondary-color, $lightness: 10%);
     }
   }
 
-  &.tertiary {
+  &.need {
+    @extend .secondary;
+  }
+
+  &.offer {
     background-color: $tertiary-color;
     &:focus,
     &:active {
-    //   background-color: darken($tertiary-color, abs($button-function-factor)) !important;
-        background-color: scale-color($tertiary-color, $lightness: -15%);
+      background-color: scale-color($tertiary-color, $lightness: -10%) !important;
+    }
+    &:hover {
+      background-color: scale-color($tertiary-color, $lightness: 10%);
     }
   }
 
-  &.quaternary {
+  &.dark-gray {
     background-color: $quaternary-color;
     &:focus,
     &:active {
-    //   background-color: darken($quaternary-color, abs($button-function-factor)) !important;
-        background-color: scale-color($quaternary-color, $lightness: -15%);
+      background-color: scale-color($quaternary-color, $lightness: -10%) !important;
+    }
+    &:hover {
+      background-color: scale-color($quaternary-color, $lightness: 10%);
     }
   }
 
-  //	min-width: 30 * $ui-small-grid-size;
-  //	padding: 0px $ui-grid-size;
-  //	margin: 0;
-  //	font-weight: 600;
-  //	height: $ui-button-height;
-  //	line-height: $ui-button-height;
-  //	text-align: center;
-  //	font-size: $ui-text-font-size;
-  //	border: none;
-  //	border-radius: $global-radius;
-  //	background: $primary-color;
-  //	transition: all .3s;
-  //	cursor: pointer;
-  //	outline: none;
-  //  &:hover {
-  //    background-color: lighten($primary-color, abs($button-function-factor));
-  //  }
-  //	&:focus,
-  //	&:active {
-  //		background-color: darken($primary-color, abs($button-function-factor));
-  //	}
-  //
-  //	@include breakpoint(large up) {
-  //		height: $ui-input-height;
-  //		line-height: $ui-input-height;
-  //  }
-}
+  &.button-white {
+    height: inherit;
+    min-width: inherit;
+    color: #666;
+    background-color: #fff;
+    border: 2px solid $colorLightGray;
+    &:hover {
+      color: #333;
+      background-color: $colorLightGray;
+    }
+    &:focus {
+      color: #333;
+      background-color: darken($colorLightGray, 10%);
+    }
+  }
+  &.button-white.active {
+    background: $primary-color;
+    color: #fff;
+    font-weight: bold;
+
+    &:focus {
+      background: darken($primary-color, 10%);
+    }
+  }
+  &.button-white[disabled],
+  &.button-white[disabled]:hover {
+    color: $colorDarkGray;
+    background: $colorLightGray;
+    border: $colorDarkGray;
+  }
+
+    //	min-width: 30 * $ui-small-grid-size;
+    //	padding: 0px $ui-grid-size;
+    //	margin: 0;
+    //	font-weight: 600;
+    //	height: $ui-button-height;
+    //	line-height: $ui-button-height;
+    //	text-align: center;
+    //	font-size: $ui-text-font-size;
+    //	border: none;
+    //	border-radius: $global-radius;
+    //	background: $primary-color;
+    //	transition: all .3s;
+    //	cursor: pointer;
+    //	outline: none;
+    //  &:hover {
+    //    background-color: lighten($primary-color, abs($button-function-factor));
+    //  }
+    //	&:focus,
+    //	&:active {
+    //		background-color: darken($primary-color, abs($button-function-factor));
+    //	}
+    //
+    //	@include breakpoint(large up) {
+    //		height: $ui-input-height;
+    //		line-height: $ui-input-height;
+    //  }
+  }
 
 //
 //.button2 {
