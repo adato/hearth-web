@@ -77,7 +77,7 @@ a.user{
 }
 .item-option-bg-offer,
 .item-option-bg-lend {
-	background-color: $secondary-color;
+	background-color: $tertiary-color;
 	border-bottom-left-radius: 50%;
 }
 .item-option-bg-type > i{
@@ -105,7 +105,7 @@ button.active .item-option-bg-lend > i{
 }
 .item-option-bg-need,
 .item-option-bg-borrow {
-	background-color: $tertiary-color;
+	background-color: $secondary-color;
 	border-top-right-radius: 50%;
 }
 .item-option-bg-type > i {

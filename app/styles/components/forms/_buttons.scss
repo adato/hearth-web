@@ -1,6 +1,11 @@
 .button {
   margin: 0;
   font-weight: bold;
+  font-family: $body-font-family;
+
+  &.large {
+    padding: 1.5em 1em;
+  }
 
   // primary
   &:focus,

@@ -11,12 +11,12 @@
 				</a>
 			</h1>
 			<div class="button-bar">
-				<button class="button large" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
+				<button class="button large others" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
 				</button>
-				<button ng-if="!info.is_followed" class="button inverse large" ng-click="toggleFollow(info._id)">
+				<button ng-if="!info.is_followed" class="hollow button large others" ng-click="toggleFollow(info._id)">
 					<i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
 				</button>
-				<button ng-if="info.is_followed" class="button inverse large" ng-click="toggleFollow(info._id)">
+				<button ng-if="info.is_followed" class="hollow button large" ng-click="toggleFollow(info._id)">
 					<i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
 				</button>
 				<button ng-if="mine" ng-click="openInviteBox()" class="button large">
