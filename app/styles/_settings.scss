@@ -126,7 +126,7 @@ $global-margin: 1rem;
 $global-padding: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: .25rem; // default is 0
+$global-radius: 0.5714rem; // default is 0
 $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;
@@ -190,11 +190,11 @@ $header-styles: (
     'h6': ('font-size': 16),
   ),
   medium: (
-    'h1': ('font-size': 40),
-    'h2': ('font-size': 32),
+    'h1': ('font-size': 40), //48
+    'h2': ('font-size': 32), //40
     'h3': ('font-size': 31),
     'h4': ('font-size': 25),
-    'h5': ('font-size': 20),
+    'h5': ('font-size': 16), // 20
     'h6': ('font-size': 16),
   ),
 );
@@ -433,9 +433,9 @@ $input-prefix-background: $light-gray;
 $input-prefix-border: 1px solid $medium-gray;
 $input-prefix-padding: 1rem;
 $form-label-color: $black;
-$form-label-font-size: rem-calc(14);
+$form-label-font-size: rem-calc(16);
 $form-label-font-weight: $global-weight-normal;
-$form-label-line-height: 1.8;
+$form-label-line-height: 1.5;
 $select-background: $white;
 $select-triangle-color: $dark-gray;
 $select-radius: $global-radius;
