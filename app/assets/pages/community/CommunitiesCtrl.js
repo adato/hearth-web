@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.CommunityListCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('CommunitiesCtrl', [
@@ -17,11 +17,11 @@ angular.module('hearth.controllers').controller('CommunitiesCtrl', [
 			$scope.pageSegment = route.name;
 		});
 
-		$scope.toggleForm = function() {
-			$(".community-list-add-button").slideToggle();
-			$(".community-list-add-form").toggle();
+		$scope.toggleForm = function(event) {
+			$('[community-form-toggler]').slideToggle();
+			$('[community-list-add-focusser]').toggle();
+			$('[community-list-add-focusser]').removeClass('hide');
 		};
-
 
 		UnauthReload.check();
 	}

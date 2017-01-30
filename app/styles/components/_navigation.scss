@@ -304,6 +304,10 @@ $topBarImageSize: 1.8em;
 				text-align: right;
 				padding-right:15px;
 
+				label {
+					cursor: pointer;
+				}
+
 				.header-item{
 					& .fa{
 						position: relative;

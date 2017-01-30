@@ -159,10 +159,12 @@ PATHS:
       js:
         - "app/assets/**/*.js"
       html:
-        # does not cover only assets, as there are also files in rootAssets and index.html
-        - "app/**/*.html"
+        - "app/assets/**/*.html"
       img:
         - "app/images/**/*"
+        - "bower_components/intl-tel-input/build/img/flags.png"
+        - "bower_components/fancybox/source/*.gif"
+        - "bower_components/fancybox/source/*.png"
     landing:
       index: "landing/html"
       css:

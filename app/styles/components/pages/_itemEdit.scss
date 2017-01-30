@@ -154,10 +154,10 @@
 		}
 
 		.character-label {
+			display: inline-block;
 			margin-left: 0;
 			margin-right: 10px;
 			margin-bottom: 1rem;
-			display: inline-block;
 
 			input {
 				margin-right: 4px;
@@ -170,8 +170,9 @@
 				margin-left: 0;
 			}
 
-			.tooltip {
-				color: $ui-color-lighter;
+			.fa-question-circle {
+				opacity: .5;
+				color: $black;
 			}
 
 			@include breakpoint(small down) {

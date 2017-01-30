@@ -47,7 +47,7 @@ describe('user profile', function() {
 
 	function assertInputField(input, value, textarea) {
 		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
-		el.getAttribute('value').then(function(gotvalue){
+		el.getAttribute('value').then(function(gotvalue) {
     		expect(value).toBe(gotvalue);
 		});
 	}
@@ -68,7 +68,7 @@ describe('user profile', function() {
 	function clearTagInput(input) {
 		log("clearTagInput (" + input + ")");
 		var el = element(by.css('#profileEditForm '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
-		el.click().then(function () {
+		el.click().then(function() {
 			for (var i = 0; i < 20; i++) {
 				el.sendKeys(protractor.Key.BACK_SPACE); // send more backspaces then we need to clear old entries
 			}

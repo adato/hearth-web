@@ -10,19 +10,19 @@
 // all has to be !important, or the fancybox css should be placed before app css
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('../vendor/fancybox/source/fancybox_sprite.png') !important;
+	background-image: url('../img/fancybox_sprite.png') !important;
 }
 
 #fancybox-loading div {
-	background: url('../vendor/fancybox/source/fancybox_loading.gif') center center no-repeat !important;
+	background: url('../img/fancybox_loading.gif') center center no-repeat !important;
 }
 
 .fancybox-nav {
-	background: transparent url('../vendor/fancybox/source/blank.gif') !important; /* helps IE */
+	background: transparent url('../img/blank.gif') !important; /* helps IE */
 }
 
 .fancybox-overlay {
-	background: url('../vendor/fancybox/source/.png') !important;
+	background: url('../img/.png') !important;
 }
 
 
@@ -32,10 +32,10 @@
 	   only screen and (min-device-pixel-ratio: 1.5){
 
 	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-		background-image: url('../vendor/fancybox/source/fancybox_sprite@2x.png') !important;
+		background-image: url('../img/fancybox_sprite@2x.png') !important;
 	}
 
 	#fancybox-loading div {
-		background-image: url('../vendor/fancybox/source/fancybox_loading@2x.gif') !important;
+		background-image: url('../img/fancybox_loading@2x.gif') !important;
 	}
 }

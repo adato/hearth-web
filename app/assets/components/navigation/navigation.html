@@ -14,15 +14,19 @@
 				</a>
 			</li>
 			<li>
-				<label class="first">Menu</label>
+				<label class="first">
+					Menu
+				</label>
 			</li>
 			<li>
 				<a ng-click="reloadToMarketplace()" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
-					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
+					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }}
+				</a>
 			</li>
 			<li>
 				<a ng-if=":: loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
-					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
+					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}
+				</a>
 			</li>
 			<li>
 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
@@ -32,10 +36,14 @@
 				</a>
 			</li>
 			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">{{:: 'LOG_IN' | translate}}</a>
+				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">
+					{{:: 'LOG_IN' | translate}}
+				</a>
 			</li>
 			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">{{:: 'SIGNUP' | translate }}</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">
+					{{:: 'SIGNUP' | translate }}
+				</a>
 			</li>
 		</ul>
 		<ul class="menu vertical" ng-show="loggedUser._id">

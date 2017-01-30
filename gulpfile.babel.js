@@ -176,6 +176,9 @@ function templates() {
   return gulp.src(PATHS.src.app.html)
     .pipe($.angularTemplatecache({
       module: 'hearth.templates',
+      transformUrl: (name) => {
+        return 'assets/' + name;
+      },
       standalone: true
     }))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/templates'));
