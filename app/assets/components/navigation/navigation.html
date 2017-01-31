@@ -141,9 +141,9 @@
 		<div id="notify-top"></div>
 
 		<!-- <nav class="column tab-bar tab-bar-closed hide-for-large"> -->
-		<nav class="display-flex flex-space-between flex-align-center hide-for-large">
+		<nav class="display-flex flex-space-between flex-align-center hide-for-large" test-beacon="mobile-nav-bar">
 			<div class="display-flex flex-align-center">
-				<a class="display-inline-block padding-medium margin-right-small" ng-click="toggleSidebar(); mixpanelTrackMenu()">
+				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleSidebar(); mixpanelTrackMenu()">
 					<i class="fa fa-bars"></i>
 				</a>
 				<a ng-click="reloadToMarketplace()" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">

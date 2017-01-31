@@ -1,3 +1,5 @@
+var beacon = require('../utils.js').beacon;
+
 describe('hearth unauth marketplace', function () {
 
   beforeEach(function () {
@@ -140,11 +142,11 @@ describe('hearth unauth marketplace', function () {
   // specific for mobile and tablet
   function navigationTest(type) {
     var container = element(by.css('[test-beacon="off-canvas-wrapper"]'));
-    var topBar = element(by.css('nav.tab-bar'));
+    var topBar = element(by.css('[test-beacon="nav-bar"]'));
     var searchBar = element(by.css('div.mobile-top-search-bar-container'));
     var iconAdd = element(by.css('nav [test-beacon="open-new-post-dialog-toggle-mobile"]'));
     var iconSearch = element(by.css('nav [test-beacon="search-bar-toggle-mobile"]'));
-    var toggleButton = element(by.css('nav.tab-bar>a.left-off-canvas-toggle'));
+    var toggleButton = beacon('nav-bar-menu-toggle');
     // var leftSidebar = element(by.css('aside.left-off-canvas-menu'));
     var leftSidebar = element(by.css('[test-beacon="off-canvas-content"]'));
 
