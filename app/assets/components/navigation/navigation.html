@@ -156,7 +156,7 @@
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block">
-					<i class="fa fa-fw fa-plus-circle" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+					<i class="fa fa-fw fa-plus-circle" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
 					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
@@ -165,7 +165,7 @@
 			</div>
 		</nav>
 
-		<div id="searchContainer" class="mobile-top-search-bar-container hidden-for-large-up column">
+		<div id="searchContainer" class="mobile-top-search-bar-container hidden-for-large-up column" test-beacon="search-bar-mobile-container">
 			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
 
 			<div class="row">

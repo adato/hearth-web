@@ -1,3 +1,5 @@
+// var beacon = require('../utils.js').beacon;
+
 describe('hearth login/logout', function () {
 
   // login itself
@@ -21,7 +23,7 @@ describe('hearth login/logout', function () {
     protractor.helpers.navigateTo('login');
     element(by.model('data.username')).sendKeys("unauthorized-user65386255@not.here");
     element(by.model('data.password')).sendKeys("password");
-    element(by.css('button.button-send')).click();
+    beacon('login-button').click();
 
     var errorMessage = element(by.css('p[test-beacon=login-bad-credentials]'));
     expect(errorMessage.isPresent()).toBeTruthy();

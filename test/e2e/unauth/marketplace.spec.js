@@ -105,7 +105,7 @@ describe('hearth unauth marketplace', function () {
     var createButton = element(by.css('.insert-button-container>a.button'));
     var loginModal = element(by.css('.register-login-dialog .alert-box.alert'));
     var loginModalCloseButton = element(by.css('.register-login-dialog span.close'));
-    var iconAdd = element(by.css('nav [test-beacon="open-new-post-dialog-toggle-mobile"]'));
+    var iconAdd = beacon('open-new-post-dialog-toggle-mobile');
 
     if (type === 'mobile' || type === 'tablet') {
       if (type === 'mobile') {
@@ -141,14 +141,14 @@ describe('hearth unauth marketplace', function () {
 
   // specific for mobile and tablet
   function navigationTest(type) {
-    var container = element(by.css('[test-beacon="off-canvas-wrapper"]'));
+    var container = beacon('off-canvas-wrapper');
     var topBar = beacon('nav-bar');
-    var searchBar = element(by.css('div.mobile-top-search-bar-container'));
-    var iconAdd = element(by.css('nav [test-beacon="open-new-post-dialog-toggle-mobile"]'));
-    var iconSearch = element(by.css('nav [test-beacon="search-bar-toggle-mobile"]'));
+    var searchBar = beacon('search-bar-mobile-container');
+    var iconAdd = beacon('open-new-post-dialog-toggle-mobile');
+    var iconSearch = beacon('search-bar-toggle-mobile');
     var toggleButton = beacon('nav-bar-menu-toggle');
     // var leftSidebar = element(by.css('aside.left-off-canvas-menu'));
-    var leftSidebar = element(by.css('[test-beacon="off-canvas-content"]'));
+    var leftSidebar = beacon('off-canvas-content');
 
     var topBarDesktop = element(by.css('nav.top-bar'));
     var searchBoxDesktop = element(by.css('nav.top-bar #searchBox'));
