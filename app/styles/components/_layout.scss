@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background-image: inline-image("bg.png");
+  background-image: url("/app/assets/img/bg.png");
   background-color: #faf8eb;
   background-repeat: no-repeat;
   background-position: 50% top;
