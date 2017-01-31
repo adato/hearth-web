@@ -17,12 +17,13 @@
   }
 
   &.secondary {
-    color: #fefefe;
+    color: $white;
     &:focus,
     &:active {
       background-color: scale-color($secondary-color, $lightness: -10%) !important;
     }
     &:hover {
+      color: $white;
       background-color: scale-color($secondary-color, $lightness: 10%);
     }
   }
