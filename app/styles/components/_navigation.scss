@@ -2,6 +2,21 @@ $topBarHeight: 40px;
 $topBarLabelSize: $small-font-size;
 $topBarImageSize: 1.8em;
 
+nav {
+	height: 56px;
+
+	@include breakpoint(medium down) {
+		height: 72px;
+	}
+
+	.fa {
+		font-size: 30px;
+	}
+	.fa-bars {
+		color: $white;
+	}
+}
+
 .off-canvas.position-left,
 .left-off-canvas-menu {
 	a {
@@ -66,12 +81,29 @@ $topBarImageSize: 1.8em;
 	}
 }
 
-.exit-off-canvas {
-	box-shadow: -4px 0 4px rgba(0, 0, 0, 0.3), 4px 0 4px rgba(0, 0, 0, 0.5);
+// .exit-off-canvas {
+// 	box-shadow: -4px 0 4px rgba(0, 0, 0, 0.3), 4px 0 4px rgba(0, 0, 0, 0.5);
+// }
+.move-right .exit-off-canvas {
+	position: absolute;
+	display: block;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(255,255,255,.2);
+    box-shadow: -4px 0 4px rgba(0,0,0,.5),4px 0 4px rgba(0,0,0,.5);
+	cursor: pointer;
+    z-index: 1002;
+	transition: background .3s ease;
+	-webkit-transition: background .3s ease;
+	-webkit-backface-visibility: hidden;
+	-webkit-tap-highlight-color: transparent;
 }
+
 .header {
 	color: $white;
-	width:100vw;
+	width: 100%;
 	box-shadow: 0 2px 2px rgba(black, 0.3);
 	min-height: 72px;
 	background-color: $secondary-color;
@@ -280,10 +312,10 @@ $topBarImageSize: 1.8em;
 			padding:0;
 
 			&.logo-column {
-				float:left;
+				// float:left;
 				width:20%;
-				margin-top:5px;
-				margin-left:5px;
+				// margin-top:5px;
+				// margin-left:5px;
 			}
 			&.searchbox-column {
 				float:left;
@@ -292,8 +324,8 @@ $topBarImageSize: 1.8em;
 
 				.search-input-submit-icon {
 					position: absolute;
-					right: -5px;
-					top: 12px;
+					top: 8px; right: -5px;
+					font-size: $global-font-size;
 					color: $secondary-color;
 					cursor: pointer;
 				}

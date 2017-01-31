@@ -477,7 +477,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			} else {
 				Post.createDraft({}, function(draft) {
 					scope.post = draft;
-					scope.post.type = null; // because editItem dialog should start without anything selected 
+					scope.post.type = null; // because editItem dialog should start without anything selected
 					scope.isDraft = true;
 					scope.postOrig = null;
 					$rootScope.openEditForm(scope);

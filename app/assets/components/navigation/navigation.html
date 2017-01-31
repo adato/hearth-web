@@ -1,5 +1,6 @@
 <section id="navigation">
-	<aside class="off-canvas position-left" data-off-canvas test-beacon="off-canvas-content">
+	<!-- <aside class="off-canvas position-left" data-off-canvas data-content-overlay data-close-on-click test-beacon="off-canvas-content"> -->
+	<aside class="off-canvas position-left" test-beacon="off-canvas-content">
 		<ul class="submenu menu vertical">
 			<li ng-if=":: loggedUser._id" class="tab-bar log-info">
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
@@ -139,26 +140,29 @@
 
 		<div id="notify-top"></div>
 
-		<nav class="column tab-bar tab-bar-closed hide-for-large">
-			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click="toggleSidebar(); mixpanelTrackMenu()">
-				<i class="fa fa-bars"></i>
-			</a>
-			<a ng-click="reloadToMarketplace()" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-				<img class="hearth-logo" src="/app/assets/img/logo.png">
-			</a>
+		<!-- <nav class="column tab-bar tab-bar-closed hide-for-large"> -->
+		<nav class="display-flex flex-space-between flex-align-center hide-for-large">
+			<div class="display-flex flex-align-center">
+				<a class="display-inline-block padding-medium margin-right-small" ng-click="toggleSidebar(); mixpanelTrackMenu()">
+					<i class="fa fa-bars"></i>
+				</a>
+				<a ng-click="reloadToMarketplace()" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+					<img class="hearth-logo" src="/app/assets/img/logo.png">
+				</a>
+			</div>
 
 			<div class="small-icons header-right">
 				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if=":: !loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange" ng-click="languageChange.toggleLanguageSelectionDialog()">
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block">
-					<i class="fa fa-fw fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+					<i class="fa fa-fw fa-plus-circle" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
 					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
+				<!-- <div class="clear"></div> -->
 			</div>
-			<div class="clear"></div>
 		</nav>
 
 		<div id="searchContainer" class="mobile-top-search-bar-container hidden-for-large-up column">
@@ -187,7 +191,7 @@
 			</div>
 		</div>
 
-		<nav class="top-bar show-for-large" data-topbar ng-cloak>
+		<nav class="display-flex flex-align-center top-bar show-for-large" data-topbar ng-cloak>
 			<!-- this is desktop topbar, visible all the time -->
 
 			<section class="bar-columns logo-column">

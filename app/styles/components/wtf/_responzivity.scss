@@ -118,15 +118,16 @@
 }
 
 .off-canvas-fixed {
-	transition: transform 500ms ease;
-	z-index:29999;
-	left:0;
-	right:0;
-}
-
-.move-right > .off-canvas-fixed {
 	height: 100%;
-	// transform: translate3d(15.625rem, 0, 0);
+	right:0; left:0;
+	z-index:29999;
+}
+.inner-wrap,
+.off-canvas-fixed {
+	transition: transform .5s ease;
+}
+.move-right > .inner-wrap,
+.move-right > .off-canvas-fixed {
 	transform: translate3d(250px, 0, 0);
 }
 .left-off-canvas-menu {
