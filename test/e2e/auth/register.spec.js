@@ -1,4 +1,5 @@
 var testEmail = protractor.helpers.getTestEmail();
+const beacon = require('../utils.js').beacon;
 
 describe('hearth registration', function () {
 
@@ -8,7 +9,7 @@ describe('hearth registration', function () {
 
 	it('should be able to go to register form throught login dialog', function () {
 		// go to login page
-		element(by.id('nav-login')).click();
+		beacon('nav-login').click();
 		expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
 
 		element
@@ -53,7 +54,7 @@ describe('hearth registration', function () {
 
 
 /*	not any more necessary since did-you-mean element is not displayed any more
-	
+
 	it('should validate with mailgun ', function () {
 		var emailInput = element(by.model('user.email'));
 		var expectedEmailInputValidatorMessage = element(by.css('[test-beacon="mailgun-validator-did-you-mean"]'));

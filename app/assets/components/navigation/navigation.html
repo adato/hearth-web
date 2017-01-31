@@ -283,7 +283,7 @@
 						</li>
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li>
-							<a href="" class="logout-link" ng-click="logout()">
+							<a href="" ng-click="logout()" test-beacon="nav-logout-link">
 								<i class="fa fa-sign-out"></i>{{:: 'LOGOUT'| translate }}</a>
 						</li>
 					</ul>
@@ -348,7 +348,7 @@
 						</li>
 					</ul>
 				</div>
-				<a ng-if=":: !loggedUser._id" class='header-item' ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
+				<a ng-if=":: !loggedUser._id" class='header-item' ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" test-beacon="nav-login">
 					<i class="fa fa-sign-in"></i>
 					<label>{{:: 'TOP_BAR_SIGN_IN' | translate }}</label>
 				</a>

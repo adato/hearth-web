@@ -1,3 +1,5 @@
+const beacon = require('../utils.js').beacon;
+
 describe('hearth hardcoded login', function() {
 
 	beforeEach(function() {
@@ -5,7 +7,7 @@ describe('hearth hardcoded login', function() {
 	});
 
 	it('should be able to log in default user', function() {
-		var loginButton = element(by.id('nav-login'));
+		var loginButton = beacon('nav-login');
 		expect(loginButton.isPresent()).toBeTruthy();
 		loginButton.click();
 

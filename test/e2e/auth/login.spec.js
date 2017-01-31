@@ -1,4 +1,4 @@
-// var beacon = require('../utils.js').beacon;
+const beacon = require('../utils.js').beacon;
 
 describe('hearth login/logout', function () {
 
@@ -12,10 +12,10 @@ describe('hearth login/logout', function () {
 
     // logout
     browser.actions().mouseMove(navigationMenu).perform();
-    element(by.css("nav .logout-link")).click();
+    beacon('nav-logout-link').click();
 
     browser.sleep(1000);
-    var loginButton = element(by.id('nav-login'));
+    var loginButton = beacon('nav-login');
     expect(loginButton.isPresent()).toBeTruthy();
   });
 

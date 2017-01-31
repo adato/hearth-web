@@ -1,4 +1,4 @@
-var beacon = require('../utils.js').beacon;
+const beacon = require('../utils.js').beacon;
 
 describe('hearth unauth marketplace', function () {
 
