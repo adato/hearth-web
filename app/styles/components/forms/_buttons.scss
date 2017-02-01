@@ -3,6 +3,7 @@
   font-weight: bold;
   font-family: $body-font-family;
 
+  .button-group.large &,
   &.large {
     padding: 1.5em 1em;
   }

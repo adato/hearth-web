@@ -1,12 +1,15 @@
 .button-group {
-  &.left {
-    float: left;
-  }
-  &.right {
-    float: right;
-  }
+  // DONT USE FLOATS FOR LAYOUT
+  // &.left {
+  //   float: left;
+  // }
+  // &.right {
+  //   float: right;
+  // }
 
-  & .margin-10 {
-    margin: 0 10px 0 10px;
-  }
+  // NEVER EVER USE NUMBERS IN CLASSES
+  // USE VARIABLES $size-[small|medium|large] WHEN DEFINING STANDARDIZED SPACING
+  // & .margin-10 {
+  //   margin: 0 10px 0 10px;
+  // }
 }

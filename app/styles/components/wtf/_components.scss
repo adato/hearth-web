@@ -130,6 +130,12 @@
 		margin-right: 0;
 	}
 }
+@include breakpoint(medium up) {
+	.display-medium-flex{
+		display: flex;
+		align-items: center;
+	}
+}
 @include breakpoint(large up) {
 	.display-large-flex{
 		display: flex;

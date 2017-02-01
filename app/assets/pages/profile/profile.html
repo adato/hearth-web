@@ -5,30 +5,31 @@
 	</div>
 	<header ng-show="info">
 		<div class="user-basic large-12 columns">
-			<h1>
-				<a dont-jump-top href="{{:: profileLink }}">
-					<span>{{info.name}}</span>
-				</a>
-			</h1>
-			<div class="button-group right">
-				<button class="button large others margin-10" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
-				</button>
-				<button ng-if="!info.is_followed" class="hollow button large others margin-10" ng-click="toggleFollow(info._id)">
-					<i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
-				</button>
-				<button ng-if="info.is_followed" class="hollow button large margin-10" ng-click="toggleFollow(info._id)">
-					<i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
-				</button>
-				<button ng-if="mine" ng-click="openInviteBox()" class="button large margin-10">
-					<i class="fa fa-forward"></i>
-					<span ng-bind-html=":: 'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
-				</button>
-				<a href="{{:: basePath }}profile-edit" class="mine">
-					<button class="button secondary large margin-10">
-						<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
-				</a>
+			<div class="display-medium-flex flex-space-between">
+				<h1>
+					<a dont-jump-top href="{{:: profileLink }}">
+						<span>{{info.name}}</span>
+					</a>
+				</h1>
+				<div class="button-group large">
+					<button class="button others" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
+					</button>
+					<button ng-if="!info.is_followed" class="hollow button others" ng-click="toggleFollow(info._id)">
+						<i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
+					</button>
+					<button ng-if="info.is_followed" class="hollow button" ng-click="toggleFollow(info._id)">
+						<i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
+					</button>
+					<button ng-if="mine" ng-click="openInviteBox()" class="button">
+						<i class="fa fa-forward"></i>
+						<span ng-bind-html=":: 'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
+					</button>
+					<a href="{{:: basePath }}profile-edit" class="mine">
+						<button class="button secondary">
+							<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
+					</a>
+				</div>
 			</div>
-			<div class="clear"></div>
 			<div class="short-about" ng-if="info.motto">
 				<i class="fa fa-quote-right"></i> {{:: info.motto }}
 			</div>
