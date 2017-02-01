@@ -24,6 +24,11 @@ angular.module('hearth.geo').directive('map', [
 			},
 			// transclude: true,
 			link: function(scope, element) {
+				if (typeof google !== 'object' || typeof google.maps !== 'object') {
+					throw new Error("Google API not loaded when trying to access `hearth.geo > map`");
+					return;
+				}
+
 				var markerCluster, oms, map,
 					I_ID = 0,
 					I_TYPE = 1,

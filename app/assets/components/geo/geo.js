@@ -10,6 +10,11 @@
 angular.module('hearth.geo').factory('geo', [
 	'$q',
 	function($q) {
+		if (typeof google !== 'object' || typeof google.maps !== 'object') {
+			throw new Error("Google API not loaded when trying to access `hearth.geo > geo`");
+			return;
+		}
+
 		var geocoder = new google.maps.Geocoder(),
 			mapConfig = {
 				zoom: 6,
