@@ -1,0 +1,12 @@
+.button-group {
+  &.left {
+    float: left;
+  }
+  &.right {
+    float: right;
+  }
+
+  & .margin-10 {
+    margin: 0 10px 0 10px;
+  }
+}

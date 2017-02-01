@@ -10,21 +10,21 @@
 					<span>{{info.name}}</span>
 				</a>
 			</h1>
-			<div class="button-bar">
-				<button class="button large others" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
+			<div class="button-group right">
+				<button class="button large others margin-10" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
 				</button>
-				<button ng-if="!info.is_followed" class="hollow button large others" ng-click="toggleFollow(info._id)">
+				<button ng-if="!info.is_followed" class="hollow button large others margin-10" ng-click="toggleFollow(info._id)">
 					<i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
 				</button>
-				<button ng-if="info.is_followed" class="hollow button large" ng-click="toggleFollow(info._id)">
+				<button ng-if="info.is_followed" class="hollow button large margin-10" ng-click="toggleFollow(info._id)">
 					<i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
 				</button>
-				<button ng-if="mine" ng-click="openInviteBox()" class="button large">
+				<button ng-if="mine" ng-click="openInviteBox()" class="button large margin-10">
 					<i class="fa fa-forward"></i>
 					<span ng-bind-html=":: 'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
 				</button>
 				<a href="{{:: basePath }}profile-edit" class="mine">
-					<button class="button secondary large">
+					<button class="button secondary large margin-10">
 						<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
 				</a>
 			</div>

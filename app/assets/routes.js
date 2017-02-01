@@ -16,10 +16,6 @@ angular.module('hearth').config([
 		});
 
 		$stateProvider
-      .state('kit', {
-        url: '/kit',
-        templateUrl: 'kit.html',
-      })
 			.state('market', {
 				url: '/?query&type',
 				params: {
