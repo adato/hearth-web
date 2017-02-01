@@ -326,6 +326,11 @@ function copyFontsLanding() {
 //
 // SERVER, RELOAD & WATCH
 
+// TODO make this somehow .. nicer
+function isAllowedUrl(url) {
+  if (url === '/app/kit.html') return true;
+}
+
 // Start a server with BrowserSync to preview the site in
 function server(done) {
   browser.init({
@@ -337,6 +342,7 @@ function server(done) {
       function(req, res, next) {
         if (
           req.url.indexOf('/app/') >= 0
+          && !isAllowedUrl(req.url)
           && req.url.indexOf('/app/assets/') < 0
           && req.url !== '/app/'
         ) {
