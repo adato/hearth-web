@@ -71,7 +71,11 @@ angular.module('hearth.services').factory('LocationJsonDataTransform', ['$window
 	 */
 	function decodeEntity(entity) {
 		if (typeof entity.locations == 'undefined' || entity.locations === null || typeof entity.locations.length === 'undefined') {
-			throw new Error("Undefined or null entityLocations");
+			// this is kind of an error, but it still can occur:
+			// for example when non-existing post is requested,
+			// then a result from an endpoint (empty set or error json object) 
+			// is passed as 'entity' (which is bad, but it needs to pass without raising an error).
+			return entity; 
 		}
 
 		entity.locations.forEach(function(location, key) {
