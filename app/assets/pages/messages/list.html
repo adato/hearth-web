@@ -24,8 +24,7 @@
 						<div class="text-center no-result" ng-if="!conversations.length">
 							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
-						<a ui-sref='messages.detail({id: item._id, "mark-as-read": true})' class="conversation" ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}"
-										ng-repeat="item in conversations" last-item-shown="loadBottom()">
+						<a ui-sref='messages.detail({id: item._id, "mark-as-read": true})' class="conversation" ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}" ng-repeat="item in conversations" last-item-shown="loadBottom()">
 							<div class=" avatars ">
 								<avatar ng-if="item.participants.length==1 " src="person.avatar.normal " size="normal " type="person._type " ng-repeat="person in item.participants "></avatar>
 								<avatar ng-if="item.participants.length> 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
@@ -37,9 +36,9 @@
 									<div>
 										<span ng-if="item.post">{{ item.post.type_code | translate }}</span> {{ item.title | ellipsis:45 }}
 									</div>
-									<i ng-if="item.titlePersons" class="left" title="{{item.titlePersons}}"> {{ item.titlePersons | ellipsis:28 }}
+									<span ng-if="item.titlePersons" title="{{item.titlePersons}}"> {{ item.titlePersons | ellipsis:28 }}
 										<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
-									</i>
+									</span>
 
 									<div class="clear"></div>
 								</h2>

@@ -12,6 +12,9 @@ nav {
 	.fa {
 		font-size: 30px;
 	}
+	.dropdown .fa{
+		font-size: $global-font-size;
+	}
 	.fa-bars {
 		color: $white;
 	}
@@ -324,7 +327,7 @@ nav {
 
 				.search-input-submit-icon {
 					position: absolute;
-					top: 8px; right: -5px;
+					top: 8px; right: 10px;
 					font-size: $global-font-size;
 					color: $secondary-color;
 					cursor: pointer;
