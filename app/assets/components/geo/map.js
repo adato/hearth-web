@@ -42,27 +42,27 @@ angular.module('hearth.geo').directive('map', [
 					markerLimit = 20,
 					markerLimitValues = {},
 					markerClusterStyles = [{
-						url: "images/marker/circle.png",
+						url: "/app/assets/img/marker/circle.png",
 						textColor: "white",
 						width: 27,
 						height: 27,
 					}, {
-						url: "images/marker/circle.png",
+						url: "/app/assets/img/marker/circle.png",
 						textColor: "white",
 						width: 27,
 						height: 27,
 					}, {
-						url: "images/marker/circle2.png",
+						url: "/app/assets/img/marker/circle2.png",
 						textColor: "white",
 						width: 34,
 						height: 34,
 					}, {
-						url: "images/marker/circle3.png",
+						url: "/app/assets/img/marker/circle3.png",
 						textColor: "white",
 						width: 40,
 						height: 40,
 					}, {
-						url: "images/marker/circle3.png",
+						url: "/app/assets/img/marker/circle3.png",
 						textColor: "white",
 						width: 40,
 						height: 40,

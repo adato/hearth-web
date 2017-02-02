@@ -30,17 +30,17 @@ angular.module('hearth.geo').factory('geo', [
 			_map,
 			images = {
 				pin: {
-					url: 'images/pin.png',
+					url: '/app/assets/img/pin.png',
 					size: new google.maps.Size(49, 49),
 					anchor: new google.maps.Point(14, 34)
 				},
 				need: {
-					url: 'images/need.png',
+					url: '/app/assets/img/need.png',
 					size: new google.maps.Size(29, 53),
 					anchor: new google.maps.Point(15, 47)
 				},
 				offer: {
-					url: 'images/offer.png',
+					url: '/app/assets/img/offer.png',
 					size: new google.maps.Size(29, 53),
 					anchor: new google.maps.Point(15, 47)
 				}
