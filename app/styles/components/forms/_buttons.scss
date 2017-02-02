@@ -4,23 +4,23 @@
   font-family: $body-font-family;
 
   // primary
+  &:hover {
+    background-color: scale-color($primary-color, $lightness: 10%);
+  }
   &:focus,
   &:active {
     background-color: scale-color($primary-color, $lightness: -10%);
   }
-  &:hover {
-    background-color: scale-color($primary-color, $lightness: 10%);
-  }
 
   &.secondary {
     color: $white;
-    &:focus,
-    &:active {
-      background-color: scale-color($secondary-color, $lightness: -10%);
-    }
     &:hover {
       color: $white;
       background-color: scale-color($secondary-color, $lightness: 10%);
+    }
+    &:focus,
+    &:active {
+      background-color: scale-color($secondary-color, $lightness: -10%);
     }
   }
 
