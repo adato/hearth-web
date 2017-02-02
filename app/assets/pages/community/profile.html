@@ -5,34 +5,39 @@
 	</div>
 	<header ng-if="info">
 		<div class="user-basic large-12 columns">
-			<h1>
-				<a dont-jump-top href="{{:: communityLink }}">
-					<span>{{:: info.name }}</span>
-				</a>
-			</h1>
-			<div class="button-bar">
-				<button ng-if="!mine" class="button large" ng-click="openUserRatingForm()">
-					{{:: 'THUMB_UP' | translate }}
-				</button>
-				<button class="button inverse large" ng-if="!mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
-					<i class="fa fa-minus"></i> {{:: 'LEAVE_COMMUNITY' | translate}}
-				</button>
-				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="button inverse large">
-					<i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLY' | translate}}
-				</button>
-				<button ng-if="!mine && info.is_applicant" class="button inverse large">
-					<i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
-				</button>
-				<a href="{{:: communityLink }}/invite-friends" class="right" ng-if="false">
-					<button class="button large">
-						<i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
-				</a>
-				<a ng-if="mine" href="{{:: communityLink }}/edit">
-					<button class="button secondary large">
-						<i class="fa fa-gears"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}
-					</button>
-				</a>
-			</div>
+      <div class="display-medium-flex flex-space-between">
+        <h1>
+          <a dont-jump-top href="{{:: communityLink }}">
+            <span>{{:: info.name }}</span>
+          </a>
+        </h1>
+        <div class="button-group large">
+          <button ng-if="!mine" class="button" ng-click="openUserRatingForm()">
+            {{:: 'THUMB_UP' | translate }}
+          </button>
+          <button class="hollow button" ng-if="!mine && info.is_member"
+                  ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
+            <i class="fa fa-minus"></i> {{:: 'LEAVE_COMMUNITY' | translate}}
+          </button>
+          <button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant"
+                  ng-click="applyForCommunity()" class="hollow button">
+            <i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLY' | translate}}
+          </button>
+          <button ng-if="!mine && info.is_applicant" class="hollow button">
+            <i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
+          </button>
+          <a href="{{:: communityLink }}/invite-friends" class="right" ng-if="false">
+            <button class="button">
+              <i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}
+            </button>
+          </a>
+          <a ng-if="mine" href="{{:: communityLink }}/edit">
+            <button class="button secondary">
+              <i class="fa fa-gears"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}
+            </button>
+          </a>
+        </div>
+      </div>
 			<div class="short-about" ng-if="info.motto">
 				<i class="fa fa-quote-right"></i> {{:: info.motto }}
 			</div>

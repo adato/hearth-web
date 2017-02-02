@@ -8,6 +8,16 @@
     padding: 1.5em 1em;
   }
 
+  &.hollow {
+    background-color: white;
+    &:hover {
+      background-color: white;
+    }
+    &:focus,
+    &:active {
+      background-color: white;
+    }
+  }
   // primary
   &:focus,
   &:active {
@@ -21,7 +31,7 @@
     color: $white;
     &:focus,
     &:active {
-      background-color: scale-color($secondary-color, $lightness: -10%) !important;
+      background-color: scale-color($secondary-color, $lightness: -10%) !important;// how to do without important ?
     }
     &:hover {
       color: $white;

@@ -30,7 +30,6 @@
 	.community-listings {
 		.applications {
 			@extend .community-applications-list;
-			padding-bottom: 0.1px; // fix for not shown bottom space
 			overflow: visible;
 		}
 	}
