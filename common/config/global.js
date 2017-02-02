@@ -1,6 +1,7 @@
 window['$$config'] = {
 	basePath: '/app/',
 	appUrl: window.location.origin + '/app/',
+	imgUrl: 'assets/img',
 	modalTemplates: 'assets/modals/',
 	staticTemplatesRoute: 'assets/locales/',
 	lengthUnit: 'km',
@@ -12,12 +13,12 @@ window['$$config'] = {
 	},
 	defaultMapLocation: [50.075977, 14.426142],
 	imgMaxPixelSize: 1024,
-	defaultHearthImage: 'images/facebook-sharing-image.jpg',
+	defaultHearthImage: 'assets/img/facebook-sharing-image.jpg',
 	defaultHearthImageSize: [1200, 630],
 	defaultHearthImageWidth: 1200,
 	defaultHearthImageHeight: 630,
-	defaultUserAvatar: 'images/no-avatar.jpg',
-	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
+	defaultUserAvatar: 'assets/img/no-avatar.jpg',
+	defaultCommunityAvatar: 'assets/img/no-cm-avatar.jpg',
 	sharingEndpoints: {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 		facebook_invite: 'https://www.facebook.com/share.php?u=',

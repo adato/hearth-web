@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 			},
 			templateUrl: 'assets/components/marketplaceBanner/marketplaceBanner.html',
 			link: function(scope, element, attrs) {
+				scope.config = $rootScope.config;
 				scope.closed = $.cookie(scope.code) || false;
 				scope.title = scope.title || '';
 				scope.href = scope.href || false;

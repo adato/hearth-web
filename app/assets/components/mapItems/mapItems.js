@@ -21,7 +21,7 @@ angular.module('hearth.directives').directive('mapItems', [
 			link: function($scope, baseElement, attrs) {
 				var map, markers = [];
 				var markerImage = {
-					url: 'images/pin.png',
+					url: $$config.imgUrl + '/pin.png',
 					size: new google.maps.Size(49, 49),
 					origin: new google.maps.Point(0, 0),
 					anchor: new google.maps.Point(14, 34)

@@ -5,12 +5,12 @@
 </div>
 
 <div class="large-5 columns hide-for-small">
-	<img src="./images/banner/corner-crowdsource.png" class="right"/>
+	<img src="{{:: config.imgUrl }}/banner/corner-crowdsource.png" class="right"/>
 </div>
 
 <div class="large-12 columns i-want">
 	<div class="large-3 columns center text-center">
-		<img src="./images/banner/crowdsource1.jpg" width="130" height="130" class="round"/>
+		<img src="{{ config.imgUrl }}/banner/crowdsource1.jpg" width="130" height="130" class="round"/>
 	</div>
 	<div class="large-9 columns">
 		<h3>Contribute financially</h3>
@@ -24,12 +24,12 @@
 
 <div class="large-12 columns i-want">
 	<div class="large-3 columns center text-center">
-		<img src="./images/banner/crowdsource2.jpg" width="130" height="130" class="round"/>
+		<img src="{{ config.imgUrl }}/banner/crowdsource2.jpg" width="130" height="130" class="round"/>
 	</div>
 	<div class="large-9 columns">
 		<h3>Come create with us</h3>
 		<p>If you know what these code names mean: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis and Heroku and would like to dedicate a couple of hours of your time and experience, we would be very happy to welcome you onto our team.</p>
-		<a class="button write-email" ng-click="openModal('support-us-modal-write-us');">I`m in</a>
+		<a class="button write-email" ng-click="openModal('support-us-modal-write-us');">I'm in</a>
 	</div>
 </div>
 
@@ -37,7 +37,7 @@
 
 <div class="large-12 columns i-want">
 	<div class="large-3 columns center text-center">
-		<img src="./images/banner/crowdsource3.jpg" width="130" height="130" class="round"/>
+		<img src="{{ config.imgUrl }}/banner/crowdsource3.jpg" width="130" height="130" class="round"/>
 	</div>
 	<div class="large-9 columns">
 		<h3>Spread the word</h3>
@@ -68,24 +68,34 @@
 			<p>Copy the HTML code and insert it into your web. <a href="feedback">Contact us for more info.</a></p>
 
 				<div class="small-12 large-5 columns">
-					<img src="images/logo-dark.png" width="200" style="padding:10px;">
+					<img src="{{:: config.imgUrl }}/logo-dark.png" width="200" style="padding:10px;">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">
+						<a href="https://www.hearth.net/" target="_blank">
+							<img src="https://hearth.net/app/{{:: config.imgUrl }}/logo-dark.png" width="150" style="background:#fff; padding:10px;">
+						</a>
+					</textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
-					<img src="images/logo-orange.png" width="200">
+					<img src="{{:: config.imgUrl }}/logo-orange.png" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">
+						<a href="https://www.hearth.net/" target="_blank">
+							<img src="https://hearth.net/app/{{:: config.imgUrl }}/logo-orange.png" width="150">
+						</a>
+					</textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
-					<img src="images/logo.png" style="background:#7c766a; padding:10px;" width="200">
+					<img src="{{:: config.imgUrl }}/logo.png" style="background:#7c766a; padding:10px;" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">
+						<a href="https://www.hearth.net/" target="_blank">
+							<img src="https://hearth.net/app/{{:: config.imgUrl }}/logo.png" width="150" style="padding:10px;"></a></textarea>
 				</div>
 
 				<br style="clear:both;">
@@ -173,21 +183,21 @@
 		<div class="large-6 columns">
 			<div class="panel get-badge">
 				<h3>Badges and stickers</h3>
-				<img src="./images/icons/hearth.svg"/>
+				<img src="{{:: config.imgUrl }}/icons/hearth.svg"/>
 				<a href="" ng-click="openModal('support-us-modal-badge');" class="button" style="width:180px;">Get stickers</a>
 			</div>
 		</div>
 <!-- 			<div class="large-4 columns">
 			<div class="panel print-flyer">
 				<h3>Print out a leaflet</h3>
-				<img src="./images/icons/print.svg"/>
+				<img src="{{ config.imgUrl }}/icons/print.svg"/>
 				<a href="" ng-click="openModal('support-us-modal-print');" class="button">I want a leaflet</a>
 			</div>
 		</div> -->
 		<div class="large-6 columns">
 			<div class="panel get-widget">
 				<h3>Add a logo to your website</h3>
-				<img src="./images/icons/window2.svg"/>
+				<img src="{{:: config.imgUrl }}/icons/window2.svg"/>
 				<a href="" ng-click="openModal('support-us-modal-widget');" class="button" style="width:180px;">Download a logo</a>
 			</div>
 		</div>

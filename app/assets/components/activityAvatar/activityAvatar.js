@@ -29,7 +29,7 @@ angular.module('hearth.directives').directive('activityAvatar', [
 					} else if (val.object.avatar) {
 						$scope.src = val.object.avatar.normal;
 					} else if ($$config.activitiesIcons[val.verb]) {
-						$scope.src = 'images/icons/' + $$config.activitiesIcons[val.verb] + '.png';
+						$scope.src = $$config.imgUrl + '/icons/' + $$config.activitiesIcons[val.verb] + '.png';
 					} else {
 						$scope.src = null;
 					}

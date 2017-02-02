@@ -39,8 +39,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		 * Push cities to concatenated string.
 		 * Expects info.locations = [{city: ...}, ...]
 		 */
-		$scope.citiesToString = function(info) {
-			info = info || {};
+		$scope.citiesToString = function(info = {}) {
 			info.locations = info.locations || [];
 			var list = [];
 			info.locations.forEach(function(item) {

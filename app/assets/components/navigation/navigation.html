@@ -3,7 +3,7 @@
 	<aside class="off-canvas position-left" test-beacon="off-canvas-content">
 		<ul class="submenu menu vertical">
 			<li ng-if=":: loggedUser._id" class="tab-bar log-info">
-				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
+				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden display-flex flex-align-center">
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
 					<div class="display-inline-block ellipsed-username" ng-bind=":: loggedUser.name"></div>
 				</a>
@@ -165,7 +165,7 @@
 			</div>
 		</nav>
 
-		<div id="searchContainer" class="mobile-top-search-bar-container hidden-for-large-up column" test-beacon="search-bar-mobile-container">
+		<div id="searchContainer" class="mobile-top-search-bar-container hide-for-large column" test-beacon="search-bar-mobile-container">
 			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
 
 			<div class="row">

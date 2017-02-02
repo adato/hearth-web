@@ -24,6 +24,7 @@ nav {
 .left-off-canvas-menu {
 	a {
 		border-bottom: 0px !important;
+
 		&.active {
 			font-weight: bold;
 			color: white;
@@ -37,15 +38,14 @@ nav {
 		white-space: nowrap;
 		font-size: 1.2rem;
 
-		.avatar{
-			margin-right: .5rem;
-			vertical-align: top;
+		.avatar {
+			margin-right: $size-tiny;
 		}
-		a{
-			display: block;
+		a {
 			white-space: nowrap;
 
 			.ellipsed-username{
+				line-height: 40px;
 				width: calc(100% - 60px);
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -66,22 +66,26 @@ nav {
 		margin-right: 2px;
 	}
 
-	.off-canvas-list {
-		.first {
-			border-top: none;
-		}
+	// .off-canvas {
+	.first {
+		border-top: none;
+	}
 
-		i {
-			&.fa {
-				width: 24px;
-			}
-		}
+	a:hover {
+		background-color: scale-color($secondary-color, $lightness: -30%);
+	}
 
-		.messages-icon {
-			margin-left: 6px;
-    		margin-right: 5px;
+	i {
+		&.fa {
+			width: 24px;
 		}
 	}
+
+	.messages-icon {
+		margin-left: 6px;
+		margin-right: 5px;
+	}
+	// }
 }
 
 // .exit-off-canvas {
@@ -185,6 +189,9 @@ nav {
 			text-indent: 0px;
 			top: 6px;
 		}
+	}
+	&.log-info {
+		background: $secondary-color;
 	}
 	.header-right,
 	span {
@@ -520,6 +527,9 @@ nav {
 	transition: color 1s, text-shadow 2s;
 }
 
+.off-canvas a {
+	color: rgba(255,255,255,.7);
+}
 .off-canvas label {
     display: block;
     padding: .3rem .9375rem;

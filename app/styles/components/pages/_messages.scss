@@ -72,6 +72,7 @@
 		.border-bottom,
 		.conversation {
 			border-bottom: 1px solid #CCC;
+
 			&.active-bottom {
 				border-bottom-color: $secondary-color;
 			}
@@ -81,20 +82,29 @@
 			cursor: pointer;
 			padding: 10px;
 			padding-left: 0px;
+
 			&.unreaded {
 				h2 {
 					color: #1da8db;
 				}
 			}
+
 			.conversation-info {
 				margin-top: 7px;
 				float: left;
 				width: 100%;
+
 				i {
 					float: right;
 					font-size: 13px;
 					color: #999;
 					margin-right: $ui-small-grid-size;
+				}
+
+				.conversation-username {
+					font-size: 13px;
+					color: #999;
+					font-style: italic;
 				}
 				.unreaded-count {
 					background-color: #1da8db;
