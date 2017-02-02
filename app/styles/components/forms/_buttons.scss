@@ -3,25 +3,10 @@
   font-weight: bold;
   font-family: $body-font-family;
 
-  .button-group.large &,
-  &.large {
-    padding: 1.5em 1em;
-  }
-
-  &.hollow {
-    background-color: white;
-    &:hover {
-      background-color: white;
-    }
-    &:focus,
-    &:active {
-      background-color: white;
-    }
-  }
   // primary
   &:focus,
   &:active {
-    background-color: scale-color($primary-color, $lightness: -10%) !important;
+    background-color: scale-color($primary-color, $lightness: -10%);
   }
   &:hover {
     background-color: scale-color($primary-color, $lightness: 10%);
@@ -31,7 +16,7 @@
     color: $white;
     &:focus,
     &:active {
-      background-color: scale-color($secondary-color, $lightness: -10%) !important;// how to do without important ?
+      background-color: scale-color($secondary-color, $lightness: -10%);
     }
     &:hover {
       color: $white;
@@ -63,6 +48,18 @@
     &:hover {
       background-color: scale-color($quaternary-color, $lightness: 10%);
     }
+  }
+
+  .button-group.large &,
+  &.large {
+    padding: 1.5em 1em;
+  }
+
+  &.hollow,
+  &.hollow:hover,
+  &.hollow:focus,
+  &.hollow:active {
+    background-color: white;
   }
 
   &.button-white {
