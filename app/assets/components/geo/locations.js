@@ -270,6 +270,7 @@ angular.module('hearth.geo').directive('locations', [
 						return false;
 
 					map = geo.createMap($(".map-container", baseElement)[0], {
+						// draggableCursor: 'url(/www/assets/img/pin.png) 14 34, default',
 						draggableCursor: 'url(' + $$config.imgUrl + '/pin.png) 14 34, default',
 						scrollwheel: false
 					});
