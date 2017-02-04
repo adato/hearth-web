@@ -1,4 +1,5 @@
 var testPassword = protractor.helpers.config().loginPassword;
+const beacon = require('../utils.js').beacon;
 
 describe('hearth remove user', function() {
 
@@ -32,7 +33,7 @@ describe('hearth remove user', function() {
 
 		var delTextarea = element(by.css(".delete-account textarea"));
 		var delPassword = element(by.css('.delete-account input[type="password"]'));
-		var delButton = element(by.css(".delete-account .button-send"));
+		var delButton = beacon('delete-account-button');
 
 		delPassword.sendKeys('Wrong password');
 
