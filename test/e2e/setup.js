@@ -1,6 +1,6 @@
 var MailListener = require("mail-listener2");
 var Promise = require("es6-promise").Promise;
-const beacon = require('utils.js').beacon;
+const beacon = require('./utils.js').beacon;
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
