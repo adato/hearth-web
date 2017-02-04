@@ -30,7 +30,7 @@ describe('user profile', function() {
 
 	function navigateToEditProfile() {
 		// go to profile-edit
-		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
+		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
 		browser.sleep(500);
 		var topMenuLink = element(by.css('[test-beacon="dropdown-edit-profile"]'));
 		topMenuLink.click();
@@ -67,7 +67,7 @@ describe('user profile', function() {
 
 	function clearTagInput(input) {
 		log("clearTagInput (" + input + ")");
-		var el = element(by.css('#profileEditForm '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
+		var el = element(by.css('[test-beacon="profile-edit-form"] '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
 		el.click().then(function() {
 			for (var i = 0; i < 20; i++) {
 				el.sendKeys(protractor.Key.BACK_SPACE); // send more backspaces then we need to clear old entries
@@ -77,12 +77,12 @@ describe('user profile', function() {
 
 	function assertTagInputItemCount(input, value) {
 		log("assertTagInput len(" + input + ") ?= " + value);
-		var els = element.all(by.css('#profileEditForm '+ input +' .tags>ul.tag-list>li')); // pls ensure that $input is in form of css selector
+		var els = element.all(by.css('[test-beacon="profile-edit-form"] '+ input +' .tags>ul.tag-list>li')); // pls ensure that $input is in form of css selector
 		expect(els.count()).toBe(value);
 	}
 
 	function clickSubmitButton(callback) {
-		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
+		var submitButton = element(by.css('[test-beacon="profile-edit-form"] button[type=submit]'));
     submitButton.click().then(function () {
       browser.sleep(500);
 

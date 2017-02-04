@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @ngdoc service 
+ * @ngdoc service
  * @name hearth.services.PostScope
  * @description new post scope can be created using this service
  */
@@ -14,9 +14,10 @@ angular.module('hearth.services').service('PostScope', [
 			var author = post;
 			if (post._type == 'Post') author = post.author;
 
-			// creates new isolated scope 
+			// creates new isolated scope
 			var scope = $scope.$new(true);
 
+			scope.config = $rootScope.config;
 			scope.keywords = $scope.keywordsActive;
 			scope.item = post;
 			scope.toggleTag = Filter.toggleTag;

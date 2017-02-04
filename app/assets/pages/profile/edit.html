@@ -1,5 +1,5 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
-	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
+	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate test-beacon="profile-edit-form">
 		<div class="right small-12 large-5 medium-12 columns" ng-cloak>
 			<div image-preview-direct-upload result="profile.avatar" options="avatarUploadOpts">
 				<img class="preview" ng-if="profile.avatar.public_avatar_url" ng-src="{{ profile.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated/>
