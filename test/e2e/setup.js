@@ -1,5 +1,6 @@
 var MailListener = require("mail-listener2");
 var Promise = require("es6-promise").Promise;
+const beacon = require('utils.js').beacon;
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -60,7 +61,8 @@ module.exports = {
 		this.navigateTo('login');
 		element(by.model('data.username')).sendKeys(this.config().loginName);
 		element(by.model('data.password')).sendKeys(this.config().loginPassword);
-		element(by.css('button.button-send')).click();
+		// element(by.css('button.button-send')).click();
+    beacon('login-button').click();
 		// browser.driver.sleep(2000);
 	},
 	logout: function () {

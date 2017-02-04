@@ -77,7 +77,7 @@ describe('user profile', function() {
 
 	function assertTagInputItemCount(input, value) {
 		log("assertTagInput len(" + input + ") ?= " + value);
-		var els = element.all(by.css('[test-beacon="profile-edit-form"] '+ input +' .tags>ul.tag-list>li')); // pls ensure that $input is in form of css selector
+		var els = element.all(by.css('[test-beacon="profile-edit-form"] ' + input + ' .tags > ul.tag-list > li')); // pls ensure that $input is in form of css selector
 		expect(els.count()).toBe(value);
 	}
 
