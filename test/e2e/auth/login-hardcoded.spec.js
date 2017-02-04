@@ -12,7 +12,7 @@ describe('hearth hardcoded login', function() {
 		loginButton.click();
 
 		// should be on login page
-		expect(element(by.css('.login-form')).isPresent()).toBeTruthy();
+		expect(beacon('login-form').isPresent()).toBeTruthy();
 
 		var loginButton = element(by.css('button.button-send'));
 		var emailInput = element(by.css('input.login_name'));

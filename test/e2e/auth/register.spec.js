@@ -10,21 +10,21 @@ describe('hearth registration', function () {
 	it('should be able to go to register form throught login dialog', function () {
 		// go to login page
 		beacon('nav-login').click();
-		expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
+		expect(beacon('login-form').isDisplayed()).toBeTruthy();
 
 		element
-		  .all(by.css('.login-form .bottom a[href*="register"]'))
+		  .all(by.css('[test-beacon="login-form"] .bottom a[href*="register"]'))
 		  .click();
 
 		// go to register page
-		//element(by.css('.login-form a[href*="register"]')).get(1).click();
+		//element(by.css('[test-beacon="login-form"] a[href*="register"]')).get(1).click();
 
 		// test if register form is visible
 		expect(element.all(by.css('.register-form')).isDisplayed()).toBeTruthy();
 
 		// go back to login and test if it is visible
 		element(by.css('.register-form .bottom a[href*="login"]')).click()
-		expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
+		expect(beacon('login-form').isDisplayed()).toBeTruthy();
 	});
 
 

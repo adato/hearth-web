@@ -1,4 +1,4 @@
-describe('hearth login', function() {  
+describe('hearth login', function() {
 
   beforeEach(function() {
     protractor.helpers.navigateTo('login');
@@ -16,7 +16,7 @@ describe('hearth login', function() {
     var passwordInput = element(by.model('data.password'));
 
     loginButton.click();
-    expect(element(by.css('form.login-form>p.error')).getText()).toBe('Jméno nebo heslo nesedí. Zkuste to prosím ještě jednou.');
+    expect(element(by.css('[test-beacon="login-form"] > p.error')).getText()).toBe('Jméno nebo heslo nesedí. Zkuste to prosím ještě jednou.');
 
     emailInput.sendKeys('tester.testovic@testov.com');
     passwordInput.sendKeys('testerovoHeslo');
@@ -25,9 +25,9 @@ describe('hearth login', function() {
 
     loginButton.click();
 
-    expect(element(by.css('form.login-form>p.error')).getText()).toBe('Jméno nebo heslo nesedí. Zkuste to prosím ještě jednou.');
+    expect(element(by.css('[test-beacon="login-form"] > p.error')).getText()).toBe('Jméno nebo heslo nesedí. Zkuste to prosím ještě jednou.');
   });
-  
+
 
   // sendpassword form
 });
