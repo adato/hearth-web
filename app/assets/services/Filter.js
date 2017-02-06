@@ -108,9 +108,11 @@ angular.module('hearth.services').factory('Filter', [
 				}
 			},
 			setUserFilter: function(filterObject) {
-				FilterResource.patch({
-					user_filter: filterObject
-				});
+				if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
+					FilterResource.patch({
+						user_filter: filterObject
+					});
+				}
 				$rootScope.user.filter = filterObject;
 			},
 			deleteUserFilter: function() {
