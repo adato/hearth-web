@@ -12,11 +12,11 @@ describe('hearth remove user', function() {
 		function getVisibleErrors(driver) {
 			var errors = driver.findElements(by.css(".delete-account div.error span"));
 			return protractor.promise.filter(errors, function(error) {
-					return error.isDisplayed();
-				})
-				.then(function(visibleError) {
-					return visibleError;
-				});
+				return error.isDisplayed();
+			})
+			.then(function(visibleError) {
+				return visibleError;
+			});
 		}
 
     // user should be logged in
