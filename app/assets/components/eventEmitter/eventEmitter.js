@@ -6,7 +6,13 @@ angular.module('hearth.directives').directive('eventEmitter', ['$rootScope', fun
       let setup = scope.$eval(attrs.eventEmitter);
       if (setup.event) {
         let emitter = setup.rootScope ? $rootScope : scope;
-        emitter.$emit(setup.event, setup.data || void 0);
+        if (!setup.waitFor) {
+          emitter.$emit(setup.event, setup.data || void 0);
+        } else {
+          el.on(setup.waitFor, () => {
+            emitter.$emit(setup.event, setup.data || void 0);
+          });
+        }
       }
     }
   };

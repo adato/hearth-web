@@ -29,17 +29,20 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 			link: function(scope, element, attrs) {
 				var slider = null;
 
-				var timeout = $timeout(init, 100);
+				// var timeout = $timeout(init, 100);
 
 				function init() {
-					slider = $(".container", element);
+					slider = $('.container', element);
 
 					// if there are more images then we can show, init slider
 					// if (scope.isOverflow()) {
 					if (isOverflow()) {
 						// show controll buttons only if we init slider
-						$(".controll", element).fadeIn();
-						slider.lemmonSlider();
+						$('.controll', element).fadeIn();
+						$timeout(() => {
+							console.log('initing');
+							slider.lemmonSlider();
+						}, 100);
 					}
 				}
 
@@ -57,11 +60,11 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 
 
 				scope.next = function() {
-					slider.trigger('nextPage');
+					slider.trigger('nextSlide');
 				};
 
 				scope.prev = function() {
-					slider.trigger('prevPage');
+					slider.trigger('prevSlide');
 				};
 
 				scope.$on('initLemmonSlider', (e, data) => {

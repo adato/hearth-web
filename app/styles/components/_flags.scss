@@ -17,16 +17,12 @@
 	&.flag-rounded-corners,
 	&.flag-circular{
 		border-radius: 50%;
-		width: $size-large;
-		height: $size-large;
+		width: 28px;
+		height: 28px;
 		background-position: center center;
 	}
 	&.flag-rounded-corners{
-		/* @kamil: TODO - change to $size-tiny once possible //also fix all px values */
-		border-radius: .3125rem;
-
 		vertical-align: top;
-		margin-top: .5rem;
 		margin-right: .5rem;
 	}
 }
