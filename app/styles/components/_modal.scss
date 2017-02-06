@@ -335,12 +335,13 @@ body.ngdialog-open {
 			padding: 15px;
 		}
 
-		header {
+		.head {
 			position: relative;
 			h2 {
 				font-size: 16px;
 				font-weight: bold;
 				margin-bottom: 5px;
+        text-align: left;
 			}
 			.close {
 				display: none;
@@ -356,25 +357,16 @@ body.ngdialog-open {
 				}
 			}
 		}
-		article {
-			font-size: $base-font-size;
-		}
 		hr {
-			margin-bottom: 15px;
+			margin: 0 0 15px 0 !important;
 			border: none;
 			border-bottom: 1px solid $colorLightGray;
 		}
 		.text-right a {
 			color: $primary-color;
-			margin-top: 11px;
 			&:hover {
 				color: darken($primary-color, 20%);
 			}
-		}
-		.link-button {
-			padding: 5px;
-			padding-left: 0;
-			font-weight: 600;
 		}
 		.columns {
 			padding: 0px;
