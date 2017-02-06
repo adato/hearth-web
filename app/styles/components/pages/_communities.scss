@@ -11,6 +11,15 @@
 		transition: opacity 0.4s ease-in-out;
 	}
 	.community-list {
+		h3 {
+
+			a {
+				color: $black;
+				&:hover {
+					color: $primary-color;
+				}
+			}
+		}
 		.community-item {
 			@extend .large-12, .columns, .item;
 			padding: 4*$ui-small-grid-size;
