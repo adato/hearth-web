@@ -40,7 +40,6 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 						// show controll buttons only if we init slider
 						$('.controll', element).fadeIn();
 						$timeout(() => {
-							console.log('initing');
 							slider.lemmonSlider();
 						}, 100);
 					}
