@@ -12,23 +12,41 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 			scope: false,
 			transclude: true,
 			replace: true,
-			template: '<div class="lemmon-slider"><div class="container"><ul ng-transclude></ul></div><div class="controll"><a class="prev-page" ng-click="prev()"><i class="fa fa-chevron-left"></i></a><a class="next-page" ng-click="next()"><i class="fa fa-chevron-right"></i></a></div></div>',
+			template: ''
+				+ '<div class="lemmon-slider">'
+					+ '<div class="container">'
+						+ '<ul ng-transclude></ul>'
+					+ '</div>'
+					+ '<div class="controll">'
+						+ '<a class="prev-page" ng-click="prev()">'
+							+ '<i class="fa fa-chevron-left"></i>'
+						+ '</a>'
+						+ '<a class="next-page" ng-click="next()">'
+							+ '<i class="fa fa-chevron-right"></i>'
+						+ '</a>'
+					+ '</div>'
+				+ '</div>',
 			link: function(scope, element, attrs) {
 				var slider = null;
-				var timeout = $timeout(function() {
+
+				var timeout = $timeout(init, 100);
+
+				function init() {
 					slider = $(".container", element);
 
 					// if there are more images then we can show, init slider
-					if (scope.isOverflow()) {
+					// if (scope.isOverflow()) {
+					if (isOverflow()) {
 						// show controll buttons only if we init slider
 						$(".controll", element).fadeIn();
 						slider.lemmonSlider();
 					}
-				}, 100);
+				}
 
 				// test if we have more images than there is space
 				// if yes, we will init slider
-				scope.isOverflow = function() {
+				// scope.isOverflow = function() {
+				function isOverflow() {
 					var width = 0;
 
 					$('li', element).each(function() {
@@ -37,6 +55,7 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 					return width > slider.width();
 				};
 
+
 				scope.next = function() {
 					slider.trigger('nextPage');
 				};
@@ -44,6 +63,11 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 				scope.prev = function() {
 					slider.trigger('prevPage');
 				};
+
+				scope.$on('initLemmonSlider', (e, data) => {
+					if (data.isLast) init();
+					e.stopPropagation();
+				});
 
 				scope.$on('$destroy', function() {
 					slider = null;

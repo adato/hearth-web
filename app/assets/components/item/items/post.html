@@ -149,7 +149,7 @@
 						</p>
 					</div>
 					<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
-						<li ng-repeat="photo in :: item.attachments_attributes track by $index">
+						<li ng-repeat="photo in :: item.attachments_attributes track by $index" event-emitter="{event: 'initLemmonSlider', data: {isLast: $last}}">
 							<a class="fancy" ng-href="{{:: photo.large }}" rel="{{:: item._id}}">
 								<img class="post-image" ng-src="{{:: photo.normal}}" />
 							</a>

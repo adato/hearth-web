@@ -28,9 +28,9 @@ angular.module('hearth.services').service('PostScope', [
 			angular.extend(scope, ItemServices);
 
 			scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
-			scope.item.text_parsed = $filter('nl2br')($filter('linky')(scope.item.text));
+			scope.item.text_parsed = $filter('nl2br')($filter('linky')(scope.item.text, '_blank'));
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
-			scope.item.text_short_parsed = $filter('linky')(scope.item.text_short);
+			scope.item.text_short_parsed = $filter('linky')(scope.item.text_short, '_blank');
 
 			var timeout = null;
 			var updateTimeAgo = function() {
