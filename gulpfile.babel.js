@@ -120,7 +120,7 @@ function javascript() {
     .pipe($.sourcemaps.init())
     .pipe($.babel({ignore: ['what-input.js']}))
     .pipe($.concat('app.js'))
-    .pipe($.if(ENVIRONMENT === PROD_ENV, $.uglify()
+    .pipe($.if((ENVIRONMENT === PROD_ENV || ENVIRONMENT === STAGE_ENV), $.uglify()
       .on('error', e => { console.log(e); })
     ))
     .pipe($.if(!ENVIRONMENT === PROD_ENV, $.sourcemaps.write()))
