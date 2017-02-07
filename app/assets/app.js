@@ -158,7 +158,7 @@ angular.module('hearth', [
 					}
 					$delegate(exception, cause);
 				};
-			});
+			}]);
 
 			ipnConfig.skipUtilScriptDownload = true;
 		}
