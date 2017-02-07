@@ -2,6 +2,11 @@
   margin: 0;
   font-weight: bold;
   font-family: $body-font-family;
+  white-space: nowrap;
+
+  @include breakpoint(medium down) {
+    min-height: 44px;
+  }
 
   // primary
   &:hover {
