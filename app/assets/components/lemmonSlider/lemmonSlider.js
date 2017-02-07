@@ -29,7 +29,7 @@ angular.module('hearth.directives').directive('lemmonSlider', ['$timeout',
 			link: function(scope, element, attrs) {
 				var slider = null;
 
-				// var timeout = $timeout(init, 100);
+				var timeout = $timeout(init, 100);
 
 				function init() {
 					slider = $('.container', element);
