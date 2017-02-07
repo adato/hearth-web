@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'DOMTraversalService',
-	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, DOMTraversalService) {
+	'$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'DOMTraversalService', '$location',
+	function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, DOMTraversalService, $location) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -149,7 +149,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					Messenger.decreaseUnread();
 					conversation.read = true;
 
-					$state.go('.', {'mark-as-read': ''}, {reload: false, notify: false});
+					// $state.go('.', {'mark-as-read': ''}, {reload: false, notify: false});
+					$location.search('mark-as-read', null);
 
 					Conversations.markAsRead({
 						id: conversation._id
@@ -161,12 +162,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					Messenger.increaseUnread();
 					conversation.read = false;
 
-					$state.go('.', {
-						'mark-as-read': ''
-					}, {
-						reload: false,
-						notify: false
-					});
+					// $state.go('.', {'mark-as-read': ''}, {reload: false, notify: false});
+					$location.search('mark-as-read', null);
 
 					Conversations.markAsUnread({
 						id: conversation._id
@@ -190,7 +187,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						_loadingOlderMessages = false;
 
 						scrollToCurrentPosition();
-						if (loadOlderMessages !== true) markConversationAsRead($scope.info);
+						if (loadOlderMessages !== true) markConversationAsRead(conversation);
 					}, error => {
 						_loadingOlderMessages = false;
 					});
