@@ -149,12 +149,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					Messenger.decreaseUnread();
 					conversation.read = true;
 
-					$state.go('.', {
-						'mark-as-read': ''
-					}, {
-						reload: false,
-						notify: false
-					});
+					$state.go('.', {'mark-as-read': ''}, {reload: false, notify: false});
 
 					Conversations.markAsRead({
 						id: conversation._id
@@ -191,12 +186,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						params: {
 							older: $scope.info.messages[0] ? $scope.info.messages[0].created_at : undefined
 						}
-					}).then(function(conversation) {
+					}).then(conversation => {
 						_loadingOlderMessages = false;
 
 						scrollToCurrentPosition();
 						if (loadOlderMessages !== true) markConversationAsRead($scope.info);
-					}, function(error) {
+					}, error => {
 						_loadingOlderMessages = false;
 					});
 				}
@@ -247,22 +242,22 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					if ($scope.showParticipants && !$scope.info.allParticipants) {
 						ConversationAux.addConversationParticipants({
 							conversation: $scope.info
-						}).then(function(conversation) {
+						}).then(conversation => {
 							resizeTMessagesBox();
 						});
 					};
 				};
 
 				function bindActionHandlers() {
-					element.bind('click', function(event) {
+					element.bind('click', event => {
 						markConversationAsRead($scope.info, event);
 					});
-					element.bind('keypress', function(event) {
+					element.bind('keypress', event => {
 						markConversationAsRead($scope.info, event);
 					});
-					var ev = $scope.$on('scrollbarResize', function() {
+					var ev = $scope.$on('scrollbarResize', () => {
 						ev();
-						$('.nano-content', element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e) {
+						$('.nano-content', element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', e => {
 							if (e.which > 0 || e.type == 'mousedown' || e.type == 'mousewheel') markConversationAsRead($scope.info, e);
 						});
 					});
@@ -283,17 +278,15 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					$scope.showParticipants = false;
 					$scope.showParticipantsForm = false;
 
-					$timeout(function() {
-						bindActionHandlers();
-					}, 10);
+					$timeout(bindActionHandlers, 10);
 
-					ConversationAux.loadConversation(conversationId).then(function(conversation) {
+					ConversationAux.loadConversation(conversationId).then(conversation => {
 						$scope.info = conversation;
 						if ($state.params['mark-as-read']) markConversationAsRead(conversation);
 						setTitle();
 						$scope.loaded = true;
 
-						$timeout(function() {
+						$timeout(() => {
 							// binding here so that even 'ng-if'-ed things are done
 							$('.nano-content', element).scroll(onContentScrolling);
 							testScrollBottom();
