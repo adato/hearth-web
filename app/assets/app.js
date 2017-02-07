@@ -149,7 +149,7 @@ angular.module('hearth', [
 		}
 	]).config(['$provide', 'ipnConfig',
 		function($provide, ipnConfig) {
-			$provide.decorator("$exceptionHandler", function($delegate, $window) {
+			$provide.decorator('$exceptionHandler', ['$delegate', '$window', function($delegate, $window) {
 				return function(exception, cause) {
 					if ($window.Rollbar) {
 						$window.Rollbar.error(exception, {
@@ -158,7 +158,7 @@ angular.module('hearth', [
 					}
 					$delegate(exception, cause);
 				};
-			});
+			}]);
 
 			ipnConfig.skipUtilScriptDownload = true;
 		}
