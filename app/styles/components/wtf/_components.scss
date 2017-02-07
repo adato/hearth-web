@@ -103,6 +103,10 @@
 	display: flex;
 	align-items: center;
 }
+.display-inline-flex{
+  display: inline-flex;
+  align-items: center;
+}
 .flex-divide-small > .flex-div {
 	margin-right: $size-small;
 }

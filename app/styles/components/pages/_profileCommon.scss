@@ -6,6 +6,10 @@
 		margin-left: 0;
 		margin-right: 0;
 	}
+  .button-group,
+  .button-group .button {
+    margin-bottom: 0;
+  }
 	header {
 		.user-basic {
 			padding: 0 0 1rem 0;
@@ -21,7 +25,7 @@
 			}
 			div.short-about {
 				margin-left: 30px;
-				margin-top: 15px;
+				margin-top: 10px;
 				margin-bottom: 15px;
 				word-wrap: break-word;
 				line-height: 1.5;
