@@ -3,16 +3,17 @@
 	<span ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</span>
 </h1>
 
-<div class='error text-center margin-bottom-20' ng-show="showError.blockedUserByEmail">
-	<span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
-	</span>
-</div>
-
 <div class="register-login-dialog" ng-cloak>
 	<div class="register-form row">
 		<div class="headMessage error"></div>
 		<form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
 			<div class="register-notify-area"></div>
+      <div class='alert-box alert' ng-show="showError.blockedUserByEmail">
+        <i class="fa fa-exclamation-triangle"></i>
+        <span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile
+              translate-values="{'attrs': 'ng-href=\'feedback\''}">
+	    </span>
+      </div>
 			<p ng-if="!params.facebook">{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
 
 			<p ng-bind-html="'SIGNUP_HEADING_TEXT_FB' | translate" ng-if="params.facebook"></p>
