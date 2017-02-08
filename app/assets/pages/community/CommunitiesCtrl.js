@@ -23,6 +23,5 @@ angular.module('hearth.controllers').controller('CommunitiesCtrl', [
 			$('[community-list-add-focusser]').removeClass('hide');
 		};
 
-		UnauthReload.check();
 	}
 ]);
