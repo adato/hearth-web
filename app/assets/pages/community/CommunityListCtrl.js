@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.CommunityListCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
@@ -44,7 +44,6 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 			});
 		};
 
-		UnauthReload.check();
 		$scope.load();
 	}
 ]);
