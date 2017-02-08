@@ -25,7 +25,7 @@
 				</a>
 			</li>
 			<li>
-				<a ng-if=":: loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
+				<a ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
 					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}
 				</a>
 			</li>
@@ -211,7 +211,7 @@
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
 				</a>
 
-				<a ng-if=":: loggedUser._id" ui-sref="communities.suggested" class='header-item' ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
+				<a ui-sref="communities.suggested" class='header-item' ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 					<div class="fa icon-community"></div>
 					<label>{{:: 'COMMUNITIES' | translate }}</label>
 				</a>
