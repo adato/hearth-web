@@ -71,31 +71,21 @@
 					<img src="{{:: config.imgUrl }}/logo-dark.png" width="200" style="padding:10px;">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly">
-						<a href="https://www.hearth.net/" target="_blank">
-							<img src="https://hearth.net/app/{{:: config.imgUrl }}/logo-dark.png" width="150" style="background:#fff; padding:10px;">
-						</a>
-					</textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(0); }}</textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="{{:: config.imgUrl }}/logo-orange.png" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly">
-						<a href="https://www.hearth.net/" target="_blank">
-							<img src="https://hearth.net/app/{{:: config.imgUrl }}/logo-orange.png" width="150">
-						</a>
-					</textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(1); }}</textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="{{:: config.imgUrl }}/logo.png" style="background:#7c766a; padding:10px;" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly">
-						<a href="https://www.hearth.net/" target="_blank">
-							<img src="https://hearth.net/app/{{:: config.imgUrl }}/logo.png" width="150" style="padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(2); }}</textarea>
 				</div>
 
 				<br style="clear:both;">

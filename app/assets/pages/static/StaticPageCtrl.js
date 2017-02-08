@@ -41,9 +41,9 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 		};
 
 		$scope.logos = [
-			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/' + $$config.imgUrl + '/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a>',
-			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/' + $$config.imgUrl + '/logo-orange.png" width="150"></a>',
-			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/' + $$config.imgUrl + '/logo.png" width="150" style="padding:10px;"></a>'
+			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net' + $$config.imgUrl + '/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a>',
+			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net' + $$config.imgUrl + '/logo-orange.png" width="150"></a>',
+			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net' + $$config.imgUrl + '/logo.png" width="150" style="padding:10px;"></a>'
 		];
 
 		$scope.emailPattern = '^[_a-z0-9A-Z]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$';
