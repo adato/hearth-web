@@ -11,29 +11,29 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	var inited,
 		processingRunning;
 
-	var ACTION_NEW_CONVERSATION = 'created',
-		ACTION_NEW_MESSAGE = 'created',
-		ACTION_CONVERSATION_READ = 'read',
-		ACTION_CONVERSATION_UNREAD = 'unread',
-		ACTION_CONVERSATION_ARCHIVED = 'archived',
-		ACTION_CONVERSATION_DELETED = 'deleted';
+	var ACTION_NEW_CONVERSATION = 'created';
+	var ACTION_NEW_MESSAGE = 'created';
+	var ACTION_CONVERSATION_READ = 'read';
+	var ACTION_CONVERSATION_UNREAD = 'unread';
+	var ACTION_CONVERSATION_ARCHIVED = 'archived';
+	var ACTION_CONVERSATION_DELETED = 'deleted';
 
 	var MESSAGE_LIMIT = 15;
 
 	// list of conversations shown in the conversations column
-	var conversationList = [],
+	var conversationList = [];
 
 		// all conversations downloaded from the server
 		// 2017-02-07 very probably would need to be a map anyway to handle all the different filters
 		//					but atm it seems ok without caching
 		// conversationsCache = [],	// << not used ATM
 
-		conversationListLoading,
-		conversationListLoaded,
-		conversationGetLimit = 8,
-		conversationFilter = {},
-		conversationGetBuffer = [],
-		socketReinitCounter = 0;
+	var conversationListLoading;
+	var conversationListLoaded;
+	var conversationGetLimit = 8;
+	var conversationFilter = {};
+	var conversationGetBuffer = [];
+	var socketReinitCounter = 0;
 
 	// TODO delete later
 	var convListErrorThrowed;
