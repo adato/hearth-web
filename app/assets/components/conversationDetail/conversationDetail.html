@@ -59,7 +59,7 @@
 			<div class="nano messages-container" custom-scrollbar>
 				<div class="nano-content">
 					<div class="nano-content-inner">
-						<article class="message" ng-repeat="item in info.messages track by $index">
+						<article class="message" ng-repeat="item in info.messages track by item._id">
 							<div ng-if="item.author">
 								<div class="message-head display-flex flex-space-between flex-wrap" ng-class="{'owner-name': item.author._type == 'Community'}">
 									<a class="display-flex" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
