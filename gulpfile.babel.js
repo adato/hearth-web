@@ -371,10 +371,16 @@ function getSeries(...args) {
 
 // Watch for changes to static assets, pages, Sas)s, and JavaScript
 function watch() {
+  // APP
   gulp.watch(PATHS.index).on('all', getSeries(copyRoot));
   gulp.watch(PATHS.src.app.html).on('all', getSeries(templates));
   gulp.watch(['common/config/**/*.js', 'app/config/**/*.js']).on('all', getSeries(configs));
   gulp.watch(PATHS.src.app.scss).on('all', getSeries(sass));
   gulp.watch(PATHS.src.app.js).on('all', getSeries(javascript));
   gulp.watch(PATHS.src.app.img).on('all', getSeries(images));
+
+  // LP
+  gulp.watch(PATHS.src.landing.js).on('all', getSeries(javascriptLanding));
+  gulp.watch(PATHS.src.landing.index).on('all', getSeries(templatesLanding));
+  gulp.watch(PATHS.src.landing.css).on('all', getSeries(cssLanding));
 }
