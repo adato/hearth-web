@@ -1,28 +1,29 @@
 ;(function(window) {
 	'use strict';
 
-	var $ = window.aeg.$,
- 		fe = window.aeg.fe,
-		findParentBySelector = window.aeg.findParentBySelector,
-		shuffle = window.aeg.shuffle;
+	var $ = window.aeg.$;
+ 	var fe = window.aeg.fe;
+	var findParentBySelector = window.aeg.findParentBySelector;
+	var shuffle = window.aeg.shuffle;
 
 	//
 	//	FACES
 	//
 
 	// FACES VARIABLES
-	var tabsIdentificator = '[tabs]',
-		tabHeaderWrapperIdentificator = '[tab-headers]',
-		tabHeadersIdentificator = '[tab-headers] li',
-		tabContentsIdentificator = '[tab-content]',
-		tabContentsPaneIdentificator = '[tab-pane]';
+	var tabsIdentificator = '[tabs]';
+	var tabHeaderWrapperIdentificator = '[tab-headers]';
+	var tabHeadersIdentificator = '[tab-headers] li';
+	var tabContentsIdentificator = '[tab-content]';
+	var tabContentsPaneIdentificator = '[tab-pane]';
 
 	// DYNAMIC DATA FILL
-	var bartaSetup = getTestimonialTranslations('barta'),
-		hajzlerSetup = getTestimonialTranslations('hajzler'),
-		panekSetup = getTestimonialTranslations('panek'),
-		vaclavekSetup = getTestimonialTranslations('vaclavek'),
-		fellmerSetup = getTestimonialTranslations('fellmer');
+	var bartaSetup = getTestimonialTranslations('barta');
+	var hajzlerSetup = getTestimonialTranslations('hajzler');
+	var panekSetup = getTestimonialTranslations('panek');
+	var vaclavekSetup = getTestimonialTranslations('vaclavek');
+	var fellmerSetup = getTestimonialTranslations('fellmer');
+	var dusekSetup = getTestimonialTranslations('dusek');
 	bartaSetup.code = 'barta';
 	bartaSetup.imgId = 'image-testimonial-barta';
 	bartaSetup.name = 'Jiří Bárta';
@@ -38,6 +39,9 @@
 	fellmerSetup.code = 'fellmer';
 	fellmerSetup.imgId = 'image-testimonial-fellmer';
 	fellmerSetup.name = 'Raphael Fellmer';
+	dusekSetup.code = 'dusek';
+	dusekSetup.imgId = 'image-testimonial-dusek';
+	dusekSetup.name = 'Jaroslav Dušek';
 
 	var dynaTestimonials = {
 		wrapperSelector: '#testimonialsWrapper',
@@ -46,7 +50,8 @@
 			hajzlerSetup,
 			panekSetup,
 			vaclavekSetup,
-			fellmerSetup
+			fellmerSetup,
+			dusekSetup
 		]
 	};
 
