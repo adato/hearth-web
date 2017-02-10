@@ -780,6 +780,9 @@ a.masonry-item{
 	text-decoration: none;
 	font-family: 'Raleway';
 }
+.footer .footer-link{
+	font-family: 'Merriweather', Helvetica, Arial, sans-serif;
+}
 .footer a:hover{
 	color: #fa5800;
 }
