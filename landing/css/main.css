@@ -972,6 +972,23 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
     .nav.nav-justified > li > a .quote { right: 8px; bottom: 8px; }
 }
 
+.img-rotator.controls [rotate-right],
+.img-rotator.controls [rotate-left] {
+	position: absolute;
+	top: 40px;
+	/*font-size: 32px;*/
+}
+.img-rotator.controls [rotate-right]:hover,
+.img-rotator.controls [rotate-left]:hover {
+	color: #fa5800;
+}
+.img-rotator.controls [rotate-right] {
+	right: -40px;
+}
+.img-rotator.controls [rotate-left] {
+	left: -40px;
+}
+
 /*******************
 	LANG DEPENDENT
 *******************/

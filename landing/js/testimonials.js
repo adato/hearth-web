@@ -17,6 +17,9 @@
 	var tabContentsIdentificator = '[tab-content]';
 	var tabContentsPaneIdentificator = '[tab-pane]';
 
+	var tabsRotatorLeftSelector = '[rotate-left]';
+	var tabsRotatorRightSelector = '[rotate-right]';
+
 	// DYNAMIC DATA FILL
 	var bartaSetup = getTestimonialTranslations('barta');
 	var hajzlerSetup = getTestimonialTranslations('hajzler');
@@ -44,7 +47,7 @@
 	dusekSetup.name = 'Jaroslav Dušek';
 
 	var dynaTestimonials = {
-		wrapperSelector: '#testimonialsWrapper',
+		wrapperSelector: '[testimonials-wrapper]',
 		tabs: [
 			bartaSetup,
 			hajzlerSetup,
@@ -112,8 +115,8 @@
 				</div>\
 			";
 		}
-		$(dynaTestimonials.wrapperSelector).querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
-		$(dynaTestimonials.wrapperSelector).querySelector(tabContentsIdentificator).innerHTML = contents;
+		$(dynaTestimonials.wrapperSelector)[0].querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
+		$(dynaTestimonials.wrapperSelector)[0].querySelector(tabContentsIdentificator).innerHTML = contents;
 	}
 
 	// TESTIMONIALS CODE
@@ -126,25 +129,66 @@
 					event.preventDefault();
 					event.stopImmediatePropagation();
 					var a = findParentBySelector(event.target, 'a');
-					if (a) {
-						removeActive(tabHeaders);
-						a.parentNode.classList.add('active');
-						var tab = $(a.getAttribute('href'));
-						if (tab) {
-							removeActive(tabContents, false, 1);
-							tab.classList.add('active');
-						}
-					}
+					setActive({ tabContents, tabHeaders, a })
 				});
 			}
+			fe($(tabsRotatorLeftSelector), i => {
+				i.addEventListener('click', () => {
+					rotate({ parent: tabs, tabHeaders, tabContents });
+				});
+			});
+			fe($(tabsRotatorRightSelector), i => {
+				i.addEventListener('click', () => {
+					rotate({ parent: tabs, tabHeaders, tabContents, dir: 1 });
+				});
+			});
 		}
 	});
+
+	function setActive({ a, tabContents, tabHeaders }) {
+		if (a) {
+			removeActive(tabHeaders);
+			a.parentNode.classList.add('active');
+			var tab = $(a.getAttribute('href'));
+			if (tab) {
+				removeActive(tabContents, false);
+				tab.classList.add('active');
+			}
+		}
+	}
 
 	function removeActive(elems, fromParent) {
 		for (var i = elems.length;i--;) {
 			var el = (fromParent ? elems[i].parentNode : elems[i]);
 			el.classList.remove('active');
 		}
+	}
+
+	/**
+	 * - parent {Node} - the parent node on which to search for face item wrapper
+	 * - dir {Boolean} - direction of rotation. false means right [false]
+
+	 * - tabHeaders {NodeList}
+	 * - tabContents {NodeList}
+	 */
+	function rotate(opts = {}) {
+		let parent = opts.parent.querySelector(tabHeaderWrapperIdentificator);
+		let { tabHeaders, tabContents } = opts;
+
+
+		// reassign active class
+		let currentActiveElement = parent.querySelector('.active');
+		let target = opts.dir ? currentActiveElement.previousElementSibling : currentActiveElement.nextElementSibling;
+		let backupTarget = opts.dir ? currentActiveElement.parentNode.lastElementChild : currentActiveElement.parentNode.firstElementChild;
+		let toBeActiveElement = target || backupTarget;
+		removeActive(tabContents, false);
+		let a = toBeActiveElement.querySelector('a');
+		setActive({ a, tabContents, tabHeaders });
+
+		// rotate the list
+		let paramA = opts.dir ? parent.children.length - 1 : 0;
+		let paramB = opts.dir ? 0 : parent.children.length;
+		parent.insertBefore(parent.children[paramA], parent.children[paramB]);
 	}
 
 })(window);
