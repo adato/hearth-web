@@ -37,7 +37,7 @@ describe('Access to Hearth blocked by IP address', function () {
       });
     $httpBackend.flush();
 
-    expect($window.location.href).toEqual('/access-denied.html');
+    expect($window.location.href).toEqual('/app/access-denied.html');
 
   });
 });

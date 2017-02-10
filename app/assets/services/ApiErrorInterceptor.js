@@ -16,7 +16,7 @@ angular.module('hearth.services').factory('ApiErrorInterceptor', [
 			},
 			responseError: function(rejection) {
 				if (rejection.status === 403 && rejection.data && rejection.data.error === "IP blocked") {
-					$window.location.href = '/access-denied.html';
+					$window.location.href = '/app/access-denied.html';
 					return $q.reject(rejection);
 				}
 				Notify.onResourceError(rejection);
