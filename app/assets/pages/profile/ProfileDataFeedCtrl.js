@@ -246,6 +246,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					postCount: $scope.userPostCount
 				}),
 				templateUrl: templateUrl,
+				inactivateTags: true,
 				cb: finishLoading
 			};
 
@@ -260,7 +261,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					postCount: $scope.userPostCount
 				}),
 				disableLoading: true,
-				templateUrl: templateUrl
+				templateUrl: templateUrl,
+				inactivateTags: true
 			};
 
 		}
