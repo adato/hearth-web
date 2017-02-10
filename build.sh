@@ -22,5 +22,5 @@ set -e -E
 npm install
 #npm install karma gulp-cli bower
 node_modules/bower/bin/bower --allow-root install
-npm run build --target=$ENV
+npm run build -- --target=$ENV
 

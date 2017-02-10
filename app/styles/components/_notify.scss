@@ -1,9 +1,9 @@
 .alert-box {
-	padding-top: 10px !important;
-	padding-bottom: 10px !important;
-	color: white !important;
+	padding: 10px;
+	color: white;
 	font-size: 15px;
-
+  border-radius: $global-radius;
+  margin-bottom: $size-medium;
 	p {
 		display: inline;
 	}
@@ -21,6 +21,10 @@
 		text-decoration: underline;
 		color: inherit;
 	}
+  &.alert {
+    background-color: #f04124;;
+    border-color: #de2d0f;
+  }
 	&.success {
 		background-color: #8DC321 !important;
 	}

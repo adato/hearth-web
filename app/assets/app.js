@@ -149,7 +149,7 @@ angular.module('hearth', [
 		}
 	]).config(['$provide', 'ipnConfig',
 		function($provide, ipnConfig) {
-			$provide.decorator("$exceptionHandler", ['$delegate', '$window', function($delegate, $window) {
+			$provide.decorator('$exceptionHandler', ['$delegate', '$window', function($delegate, $window) {
 				return function(exception, cause) {
 					if ($window.Rollbar) {
 						$window.Rollbar.error(exception, {
