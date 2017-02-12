@@ -881,7 +881,7 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 	padding: 0;
 	display: flex;
 }
-.nav-justified>li{min-width: 25%;}
+.nav-justified>li{min-width: 20%;}
 .nav-justified{
 	line-height: 1.2;
 }
@@ -975,7 +975,8 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 .img-rotator.controls [rotate-right],
 .img-rotator.controls [rotate-left] {
 	position: absolute;
-	top: 40px;
+	top: calc(50% - 1em);
+	line-height: 2em;
 	/*font-size: 32px;*/
 }
 .img-rotator.controls [rotate-right]:hover,

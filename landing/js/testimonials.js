@@ -75,8 +75,8 @@
 
 	// shuffle the tabs
 	shuffle(dynaTestimonials.tabs);
-	// show at most 4
-	dynaTestimonials.tabs = dynaTestimonials.tabs.slice(0, 4);
+	// show at most 5
+	dynaTestimonials.tabs = dynaTestimonials.tabs.slice(0, 5);
 
 	fillWithData(dynaTestimonials);
 
