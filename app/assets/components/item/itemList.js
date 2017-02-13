@@ -44,24 +44,25 @@ angular.module('hearth.directives').directive('itemList', [
 					// normalize $resource and $q api
 					promise = promise.$promise || promise;
 
-					promise.then(function(res) {
+					promise.then(res => {
 						items = res;
 						return $templateRequest(scope.options.templateUrl);
-					}).then(function(template) {
+					}).then(template => {
 						scope.loading = false;
 						var compiledTemplate = $compile(template);
 						var fragment = document.createDocumentFragment();
 						items.forEach(function(item) {
-							var scope = PostScope.getPostScope(item, $rootScope);
-							scope.delayedView = false;
-							compiledTemplate(scope, function(clone) {
+							let _scope = PostScope.getPostScope(item, $rootScope);
+							_scope.delayedView = false;
+							_scope.inactivateTags = !!scope.options.inactivateTags;
+							compiledTemplate(_scope, clone => {
 								fragment.appendChild(clone[0]);
 							});
 						});
 						content.innerHTML = '';
 						content.appendChild(fragment);
 						if (typeof scope.options.cb === 'function') scope.options.cb(items);
-					}).catch(function(err) {
+					}).catch(err => {
 						scope.loading = false;
 						console.log('Error getting items:', err);
 					});

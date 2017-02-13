@@ -48,6 +48,12 @@ $max-modal-window-width:32em;
 			}
 		}
 	}
+  .alert-box {
+    a,
+    a:visited {
+      color: $white;
+    }
+  }
 	.social-login {
 		text-align: center;
 		padding: 10px;

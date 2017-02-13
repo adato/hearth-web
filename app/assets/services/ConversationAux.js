@@ -11,25 +11,29 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	var inited,
 		processingRunning;
 
-	var ACTION_NEW_CONVERSATION = 'created',
-		ACTION_NEW_MESSAGE = 'created',
-		ACTION_CONVERSATION_READ = 'read',
-		ACTION_CONVERSATION_UNREAD = 'unread',
-		ACTION_CONVERSATION_ARCHIVED = 'archived',
-		ACTION_CONVERSATION_DELETED = 'deleted';
+	var ACTION_NEW_CONVERSATION = 'created';
+	var ACTION_NEW_MESSAGE = 'created';
+	var ACTION_CONVERSATION_READ = 'read';
+	var ACTION_CONVERSATION_UNREAD = 'unread';
+	var ACTION_CONVERSATION_ARCHIVED = 'archived';
+	var ACTION_CONVERSATION_DELETED = 'deleted';
 
 	var MESSAGE_LIMIT = 15;
 
 	// list of conversations shown in the conversations column
-	var conversationList = [],
+	var conversationList = [];
+
 		// all conversations downloaded from the server
+		// 2017-02-07 very probably would need to be a map anyway to handle all the different filters
+		//					but atm it seems ok without caching
 		// conversationsCache = [],	// << not used ATM
-		conversationListLoading,
-		conversationListLoaded,
-		conversationGetLimit = 8,
-		conversationFilter = {},
-		conversationGetBuffer = [],
-		socketReinitCounter = 0;
+
+	var conversationListLoading;
+	var conversationListLoaded;
+	var conversationGetLimit = 8;
+	var conversationFilter = {};
+	var conversationGetBuffer = [];
+	var socketReinitCounter = 0;
 
 	// TODO delete later
 	var convListErrorThrowed;
@@ -320,8 +324,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *	@return $q promise - resolves into conversation if found (locally or remote), else rejects
 	 */
 	function loadConversation(id) {
-		return $q(function(resolve, reject) {
-			if (!id) resolve(conversationListLoaded && conversationList.length ? conversationList[0] : false);
+		return $q((resolve, reject) => {
+			if (!id) return resolve(conversationListLoaded && conversationList.length ? conversationList[0] : false);
 			for (var i = 0, l = conversationList.length; i < l; i++) {
 				if (conversationList[i]._id === id) {
 					if (conversationList[i].messages && conversationList[i].messages.length) {
@@ -335,10 +339,10 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			}
 			Conversations.get({
 				id: id
-			}, function(conversation) {
+			}, conversation => {
 				loadConversationMessages({
 					conversation: conversation
-				}).then(function(conversation) {
+				}).then(conversation => {
 					resolve(conversation);
 				});
 			}, reject);
@@ -355,15 +359,13 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *	- {Object} params - parametres for $resource.getMessages call
 	 *	@return {$q Promise} that resolves into [array of messages || conversation extended with property 'messages']
 	 */
-	function loadConversationMessages(paramObject) {
-		paramObject = paramObject || {};
-
+	function loadConversationMessages(paramObject = {}) {
 		// only add limit if we don't fetch newer messages
 		var defaults = {};
 		paramObject.params = paramObject.params || {};
 		if (!paramObject.params.newer) defaults.limit = MESSAGE_LIMIT;
 		var params = angular.extend(paramObject.params, defaults);
-		return $q(function(resolve, reject) {
+		return $q((resolve, reject) => {
 			if (paramObject.conversationId) {
 				params.id = paramObject.conversationId
 			} else if (paramObject.conversation && paramObject.conversation._id) {
@@ -373,7 +375,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 				console.error('THIS SHOULD NOT BE CALLED LIKE THIS!');
 				return resolve(false);
 			}
-			Conversations.getMessages(params, function(res) {
+			Conversations.getMessages(params, res => {
 				var result;
 				if (paramObject.conversationId) {
 					result = res.messages;
