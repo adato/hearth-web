@@ -871,8 +871,25 @@ a.masonry-item{
 		text-align: center;
 	}
 }
-.img-circle{ border-radius: 50%; }
-div.img-circle{ padding-bottom: 100%; background-size: cover; }
+.img-circle{
+	border-radius: 50%;
+}
+div.img-circle{
+	padding-bottom: 100%;
+	background-size: cover;
+	width: 100%;
+}
+.nav-justified > li,
+.nav-justified .img-circle {
+	transition: .3s all;
+}
+.nav-justified > li.anim-hidden {
+	min-width: 0% !important;
+}
+.nav-justified > li.anim-hidden .img-circle{
+	width: 0% !important;
+}
+
 @media (min-width: 768px){
 	/*.nav-justified>li{display:table-cell;width:1%;vertical-align: top;}*/
 	.nav-justified>li>a{margin-bottom:0}
@@ -893,6 +910,7 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+	overflow: hidden;
 }
 @media (min-width: 992px){
 	#nav-tabs{

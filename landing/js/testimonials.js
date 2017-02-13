@@ -75,18 +75,17 @@
 
 	// shuffle the tabs
 	shuffle(dynaTestimonials.tabs);
-	// show at most 5
-	dynaTestimonials.tabs = dynaTestimonials.tabs.slice(0, 5);
 
 	fillWithData(dynaTestimonials);
 
 	function fillWithData(dynaTestimonials) {
-		var headers = '',
-			contents = '';
+		const initIndex = 2;
+		var headers = '';
+		var contents = '';
 		for (var i = 0,l = dynaTestimonials.tabs.length;i < l;i++) {
 			var q = dynaTestimonials.tabs[i];
 			headers += "\
-				<li role='presentation' class='" + (i === 0 ? 'active' : '') + "'>\
+				<li role='presentation' class='" + (i === initIndex ? 'active' : '') + "'>\
 					<a href='#" + q.code + "' aria-controls='" + q.code + "' role='tab' data-toggle='tab'>\
 						<div class='position-relative text-align-center'>\
 							<div class='img-circle' id='" + q.imgId + "'></div>\
@@ -100,7 +99,7 @@
 				</li>\
 			";
 			contents += "\
-				<div role='tabpanel' class='tab-pane fade " + (i === 0 ? 'active' : '') + "' id='" + q.code + "' tab-pane>\
+				<div role='tabpanel' class='tab-pane fade " + (i === initIndex ? 'active' : '') + "' id='" + q.code + "' tab-pane>\
 					<div class='tab-inner'>\
 						<div class='medium-down'>\
 							<p class='margin-vertical-none'><strong class='text-uppercase'>" + q.name + "</strong></p>\
@@ -125,12 +124,7 @@
 		var tabContents = tabs.querySelectorAll(tabContentsPaneIdentificator);
 		if (tabContents) {
 			for (var i = tabHeaders.length;i--;) {
-				tabHeaders[i].addEventListener('click', function(event) {
-					event.preventDefault();
-					event.stopImmediatePropagation();
-					var a = findParentBySelector(event.target, 'a');
-					setActive({ tabContents, tabHeaders, a })
-				});
+				tabHeaders[i].addEventListener('click', testimonialClickHandler);
 			}
 			fe($(tabsRotatorLeftSelector), i => {
 				i.addEventListener('click', () => {
@@ -143,7 +137,68 @@
 				});
 			});
 		}
+
+		function testimonialClickHandler(event) {
+
+			var tabHeaders = tabs.querySelectorAll(tabHeadersIdentificator);
+			var tabContents = tabs.querySelectorAll(tabContentsPaneIdentificator);
+
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			var a = findParentBySelector(event.target, 'a');
+			setActive({ tabContents, tabHeaders, a })
+		}
+
+		/**
+		 * - parent {Node} - the parent node on which to search for face item wrapper
+		 * - dir {Boolean} - direction of rotation. false means right [false]
+
+		 * - tabHeaders {NodeList}
+		 * - tabContents {NodeList}
+		 */
+		function rotate(opts = {}) {
+			let parent = opts.parent.querySelector(tabHeaderWrapperIdentificator);
+			let { tabHeaders, tabContents } = opts;
+
+
+			// reassign active class
+			let currentActiveElement = parent.querySelector('.active');
+			let target = opts.dir ? currentActiveElement.previousElementSibling : currentActiveElement.nextElementSibling;
+			let backupTarget = opts.dir ? currentActiveElement.parentNode.lastElementChild : currentActiveElement.parentNode.firstElementChild;
+			let toBeActiveElement = target || backupTarget;
+			removeActive(tabContents, false);
+			let a = toBeActiveElement.querySelector('a');
+			setActive({ a, tabContents, tabHeaders });
+
+			// rotate the list
+			let paramA = opts.dir ? parent.children.length - 1 : 0;
+			let paramB = opts.dir ? 0 : parent.children.length;
+
+			// direct swap
+			parent.insertBefore(parent.children[paramA], parent.children[paramB]);
+
+			// animated swap
+			// animateSwap({ parent, newNode: parent.children[paramA], refNode: parent.children[paramB] });
+		}
+
+		function animateSwap({ parent, newNode, refNode }) {
+			newNode.classList.remove('active');
+			var clone = newNode.cloneNode(true);
+
+			newNode.classList.add('anim-hidden');
+			setTimeout(() => {
+				parent.removeChild(newNode);
+			}, 300);
+
+			clone.classList.add('anim-hidden');
+			parent.insertBefore(clone, refNode);
+			setTimeout(() => {
+				clone.classList.remove('anim-hidden');
+			})
+		}
+
 	});
+
 
 	function setActive({ a, tabContents, tabHeaders }) {
 		if (a) {
@@ -162,33 +217,6 @@
 			var el = (fromParent ? elems[i].parentNode : elems[i]);
 			el.classList.remove('active');
 		}
-	}
-
-	/**
-	 * - parent {Node} - the parent node on which to search for face item wrapper
-	 * - dir {Boolean} - direction of rotation. false means right [false]
-
-	 * - tabHeaders {NodeList}
-	 * - tabContents {NodeList}
-	 */
-	function rotate(opts = {}) {
-		let parent = opts.parent.querySelector(tabHeaderWrapperIdentificator);
-		let { tabHeaders, tabContents } = opts;
-
-
-		// reassign active class
-		let currentActiveElement = parent.querySelector('.active');
-		let target = opts.dir ? currentActiveElement.previousElementSibling : currentActiveElement.nextElementSibling;
-		let backupTarget = opts.dir ? currentActiveElement.parentNode.lastElementChild : currentActiveElement.parentNode.firstElementChild;
-		let toBeActiveElement = target || backupTarget;
-		removeActive(tabContents, false);
-		let a = toBeActiveElement.querySelector('a');
-		setActive({ a, tabContents, tabHeaders });
-
-		// rotate the list
-		let paramA = opts.dir ? parent.children.length - 1 : 0;
-		let paramB = opts.dir ? 0 : parent.children.length;
-		parent.insertBefore(parent.children[paramA], parent.children[paramB]);
 	}
 
 })(window);
