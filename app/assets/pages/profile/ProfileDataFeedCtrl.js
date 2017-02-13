@@ -328,7 +328,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			if (!$scope.$parent)
 				$scope.$parent = {};
 			$scope.$parent.loaded = true;
-			$rootScope.$emit("subPageLoaded");
 		}
 
 		function processData(res) {
