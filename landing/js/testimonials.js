@@ -160,6 +160,7 @@
 			let parent = opts.parent.querySelector(tabHeaderWrapperIdentificator);
 			let { tabHeaders, tabContents } = opts;
 
+			opts.dir = !opts.dir;
 
 			// reassign active class
 			let currentActiveElement = parent.querySelector('.active');
@@ -171,11 +172,12 @@
 			setActive({ a, tabContents, tabHeaders });
 
 			// rotate the list
-			let paramA = opts.dir ? parent.children.length - 1 : 0;
-			let paramB = opts.dir ? 0 : parent.children.length;
+			let newNode = opts.dir ? parent.children.length - 1 : 0;
+			let refNode = opts.dir ? 0 : parent.children.length;
 
 			// direct swap
-			parent.insertBefore(parent.children[paramA], parent.children[paramB]);
+			console.log('direct');
+			parent.insertBefore(parent.children[newNode], parent.children[refNode]);
 
 			// animated swap
 			// animateSwap({ parent, newNode: parent.children[paramA], refNode: parent.children[paramB] });
@@ -198,7 +200,6 @@
 		}
 
 	});
-
 
 	function setActive({ a, tabContents, tabHeaders }) {
 		if (a) {
