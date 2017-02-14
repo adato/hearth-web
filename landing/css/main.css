@@ -790,6 +790,7 @@ a.masonry-item{
 }
 
 .social-bar{
+  margin-bottom: 20px;
 	line-height: 48px;
 }
 .social-bar > a{
@@ -800,7 +801,29 @@ a.masonry-item{
 }
 .social-bar .fa:hover,
 .social-bar .fa:focus{
-	color: #a7bd1d;
+	/*color: #a7bd1d;*/
+}
+
+.social-bar .fa {
+  color: #fff;
+}
+.social-bar .facebook-circle {
+  color: #18384f;
+}
+.social-bar .google-circle {
+  color: #ce0b24;
+}
+.social-bar .twitter-circle {
+  color: #2db2e5;
+}
+.social-bar .youtube-circle {
+  color: #ce0b24;
+}
+.social-bar .instagram-circle {
+  color: #f7591f;
+}
+.social-bar .envelope-circle {
+  color: #a7bb31;
 }
 /*******************
 	BLOG ADS
