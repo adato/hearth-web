@@ -77,10 +77,11 @@
 	// shuffle the tabs
 	shuffle(dynaTestimonials.tabs);
 
+	var initIndex = getInitIndex();
+
 	fillWithData(dynaTestimonials);
 
 	function fillWithData(dynaTestimonials) {
-		const initIndex = getInitIndex();
 		var headers = '';
 		var contents = '';
 		for (var i = 0,l = dynaTestimonials.tabs.length;i < l;i++) {
@@ -117,7 +118,6 @@
 		}
 		var th = $(dynaTestimonials.wrapperSelector)[0].querySelector(tabHeaderWrapperIdentificator);
 		th.innerHTML = th.innerHTML + headers;
-		// $(dynaTestimonials.wrapperSelector)[0].querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
 		$(dynaTestimonials.wrapperSelector)[0].querySelector(tabContentsIdentificator).innerHTML = contents;
 
 	}
@@ -156,6 +156,14 @@
 					if (animationRunning) return;
 					rotate({ parent: tabs, tabHeaders, tabContents, dir: 1 });
 				});
+			});
+
+			window.addEventListener('resize', function() {
+				var newIndex = getInitIndex();
+				if (initIndex !== newIndex) {
+					initIndex = newIndex;
+					setActive({ a: tabHeaders[initIndex].children[0], tabHeaders, tabContents });
+				}
 			});
 		}
 
@@ -257,29 +265,19 @@
 		}
 
 		function rotateAndSetActive({ a, tabContents, tabHeaders, tabs }) {
-			// console.log(a, tabHeaders);
 			let centerIndex = getInitIndex();
 			let elIndex = Array.prototype.indexOf.call(a.parentNode.parentNode.children, a.parentNode);
 
-			// console.log(centerIndex, elIndex);
 			let diff = centerIndex - elIndex;
-			// console.log(diff);
 			if (diff !== 0) {
 				let repeatCount = Math.abs(diff);
 				function repeater() {
 					if (--repeatCount) {
-						console.log(repeatCount);
 						rotate({ parent: tabs, tabHeaders, tabContents, dir: -diff, cb: repeater });
 					}
 				}
 				rotate({ parent: tabs, tabHeaders, tabContents, dir: -diff, cb: repeater });
-				// var repeater = window.setInterval(() => {
-				// }, animationLength + 10);
-				// window.setTimeout(() => {
-				// 	window.clearInterval(repeater);
-				// }, Math.abs(diff) * 1000 + 10);
 			}
-			// rotate({ parent: tabs, tabHeaders, tabContents, dir: 1 });
 		}
 
 		function removeActive(elems, fromParent) {
