@@ -22,7 +22,7 @@ h1{
 	}
 }
 .faux-paragraph,
-p{
+p, a{
 	font-family: 'Raleway';
 }
 .hr {
@@ -48,7 +48,7 @@ h1,h2,h3,
 .background-secondary{background-color: #a7bd1d}
 .background-tertiary{background-color: #1fb1e8}
 .background-alternate{background-color: #fcfbf4 !important}
-a{color: #4a4a4a}
+a{color: #000}
 /*******************
 	BUTTON
 *******************/
@@ -58,18 +58,13 @@ a{color: #4a4a4a}
 	color: #fff;
 	background-color: #fa5800;
 	border: 0px solid;
-	border-radius: 30px;
-	font-size: 14px;
+	border-radius: 8px;
+  font-size: 14px;
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
 	transition: .3s all;
 	box-shadow: 0 1px 1px rgba(0,0,0,.2);
-}
-@media (min-width: 400px){
-	.button{
-		font-size: 20px;
-	}
 }
 .button.small{
 	padding: 8px 16px;
@@ -84,7 +79,7 @@ a{color: #4a4a4a}
 .button.alt{
 	color: #fa5800;
 	background-color: transparent;
-	border: 3px solid #fa5800;
+	border: 1px solid #fa5800;
 }
 .button.alt.color-secondary{
 	color: #a7bd1d;
@@ -141,10 +136,6 @@ a.masonry-item:hover .button,
 	box-shadow: 0 2px 3px rgba(0,0,0,.4);
 }
 
-.button.special{
-	padding: 4px 20px;
-	border: none;
-}
 /*******************
 	TRIBAR
 *******************/
@@ -237,7 +228,7 @@ a.masonry-item:hover .button,
 @media (min-width: 400px){
 	.nav-item{
 		margin: 0 4px;
-		font-size: 16px
+		font-size: 14px
 	}
 }
 .nav-item:hover.has-hover-effect{
@@ -653,6 +644,7 @@ html[lang='en'] .language-panel .lang-en{
 .ball-background-secondary > svg > g > circle{fill: #a7bd1d;}
 .ball-background-tertiary > svg > g > circle{fill: #1fb1e8;}
 .ball p{
+  font-family: 'Merriweather', Helvetica, Arial, sans-serif;
 	flex: 1;
 	margin: 20px;
 	font-size: 10px;
@@ -680,6 +672,7 @@ html[lang='en'] .language-panel .lang-en{
 	.masonry-alt .masonry-wrapper{margin:0 !important;}
 }
 .masonry-item{
+  font-family: 'Raleway';
 	position: relative;
 	height: 300px;
 	margin: 20px 0;
@@ -823,6 +816,11 @@ a.masonry-item{
 	color: #444;
 	font-weight: bold;
 }
+.blog-block h3 a {
+    font: 20px/1.6 'Merriweather', Helvetica, Arial, sans-serif;
+    text-decoration: none;
+}
+
 .blog-block p{margin: 0}
 
 .blog-block p img{
@@ -838,6 +836,7 @@ a.masonry-item{
 .blog-img-wrapper img {
 	border-radius: 50%;
 }
+
 /*.blog-img-wrapper > .blog-img {
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -858,7 +857,7 @@ a.masonry-item{
 	font-family: Arial;
 	font-size: .5rem;
 	line-height: .5rem;
-	color: #ddd;
+	color: #fa5800;
 }
 /*******************
 	FACES
@@ -1020,3 +1019,16 @@ html[lang='sk'] #section-marketplace {
 #image-testimonial-hajzler{background-image: url('../img/people/tomas-hajzler.png')}
 #image-testimonial-fellmer{background-image: url('../img/people/raphael-fellmer.png')}
 #image-testimonial-dusek{background-image: url('../img/people/jaroslav-dusek.png')}
+/* HOW TO */
+#how-to strong{
+  font-family: 'Merriweather', Helvetica, Arial, sans-serif;
+  font-size: 27px;
+}
+/* SUPPORT US */
+#support-us .support-us-top-article{
+  text-align: center;
+}
+#support-us strong{
+  font-family: 'Merriweather', Helvetica, Arial, sans-serif;
+  text-align: center;
+}

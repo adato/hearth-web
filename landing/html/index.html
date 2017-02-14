@@ -159,10 +159,10 @@
 				<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
 					<ul class='margin-none padding-none'>
 						<li>
-							<a href='#jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
+							<a href='#how-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 						</li>
 						<li>
-							<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+							<a href='#support-us' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
 						</li>
 					</ul>
 				</div>
@@ -172,17 +172,17 @@
 		<nav class='flex flex-stretch-content'>
 			<ul class='main-navigation medium-up'>
 				<li>
-					<a href='#jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
+					<a href='#how-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 				</li>
 				<li>
-					<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+					<a href='#support-us' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
 				</li>
 			</ul>
 			<div class='flex' user-not-logged style='display: none'>
 				<a href='/app/login' class='color-primary nav-item has-hover-effect' t='LANDING_PAGE.MENU.LOGIN'>
 					Přihlášení
 				</a>
-				<a href='/app/register' class='button nav-item special' t='LANDING_PAGE.MENU.REGISTER'>
+				<a href='/app/register' class='button nav-item alt' t='LANDING_PAGE.MENU.REGISTER'>
 					Registrace
 				</a>
 			</div>
@@ -352,11 +352,6 @@
 				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />
 				Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
 			</p>
-			<div class='text-align-center'>
-				<a href='/app' class='button alt' t='LANDING_PAGE.ENTER'>
-					Vstupte
-				</a>
-			</div>
 		</section>
 		<section class='masonry-alt' id='section-marketplace'>
 			<h1 t='LANDING_PAGE.SECTION.MARKETPLACE.POSSIBILITIES_ARE_ENDLESS'>Možnosti jsou nepřeberné...</h1>
@@ -413,7 +408,7 @@
 				</div>
 			</div>
 		</section>
-		<section id='jak-na-to' class='text-align-center'>
+		<section id='how-to' class='text-align-center'>
 			<h1 t='LANDING_PAGE.SECTION.HOW_TO.HOW_TO'>Jak na to</h1>
 			<div class='bulletize-paragraphs'>
 				<p t='LANDING_PAGE.SECTION.HOW_TO.GIVE_WHAT_YOU_HAVE_OR_CAN_DO'>
@@ -435,8 +430,8 @@
 		</section>
 		<section>
 			<div class='text-align-center'>
-				<a href='/app/register' class='button alt' t='LANDING_PAGE.LETS_DO_IT'>
-					Jdu do toho!
+				<a href='/app/register' class='button' t='LANDING_PAGE.LETS_DO_IT'>
+					Jdu do toho
 				</a>
 			</div>
 		</section>
@@ -524,32 +519,35 @@
 		</section>
 		<div class='slash'></div>
 	</div>
-	<div class='section' id='podpor-nas'>
+	<div class='section' id="support-us">
 		<section>
 			<h1 t='LANDING_PAGE.SECTION.SUPPORT_US.SUPPORT_HEARTH'>Podpoř Hearth</h1>
-			<p class='standard-p' t='LANDING_PAGE.SECTION.SUPPORT_US.DOES_HEARTH_GIVE_YOU_JOY'>
-				Dělá ti Hearth radost? Poznáváš tu fajn lidi? Budeme šťastní, pokud se k nám přidáš
-				a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
-			</p>
+      <div class='support-us-top-article'>
+        <p><strong t='LANDING PAGE.SECTION.SUPPORT US.HEADER'>Dělá ti Hearth radost?</strong></p>
+        <p class='standard-p' t='LANDING_PAGE.SECTION.SUPPORT_US.DOES_HEARTH_GIVE_YOU_JOY'>
+          Poznáváš tu fajn lidi? Budeme šťastní, pokud se k nám přidáš
+          a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
+        </p>
+      </div>
 			<div class='medium-flex flex-align-start flex-medium-divide' style="margin-top: 60px;">
 				<div class='flex-div flex-1 blog-block'>
 					<p><strong t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.HEADER'>Přispěj finančně</strong></p>
 					<p t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.TEXT'>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš. Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>
-					<p class='text-align-center margin-top-medium'>
+					<p class='margin-top-medium'>
 						<a href='/app/support-us?open-modal=support-us-modal-pay' class='color-primary' t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.LINK'>Daruji pro Hearth</a>
 					</p>
 				</div>
 				<div class='flex-div flex-1 blog-block'>
 					<p><strong t='LANDING_PAGE.SECTION.SUPPORT_US.CREATIVELY.HEADER'>Vytvářej s námi</strong></p>
 					<p t='LANDING_PAGE.SECTION.SUPPORT_US.CREATIVELY.TEXT'>Jestli se vyznáš v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku a chceš nám dát třeba i pár hodin svého času a zkušeností, rádi tě přivítáme do našeho týmu.</p>
-					<p class='text-align-center margin-top-medium'>
+					<p class='margin-top-medium'>
 						<a href='/app/support-us?open-modal=support-us-modal-write-us' class='color-primary' t='LANDING_PAGE.SECTION.SUPPORT_US.CREATIVELY.LINK'>Jdu do toho</a>
 					</p>
 				</div>
 				<div class='flex-div flex-1 blog-block'>
 					<p><strong t='LANDING_PAGE.SECTION.SUPPORT_US.ENDORSE.HEADER'>Dej o nás vědět</strong></p>
 					<p t='LANDING_PAGE.SECTION.SUPPORT_US.ENDORSE.TEXT'>Pokud máš možnost představit štědrou sociální síť lidem okolo sebe a pozvat je do Hearth.net, rádi ti s tím pomůžeme. Pro začátek máme tři možnosti a vyber si, kterou začneš.</p>
-					<p class='text-align-center margin-top-medium'>
+					<p class='margin-top-medium'>
 						<a href='/app/support-us?open-modal=support-us-modal-endorse' class='color-primary' t='LANDING_PAGE.SECTION.SUPPORT_US.ENDORSE.LINK'>Budu šířit</a>
 					</p>
 				</div>
@@ -571,7 +569,7 @@
 					</div>
 					<div class='medium-flex flex-align-start'>
 						<p class='flex-1 text-muted margin-top-none margin-bottom-medium'>
-							Adato Paradigma, o.s.<br />
+							Adato Paradigma, z.s.<br />
 							Nádražní 740/56<br />
 							PSČ 150 00, Praha<br />
 							Česká republika
