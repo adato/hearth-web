@@ -120,28 +120,33 @@
 
 	// TESTIMONIALS CODE
 	fe($(tabsIdentificator), function(tabs) {
+
+		var animationRunning = false;
+		const animationLength = 200;
+
 		var tabHeaders = tabs.querySelectorAll(tabHeadersIdentificator);
 		var tabContents = tabs.querySelectorAll(tabContentsPaneIdentificator);
+
 		if (tabContents) {
 			for (var i = tabHeaders.length;i--;) {
 				tabHeaders[i].addEventListener('click', testimonialClickHandler);
 			}
 			fe($(tabsRotatorLeftSelector), i => {
 				i.addEventListener('click', () => {
+					if (animationRunning) return;
 					rotate({ parent: tabs, tabHeaders, tabContents });
 				});
 			});
 			fe($(tabsRotatorRightSelector), i => {
 				i.addEventListener('click', () => {
+					if (animationRunning) return;
 					rotate({ parent: tabs, tabHeaders, tabContents, dir: 1 });
 				});
 			});
 		}
 
 		function testimonialClickHandler(event) {
-
-			var tabHeaders = tabs.querySelectorAll(tabHeadersIdentificator);
-			var tabContents = tabs.querySelectorAll(tabContentsPaneIdentificator);
+			if (animationRunning) return;
 
 			event.preventDefault();
 			event.stopImmediatePropagation();
@@ -176,27 +181,48 @@
 			let refNode = opts.dir ? 0 : parent.children.length;
 
 			// direct swap
-			console.log('direct');
-			parent.insertBefore(parent.children[newNode], parent.children[refNode]);
+			// parent.insertBefore(parent.children[newNode], parent.children[refNode]);
 
 			// animated swap
-			// animateSwap({ parent, newNode: parent.children[paramA], refNode: parent.children[paramB] });
+			animateSwap({ parent, newNode: parent.children[newNode], refNode: parent.children[refNode], opts });
 		}
 
-		function animateSwap({ parent, newNode, refNode }) {
-			newNode.classList.remove('active');
-			var clone = newNode.cloneNode(true);
+		function animateSwap({ parent, newNode, refNode, opts }) {
 
-			newNode.classList.add('anim-hidden');
-			setTimeout(() => {
-				parent.removeChild(newNode);
-			}, 300);
+			animationRunning = true;
 
-			clone.classList.add('anim-hidden');
-			parent.insertBefore(clone, refNode);
-			setTimeout(() => {
-				clone.classList.remove('anim-hidden');
-			})
+
+			if (opts.dir) {
+
+				newNode.classList.add('anim-hidden', 'no-anim');
+				parent.insertBefore(newNode, refNode);
+				setTimeout(() => {
+					newNode.classList.remove('anim-hidden', 'no-anim');
+				});
+				setTimeout(() => {
+					animationRunning = false;
+				}, animationLength);
+
+			} else {
+
+				var clone = newNode.cloneNode(true);
+
+				parent.insertBefore(clone, parent.children[0]);
+				setTimeout(() => {
+					clone.classList.add('anim-hidden');
+				});
+				setTimeout(() => {
+					parent.removeChild(clone);
+					animationRunning = false;
+				}, animationLength);
+
+				newNode.classList.add('anim-hidden', 'no-anim');
+				parent.insertBefore(newNode, refNode);
+				setTimeout(() => {
+					newNode.classList.remove('anim-hidden', 'no-anim');
+				});
+
+			}
 		}
 
 	});

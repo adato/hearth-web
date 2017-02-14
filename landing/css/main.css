@@ -882,26 +882,37 @@ div.img-circle{
 	background-size: cover;
 	width: 100%;
 }
+
+/* ANIMATION */
 .nav-justified > li,
 .nav-justified .img-circle {
-	transition: .3s all;
+	transition: .2s all;
+}
+.no-anim,
+.no-anim *{
+	transition: 0s all !important;
 }
 .nav-justified > li.anim-hidden {
-	min-width: 0% !important;
+	margin-left: -20%;
 }
-.nav-justified > li.anim-hidden .img-circle{
-	width: 0% !important;
-}
+.nav-justified > li.anim-hidden .img-circle {
 
-@media (min-width: 768px){
-	/*.nav-justified>li{display:table-cell;width:1%;vertical-align: top;}*/
-	.nav-justified>li>a{margin-bottom:0}
 }
-.nav.nav-justified{
+/* /ANIMATION */
+
+@media (min-width: 768px) {
+	/*.nav-justified>li{display:table-cell;width:1%;vertical-align: top;}*/
+	.nav-justified > li > a {
+		margin-bottom:0
+	}
+}
+.nav.nav-justified {
 	padding: 0;
 	display: flex;
 }
-.nav-justified>li{min-width: 20%;}
+.nav-justified > li {
+	min-width: 20%;
+}
 .nav-justified{
 	line-height: 1.2;
 }
