@@ -5,6 +5,7 @@
  	var fe = window.aeg.fe;
 	var findParentBySelector = window.aeg.findParentBySelector;
 	var shuffle = window.aeg.shuffle;
+	const breakpoints = window.aeg.breakpoints;
 
 	//
 	//	FACES
@@ -79,7 +80,7 @@
 	fillWithData(dynaTestimonials);
 
 	function fillWithData(dynaTestimonials) {
-		const initIndex = 2;
+		const initIndex = getInitIndex();
 		var headers = '';
 		var contents = '';
 		for (var i = 0,l = dynaTestimonials.tabs.length;i < l;i++) {
@@ -114,14 +115,27 @@
 				</div>\
 			";
 		}
-		$(dynaTestimonials.wrapperSelector)[0].querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
+		var th = $(dynaTestimonials.wrapperSelector)[0].querySelector(tabHeaderWrapperIdentificator);
+		th.innerHTML = th.innerHTML + headers;
+		// $(dynaTestimonials.wrapperSelector)[0].querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
 		$(dynaTestimonials.wrapperSelector)[0].querySelector(tabContentsIdentificator).innerHTML = contents;
+
+	}
+
+	function getInitIndex() {
+		if (window.matchMedia('(min-width: ' + breakpoints.large + ')').matches) {
+			return 2;
+		} else if (window.matchMedia('(min-width: ' + breakpoints.medium + ')').matches) {
+			return 1;
+		}
+		return 0;
 	}
 
 	// TESTIMONIALS CODE
 	fe($(tabsIdentificator), function(tabs) {
 
 		var animationRunning = false;
+		const safetyLength = 30;
 		const animationLength = 200;
 
 		var tabHeaders = tabs.querySelectorAll(tabHeadersIdentificator);
@@ -134,7 +148,7 @@
 			fe($(tabsRotatorLeftSelector), i => {
 				i.addEventListener('click', () => {
 					if (animationRunning) return;
-					rotate({ parent: tabs, tabHeaders, tabContents });
+					rotate({ parent: tabs, tabHeaders, tabContents, dir: -1 });
 				});
 			});
 			fe($(tabsRotatorRightSelector), i => {
@@ -151,7 +165,12 @@
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			var a = findParentBySelector(event.target, 'a');
-			setActive({ tabContents, tabHeaders, a })
+
+			// direct set active
+			// setActive({ tabContents, tabHeaders, a });
+
+			// rotate and set active
+			rotateAndSetActive({ tabs, tabContents, tabHeaders, a });
 		}
 
 		/**
@@ -161,46 +180,45 @@
 		 * - tabHeaders {NodeList}
 		 * - tabContents {NodeList}
 		 */
-		function rotate(opts = {}) {
-			let parent = opts.parent.querySelector(tabHeaderWrapperIdentificator);
-			let { tabHeaders, tabContents } = opts;
+		function rotate({ parent, tabHeaders, tabContents, dir, cb }) {
+			parent = parent.querySelector(tabHeaderWrapperIdentificator);
 
-			opts.dir = !opts.dir;
+			let direction = (-1 * dir) > 0;
 
 			// reassign active class
 			let currentActiveElement = parent.querySelector('.active');
-			let target = opts.dir ? currentActiveElement.previousElementSibling : currentActiveElement.nextElementSibling;
-			let backupTarget = opts.dir ? currentActiveElement.parentNode.lastElementChild : currentActiveElement.parentNode.firstElementChild;
+			let target = direction ? currentActiveElement.previousElementSibling : currentActiveElement.nextElementSibling;
+			let backupTarget = direction ? currentActiveElement.parentNode.lastElementChild : currentActiveElement.parentNode.firstElementChild;
 			let toBeActiveElement = target || backupTarget;
 			removeActive(tabContents, false);
 			let a = toBeActiveElement.querySelector('a');
 			setActive({ a, tabContents, tabHeaders });
 
 			// rotate the list
-			let newNode = opts.dir ? parent.children.length - 1 : 0;
-			let refNode = opts.dir ? 0 : parent.children.length;
+			let newNode = direction ? parent.children.length - 1 : 0;
+			let refNode = direction ? 0 : parent.children.length;
 
 			// direct swap
 			// parent.insertBefore(parent.children[newNode], parent.children[refNode]);
 
 			// animated swap
-			animateSwap({ parent, newNode: parent.children[newNode], refNode: parent.children[refNode], opts });
+			animateSwap({ parent, newNode: parent.children[newNode], refNode: parent.children[refNode], parent, tabHeaders, tabContents, dir: direction, cb });
 		}
 
-		function animateSwap({ parent, newNode, refNode, opts }) {
+		function animateSwap({ parent, newNode, refNode, tabHeaders, tabContents, dir, cb }) {
 
 			animationRunning = true;
 
-
-			if (opts.dir) {
+			if (dir) {
 
 				newNode.classList.add('anim-hidden', 'no-anim');
 				parent.insertBefore(newNode, refNode);
 				setTimeout(() => {
 					newNode.classList.remove('anim-hidden', 'no-anim');
-				});
+				}, safetyLength);
 				setTimeout(() => {
 					animationRunning = false;
+					cb && cb();
 				}, animationLength);
 
 			} else {
@@ -210,40 +228,68 @@
 				parent.insertBefore(clone, parent.children[0]);
 				setTimeout(() => {
 					clone.classList.add('anim-hidden');
-				});
+				}, safetyLength);
 				setTimeout(() => {
 					parent.removeChild(clone);
 					animationRunning = false;
+					cb && cb();
 				}, animationLength);
 
 				newNode.classList.add('anim-hidden', 'no-anim');
 				parent.insertBefore(newNode, refNode);
 				setTimeout(() => {
 					newNode.classList.remove('anim-hidden', 'no-anim');
-				});
+				}, safetyLength);
 
+			}
+		}
+
+		function setActive({ a, tabContents, tabHeaders }) {
+			if (a) {
+				removeActive(tabHeaders);
+				a.parentNode.classList.add('active');
+				var tab = $(a.getAttribute('href'));
+				if (tab) {
+					removeActive(tabContents, false);
+					tab.classList.add('active');
+				}
+			}
+		}
+
+		function rotateAndSetActive({ a, tabContents, tabHeaders, tabs }) {
+			// console.log(a, tabHeaders);
+			let centerIndex = getInitIndex();
+			let elIndex = Array.prototype.indexOf.call(a.parentNode.parentNode.children, a.parentNode);
+
+			// console.log(centerIndex, elIndex);
+			let diff = centerIndex - elIndex;
+			// console.log(diff);
+			if (diff !== 0) {
+				let repeatCount = Math.abs(diff);
+				function repeater() {
+					if (--repeatCount) {
+						console.log(repeatCount);
+						rotate({ parent: tabs, tabHeaders, tabContents, dir: -diff, cb: repeater });
+					}
+				}
+				rotate({ parent: tabs, tabHeaders, tabContents, dir: -diff, cb: repeater });
+				// var repeater = window.setInterval(() => {
+				// }, animationLength + 10);
+				// window.setTimeout(() => {
+				// 	window.clearInterval(repeater);
+				// }, Math.abs(diff) * 1000 + 10);
+			}
+			// rotate({ parent: tabs, tabHeaders, tabContents, dir: 1 });
+		}
+
+		function removeActive(elems, fromParent) {
+			for (var i = elems.length;i--;) {
+				var el = (fromParent ? elems[i].parentNode : elems[i]);
+				el.classList.remove('active');
 			}
 		}
 
 	});
 
-	function setActive({ a, tabContents, tabHeaders }) {
-		if (a) {
-			removeActive(tabHeaders);
-			a.parentNode.classList.add('active');
-			var tab = $(a.getAttribute('href'));
-			if (tab) {
-				removeActive(tabContents, false);
-				tab.classList.add('active');
-			}
-		}
-	}
-
-	function removeActive(elems, fromParent) {
-		for (var i = elems.length;i--;) {
-			var el = (fromParent ? elems[i].parentNode : elems[i]);
-			el.classList.remove('active');
-		}
-	}
 
 })(window);
