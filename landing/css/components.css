@@ -131,6 +131,10 @@ li{display: block;}
 	-ms-justify-content: space-between;
 	justify-content: space-between;
 }
+.flex-space-around{
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+}
 .flex-stretch-content{
 	-ms-align-content: stretch;
 	align-content: stretch;
