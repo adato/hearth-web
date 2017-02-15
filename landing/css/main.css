@@ -563,7 +563,7 @@ html[lang='en'] .language-panel .lang-en{
 	bottom: -1px; left: 0;
 	width: 100%;
 	overflow: hidden;
-	margin-bottom: -20px;
+	/*margin-bottom: -20px;*/
 	padding-bottom: 110px;
 }
 .slash.overflow-visible {
@@ -601,7 +601,7 @@ html[lang='en'] .language-panel .lang-en{
 
 .decorated-circle-flame{
 	position: absolute;
-	bottom: 5px; left: 50%;
+	bottom: 25px; left: 50%;
 	width: 68px; height: 68px;
 	margin-left: -34px;
 	border-radius: 50%;
