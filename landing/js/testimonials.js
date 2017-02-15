@@ -92,23 +92,23 @@
 						<div class='position-relative text-align-center'>\
 							<div class='img-circle' id='" + q.imgId + "'></div>\
 							<span class='quote'><i class='fa fa-quote-left'></i></span>\
-						</div>\
-						<div class='text-align-center margin-top-small large-only text'>\
+						</div>"
+						+ "<div class='text-align-center margin-top-small large-only text'>\
 							<p class='margin-vertical-none'><strong class='text-uppercase'>" + q.name + "</strong></p>\
 							<small class='text-muted'>" + q.position.short + "</small>\
-						</div>\
-					</a>\
+						</div>"
+					+ "</a>\
 				</li>\
 			";
 			contents += "\
 				<div role='tabpanel' class='tab-pane fade " + (i === initIndex ? 'active' : '') + "' id='" + q.code + "' tab-pane>\
-					<div class='tab-inner'>\
-						<div class='medium-down'>\
-							<p class='margin-vertical-none'><strong class='text-uppercase'>" + q.name + "</strong></p>\
-							<small>" + q.position.long + "</small>\
-						</div>\
-						<p class='lead'>" + q.text + "</p>\
-						<p class='text-align-right large-only'>\
+					<div class='tab-inner'>"
+						// + "<div class='medium-down'>\
+						// 	<p class='margin-vertical-none'><strong class='text-uppercase'>" + q.name + "</strong></p>\
+						// 	<small>" + q.position.long + "</small>\
+						// </div>"
+						+ "<p class='lead'>" + q.text + "</p>\
+						<p class='text-align-right large-only-a'>\
 							&mdash;&nbsp;" + q.name + "<br />\
 							<small class='text-muted'><i>" + q.position.long + "</i></small>\
 						</p>\

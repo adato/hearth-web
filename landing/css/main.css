@@ -981,8 +981,9 @@ div.img-circle{
 .nav.nav-justified > li.active .text{
 	opacity: 1;
 }
-.tab-pane .tab-inner { padding: 30px 0 20px; }
+.tab-pane .tab-inner { padding: 10px 0 20px; }
 
+.tab-content {width: 100%;}
 .tab-content>.tab-pane{display:none}
 .tab-content>.active{display:block;}
 
@@ -1030,6 +1031,7 @@ div.img-circle{
 	.control-space-allower {
 		margin: 0 auto;
 		width: calc(100% - 3rem) !important;
+		max-width: 11rem;
 	}
 }
 
