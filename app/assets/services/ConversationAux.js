@@ -6,7 +6,7 @@
  * @description functions and cache for conversations
  */
 
-angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', 'Messenger', '$timeout', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state, Messenger, $timeout) {
+angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', 'PostUtils', '$rootScope', '$state', 'Messenger', '$timeout', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, PostUtils, $rootScope, $state, Messenger, $timeout) {
 
 	var inited,
 		processingRunning;
@@ -221,7 +221,7 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 			// if it is post reply conversation, add post type
 			if (!conversation.title && conversation.post && conversation.post.title) {
 				conversation.title = conversation.post.title;
-				conversation.post.type_code = (conversation.post.author_type == 'User' ? (conversation.post.type == 'offer' ? 'OFFER' : 'NEED') : (conversation.post.type == 'offer' ? 'WE_OFFER' : 'WE_NEED'));
+        conversation.post.type_code = PostUtils.getPostTypeCode(conversation.post.author_type, conversation.post.type, conversation.post.exact_type);
 			}
 			// if there is no title, build it from its first at most 3 participants
 			if (conversation.participants.length) {
