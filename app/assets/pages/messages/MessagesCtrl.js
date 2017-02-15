@@ -101,7 +101,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				wipe: true
 			};
 			extendParams(params);
-			ConversationAux.loadConversations(params).then(function(res) {
+			ConversationAux.loadConversations(params).then(res => {
 				if (res.thatsAllFolks) $scope.allConversationsLoaded = true;
 				$scope.conversations = res.conversations;
 				$timeout(function() {
@@ -125,26 +125,26 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			};
 			extendParams(config);
 
-			ConversationAux.loadConversations(config).then(function(res) {
+			ConversationAux.loadConversations(config).then(res => {
 				if (res.thatsAllFolks) $scope.allConversationsLoaded = true;
 				$scope.conversationLoadInProgress = false;
 				$timeout(function() {
 					$scope.$broadcast('scrollbarResize');
 					$scope.$broadcast('classIfOverflowContentResize');
 				}, 50);
-			}, function(err) {
+			}, err => {
 				$scope.conversationLoadInProgress = false;
 			});
 		};
 
 		function loadPostConversations() {
-			Conversations.getPosts(function(res) {
+			Conversations.getPosts(res => {
 				$scope.postConversations = res;
 			});
 		}
 
 		function loadCommunityConversations() {
-			Conversations.getCommunityConversations(function(res) {
+			Conversations.getCommunityConversations(res => {
 				$scope.communityConversations = res.communities;
 			});
 		}
@@ -184,7 +184,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			loadPostConversations();
 			loadCommunityConversations();
 
-			loadConversations(function(res) {
+			loadConversations(res => {
 				$scope.loaded = true;
 				$scope.reloading = false;
 
@@ -205,6 +205,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		}
 
+		$scope.markAsRead = function(conversation) {
+			if (!conversation || conversation.read) return false;
+			Conversations.markAsRead({
+				id: conversation._id
+			});
+		};
+
 		function currentConvIsInTheList(list) {
 			if (!list) return;
 			for (var i = list.length; i--;) {
@@ -217,7 +224,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.$on('initFinished', init);
 		$rootScope.$on('conversationRemoved', redirectToFirstIfMatch);
-		$rootScope.$on('newConversationAdded', function(event, conversation) {
+		$rootScope.$on('newConversationAdded', (event, conversation) => {
 			if (!$scope.reloading && $scope.conversations && $scope.conversations.length === 1 && !ResponsiveViewport.isSmall() && !ResponsiveViewport.isMedium()) {
 				$state.go('messages.detail', {
 					id: conversation._id

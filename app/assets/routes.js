@@ -153,9 +153,8 @@ angular.module('hearth').config([
 			})
 			.state('messages.detail', {
 				titleIgnore: true,
-				url: '/:id?mark-as-read',
+				url: '/:id',
 				template: '<conversation-detail></conversation-detail>'
-					// templateUrl: 'templates/messages/detail.html'
 			})
 			.state('profile', {
 				title: false,

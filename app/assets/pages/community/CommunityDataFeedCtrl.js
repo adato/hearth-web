@@ -48,7 +48,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					$scope.$parent = {};
 
 				$scope.$parent.loaded = true;
-				$rootScope.$emit("subPageLoaded");
 			});
 
 			if (res && res.length) {

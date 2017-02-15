@@ -4,36 +4,24 @@
 			position: relative;
 			display: inline-block;
 		}
-		.dropdown:before {
-			content: '';
-			position: absolute;
-			top: -12px; right: 20px;
-			width: 0; height: 0;
-			display: block;
-			border-width: 6px;
-			border-style: inset inset solid;
-			border-color: transparent transparent white;
-			border-image: none;
-			-moz-border-bottom-colors: none;
-			-moz-border-left-colors: none;
-			-moz-border-right-colors: none;
-			-moz-border-top-colors: none;
-			z-index: 99;
-		}
+		.dropdown:before,
 		.dropdown:after {
 			content: '';
 			position: absolute;
-			top: -14px; right: 19px;
 			width: 0; height: 0;
 			display: block;
-			border-width: 7px;
 			border-style: inset inset solid;
+		}
+		.dropdown:before {
+			top: -12px; right: 20px;
+			border-width: 6px;
+			border-color: transparent transparent white;
+			z-index: 99;
+		}
+		.dropdown:after {
+			top: -14px; right: 19px;
+			border-width: 7px;
 			border-color: transparent transparent #7c766a;
-			border-image: none;
-			-moz-border-bottom-colors: none;
-			-moz-border-left-colors: none;
-			-moz-border-right-colors: none;
-			-moz-border-top-colors: none;
 			z-index: 98;
 		}
 		.dropdown {

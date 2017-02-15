@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', '$translate',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, $translate) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', '$translate',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, $translate) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.ItemAux = ItemAux;
 
 		// init language
-		$scope.postTypes = $$config.postTypes;
+    $scope.postTypes = $$config.postTypes;
 		$scope.replyLabel = $$config.replyLabels;
 		$scope.replyCountTexts = $$config.replyCountTexts;
 
@@ -62,7 +62,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				// if there are post data, process them
 				if (data.text) {
 					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
-					var postType = $filter('translate')($scope.postTypes[data.author._type][data.exact_type][data.type]);
+          $scope.postTypeCode = PostUtils.getPostTypeCode(data.author._type, data.type, data.exact_type);
+					var postType = $filter('translate')($scope.postTypeCode);
 					var title = 'Hearth.net: ' + postType + ' ' + data.title + ' (' + data.author.name + ')';
 
 					OpenGraph.set(title, data.text || "", null, image.large, image.size);
@@ -103,8 +104,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.setTitle = function() {
-			var entity = ($scope.item.author ? $scope.item.author._type : 'User');
-			var title = $translate.instant($scope.postTypes[entity][$scope.item.type]) + ' ' + $scope.item.title;
+			var author = ($scope.item.author ? $scope.item.author._type : 'User');
+			var title = $translate.instant(PostUtils.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);
 		};
 

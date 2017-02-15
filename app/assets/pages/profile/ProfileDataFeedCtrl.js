@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', 'ProfileUtils',
-	function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, ProfileUtils) {
+	'$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService', '$templateRequest', '$sce', 'MarketPostCount', 'ProfileUtils',
+	function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService, $templateRequest, $sce, MarketPostCount, ProfileUtils) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -246,6 +246,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					postCount: $scope.userPostCount
 				}),
 				templateUrl: templateUrl,
+				inactivateTags: true,
 				cb: finishLoading
 			};
 
@@ -260,7 +261,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					postCount: $scope.userPostCount
 				}),
 				disableLoading: true,
-				templateUrl: templateUrl
+				templateUrl: templateUrl,
+				inactivateTags: true
 			};
 
 		}
@@ -326,7 +328,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			if (!$scope.$parent)
 				$scope.$parent = {};
 			$scope.$parent.loaded = true;
-			$rootScope.$emit("subPageLoaded");
 		}
 
 		function processData(res) {
