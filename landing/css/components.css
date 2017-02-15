@@ -166,7 +166,8 @@ li{display: block;}
 	cursor: pointer;
 }
 
-.overflow-hidden{overflow: hidden}
+.overflow-hidden{overflow: hidden !important}
+.overflow-visible{overflow: visible !important}
 
 /* ALIGNMENT */
 .small-text-align-center{text-align: center}

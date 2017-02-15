@@ -566,6 +566,9 @@ html[lang='en'] .language-panel .lang-en{
 	margin-bottom: -20px;
 	padding-bottom: 110px;
 }
+.slash.overflow-visible {
+	z-index: 10;
+}
 .slash:before{
 	content: '';
 	position: absolute;
