@@ -999,6 +999,8 @@ html[lang='sk'] #section-marketplace {
 /* SUPPORT US */
 #support-us {
   background-image: url('../img/support-us-bg.png');
+  background-position: center center;
+  background-size: cover;
   color: #fff;
 }
 #support-us a,#support-us h1 {
