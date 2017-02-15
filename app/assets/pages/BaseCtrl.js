@@ -47,24 +47,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.top = ScrollService.scrollTop;
 		$rootScope.scrollToError = ScrollService.scrollToError;
 
-		/**
-		 * This will set fixed height of document for current height
-		 */
-		$scope.resfreshWithResize = function() {
-			$("#all").css("min-height", $("#all").height() + "px");
-		};
-
-		$scope.removePageMinHeight = function() {
-			$timeout(function() {
-				$("#all").css("min-height", "unset");
-			}, 500);
-		};
-
-		/**
-		 * This will unset fixed height of document
-		 */
-		$rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
-
 		$rootScope.reloadPage = function() {
 			window.location = document.URL;
 		};
@@ -119,7 +101,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
 				$rootScope.pageChangeWithScroll = true;
-				return $scope.resfreshWithResize();
+				return;
 			}
 
 			if (!$rootScope.addressNew) return $rootScope.top(0, 1);
@@ -134,8 +116,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			// scroll to top - (alias scroll when we come to new URL)
 			if (r1.length < 2 || r2.length < 2 || r1[1] != r2[1]) {
 				$rootScope.top(0, 1);
-			} else {
-				$scope.resfreshWithResize();
 			}
 		});
 
