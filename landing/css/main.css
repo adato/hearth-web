@@ -1127,6 +1127,14 @@ html[lang='sk'] #section-marketplace {
   content: url("../img/icons/users.svg");
 }
 
+#give-accept-meet-section {
+  align-items: baseline;
+}
+
+#give-accept-meet-section > div {
+  padding: 0 5px;
+}
+
 #give-accept-meet-section p {
   padding-top: 20px;
 }
