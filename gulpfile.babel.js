@@ -132,6 +132,7 @@ function javascriptLanding() {
   var paths = PATHS.src.landing.js;
   paths.unshift(PATHS.src.configs.landing[ENVIRONMENT]);
   return gulp.src(paths)
+    .pipe($.babel())
     .pipe($.concat('main.js'))
     .pipe(gulp.dest(PATHS.dist + '/js'))
 }

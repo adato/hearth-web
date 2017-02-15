@@ -1,7 +1,6 @@
 ;(function(window, config) {
 	'use strict';
 
-	<!-- Hotjar Tracking Code for hearth.net -->
 	(function(h,o,t,j,a,r){
 	    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
 	    h._hjSettings={hjid:config.hotjar,hjsv:5};

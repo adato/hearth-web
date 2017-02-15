@@ -5,6 +5,10 @@
 	// redirect cookie factory dependecy, so we just extend it
 	window.aeg = extend(window.aeg, {
 		$: $,
+		breakpoints: {
+			medium: '768px',
+			large: '992px'
+		},
 		extend: extend,
 		fe: fe,
 		findParentBySelector: findParentBySelector,
