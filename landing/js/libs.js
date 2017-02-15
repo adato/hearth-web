@@ -6,8 +6,8 @@
 	window.aeg = extend(window.aeg, {
 		$: $,
 		breakpoints: {
-			medium: '640px',
-			large: '959px'
+			medium: '768px',
+			large: '992px'
 		},
 		extend: extend,
 		fe: fe,

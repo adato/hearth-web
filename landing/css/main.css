@@ -993,12 +993,11 @@ div.img-circle{
 	right: 2px;
 	bottom: 2px;
 }
-.nav.nav-justified > li > a .quote > .fa { font-size: 8px; line-height: 8px;}
-@media (min-width: 400px) {
+/*.nav.nav-justified > li > a .quote > .fa { font-size: 8px; line-height: 8px;}*/
+/*@media (min-width: 400px) {*/
 	.nav.nav-justified > li > a .quote { width: 30px; height: 30px; right: 5px; bottom: 5px;}
 	.nav.nav-justified > li > a .quote > .fa { font-size: 16px; line-height: inherit;}
-
-}
+/*}*/
 @media (min-width: 768px) {
     .nav.nav-justified > li > a .quote { right: 0px; bottom: 2px; }
 }
