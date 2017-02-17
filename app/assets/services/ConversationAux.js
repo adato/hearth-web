@@ -8,29 +8,30 @@
 
 angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversations', '$location', 'ActionCableSocketWrangler', 'ActionCableChannel', '$rootScope', '$state', 'Messenger', '$timeout', function($q, Conversations, $location, ActionCableSocketWrangler, ActionCableChannel, $rootScope, $state, Messenger, $timeout) {
 
-	var inited,
-		processingRunning;
+	var inited;
+	var processingRunning;
 
-	var ACTION_NEW_CONVERSATION = 'created';
-	var ACTION_NEW_MESSAGE = 'created';
-	var ACTION_CONVERSATION_READ = 'read';
-	var ACTION_CONVERSATION_UNREAD = 'unread';
-	var ACTION_CONVERSATION_ARCHIVED = 'archived';
-	var ACTION_CONVERSATION_DELETED = 'deleted';
+	const ACTION_NEW_CONVERSATION = 'created';
+	const ACTION_NEW_MESSAGE = 'created';
+	const ACTION_CONVERSATION_READ = 'read';
+	const ACTION_CONVERSATION_UNREAD = 'unread';
+	const ACTION_CONVERSATION_ARCHIVED = 'archived';
+	const ACTION_CONVERSATION_DELETED = 'deleted';
 
-	var MESSAGE_LIMIT = 15;
+	const MESSAGE_LIMIT = 15;
 
 	// list of conversations shown in the conversations column
-	var conversationList = [];
+	// var conversationList = [];
+	const conversationList = [];
 
 		// all conversations downloaded from the server
 		// 2017-02-07 very probably would need to be a map anyway to handle all the different filters
 		//					but atm it seems ok without caching
 		// conversationsCache = [],	// << not used ATM
 
+	const conversationGetLimit = 8;
 	var conversationListLoading;
 	var conversationListLoaded;
-	var conversationGetLimit = 8;
 	var conversationFilter = {};
 	var conversationGetBuffer = [];
 	var socketReinitCounter = 0;
