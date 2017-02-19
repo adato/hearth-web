@@ -15,14 +15,13 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		var ItemFilter = new UniqueFilter();
 
 		$scope.load = function() {
+      $scope.loading = true;
 			if ($scope.loadingFinished) return false;
 
 			var conf = {
 				limit: 20,
 				offset: $scope.list.length
 			};
-
-			$scope.loading = true;
 
 			var service = ($state.current.name == 'communities.suggested') ? Community.suggested : Community.query;
 			service(conf, function(res) {
@@ -35,9 +34,8 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 					});
 				}
 				$scope.list = $scope.list.concat(res);
-				$scope.loading = false;
 				$scope.$parent.loadedFirstBatch = true;
-
+        $scope.loading = false;
 				if (!res.length || $state.current.name == 'communities.suggested') {
 					return $scope.loadingFinished = true;
 				}
