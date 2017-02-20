@@ -15,9 +15,8 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		var ItemFilter = new UniqueFilter();
 
 		$scope.load = function() {
+			if ($scope.loadingFinished || $scope.loading) return false;
       $scope.loading = true;
-			if ($scope.loadingFinished) return false;
-
 			var conf = {
 				limit: 20,
 				offset: $scope.list.length
@@ -34,8 +33,8 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 					});
 				}
 				$scope.list = $scope.list.concat(res);
-				$scope.$parent.loadedFirstBatch = true;
         $scope.loading = false;
+				$scope.$parent.loadedFirstBatch = true;
 				if (!res.length || $state.current.name == 'communities.suggested') {
 					return $scope.loadingFinished = true;
 				}
