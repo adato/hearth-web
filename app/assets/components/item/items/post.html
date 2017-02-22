@@ -102,8 +102,6 @@
 									</li>
                   <li ng-if=':: userHasRight("post.suspend")'>
                     <hr />
-                  </li>
-                  <li ng-if=':: userHasRight("post.suspend")'>
                     <span>{{:: "CHARACTER" | translate}}:
                        <span ng-repeat="itemEntry in item.character">
                           <span ng-repeat="postCharEntry in postCharacter | filter : { name:itemEntry }">{{ postCharEntry.translate | translate }}</span>
@@ -111,7 +109,7 @@
                     </span>
                   </li>
                   <li ng-if=':: userHasRight("post.suspend")'>
-                    <span class="text-center">{{:: "USER_LANGUAGE" | translate}}: {{:: item.language}} </span>
+                    <span>{{:: "USER_LANGUAGE" | translate}}: {{:: item.language}} </span>
                   </li>
 									<!-- /admin only -->
 								</ul>

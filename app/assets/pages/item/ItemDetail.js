@@ -23,6 +23,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
     $scope.postTypes = $$config.postTypes;
 		$scope.replyLabel = $$config.replyLabels;
 		$scope.replyCountTexts = $$config.replyCountTexts;
+    $scope.postCharacter = $$config.postCharacter;
 
 		$scope.deserializeReply = function(item) {
 			if (item.from_community) {
