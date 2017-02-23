@@ -7,9 +7,9 @@
  * @restrict A
  */
 
-angular.module('hearth').factory('InfoboxCache', function($cacheFactory) {
+angular.module('hearth').factory('InfoboxCache', ['$cacheFactory', function($cacheFactory) {
 	return $cacheFactory('infobox');
-});
+}]);
 
 angular.module('hearth.directives').directive('infoBox', [
 	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty', 'ProfileUtils', 'Followees', 'InfoboxCache',
