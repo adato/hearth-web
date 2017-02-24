@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics',
-	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics) {
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList',
+	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList) {
 
 		function getPostScope(post, $scope) {
 			var author = post;
@@ -25,6 +25,7 @@ angular.module('hearth.services').service('PostScope', [
 			scope.showSharing = false;
 			scope.delayedView = true;
 			scope.language = $rootScope.language;
+			scope.postLanguage = LanguageList.translate(post.language);
 			angular.extend(scope, ItemServices);
 
 			scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);

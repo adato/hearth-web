@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', '$translate',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, $translate) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -66,6 +66,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
           $scope.postTypeCode = PostUtils.getPostTypeCode(data.author._type, data.type, data.exact_type);
 					var postType = $filter('translate')($scope.postTypeCode);
 					var title = 'Hearth.net: ' + postType + ' ' + data.title + ' (' + data.author.name + ')';
+
+					$scope.postLanguage = LanguageList.translate(data.language);
 
 					OpenGraph.set(title, data.text || "", null, image.large, image.size);
 
