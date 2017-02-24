@@ -104,8 +104,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.setTitle = function(state) {
-		  if(state === "expired") {
-		    return;
+      if (state === "expired") {
+        PageTitle.setTranslate("POST_HAS_ALREADY_EXPIRED", "");
+        return;
       }
 			var author = ($scope.item.author ? $scope.item.author._type : 'User');
 			var title = $translate.instant(PostUtils.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
