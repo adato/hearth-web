@@ -4,6 +4,10 @@
 @import 'foundation';
 @import 'motion-ui';
 
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-button;
+
 // Common Styles imports - app and landing page
 @import "../../common/styles/buttons";
 

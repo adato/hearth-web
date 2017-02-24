@@ -170,7 +170,7 @@ PATHS:
     landing:
       index: "landing/html"
       scss:
-        - "landing/css/app.scss"
+        - "landing/css/*.scss"
       img:
         - "landing/img/**/*.*"
       fonts:
