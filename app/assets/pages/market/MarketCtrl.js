@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount',
-	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount) {
+	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth',
+	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth) {
 
 		var marketplaceInited = false;
 
@@ -24,12 +24,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.author = null;
 		$scope.filterIsOn = false;
 		$scope.disableLazyLoad = true;
+		$scope.showLimitedPostsMessageAuth = false;
+    $scope.showLimitedPostsMessageUnauth = false;
 
-		var lFilter;
+		var userLanguages;
 		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
-		var itemTypes = ['post', 'banner'] //, 'community', 'user', 'conversation']; no more types needed for now
+		var itemTypes = ['post', 'banner']; //, 'community', 'user', 'conversation']; no more types needed for now
 		var templateDir = 'assets/components/item/items/';
 
 		if ($state.params.query) {
@@ -138,6 +140,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.retrievePosts = function(params) {
 			var paramObject = JSON.parse(JSON.stringify(params));
 			if (paramObject.page) delete paramObject.page;
+
+			// Language can be set from Filter already
+      if (!paramObject["lang[]"]) {
+        paramObject.lang = userLanguages;
+      }
 
 			// params.type = "community,user,post";
 			// params.query = "*";
@@ -287,8 +294,23 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		});
 
+    // display posts in these languages
+		function initLanguages() {
+      if(Auth.isLoggedIn()) {
+        userLanguages = $.isArray($rootScope.loggedUser.user_languages) ? $rootScope.loggedUser.user_languages.join(',') : $rootScope.loggedUser.user_languages;
+        if (!userLanguages.includes('cs') && $.cookie('showLimitedPostsMessageAuth') === undefined) {
+          $scope.showLimitedPostsMessageAuth = true;
+          $.cookie('showLimitedPostsMessageAuth','done')
+        }
+      } else {
+        userLanguages = $rootScope.language;
+        if(userLanguages != 'cs') $scope.showLimitedPostsMessageUnauth = true;
+      }
+    }
+
 		function init() {
 			$scope.debug && $log.debug('Initialisation of marketCtrl started');
+			initLanguages();
 			async.each(itemTypes, function(type, done) {
 				var tplUrl = $sce.getTrustedResourceUrl(templateDir + type + '.html');
 				$scope.debug && $log.debug('Compiling template for ', type);
@@ -302,7 +324,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				if (Filter.isSaved()) Filter.applySaved();
 
 				$scope.filterIsOn = Filter.isSet();
-				marketInited.resolve();
+        marketInited.resolve();
 				$scope.debug && $log.debug('Initialisation of marketCtrl almost finished');
 				if (err) {
 					$scope.debug && $log.error('There was an error during compilation process: ', err);
