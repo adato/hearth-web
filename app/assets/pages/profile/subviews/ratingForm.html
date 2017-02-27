@@ -19,9 +19,7 @@
 				<option value="" ng-selected="true">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				<optgroup ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_POST_TITLE' | translate }}">
 					<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
-						<!-- {{ 'RATING_POST_TYPES.'+ (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }} -->
-						{{:: postTypes[rating.current_community._id != loggedUser._id ? "Community" : "User"][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.owner_id === loggedUser._id ? loggedUser.name : info.name}})
-						<!-- {{ post | json }} -->
+						{{:: postTypes[rating.current_community._id != loggedUser._id ? "Community" : "User"][post.exact_type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.owner_id === loggedUser._id ? loggedUser.name : info.name}})
 					</option>
 				</optgroup>
 				<optgroup ng-if="ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
