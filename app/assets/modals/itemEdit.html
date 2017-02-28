@@ -136,13 +136,13 @@
 					<label class="headline">
 						{{:: 'POST_CATEGORY_LABEL' | translate }}:
 					</label>
-					<label ng-repeat="character in character" class="character-label ui-checkbox" tipsy title="{{character.name + '_TOOLTIP' | translate}}">
-						<input type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="checkCharacter()" name="character" />
-						<i class="fa" ng-class="post.character.indexOf(character.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{character.translate | translate}}
-						<span>{{character.translateText | translate}}</span>
-						<!-- <i class="fa fa-question-circle tooltip" aria-hidden="true"></i> -->
-						<i class="fa fa-question-circle" aria-hidden="true"></i>
-					</label>
+					<div class="display-flex flex-space-between">
+						<label ng-repeat="character in character" class="character-label ui-checkbox" tipsy title="{{character.translateText | translate}}">
+							<input type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="checkCharacter()" name="character" />
+							<i class="fa" ng-class="post.character.indexOf(character.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{character.translate | translate}}
+							<i class="fa fa-question-circle" aria-hidden="true"></i>
+						</label>
+					</div>
 					<div class="moveUp error" ng-show="createAdForm.character.$invalid">
 						<span ng-show="createAdForm.character.$error.required">{{ 'ERR_AD_CATEGORY' | translate }}</span>
 						<span ng-show="createAdForm.character.$error.max">{{ 'ERR_AD_CATEGORY_MAX' | translate }}</span>
