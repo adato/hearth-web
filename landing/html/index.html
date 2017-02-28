@@ -177,15 +177,17 @@
 				<li>
 					<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
 				</li>
+        <li>
+          <a href='/app/login' class='color-primary nav-item has-hover-effect' t='LANDING_PAGE.MENU.LOGIN' user-not-logged style='display: none'>
+            Přihlášení
+          </a>
+        </li>
+        <li>
+          <a href='/app/register' class='button secondary nav-item special' t='LANDING_PAGE.MENU.REGISTER' user-not-logged style='display: none'>
+            Registrace
+          </a>
+        </li>
 			</ul>
-			<div class='flex' user-not-logged style='display: none'>
-				<a href='/app/login' class='color-primary nav-item has-hover-effect' t='LANDING_PAGE.MENU.LOGIN'>
-					Přihlášení
-				</a>
-				<a href='/app/register' class='button nav-item special' t='LANDING_PAGE.MENU.REGISTER'>
-					Registrace
-				</a>
-			</div>
 			<div class='flex position-relative' user-logged id='profileSection' style='display: none'>
 				<img class='avatar cursor-pointer' profile-image dropdown='profile-box' />
 				<div class='hover-window padding-none window-align-right' id='profile-box'>
@@ -274,7 +276,7 @@
 				</div>
 				<h1 t='LANDING_PAGE.SLOGAN.SPACE_FOR_PEOPLE_WITH_OPEN_HEART'>Prostor pro lidi<br />s otevřeným srdcem</h1>
 				<h2 class='subheader' t='LANDING_PAGE.SLOGAN.JOY_TO_GIVE_HAPPINESS_TO_ACCEPT'>Radost dát, štěstí přijmout</h2>
-				<a href='/app' class='button'>
+				<a href='/app' class='button secondary'>
 					<i class='button-flame'></i>
 					<span t='LANDING_PAGE.ENTER'>Vstupte</span>
 				</a>
@@ -353,7 +355,7 @@
 				Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
 			</p>
 			<div class='text-align-center'>
-				<a href='/app' class='button alt' t='LANDING_PAGE.ENTER'>
+				<a href='/app' class='hollow button secondary' t='LANDING_PAGE.ENTER'>
 					Vstupte
 				</a>
 			</div>
@@ -435,7 +437,7 @@
 		</section>
 		<section>
 			<div class='text-align-center'>
-				<a href='/app/register' class='button alt' t='LANDING_PAGE.LETS_DO_IT'>
+				<a href='/app/register' class='hollow button secondary' t='LANDING_PAGE.LETS_DO_IT'>
 					Jdu do toho!
 				</a>
 			</div>

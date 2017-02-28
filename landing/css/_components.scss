@@ -182,47 +182,47 @@ li{display: block;}
 /* /VERTICAL-ALIGNMENT */
 
 /* BUTTONS */
-.touchable-wrapper{
-	margin-left: -8px;
-	margin-right: -8px;
-	line-height: 1;
-}
-.touchable-wrapper .touchable{
-	margin: 0;
-}
-.touchable-wrapper.touchable-inverted-round .touchable{
-	font-size: 16px;
-}
-.touchable{
-	display: inline-block;
-	width: 44px; height: 44px;
-	line-height: 44px;
-	font-size: 24px;
-	color: #666;
-	text-align: center;
-	text-decoration: none !important;
-	cursor: pointer;
-}
-.touchable:hover{
-	color: #a7bd1d;
-}
-.touchable.touchable-small{
-	font-size: 16px;
-}
-.touchable.touchable-match-line-height{
-	margin-top: -11px;
-	margin-bottom: -11px;
-}
-@media (min-width: 1200px){
-	.touchable{
-		width: 32px; height: 32px;
-		line-height: 32px;
-	}
-	.touchable.touchable-match-line-height{
-		margin-top: -5px;
-		margin-bottom: -5px;
-	}
-}
+//.touchable-wrapper{
+//	margin-left: -8px;
+//	margin-right: -8px;
+//	line-height: 1;
+//}
+//.touchable-wrapper .touchable{
+//	margin: 0;
+//}
+//.touchable-wrapper.touchable-inverted-round .touchable{
+//	font-size: 16px;
+//}
+//.touchable{
+//	display: inline-block;
+//	width: 44px; height: 44px;
+//	line-height: 44px;
+//	font-size: 24px;
+//	color: #666;
+//	text-align: center;
+//	text-decoration: none !important;
+//	cursor: pointer;
+//}
+//.touchable:hover{
+//	color: #a7bd1d;
+//}
+//.touchable.touchable-small{
+//	font-size: 16px;
+//}
+//.touchable.touchable-match-line-height{
+//	margin-top: -11px;
+//	margin-bottom: -11px;
+//}
+//@media (min-width: 1200px){
+//	.touchable{
+//		width: 32px; height: 32px;
+//		line-height: 32px;
+//	}
+//	.touchable.touchable-match-line-height{
+//		margin-top: -5px;
+//		margin-bottom: -5px;
+//	}
+//}
 /* /BUTTONS */
 
 /* TEXT */
