@@ -10,12 +10,10 @@ describe('Access to Hearth blocked by IP address', function () {
   // JSON returned from backend, when IP is blocked
   var blockResponseMock = {"ok": false, "error": "IP blocked", "message": "Exceptions::IPBlocked"};
 
-  beforeEach(inject(function ($injector, _$window_, _$http_) {
+  beforeEach(inject(function (_$window_, _$http_, _$httpBackend_) {
     $window = _$window_;
     $http = _$http_;
-
-    $httpBackend = $injector.get('$httpBackend');
-
+    $httpBackend = _$httpBackend_;
 
     $httpBackend.whenGET('some_request').respond(403, blockResponseMock);
 
