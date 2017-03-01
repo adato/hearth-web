@@ -1,0 +1,34 @@
+/*
+    tlačítka
+    trojtečky mezi odstavci
+    rámeček okolo obličeje "Mají nás rádi" (+ tečka s uvozovkami)
+    odkazy v horním menu
+    odkazy u inspirace
+    šipka pro scroll dolů ... IMG lol
+*/
+
+html.variant-green .button,
+html.variant-green .nav.nav-justified>li>a .quote
+{
+    background-color: #a7bd1d;
+}
+html.variant-green .bulletize-paragraphs>p:before,
+html.variant-green .button.alt,
+html.variant-green .nav-item.color-primary,
+html.variant-green .blog-block a.color-primary
+{
+    color: #a7bd1d;
+}
+html.variant-green .button.alt
+{
+    border-color: #a7bd1d;
+}
+html.variant-green .nav.nav-justified>li>a .img-circle
+{
+    box-shadow: 0 0 0 5px #a7bd1d;
+}
+
+html.variant-green .decorated-circle-flame
+{
+    background-image: url('../img/arrow-down-green.png');
+}

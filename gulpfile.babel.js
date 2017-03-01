@@ -21,7 +21,7 @@ const $ = plugins();
 // Causes browser reload on file changes
 const BROWSER_RELOAD = !!(yargs.argv.reload);
 
-const LOCAL_ENV = 'localhost'
+const LOCAL_ENV = 'localhost';
 const DEV_ENV = 'development';
 const STAGE_ENV = 'staging';
 const PROD_ENV = 'production';

@@ -83,7 +83,7 @@ a{color: #4a4a4a}
 }
 .button.alt{
 	color: #fa5800;
-	background-color: transparent;
+	background-color: transparent !important;
 	border: 3px solid #fa5800;
 }
 .button.alt.color-secondary{
