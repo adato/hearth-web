@@ -54,7 +54,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			}, function(data) {
 				$scope.item = data;
 
-				$scope.setTitle(data.state);
+				$scope.setTitle(data);
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
 				else
@@ -90,6 +90,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					$scope.isActive = $rootScope.isPostActive($scope.item);
 				}
 			}, function(res) {
+        $scope.setTitle(res);
 				$scope.loaded = true;
 				$scope.item = false;
 			});
@@ -106,11 +107,21 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
-		$scope.setTitle = function(state) {
-      if (state === "expired") {
+		$scope.setTitle = function(data) {
+      if (data && data.status === 404) {
+        PageTitle.setTranslate("POST_NOT_FOUND", "");
+        return;
+      }
+      if (data && data.state === "expired") {
         PageTitle.setTranslate("POST_HAS_ALREADY_EXPIRED", "");
         return;
       }
+      if (data && data.state === "suspended") {
+        PageTitle.setTranslate("POST_WAS_SUSPENDED", "");
+        return;
+      }
+
+      // Post found
 			var author = ($scope.item.author ? $scope.item.author._type : 'User');
 			var title = $translate.instant(PostUtils.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);
