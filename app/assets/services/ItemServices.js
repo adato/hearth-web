@@ -19,6 +19,7 @@ angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter
 			postTypes: $$config.postTypes,
 			replyLabel: $$config.replyLabels,
 			replyCountTexts: $$config.replyCountTexts,
+      postCharacter: $$config.postCharacter,
 
 			loggedUser: $rootScope.loggedUser,
 			isPostActive: $rootScope.isPostActive,
