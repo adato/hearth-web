@@ -27,6 +27,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				postId: $state.params.id
 			},
 		  getData: Post.getRelated,
+			responseTransform: res => res.posts,
 		  templateUrl: templateUrl,
 		};
 
