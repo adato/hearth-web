@@ -100,6 +100,17 @@
 										<a ng-if=":: !item.is_followed" class="elevated-authority-function" ng-click="followItem(item)">{{:: "POST.FOLLOW.LABEL" | translate}}</a>
 										<a ng-if=":: item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)">{{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
 									</li>
+                  <li ng-if=':: userHasRight("post.suspend")'>
+                    <hr />
+                    <span>{{:: "CHARACTER" | translate}}:
+                       <span ng-repeat="itemEntry in item.character">
+                          <span ng-repeat="postCharEntry in postCharacter | filter : { name:itemEntry }">{{ postCharEntry.translate | translate }}</span>
+                       </span>
+                    </span>
+                  </li>
+                  <li ng-if=':: userHasRight("post.suspend")'>
+                    <span>{{:: "USER_LANGUAGE" | translate}}: {{:: postLanguage}} </span>
+                  </li>
 									<!-- /admin only -->
 								</ul>
 							</div>
@@ -163,7 +174,7 @@
 				</div>
 				<footer>
 					<div class="display-table nowrap">
-						<div class="display-table-cell vertical-align-top">
+						<div class="display-table-cell vertical-align-middle">
 							<div class="display-flex flex-wrap">
 								<div class="padding-right-large" ng-if=":: mine">
 									<div class="touchable-wrapper">
