@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('fancybox', [
 		return {
 			link: function($scope, element, attrs) {
 				if (typeof $().fancybox !== 'function') return console.error('JQuery module fancybox has failed to load.')
-				$(element).find(".fancy").fancybox({
+        $(element).find('a[rel=' + attrs.fancybox + ']').fancybox({
 					padding: 0,
 					helpers: {
 						overlay: {
