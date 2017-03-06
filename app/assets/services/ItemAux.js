@@ -130,7 +130,6 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		function logCharInfoShown(location, character) {
 			$analytics.eventTrack('Character info shown', {
 				'Location': location,
-				'User': $rootScope.loggedUser._id,
 				'context': $state.current.name
 			});
 		}
