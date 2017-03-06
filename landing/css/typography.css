@@ -1,0 +1,102 @@
+/*p {
+    margin-bottom: 1rem;
+    font-size: inherit;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility
+}
+
+em,i {
+    font-style: italic;
+    line-height: inherit
+}
+
+b,strong {
+    font-weight: 700;
+    line-height: inherit
+}
+
+small {
+    font-size: 80%;
+    line-height: inherit
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: inherit;
+    text-rendering: optimizeLegibility
+}
+
+h1 small,h2 small,h3 small,h4 small,h5 small,h6 small {
+    line-height: 0;
+    color: #cacaca
+}*/
+
+h1 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+h3 {
+    font-size: 1.1875rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+h4 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+h5 {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+h6 {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+@media print,screen and (min-width: 40em) {
+    h1 {
+        font-size:2.5rem
+    }
+
+    h2 {
+        font-size: 2rem
+    }
+
+    h3 {
+        font-size: 1.5625rem
+    }
+
+    h4 {
+        font-size: 1.3125rem
+    }
+
+    h5 {
+        font-size: 1rem
+    }
+
+    h6 {
+        font-size: 1rem
+    }
+}
