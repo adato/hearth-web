@@ -13,7 +13,7 @@ describe('avatar directive', function() {
     $httpBackend = _$httpBackend_;
 
     $httpBackend.whenGET(PATH.MESSAGES_JSON_EN_WHEN).respond(PATH.MESSAGES_JSON_EN_RESPONSE);
-    $httpBackend.whenGET(/^https:\/\/api.dev.hearth.net\/session/).respond();
+    $httpBackend.whenGET(/.*\/session/).respond();
   }));
 
   it('directive html template is loaded', function() {

@@ -17,9 +17,10 @@ describe('Register controller', function () {
     $httpBackend = _$httpBackend_;
     $rootScope = _$rootScope_;
 
-    $httpBackend.whenPOST('https://api.dev.hearth.net/users?referrals[]=').respond(403, blockEmailResponse);
+    // $httpBackend.whenPOST('https://api.dev.hearth.net/users?referrals[]=').respond(403, blockEmailResponse);
+    $httpBackend.whenPOST(/.*users\?referrals\[\].*/).respond(403, blockEmailResponse);
 
-    $httpBackend.whenGET(/^https:\/\/api.dev.hearth.net\/session/).respond();
+    $httpBackend.whenGET(/.*\/session/).respond();
 
     $httpBackend.whenGET(PATH.MESSAGES_JSON_EN_WHEN).respond(PATH.MESSAGES_JSON_EN_RESPONSE);
     $httpBackend.flush();
