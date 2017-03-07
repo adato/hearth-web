@@ -1,6 +1,7 @@
 'use strict';
 /**
- * @ngdoc directive
+ * @ngdoc directive The selector for the fancybox anchor element has to be unique for the images group.
+ * Set the same selector id into the rel parameter just for each anchor, which should be in the same group.
  * @name hearth.directives.fancybox
  * @description Add fancybox page preview
  * @restrict A
