@@ -64,7 +64,7 @@ gulp.task('landingPage',
     gulp.parallel(
       templatesLanding,
       javascriptLanding,
-      cssLanding,
+      sassLanding,
       copyFontsLanding,
       imagesLanding
     )
@@ -161,11 +161,20 @@ function sass() {
 }
 
 // Landing page css concat + minify
-function cssLanding() {
-  return gulp.src(PATHS.src.landing.css)
+function sassLanding() {
+  return gulp.src(PATHS.src.landing.scss)
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({
+      includePaths: PATHS.sass
+    })
+      .on('error', $.sass.logError))
+    .pipe($.autoprefixer({
+      browsers: COMPATIBILITY
+    }))
     .pipe($.concat('main.css'))
     .pipe($.cssnano())
-    .pipe(gulp.dest(PATHS.dist + '/css'));
+    .pipe(gulp.dest(PATHS.dist + '/css'))
+    .pipe(browser.reload({ stream: true }));
 }
 
 /////////////////////
@@ -383,5 +392,5 @@ function watch() {
   // LP
   gulp.watch(PATHS.src.landing.js).on('all', getSeries(javascriptLanding));
   gulp.watch(PATHS.src.landing.index).on('all', getSeries(templatesLanding));
-  gulp.watch(PATHS.src.landing.css).on('all', getSeries(cssLanding));
+  gulp.watch(PATHS.src.landing.scss).on('all', getSeries(sassLanding));
 }
