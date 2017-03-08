@@ -52,39 +52,6 @@ a{color: #000}
 /*******************
 	BUTTON
 *******************/
-.button{
-	display: inline-block;
-	padding: 8px 32px;
-	color: #fff;
-	background-color: #fa5800;
-	border: 0px solid;
-	border-radius: 8px;
-  font-size: 14px;
-	font-weight: bold;
-	white-space: nowrap;
-	text-decoration: none;
-	transition: .3s all;
-	box-shadow: 0 1px 1px rgba(0,0,0,.2);
-}
-.button.small{
-	padding: 8px 16px;
-	font-size: 12px;
-	text-transform: uppercase;
-	font-weight: normal;
-	letter-spacing: 2px;
-}
-.button.color-secondary{
-	background-color: #a7bd1d;
-}
-.button.alt{
-	color: #fa5800;
-	background-color: transparent;
-	border: 1px solid #fa5800;
-}
-.button.alt.color-secondary{
-	color: #a7bd1d;
-	border: 3px solid #a7bd1d;
-}
 .button-flame{
 	position: relative;
 	top: 3px;
@@ -103,6 +70,9 @@ a{color: #000}
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
+}
+nav ul{
+  margin-bottom: 0;
 }
 .nav-item .fa.hearth-flame{
 	opacity: .8;
@@ -216,7 +186,7 @@ a.masonry-item:hover .button,
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	padding: 8px 12px 8px 8px;
+	padding: 0px 12px 0px 8px;
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
@@ -1054,6 +1024,7 @@ html[lang='sk'] #section-marketplace {
 #image-testimonial-hajzler{background-image: url('../img/people/tomas-hajzler.png')}
 #image-testimonial-fellmer{background-image: url('../img/people/raphael-fellmer.png')}
 #image-testimonial-dusek{background-image: url('../img/people/jaroslav-dusek.png')}
+
 /* HOW TO */
 #how-to strong{
   font-family: 'Merriweather', Helvetica, Arial, sans-serif;
