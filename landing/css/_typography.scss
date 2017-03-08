@@ -1,0 +1,86 @@
+h1, h2, h3, h4, h5, h6,
+.headify-strong strong,
+html {
+	font: 1.25rem/1.25 'Merriweather', Helvetica, Arial, sans-serif;
+}
+@media (min-width: 768px) {
+	html { font: 1.25rem/1.6 'Merriweather', Helvetica, Arial, sans-serif }
+	h1 { // font-size: 48px;
+		font-size: 3rem }
+}
+.faux-paragraph,
+p { font-family: 'Raleway' }
+
+a { text-decoration: underline }
+
+h1 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 1.675rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    // margin-top: 0;
+    // margin-bottom: .5rem
+}
+
+h3 {
+    font-size: 1.1875rem;
+    line-height: 1.4;
+    // margin-top: 0;
+    // margin-bottom: .5rem
+}
+
+h4 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    // margin-top: 0;
+    // margin-bottom: .5rem
+}
+
+h5 {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    // margin-top: 0;
+    // margin-bottom: .5rem
+}
+
+h6 {
+    font-size: 1rem;
+    line-height: 1.4;
+    // margin-top: 0;
+    // margin-bottom: .5rem
+}
+
+@media print,screen and (min-width: 40em) {
+    h1 {
+        font-size:2.5rem
+    }
+
+    h2 {
+        font-size: 2rem
+    }
+
+    h3 {
+        font-size: 1.5625rem
+    }
+
+    h4 {
+        font-size: 1.3125rem
+    }
+
+    h5 {
+        font-size: 1rem
+    }
+
+    h6 {
+        font-size: 1rem
+    }
+}
+
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+    font-weight: bold;
+}

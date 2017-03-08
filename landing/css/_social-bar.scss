@@ -1,0 +1,67 @@
+/*******************
+	SOCIAL
+*******************/
+/*.footer {
+	font-size: 20px;
+	line-height: 32px;
+}*/
+.footer .standard-p {
+	font-size: inherit;
+	line-height: inherit;
+}
+.footer a {
+	font-family: 'Raleway';
+}
+.footer .footer-link {
+	text-decoration: none;
+	font-family: 'Merriweather', Helvetica, Arial, sans-serif;
+}
+.footer .hr {
+	margin: 60px;
+	width: inherit;
+}
+@media (min-width: 768px) {
+	.footer .hr {
+		margin: 30px 0;
+	}
+}
+
+.social-bar {
+	margin-bottom: 20px;
+	line-height: 48px;
+}
+.social-bar > a {
+	margin: 0 8px;
+}
+.social-bar .fa {
+	color: #bbb;
+}
+.social-bar .fa:hover,
+.social-bar .fa:focus{
+	/*color: #a7bd1d;*/
+}
+
+.social-bar .fa {
+  color: #fff;
+}
+.social-bar .facebook-circle {
+  color: #18384f;
+}
+.social-bar .google-circle {
+  color: #ce0b24;
+}
+.social-bar .twitter-circle {
+  color: #2db2e5;
+}
+.social-bar .youtube-circle {
+  color: #ce0b24;
+}
+.social-bar .instagram-circle {
+  color: #f7591f;
+}
+.social-bar .envelope-circle {
+  color: #a7bb31;
+}
+.social-bar .fa:focus {
+	color: #a7bd1d;
+}

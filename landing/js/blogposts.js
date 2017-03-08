@@ -81,12 +81,12 @@
 
 		standaradizedPost.innerHTML = ""
 			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
-			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
-			+ (title && title.innerHTML ? '<h3>'
+			+ (formattedPubDate ? '<small class="display-inline-block text-muted margin-bottom-large">' + formattedPubDate + '</small>' : '')
+			+ (title && title.innerHTML ? '<h5 class="blog-heading">'
 				+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '">' : '')
 			 		+ title.innerHTML
 				+ (link && link.childNodes.length ? '</a>' : '')
-			+ '</h3>' : '')
+			+ '</h5>' : '')
 			+ (textHTML ? '<div class="faux-paragraph">' + textHTML + '</div>' : '')
 			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
 

@@ -1,0 +1,60 @@
+/*******************
+	MASONRY
+*******************/
+@media (min-width: 992px) {
+	.masonry-wrapper:first-child {
+		margin-left: -8px;
+	}
+	.masonry-wrapper:last-child {
+		margin-right: -8px;
+	}
+	.masonry-alt .masonry-wrapper {margin:0 !important;}
+}
+.masonry-item {
+	position: relative;
+	height: 300px;
+	margin: 20px 0;
+	padding: 20px;
+	overflow: hidden;
+}
+a.masonry-item {
+	text-decoration: none;
+}
+.masonry-item .image-target {
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background-color: rgba(100,100,255,.4);
+	background-size: cover;
+	background-position: center center;
+}
+.masonry-item:after {
+	content: '';
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 1;
+	background-color: rgba(0,0,0,.2);
+}
+.masonry-item > div+div {
+	position: relative;
+	z-index: 2;
+}
+.masonry-item h2 {
+	color: #fff;
+	margin: 8px 0;
+	font-size: 24px;
+}
+.masonry-alt {
+	width: inherit !important;
+	max-width: inherit !important;
+	margin: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+/*.masonry-alt .masonry-item {
+	margin: 0 !important;
+}*/
+@media (min-width: 992px) {
+	.masonry-alt .masonry-item {
+		margin: 0 !important;
+	}
+}

@@ -119,6 +119,10 @@ li{display: block;}
 	-ms-align-items: center !important;
 	align-items: center !important;
 }
+.flex-align-baseline{
+	-ms-align-items: baseline;
+	align-items: baseline;
+}
 .flex-reverse{
 	-ms-flex-direction: row-reverse;
 	flex-direction: row-reverse;

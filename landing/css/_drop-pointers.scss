@@ -1,0 +1,49 @@
+/*******************
+	MAP DROP PINS
+*******************/
+.pointer-wrapper {
+	margin-bottom: 2.5rem;
+}
+.pointer {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-left-radius:50%;
+}
+
+.pointer.pointer-common:before {
+  position: absolute;
+  left: 0;
+  transform: rotate(-45deg);
+  margin-left: 32px;
+  margin-top: 30px;
+}
+
+.pointer.first {
+  background-color: #a7bd1d;
+}
+.pointer.first:before {
+  content: url("../img/icons/heart-1.svg");
+}
+
+.pointer.second {
+  background-color: #fa5800;
+}
+.pointer.second:before {
+  content: url("../img/icons/heart-2.svg");
+}
+
+.pointer.third {
+  background-color: #1fb1e8;
+}
+.pointer.third:before {
+  content: url("../img/icons/users.svg");
+}
