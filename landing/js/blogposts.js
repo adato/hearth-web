@@ -88,7 +88,7 @@
 				+ (link && link.childNodes.length ? '</a>' : '')
 			+ '</h5>' : '')
 			+ (textHTML ? '<div class="faux-paragraph">' + textHTML + '</div>' : '')
-			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
+			+ (link && link.childNodes.length ? '<div><a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="margin-top-medium color-primary">' + readOnBlog + '</a></div>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
 	}

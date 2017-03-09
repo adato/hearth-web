@@ -13,8 +13,9 @@
 	font-family: 'Raleway';
 }
 .footer .footer-link {
-	text-decoration: none;
 	font-family: 'Merriweather', Helvetica, Arial, sans-serif;
+	// text-decoration: none;
+	@extend .delinkify;
 }
 .footer .hr {
 	margin: 60px;

@@ -13,6 +13,28 @@ h1, h2, h3 {
 	margin: 1rem 0;
 	background: #ccc;
 }
+
+/**************************************
+	UTILITY STYLES
+	- to be @imported
+**************************************/
+.linkify {
+	// text-decoration: underline;
+	border-bottom: 1px solid #ddd;
+
+	&:hover {
+		border-bottom: 1px solid $primary-color;
+	}
+}
+.delinkify,
+.delinkify:hover {
+	// text-decoration: none;
+	border-bottom: none;
+}
+/**************************************
+	/ UTLILITY
+**************************************/
+
 /*******************
 	JS HELPERS
 *******************/
@@ -38,45 +60,9 @@ h1,h2,h3,h4,h5,h6,
 /*******************
 	BUTTON
 *******************/
-
-// .button {
-// 	display: inline-block;
-// 	padding: 8px 32px;
-// 	color: #fff;
-// 	background-color: #fa5800;
-// 	border: 0px solid;
-// 	border-radius: 30px;
-// 	font-size: 14px;
-// 	font-weight: bold;
-// 	white-space: nowrap;
-// 	text-decoration: none;
-// 	transition: .3s all;
-// 	box-shadow: 0 1px 1px rgba(0,0,0,.2);
-// }
-// @media (min-width: 400px) {
-// 	.button {
-// 		font-size: 20px;
-// 	}
-// }
-// .button.small {
-// 	padding: 8px 16px;
-// 	font-size: 12px;
-// 	text-transform: uppercase;
-// 	font-weight: normal;
-// 	letter-spacing: 2px;
-// }
-// .button.color-secondary {
-// 	background-color: #a7bd1d;
-// }
-// .button.alt {
-// 	color: #fa5800;
-// 	background-color: transparent;
-// 	border: 3px solid #fa5800;
-// }
-// .button.alt.color-secondary {
-// 	color: #a7bd1d;
-// 	border: 3px solid #a7bd1d;
-// }
+.button {
+	@extend .delinkify;
+}
 .button-flame {
 	position: relative;
 	top: 3px;

@@ -55,7 +55,8 @@ div.img-circle {
 	line-height: 1.2;
 }
 .nav-justified a {
-	text-decoration: none;
+	// text-decoration: none;
+	@extend .delinkify;
 }
 
 #nav-tabs {

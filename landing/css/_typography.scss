@@ -11,7 +11,10 @@ html {
 .faux-paragraph,
 p { font-family: 'Raleway' }
 
-a { text-decoration: underline }
+a {
+	// text-decoration: underline
+	@extend .linkify;
+}
 
 h1 {
     font-size: 1.5rem;

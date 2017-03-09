@@ -3,6 +3,7 @@
 *******************/
 .pointer-wrapper {
 	margin-bottom: 2.5rem;
+	@extend .delinkify;
 }
 .pointer {
   position: relative;

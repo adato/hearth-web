@@ -18,7 +18,8 @@
 	overflow: hidden;
 }
 a.masonry-item {
-	text-decoration: none;
+	// text-decoration: none;
+	@extend .delinkify;
 }
 .masonry-item .image-target {
 	position: absolute;
