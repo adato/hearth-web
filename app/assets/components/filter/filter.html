@@ -15,7 +15,7 @@
 			<div ng-show="configOptionsShow.character" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_CHARACTER' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<div class="display-inline-block margin-right-large" ng-repeat='character in postCharacter'>
+					<div class="display-inline-block margin-right-large" ng-repeat="character in postCharacter">
 						<checkbox model="filter[character.name]" value="true" class="margin-right-none">
 							<span translate="{{:: character.translate }}"></span>
 						</checkbox>
