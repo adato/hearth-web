@@ -116,7 +116,7 @@
 							</div>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium">
-							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="display-inline-block position-relative">
+							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="position-relative">
 								<avatar class="" type=":: item.author._type" src=":: item.author.avatar.normal" size="small"></avatar>
 								<div class="item-option-bg-type by-avatar" ng-class=":: 'item-option-bg-' + item.type">
 									<i class="fa fa-fw" ng-class=":: (item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
@@ -124,7 +124,7 @@
 							</a>
 						</div>
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
-							<h1 class='display-inline-block margin-right-medium'>
+							<h1>
 								<a ng-href="{{:: getProfileLink('Post', item._id)}}" history-param-pusher='item._id'>
 									<span ng-class=":: 'color-' + item.type" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
 									<span ng-bind=":: item.title" test-beacon="marketplace-item-post-title"></span>
