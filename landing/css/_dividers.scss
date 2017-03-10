@@ -5,6 +5,10 @@
 	position: relative;
 	padding-bottom: 110px;
 }
+.contains-slash > *:first-child {
+	z-index: 50;
+	position: relative;
+}
 /*.contains-slash + .section > section > h1 {
 	margin-top: 16px;
 }*/
