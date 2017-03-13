@@ -117,13 +117,14 @@ angular.module('hearth.directives').directive('infoBox', [
 							scope.show = true;
 							scope.error = false;
 
-							if (typeof scope.infoBox._type != 'undefined' && scope.infoBox._type == 'Community') {
-								fetchCommunityFollowees();
-							} else {
-								fetchCommonFollowees();
-								fetchCommonCommunities();
+							if ($rootScope.loggedUser._id != scope.infoBox._id) {
+								if (typeof scope.infoBox._type != 'undefined' && scope.infoBox._type == 'Community') {
+									fetchCommunityFollowees();
+								} else {
+									fetchCommonFollowees();
+									fetchCommonCommunities();
+								}
 							}
-
 
 							UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
 						});
