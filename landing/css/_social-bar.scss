@@ -33,6 +33,7 @@
 }
 .social-bar > a {
 	margin: 0 8px;
+	@extend .delinkify;
 }
 .social-bar .fa {
 	color: #bbb;
