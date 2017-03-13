@@ -16,7 +16,8 @@ angular.module('hearth.directives').directive('tipsy', [
 
 					if (attrs.title != '') {
 						el.tipsy({
-							gravity: 's'
+							gravity: 's',
+							onShow: attrs.tipsyOnShow ? $scope.$eval(attrs.tipsyOnShow) : null
 						});
 					}
 

@@ -366,21 +366,21 @@
 /* /MARGIN */
 
 /* COLOR */
-.color-offer{color: $colorOffer;}
-.color-need{color: $colorNeed;}
-.color-primary{color: $primary-color;}
-.color-secondary{color: $secondary-color;}
-.color-dark-gray{color: $colorDarkGray;}
-.color-light-gray{color: $colorLightGray;}
+.color-offer{color: $colorOffer !important}
+.color-need{color: $colorNeed !important}
+.color-primary{color: $primary-color !important}
+.color-secondary{color: $secondary-color !important}
+.color-dark-gray{color: $colorDarkGray !important}
+.color-light-gray{color: $colorLightGray !important}
 
-.text-danger{color: $alert-color;}
-.text-warning{color: $warning-color;}
-.text-muted{color: $colorLightGray;}
-.text-success{color: $success-color;}
+.text-danger{color: $alert-color !important}
+.text-warning{color: $warning-color !important}
+.text-muted{color: $colorLightGray !important}
+.text-success{color: $success-color !important}
 
-.background-primary{background-color: $primary-color;}
-.background-secondary{background-color: $secondary-color;}
-.background-white{background-color: #fff;}
+.background-primary{background-color: $primary-color !important}
+.background-secondary{background-color: $secondary-color !important}
+.background-white{background-color: $white !important}
 /* /COLOR */
 
 /* LINKS */
