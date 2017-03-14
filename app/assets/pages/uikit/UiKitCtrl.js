@@ -55,7 +55,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         {code: "<button class=\"button offer\">need</button>", desc: "The style is set according to post character."},
         {code: "<button class=\"button need\">offer</button>", desc: "The style is set according to post character."},
         {code: "<button class=\"button dark-gray\">dark-gray</button>"},
-        {code: "<button class=\"button\"><i class=\"fa fa-globe\"></i>text</button>"},
+        {code: "<button class=\"button\"><i class=\"fa fa-globe\"></i><span>text</span></button>"},
         {code: "<button class=\"button\"><i class=\"fa fa-globe\"></i></button>"},
         {code: "<button class=\"hollow button\">primary inv</button>"},
         {code: "<button class=\"hollow button secondary\">secondary inv</button>"},
