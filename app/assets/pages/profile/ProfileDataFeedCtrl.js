@@ -213,7 +213,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		var getPostsStatus = {
 			running: false
 		};
-		$scope.getPostsFinished;
+
 		var getPostsResult = {
 			active: [],
 			inactive: []
@@ -240,7 +240,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					params: params,
 					resource: User.getPosts,
 					getPostsStatus: getPostsStatus,
-					getPostsFinished: $scope.getPostsFinished,
 					getPostsResult: getPostsResult,
 					getPostsQ: getPostsQ,
 					postCount: $scope.userPostCount
@@ -255,7 +254,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 					params: params,
 					resource: User.getPosts,
 					getPostsStatus: getPostsStatus,
-					getPostsFinished: $scope.getPostsFinished,
 					getPostsResult: getPostsResult,
 					getPostsQ: getPostsQ,
 					postCount: $scope.userPostCount

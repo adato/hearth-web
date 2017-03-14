@@ -6,15 +6,16 @@
  * @description functions for marketplace items / posts
  */
 
-angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks',
-	function(ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks) {
+angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics',
+	function(ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics) {
 
 		var factory = {
-			addItemToBookmarks: addItemToBookmarks,
-			confirmSuspend: confirmSuspend,
-			hideItem: hideItem,
-			removeItemFromBookmarks: removeItemFromBookmarks,
-			replyItem: replyItem
+			addItemToBookmarks,
+			confirmSuspend,
+			hideItem,
+			removeItemFromBookmarks,
+			replyItem,
+			logCharInfoShown
 		};
 
 		return factory;
@@ -39,13 +40,12 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		 * Function will hide item from marketplace
 		 */
 		function hideItem(post, cb) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
 
 			$rootScope.globalLoading = true;
 			Post.hide({
 				id: post._id
-			}, function(res) {
+			}, res => {
 				if ($state.is('market')) {
 					$rootScope.$broadcast('itemDeleted', post);
 				}
@@ -54,7 +54,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				$rootScope.globalLoading = false;
 
 				cb && cb(post);
-			}, function() {
+			}, err => {
 				$rootScope.globalLoading = false;
 			});
 		}
@@ -107,8 +107,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		 * Function will show modal window with reply form to given post
 		 */
 		function replyItem(post) {
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
 
 			var scope = $rootScope.$new(true);
 			scope.post = post;
@@ -125,6 +124,13 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				closeByDocument: false,
 				closeByEscape: true,
 				showClose: false
+			});
+		}
+
+		function logCharInfoShown(location, character) {
+			$analytics.eventTrack('Character info shown', {
+				'Location': location,
+				'context': $state.current.name
 			});
 		}
 

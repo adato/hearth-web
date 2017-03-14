@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$state', '$anchorScroll', '$location', 'Filter', '$window', '$rootScope', '$timeout', '$analytics', 'User', 'ScrollService',
+	'$state', '$anchorScroll', '$location', 'Filter', '$window', '$rootScope', '$timeout', '$analytics', 'User', 'ScrollService', 'ItemAux',
 
-	function($state, $anchorScroll, $location, Filter, $window, $rootScope, $timeout, $analytics, User, ScrollService) {
+	function($state, $anchorScroll, $location, Filter, $window, $rootScope, $timeout, $analytics, User, ScrollService, ItemAux) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -43,6 +43,8 @@ angular.module('hearth.directives').directive('filterbar', [
 					}
 					return false;
 				}
+
+				scope.logCharInfoShown = () => {ItemAux.logCharInfoShown('Filter')};
 
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;

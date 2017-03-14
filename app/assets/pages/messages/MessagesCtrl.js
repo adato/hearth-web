@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, IsEmpty) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty', '$window',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, IsEmpty, $window) {
 
 		// start processing socket events
 		ConversationAux.init({
@@ -56,7 +56,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			$location.url($location.path());
 			if (filter.key) $location.search(filter.key, filter.value);
-			init();
+			init({resetId: true});
 		};
 
 		function redirectToFirstIfMatch(event, conversation) {
@@ -71,7 +71,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 		}
 
-		var filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'users_posts', 'community_id'];
+		const filterTypes = ['archived', 'from_admin', 'as_replies', 'as_replies_post', 'users_posts', 'community_id'];
 
 		/**
 		 *	Function that extend a param object for loading conversations with current filters
@@ -149,7 +149,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		}
 
-		function init() {
+		function init({ resetId } = {}) {
 			$scope.reloading = true;
 			// set conversation to false, so that template ng-ifs evaluate correctly and show loading
 			$scope.conversations = false;
@@ -196,11 +196,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					});
 				}
 
-				var currConvInList = currentConvIsInTheList(res);
-				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) || !currConvInList) {
-					$state.go('messages.detail', {
-						id: $state.params.id && currConvInList ? $state.params.id : res[0]._id
+				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) {
+					return $state.go('messages.detail', {
+						id: $state.params.id || res[0]._id
 					});
+				}
+				console.log(resetId);
+				if (resetId && $window.matchMedia('(min-width: 960px)').matches) {
+					console.log('ano');
+					return $state.go('messages.detail', {id: res[0]._id});
 				}
 			});
 		}
@@ -211,14 +215,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				id: conversation._id
 			});
 		};
-
-		function currentConvIsInTheList(list) {
-			if (!list) return;
-			for (var i = list.length; i--;) {
-				if (list[i] && (list[i]._id === $state.params.id)) return true;
-			}
-			return false;
-		}
 
 		UnauthReload.check();
 

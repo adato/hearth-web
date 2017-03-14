@@ -56,39 +56,34 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	function getPosts(opts) {
 		return $q(function(resolve, reject) {
 			var type = opts.active ? 'active' : 'inactive';
-			if (opts.getPostsFinished) {
-				resolve(opts.getPostsResult[type]);
-			} else {
-				if (opts.getPostsStatus.running) {
-					opts.getPostsQ.push([resolve, reject, type]);
-				} else {
-					opts.getPostsStatus.running = true;
-					opts.resource(opts.params || {}, function(res) {
-						opts.getPostsFinished = true;
-						opts.getPostsStatus.running = false;
-						res.data.forEach(function(item) {
-							if ($rootScope.isPostActive(item)) {
-								opts.postCount.active++;
-								opts.getPostsResult.active.push(item);
-							} else {
-								opts.postCount.inactive++;
-								opts.getPostsResult.inactive.push(item);
-							}
-						});
-						resolve(opts.getPostsResult[type]);
-						if (opts.getPostsQ.length) {
-							var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[0];
-							r[0](opts.getPostsResult[r[2]]);
-						}
-					}, function(err) {
-						reject(opts.getPostsResult[type]);
-						if (opts.getPostsQ.length) {
-							var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[1]
-							r[0](opts.getPostsResult[r[2]]);
-						}
-					});
-				}
-			}
+      if (opts.getPostsStatus.running) {
+        opts.getPostsQ.push([resolve, reject, type]);
+      } else {
+        opts.getPostsStatus.running = true;
+        opts.resource(opts.params || {}, function (res) {
+          opts.getPostsStatus.running = false;
+          res.data.forEach(function (item) {
+            if ($rootScope.isPostActive(item)) {
+              opts.postCount.active++;
+              opts.getPostsResult.active.push(item);
+            } else {
+              opts.postCount.inactive++;
+              opts.getPostsResult.inactive.push(item);
+            }
+          });
+          resolve(opts.getPostsResult[type]);
+          if (opts.getPostsQ.length) {
+            var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[0];
+            r[0](opts.getPostsResult[r[2]]);
+          }
+        }, function (err) {
+          reject(opts.getPostsResult[type]);
+          if (opts.getPostsQ.length) {
+            var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[1]
+            r[0](opts.getPostsResult[r[2]]);
+          }
+        });
+      }
 		});
 	}
 

@@ -208,7 +208,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		var getPostsStatus = {
 			running: false
 		};
-		$scope.getPostsFinished;
+
 		var getPostsResult = {
 			active: [],
 			inactive: []
@@ -234,7 +234,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					},
 					resource: Community.getPosts,
 					getPostsStatus: getPostsStatus,
-					getPostsFinished: $scope.getPostsFinished,
 					getPostsResult: getPostsResult,
 					getPostsQ: getPostsQ,
 					postCount: $scope.communityPostCount,
@@ -251,7 +250,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					},
 					resource: Community.getPosts,
 					getPostsStatus: getPostsStatus,
-					getPostsFinished: $scope.getPostsFinished,
 					getPostsResult: getPostsResult,
 					getPostsQ: getPostsQ,
 					postCount: $scope.communityPostCount

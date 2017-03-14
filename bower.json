@@ -60,7 +60,7 @@
     "angular-actioncable": "^1.0.1",
     "international-phone-number": "^0.0.16",
     "angular-select2": "^1.5.2",
-    "angular-mocks": "^1.5.8"
+    "angular-mocks": "1.4.x"
   },
   "resolutions": {
     "angular": "1.4.x",
