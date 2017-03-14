@@ -20,9 +20,28 @@ button,
 	resize: none;
 }
 
+label,
+input,
+textarea,
+tags-input {
+	width: 100%;
+}
+
 textarea{
 	max-height: 200px;
 }
+
+// temp from profile edit
+textarea,
+tags-input.textarea-height > div > .tags {
+	// line-height: 1.33 !important;
+	min-height: 200px;
+}
+// tags-input .tags,
+// textarea {
+// 	padding: $size-medium;
+// }
+// /temp
 
 input,
 textarea,

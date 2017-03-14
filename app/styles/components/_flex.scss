@@ -1,0 +1,139 @@
+.flex,
+.display-flex{
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+}
+.inline-flex,
+.display-inline-flex{
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.flex-divide-small > .flex-div {
+	margin-right: $size-small;
+}
+.flex-divide-small > .flex-div:last-child{
+	margin-right: 0;
+}
+
+.flex-divide-medium {
+	margin-right: -$size-small;
+	margin-left: -$size-small;
+}
+.flex-divide-medium > .flex-div {
+	margin-right: $size-small;
+	margin-left: $size-small;
+}
+@include breakpoint(medium up) {
+	.display-medium-flex{
+		display: flex;
+		align-items: center;
+	}
+	.flex-medium-divide > .flex-div{
+		margin-right: $size-medium;
+	}
+	.flex-medium-divide > .flex-div:last-child{
+		margin-right: 0;
+	}
+}
+@include breakpoint(medium up) {
+	.display-medium-flex{
+		display: flex;
+		align-items: center;
+	}
+}
+@include breakpoint(large up) {
+	.display-large-flex{
+		display: flex;
+		align-items: center;
+	}
+}
+
+
+
+@media (min-width: 50.063em) {
+	.medium-flex {
+		display: flex;
+        align-items: center;
+	}
+}
+@media (min-width: 81.063em) {
+	.large-flex {
+		display: flex;
+        align-items: center;
+	}
+}
+
+.flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
+.flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
+
+.flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+.flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
+
+.flex-divided-medium > .flex-divided-medium {margin-right: 0; margin-left: 0}
+.flex-divided-medium > .flex-divided-large {margin-right: 0; margin-left: 0}
+.flex-divided-large > .flex-divided-large {margin-right: 0; margin-left: 0}
+.flex-divided-large > .flex-divided-medium {margin-right: 0; margin-left: 0}
+
+.order-last {order: 100}
+
+@include breakpoint(medium up) {
+	.medium-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
+	.medium-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
+
+    .medium-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+    .medium-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
+
+    .medium-order-last {order: 100}
+}
+@include breakpoint(large up) {
+	.large-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
+	.large-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
+
+	.large-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+	.large-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
+
+    .large-order-last {order: 100}
+}
+
+.flex-center{
+	justify-content: center;
+}
+.flex.align-start,
+.flex-align-start{
+	align-items: flex-start;
+}
+.flex.align-center,
+.flex-align-center{
+	align-items: center !important;
+}
+.flex-reverse{
+	flex-direction: row-reverse;
+}
+.flex-column{
+	flex-direction: column;
+}
+.flex-space-between{
+	justify-content: space-between;
+}
+.flex-stretch-content{
+	align-content: stretch;
+	align-items: stretch;
+}
+.flex-wrap{
+	flex-wrap: wrap;
+}
+.flex-1{flex: 1;}
+.flex-2{flex: 2;}
+.flex-3{flex: 3;}
+.flex-4{flex: 4;}
+.flex-5{flex: 5;}
+.flex-6{flex: 6;}
+.flex-7{flex: 7;}
+.flex-8{flex: 8;}
+.flex-9{flex: 9;}
+.flex-10{flex: 10;}
+.flex-11{flex: 11;}
+.flex-12{flex: 12;}
