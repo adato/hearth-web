@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
   function ($scope, $sce) {
     $scope.buttons = [];
     $scope.typographies = [];
+    $scope.inputs = [];
 
 
     /*
@@ -63,9 +64,17 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       ];
     };
 
+    const getInputsData = () => {
+      return [
+        {code: "<input type=\"text\" placeholder=\"placeholder\">"},
+        {code: "<input type=\"number\" value=\"10\">"},
+        {code: "<textarea placeholder=\"Text area ...\"></textarea>"},
+      ];
+    };
     const init = () => {
       prepareElementData($scope.buttons, getButtonsData());
       prepareElementData($scope.typographies, getTypographiesData());
+      prepareElementData($scope.inputs, getInputsData());
     };
 
     init();

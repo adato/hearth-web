@@ -17,3 +17,12 @@
   </div>
   <br/>
 </div>
+
+<h2>Inputs</h2>
+<div ng-repeat="item in inputs">
+  <div class="display-flex flex-space-between">
+    <div ng-bind-html="item.code"></div>
+    <div>{{ item.description}}</div>
+  </div>
+  <br/>
+</div>
