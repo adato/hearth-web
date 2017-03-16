@@ -152,38 +152,38 @@
 			display: block;
 		}
 
-		.character-label {
-			display: inline-block;
-			margin-left: 0;
-			margin-right: 10px;
-			margin-bottom: 1rem;
-
-			input {
-				margin-right: 4px;
-				display: none;
-			}
-
-			span {
-				color: $ui-color-lighter;
-				font-weight: normal;
-				margin-left: 0;
-			}
-
-			.fa-question-circle {
-				opacity: .5;
-				color: $black;
-			}
-
-			@include breakpoint(small down) {
-				display: block;
-				margin-bottom: $size-small !important;
-				margin-right: 0;
-
-				input {
-					margin-right: 6px;
-				}
-			}
-		}
+		// .character-label {
+		// 	display: inline-block;
+		// 	margin-left: 0;
+		// 	margin-right: 10px;
+		// 	margin-bottom: 1rem;
+		//
+		// 	input {
+		// 		margin-right: 4px;
+		// 		display: none;
+		// 	}
+		//
+		// 	span {
+		// 		color: $ui-color-lighter;
+		// 		font-weight: normal;
+		// 		margin-left: 0;
+		// 	}
+		//
+		// 	.fa-question-circle {
+		// 		opacity: .5;
+		// 		color: $black;
+		// 	}
+		//
+		// 	@include breakpoint(small down) {
+		// 		display: block;
+		// 		margin-bottom: $size-small !important;
+		// 		margin-right: 0;
+		//
+		// 		input {
+		// 			margin-right: 6px;
+		// 		}
+		// 	}
+		// }
 	}
 	.keywords {
 		margin-bottom: 1rem;
