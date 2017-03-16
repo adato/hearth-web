@@ -1,9 +1,11 @@
-<section class="large-2 medium-2 hide-for-small columns user">
+<section class="large-2 medium-2 hide-for-small columns">
 	<div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">
-		<a ng-href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id) }}">
-			<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
-			<div class="name">{{:: item.entity_from.name}}</div>
-		</a>
+		<div class="user">
+			<a ng-href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id) }}">
+				<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
+				<div class="name">{{:: item.entity_from.name}}</div>
+			</a>
+		</div>
 	</div>
 </section>
 <section class="large-10 small-12 medium-10 columns" id="rating_{{item._id}}">
