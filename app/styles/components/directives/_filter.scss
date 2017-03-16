@@ -40,20 +40,18 @@ input.bottom-line-input:focus {
 	box-shadow: none !important;
 	outline: none;
 }
-@include breakpoint(large up) {
-	.insert-button-container {
-		padding-left: 10px;
-	}
-}
-
-
-@include breakpoint(small down) {
-	.filter .filter-inner {
-		label {
-			display: block !important;
-		}
-	}
-}
+// @include breakpoint(large up) {
+// 	.insert-button-container {
+// 		padding-left: 10px;
+// 	}
+// }
+// @include breakpoint(small down) {
+// 	.filter .filter-inner {
+// 		label {
+// 			display: block !important;
+// 		}
+// 	}
+// }
 .radio-container {
 	padding-bottom: $size-small;
 	span>small {

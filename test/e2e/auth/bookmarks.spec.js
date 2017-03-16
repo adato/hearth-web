@@ -73,6 +73,7 @@ describe('hearth bookmarks', function() {
 
 		expect(marketItems.count()).toBe(2); // count items
 
+    browser.sleep(4000);
 		expect(notify.isPresent()).toBeFalsy();
 		expect(expectedDropdown.isDisplayed()).toBeFalsy();
 		dropdownArrow.click();

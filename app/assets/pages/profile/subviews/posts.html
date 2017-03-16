@@ -1,7 +1,7 @@
 </div>
 <div ng-include="'assets/pages/profile/subviews/postPanel.html'"></div>
 <div ng-if="subPageLoaded">
-	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! userPostCount.active && ! userPostCount.inactive && getPostsFinished">
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! userPostCount.active && ! userPostCount.inactive">
 		<div class="item">
 			<p>{{:: 'PROFILE.POSTS.NO_POSTS_ME' | translate }}</p>
 			<p>
@@ -12,7 +12,7 @@
 		</div>
 	</div>
 
-	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! mine && !userPostCount.active && getPostsFinished">
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! mine && !userPostCount.active">
 		<div class="item">
 			<p>{{:: 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}</p>
 		</div>

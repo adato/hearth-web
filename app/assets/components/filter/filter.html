@@ -15,16 +15,12 @@
 			<div ng-show="configOptionsShow.character" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_CHARACTER' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<checkbox model="filter.energy" value="true">{{:: 'CATEGORY_ENERGY' | translate}}
-						<small>{{:: 'CATEGORY_ENERGY_TEXT' | translate}}</small>
-					</checkbox>
-					<checkbox model="filter.mass" value="true">{{:: 'CATEGORY_MASS' | translate}}
-						<small>{{:: 'CATEGORY_MASS_TEXT' | translate}}</small>
-					</checkbox>
-					<checkbox model="filter.information" value="true">
-						{{:: 'CATEGORY_INFORMATION' | translate}}
-						<small>{{:: 'CATEGORY_INFORMATION_TEXT' | translate}}</small>
-					</checkbox>
+					<div class="display-inline-block margin-right-large" ng-repeat="character in postCharacter">
+						<checkbox model="filter[character.name]" value="true" class="margin-right-none">
+							<span translate="{{:: character.translate }}"></span>
+						</checkbox>
+						<i class="fa fa-question-circle color-dark-gray" aria-hidden="true" tipsy tipsy-on-show="logCharInfoShown" title="{{character.translateText | translate}}"></i>
+					</div>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.postType" class="medium-display-table-row">

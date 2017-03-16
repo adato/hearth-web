@@ -131,6 +131,11 @@
 			background-color: $colorLightGray;
 		}
 	}
+
+  li > span {
+    margin-top: 1px;
+    padding: $size-tiny $size-medium;
+  }
 	&:before {
 		content: '';
 		position: absolute;

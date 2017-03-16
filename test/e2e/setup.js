@@ -13,7 +13,7 @@ module.exports = {
 		testPassword: 'testovaci',
 		useConfig: 'local',
 		local: {
-			baseUrl: 'https://0.0.0.0:9000/app',
+			baseUrl: 'http://0.0.0.0:9000/app',
 			appPath: '/',
       name: 'Hearth',
       surname: '' ,
