@@ -11,6 +11,7 @@
 }
 
 
+// TODO: get rid of this old syntax in HTMLs
 .flex-divide-small > .flex-div {
 	margin-right: $size-small;
 }
@@ -38,42 +39,53 @@
 		margin-right: 0;
 	}
 }
+// /TODO
+
+// shorthand for .flex.flex-align-start.flex-divided-large
+.flex-grid {
+	display: -ms-flexbox;
+	display: flex;
+	align-items: flex-start;
+}
+
 @include breakpoint(medium up) {
+	.medium-flex,
 	.display-medium-flex{
 		display: flex;
 		align-items: center;
 	}
+
+	.medium-flex-grid {
+		display: -ms-flexbox;
+		display: flex;
+		align-items: flex-start;
+	}
 }
 @include breakpoint(large up) {
+	.large-flex,
 	.display-large-flex{
 		display: flex;
 		align-items: center;
 	}
-}
 
-
-
-@media (min-width: 50.063em) {
-	.medium-flex {
+	.large-flex-grid {
+		display: -ms-flexbox;
 		display: flex;
-        align-items: center;
-	}
-}
-@media (min-width: 81.063em) {
-	.large-flex {
-		display: flex;
-        align-items: center;
+		align-items: flex-start;
 	}
 }
 
 .flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
 .flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
 
+.flex-grid,
 .flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+.flex-grid > *,
 .flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
 
 .flex-divided-medium > .flex-divided-medium {margin-right: 0; margin-left: 0}
 .flex-divided-medium > .flex-divided-large {margin-right: 0; margin-left: 0}
+.flex-grid > .flex-grid,
 .flex-divided-large > .flex-divided-large {margin-right: 0; margin-left: 0}
 .flex-divided-large > .flex-divided-medium {margin-right: 0; margin-left: 0}
 
@@ -83,7 +95,9 @@
 	.medium-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
 	.medium-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
 
+	.medium-flex-grid,
     .medium-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+	.medium-flex-grid > *,
     .medium-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
 
     .medium-order-last {order: 100}
@@ -92,7 +106,9 @@
 	.large-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
 	.large-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
 
+	.large-flex-grid,
 	.large-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+	.large-flex-grid > *,
 	.large-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
 
     .large-order-last {order: 100}

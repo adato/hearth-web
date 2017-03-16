@@ -1,23 +1,22 @@
 <div class="location-picker">
 	<div class="location-input" ng-class="{disabled: disabled}">
-		<label class="fleft">
-			{{ 'POST_PLACE_LABEL' | translate}}
-		</label>
-		<div class="controll fright">
-			<checkbox ng-show="!required" model="disabled" value="true" value-off="false" class="margin-right-none">
-				{{ 'LOCATION_DOES_NOT_MATTER' | translate }}
-			</checkbox>
+		<div class="flex-grid flex-space-between">
+			<label>
+				{{ 'POST_PLACE_LABEL' | translate}}
+			</label>
+			<div class="flex-grid">
+				<div>
+					<a ng-click="toggleMap()" class="nowrap">
+						<i class="fa fa-map-marker"></i>
+						<span ng-if="mapIsVisible" translate="POSTS.DETAIL.HIDE_MAP"></span>
+						<span ng-if="!mapIsVisible" translate="POSTS.DETAIL.SHOW_MAP"></span>
+					</a>
+				</div>
+				<checkbox ng-show="!required" model="disabled" value="true" value-off="false" class="margin-vertical-none nowrap">
+					{{ 'LOCATION_DOES_NOT_MATTER' | translate }}
+				</checkbox>
+			</div>
 		</div>
-		<div class="fright map-icon">
-			<a ng-click="toggleMap()">
-				<i class="fa fa-map-marker">
-					<span class="fa fa-times hidden"></span>
-				</i>
-				<span ng-if="mapIsVisible" ng-bind=" 'POSTS.DETAIL.HIDE_MAP' | translate"></span>
-				<span ng-if="!mapIsVisible" ng-bind=" 'POSTS.DETAIL.SHOW_MAP' | translate"></span>
-			</a>
-		</div>
-		<div class="clearfix"></div>
 		<div class="location-map hidden">
 			<div class="map-controll map-point" ng-show="mapPoint && mapPoint.formatted_address">
 				<a class="right" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</a>

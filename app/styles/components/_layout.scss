@@ -108,3 +108,11 @@ img.blur {
 // .tab-bar .hearth-logo {
 //   max-width: 150px;
 // }
+
+
+.block {
+    margin-bottom: 1rem;
+}
+.block:last-child {
+    margin-bottom: 0;
+}

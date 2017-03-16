@@ -21,10 +21,16 @@ button,
 }
 
 label,
+.intl-tel-input {
+	display: block
+}
 input,
 textarea,
 tags-input {
 	width: 100%;
+}
+tags-input input {
+	width: initial !important;
 }
 
 textarea{
