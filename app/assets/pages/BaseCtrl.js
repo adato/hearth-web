@@ -541,15 +541,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * @todo: will be changed due another admin privilegs in future
 		 */
 		$rootScope.followItem = function(post) {
-			if (post.is_followed)
-				return false;
+			if (post.is_followed) return false;
 
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
 
 			Post.follow({
 				id: post._id
-			}, function(res) {
+			}, res => {
 				if (res.ok === true) {
 					post.is_followed = !post.is_followed;
 					Notify.addSingleTranslate('NOTIFY.POST_FOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
@@ -665,8 +663,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			scope.callback = callback;
 			scope.params = angular.isArray(params) ? params : [params];
 
-			if (callbackScope)
-				scope.callbackScope = callbackScope;
+			if (callbackScope) scope.callbackScope = callbackScope;
 
 			// open dialog window and inject new scope
 			var dialog = ngDialog.open({
@@ -736,14 +733,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (paramObject.message) parameters.message = paramObject.message;
 
 			// call service
-			Action(parameters, function(res) {
+			Action(parameters, res => {
 				if (angular.isFunction(cb)) cb(item);
 
 				$rootScope.$broadcast('postUpdated', res);
 				Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
 				$rootScope.globalLoading = false;
 
-			}, function(err) {
+			}, err => {
 				$rootScope.globalLoading = false;
 				if (err.status == 422) {
 					// somethings went wrong - post is not valid
@@ -766,7 +763,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 						if (data[i]._id == id && !data[i].comment) {
 
 							scope.openRatingReplyForm(data[i]);
-							$timeout(function() {
+							$timeout(() => {
 								ScrollService.scrollToElement("#rating_" + id);
 								$("#rating_" + id).find('textarea').focus();
 							});
@@ -778,10 +775,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		// return false if post is inactive
-		$rootScope.isPostActive = function(item) {
-			return item.state === 'active';
-			// return item.is_active && !item.is_expired;
-		};
+		$rootScope.isPostActive = item => item.state === 'active';
 
 		$rootScope.toggleSearchBar = function(value) {
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);
@@ -792,7 +786,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					angular.element('#search').focus();
 				});
 
-				$(document).on('click.search', function(e) {
+				$(document).on('click.search', e => {
 					var element = $(e.target);
 					if (!element.parents('#searchContainer').length && !element.is('#searchContainer') && !element.is('#searchIcon')) {
 						$timeout($rootScope.toggleSearchBar);
@@ -800,7 +794,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				});
 			} else {
 				angular.element('#search').blur();
-				$('#searchContainer').slideUp('slow', function() {
+				$('#searchContainer').slideUp('slow', () => {
 					$('#searchContainer').hide();
 				});
 
@@ -812,7 +806,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return $rootScope.searchBarDisplayed;
 		};
 
-		$rootScope.mixpanelTrackMoveToTop = function() {
+		$rootScope.mixpanelTrackMoveToTop = () => {
 			$analytics.eventTrack('Move to Top clicked', {
 				'context': $state.current.name
 			});
