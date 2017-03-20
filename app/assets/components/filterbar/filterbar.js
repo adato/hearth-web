@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$state', '$anchorScroll', '$location', 'Filter', '$window', '$rootScope', '$timeout', '$analytics', 'User', 'ScrollService',
+	'$state', '$location', 'Filter',
 
-	function($state, $anchorScroll, $location, Filter, $window, $rootScope, $timeout, $analytics, User, ScrollService) {
+	function($state, $location, Filter) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -28,38 +28,16 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.testFilterActive = function() {
 					var paramString = Filter.getParams();
-					var locSearch = $location.search();
 
-					scope.filterOn = anyFiltersSet(locSearch);
+					scope.filterOn = Filter.isSet();
 					scope.searchParams = (paramString) ? '?' + paramString : '';
 				};
-
-				function anyFiltersSet(loc) {
-					var l = JSON.parse(JSON.stringify(loc));
-					delete l.page;
-					delete l.postdetail;
-					for (var prop in l) {
-						if (l.hasOwnProperty(prop)) return true;
-					}
-					return false;
-				}
 
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;
 				});
 
 				scope.$on('filterOpen', scope.toggleFilter);
-
-				scope.$on('showUI', function($event, ui) {
-					scope.filterSelected = ui === 'filter';
-
-					if (ui === 'map') {
-						scope.mapSelected = true;
-						scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
-						scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
-					}
-					$anchorScroll(ui);
-				});
 
 				scope.$on('filterReset', scope.cancelFilter);
 				scope.$on('filterReseted', scope.testFilterActive);

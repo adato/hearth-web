@@ -157,10 +157,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		});
 
-		$scope.showUI = function(ui) {
-			$scope.$broadcast('showUI', ui);
-		};
-
 		/**
 		 * When submitted fulltext search
 		 */

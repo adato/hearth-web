@@ -27,7 +27,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.showLimitedPostsMessageAuth = false;
     $scope.showLimitedPostsMessageUnauth = false;
 
-		var userLanguages;
+		var userLanguages = undefined;
 		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
@@ -141,8 +141,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			var paramObject = JSON.parse(JSON.stringify(params));
 			if (paramObject.page) delete paramObject.page;
 
-			// Language can be set from Filter already
-      if (!paramObject["lang[]"]) {
+      if (!Filter.isSet()) {
         paramObject.lang = userLanguages;
       }
 
@@ -203,6 +202,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					marketplaceInited = true;
 				}
 			}
+
+			// lang param has to be empty to get posts in all languages
+			if(params.lang == 'all') delete params.lang;
 
 			refreshTags();
 			// if there are keywords, add them to search
@@ -294,17 +296,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		});
 
-    // display posts in these languages
+    // default languages
 		function initLanguages() {
-      if(Auth.isLoggedIn()) {
-        userLanguages = $.isArray($rootScope.loggedUser.user_languages) ? $rootScope.loggedUser.user_languages.join(',') : $rootScope.loggedUser.user_languages;
-        if (!userLanguages.includes('cs') && $.cookie('showLimitedPostsMessageAuth') === undefined) {
-          $scope.showLimitedPostsMessageAuth = true;
-          $.cookie('showLimitedPostsMessageAuth','done')
-        }
-      } else {
-        userLanguages = $rootScope.language;
-        if(userLanguages != 'cs') $scope.showLimitedPostsMessageUnauth = true;
+      userLanguages = Auth.getUserLanguages();
+      if (!userLanguages.split(',').includes('cs')) {
+        Auth.isLoggedIn() ? $scope.showLimitedPostsMessageAuth = true : $scope.showLimitedPostsMessageUnauth = true;
       }
     }
 
