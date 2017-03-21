@@ -107,33 +107,33 @@ li{display: block;}
 		flex-direction: column;
 	}
 }
-
-
-.flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
-.flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
-@include breakpoint(medium up) {
-	.medium-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
-	.medium-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
-}
-@include breakpoint(large up) {
-	.large-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
-	.large-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
-}
-
-.flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
-.flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
-@include breakpoint(medium up) {
-	.medium-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
-	.medium-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
-}
-@include breakpoint(large up) {
-	.large-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
-	.large-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
-}
-
-.medium-order-last {
-
-}
+//
+//
+// .flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
+// .flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
+// @include breakpoint(medium up) {
+// 	.medium-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
+// 	.medium-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
+// }
+// @include breakpoint(large up) {
+// 	.large-flex.flex-divided-medium {margin-right: -$size-tiny; margin-left: -$size-tiny;}
+// 	.large-flex.flex-divided-medium > * {margin-right: $size-tiny; margin-left: $size-tiny}
+// }
+//
+// .flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+// .flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
+// @include breakpoint(medium up) {
+// 	.medium-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+// 	.medium-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
+// }
+// @include breakpoint(large up) {
+// 	.large-flex.flex-divided-large {margin-right: -$size-small; margin-left: -$size-small}
+// 	.large-flex.flex-divided-large > * {margin-right: $size-small; margin-left: $size-small}
+// }
+//
+// .medium-order-last {
+//
+// }
 
 
 .flex-center{

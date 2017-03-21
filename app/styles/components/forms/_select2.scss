@@ -4,7 +4,7 @@ $select2Path: '../img';
 Version: 3.5.4 Timestamp: Sun Aug 30 13:30:32 EDT 2015
 */
 .select2-container:not(.ui-select-container) {
-    margin: 0;
+    margin: 0 0 $form-spacing;
     position: relative;
     display: block;
     vertical-align: middle;
