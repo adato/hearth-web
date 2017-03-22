@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.directives').directive('filter', [
-	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList', '$translate',
-	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList, $translate) {
+	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList', '$translate', '$window',
+	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList, $translate, $window) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -24,6 +24,8 @@ angular.module('hearth.directives').directive('filter', [
 				};
 				var input = $('input#geolocation', element);
 				var autocomplete = new google.maps.places.Autocomplete(input[0], options);
+
+				scope.postCharacter = $window.$$config.postCharacter;
 
 				var filterDefault = {
 					query: null,

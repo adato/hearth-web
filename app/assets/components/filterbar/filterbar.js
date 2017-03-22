@@ -5,9 +5,7 @@
  * @description Main bar of app
  * @restrict E
  */
-angular.module('hearth.directives').directive('filterbar', [
-	'$state', '$location', 'Filter',
-
+angular.module('hearth.directives').directive('filterbar', ['$state', '$location', 'Filter',
 	function($state, $location, Filter) {
 		return {
 			replace: true,
@@ -32,6 +30,8 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.filterOn = Filter.isSet();
 					scope.searchParams = (paramString) ? '?' + paramString : '';
 				};
+
+				scope.logCharInfoShown = () => {ItemAux.logCharInfoShown('Filter')};
 
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;

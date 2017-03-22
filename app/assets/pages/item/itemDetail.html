@@ -67,6 +67,17 @@
 												<a ng-if="!item.is_followed" class="elevated-authority-function" ng-click="followItem(item)">{{:: "POST.FOLLOW.LABEL" | translate}}</a>
 												<a ng-if="item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)">{{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
 											</li>
+                      <li ng-if=':: userHasRight("post.suspend")'>
+                        <hr/>
+                        <span>{{:: "CHARACTER" | translate}}:
+                           <span ng-repeat="itemEntry in item.character">
+                               <span ng-repeat="postCharEntry in postCharacter | filter : { name:itemEntry }">{{ postCharEntry.translate | translate }}</span>
+                           </span>
+                        </span>
+                      </li>
+                      <li ng-if=':: userHasRight("post.suspend")'>
+                        <span>{{:: "USER_LANGUAGE" | translate}}: {{:: postLanguage}} </span>
+                      </li>
 											<!-- /admin only -->
 										</ul>
 									</div>
@@ -81,7 +92,7 @@
 									</a>
 								</div>
 								<div class="column small-12 medium-8 medium-pull-4">
-									<h1 class='display-inline-block margin-right-medium'>
+									<h1 class='margin-right-medium'>
 										<span ng-class=":: 'color-' + item.type" translate="{{:: postTypeCode }}"></span>
 										{{:: item.title}}
 									</h1>
@@ -95,9 +106,9 @@
 							<div class="item-section text-container word-wrap">
 								<p class="margin-none" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 							</div>
-							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
+							<ul lemmon-slider fancybox="{{:: item._id}}" ng-if="item.attachments_attributes.length" class="item-section">
 								<li ng-repeat="photo in item.attachments_attributes track by $index">
-									<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}">
+									<a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}">
 										<img class="post-image" ng-src="{{ photo.normal }}" />
 									</a>
 								</li>
@@ -210,10 +221,12 @@
 							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
 						<article ng-repeat="(id, item) in :: replies track by item.conversation_id" class='box-section' ng-if=":: replies.length">
-							<section class='display-table'>
-								<div class='display-table-cell addon user'>
+							<section class="display-table">
+								<div class="display-table-cell addon padding-right-medium">
 									<div info-box="item.author" infobox-index="$index" infobox-class="'on-item-detail'">
-										<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
+										<div class="user">
+											<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
+										</div>
 									</div>
 								</div>
 								<div class='display-table-cell'>

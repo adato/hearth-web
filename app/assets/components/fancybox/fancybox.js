@@ -1,6 +1,7 @@
 'use strict';
 /**
- * @ngdoc directive
+ * @ngdoc directive The selector for the fancybox anchor element has to be unique for the images group.
+ * Set the same selector id into the rel parameter just for each anchor, which should be in the same group.
  * @name hearth.directives.fancybox
  * @description Add fancybox page preview
  * @restrict A
@@ -11,7 +12,7 @@ angular.module('hearth.directives').directive('fancybox', [
 		return {
 			link: function($scope, element, attrs) {
 				if (typeof $().fancybox !== 'function') return console.error('JQuery module fancybox has failed to load.')
-				$(element).find(".fancy").fancybox({
+        $(element).find('a[rel=' + attrs.fancybox + ']').fancybox({
 					padding: 0,
 					helpers: {
 						overlay: {
