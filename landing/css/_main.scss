@@ -16,14 +16,17 @@ h1, h2, h3 {
 
 /**************************************
 	UTILITY STYLES
+	- not to be used directly!
 	- to be @imported
+	- could probably be mixins, but meh now
 **************************************/
 .linkify {
-	// text-decoration: underline;
+	color: $secondary-color;
 	border-bottom: 1px solid #ddd;
 
 	&:hover {
-		border-bottom: 1px solid $primary-color;
+		color: scale-color($secondary-color, $lightness: -15%);
+		border-bottom: 1px solid scale-color($secondary-color, $lightness: -15%);
 	}
 }
 .delinkify,
@@ -44,7 +47,6 @@ h1, h2, h3 {
 /*******************
 	COLOR
 *******************/
-a,
 .color-primary {color: #fa5800}
 .color-secondary {color: #a7bd1d}
 .color-tertiary {color: #1fb1e8}
