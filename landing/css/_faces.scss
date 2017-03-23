@@ -159,6 +159,14 @@ div.img-circle {
 	line-height: 2em;
 	/*font-size: 32px;*/
 }
+
+@media (min-width: 992px) {
+  .img-rotator.controls [rotate-right],
+  .img-rotator.controls [rotate-left] {
+    top: 34px;
+  }
+}
+
 .img-rotator.controls [rotate-right]:hover,
 .img-rotator.controls [rotate-left]:hover {
 	color: #fa5800;
@@ -169,10 +177,7 @@ div.img-circle {
 .img-rotator.controls [rotate-left] {
 	left: -40px;
 }
-@media (min-width: 1200px) {
-	.img-rotator.controls [rotate-right] { top: 60px; }
-	.img-rotator.controls [rotate-left] { top: 60px; }
-}
+
 @media (max-width: 768px) {
 	.control-space-allower {
 		margin: 0 auto;
