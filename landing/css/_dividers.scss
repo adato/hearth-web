@@ -31,9 +31,10 @@
 	display: block;
 	transform: rotate(-6deg);
 	background-color: #fff;
-}
-@media (min-width: 992px) {
-	.slash:before {
+	@media (min-width: 600px) {
+		transform: rotate(-3deg);
+	}
+	@media (min-width: 992px) {
 		transform: rotate(-2deg);
 	}
 }

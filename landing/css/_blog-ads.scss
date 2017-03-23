@@ -1,6 +1,11 @@
 /*******************
 	BLOG ADS
 *******************/
+.blog-block {
+	@include breakpoint(medium down) {
+		margin-bottom: $size-xlarge;
+	}
+}
 .blog-block .blog-heading {
 	text-align: left;
 }
