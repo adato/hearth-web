@@ -75,6 +75,9 @@ angular.module('hearth.services').factory('Auth', [
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
 			},
+      getUserLanguages: function () {
+        return this.isLoggedIn() ? $rootScope.loggedUser.user_languages.join(',') : $rootScope.language;
+      },
 			changePassword: function(password, success) {
 				return $http.post($$config.apiPath + '/change-password', {
 					password: password
