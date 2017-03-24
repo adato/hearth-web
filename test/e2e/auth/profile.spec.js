@@ -156,7 +156,7 @@ describe('user profile', function() {
     const LANG_INPUT = beacon(LANG_SELECTOR);
     log(LANG_INPUT);
 		clearTagInput('section.languages');
-		addTagToInput('section.languages', 'espe'); // esperanto
+		addTagToInput('section.languages', 'ang'); // esperanto
 		browser.sleep(200);
 		addTagToInput('section.languages', 'rus'); // rusky or russian
 		browser.sleep(200);
@@ -242,7 +242,7 @@ describe('user profile', function() {
 		clearTagInput('.interests #interests');
 		clearTagInput('.location-input');
 		clearTagInput('section.languages');
-		addTagToInput('section.languages', 'espe'); // add one language to pass a validation
+		addTagToInput('section.languages', 'ang'); // add one language to pass a validation
 		browser.sleep(200);
 
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear();
