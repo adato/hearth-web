@@ -55,7 +55,6 @@ angular.module('hearth', [
 			$translateProvider.preferredLanguage(window.preferredLanguage || 'en');
 			$translateProvider.useSanitizeValueStrategy(null);
 
-			// $translateProvider.useStorage('SessionLanguageStorage');
 			$translateProvider.useStaticFilesLoader({
 				prefix: 'assets/locale/',
 				suffix: '.json'

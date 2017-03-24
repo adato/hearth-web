@@ -44,7 +44,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 					return true;
 				};
 
-				Session.update({
+				Session.updateLanguage({
 					language: lang
 				}, function(res) {
 					location.reload();
@@ -82,7 +82,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		var languageSelectionClickDisableActive = void 0;
 		self.toggleLanguageSelectionDialog = function() {
 
-			// disable clicking on the language panel toggler for the duration 
+			// disable clicking on the language panel toggler for the duration
 			// of the animation to prevent accidental double-clicking
 			if (languageSelectionClickDisableActive === true) return false;
 			languageSelectionClickDisableActive = true;
@@ -93,15 +93,15 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$('#language-panel').slideToggle(ANIMATION_SPEED);
 
 			if (!languageSelectionOpen) {
-				// attach event handler to hide language panel when clicked 
+				// attach event handler to hide language panel when clicked
 				// outside it's bounds but wait with it until the animation
 				// is over
-				$timeout(function() {
+				$timeout(() => {
 					$(document).on('click.langSearch', function(e) {
 						var element = $(e.target);
 						if (!element.parents('#language-panel').length) {
 							self.toggleLanguageSelectionDialog();
-						};
+						}
 					});
 				}, ANIMATION_SPEED);
 			} else {

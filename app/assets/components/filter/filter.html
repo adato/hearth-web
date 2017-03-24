@@ -99,9 +99,8 @@
 				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>
 		</div>
-		<div ng-show="configOptionsShow.saveFilter" class="margin-left-large">
-			<checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
-			</checkbox>
+		<div ng-if='loggedUser' ng-show="configOptionsShow.saveFilter" class="margin-left-large">
+			<checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
 		</div>
 	</section>
 </div>
