@@ -11,13 +11,13 @@ angular.module('hearth.services').factory('Session', [
 
 	function($resource) {
 		return $resource($$config.apiPath + '/session', {}, {
-			show: {
+			get: {
 				method: 'GET',
 				params: {
 					r: Math.random()
 				}
 			},
-			update: {
+			updateLanguage: {
 				method: 'PUT',
 				errorNotify: {
 					code: 'NOTIFY.CHANGE_LANGUAGE_FAILED'

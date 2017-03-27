@@ -1,0 +1,56 @@
+/*******************
+	BLOG ADS
+*******************/
+.blog-block {
+	@include breakpoint(medium down) {
+		margin-bottom: $size-xlarge;
+	}
+}
+.blog-block .blog-heading {
+	text-align: left;
+}
+
+.blog-block p {margin: 0}
+
+.blog-block p img {
+	display: none !important;
+}
+
+.blog-block > .blog-img-wrapper {
+	max-width: 200px;
+	position: relative;
+	padding: 20px;
+	margin: 0 auto;
+}
+.blog-img-wrapper img {
+	border-radius: 50%;
+}
+
+/*.blog-img-wrapper > .blog-img {
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	padding-bottom: 100%;
+}*/
+
+.bulletize-paragraphs > p {
+	position: relative
+}
+.bulletize-paragraphs > p:first-of-type::before {
+	content: ''
+}
+.bulletize-paragraphs > p::before {
+	content: '\25CF\00A0\00A0\00A0\2B24\00A0\00A0\00A0\25CF';
+	display: block;
+	margin: 32px 0;
+	font-family: Arial;
+	font-size: .8rem;
+	line-height: .5rem;
+	color: #fa5800;
+}
+
+// the <strong /> tags are in locale, so it is hard to deal with this more ideally
+#how-to .bulletize-paragraphs > p > strong {
+	display: inline-block;
+	margin-bottom: 1rem;
+}

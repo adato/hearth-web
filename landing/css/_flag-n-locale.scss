@@ -1,0 +1,166 @@
+/*******************
+	FLAG
+*******************/
+.language-wrapper {
+	position: relative;
+	margin-left: 0;
+	padding: 4px 0 4px 4px; /* to match 12px spacing of nav-items */
+}
+.nav-clickable {
+	margin-right: 8px;
+	margin-left: 8px;
+	cursor: pointer;
+}
+@media (min-width: 400px) {
+	.header-wrapper:first-child .nav-clickable {
+		margin-right: 0px;
+	}
+	.header-wrapper:last-child .nav-clickable {
+		margin-left: 0px;
+	}
+}
+.language-panel {
+	display: none;
+}
+.hover-window {
+	display: none !important;
+}
+.hover-window.is-active {
+	position: absolute;
+	display: flex !important;
+	flex-direction: column;
+	align-items: flex-start;
+	top: calc(100% + 7px); left: -5px;
+	padding: 16px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 1px 8px rgba(0,0,0,.6);
+}
+.hover-window::before {
+	content: '';
+	position: absolute;
+	bottom: 100%; left: 25px;
+	width: 0;
+	height: 0;
+	border: solid transparent;
+	pointer-events: none;
+	border-color: transparent;
+	border-bottom-color: #fff;
+	border-width: 8px;
+	margin-left: -8px;
+}
+.contracted .hover-window::before {
+	left: 20px;
+}
+.hover-window.is-active.window-align-right {
+	left: inherit; right: 5px;
+}
+.hover-window.window-align-right::before {
+	left: inherit; right: 18px;
+}
+.language-panel .language-option {
+	font-weight: bold;
+}
+.language-panel .language-option .flag {
+	margin-right: 8px;
+}
+.hover-window li,
+#main-navigation li {
+	border-bottom: 1px solid #ddd;
+}
+.hover-window li:last-child,
+#main-navigation li:last-child {
+	border-bottom: none;
+}
+.hover-window li a,
+#main-navigation li a {
+	display: block;
+	min-width: 200px;
+	margin: 0;
+}
+.hover-window li a.nav-item {
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+}
+.hover-window li:first-child a,
+#main-navigation li:first-child a {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.hover-window li:last-child a,
+#main-navigation li:last-child a {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.hover-window li a:hover,
+#main-navigation li a:hover {
+	background: #f4f4f4;
+}
+
+.sub-link-list .nav-item {
+	color: #999;
+	font-size: 16px;
+	font-weight: normal;
+}
+.sub-link-list .nav-item:hover {
+	color: #fa5800;
+}
+/*@media (min-width: 1200px) {
+	#language-panel {
+		flex-order: 4;
+		display: inherit;
+	}
+}*/
+.flag {
+	display:inline-block;
+	width: 30px; height: 30px;
+	vertical-align: middle;
+	border-radius: 50%;
+	/*background-position: center center;*/
+	background-size: cover;
+	background-repeat: no-repeat;
+	transition: .3s all;
+}
+@media (min-width: 400px) {
+	.flag {
+		width: 40px;
+		height: 40px;
+	}
+	.hover-window .flag {
+		width: 30px;
+		height: 30px;
+	}
+	.header-wrapper.contracted .flag {
+		width: 30px; height: 30px;
+	}
+}
+html[lang='en'] .language-toggle .flag,
+.flag.flag-en {
+	background-image: url('../img/flags/flag-english.png');
+}
+html[lang='cs'] .language-toggle .flag,
+.flag.flag-cs {
+	background-image: url('../img/flags/flag-czech.png');
+}
+html[lang='sk'] .language-toggle .flag,
+.flag.flag-sk {
+	background-image: url('../img/flags/flag-slovak.png');
+}
+html[lang='cs'] #large-language-panel #language-large-cs,
+html[lang='cs'] .language-panel .lang-cs,
+html[lang='sk'] #large-language-panel #language-large-sk,
+html[lang='sk'] .language-panel .lang-sk,
+html[lang='en'] #large-language-panel #language-large-en,
+html[lang='en'] .language-panel .lang-en {
+	display: none;
+}
+
+/*******************
+	LANG DEPENDENT
+*******************/
+html[lang='en'] [blog-post-section],
+html[lang='en'] #section-marketplace,
+html[lang='sk'] #section-marketplace {
+	display: none;
+}

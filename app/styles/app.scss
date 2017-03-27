@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-@import 'settings';
+@import '../../common/styles/settings';
 @import 'foundation';
 @import 'motion-ui';
 
@@ -57,7 +57,7 @@
 @import "components/directives/avatar";
 @import "components/directives/authorSelector";
 @import "components/directives/bubble";
-@import "components/forms/buttons";
+@import "../../common/styles/buttons";
 @import "components/forms/checkbox";
 @import "components/wtf/common";
 @import "components/pages/communities";
