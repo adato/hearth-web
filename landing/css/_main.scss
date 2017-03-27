@@ -1,17 +1,19 @@
 html {
-	scroll-behavior: smooth;
-	-webkit-font-smoothing: subpixel-antialiased;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
-h1, h2, h3 {
-	text-align: center;
-	font-weight: normal;
-}
-.hr {
-	height: 1px;
-	width: 100%;
 
-	margin: 1rem 0;
-	background: #ccc;
+h1, h2, h3 {
+  text-align: center;
+  font-weight: normal;
+}
+
+.hr {
+  height: 1px;
+  width: 100%;
+
+  margin: 1rem 0;
+  background: #ccc;
 }
 
 /**************************************
@@ -21,19 +23,21 @@ h1, h2, h3 {
 	- could probably be mixins, but meh now
 **************************************/
 .linkify {
-	color: $secondary-color;
-	border-bottom: 1px solid #ddd;
+  color: $secondary-color;
+  border-bottom: 1px solid #ddd;
 
-	&:hover {
-		color: scale-color($secondary-color, $lightness: -15%);
-		border-bottom: 1px solid scale-color($secondary-color, $lightness: -15%);
-	}
+  &:hover {
+    color: scale-color($secondary-color, $lightness: -15%);
+    border-bottom: 1px solid scale-color($secondary-color, $lightness: -15%);
+  }
 }
+
 .delinkify,
 .delinkify:hover {
-	// text-decoration: none;
-	border-bottom: none;
+  // text-decoration: none;
+  border-bottom: none;
 }
+
 /**************************************
 	/ UTLILITY
 **************************************/
@@ -41,111 +45,154 @@ h1, h2, h3 {
 /*******************
 	JS HELPERS
 *******************/
-[user-not-logged], [user-logged] {display: none}
-.inited[user-not-logged], .inited[user-logged] {display: inherit}
+[user-not-logged], [user-logged] {
+  display: none
+}
+
+.inited[user-not-logged], .inited[user-logged] {
+  display: inherit
+}
 
 /*******************
 	COLOR
 *******************/
-.color-primary {color: #fa5800}
-.color-secondary {color: #a7bd1d}
-.color-tertiary {color: #1fb1e8}
-.background-primary {background-color: #fa5800}
-.background-secondary {background-color: #a7bd1d}
-.background-tertiary {background-color: #1fb1e8}
-.background-alternate {background-color: #fcfbf4 !important}
+.color-primary {
+  color: #fa5800
+}
+
+.color-secondary {
+  color: #a7bd1d
+}
+
+.color-tertiary {
+  color: #1fb1e8
+}
+
+.background-primary {
+  background-color: #fa5800
+}
+
+.background-secondary {
+  background-color: #a7bd1d
+}
+
+.background-tertiary {
+  background-color: #1fb1e8
+}
+
+.background-alternate {
+  background-color: #fcfbf4 !important
+}
 
 html, body, p,
-h1,h2,h3,h4,h5,h6,
+h1, h2, h3, h4, h5, h6,
 .nav-item,
-.footer-link {color: #4a4a4a}
+.footer-link {
+  color: #4a4a4a
+}
+
 /*******************
 	BUTTON
 *******************/
 .button {
-	@extend .delinkify;
+  @extend .delinkify;
 }
+
 .button-flame {
-	position: relative;
-	display: inline-block;
-	width: 1.25rem; height: 1.25rem;
-	margin-right: .5rem;
-	background-image: url('../img/hearth-flame.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: .5rem;
+  background-image: url('../img/hearth-flame.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
+
 .fa.hearth-flame {
-	position: relative;
-	top: .125rem;
-	height: 1rem;
-	background-image: url('../img/hearth-flame-alt.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center center;
+  position: relative;
+  top: .125rem;
+  height: 1rem;
+  background-image: url('../img/hearth-flame-alt.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
-nav ul{
+
+nav ul {
   margin-bottom: 0;
 }
+
 .nav-item .fa.hearth-flame {
-	opacity: .8;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
+  opacity: .8;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
+
 .nav-item:hover .fa.hearth-flame {
-	opacity: 1;
-	-webkit-filter: none;
-	filter: none;
+  opacity: 1;
+  -webkit-filter: none;
+  filter: none;
 }
+
 .badge {
-	padding: 3px 8px;
-	border-radius: 6px;
-	line-height: 1.2;
-	font-size: 70%;
-	font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 6px;
+  line-height: 1.2;
+  font-size: 70%;
+  font-weight: bold;
 }
+
 .badge.background-primary {
-	color: #fff
+  color: #fff
 }
+
 .button-flame.large {
-	width: 40px; height: 40px;
-	margin-bottom: 5px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
 }
+
 .alt > .button-flame {
-	background-image: url('../img/hearth-flame-alt.png');
+  background-image: url('../img/hearth-flame-alt.png');
 }
+
 a.masonry-item:hover .button,
 .button:hover {
-	box-shadow: 0 2px 3px rgba(0,0,0,.4);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
 }
 
 .button.special {
-	padding: 4px 20px;
-	border: none;
+  padding: 4px 20px;
+  border: none;
 }
 
 /*******************
 	AVATAR
 *******************/
 .avatar {
-	width: 50px; height: 50px;
-	border-radius: 50%;
-	border: 4px solid #fff;
-	transition: .3s all;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  transition: .3s all;
 }
+
 @media (min-width: 768px) {
-	.avatar {
-		width: 60px; height: 60px;
-	}
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /*******************
 	QUOTE
 *******************/
 .large-quote {
-	margin-bottom: -40px;
-	color: #9b9b9b;
-	font-size: 144px;
-	font-family:Montserrat-Regular;
-	line-height: 100px;
-	letter-spacing:0px;
+  margin-bottom: -40px;
+  color: #9b9b9b;
+  font-size: 144px;
+  font-family: Montserrat-Regular;
+  line-height: 100px;
+  letter-spacing: 0px;
 }
