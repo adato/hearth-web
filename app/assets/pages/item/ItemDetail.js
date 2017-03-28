@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate', '$sce',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate, $sce) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -18,6 +18,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isEmpty = IsEmpty;
 		$scope.removeReminder = Bubble.removeReminder;
 		$scope.ItemAux = ItemAux;
+
+		var templatePath = 'assets/components/item/items/post.html';
+		var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+		$scope.relatedPostsOptions = {
+			disableLoading: true,
+		  getParams: {
+				postId: $state.params.id
+			},
+		  getData: Post.getRelated,
+			responseTransform: res => res.posts,
+		  templateUrl: templateUrl,
+		};
 
 		// init language
     $scope.postTypes = $$config.postTypes;
@@ -128,7 +140,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
     $scope.sendVoteResult = function (result) {
-      console.log("Vote: " + result);
+      let params = {'id': $state.params.id, vote: {value: result}};
+      Post.vote(params, () => {
+        $scope.voted=true;
+      });
     };
 
 		$scope.initMap = function() {

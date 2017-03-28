@@ -11,13 +11,17 @@ angular.module('hearth.directives').directive('voteYesNo', function () {
   return {
     restrict: 'AE',
     replace: true,
-    transclude: true,
     scope: {
       title: '@',
-      voteResult: '&',
+      vote: '&',
+      isVoted: '='
     },
     templateUrl: 'assets/components/voteYesNo/voteYesNo.html',
     link: function (scope, el) {
+      scope.voteResult = (result) => {
+        scope.result = result;
+        scope.vote({result: result});
+      }
 
     }
   };

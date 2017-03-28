@@ -289,7 +289,14 @@
 					</div>
 				</div>
 			</div>
+
+			<hr />
+			<div class="margin-top-large">
+				<h3 translate="POSTS_RELATED_QUESTION"></h3>
+				<item-list options="relatedPostsOptions"></item-list>
+			</div>
+
 		</section>
 	</div>
-  <vote-yes-no title="Byl seznam podobných inzerátů relevatní?" vote-result="sendVoteResult(result)"></vote-yes-no>
+  <vote-yes-no title="Je seznam podobných inzerátů relevatní?" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
 </article>

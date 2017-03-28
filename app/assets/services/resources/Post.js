@@ -114,7 +114,19 @@ angular.module('hearth.services').factory('Post', [
 					code: 'NOTIFY.POST_HIDE_REPORT_FAILED',
 					container: '.notify-report-container'
 				}
-			}
+			},
+			getRelated: {
+				method: 'GET',
+				url: $$config.apiPath + '/posts/:postId/related',
+				params: {
+					limit: 5,
+					offset: 0
+				}
+			},
+      vote: {
+        url: $$config.apiPath + '/posts/:postId/vote',
+        method: 'POST'
+      }
 		});
 	}
 ]);
