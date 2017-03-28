@@ -3,14 +3,6 @@
 
 	.filterbar-header {
 
-		.insert-button-container {
-			//float: right;
-			a {
-				overflow: hidden;
-				display: block;
-			}
-		}
-
 		.filter-left {
 			line-height: $ui-button-height;
 			background-color: white;
@@ -22,12 +14,13 @@
 			box-shadow: 0 0 5px rgba(100,100,100,.5);
 
 			a {
-				color: #1fb1e8;
+				// color: #1fb1e8;
+				color: $primary-color;
 				font-weight: 600;
 
 				&.cancelFilter {
 					font-size: 12px;
-					margin-left: 10px;
+					margin-left: $size-small;
 				}
 			}
 

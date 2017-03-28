@@ -1,0 +1,187 @@
+/*******************
+	FACES
+*******************/
+.testimonial-resp-width-adjuster {
+	max-width: 500px;
+	margin: 0 auto;
+
+	@media (min-width: 768px) {
+		min-width: 500px;
+	}
+	@media (min-width: 992px) {
+		min-width: 800px;
+		max-width: 800px;
+	}
+}
+@media (min-width: 1200px) {
+	#testimonials .tab-pane {
+		text-align: center;
+	}
+}
+.img-circle {
+	border-radius: 50%;
+}
+div.img-circle {
+	padding-bottom: 100%;
+	background-size: cover;
+	width: 100%;
+}
+.nav-justified > li,
+.nav-justified .img-circle {
+	transition: .3s all;
+}
+
+@media (min-width: 768px) {
+	.nav-justified > li > a { margin-bottom:0 }
+}
+.nav.nav-justified {
+	padding: 0;
+	display: flex;
+}
+
+
+.nav-justified > li { min-width: 100%; }
+.nav-justified > li.anim-hidden {
+	margin-left: -100%;
+}
+@media (min-width: 768px) {
+	.nav-justified > li { min-width: 33.33333%; }
+	.nav-justified > li.anim-hidden {
+		margin-left: -33.33333%;
+	}
+}
+@media (min-width: 992px) {
+	.nav-justified > li { min-width: 20%; }
+	.nav-justified > li.anim-hidden {
+		margin-left: -20%;
+	}
+}
+
+.nav-justified {
+	line-height: 1.2;
+}
+.nav-justified a {
+	// text-decoration: none;
+	@extend .delinkify;
+}
+
+#nav-tabs {
+	display: flex;
+	flex: 1;
+	/*flex-direction: column;*/
+	flex-direction: row;
+	margin-left: 0;
+	margin-right: 0;
+	overflow: hidden;
+}
+/*@media (min-width: 992px) {
+	#nav-tabs {
+		flex-direction: row;
+	}
+}*/
+
+.nav>li>a {position:relative;display:block;padding: 0px 8px 8px}
+
+.nav.nav-justified > li > a { position: relative; }
+.nav.nav-justified > li > a:hover,
+.nav.nav-justified > li > a:focus { background-color: transparent; }
+.nav.nav-justified > li > a .quote {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #f05f40;
+    border-radius: 16px;
+    color: #fff;
+}
+.nav.nav-justified > li.active > a .quote { opacity: 1; }
+.nav.nav-justified > li > a .img-circle,
+.nav.nav-justified > li > a img { box-shadow: 0 0 0 5px #f05f40; }
+.nav.nav-justified > li > a .img-circle,
+.nav.nav-justified > li > a img {
+    max-width: 100%;
+    opacity: .3;
+    -webkit-transform: scale(.8,.8);
+            transform: scale(.8,.8);
+    -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.nav.nav-justified > li.active > a .img-circle,
+.nav.nav-justified > li.active > a img,
+.nav.nav-justified > li:hover > a .img-circle,
+.nav.nav-justified > li:hover > a img,
+.nav.nav-justified > li:focus > a .img-circle,
+.nav.nav-justified > li:focus > a img {
+    opacity: 1;
+    -webkit-transform: scale(.9,.9);
+            transform: scale(.9,.9);
+    -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.nav.nav-justified > li .text {
+	opacity: .3;
+	transition: .15s all;
+}
+.nav.nav-justified > li:hover .text,
+.nav.nav-justified > li.active .text {
+	opacity: 1;
+}
+.tab-pane .tab-inner { padding: 10px 0 20px; }
+
+.tab-content {width: 100%;}
+.tab-content>.tab-pane {display:none}
+.tab-content>.active {display:block;}
+
+.nav.nav-justified > li > a .quote {
+	left: auto;
+	top: auto;
+	right: 2px;
+	bottom: 2px;
+}
+/*.nav.nav-justified > li > a .quote > .fa { font-size: 8px; line-height: 8px;}*/
+/*@media (min-width: 400px) {*/
+	.nav.nav-justified > li > a .quote { width: 30px; height: 30px; right: 5px; bottom: 5px;}
+	.nav.nav-justified > li > a .quote > .fa { font-size: 16px; line-height: inherit;}
+/*}*/
+@media (min-width: 768px) {
+    .nav.nav-justified > li > a .quote { right: 0px; bottom: 2px; }
+}
+@media (min-width: 1200px) {
+    .nav.nav-justified > li > a .quote { right: 8px; bottom: 8px; }
+}
+
+.img-rotator.controls [rotate-right],
+.img-rotator.controls [rotate-left] {
+	position: absolute;
+	top: calc(50% - 1em);
+	line-height: 2em;
+	/*font-size: 32px;*/
+}
+
+@media (min-width: 992px) {
+  .img-rotator.controls [rotate-right],
+  .img-rotator.controls [rotate-left] {
+    top: 34px;
+  }
+}
+
+.img-rotator.controls [rotate-right]:hover,
+.img-rotator.controls [rotate-left]:hover {
+	color: #fa5800;
+}
+.img-rotator.controls [rotate-right] {
+	right: -40px;
+}
+.img-rotator.controls [rotate-left] {
+	left: -40px;
+}
+
+@media (max-width: 768px) {
+	.control-space-allower {
+		margin: 0 auto;
+		width: calc(100% - 3rem) !important;
+		max-width: 11rem;
+	}
+}

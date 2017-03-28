@@ -221,10 +221,12 @@
 							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
 						<article ng-repeat="(id, item) in :: replies track by item.conversation_id" class='box-section' ng-if=":: replies.length">
-							<section class='display-table'>
-								<div class='display-table-cell addon user'>
+							<section class="display-table">
+								<div class="display-table-cell addon padding-right-medium">
 									<div info-box="item.author" infobox-index="$index" infobox-class="'on-item-detail'">
-										<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
+										<div class="user">
+											<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
+										</div>
 									</div>
 								</div>
 								<div class='display-table-cell'>

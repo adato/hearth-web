@@ -36,6 +36,8 @@
 		</div>
 
 		<div class='callout alert not-first-page-callout' ng-if='firstPageNotShown()' translate='MARKETPLACE.NOT_ON_FIRST_PAGE' translate-values='{sref: "market({page: 1})"}' translate-compile></div>
+    <div class='callout alert not-first-page-callout' ng-if='showLimitedPostsMessageAuth' translate='LIMITED_POSTS_MESSAGE_AUTH' translate-compile translate-values="{'attrs': 'ng-href=\'profile-edit\''}">logged</div>
+    <div class='callout alert not-first-page-callout' ng-if='showLimitedPostsMessageUnauth' translate='LIMITED_POSTS_MESSAGE_UNAUTH'></div>
 
 		<div id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">
 			<!-- <item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by item._id" user="user" community="null"></item> -->

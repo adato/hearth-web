@@ -1,0 +1,33 @@
+/*******************
+	SECTION
+*******************/
+.section {
+	background-position: center center;
+	background-size: cover;
+}
+.section > section {
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 0 20px
+}
+.section + .section,
+.section > section + section {
+	padding-top: 40px;
+}
+.section:last-of-type {
+	margin-bottom: 40px;
+}
+.section > section h1 {
+	margin-top: 56px;
+}
+.inverted,
+.inverted a,
+.inverted p,
+.inverted h1,
+.inverted h2,
+.inverted h3,
+.inverted h4,
+.inverted h5,
+.inverted h6 {
+	color: #fff;
+}

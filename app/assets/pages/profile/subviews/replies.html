@@ -6,12 +6,14 @@
 		</div>
 	</div>
 	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}" ng-if="item.post">
-		<section class="large-2 hide-for-small-only medium-2 columns user">
+		<section class="large-2 hide-for-small medium-2 columns">
 			<div info-box="item.post.author">
-				<a ng-href="{{getProfileLink(item.post.author_type, item.post.author._id)}}">
-					<avatar type="item.post.author_type" src="item.post.author.avatar.normal"></avatar>
-					<div class="name">{{item.post.author.name}}</div>
-				</a>
+				<div class="user">
+					<a ng-href="{{getProfileLink(item.post.author_type, item.post.author._id)}}">
+						<avatar type="item.post.author_type" src="item.post.author.avatar.normal"></avatar>
+						<div class="name">{{item.post.author.name}}</div>
+					</a>
+				</div>
 			</div>
 		</section>
 		<div class="large-10 small-12 medium-10 fleft columns">

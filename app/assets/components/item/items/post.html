@@ -116,7 +116,7 @@
 							</div>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium">
-							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="position-relative">
+							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="display-inline-block position-relative">
 								<avatar class="" type=":: item.author._type" src=":: item.author.avatar.normal" size="small"></avatar>
 								<div class="item-option-bg-type by-avatar" ng-class=":: 'item-option-bg-' + item.type">
 									<i class="fa fa-fw" ng-class=":: (item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
