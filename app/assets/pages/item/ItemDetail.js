@@ -127,6 +127,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			PageTitle.setTranslate('', title);
 		};
 
+    $scope.sendVoteResult = function (result) {
+      console.log("Vote: " + result);
+    };
+
 		$scope.initMap = function() {
 			$timeout(function() {
 				$scope.$broadcast('initMap');
