@@ -92,6 +92,19 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/close_filter',
 				method: 'POST'
 			},
+			checkResetPasswordToken: {
+				method: 'GET',
+				url: $$config.apiPath + '/users/check_reset_password_token',
+				errorNotify: false
+			},
+			requestPasswordReset: {
+				url: $$config.apiPath + '/reset_password',
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.RESET_PASSWORD_FAILED',
+					container: '.forgot-pass-notify-container'
+				}
+			},
 			removeReminder: {
 				method: 'PUT',
 				params: {
@@ -131,6 +144,10 @@ angular.module('hearth.services').factory('User', [
 				errorNotify: {
 					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
 				}
+			},
+			logout: {
+				method: 'POST',
+				url: $$config.apiPath + '/logout'
 			}
 
 		});

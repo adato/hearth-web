@@ -229,8 +229,19 @@ angular.module('hearth', [
 								path: '/'
 							});
 
-							Auth.logout(function() {
-								location.reload("/login");
+							// Auth.logout(function() {
+							// 	location.reload('/login');
+							// });
+							function cb() {
+								location.reload('/login');
+							}
+							Session.get(session => {
+								if (session._id) delete session._id;
+								// $http.post($$config.apiPath + '/logout').success(cb).error(cb);
+								User.logout({}, cb, cb);
+							}, err => {
+								// $http.post($$config.apiPath + '/logout').success(cb).error(cb);
+								User.logout({}, cb, cb);
 							});
 						}
 
