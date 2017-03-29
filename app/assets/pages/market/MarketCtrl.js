@@ -299,7 +299,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
     // default languages
 		function initLanguages() {
       userLanguages = Auth.getUserLanguages();
-      if (!userLanguages.split(',').includes('cs')) {
+      if (userLanguages.split(',').indexOf('cs') == -1 ) {
         Auth.isLoggedIn() ? $scope.showLimitedPostsMessageAuth = true : $scope.showLimitedPostsMessageUnauth = true;
       }
     }
