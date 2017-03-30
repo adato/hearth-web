@@ -221,6 +221,11 @@ angular.module('hearth').config([
 					return tplPath + $stateParams.page + '.html';
 				}
 			})
+      .state('uikit', {
+        url: '/uikit',
+        templateUrl: 'assets/pages/uikit/uikit.html',
+        controller: 'UiKitCtrl'
+      })
 			.state('error404', {
 				templateUrl: 'assets/pages/static/error404.html',
 				controller: 'Error404Ctrl'
