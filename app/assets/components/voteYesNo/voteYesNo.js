@@ -20,7 +20,8 @@ angular.module('hearth.directives').directive('voteYesNo', function () {
     link: function (scope, el) {
       scope.voteResult = (result) => {
         scope.result = result;
-        scope.vote({result: result});
+
+        scope.vote({result: result === 'YES' ? 1 : 0});
       }
 
     }
