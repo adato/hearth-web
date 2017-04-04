@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
