@@ -106,6 +106,7 @@ angular.module('hearth', [
 			$authProvider.facebook({
 				clientId: $$config.oauth.facebook,
 				url: $window.encodeURI($$config.apiPath + '/auth/facebook' + $window.refsString),
+  			authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth'
 			});
 
 			$authProvider.google({
@@ -216,6 +217,7 @@ angular.module('hearth', [
 
 					// if is logged, check if he wanted to see some restricted page
 					if ($rootScope.loggedUser._id) UnauthReload.checkLocation();
+
 					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
 						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
 							mixpanel.identify($rootScope.loggedUser._id);
