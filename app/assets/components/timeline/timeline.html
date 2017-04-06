@@ -15,6 +15,9 @@
         </div>
         <div ng-switch-when="community_accepted_user">
           <h3>Community accepted user</h3>
+          <div ng-init='options = getPostOptions(item)'>
+            <item-list options="options"></item-list>
+          </div>
         </div>
         <div ng-switch-when="community_new_post">
           <h3>Community new post</h3>
