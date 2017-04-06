@@ -365,11 +365,14 @@ nav {
 				&>*{
 					display: inline-block;
 					text-align: center;
+
+					// TODO @kamil WTF are labels doing in NAVIGATION??
 					label {
 						color: lighten($secondary-color, 25%);
 						transition: color 1s, text-shadow 2s;
 						line-height: 1;
 						font-size: 13px;
+						margin-bottom: 0;
 					}
 					margin: {
 						left: 4px;

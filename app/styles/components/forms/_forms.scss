@@ -18,6 +18,16 @@ button,
 	-webkit-border-radius: $global-radius;
 	border-radius: $global-radius;
 	resize: none;
+	margin-bottom: 0;
+}
+
+input.ng-invalid,
+input.ng-invalid:focus {
+	border: 1px solid $alert-color !important;
+}
+
+label {
+	margin-bottom: $size-medium;
 }
 
 label,
@@ -97,7 +107,8 @@ textarea, input {
 	label{margin-bottom: 0 !important;}
 	input,
 	select,
-	textarea {
+	textarea,
+	.select2-container {
 		margin-bottom: 0;
 	}
 }
@@ -286,6 +297,11 @@ label {
 		padding-right: $size-tiny;
 		font: normal normal normal 14px/1 FontAwesome;
 	}
+}
+
+.help-text,
+.form-error {
+	margin-top: 0;
 }
 
 

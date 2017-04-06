@@ -116,3 +116,7 @@ img.blur {
 .block:last-child {
     margin-bottom: 0;
 }
+
+.block--leading-icon {
+    margin-top: $size-tiny;
+}
