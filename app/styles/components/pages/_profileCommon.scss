@@ -490,41 +490,6 @@
 				}
 			}
 		}
-		.ads {
-			a.create-ad-sign {
-				float: right;
-				display: block;
-				transition: all 0.5s ease 0s;
-				&:hover {
-					color: darken($primary-color, 20%);
-				}
-			}
-			.ad {
-				font-size: 110%;
-				font-weight: bold;
-				margin: {
-					left: 20px;
-					right: 20px;
-					top: 10px;
-				}
-				;
-				& > span {
-					vertical-align: super;
-				}
-				.ad-controls {
-					color: $primary-color;
-					cursor: pointer;
-					float: right;
-					.fa {
-						padding-left: 10px;
-					}
-					transition: all 0.5s ease 0s;
-					.fa:hover {
-						color: darken($primary-color, 20%);
-					}
-				}
-			}
-		}
 	}
 	.right-pane {
 		width: 39%;
@@ -628,6 +593,41 @@
 				}
 			}
 		}
+    .ads {
+      a.create-ad-sign {
+        float: right;
+        display: block;
+        transition: all 0.5s ease 0s;
+        &:hover {
+          color: darken($primary-color, 20%);
+        }
+      }
+      .ad {
+        font-size: 110%;
+        font-weight: bold;
+        margin: {
+          left: 20px;
+          right: 20px;
+          top: 10px;
+        }
+      ;
+        & > span {
+          vertical-align: super;
+        }
+        .ad-controls {
+          color: $primary-color;
+          cursor: pointer;
+          float: right;
+          .fa {
+            padding-left: 10px;
+          }
+          transition: all 0.5s ease 0s;
+          .fa:hover {
+            color: darken($primary-color, 20%);
+          }
+        }
+      }
+    }
 	}
 	// RESPONSIVE //
 	@include breakpoint(small only) {

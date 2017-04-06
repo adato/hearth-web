@@ -281,6 +281,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 						$timeout(function() {
 
 							res.map(function(activity) {
+                console.log("ACTIVITY " + JSON.stringify(activity));
 								activity.text = Activities.getActivityTranslation(activity);
 								return activity;
 							});

@@ -1,0 +1,33 @@
+<div class="timeline-container">
+  <div ng-repeat="(id, item) in timelineItems track by $index">
+    <!-- timeline header -->
+    <hr />
+    <div class="activityRow display-flex flex-align-start flex-column">
+      <div class="display-flex flex-row flex-space-between" style="width: 100%">
+        <div class="" ng-bind-html="item.text"></div>
+        <div class="">{{ item.created_at | ago }}</div>
+      </div>
+
+      <!-- timeline content-->
+      <div ng-switch="item.verb">
+        <div ng-switch-when="accepted_into_community">
+          <h3>Accepted into community</h3>
+        </div>
+        <div ng-switch-when="community_accepted_user">
+          <h3>Community accepted user</h3>
+        </div>
+        <div ng-switch-when="community_new_post">
+          <h3>Community new post</h3>
+        </div>
+        <div ng-switch-when="new_rating">
+          <h3>New rating</h3>
+        </div>
+        <div ng-switch-default></div>
+      </div>
+
+      <!-- avatar example -->
+      <!--<activity-avatar item="item"></activity-avatar>-->
+    </div>
+    <!--<hr ng-show="!$last" />-->
+  </div>
+</div>
