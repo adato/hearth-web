@@ -27,7 +27,8 @@ input.ng-invalid:focus {
 }
 
 label {
-	margin-bottom: $size-medium;
+	// margin-bottom: $size-medium;
+	// color: #4a4a4a;
 }
 
 label,
@@ -177,10 +178,6 @@ textarea, input {
 	}
 }
 
-label {
-	color: #4a4a4a;
-}
-
 /// common form items, included as @extend
 .item-box-forms {
 	textarea {
@@ -188,13 +185,15 @@ label {
 		resize: vertical;
 		transition: height 0.2s;
 	}
-	label {
-		cursor: pointer;
-		margin-bottom: 10px;
-		line-height: 1;
-		font-weight: $ui-text-weight-bolder;
-		color: #333;
-	}
+
+	// label {
+		// cursor: pointer;
+		// margin-bottom: 10px;
+		// line-height: 1;
+		// font-weight: $ui-text-weight-bolder;
+		// color: #333;
+	// }
+
 	// fix stuff
 	a {
 		font-weight: $ui-text-weight-bolder;
@@ -254,12 +253,12 @@ label {
 			height: $ui-title-font-size;
 			text-align: left;
 		}
-		hr {
-			border: 0;
-			border-bottom: $ui-border-style;
-			margin-top: $ui-grid-size;
-			margin-bottom: $ui-small-grid-size * 2;
-		}
+		// hr {
+		// 	border: 0;
+		// 	border-bottom: $ui-border-style;
+		// 	margin-top: $ui-grid-size;
+		// 	margin-bottom: $ui-small-grid-size * 2;
+		// }
 		ul.message-line {
 			margin: 0;
 			padding: 0;

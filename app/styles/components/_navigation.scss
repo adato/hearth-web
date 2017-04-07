@@ -307,10 +307,6 @@ nav {
 		padding: 6px;
 		max-width:$global-width;
 
-		.dropdown-container a{
-
-		}
-
 		section.bar-columns {
 			padding:0;
 
@@ -339,9 +335,9 @@ nav {
 				text-align: right;
 				padding-right:15px;
 
-				label {
-					cursor: pointer;
-				}
+				// label {
+				// 	cursor: pointer;
+				// }
 
 				.header-item{
 					& .fa{

@@ -89,7 +89,7 @@
 					margin-bottom: 5px;
 				}
 				hr {
-					margin: 10px;
+					// margin: 10px;
 					&.orange {
 						border-color: lighten($secondary-color, 40);
 					}
@@ -355,8 +355,8 @@
 			font-weight: 600;
 		}
 		label {
-			margin-bottom: 15px;
-			font-size: $ui-text-font-size;
+			// margin-bottom: 15px;
+			// font-size: $ui-text-font-size;
 			margin-right: $ui-grid-size;
 		}
 
