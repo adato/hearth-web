@@ -395,6 +395,9 @@
 		color: darken($colorLightGray, 30%);
 	}
 
+  .timeline.box p{
+    margin: 0 0 0 $size-small;
+  }
 	// @kamil - this needs to be cleared to use one global box style
 	.box {
 		background: lighten($colorLightGray, 10%);

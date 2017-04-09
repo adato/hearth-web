@@ -273,7 +273,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				function(done) {
 					CommunityActivityLog.get({
 						communityId: id,
-						limit: 5
+						limit: 10
 					}, function(res) {
 
 						$scope.activityShow = false;
@@ -281,7 +281,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 						$timeout(function() {
 
 							res.map(function(activity) {
-                console.log("ACTIVITY " + JSON.stringify(activity));
 								activity.text = Activities.getActivityTranslation(activity);
 								return activity;
 							});
