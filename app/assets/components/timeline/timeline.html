@@ -1,7 +1,7 @@
 <div>
-  <div class="padding-left-medium padding-right-medium" ng-repeat="(id, item) in timelineItems track by $index">
+  <div ng-repeat="(id, item) in timelineItems track by $index">
     <hr/>
-    <div class="display-flex flex-column flex-align-start">
+    <div class="display-flex flex-column flex-align-start timeline-item">
       <!-- timeline header -->
       <div class="display-flex flex-row flex-space-between" style="width: 100%">
         <div class="display-flex flex-row">
@@ -14,7 +14,7 @@
       </div>
 
       <!-- timeline content-->
-      <div ng-switch="item.verb">
+      <div ng-switch="item.verb" class="timeline-item-content">
         <div ng-switch-when="community_accepted_user">
           <activity-avatar item="item"></activity-avatar>
           <!--<div ng-init='options = getPostOptions(item)'>-->
@@ -25,9 +25,10 @@
           <h3>Community new post</h3>
         </div>
         <div ng-switch-when="new_rating_received">
-          <h3>New rating received</h3>
           <div ng-init='receivedRatings = getRating(item)'>
-            <div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
+            <div class="box ratings home-ratings">
+              <div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
+            </div>
           </div>
         </div>
         <div ng-switch-default></div>

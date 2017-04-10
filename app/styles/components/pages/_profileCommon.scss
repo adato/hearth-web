@@ -493,6 +493,19 @@
 				}
 			}
 		}
+    .timeline-item {
+      padding-left: $size-medium;
+      padding-right: $size-medium;
+    }
+
+    .timeline-item-content {
+      margin: $size-medium 0;
+
+      .box {
+        padding: 0;
+        margin: 0;
+      }
+    }
 	}
 	.right-pane {
 		width: 39%;
