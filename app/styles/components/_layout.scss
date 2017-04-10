@@ -60,6 +60,7 @@ img.blur {
 
 .text-in-input {
   position: relative;
+
   .fa {
     position: absolute;
     top: 0.783rem;
@@ -113,9 +114,9 @@ img.blur {
 .block {
     margin-bottom: 1rem;
 }
-.block:last-child {
-    margin-bottom: 0;
-}
+// .block:last-child {
+//     margin-bottom: 0;
+// }
 
 .block--leading-icon {
     margin-top: $size-tiny;

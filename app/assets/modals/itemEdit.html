@@ -54,6 +54,7 @@
 		</div>
 
 		<div class="second-step-container" ng-if="twoStepForm.step2 || !isDraft" ng-class="{ 'faa-fade-in': isDraft }">
+
 			<!-- show either for editform, or for step2 of insert form -->
 			<section class="author display-flex flex-wrap">
 				<div class="form-section column small-12 medium-6" ng-show="authorList.length > 1">
@@ -97,7 +98,7 @@
 			</div>
 
 			<div class="block files">
-				<label class="margin-none">
+				<label>
 					<span ng-if="!imagesCount" translate="ATTACHE_IMAGES"></span>
 					<span ng-if="imagesCount">{{:: 'IMAGES' | translate }} ({{ post.attachments_attributes.length || 0 }})</span>
 				</label>
@@ -235,13 +236,15 @@
 					</li>
 				</ul>
 			</section>
-			<section class="display-flex flex-space-between flex-reverse">
+
+			<div class="block display-flex flex-space-between flex-reverse">
 				<div class="nowrap">
 					<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="button" ng-disabled="sending" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE_AND_ACTIVATE' | translate }}</button>
 					<button class="button" ng-disabled="sending" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE' | translate }}</button>
 				</div>
 				<a href="" ng-click="closeEdit()">{{:: 'CLOSE' | translate }}</a>
-			</section>
+			</div>
+
 		</div>
 	</form>
 </div>

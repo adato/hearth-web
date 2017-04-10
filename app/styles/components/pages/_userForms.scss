@@ -1,21 +1,24 @@
 $terms-width: 32em;
 $max-modal-window-width:32em;
+
 .register-login-dialog {
-	background: none repeat scroll 0 0 #fff;
-	border-radius: $global-radius;
-	font-size: 1.1em;
-	line-height: 1.5em;
-	margin: 4% auto 0;
-	margin-top: 0px;
-	position: relative;
+	// background: none repeat scroll 0 0 #fff;
+	// border-radius: $global-radius;
+	// font-size: 1.1em;
+	// line-height: 1.5em;
+	margin: 0 auto;
+	// margin-top: 0px;
+	// position: relative;
+	// padding: .5rem;
+
 	@include social;
-	padding: .5rem;
-	h2 {
-		margin: 0;
-		font-size: 25px;
-		font-weight: normal;
-		text-align: center;
-	}
+
+	// h2 {
+	// 	margin: 0;
+	// 	font-size: 25px;
+	// 	font-weight: normal;
+	// 	text-align: center;
+	// }
 	// hr {
 	// 	margin-bottom: .5rem;
 	// 	margin-top: 0px;
@@ -33,27 +36,27 @@ $max-modal-window-width:32em;
 	.register-successful {
 		display: none;
 	}
-	.register-login-form {
-		padding: {
-			left: 0.9rem;
-			right: 0.9rem;
-			top: .5rem;
-			bottom: 0px;
-		}
-		.error {
-			text-align: left;
-			&.moveUp {
-				position: relative;
-				top: -15px;
-			}
+	// .register-login-form {
+		// padding: {
+		// 	left: 0.9rem;
+		// 	right: 0.9rem;
+		// 	top: .5rem;
+		// 	bottom: 0px;
+		// }
+		// .error {
+		// 	text-align: left;
+		// 	&.moveUp {
+		// 		position: relative;
+		// 		top: -15px;
+		// 	}
+		// }
+	// }
+	.alert-box {
+		a,
+		a:visited {
+			color: $white;
 		}
 	}
-  .alert-box {
-    a,
-    a:visited {
-      color: $white;
-    }
-  }
 	.social-login {
 		text-align: center;
 		padding: 10px;
@@ -79,21 +82,23 @@ $max-modal-window-width:32em;
 			color: $primary-color;
 		}
 	}
-	button {
-		text-transform: none;
-		i.fa {
-			margin-right: 0.5rem;
-		}
-	}
-	p,
-	button {
-		margin-bottom: 1rem;
-	}
-	.bottom {
-		p {
-			margin-bottom: .2rem;
-		}
-	}
+	// button {
+	// 	text-transform: none;
+	// 	i.fa {
+	// 		margin-right: 0.5rem;
+	// 	}
+	// }
+	// p,
+	// button {
+	// 	margin-bottom: 1rem;
+	// }
+	// .bottom {
+	// 	p {
+	// 		margin-bottom: .2rem;
+	// 	}
+	// }
+
+	// OMG THIS IS STUPID
 	.head {
 		span.close {
 			top: -3.5rem;
@@ -103,6 +108,7 @@ $max-modal-window-width:32em;
 			}
 		}
 	}
+
 	.head,
 	.bottom {
 		text-align: center;
@@ -112,10 +118,10 @@ $max-modal-window-width:32em;
 	}
 
 	.oauth-error {
-		padding:2*$ui-small-grid-size;
-		border-radius:$global-radius;
-		border:1px solid $tertiary-color;
-		opacity:1;
+		padding: 2 * $ui-small-grid-size;
+		border-radius: $global-radius;
+		border: 1px solid $tertiary-color;
+		opacity: 1;
 	}
 }
 
@@ -124,9 +130,10 @@ $max-modal-window-width:32em;
 		// for displaying in page, not modal
 		position: initial;
 		overflow: initial;
-		.ngdialog-content {
-			margin-top: -3rem;
-		}
+
+		// .ngdialog-content {
+		// 	margin-top: -3rem;
+		// }
 		span.close {
 			// hide close button?
 			display: inline-block;
@@ -138,4 +145,9 @@ $max-modal-window-width:32em;
 	.register-login-dialog {
 		max-width: $max-modal-window-width;
 	}
+}
+
+.ngdialog .register-login-dialog.box {
+	padding: 0;
+	box-shadow: none;
 }

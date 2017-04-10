@@ -1,13 +1,14 @@
 <div class="box">
 	<div ng-if="errorLoading == 404" class="text-center padding-small" translate="COMMUNITY_WAS_NOT_FOUND"></div>
-	<div class="row margin-bottom-20 profile-edit-common" ng-show="loaded">
+	<!-- <div class="row margin-bottom-20 profile-edit-common" ng-show="loaded"> -->
+	<div ng-show="loaded" class="profile-edit-common">
 
 		<div class="communities-notify-area"></div>
 
 		<form ng-submit="save()" id="communityForm" name="communityForm" novalidate>
 			<div class="medium-flex-grid block">
 				<div class="flex-5 medium-order-last" ng-cloak>
-					<div image-preview-direct-upload result="community.avatar" options="avatarUploadOpts">
+					<div image-preview-direct-upload class="big" result="community.avatar" options="avatarUploadOpts">
 						<img class="preview" ng-if="community.avatar.public_avatar_url" ng-src="{{ community.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated />
 						<img class="preview" ng-if="!community.avatar.public_avatar_url && community.avatar.large" ng-src="{{ community.avatar.large }}" resized-thumbnail-image />
 						<div class="text">
@@ -22,7 +23,7 @@
 					</div>
 					<div class="flex-1">
 						<h2 translate="{{:: community._id ? 'COMMUNITY_EDIT' : 'COMMUNITY_ADD' }}"></h2>
-						<label>
+						<label class="block">
 							<span translate="COMMUNITY_NAME"></span>
 							<input type="text" name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="community.name" ng-required="true" ng-maxlength="75" />
 							<div class="form-error" ng-show="showError.name">
@@ -30,7 +31,7 @@
 								<span ng-show="communityForm.name.$error.maxlength" translate="ERR_COMMUNITY_NAME_MAX_LENGTH"></span>
 							</div>
 						</label>
-						<label>
+						<label class="block">
 							<span translate="COMMUNITY_MOTTO"></span>
 							<input type="text" name="motto" ng-model="community.motto" maxlength="{{parameters.MAX_MOTTO_LENGTH}}" ng-maxlength="parameters.MAX_MOTTO_LENGTH" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY_MOTTO_EXAMPLE' | translate }}" />
 							<div class="form-error" ng-show="showError.motto">
@@ -89,46 +90,46 @@
 				<div class="flex-1">
 					<h2 translate="OUR_NETWORKS"></h2>
 					<div class="medium-flex-grid">
-						<label class="flex-1">
+						<label class="block flex-1">
 							<span translate="OUR_FACEBOOK"></span>
 							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="community.facebook" type="url" ng-blur="updateUrl($event, community, 'facebook')" />
 							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
-						<label class="flex-1">
+						<label class="block flex-1">
 							<span translate="OUR_TWITTER"></span>
 							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="community.twitter" type="url" ng-blur="updateUrl($event, community, 'twitter')" />
 							<div class="form-error" ng-show="showError.social_networks['twitter']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="medium-flex-grid">
-						<label class="flex-1">
+						<label class="block flex-1">
 							<span translate="OUR_LINKEDIN"></span>
 							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="community.linkedin" type="url" ng-blur="updateUrl($event, community, 'linkedin')" />
 							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
-						<label class="flex-1">
+						<label class="block flex-1">
 							<span translate="OUR_GOOGLEPLUS"></span>
 							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="community.googleplus" type="url" ng-blur="updateUrl($event, community, 'googleplus')" />
 							<div class="form-error" ng-show="showError.social_networks['googleplus']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="medium-flex-grid">
-						<div class="flex-1">
+						<div class="block flex-1">
 							<label>
 								<i class="fa fa-globe"></i>&nbsp;<span translate="OUR_WEB"></span>
-							</label>
-							<div ng-repeat="web in community.webs track by $index">
-								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="community.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, community.webs, $index)" />
-								<div class="remove" ng-if="!$first" class="touchable" ng-click="community.webs.splice($index,1)">
-									<i class="fa fa-times-circle"></i>
+								<div ng-repeat="web in community.webs track by $index" class="block flex flex-align-start">
+									<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="community.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, community.webs, $index)" />
+									<button ng-hide="$first" type="button" class="touchable" ng-click="community.webs.splice($index,1)">
+										<i class="fa fa-times-circle"></i>
+									</button>
 								</div>
-							</div>
-							<div class="form-error" ng-show="showError.social_networks['webs']" translate="ERR_INVALID_URL"></div>
-							<div>
-								<a ng-click="community.webs.push('')">
-									<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD_NEXT_WEB"></span>
-								</a>
-							</div>
+								<div class="form-error" ng-show="showError.social_networks['webs']" translate="ERR_INVALID_URL"></div>
+								<div>
+									<a ng-click="community.webs.push('')">
+										<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD_NEXT_WEB"></span>
+									</a>
+								</div>
+							</label>
 						</div>
 						<div class="flex-1"></div>
 					</div>

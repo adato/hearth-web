@@ -1,9 +1,9 @@
 <div class="box" ng-show="loaded">
 	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate test-beacon="profile-edit-form">
 
-		<div class="medium-flex-grid block">
+		<div class="block medium-flex-grid">
 			<div class="flex-5 medium-order-last" ng-cloak>
-				<div image-preview-direct-upload result="profile.avatar" options="avatarUploadOpts">
+				<div image-preview-direct-upload class="big" result="profile.avatar" options="avatarUploadOpts">
 					<img class="preview" ng-if="profile.avatar.public_avatar_url" ng-src="{{ profile.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated/>
 					<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{ profile.avatar.large }}" resized-thumbnail-image/>
 					<div class="text">
@@ -23,12 +23,12 @@
 				<div class="flex-1">
 					<h2 translate="WHO"></h2>
 					<div class="medium-flex-grid">
-						<label for="first_name" class="flex-1">
+						<label for="first_name" class="block flex-1">
 							<span translate="FIRST_NAME"></span> *
 							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
 							<div class="form-error" ng-show="profileEditForm.first_name.$error.required" translate="ERR_NOT_FILLED_FIRST_NAME"></div>
 						</label>
-						<label for="last_name" class="flex-1">
+						<label for="last_name" class="block flex-1">
 							<span translate="LAST_NAME"></span>
 							<input type="text" name="last_name" placeholder="{{:: 'LAST_NAME' | translate }}" ng-model="profile.last_name" id="last_name" />
 						</label>
@@ -124,11 +124,12 @@
 					</div>
 					<div ng-show="showContactMail">
 						<!-- contact email -->
-						<div class="medium-flex-grid">
+						<div class="block medium-flex-grid">
 							<div class="flex-1">
 								<label>
 									<span translate="MY_CONTACT_EMAIL"></span>
 									<input ng-model="profile.contact_email" ng-focus="contactEmailFocus()" ng-blur="contactEmailBlur()" name="contact_email" type='email' mailgun-validator="2" ng-model-options="{ updateOn: 'blur' }">
+									<div class="help-text" translate="MY_CONTACT_EMAIL_EXAMPLE"></div>
 									<div class="form-error" ng-show="showError.contact_email">
 										<span ng-show="profileEditForm.contact_email.$error.email" translate="ERR_NOT_VALID_EMAIL"></span>
 										<span ng-show="profileEditForm.contact_email.$error.mailgun" translate="ERR_MAILGUN_NOT_VALID_EMAIL"></span>
@@ -145,7 +146,6 @@
 								</label>
 							</div>
 						</div>
-						<div class="help-text" translate="MY_CONTACT_EMAIL_EXAMPLE"></div>
 						<div>
 							<a ng-click="hideContactEmail()">
 								<span class="fa fa-minus-square"></span>&nbsp;<span translate="REMOVE"></span>
@@ -181,15 +181,15 @@
 			</div>
 			<div class="flex-1" test-beacon="language-section">
 				<h2 translate="MY_NETWORKS"></h2>
-				<div class="block medium-flex-grid">
-					<div class="flex-1">
+				<div class="medium-flex-grid">
+					<div class="block flex-1">
 						<label>
 							<span translate="MY_FACEBOOK"></span>
 							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
 							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
-					<div class="flex-1">
+					<div class="block flex-1">
 						<label>
 							<span translate="MY_TWITTER"></span>
 							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
@@ -197,15 +197,15 @@
 						</label>
 					</div>
 				</div>
-				<div class="block medium-flex-grid">
-					<div class="flex-1">
+				<div class="medium-flex-grid">
+					<div class="block flex-1">
 						<label>
 							<span translate="MY_LINKEDIN"></span>
 							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
 							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
-					<div class="flex-1">
+					<div class="block flex-1">
 						<label>
 							<span translate="MY_GOOGLEPLUS"></span>
 							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
@@ -213,11 +213,11 @@
 						</label>
 					</div>
 				</div>
-				<div class="block medium-flex-grid">
-					<div class="flex-1">
+				<div class="medium-flex-grid">
+					<div class="block flex-1">
 						<label>
 							<i class="fa fa-globe"></i>&nbsp;<span translate="MY_WEB"></span>
-							<div ng-repeat="web in profile.webs track by $index" class="flex flex-align-start">
+							<div ng-repeat="web in profile.webs track by $index" class="block flex flex-align-start">
 								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
 								<button ng-hide="$first" type="button" class="touchable" ng-click="profile.webs.splice($index,1)">
 									<i class="fa fa-times-circle"></i>

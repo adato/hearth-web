@@ -1,17 +1,17 @@
 <div class="box" ng-show="loaded">
 	<div>
 
-		<div class="flex-grid block">
+		<div class="block flex-grid">
 			<div>
 				<i class="fa fa-fw fa-2x block--leading-icon fa-language"></i>
 			</div>
 			<div class="flex-1">
 				<h2 translate="USER_LANGUAGE_AND_COUNTRY"></h2>
-				<label>
+				<label class="block">
 					<span translate="USING_HEARTH_IN_LANG"></span> <strong translate="HEARTH_IN_THIS_LANG"></strong>. <span translate="CHOOSE_LANGUAGE"></span>
 					<select2 ng-model="lang" ng-change="switchLang(lang)" s2-options="lang as ('MY_LANG.' + lang | translate) for lang in languages"></select2>
 				</label>
-				<label>
+				<label class="block">
 					<span translate="USING_HEARTH_FROM_COUNTRY"></span>
 					<select2 ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as item.localizedName for item in countryList"></select2>
 				</label>
@@ -80,7 +80,7 @@
 				<form ng-submit="changePassword(pass)" novalidate id="profileSettingsForm" name="profileSettingsForm">
 					<div ng-if="!presentPassword" translate="CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH"></div>
 					<div ng-if="presentPassword" class="medium-flex-grid">
-						<div class="flex-1">
+						<div class="block flex-1">
 							<label>
 								<span translate="FILL_CURRENT_PASS"></span>
 								<input type="password" ng-focus="showError.oldPass = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'profileSettingsForm', 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
@@ -90,7 +90,7 @@
 								</div>
 							</label>
 						</div>
-						<div class="flex-1">
+						<div class="block flex-1">
 							<label>
 								<span translate="FILL_NEW_PASS"></span>
 								<show-text-in-password>
@@ -118,7 +118,7 @@
 				<h2 translate="USER_DELETE_PROFILE"></h2>
 				<form id="profileDeleteForm" name="profileDeleteForm" ng-submit="deleteAccount(leave)" novalidate>
 					<div class="notify-container-delete-user"></div>
-					<div>
+					<div class="block">
 						<label>
 							<span translate="WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE"></span>
 							<textarea ng-model="leave.reason" autosize-textarea></textarea>
@@ -131,9 +131,9 @@
 								<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid" translate="ERR_OLD_PASS_IS_NOT_VALID"></span>
 							</div>
 						</label>
-						<div class="flex flex-reverse">
-							<button type="submit" test-beacon="delete-account-button" class="button" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1" translate="USER_DELETE_PROFILE"></button>
-						</div>
+					</div>
+					<div class="flex flex-reverse">
+						<button type="submit" test-beacon="delete-account-button" class="button" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1" translate="USER_DELETE_PROFILE"></button>
 					</div>
 				</form>
 			</div>
