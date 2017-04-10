@@ -35,7 +35,7 @@
 						allow-leftover-text="true">
 		</tags-input>
 	</div>
-	<div class="error" ng-if="errorWrongPlace || showError">
+	<div class="form-error" ng-if="errorWrongPlace || showError">
 		<span ng-show="errorWrongPlace">{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
 		<span ng-show="showError">{{ errorCode | translate }}</span>
 	</div>

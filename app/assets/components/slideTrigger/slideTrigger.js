@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('slideTrigger', [
 			scope: {
 				slideTrigger: '=',
 			},
-			template: '<label ng-click="trigger()">' +
+			template: '<label ng-click="trigger()" class="collapse-trigger">' +
 				'<i class="fa" ng-class="{\'fa-chevron-up\':slideTrigger, \'fa-chevron-down\':!slideTrigger}"></i>' +
 				'<ng-transclude></ng-transclude> ' +
 				'</label>',

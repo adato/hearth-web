@@ -195,11 +195,11 @@
 	}
 
 	// any collapsible section
-	section.collapse {
-		&.collapse-expanded {
-			margin-bottom: $ui-small-grid-size * 3;
-		}
-		&>label i.fa,
+	.collapse {
+		// &.collapse-expanded {
+		// 	margin-bottom: $ui-small-grid-size * 3;
+		// }
+		// &>label i.fa,
 		label.collapse-trigger i.fa {
 			margin: 0;
 			color: $primary-color;
@@ -208,15 +208,15 @@
 			}
 		}
 	}
-	section.place {
-		padding-bottom: $ui-small-grid-size * 3;
-	}
-	section.date {
-		input.date {
-			width: 10*$ui-grid-size;
-			text-align: center;
-		}
-	}
+	// section.place {
+	// 	padding-bottom: $ui-small-grid-size * 3;
+	// }
+	// section.date {
+	// 	input.date {
+	// 		width: 10*$ui-grid-size;
+	// 		text-align: center;
+	// 	}
+	// }
 	.location-picker {
 		.ng-invalid .tags {
 			border: 1px solid $ui-input-error-color !important;
