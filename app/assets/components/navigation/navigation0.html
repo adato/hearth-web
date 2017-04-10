@@ -176,9 +176,188 @@
 		</div>
 
 		<nav class="display-flex flex-align-center top-bar show-for-large" data-topbar ng-cloak>
+			
+			<section class="bar-columns logo-column">
+				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
+					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
+				</a>
+				V0
+			</section>
+
+			<section class="bar-columns searchbox-column">
+				<input type="text" id="searchBox" placeholder="{{:: 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
+				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
+			</section>
+
+			<section class="bar-columns icons-column">
+			<div class="topbar-icons-wrapper pull-right">
+				<a ng-click="reloadToMarketplace()" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+					<div class="inner-icon">
+						<span class="fa icon-marketplace"></span>
+						{{:: 'HOMEPAGE_MARKET' | translate }}
+					</div>
+				</a>
+
+
+				<a ui-sref="communities.suggested" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
+					<div class="inner-icon">
+						<span class="fa icon-community"></span>
+						{{:: 'COMMUNITIES' | translate }}
+					</div>
+				</a>
+
+				<div class="dropdown-container">
+					<a title="{{::'TOP_BAR_ABOUT' | translate }}" class='icon-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback', 'support-us'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+						<div class="inner-icon">
+							<span class="fa fa-question-circle"></span>
+							{{::'TOP_BAR_ABOUT' | translate}}
+						</div>
+					</a>
+					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop">
+						<li>
+							<a ng-href="{{:: basePath }}terms">{{:: 'MENU.TERMS' | translate}}</a>
+						</li>
+						<li>
+							<a ui-sref="custodians">{{:: 'MENU.CUSTODIANS' | translate}}</a>
+						</li>
+						<li>
+							<a ng-href="{{:: basePath }}faq">{{:: 'MENU.FAQ' | translate}}</a>
+						</li>
+						<li>
+							<a ng-href="{{:: basePath }}support-us">{{:: 'MENU.SUPPORT_US' | translate}}</a>
+						</li>
+						<li>
+							<a ng-href="{{:: basePath }}feedback">{{:: 'WRITE_US' | translate}}</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="http://blog.hearth.net" target="_blank">{{:: 'BLOG' | translate}}</a>
+						</li>
+						<li ng-if=":: language == 'cs'">
+							<a ng-href="{{:: basePath }}taxes">{{:: 'MENU.TAXES' | translate}}</a>
+						</li>
+						<li class="divider"></li>
+						<li class="no-hover">
+							<span>{{:: 'SOCIAL_NETWORKS' | translate}}</span>
+						</li>
+						<li class="no-hover">
+							<ul class="social-menu" style="display: block">
+								<li>
+									<a href="https://twitter.com/hearth_net" target="_blank">
+										<span class="fa fa-twitter"></span>
+									</a>
+								</li>
+								<li>
+									<a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank">
+										<span class="fa fa-facebook"></span>
+									</a>
+								</li>
+								<li>
+									<a href="https://plus.google.com/105519310550753411853" target="_blank">
+										<span class="fa fa-google-plus"></span>
+									</a>
+								</li>
+								<li>
+									<a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank">
+										<span class="fa fa-youtube"></span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div class="top-bar-separator"></div>
+				<div class="top-bar-separator"></div>
+
+ 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
+					<div class="inner-icon">
+						<span class="fa messages-icon">
+							<span ng-if="messagesCounters.unread">
+								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
+							</span>
+						</span>
+						{{:: 'TOP_BAR_MESSAGES' | translate }}
+					</div>
+				</a>
+
+				<div class="dropdown-container">
+				<a ui-sref="profile.default({id: loggedUser._id})"  ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="icon-item logged-user-dropdown" test-beacon="logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{:: loggedUser.name }}">
+					<avatar class="img" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
+				</a>
+				<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
+					<li>
+						<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
+							<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
+					</li>
+					<li>
+						<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
+							<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
+					</li>
+					<li>
+						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link">
+							<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
+					</li>
+
+					<li class="divider" ng-if="myAdminCommunities.length"></li>
+					<li ng-repeat="item in myAdminCommunities track by item._id">
+						<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{:: item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
+							<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+							<span class="name">{{:: item.name | ellipsis:12}}</span>
+						</a>
+					</li>
+					<li class="divider" ng-if="myAdminCommunities.length"></li>
+					<li>
+						<a href="" ng-click="logout()" test-beacon="nav-logout-link">
+							<i class="fa fa-sign-out"></i>{{:: 'LOGOUT'| translate }}</a>
+					</li>
+				</ul>
+				</div>
+
+				<a ng-if=":: !loggedUser._id" class="icon-item" ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" test-beacon="nav-login">
+					<div class="inner-icon">
+						<span class="fa fa-sign-in"></span>
+						<label>{{:: 'TOP_BAR_SIGN_IN' | translate }}</label>
+					</div>
+				</a>
+				<div class="top-bar-separator" ng-if=":: !loggedUser._id"></div>
+
+
+				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+					<a hover="true" class="icon-item" dropdown="#language-drop">
+						<div class="inner-icon">
+							<span class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></span>
+							<label ng-bind-html=":: 'LANGUAGE.' + languageChange.languageStrings[languageChange.currentLanguage] | translate"></label>
+						</div>
+					</a>
+					<ul class='dropdown flag-list' id='language-drop'>
+						<li ng-if='languageChange.currentLanguage != "cs"'>
+							<a ng-click='languageChange.switchLang("cs")'>
+								<i class='flag flag-cs'></i>
+								<span translate='LANGUAGE.CZECH'></span>
+							</a>
+						</li>
+						<li ng-if='languageChange.currentLanguage != "en"'>
+							<a ng-click='languageChange.switchLang("en")'>
+								<i class='flag flag-en'></i>
+								<span translate='LANGUAGE.ENGLISH'></span>
+							</a>
+						</li>
+						<li ng-if='languageChange.currentLanguage != "sk"'>
+							<a ng-click='languageChange.switchLang("sk")'>
+								<i class='flag flag-sk'></i>
+								<span translate='LANGUAGE.SLOVAK'></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</section>
+
+
 
 			<!-- this is desktop topbar, visible all the time -->
- 
+<!-- 
 			<section class="bar-columns logo-column">
 				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
 					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
@@ -190,7 +369,7 @@
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
-			<section class="bar-columns icons-column-old">
+			<section class="bar-columns icons-column">
 				<a ng-click="reloadToMarketplace()" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
@@ -338,7 +517,7 @@
 					<label>{{:: 'TOP_BAR_SIGN_IN' | translate }}</label>
 				</a>
 			</section>
- 
+ -->
 			<div class="clear"></div>
 		</nav>
 	</div>
