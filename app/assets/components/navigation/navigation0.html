@@ -273,7 +273,7 @@
  				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
 					<div class="inner-icon">
 						<span class="fa messages-icon">
-							<span ng-if="messagesCounters.unread">
+							<span ng-if="messagesCounters.unread" class="unread-counter">
 								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
 							</span>
 						</span>

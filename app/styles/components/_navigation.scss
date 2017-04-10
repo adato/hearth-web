@@ -254,7 +254,7 @@ nav {
 				display: inline-block;
 			}
 
-			// REMOVE THIS STYLE AFTER DEPLOYMENT OF NEW TOPBAR
+			// REMOVE WHOLE THIS STYLE AFTER DEPLOYMENT OF NEW TOPBAR
 			&.icons-column-old {
 
 				float:right;
@@ -356,6 +356,9 @@ nav {
 					display: inline-block;
 				}
 			}
+			// END REMOVE HERE
+
+
 			&.icons-column {
 				width:55%;
 				a.icon-item {
@@ -378,12 +381,40 @@ nav {
 						span.fa.flag.flag-circular { width:26px; height:26px; }
 						span.fa.fa-sign-in { font-size:25px;}
 						span.fa.fa-question-circle { font-size:25px;}
+						.messages-icon::after {
+							color: $white;
+							left: 0;
+							right: 0;
+							top: 10px;
+							position: absolute;
+							z-index: -1;
+							font-size: 30px;
+						}
+						.messages-icon {
+							display:block;
+							background: none;
+							font-weight: bold;
+							position: relative;
+							z-index: 1;
+							height: $size-large;
+							width: 30px;
+							top: -14px;
+							display: inline-block;
+
+							& > span {
+								position: relative;
+								top: 9px;
+								color:$secondary-color;
+								font-family: $body-font-family;
+							}
+						}
 					}
 					&.logged-user-dropdown .avatar .avatar-image { border:3px solid $white; }
 
 					&:hover, &.active {
 						background: $white;
-						.inner-icon, .inner-icon * { color:$secondary-color; }
+						.inner-icon .messages-icon > span { color: $white; }
+						.inner-icon, .inner-icon *, .inner-icon .messages-icon::after { color:$secondary-color; }
 						&.logged-user-dropdown .avatar .avatar-image { border-color:$secondary-color; }
 					}
 				}
