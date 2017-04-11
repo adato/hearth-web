@@ -244,18 +244,18 @@
 
 .support-us-modal {
 	label {
-		margin-top: 2 * $ui-small-grid-size;
+		margin-top: $size-tiny;
 	}
 	.columns>label:not(.ui-checkbox) {
-		float:right;
-		text-align:right;
+		// float:right;
+		text-align: right;
 	}
 	@include breakpoint(medium down) {
 		label {
-			margin-top:0;
+			margin-top: 0;
 		}
-		.columns>label:not(.ui-checkbox) {
-			float:none;
+		.columns > label:not(.ui-checkbox) {
+			text-align: inherit;
 		}
 	}
 	input[type="number"] {

@@ -301,9 +301,9 @@
 		}
 	}
 	.ratings-received {
-		.author-selector {
-			float: left;
-		}
+		// .author-selector {
+		// 	float: left;
+		// }
 		button {
 			&.positive {
 				background-color: #58af08;
@@ -318,6 +318,7 @@
 		.ratingReply {
 			.formStyle {
 				width: 100%;
+
 				.cancel-reply {
 					font-weight: bold;
 					position: relative;
@@ -349,16 +350,17 @@
 	}
 	.rating-form {
 		@extend .item-box-forms;
-		overflow: visible !important;
-		margin: auto;
-		h5 {
-			font-weight: 600;
-		}
-		label {
-			// margin-bottom: 15px;
-			// font-size: $ui-text-font-size;
-			margin-right: $ui-grid-size;
-		}
+		// overflow: visible !important;
+		// margin: auto;
+		//
+		// h5 {
+		// 	font-weight: 600;
+		// }
+		// label {
+		// 	// margin-bottom: 15px;
+		// 	// font-size: $ui-text-font-size;
+		// 	// margin-right: $ui-grid-size;
+		// }
 
 		.need-offer-selector  {
 			label {

@@ -179,9 +179,9 @@
 					<h2 translate="COMMUNITY_CHANGE_ADMIN"></h2>
 					<div class="medium-flex-grid" ng-if="community.member_count > 1">
 						<form ng-submit="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" name="delegateForm" class="flex-1">
-							<label>
+							<label class="block">
 								<span translate="COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN"></span> &nbsp;
-								<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
+								<select ng-change="changeSelectValue(adminChangeId)" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
 							</label>
 							<div class="flex flex-reverse">
 								<button type="submit" class="button" analytics-custom analytics-event="delegate admin community" analytics-category="My community" analytics-value="5" translate="COMMUNITY_CHANGE_ADMIN_BUTTON"></button>
