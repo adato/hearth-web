@@ -3,8 +3,8 @@
     <hr/>
     <div class="display-flex flex-column flex-align-start timeline-item">
       <!-- timeline header -->
-      <div class="display-flex flex-row flex-space-between" style="width: 100%">
-        <div class="display-flex flex-row">
+      <div class="display-flex flex-row flex-space-between flex-align-baseline" style="width: 100%">
+        <div class="display-flex flex-row flex-align-baseline">
           <div ng-init='iconType = getIconType(item)'>
             <span><i class="fa" ng-class="iconType" aria-hidden="true"></i></span>
           </div>
@@ -17,12 +17,11 @@
       <div ng-switch="item.verb" class="timeline-item-content">
         <div ng-switch-when="community_accepted_user">
           <activity-avatar item="item"></activity-avatar>
-          <!--<div ng-init='options = getPostOptions(item)'>-->
-          <!--<item-list options="options"></item-list>-->
-          <!--</div>-->
         </div>
         <div ng-switch-when="community_new_post">
-          <h3>Community new post</h3>
+          <div ng-init='postItem = getPost()'>
+            <timeline-post item="postItem" is-active="true"></timeline-post>
+          </div>
         </div>
         <div ng-switch-when="new_rating_received">
           <div ng-init='receivedRatings = getRating(item)'>
