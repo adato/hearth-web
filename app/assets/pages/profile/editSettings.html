@@ -118,20 +118,21 @@
 				<h2 translate="USER_DELETE_PROFILE"></h2>
 				<form id="profileDeleteForm" name="profileDeleteForm" ng-submit="deleteAccount(leave)" novalidate>
 					<div class="notify-container-delete-user"></div>
-					<div class="block">
-						<label>
-							<span translate="WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE"></span>
-							<textarea ng-model="leave.reason" autosize-textarea></textarea>
-						</label>
-						<label>
-							<span translate="FILL_CURRENT_PASS"></span>
-							<input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
-							<div class="form-error" ng-show="showError.oldPassLeave">
-								<span ng-show="profileDeleteForm.oldPassLeave.$error.required" translate="ERR_NOT_FILLED_OLD_PASS"></span>
-								<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid" translate="ERR_OLD_PASS_IS_NOT_VALID"></span>
-							</div>
-						</label>
-					</div>
+
+					<label class="block">
+						<span translate="WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE"></span>
+						<textarea ng-model="leave.reason" autosize-textarea></textarea>
+					</label>
+
+					<label class="block">
+						<span translate="FILL_CURRENT_PASS"></span>
+						<input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
+						<div class="form-error" ng-show="showError.oldPassLeave">
+							<span ng-show="profileDeleteForm.oldPassLeave.$error.required" translate="ERR_NOT_FILLED_OLD_PASS"></span>
+							<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid" translate="ERR_OLD_PASS_IS_NOT_VALID"></span>
+						</div>
+					</label>
+
 					<div class="flex flex-reverse">
 						<button type="submit" test-beacon="delete-account-button" class="button" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1" translate="USER_DELETE_PROFILE"></button>
 					</div>
