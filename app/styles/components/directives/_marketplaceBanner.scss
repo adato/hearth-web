@@ -92,3 +92,12 @@ section.banner {
 		}
 	}
 }
+
+.hide-all-images img {
+	display: none !important;
+}
+.blog-image {
+	height: 150px;
+	background-size: cover;
+	background-position: center center;
+}
