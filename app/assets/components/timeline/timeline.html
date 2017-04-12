@@ -19,9 +19,7 @@
           <activity-avatar item="item"></activity-avatar>
         </div>
         <div ng-switch-when="community_new_post">
-          <div ng-init='postItem = getPost()'>
-            <timeline-post item="postItem" is-active="true"></timeline-post>
-          </div>
+          <timeline-post item="item.object" is-active="true"></timeline-post>
         </div>
         <div ng-switch-when="new_rating_received">
           <div ng-init='receivedRatings = getRating(item)'>
