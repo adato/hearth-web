@@ -22,7 +22,7 @@
           <timeline-post item="item.object" is-active="true"></timeline-post>
         </div>
         <div ng-switch-when="new_rating_received">
-          <div ng-init='receivedRatings = getRating(item)'>
+          <div ng-init='receivedRatings = [item.object]'>
             <div class="box ratings home-ratings">
               <div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
             </div>
