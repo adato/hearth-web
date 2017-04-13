@@ -1,10 +1,11 @@
-<div>
+<div class="">
   <h4>{{title}}</h4>
-  <div ng-show="!isVoted">
-    <button class="button" ng-click="voteResult('YES')">{{'YES' | translate}}</button>
-    <button class="button" ng-click="voteResult('NO')">{{'NO' | translate}}</button>
+  <div ng-if="!votingInProgress && !isVoted">
+    <button class="button" ng-click="voteWithResult('YES')">{{'YES' | translate}}</button>
+    <button class="button secondary" ng-click="voteWithResult('NO')">{{'NO' | translate}}</button>
   </div>
-  <div ng-show="isVoted">
+  <div ng-if="votingInProgress && !isVoted" class="fa fa-spinner fa-spin"></div>
+  <div ng-if="isVoted">
     <span translate="POSTS_RELATED_VOTED" translate-compile
           translate-values="{'attrs': '{{result | translate}}'}">
     </span>

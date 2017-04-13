@@ -18,7 +18,10 @@ angular.module('hearth.directives').directive('voteYesNo', function () {
     },
     templateUrl: 'assets/components/voteYesNo/voteYesNo.html',
     link: function (scope, el) {
-      scope.voteResult = (result) => {
+      scope.votingInProgress = false;
+
+      scope.voteWithResult = (result) => {
+        scope.votingInProgress = true;
         scope.result = result;
 
         scope.vote({result: result === 'YES' ? 1 : 0});
