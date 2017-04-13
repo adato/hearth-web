@@ -100,4 +100,6 @@ section.banner {
 	height: 150px;
 	background-size: cover;
 	background-position: center center;
+	border-top-left-radius: $global-radius;
+	border-top-right-radius: $global-radius;
 }
