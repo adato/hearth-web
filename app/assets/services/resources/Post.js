@@ -114,6 +114,14 @@ angular.module('hearth.services').factory('Post', [
 					code: 'NOTIFY.POST_HIDE_REPORT_FAILED',
 					container: '.notify-report-container'
 				}
+			},
+			heart: {
+				url: $$config.apiPath + '/posts/:id/heart',
+				method: 'POST'
+			},
+			unheart: {
+				url: $$config.apiPath + '/posts/:id/heart',
+				method: 'DELETE'
 			}
 		});
 	}

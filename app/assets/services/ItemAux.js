@@ -13,9 +13,10 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			addItemToBookmarks,
 			confirmSuspend,
 			hideItem,
+			heart,
+			logCharInfoShown,
 			removeItemFromBookmarks,
-			replyItem,
-			logCharInfoShown
+			replyItem
 		};
 
 		return factory;
@@ -124,6 +125,14 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				closeByDocument: false,
 				closeByEscape: true,
 				showClose: false
+			});
+		}
+
+		function heart({ item } = {}) {
+			return console.log(item);
+			Post.heart({ id: item._id }, res => {
+				console.log(res);
+
 			});
 		}
 
