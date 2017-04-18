@@ -8,13 +8,11 @@
 angular.module('hearth.directives').directive('navigation', [
 	'$rootScope', 'Auth', '$state', '$location', '$analytics', 'ConversationAux',
 	function($rootScope, Auth, $state, $location, $analytics, ConversationAux) {
-		var version = (Math.floor(Math.random() * (3 - 0 + 1)));
-		if (version == 3) version = '';
 		return {
 			restrict: 'E',
 			scope: true,
 			replace: true,
-			templateUrl: 'assets/components/navigation/navigation' + version + '.html',
+			templateUrl: 'assets/components/navigation/navigation.html',
 			link: function($scope, element) {
 				$scope.searchHidden = !$location.search().query;
 				$scope.searchFilterDisplayed = false;
