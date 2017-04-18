@@ -11,7 +11,8 @@ angular.module('hearth.directives').directive('timeline', function () {
     restrict: 'AE',
     replace: true,
     scope: {
-      timelineItems: '='
+      timelineItems: '=',
+      loadNext: '&'
     },
     templateUrl: 'assets/components/timeline/timeline.html',
     link: function (scope, el) {
@@ -20,10 +21,9 @@ angular.module('hearth.directives').directive('timeline', function () {
           return 'fa-user-o';
         if (item.verb === 'community_new_post')
           return 'fa-plus';
-        if (item.verb === 'new_rating_received')
+        if (item.verb === 'new_rating_received' || item.verb === 'new_rating')
           return item.object.score == -1 ? 'icon-rating-negative' : 'icon-rating-positive';
       };
-
     }
   };
 });

@@ -523,10 +523,19 @@
         margin: $size-medium 0;
         padding-bottom: $size-medium;
       }
+
+      a.nostyle:link, a.nostyle:visited{
+        text-decoration: inherit;
+        color: inherit;
+        cursor: auto;
+      }
+
+      .date {
+        font-size: small;
+      }
     }
-
-
 	}
+
 	.right-pane {
 		width: 39%;
 		padding: 0;

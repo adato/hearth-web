@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		angular.extend($scope, ItemServices);
 		$scope.activityShow = false;
 		$scope.loadingData = false;
+    $scope.activityLog = [];
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
 		var inited = false;
@@ -26,6 +27,16 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'given-ratings': loadGivenRatings,
 		};
 		var templatePath = 'assets/components/item/items/post.html';
+
+    $scope.loadCommunityActivities = () => {
+      CommunityActivityLog.get({
+        communityId: '57fa6266b7c3ff000a20228c',
+        offset: ($scope.activityLog ? $scope.activityLog.length : 0),
+        limit: 10
+      }, (res) => {
+        //TODO append result to activityLog, when API will be ready.
+      });
+    };
 
 		$scope.loadBottom = function() {
 			$scope.loadingData = true;
@@ -57,7 +68,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 		function processData(res) {
 			res = ItemFilter.filter(res);
-
 			$scope.data = $scope.data.concat(res);
 			finishLoading(res);
 		}

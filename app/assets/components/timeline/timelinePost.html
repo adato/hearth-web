@@ -1,32 +1,33 @@
-<article class="item-common temp-padding" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive}">
-  <div class="row">
-    <section class="box padding-none">
-      <div class='box-content'>
-        <header class="display-flex">
-          <avatar class="small-avatar-small" type="item.author._type" src="item.author.avatar.normal"
-                  size="small"></avatar>
-          <div class="item-option-bg-type"
-               ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
-            <i></i>
-          </div>
-          <div>
-            <h1>
-              <div ng-class=":: 'color-' + item.type" translate="{{:: postTypeCode }}"></div>
-              {{:: item.title}}
-            </h1>
-            <span class="validity-warning"
-                  ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
-            <div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error">{{::
-              'POST.SUSPENDED_BY_ADMIN' | translate }}
+<a ui-sref="post({id: item._id})" class="nostyle">
+  <article class="item-common temp-padding" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive}">
+    <div class="row">
+      <section class="box padding-none">
+        <div class='box-content'>
+          <header class="display-flex">
+            <avatar class="small-avatar-small" type="item.author._type" src="item.author.avatar.normal"
+                    size="small"></avatar>
+            <div class="item-option-bg-type"
+                 ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
+              <i></i>
             </div>
-            <span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
+            <div>
+              <h1>
+                <div ng-class=":: 'color-' + item.type" translate="{{:: postTypeCode }}"></div>
+                {{:: item.title}}
+              </h1>
+              <span class="validity-warning"
+                    ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
+              <div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error">{{::
+                'POST.SUSPENDED_BY_ADMIN' | translate }}
+              </div>
+              <span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
+            </div>
+          </header>
+          <div class="word-wrap">
+            <p class="timeline-post-text" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
           </div>
-        </header>
-        <div class="word-wrap">
-          <p class="timeline-post-text" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
         </div>
-      </div>
-    </section>
-  </div>
-</article>
-
+      </section>
+    </div>
+  </article>
+</a>

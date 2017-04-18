@@ -57,7 +57,7 @@
 
       <p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
       <div ng-if="activityLog.length">
-        <timeline timeline-items="activityLog"></timeline>
+        <timeline timeline-items="activityLog" load-next="loadCommunityActivities()"></timeline>
       </div>
     </div>
 	</div>

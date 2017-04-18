@@ -3,35 +3,36 @@
     <hr/>
     <div class="display-flex flex-column flex-align-start timeline-item">
       <!-- timeline header -->
-      <div class="display-flex flex-row flex-space-between flex-align-baseline" style="width: 100%">
+      <div class="display-flex flex-row flex-space-between full-width">
         <div class="display-flex flex-row flex-align-baseline">
           <div ng-init='iconType = getIconType(item)'>
             <span><i class="fa" ng-class="iconType" aria-hidden="true"></i></span>
           </div>
           <span class="" ng-bind-html="item.text"></span>
         </div>
-        <div>{{ item.created_at | ago }}</div>
+        <div class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
+          <i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}
+        </div>
       </div>
 
       <!-- timeline content-->
-      <div ng-switch="item.verb" class="timeline-item-content">
-        <div ng-switch-when="community_accepted_user">
+      <div class="timeline-item-content">
+        <div ng-if="item.verb == 'community_accepted_user'">
           <activity-avatar item="item"></activity-avatar>
         </div>
-        <div ng-switch-when="community_new_post">
+        <div ng-if="item.verb == 'community_new_post'">
           <timeline-post item="item.object" is-active="true"></timeline-post>
         </div>
-        <div ng-switch-when="new_rating_received">
+        <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
           <div ng-init='receivedRatings = [item.object]'>
             <div class="box ratings home-ratings">
               <div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
             </div>
           </div>
         </div>
-        <div ng-switch-default></div>
+        <!--<div ng-switch-default>{{item.verb}}</div>-->
       </div>
 
     </div>
-    <!--<hr ng-show="!$last" />-->
   </div>
 </div>
