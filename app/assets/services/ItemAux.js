@@ -9,7 +9,7 @@
 angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics',
 	function(ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics) {
 
-		var factory = {
+		const factory = {
 			addItemToBookmarks,
 			confirmSuspend,
 			hideItem,
