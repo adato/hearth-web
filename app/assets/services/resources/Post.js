@@ -116,11 +116,11 @@ angular.module('hearth.services').factory('Post', [
 				}
 			},
 			heart: {
-				url: $$config.apiPath + '/posts/:id/heart',
+				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'POST'
 			},
 			unheart: {
-				url: $$config.apiPath + '/posts/:id/heart',
+				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'DELETE'
 			}
 		});

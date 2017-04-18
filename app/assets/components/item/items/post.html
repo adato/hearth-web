@@ -208,10 +208,13 @@
 							</div>
 						</div>
 						<div class="display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
-							<div class="touchable-wrapper">
-								<a class="touchable" ng-click="ItemAux.heart({item: item})">
-									<i class="fa fa-fw fa-heart-o"></i>
-								</a>
+							<div class="display-flex flex-divide-medium">
+								<div class="display-flex margin-right-small">
+									<a class="touchable fa-hover-heart" ng-click="ItemAux.heart({item: item})" ng-init="ItemAux.postHeartedByUser({item: item, userId: loggedUser._id})">
+										<i class="fa fa-fw" ng-class="( item.heartLoading ? 'fa-spin fa-spinner' : (item.hearted_by_me ? 'fa-heart' : 'fa-heart-o') )"></i>
+									</a>
+									<span ng-if="item.hearts.length" ng-bind="item.hearts.length"></span>
+								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
 								</a>

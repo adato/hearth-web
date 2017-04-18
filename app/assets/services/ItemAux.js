@@ -14,6 +14,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			confirmSuspend,
 			hideItem,
 			heart,
+			postHearthedByUser,
 			logCharInfoShown,
 			removeItemFromBookmarks,
 			replyItem
@@ -128,12 +129,42 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			});
 		}
 
+		/**
+		 *	function for hearting/unhearting items
+		 */
 		function heart({ item } = {}) {
-			return console.log(item);
-			Post.heart({ id: item._id }, res => {
-				console.log(res);
-
+			item.heartLoading = true;
+			Post[item.hearted_by_me ? 'unheart' : 'heart']({ postId: item._id }, {}, res => {
+				console.log('heart res', res);
+				item.heartLoading = false;
+				item.hearted_by_me = !item.hearted_by_me;
+				if (item.hearted_by_me) {
+					item.hearts.push(res);
+				} else {
+					for (var i = item.hearts.length;i--;) {
+						if (item.hearts[i].user_id === $rootScope.loggedUser._id) {
+							item.hearts.splice(i, 1);
+							break;
+						}
+					}
+				}
+			}, err => {
+				item.heartLoading = false;
 			});
+		}
+
+		function postHearthedByUser({ item, userId }) {
+
+			if (item.hearted_by_me !== void 0) return item.hearted_by_me;
+
+			for (var i = item.hearts.length;i--;) {
+				if (hearts[i].user_id === userId) {
+					item.hearted_by_me = true;
+					return postHearthedByUser(item, userId);
+				}
+			}
+			item.hearted_by_me = false;
+			return postHearthedByUser(item, userId);
 		}
 
 		function logCharInfoShown(location, character) {

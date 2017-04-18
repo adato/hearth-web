@@ -529,6 +529,11 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 	}
 }
 
+
+.fa-hover-heart:hover > .fa::before {
+	content: '\f004';
+}
+
 #confirm-delete,
 #confirm-report {
 	button {
