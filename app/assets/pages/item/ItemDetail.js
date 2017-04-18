@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate', '$sce',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate, $sce) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate', '$sce', '$q',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate, $sce, $q) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -18,6 +18,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isEmpty = IsEmpty;
 		$scope.removeReminder = Bubble.removeReminder;
 		$scope.ItemAux = ItemAux;
+    $scope.relatedLoaded;
 
 		var templatePath = 'assets/components/item/items/post.html';
 		var templateUrl = $sce.getTrustedResourceUrl(templatePath);
@@ -26,7 +27,15 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		  getParams: {
 				postId: $state.params.id
 			},
-		  getData: Post.getRelated,
+		  getData: function(params) {
+        return $q((resolve, reject) => {
+          Post.getRelated(params, res => {
+            if (res.posts.length)
+              $scope.relatedLoaded = true;
+            return resolve(res);
+          });
+        });
+      },
 			responseTransform: res => res.posts,
 		  templateUrl: templateUrl,
 		};

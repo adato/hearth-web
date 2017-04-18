@@ -290,13 +290,13 @@
 				</div>
 			</div>
 
-			<hr />
-			<div class="margin-top-large">
+			<div ng-show="relatedLoaded" class="margin-top-large">
+        <hr />
 				<h3 translate="POSTS_RELATED_QUESTION"></h3>
 				<item-list options="relatedPostsOptions"></item-list>
+        <vote-yes-no ng-if="relatedLoaded" title="{{:: 'POSTS_RELATED_VOTE_QUESTION' | translate }}" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
 			</div>
 
 		</section>
 	</div>
-  <vote-yes-no title="{{:: 'POSTS_RELATED_VOTE_QUESTION' | translate }}" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
 </article>
