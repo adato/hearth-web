@@ -529,8 +529,8 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 	}
 }
 
-
-.fa-hover-heart:hover > .fa::before {
+// show full heart on hover, but only when there is no loading
+.fa-hover-heart:hover > .fa:not(.fa-spinner)::before {
 	content: '\f004';
 }
 
