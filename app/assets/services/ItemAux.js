@@ -133,6 +133,7 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		 *	function for hearting/unhearting items
 		 */
 		function heart({ item } = {}) {
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
 			if (item.heartLoading) return false;
 			item.heartLoading = true;
 			Post[item.hearted_by_me ? 'unheart' : 'heart']({ postId: item._id }, {}, res => {
