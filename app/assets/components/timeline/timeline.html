@@ -18,7 +18,11 @@
       <!-- timeline content-->
       <div class="timeline-item-content">
         <div ng-if="item.verb == 'community_accepted_user'">
-          <activity-avatar item="item"></activity-avatar>
+          <div info-box="item.object" infobox-class="'on-profile'">
+            <a ng-href="{{getProfileLink(item.object._type, item.object._id)}}">
+              <activity-avatar item="item"></activity-avatar>
+            </a>
+          </div>
         </div>
         <div ng-if="item.verb == 'community_new_post'">
           <timeline-post item="item.object" is-active="true"></timeline-post>
@@ -30,7 +34,6 @@
             </div>
           </div>
         </div>
-        <!--<div ng-switch-default>{{item.verb}}</div>-->
       </div>
 
     </div>

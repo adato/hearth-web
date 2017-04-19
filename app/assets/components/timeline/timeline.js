@@ -6,7 +6,7 @@
  * @description show the list of events happen in community.
  * @restrict AE
  */
-angular.module('hearth.directives').directive('timeline', function () {
+angular.module('hearth.directives').directive('timeline',['$rootScope', function ($rootScope) {
   return {
     restrict: 'AE',
     replace: true,
@@ -16,6 +16,8 @@ angular.module('hearth.directives').directive('timeline', function () {
     },
     templateUrl: 'assets/components/timeline/timeline.html',
     link: function (scope, el) {
+      scope.getProfileLink = $rootScope.getProfileLink;
+
       scope.getIconType = item => {
         if (item.verb === 'community_accepted_user')
           return 'fa-user-o';
@@ -26,4 +28,5 @@ angular.module('hearth.directives').directive('timeline', function () {
       };
     }
   };
-});
+}
+]);
