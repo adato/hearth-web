@@ -1,17 +1,13 @@
 <article class="item-common item-banner">
 	<div class="row">
-    <section class="column medium-2 show-for-medium text-center v2 user padding-top-small">
-			<a ng-href="support-us">
-				<avatar class="show-post-arrows need" type="'User'" src="config.imgUrl + '/logo-round.png'"></avatar>
-				<div class="name">Hearth.net</div>
-			</a>
+    <section class="column medium-2 show-for-medium padding-top-small">
 		</section>
 
 		<div class="column small-12 medium-10 padding-none">
-			<section class="box" ng-init="marketplace.expanded = false;">
+			<section class="box padding-bottom-small" ng-init="marketplace.expanded = false;">
 				<h3 translate="OUR_BLOG.GET_INSPIRED"></h3>
 				<div class="display-medium-flex flex-divide-medium flex-align-start">
-          <div class="flex-div flex-1 box padding-none" ng-repeat="post in blogposts">
+          <div class="flex-div flex-1 box padding-none margin-bottom-medium" ng-repeat="post in blogposts">
             <div class="blog-image block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></div>
 						<div class="padding-medium">
 	            <h4>
