@@ -290,3 +290,100 @@
 		margin-bottom:40px;
 	}
 }
+
+
+.timeline-page {
+	display:block; 
+
+	h2 { color: $dark-gray; }
+
+	.timeline {
+		width:50%;
+		clear:both;
+		&::before {
+			content:'';
+			display:block;
+			width:20px;
+			height:20px;
+			border-radius:50%;
+			background:$tertiary-color;
+			position:absolute;
+			left:49.4%;
+			margin-top:10px;
+		}
+
+		&:nth-child(even) {
+			padding-right:40px;
+			border-right:2px solid $tertiary-color;
+			margin-left:2px;
+			float:left;
+			h2, h3, p {
+				text-align: right;
+			}
+		}
+		&:nth-child(odd) {
+			padding-left:40px;
+			border-left:2px solid $tertiary-color;
+			float:right;
+		}
+
+		@include breakpoint(small down) {
+			width:100%;
+			h2 { font-weight:bold; text-align: center;}
+			h3 { text-align: center; }
+			&::before {
+				display:none;
+			}
+			&:nth-child(even) {
+				padding-right:0;
+				float:none;
+				border:none;
+				margin-left:0;
+				p {
+					text-align:unset;
+				}
+				h2, h3 { text-align:center;}
+			}
+			&:nth-child(odd) {
+				padding-left:0;
+				border:none;
+				float:none;
+			}
+		}
+
+	}
+
+
+	&>p {
+		clear:both;
+	}
+}
+
+.contacts-page {
+	h2 {
+		clear:both;
+		display:table;
+		border-bottom:1px solid $primary-color;
+		margin: 0 auto;
+	}
+	.profile {
+		width:50%;
+		@include breakpoint(small down) {
+			width:100%;
+		}
+		float:left;
+		padding:10px;
+		h3>small {
+			display: block;
+			line-height: 100%;
+			font-size:70%;
+			color:$dark-gray;
+		}
+		&.profile-full {
+			width:100%;
+		}
+		&:nth-child(even) {
+			clear:both;
+		}
+	}
+}
