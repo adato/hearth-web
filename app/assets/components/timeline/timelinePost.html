@@ -1,5 +1,5 @@
 <a ui-sref="post({id: item._id})" class="nostyle">
-  <article class="item-common temp-padding" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive}">
+  <article class="item-common temp-padding" id="post_{{:: item._id }}" ng-class=":: {inactive: !isPostActive(item)}">
     <div class="row">
       <section class="box padding-none">
         <div class='box-content'>

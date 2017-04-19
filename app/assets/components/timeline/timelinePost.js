@@ -6,20 +6,21 @@
  * @description show the list of events happen in community.
  * @restrict AE
  */
-angular.module('hearth.directives').directive('timelinePost', function () {
+angular.module('hearth.directives').directive('timelinePost',['$rootScope', function ($rootScope) {
   return {
     restrict: 'AE',
     replace: true,
     scope: {
       item: '=',
-      isActive: '='
 
     },
     templateUrl: 'assets/components/timeline/timelinePost.html',
     link: function (scope, el) {
-      // scope.isActive=true;
-
+      scope.isPostActive = (item) => {
+        return $rootScope.isPostActive(item);
+      }
     }
   };
-});
+}
+]);
 
