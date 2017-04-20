@@ -414,14 +414,14 @@
 			font-size: 120%;
 			color: $quaternary-color;
 			margin: 0;
-			padding: $size-small $size-big;
+			padding: $size-small $size-large;
 		}
 		.buttons {
 			text-align: center;
-      margin-top: $size-medium;
+      		margin-top: $size-medium;
 		}
 		p {
-			margin: $size-small $size-big 0;
+			margin: $size-small $size-large 0;
 		}
 	}
 	.left-pane {
@@ -531,8 +531,8 @@
 		padding: 0;
 		.user-about {
 			.line {
-				margin-left: 20px;
-				margin-right: 20px;
+				margin-left: $size-large;
+				margin-right: $size-large;
 				div.descr {
 					word-wrap: break-word;
 					margin-top: $ui-small-grid-size;

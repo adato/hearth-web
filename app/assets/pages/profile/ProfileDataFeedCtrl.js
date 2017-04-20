@@ -232,8 +232,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				inactive: 0
 			};
 
-			finishLoading();
-
 			$scope.postListActiveOptions = {
 				getData: ProfileUtils.getPosts.bind(null, {
 					active: true,
