@@ -1,5 +1,5 @@
 <div when-scrolled="loadNext()">
-  <div ng-repeat="(id, item) in timelineItems track by $index" title="{{item | json}}">
+  <div ng-repeat="(id, item) in timelineItems track by $index">
     <hr/>
     <div class="display-flex flex-column flex-align-start timeline-item">
 
@@ -9,7 +9,7 @@
           <div ng-init='iconType = getIconType(item)'>
             <span><i class="fa" ng-class="iconType" aria-hidden="true"></i></span>
           </div>
-          <span class="" ng-bind-html="item.text"></span>
+          <span ng-bind-html="item.text"></span>
         </div>
         <div class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
           <i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div ng-if="item.verb == 'community_new_post'">
-          <timeline-post item="item.object" is-active="true"></timeline-post>
+          <timeline-post item="item.object"></timeline-post>
         </div>
         <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
           <div ng-init='receivedRatings = [item.object]'>

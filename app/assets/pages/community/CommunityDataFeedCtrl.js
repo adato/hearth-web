@@ -27,10 +27,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'members': loadCommunityMember,
 			'about': loadCommunityAbout,
 			'applications': loadCommunityApplications,
-
-			// 'activity': loadCommunityActivityLog,
 			'activity': $scope.loadCommunityActivities,
-
 			'received-ratings': loadReceivedRatings,
 			'given-ratings': loadGivenRatings,
 		};
@@ -46,10 +43,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         communityId: $stateParams.id,
         offset: ($scope.activityLog ? $scope.activityLog.length : 0),
         limit: ACTIVITY_LIMIT,
-				// filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
-				// include_full: 'Post,Rating'
+				filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
+				include_full: 'Post,Rating'
       }, res => {
-				$scope.activityLogFetchRunning = false
+				$scope.activityLogFetchRunning = false;
 				$scope.activityShow = true;
 
 				res.data.map(function(activity) {
@@ -314,31 +311,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			async.parallel([
 				function(done) {
 					$scope.loadCommunityActivities(done);
-					// Community.getActivityLog({
-					// 	communityId: id,
-					// 	limit: ACTIVITY_LIMIT
-					// }, function(res) {
-					//
-					// 	$scope.activityShow = false;
-					// 	$scope.activityLog = [];
-					// 	// $timeout(function() {
-					//
-					// 		res.data.map(function(activity) {
-					// 			activity.text = Activities.getActivityTranslation(activity);
-					// 			return activity;
-					// 		});
-					//
-					// 		$scope.activityLog = res.data;
-					//
-					// 		if ($scope.activityLog.length === res.headers()['X-Pagination-Count']) {
-					// 			activityLogComplete = true;
-					// 		}
-					//
-					// 		$scope.activityShow = true;
-					// 	// });
-					//
-					// 	done(null);
-					// }, done);
 				},
 				function(done) {
 					CommunityApplicants.query({
@@ -373,12 +345,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 			$scope.$on('postUpdated', $scope.refreshItemInfo);
 		}
-
-		// function loadCommunityActivityLog(id) {
-		// 	Community.getActivityLog({
-		// 		communityId: id
-		// 	}, processData, processDataErr);
-		// }
 
 		// =================================== Public Methods ====================================
 
