@@ -7,15 +7,16 @@
  * @restrict AE
  */
 angular.module('hearth.directives').directive('timeline',['$rootScope', function ($rootScope) {
+
   return {
     restrict: 'AE',
-    replace: true,
     scope: {
       timelineItems: '=',
       loadNext: '&'
     },
     templateUrl: 'assets/components/timeline/timeline.html',
     link: function (scope, el) {
+
       scope.getProfileLink = $rootScope.getProfileLink;
 
       scope.getIconType = item => {
@@ -26,7 +27,8 @@ angular.module('hearth.directives').directive('timeline',['$rootScope', function
         if (item.verb === 'new_rating_received' || item.verb === 'new_rating')
           return item.object.score == -1 ? 'icon-rating-negative' : 'icon-rating-positive';
       };
+
     }
   };
-}
-]);
+
+}]);

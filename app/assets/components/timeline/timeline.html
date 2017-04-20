@@ -1,7 +1,8 @@
-<div>
-  <div ng-repeat="(id, item) in timelineItems track by $index">
+<div when-scrolled="loadNext()">
+  <div ng-repeat="(id, item) in timelineItems track by $index" title="{{item | json}}">
     <hr/>
     <div class="display-flex flex-column flex-align-start timeline-item">
+
       <!-- timeline header -->
       <div class="display-flex flex-row flex-space-between full-width">
         <div class="display-flex flex-row flex-align-baseline">
