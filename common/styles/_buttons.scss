@@ -1,11 +1,16 @@
+a.button {
+    text-decoration: none;
+}
 .button {
   margin: 0;
   font-weight: bold;
   font-family: $body-font-family;
   white-space: nowrap;
+  transition: all .25s ease-out;
 
   @include breakpoint(medium down) {
-    min-height: 44px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   // primary

@@ -27,9 +27,6 @@ angular.module('hearth.directives').directive('item', [
 			},
 			templateUrl: 'assets/components/item/items/post.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
-				scope.postTypes = $$config.postTypes;
-				scope.replyLabel = $$config.replyLabels;
-				scope.replyCountTexts = $$config.replyCountTexts;
 
 				// default values
 				scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;

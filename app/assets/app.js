@@ -55,7 +55,6 @@ angular.module('hearth', [
 			$translateProvider.preferredLanguage(window.preferredLanguage || 'en');
 			$translateProvider.useSanitizeValueStrategy(null);
 
-			// $translateProvider.useStorage('SessionLanguageStorage');
 			$translateProvider.useStaticFilesLoader({
 				prefix: 'assets/locale/',
 				suffix: '.json'
@@ -108,6 +107,7 @@ angular.module('hearth', [
 			$authProvider.facebook({
 				clientId: $$config.oauth.facebook,
 				url: $window.encodeURI($$config.apiPath + '/auth/facebook' + $window.refsString),
+  			authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth'
 			});
 
 			$authProvider.google({
@@ -231,8 +231,19 @@ angular.module('hearth', [
 							});
 
 							Auth.logout(function() {
-								location.reload("/login");
+								location.reload('/login');
 							});
+							// function cb() {
+							// 	location.reload('/login');
+							// }
+							// Session.get(session => {
+							// 	if (session._id) delete session._id;
+							// 	// $http.post($$config.apiPath + '/logout').success(cb).error(cb);
+							// 	User.logout({}, cb, cb);
+							// }, err => {
+							// 	// $http.post($$config.apiPath + '/logout').success(cb).error(cb);
+							// 	User.logout({}, cb, cb);
+							// });
 						}
 
 						UnauthReload.checkLocation();

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-	'$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post', 'FilterResource',
-	function($q, $location, $state, $rootScope, User, KeywordsService, Post, FilterResource) {
+	'$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post', 'FilterResource', 'Auth',
+	function($q, $location, $state, $rootScope, User, KeywordsService, Post, FilterResource, Auth) {
 		return {
 			_commonKeywords: [],
 			getCommonKeywords: function(cb) {
@@ -87,7 +87,25 @@ angular.module('hearth.services').factory('Filter', [
 				return $.param(params);
 			},
 			isSet: function() {
-				return !$.isEmptyObject($location.search());
+        // Filter is not dirty, if it is set exactly to "your" languages
+        let dirty = true;
+        var l = JSON.parse(JSON.stringify($location.search()));
+        delete l.page;
+        delete l.postdetail;
+        let userLanguages = Auth.getUserLanguages();
+        let res = typeof l.lang == 'undefined' || JSON.stringify([l.lang].sort())==JSON.stringify([userLanguages].sort());
+        if(res) {
+          delete l.lang;
+          dirty = false;
+          for (var prop in l) {
+            if(l.hasOwnProperty(prop)) {
+              dirty = true;
+              break;
+            }
+          }
+        }
+        return dirty;
+				// return !$.isEmptyObject($location.search());
 			},
 			apply: function(filterData, save, applySave) {
 				$location.search(filterData);

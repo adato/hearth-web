@@ -1,0 +1,67 @@
+/*******************
+	NAV
+*******************/
+.header-wrapper {
+	position: fixed;
+	top: 0;
+	width: 100%; height: 70px;
+	display: flex;
+	/*align-items: center;*/
+	align-items: stretch;
+	justify-content: space-between;
+	padding: 0 16px;
+	background-color: rgba(255,255,255,.2);
+	transition: .3s all;
+	z-index: 100;
+	font-size: 20px;
+	-webkit-backface-visibility: hidden;
+}
+.header-wrapper.contracted {
+	background-color: #fff;
+	height: 70px;
+	box-shadow: 0 2px 4px rgba(0,0,0,.4);
+}
+.header-wrapper .logo {
+	width: 250px; height: 56px;
+	margin-left: 8px;
+	background-image: url('../img/logo-dark.png');
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	transition: .3s all;
+  	border-bottom: none;
+	@extend .delinkify;
+}
+@media (min-width: 400px) {
+	.header-wrapper {
+		height: 100px;
+	}
+}
+.header-wrapper.contracted .logo {
+	width: 200px;
+}
+.nav-item {
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	padding: 8px 12px 8px 8px;
+	font-weight: bold;
+	white-space: nowrap;
+	font-size: 14px;
+	font-family: 'Raleway';
+	// text-decoration: none;
+	@extend .delinkify;
+}
+@media (min-width: 400px) {
+	.nav-item {
+		margin: 0 4px;
+		font-size: 14px
+	}
+}
+.nav-item:hover.has-hover-effect {
+	// text-decoration: underline;
+	@extend .linkify;
+}
+.main-navigation {
+	display: flex;
+}

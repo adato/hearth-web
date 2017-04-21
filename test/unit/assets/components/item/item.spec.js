@@ -5,11 +5,11 @@ describe('item directive - market place item', function () {
 
   beforeEach(module('hearth'));
 
-  beforeEach(inject(function ($injector, _$compile_, _$rootScope_, $controller) {
+  beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
 
-    $httpBackend = $injector.get('$httpBackend');
+    $httpBackend = _$httpBackend_;
 
     $httpBackend.whenGET(PATH.API_SESSION).respond(function () {
       return [200, ['success'], {}];

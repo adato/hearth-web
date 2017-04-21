@@ -11,15 +11,16 @@ describe('Register controller', function () {
   // JSON returned from backend, when email is blocked
   var blockEmailResponse = {"ok": false, "error": "email blocked", "message": "Exceptions::EmailBlocked"};
 
-  beforeEach(inject(function ($injector, _$http_, _$controller_, _$rootScope_) {
+  beforeEach(inject(function ($injector, _$http_, _$controller_, _$rootScope_, _$httpBackend_) {
     $http = _$http_;
     $controller = _$controller_;
-    $httpBackend = $injector.get('$httpBackend');
+    $httpBackend = _$httpBackend_;
     $rootScope = _$rootScope_;
 
-    $httpBackend.whenPOST('https://api.dev.hearth.net/users?referrals[]=').respond(403, blockEmailResponse);
+    // $httpBackend.whenPOST('https://api.dev.hearth.net/users?referrals[]=').respond(403, blockEmailResponse);
+    $httpBackend.whenPOST(/.*users\?referrals\[\].*/).respond(403, blockEmailResponse);
 
-    $httpBackend.whenGET(/^https:\/\/api.dev.hearth.net\/session/).respond();
+    $httpBackend.whenGET(/.*\/session/).respond();
 
     $httpBackend.whenGET(PATH.MESSAGES_JSON_EN_WHEN).respond(PATH.MESSAGES_JSON_EN_RESPONSE);
     $httpBackend.flush();
@@ -30,7 +31,7 @@ describe('Register controller', function () {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  var user, registerForm;
+  var user;
 
   function mockBlockedEmailData() {
     user = {
@@ -58,7 +59,7 @@ describe('Register controller', function () {
 
   it('Cannot register, if blocked by email address', function () {
     $scope = $rootScope.$new();
-    var controller = $controller('RegisterCtrl', {
+    $controller('RegisterCtrl', {
       $scope: $scope
     });
 

@@ -15,16 +15,12 @@
 			<div ng-show="configOptionsShow.character" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_CHARACTER' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<checkbox model="filter.energy" value="true">{{:: 'CATEGORY_ENERGY' | translate}}
-						<small>{{:: 'CATEGORY_ENERGY_TEXT' | translate}}</small>
-					</checkbox>
-					<checkbox model="filter.mass" value="true">{{:: 'CATEGORY_MASS' | translate}}
-						<small>{{:: 'CATEGORY_MASS_TEXT' | translate}}</small>
-					</checkbox>
-					<checkbox model="filter.information" value="true">
-						{{:: 'CATEGORY_INFORMATION' | translate}}
-						<small>{{:: 'CATEGORY_INFORMATION_TEXT' | translate}}</small>
-					</checkbox>
+					<div class="display-inline-block margin-right-large" ng-repeat="character in postCharacter">
+						<checkbox model="filter[character.name]" value="true" class="margin-right-none">
+							<span translate="{{:: character.translate }}"></span>
+						</checkbox>
+						<i class="fa fa-question-circle color-dark-gray" aria-hidden="true" tipsy tipsy-on-show="logCharInfoShown" title="{{character.translateText | translate}}"></i>
+					</div>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.postType" class="medium-display-table-row">
@@ -85,7 +81,7 @@
 			<div ng-show="configOptionsShow.postLanguage" class="medium-display-table-row language-container">
 				<h5 class="medium-display-table-cell nowrap-addon padding-bottom-small">{{:: 'FULLTEXT.FILTER.BY_LANGUAGE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<radio ng-type="radio" model="filter.post_language" value="null">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
+					<radio ng-type="radio" model="filter.post_language" value="'all'">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
 					<radio ng-type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
 					<radio ng-type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
 					<div class="autocomplete-container" ng-show="filter.post_language == 'other'">
@@ -103,9 +99,8 @@
 				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>
 		</div>
-		<div ng-show="configOptionsShow.saveFilter" class="margin-left-large">
-			<checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
-			</checkbox>
+		<div ng-if='loggedUser' ng-show="configOptionsShow.saveFilter" class="margin-left-large">
+			<checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
 		</div>
 	</section>
 </div>

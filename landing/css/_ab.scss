@@ -13,13 +13,17 @@ html.variant-green .nav.nav-justified>li>a .quote
     background-color: #a7bd1d;
 }
 html.variant-green .bulletize-paragraphs>p:before,
-html.variant-green .button.alt,
-html.variant-green .nav-item.color-primary,
-html.variant-green .blog-block a.color-primary
+html.variant-green .button.hollow,
+html.variant-green .nav-item,
+html.variant-green a
 {
     color: #a7bd1d;
 }
-html.variant-green .button.alt
+html.variant-green a:hover
+{
+    border-bottom: 1px solid $tertiary-color;
+}
+html.variant-green .button.hollow
 {
     border-color: #a7bd1d;
 }

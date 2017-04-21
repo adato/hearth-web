@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', '$translate',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, $translate) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -23,6 +23,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
     $scope.postTypes = $$config.postTypes;
 		$scope.replyLabel = $$config.replyLabels;
 		$scope.replyCountTexts = $$config.replyCountTexts;
+    $scope.postCharacter = $$config.postCharacter;
 
 		$scope.deserializeReply = function(item) {
 			if (item.from_community) {
@@ -53,7 +54,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			}, function(data) {
 				$scope.item = data;
 
-				$scope.setTitle();
+				$scope.setTitle(data);
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
 				else
@@ -65,6 +66,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
           $scope.postTypeCode = PostUtils.getPostTypeCode(data.author._type, data.type, data.exact_type);
 					var postType = $filter('translate')($scope.postTypeCode);
 					var title = 'Hearth.net: ' + postType + ' ' + data.title + ' (' + data.author.name + ')';
+
+					$scope.postLanguage = LanguageList.translate(data.language);
 
 					OpenGraph.set(title, data.text || "", null, image.large, image.size);
 
@@ -87,6 +90,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					$scope.isActive = $rootScope.isPostActive($scope.item);
 				}
 			}, function(res) {
+        $scope.setTitle(res);
 				$scope.loaded = true;
 				$scope.item = false;
 			});
@@ -103,7 +107,21 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
-		$scope.setTitle = function() {
+		$scope.setTitle = function(data) {
+      if (data && data.status === 404) {
+        PageTitle.setTranslate("POST_NOT_FOUND", "");
+        return;
+      }
+      if (data && data.state === "expired") {
+        PageTitle.setTranslate("POST_HAS_ALREADY_EXPIRED", "");
+        return;
+      }
+      if (data && data.state === "suspended") {
+        PageTitle.setTranslate("POST_WAS_SUSPENDED", "");
+        return;
+      }
+
+      // Post found
 			var author = ($scope.item.author ? $scope.item.author._type : 'User');
 			var title = $translate.instant(PostUtils.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);

@@ -10,12 +10,12 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 	'$q', 'CommunityMemberships', '$rootScope', 'User', 'Community', '$log',
 	function($q, CommunityMemberships, $rootScope, User, Community, $log) {
 
-		var postType = {
+		const postType = {
 			offered: 'offered',
 			needed: 'needed'
 		}
 
-		var factory = {
+		const factory = {
 			alterPossiblePosts: alterPossiblePosts,
 			isMyCommunity: isMyCommunity,
 			loadProfileInfo: loadProfileInfo,
@@ -34,15 +34,15 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 			if (!posts.needed || !posts.offered) {
 				return $log.error('Undefined needed/offered posts: ', posts, headers)
 			}
-			var arr = [];
-			posts.needed.forEach(function(item) {
-				item.post_type = ((item.owner_id === $rootScope.loggedUser._id) ? postType.needed : postType.offered);
-				arr.push(item);
-			});
-			posts.offered.forEach(function(item) {
-				item.post_type = ((item.owner_id === $rootScope.loggedUser._id) ? postType.offered : postType.needed);
-				arr.push(item);
-			});
+			var arr = posts.needed.concat(posts.offered);
+			// posts.needed.forEach(function(item) {
+			// 	item.post_type = ((item.owner_id === $rootScope.loggedUser._id) ? postType.needed : postType.offered);
+			// 	arr.push(item);
+			// });
+			// posts.offered.forEach(function(item) {
+			// 	item.post_type = ((item.owner_id === $rootScope.loggedUser._id) ? postType.offered : postType.needed);
+			// 	arr.push(item);
+			// });
 			return arr;
 		}
 

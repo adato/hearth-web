@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-@import 'settings';
+@import '../../common/styles/settings';
 @import 'foundation';
 @import 'motion-ui';
 
@@ -57,7 +57,7 @@
 @import "components/directives/avatar";
 @import "components/directives/authorSelector";
 @import "components/directives/bubble";
-@import "components/forms/buttons";
+@import "../../common/styles/buttons";
 @import "components/forms/checkbox";
 @import "components/wtf/common";
 @import "components/pages/communities";
@@ -71,13 +71,13 @@
 @import "components/directives/filterbar";
 // @import "components/filterStatus";
 @import "components/directives/filter";
+@import "components/directives/lemmonSlider";
 @import "components/flags";
 @import "components/forms/forms";
 @import "components/forms/foundationDatepicker";
 @import "components/pages/fulltext";
 @import "components/hearthIcons";
 @import "components/forms/htmlSlider";
-@import "components/pages/itemDetail";
 @import "components/pages/inviteBox";
 @import "components/pages/item";
 @import "components/directives/infoBox";
@@ -97,6 +97,7 @@
 @import "components/pages/profileCommon";
 @import "components/pages/profileEdit";
 @import "components/pages/profileEditCommon";
+@import "components/pages/story";
 @import "components/wtf/removePostFromCommunity";
 @import "components/tipsy";
 @import "components/pages/tutorial";

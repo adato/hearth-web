@@ -169,8 +169,8 @@ PATHS:
         - "bower_components/fancybox/source/*.png"
     landing:
       index: "landing/html"
-      css:
-        - "landing/css/**/*.css"
+      scss:
+        - "landing/css/*.scss"
       img:
         - "landing/img/**/*.*"
       fonts:
