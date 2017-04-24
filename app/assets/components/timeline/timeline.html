@@ -25,7 +25,7 @@
             </a>
           </div>
         </div>
-        <div ng-if="item.verb == 'community_new_post'">
+        <div ng-if="item.verb == 'community_new_post' || item.verb == 'new_post'">
           <timeline-post item="item.object"></timeline-post>
         </div>
         <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
