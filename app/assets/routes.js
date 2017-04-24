@@ -226,6 +226,18 @@ angular.module('hearth').config([
         templateUrl: 'assets/pages/uikit/uikit.html',
         controller: 'UiKitCtrl'
       })
+			.state('aboutUs', {
+				url: '/about-us',
+				templateUrl: 'assets/pages/static/AboutUs.html'
+			})
+			.state('ourStory', {
+				url: '/our-story',
+				templateUrl: 'assets/pages/static/OurStory.html'
+			})
+			.state('contacts', {
+				url: '/contacts',
+				templateUrl: 'assets/pages/static/Contacts.html'
+			})
 			.state('error404', {
 				templateUrl: 'assets/pages/static/error404.html',
 				controller: 'Error404Ctrl'

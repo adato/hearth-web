@@ -82,6 +82,7 @@ describe('item directive - market place item', function () {
           normal: null
         }
       },
+      hearts: [],
       keywords: ['gift'],
       attachments_attributes: ''
     };
