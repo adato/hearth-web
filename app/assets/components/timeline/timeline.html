@@ -35,6 +35,17 @@
             </div>
           </div>
         </div>
+        <div ng-if="item.verb == 'group' && item.type == 'community_accepted_user'">
+          <div class="display-flex">
+            <div ng-repeat="userObject in item.objects track by $index" class="margin-right-medium">
+              <div info-box="userObject.object" infobox-class="'on-profile'">
+                <a ng-href="{{getProfileLink(userObject.object._type, userObject.object._id)}}">
+                  <activity-avatar item="userObject"></activity-avatar>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
