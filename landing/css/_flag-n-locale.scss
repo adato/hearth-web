@@ -66,7 +66,7 @@
 }
 .hover-window li,
 #main-navigation li {
-	border-bottom: 1px solid #ddd;
+	// border-bottom: 1px solid #ddd;
 }
 .hover-window li:last-child,
 #main-navigation li:last-child {
@@ -77,6 +77,7 @@
 	display: block;
 	min-width: 200px;
 	margin: 0;
+	border-bottom: 1px solid #ddd;
 }
 .hover-window li a.nav-item {
 	display: -ms-flexbox;

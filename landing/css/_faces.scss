@@ -152,6 +152,9 @@ div.img-circle {
     .nav.nav-justified > li > a .quote { right: 8px; bottom: 8px; }
 }
 
+.img-rotator.controls {
+	color: $primary-color;
+}
 .img-rotator.controls [rotate-right],
 .img-rotator.controls [rotate-left] {
 	position: absolute;

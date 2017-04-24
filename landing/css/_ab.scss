@@ -7,32 +7,43 @@
     šipka pro scroll dolů ... IMG lol
 */
 
-html.variant-green .button,
-html.variant-green .nav.nav-justified>li>a .quote
-{
-    background-color: #a7bd1d;
-}
-html.variant-green .bulletize-paragraphs>p:before,
-html.variant-green .button.hollow,
-html.variant-green .nav-item,
-html.variant-green a
-{
-    color: #a7bd1d;
-}
-html.variant-green a:hover
-{
-    border-bottom: 1px solid $tertiary-color;
-}
-html.variant-green .button.hollow
-{
-    border-color: #a7bd1d;
-}
-html.variant-green .nav.nav-justified>li>a .img-circle
-{
-    box-shadow: 0 0 0 5px #a7bd1d;
-}
+html.variant-green {
+    .button
+    {
+        @extend .button.offer;
+    }
+    .nav.nav-justified>li>a .quote,
+    .background-primary
+    {
+        background-color: $tertiary-color;
+    }
+    .bulletize-paragraphs>p:before,
+    .button.hollow,
+    .nav-item,
+    a,
+    .img-rotator.controls
+    {
+        color: $tertiary-color;
+    }
+    .sub-link-list .nav-item:hover
+    {
+        color: scale-color($tertiary-color, $lightness: -10%);
+    }
+    a:hover
+    {
+        border-bottom: 1px solid $tertiary-color;
+    }
+    .button.hollow
+    {
+        border-color: $tertiary-color;
+    }
+    .nav.nav-justified>li>a .img-circle
+    {
+        box-shadow: 0 0 0 5px $tertiary-color;
+    }
 
-html.variant-green .decorated-circle-flame
-{
-    background-image: url('../img/arrow-down-green.png');
+    .decorated-circle-flame
+    {
+        background-image: url('../img/arrow-down-green.png');
+    }
 }
