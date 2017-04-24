@@ -3,23 +3,20 @@ Hearth (Front end)
 Front and app is based on Angular.
  
 Dependencies:
-* ruby 
-* sass
-* compass
-* zurb-foundation
-* node
-
-How install ruby dependecies
-```shell
-cd project/web
-bundle 
-```
+* AngularJS
+* Foundation 6
+* Node
+* Sass
  
-How to run server
+How to run server. From the project root run:
 ```shell
-cd project/web/app
-npm install
-grunt serve
+npm start
+```
+UI kit
+Page with sample components used in Hearth project.
+Check the UI kit page here:
+```
+https://www.hearth.net/app/uikit
 ```
 
 Favicon location

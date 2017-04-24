@@ -1,0 +1,28 @@
+<h1>UI Kit</h1>
+<h2>Buttons</h2>
+<div ng-repeat="item in buttons">
+  <div class="display-flex flex-space-between">
+    <div ng-bind-html="item.code"></div>
+    <div>{{ item.description}}</div>
+  </div>
+  <br/>
+</div>
+
+<h2>Typography</h2>
+<div ng-repeat="item in typographies">
+  <div class="display-flex flex-divide-medium flex-space-between">
+    <div class="flex-div">{{ item.name}}</div>
+    <div class="flex-div" ng-bind-html="item.code"></div>
+    <div class="flex-div">{{ item.description}}</div>
+  </div>
+  <br/>
+</div>
+
+<h2>Inputs</h2>
+<div ng-repeat="item in inputs">
+  <div class="display-flex flex-space-between">
+    <div ng-bind-html="item.code"></div>
+    <div>{{ item.description}}</div>
+  </div>
+  <br/>
+</div>
