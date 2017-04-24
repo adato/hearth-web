@@ -306,24 +306,31 @@
 			width:20px;
 			height:20px;
 			border-radius:50%;
-			background:$tertiary-color;
-			position:absolute;
-			left:49.4%;
+			background:$secondary-color;
+			box-shadow: 0px 0px 0px 3px #fff;
+			//border:2px solid $tertiary-color;
 			margin-top:10px;
+			top:30px;
+			position:relative;
+			margin-left:-51px;
 		}
 
-		&:nth-child(even) {
+		&:nth-child(odd) {
 			padding-right:40px;
-			border-right:2px solid $tertiary-color;
+			border-right:2px solid $medium-gray;
 			margin-left:2px;
 			float:left;
 			h2, h3, p {
 				text-align: right;
 			}
+			&::before {
+				left:100%;
+				margin-left:31px;
+			}
 		}
-		&:nth-child(odd) {
+		&:nth-child(even) {
 			padding-left:40px;
-			border-left:2px solid $tertiary-color;
+			border-left:2px solid $medium-gray;
 			float:right;
 		}
 
@@ -334,7 +341,7 @@
 			&::before {
 				display:none;
 			}
-			&:nth-child(even) {
+			&:nth-child(odd) {
 				padding-right:0;
 				float:none;
 				border:none;
@@ -344,7 +351,7 @@
 				}
 				h2, h3 { text-align:center;}
 			}
-			&:nth-child(odd) {
+			&:nth-child(even) {
 				padding-left:0;
 				border:none;
 				float:none;
@@ -360,11 +367,25 @@
 }
 
 .contacts-page {
+	.hero {
+		font-size:large;
+	}
+	.address {
+		text-align:center;
+		display:inline-block;
+		background: $light-gray;
+		border-radius:$global-radius;
+		padding:$size-medium;
+		line-height:initial;
+		font-size:medium;
+		margin-top:$size-medium;
+		margin-bottom:$size-large;
+	}
 	h2 {
 		clear:both;
 		display:table;
 		border-bottom:1px solid $primary-color;
-		margin: 0 auto;
+		margin: $size-medium auto;
 	}
 	.profile {
 		width:50%;
