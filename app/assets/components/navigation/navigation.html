@@ -80,6 +80,16 @@
 			<li>
 				<label>{{:: 'TOP_BAR_ABOUT' | translate}} </label>
 			</li>
+			<li ng-if=":: language === 'cs'">
+				<a ui-sref="aboutUs" translate="MENU.ABOUT_US"></a>
+			</li>
+			<li ng-if=":: language === 'cs'">
+				<a ui-sref="ourStory" translate="MENU.OUR_STORY"></a>
+			</li>
+			<li ng-if=":: language === 'cs'">
+				<a ui-sref="contacts" translate="MENU.CONTACTS"></a>
+			</li>
+
 			<li>
 				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}">{{:: 'MENU.TERMS' | translate}}</a>
 			</li>
