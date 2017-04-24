@@ -1,12 +1,12 @@
 $itemBorderWidth: 5px;
 $itemBorder: 1px solid #D7D7D7;
 
-.not-found-box {
-	a {
-		color: $primary-color;
-		font-weight: $ui-text-weight-bolder;
-	}
-}
+// .not-found-box {
+// 	a {
+// 		color: $primary-color;
+// 		font-weight: $ui-text-weight-bolder;
+// 	}
+// }
 
 .v-m-small {
 	@include breakpoint(small only) {
