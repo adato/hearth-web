@@ -8,13 +8,13 @@
 				<h3 translate="OUR_BLOG.GET_INSPIRED"></h3>
 				<div class="display-medium-flex flex-divide-medium flex-align-start">
           <div class="flex-div flex-1 box padding-none margin-bottom-medium" ng-repeat="post in blogposts">
-            <div class="blog-image block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></div>
-						<div class="padding-medium">
+            <a ng-href="{{ post.link }}" target="_blank" class="blog-image display-block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></a>
+						<div class="padding-horizontal-medium padding-bottom-medium">
 	            <h4>
-	              <a ng-href="post.link" target="_blank" ng-bind="post.title"></a>
+	              <a ng-href="{{ post.link }}" target="_blank" ng-bind="post.title"></a>
 	            </h4>
 	            <div class="hide-all-images block" ng-bind-html="post.text"></div>
-	            <a ng-href="post.link" target="_blank" translate="OUR_BLOG.READ_ON_BLOG"></a>
+	            <a ng-href="{{ post.link }}" target="_blank" translate="OUR_BLOG.READ_ON_BLOG"></a>
           	</div>
           </div>
         </div>

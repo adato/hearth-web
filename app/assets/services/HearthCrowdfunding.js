@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
-	'$q', '$http',
-	function($q, $http) {
+	'$q', '$http', 'ArrayHelper',
+	function($q, $http, ArrayHelper) {
 
 		var isDisplayed = false;
 		// var titleBannerIsClosed = ($.cookie('crowdsourcing-banner') === 'true');
@@ -83,8 +83,15 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 		function processBlogposts(data) {
 			const parser = new DOMParser();
 			const postsFragment = parser.parseFromString(data, 'text/xml');
-			const posts = postsFragment.querySelectorAll('item');
+			var posts = postsFragment.querySelectorAll('item');
 			const limit = posts.length < BLOG_POST_COUNT ? posts.length : BLOG_POST_COUNT;
+
+			// rutn nodelist into array
+			posts = Array.prototype.slice.call(posts);
+
+			// shuffle the posts
+			ArrayHelper.shuffle(posts);
+
 			for (var i = 0;i < limit;i++) {
 				blogposts.push(getBlogPostObject(posts[i]));
 			}
