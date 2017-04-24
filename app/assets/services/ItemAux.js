@@ -13,9 +13,11 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			addItemToBookmarks,
 			confirmSuspend,
 			hideItem,
+			heart,
+			postHeartedByUser,
+			logCharInfoShown,
 			removeItemFromBookmarks,
-			replyItem,
-			logCharInfoShown
+			replyItem
 		};
 
 		return factory;
@@ -125,6 +127,45 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				closeByEscape: true,
 				showClose: false
 			});
+		}
+
+		/**
+		 *	function for hearting/unhearting items
+		 */
+		function heart({ item } = {}) {
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
+			if (item.heartLoading) return false;
+			item.heartLoading = true;
+			Post[item.hearted_by_me ? 'unheart' : 'heart']({ postId: item._id }, {}, res => {
+				item.heartLoading = false;
+				item.hearted_by_me = !item.hearted_by_me;
+				if (item.hearted_by_me) {
+					item.hearts.push(res);
+				} else {
+					for (var i = item.hearts.length;i--;) {
+						if (item.hearts[i].user_id === $rootScope.loggedUser._id) {
+							item.hearts.splice(i, 1);
+							break;
+						}
+					}
+				}
+			}, err => {
+				item.heartLoading = false;
+			});
+		}
+
+		function postHeartedByUser({ item, userId }) {
+
+			if (item.hearted_by_me !== void 0) return item.hearted_by_me;
+
+			for (var i = item.hearts.length;i--;) {
+				if (item.hearts[i].user_id === userId) {
+					item.hearted_by_me = true;
+					return postHeartedByUser({ item, userId });
+				}
+			}
+			item.hearted_by_me = false;
+			return postHeartedByUser({ item, userId });
 		}
 
 		function logCharInfoShown(location, character) {
