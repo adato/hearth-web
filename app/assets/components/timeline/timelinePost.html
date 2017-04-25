@@ -1,7 +1,7 @@
 <a ui-sref="post({id: item._id})" class="nostyle">
   <article class="item-common temp-padding" id="post_{{:: item._id }}" ng-class=":: {inactive: !isPostActive(item)}">
     <div class="row">
-      <section class="box padding-none">
+      <section class="box">
         <div class='box-content'>
           <header class="display-flex">
             <avatar class="small-avatar-small" type="item.author._type" src="item.author.avatar.normal"
@@ -13,7 +13,7 @@
             <div>
               <h1>
                 <div ng-class=":: 'color-' + item.type" translate="{{:: postTypeCode }}"></div>
-                {{:: item.title}}
+                {{:: postTypes[item.author._type][item.exact_type][item.type] | translate}}&nbsp{{:: item.title | ellipsis:100}}
               </h1>
               <span class="validity-warning"
                     ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
@@ -24,7 +24,7 @@
             </div>
           </header>
           <div class="word-wrap">
-            <p class="timeline-post-text" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+            <p class="timeline-post-text" ng-bind-html="item.text | linky:'_blank' | nl2br | ellipsis:200"></p>
           </div>
         </div>
       </section>

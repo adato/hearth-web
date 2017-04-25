@@ -16,6 +16,7 @@ angular.module('hearth.directives').directive('timelinePost',['$rootScope', func
     },
     templateUrl: 'assets/components/timeline/timelinePost.html',
     link: function (scope, el) {
+      scope.postTypes = $$config.postTypes;
       scope.isPostActive = (item) => {
         return $rootScope.isPostActive(item);
       }

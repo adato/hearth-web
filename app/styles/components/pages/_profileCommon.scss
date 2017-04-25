@@ -498,7 +498,8 @@
       padding-right: $size-medium;
 
       .timeline-item-content {
-        margin: $size-medium 0;
+        margin: $size-medium 0 0 0;
+        width: 100%;
 
         .box {
           padding: 0;
@@ -514,7 +515,8 @@
 
       .item-option-bg-type > i{
         display: block;
-        width: 12px; height: 12px;
+        width: 12px;
+        height: 12px;
         background-size: 12px 12px;
         background-position: center center;
         background-repeat: no-repeat;
