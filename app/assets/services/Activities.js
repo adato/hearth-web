@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('Activities', [
-	'$rootScope', '$translate',
-	function($rootScope, $translate) {
+	'$rootScope', '$translate', 'PostUtils',
+	function($rootScope, $translate, PostUtils) {
 		var self = this;
 		var ratingActivities = ['new_rating', 'new_rating_received'];
 
@@ -60,9 +60,8 @@ angular.module('hearth.services').service('Activities', [
       } else {
         // all other activities
         const obj = (info.target_object) ? info.target_object : info.object;
-
         data.user = info.actor.name;
-        data.name = obj.title || obj.name;
+        data.name = obj.title ? $translate.instant(PostUtils.getPostTypeCode(obj.author_type, obj.type, obj.exact_type)) + '&nbsp' + obj.title : obj.name;
         data.url = $rootScope.getProfileLink(obj._type, obj._id)
       }
       return data;

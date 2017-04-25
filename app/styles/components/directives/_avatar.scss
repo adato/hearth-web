@@ -43,6 +43,7 @@ $large-avatar-size: 295px;
 		}
 	}
 	&.avatar-small{
+    min-width: 40px;
 		width: $small-avatar-size;
 	}
 	&.avatar-normal{
