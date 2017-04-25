@@ -19,8 +19,8 @@ html.variant-green {
     }
     .bulletize-paragraphs>p:before,
     .button.hollow,
-    .nav-item,
-    a,
+    .nav-item:not(.button),
+    a:not(.button),
     .img-rotator.controls
     {
         color: $tertiary-color;
