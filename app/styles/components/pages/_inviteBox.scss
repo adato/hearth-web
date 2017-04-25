@@ -19,14 +19,14 @@
 .invite-box {
 	ul {
 		list-style: none;
-		text-align: center;
+		// text-align: center;
 		margin-top: 3rem;
 		margin-bottom: 2rem;
 		margin-left: 0;
 		li {
 			padding: .5rem;
 			display: inline;
-			text-align: center;
+			// text-align: center;
 		}
 	}
 	.social {
@@ -66,12 +66,12 @@
 			}
 		}
 	}
-	.emailForm {
-		label {
-			margin: 10px 0;
-		}
-		.error {
-			margin-top: 10px;
-		}
-	}
+	// .emailForm {
+	// 	label {
+	// 		margin: 10px 0;
+	// 	}
+	// 	.error {
+	// 		margin-top: 10px;
+	// 	}
+	// }
 }

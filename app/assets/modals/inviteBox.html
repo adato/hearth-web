@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="social" ng-if="!showEmailForm">
-		<ul>
+		<ul class="text-center">
 			<li>
 				<!-- <a ng-click="fbInvite()"> -->
 				<a href="" ng-click="fbInvite()">
@@ -39,25 +39,30 @@
 	</div>
 	<div ng-show="showEmailForm">
 		<form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="emailForm invite-form" novalidate>
-			<div>
-				<label>{{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}</label>
-				<tags-input name="to_email" ng-model="inv.to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" type="email" min-tags="1" ng-focus="showError.to_email = false"
-								ng-blur="showError.to_email = true" ng-required="required" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" on-tag-added="validateEmailAddress($tag)" on-tag-removed="removeFromInvitationsStatus($tag, invitationsStatus)"></tags-input>
-				<div class="error" ng-show="showError.to_email">
-					<span ng-show="inviteForm.to_email.$error.minTags">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
-					<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
+
+			<div class="block">
+				<div>
+					<label>{{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}</label>
+					<tags-input name="to_email" ng-model="inv.to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" type="email" min-tags="1" ng-focus="showError.to_email = false"
+									ng-blur="showError.to_email = true" ng-required="required" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" on-tag-added="validateEmailAddress($tag)" on-tag-removed="removeFromInvitationsStatus($tag, invitationsStatus)"></tags-input>
+					<div class="form-error" ng-show="showError.to_email">
+						<span ng-show="inviteForm.to_email.$error.minTags">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
+						<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
+					</div>
+				</div>
+
+				<div ng-show="invitationsStatus.length">
+					<ul class="list margin-bottom-none margin-top-small">
+						<li ng-repeat="item in invitationsStatus" class="small-text-left">
+							<i ng-class="itemStatusIconVocabulary[item.status]"></i>
+							<span ng-bind-html="item.text | translate:{email: item.email}"></span>
+							<a ng-href="{{:: getProfileLink(item.existing._type, item.existing._id)}}" target="_blank">{{item.existing.name}}</a>.
+						</li>
+					</ul>
 				</div>
 			</div>
-			<div ng-show="invitationsStatus.length">
-				<ul class="list margin-bottom-none margin-top-small">
-					<li ng-repeat="item in invitationsStatus" class="small-text-left">
-						<i ng-class="itemStatusIconVocabulary[item.status]"></i>
-						<span ng-bind-html="item.text | translate:{email: item.email}"></span>
-						<a ng-href="{{:: getProfileLink(item.existing._type, item.existing._id)}}" target="_blank">{{item.existing.name}}</a>.
-					</li>
-				</ul>
-			</div>
-			<div>
+
+			<div class="block">
 				<label>{{:: 'PROFILE.INVITATION.MESSAGE' | translate }}</label>
 				<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="300" required="true" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" model="inv.message" name="message"></input-max-length>
 				<div class="error" ng-show="showError.message">
@@ -65,10 +70,11 @@
 				</div>
 			</div>
 
-			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+			<div class="display-flex flex-reverse flex-space-between">
 				<button class="button" type="submit" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">{{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}</button>
 				<a ng-click="toggleEmailForm()"> {{ 'CLOSE' | translate }} </a>
 			</div>
+
 		</form>
 		<div class="invite-form success hidden">
 			<h3>{{:: 'FRIEND_INVITATION' | translate }}</h3>
@@ -78,7 +84,7 @@
 				<ul class="list margin-bottom-none margin-top-small">
 					<li ng-repeat="item in invitationsStatus" class="small-text-left">
 						<div class="display-table">
-							<div class="display-table-cell addon paddding-right-small">
+							<div class="display-table-cell addon padding-right-small">
 								<i ng-class="itemStatusIconVocabulary[item.status]"></i>
 							</div>
 							<div class="display-table-cell">
