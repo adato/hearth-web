@@ -27,7 +27,6 @@ angular.module('hearth.services').service('Activities', [
 
 		this.getActivityTranslationCode = function(info) {
 			var isTargetCommunity = '';
-
 			if (ratingActivities.indexOf(info.verb) > -1) {
 
 				return self.buildRatingActivityCode(info);
@@ -45,13 +44,13 @@ angular.module('hearth.services').service('Activities', [
 
     this.getActivityData = function (info) {
       let data = {};
-
       // common for all activities
       const obj = (info.target_object) ? info.target_object : info.object;
-      data.user = info.actor.name;
-      data.name = obj.title || obj.name;
-      data.url = $rootScope.getProfileLink(obj._type, obj._id);
-
+      if (obj) {
+        data.user = info.actor ? info.actor.name : null;
+        data.name = obj.title || obj.name;
+        data.url = $rootScope.getProfileLink(obj._type, obj._id);
+      }
       if (info.verb == 'group' && info.type == 'community_accepted_user') {
         // group of accepted user
         let names = [];
@@ -64,7 +63,8 @@ angular.module('hearth.services').service('Activities', [
           names.push(nameHtml);
         }
         data.names = names.join(', ');
-      } else if (info.verb == 'new_post' || info.verb == 'community_new_post') {
+      }
+      if (info.verb == 'new_post' || info.verb == 'community_new_post') {
         // add post character to title
         if (obj.author_type && obj.type && obj.exact_type)
           data.name = $translate.instant(PostUtils.getPostTypeCode(obj.author_type, obj.type, obj.exact_type)) + '&nbsp' + obj.title;

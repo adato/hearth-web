@@ -44,7 +44,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         offset: ($scope.activityLog ? $scope.activityLog.length : 0),
         limit: ACTIVITY_LIMIT,
 				filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
-				include_full: 'Post,Rating'
+				include_full: 'Post,Rating',
+        groups: 'community_accepted_user'
       }, res => {
 				$scope.activityLogFetchRunning = false;
 				$scope.activityShow = true;
@@ -55,7 +56,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				});
 
 				$scope.activityLog.push(...res.data);
-
 				if ($scope.activityLog.length === res.headers('X-Pagination-Count') || res.data.length === 0) {
 					activityLogComplete = true;
 				}
