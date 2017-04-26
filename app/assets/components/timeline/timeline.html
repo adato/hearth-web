@@ -1,28 +1,26 @@
 <div when-scrolled="loadNext()">
   <div ng-repeat="(id, item) in timelineItems track by $index">
     <hr/>
-    <div class="display-flex flex-column flex-align-start timeline-item">
+    <div class="timeline-item padding-horizontal-medium">
 
       <!-- timeline header -->
-      <div class="display-flex flex-row flex-space-between full-width">
-        <div class="display-flex flex-row flex-align-baseline">
+      <div class="display-flex flex-space-between block">
+        <div class="display-flex flex-align-baseline">
           <div ng-init='iconType = getIconType(item)'>
-            <span><i class="fa" ng-class="iconType" aria-hidden="true"></i></span>
+            <i class="fa" ng-class="iconType" aria-hidden="true"></i>
           </div>
           <span ng-bind-html="item.text"></span>
         </div>
         <div class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
-          <i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}
+          <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (item.created_at | ago)"></span>
         </div>
       </div>
 
       <!-- timeline content-->
       <div class="timeline-item-content">
-        <div ng-if="item.verb == 'community_accepted_user'">
+        <div ng-if="item.verb == 'community_accepted_user'" class="display-inline-block position-relative">
           <div info-box="item.object" infobox-class="'on-profile'">
-            <a ng-href="{{getProfileLink(item.object._type, item.object._id)}}">
-              <activity-avatar item="item"></activity-avatar>
-            </a>
+            <avatar type=":: 'User'" src=":: item.object.avatar.small" size="small" href="getProfileLink(item.object._type, item.object._id)"></avatar>
           </div>
         </div>
         <div ng-if="item.verb == 'community_new_post' || item.verb == 'new_post'">
@@ -30,7 +28,7 @@
         </div>
         <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
           <div ng-init='receivedRatings = [item.object]'>
-            <div class="box ratings home-ratings">
+            <div class="box padding-none ratings home-ratings">
               <div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
             </div>
           </div>
@@ -39,9 +37,7 @@
           <div class="display-flex">
             <div ng-repeat="userObject in item.objects track by $index" class="margin-right-medium">
               <div info-box="userObject.object" infobox-class="'on-profile'">
-                <a ng-href="{{getProfileLink(userObject.object._type, userObject.object._id)}}">
-                  <activity-avatar item="userObject"></activity-avatar>
-                </a>
+                <avatar type=":: 'User'" src=":: userObject.object.avatar.small" size="small" href="getProfileLink(userObject.object._type, userObject.object._id)"></avatar>
               </div>
             </div>
           </div>
