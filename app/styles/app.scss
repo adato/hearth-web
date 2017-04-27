@@ -59,6 +59,8 @@
 @import "components/directives/bubble";
 @import "../../common/styles/buttons";
 @import "components/forms/checkbox";
+@import "components/forms/errors";
+@import "components/forms/telInput";
 @import "components/wtf/common";
 @import "components/pages/communities";
 @import "components/pages/communityProfile";
@@ -110,5 +112,6 @@
 @import "components/directives/timeline";
 
 @import "components/layout";
+@import "components/flex";
 
 @import "temp";

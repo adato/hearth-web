@@ -310,6 +310,18 @@ angular.module('hearth', [
 				done(null);
 			}
 
+			// UNCOMMENT FOR OFFLINE MODE .. HA!
+			// kept in if, just to make sure it never makes its way into production
+			// if ($$config.env === 'development') {
+			// 	console.info('OFFLINE MODE ACTIVE');
+			// 	$urlRouter.sync();
+			// 	$urlRouter.listen();
+			// 	$rootScope.initFinished = true;
+			// 	$rootScope.loggedUser = $rootScope.loggedUser || {};
+			// 	$rootScope.loggedUser._id = 1;
+			// 	$rootScope.$broadcast("initFinished");
+			// }
+
 			// Init hearth core parts
 			async.parallel({
 				language: initLanguage, // download language files

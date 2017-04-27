@@ -30,11 +30,11 @@ $fontSize: $fontSize;
 		color: white;
 	}
 
-	hr {
-		border: 0;
-		border-bottom: $ui-border-style;
-		margin-bottom: $ui-small-grid-size * 2;
-	}
+	// hr {
+	// 	border: 0;
+	// 	border-bottom: $ui-border-style;
+	// 	margin-bottom: $ui-small-grid-size * 2;
+	// }
 
 	.karma-bar {
 		margin: 0px;
@@ -112,26 +112,26 @@ $fontSize: $fontSize;
 		}
 	}
 
-	.labels {
-		margin-left: -4px;
-		margin-right: -4px;
-
-		.label {
-			border: 1px solid $secondary-color;
-			margin: 0px 4px;
-			margin-bottom: 8px;
-			padding-top: 5px;
-			color: $secondary-color;
-			background-color: inherit;
-			border-radius: $global-radius;
-			min-width: 60px;
-			cursor: pointer;
-			transition: all .3s ease-in-out;
-			&.active,
-			&:hover {
-				background-color: $secondary-color;
-				color: white;
-			}
-		}
-	}
+	// .labels {
+	// 	margin-left: -4px;
+	// 	margin-right: -4px;
+	//
+	// 	.label {
+	// 		border: 1px solid $secondary-color;
+	// 		margin: 0px 4px;
+	// 		margin-bottom: 8px;
+	// 		padding-top: 5px;
+	// 		color: $secondary-color;
+	// 		background-color: inherit;
+	// 		border-radius: $global-radius;
+	// 		min-width: 60px;
+	// 		cursor: pointer;
+	// 		transition: all .3s ease-in-out;
+	// 		&.active,
+	// 		&:hover {
+	// 			background-color: $secondary-color;
+	// 			color: white;
+	// 		}
+	// 	}
+	// }
 }

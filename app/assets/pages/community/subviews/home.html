@@ -1,11 +1,9 @@
-<br/>
-<br/>
-<div class="profile-listings-v1 community-listings" ng-if="subPageLoaded">
-	<div class="left-pane">
+<div class="medium-flex-grid" ng-if="subPageLoaded">
+	<div class="flex-2 small-flex-order-2">
+
 		<div class="box applications" ng-if="mine">
 			<div ng-if="!applications.length">
 				<h3>{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
-
 				<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 			</div>
 			<div ng-if="applications.length">
@@ -46,23 +44,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="ads box" ng-if="!info.is_member && info.terms">
-			<h3 class="iblock">{{:: 'COMMUNITY_TERMS' | translate }}</h3>
+
+		<div class="box" ng-if="!info.is_member && info.terms">
+			<h3>{{:: 'COMMUNITY_TERMS' | translate }}</h3>
 			<p ng-bind-html="info.terms | linky:'_blank':{rel: 'nofollow'} | nl2br"></p>
 		</div>
-    <div class="timeline box">
+
+    <div class="box">
       <h3>{{:: 'COMMUNITY_ACTIVITY' | translate }}</h3>
-
       <p ng-if="mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
-
       <p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+
       <div ng-if="activityLog.length">
         <timeline timeline-items="activityLog" load-next="loadCommunityActivities()"></timeline>
 				<div loading show="activityLogFetchRunning"></div>
       </div>
     </div>
 	</div>
-	<div class="right-pane">
+
+	<div class="flex-1">
 		<div class="user-about box">
 			<h3>{{:: 'MEET_COMMUNITY' | translate }} {{ info.name }}</h3>
 
