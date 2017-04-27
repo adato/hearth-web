@@ -16,7 +16,7 @@
         </div>
         <!-- timespan for groups-->
         <div ng-if="item.verb =='group'" class="date nowrap">
-          <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (item.time_span)"></span>
+          <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (('AGO.' + item.time_span.toUpperCase())| translate)"></span>
         </div>
       </div>
 
