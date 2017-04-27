@@ -448,102 +448,12 @@
 				margin-right: 15px;
 			}
 		}
-		.ratings {
-			.rating {
-				@extend .clearfix;
-				margin-bottom: 5px;
-				padding: {
-					top: 20px;
-					bottom: 20px;
-					left: 20px;
-					right: 20px;
-				}
-				&.positive {
-					background: lighten($tertiary-color, 45%);
-				}
-				&.negative {
-					background: lighten($primary-color, 45%);
-				}
-				small {
-					font-size: 0.85rem;
-					line-height: 125%;
-				}
-				.rating-info {
-					.score {
-						margin-bottom: 5px;
-					}
-					.rating-body {
-						margin-left: 10px;
-						line-height: 150%;
-					}
-					margin: {
-						top: 5px;
-						bottom: 10px;
-						// left: 100px;
-						left: 20px;
-					}
-					.rating-from {
-						display: inline-block;
-						margin-top: 10px;
-					}
-				}
-				.date {
-					float: right;
-				}
-			}
-		}
 	}
 
 	.right-pane {
 		width: 39%;
 		padding: 0;
-		.user-about {
-			.line {
-				margin-left: 20px;
-				margin-right: 20px;
-				div.descr {
-					word-wrap: break-word;
-					margin-top: $ui-small-grid-size;
-					margin-bottom: $ui-small-grid-size;
-					margin-left: 27px;
-					line-height: 140%;
-					clear: both;
-					.fa {
-						margin-left: -27px;
-						float: left;
-						margin-top: 3px;
-					}
-				}
-			}
-			.descr {
-				.fa {
-					width: 8px;
-					color: $secondary-color;
-					margin-right: 15px;
-				}
-			}
-			.social {
-				font-size: 1.5rem;
-				.fa {
-					color: $primary-color;
-					margin: 0 1px;
-				}
-				.fa:hover {
-					opacity: 0.7;
-				}
-				.link {
-					i {
-						font-size: 21px;
-						height: 20px;
-						margin-left: 0;
-						width: 19px;
-					}
-				}
-			}
-			.reg-date {
-				font-size: 14px;
-			}
-		}
+
 		.activities {
 			h4 {
 				margin-left: 30px;
@@ -822,5 +732,97 @@
 			background: linear-gradient(30deg, #275f80, #4ca5c7);
 			font-weight: bold;
 		}
+	}
+}
+
+.ratings {
+	.rating {
+		@extend .clearfix;
+		margin-bottom: 5px;
+		padding: {
+			top: 20px;
+			bottom: 20px;
+			left: 20px;
+			right: 20px;
+		}
+		&.positive {
+			background: lighten($tertiary-color, 45%);
+		}
+		&.negative {
+			background: lighten($primary-color, 45%);
+		}
+		small {
+			font-size: 0.85rem;
+			line-height: 125%;
+		}
+		.rating-info {
+			.score {
+				margin-bottom: 5px;
+			}
+			.rating-body {
+				margin-left: 10px;
+				line-height: 150%;
+			}
+			margin: {
+				top: 5px;
+				bottom: 10px;
+				// left: 100px;
+				left: 20px;
+			}
+			.rating-from {
+				display: inline-block;
+				margin-top: 10px;
+			}
+		}
+		.date {
+			float: right;
+		}
+	}
+}
+.user-about {
+	.line {
+		margin-left: 20px;
+		margin-right: 20px;
+		div.descr {
+			word-wrap: break-word;
+			margin-top: $ui-small-grid-size;
+			margin-bottom: $ui-small-grid-size;
+			margin-left: 27px;
+			line-height: 140%;
+			clear: both;
+			.fa {
+				margin-left: -27px;
+				float: left;
+				margin-top: 3px;
+			}
+		}
+	}
+	.descr {
+		.fa {
+			width: 8px;
+			color: $secondary-color;
+			margin-right: 15px;
+		}
+	}
+	.social {
+		font-size: 1.5rem;
+		.fa {
+			color: $primary-color;
+			margin: 0 1px;
+		}
+		.fa:hover {
+			opacity: 0.7;
+		}
+		.link {
+			i {
+				font-size: 21px;
+				height: 20px;
+				margin-left: 0;
+				width: 19px;
+			}
+		}
+	}
+	.reg-date {
+		font-size: 14px;
 	}
 }

@@ -1,12 +1,10 @@
-.timeline {
+timeline {
+    display: block;
+    margin-left: -$size-large;
+    margin-right: -$size-large;
 
-    &.box {
-        padding-left: 0;
-        padding-right: 0;
-
-        p {
-            margin: 0 0 0 $size-small;
-        }
+    p {
+        margin: 0 0 0 $size-small;
     }
     header {
         margin-bottom: $size-small;

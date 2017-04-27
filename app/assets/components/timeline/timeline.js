@@ -9,7 +9,7 @@
 angular.module('hearth.directives').directive('timeline',['$rootScope', function ($rootScope) {
 
   return {
-    restrict: 'AE',
+    restrict: 'E',
     scope: {
       timelineItems: '=',
       loadNext: '&'
