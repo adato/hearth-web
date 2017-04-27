@@ -103,7 +103,10 @@ a.button {
     border: $colorDarkGray;
   }
 
-    //	min-width: 30 * $ui-small-grid-size;
+  > i:first-child:not(:last-child) {
+    margin-right: $size-small;
+  }
+  //	min-width: 30 * $ui-small-grid-size;
     //	padding: 0px $ui-grid-size;
     //	margin: 0;
     //	font-weight: 600;
