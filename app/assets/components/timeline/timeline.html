@@ -11,8 +11,12 @@
           </div>
           <span ng-bind-html="item.text"></span>
         </div>
-        <div class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
+        <div ng-if="item.verb !='group'" class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
           <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (item.created_at | ago)"></span>
+        </div>
+        <!-- timespan for groups-->
+        <div ng-if="item.verb =='group'" class="date nowrap">
+          <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (item.time_span)"></span>
         </div>
       </div>
 
@@ -34,10 +38,10 @@
           </div>
         </div>
         <div ng-if="item.verb == 'group' && item.type == 'community_accepted_user'">
-          <div class="display-flex">
+          <div class="display-flex flex-wrap">
             <div ng-repeat="userObject in item.objects track by $index" class="margin-right-medium">
               <div info-box="userObject.object" infobox-class="'on-profile'">
-                <avatar type=":: 'User'" src=":: userObject.object.avatar.small" size="small" href="getProfileLink(userObject.object._type, userObject.object._id)"></avatar>
+                <avatar type=":: 'User'" src=":: userObject.object.avatar.normal" size="small" href="getProfileLink(userObject.object._type, userObject.object._id)"></avatar>
               </div>
             </div>
           </div>
