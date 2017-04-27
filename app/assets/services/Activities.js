@@ -26,15 +26,16 @@ angular.module('hearth.services').service('Activities', [
 		};
 
 		this.getActivityTranslationCode = function(info) {
-			var isTargetCommunity = '';
+			let isTargetCommunity = '';
+			let type = '';
+			if (info.type) type = '.' + info.type;
 			if (ratingActivities.indexOf(info.verb) > -1) {
-
 				return self.buildRatingActivityCode(info);
 			} else if (info.target_object && info.target_object._type == 'Community' && info.verb !== 'accepted_into_community') {
 				isTargetCommunity = '_comm';
 			}
 
-			var code = 'activities.' + info.narrative_mode + '.' + info.verb + isTargetCommunity;
+			const code = 'activities.' + info.narrative_mode + '.' + info.verb + type + isTargetCommunity;
 			return code;
 		};
 
