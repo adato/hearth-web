@@ -17,6 +17,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		$scope.activityLog = [];
 		$scope.activityLogFetchRunning;
 		var activityLogComplete;
+		// Count of all activities includes activities inside the groups
+    var activityLogOffset = 0;
 
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
@@ -41,7 +43,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
       Community.getActivityLog({
         communityId: $stateParams.id,
-        offset: ($scope.activityLog ? $scope.activityLog.length : 0),
+        offset: activityLogOffset,
         limit: ACTIVITY_LIMIT,
 				filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
 				include_full: 'Post,Rating',
@@ -56,7 +58,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				});
 
 				$scope.activityLog.push(...res.data);
-				if ($scope.activityLog.length === res.headers('X-Pagination-Count') || res.data.length === 0) {
+
+        activityLogOffset += res.headers('X-Pagination-Count');
+				if (activityLogOffset === res.headers('X-Pagination-Total') || res.data.length === 0) {
 					activityLogComplete = true;
 				}
 
