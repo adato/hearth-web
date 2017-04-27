@@ -11,8 +11,12 @@
           </div>
           <span ng-bind-html="item.text"></span>
         </div>
-        <div class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
+        <div ng-if="item.verb !='group'" class="date nowrap" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
           <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (item.created_at | ago)"></span>
+        </div>
+        <!-- timespan for groups-->
+        <div ng-if="item.verb =='group'" class="date nowrap">
+          <i class="fa fa-clock-o"></i><span ng-bind=":: '\u00A0' + (item.time_span)"></span>
         </div>
       </div>
 
