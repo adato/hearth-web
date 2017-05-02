@@ -180,11 +180,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.setCharacter = character => {
-			// $timeout(() => {
-				$scope.post.character.length = 0;
-				$scope.post.character.push(character.name);
-				$scope.checkCharacter();
-			// });
+			$scope.post.character.length = 0;
+			$scope.post.character.push(character.name);
+			$scope.checkCharacter();
 		};
 		$scope.checkCharacter = function() {
 			var count = ($scope.post.character || []).length;
@@ -496,13 +494,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if ($scope.preset)
 				$scope.post = angular.extend($scope.post, $scope.preset);
 
-			// if post is invalid, show message and run validation (it will show errors in invalid fields)
-			if ($scope.isInvalid) {
-				$scope.showInvalidPostMessage = true;
-				$timeout(function() {
+			$timeout(() => {
+				// if post is invalid, show message and run validation (it will show errors in invalid fields)
+				if ($scope.isInvalid) {
+					$scope.showInvalidPostMessage = true;
 					testForm($scope.post);
-				}, 1000);
-			}
+				}
+
+				// check character is enabled here by default for the transition to only one character allowance
+				$scope.checkCharacter();
+
+			}, 1000);
+
 		};
 
 		$scope.toggleLockField = function() {

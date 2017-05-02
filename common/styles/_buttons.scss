@@ -60,6 +60,10 @@ a.button {
     }
   }
 
+  .button-group & {
+    margin-bottom: 0;
+  }
+
   .button-group.large &,
   &.large {
     padding: 1.5em 1em;
