@@ -179,15 +179,21 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
+		$scope.setCharacter = character => {
+			// $timeout(() => {
+				$scope.post.character.length = 0;
+				$scope.post.character.push(character.name);
+				$scope.checkCharacter();
+			// });
+		};
 		$scope.checkCharacter = function() {
-			var character = $scope.post.character || [];
-			var count = character.length;
+			var count = ($scope.post.character || []).length;
 
 			if (!count) {
 				$scope.createAdForm.character.$invalid = true;
 				$scope.createAdForm.character.$setValidity('required', false);
 				$scope.createAdForm.character.$setValidity('max', true);
-			} else if (count > 2) {
+			} else if (count > 1) {
 				$scope.createAdForm.character.$invalid = true;
 				$scope.createAdForm.character.$setValidity('required', true);
 				$scope.createAdForm.character.$setValidity('max', false);
