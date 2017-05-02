@@ -1,13 +1,21 @@
-<div class="ad post_{{item._id}}" id="post_{{item._id}}">
-	<span>{{:: postTypes[item.author._type][item.exact_type][item.type] | translate }}</span>
-	<span>
-		<a ng-if="item.title" href="{{ basePath }}post/{{ item._id }}">{{item.title | ellipsis:30}}</a>
-		<a ng-if="!item.title" href="{{ basePath }}post/{{ item._id }}">{{item.text | ellipsis:30}}</a>
-	</span>
-	<span ng-if="showAuthorName && item.author._type === 'User'" title="{{item.author.name}}">({{item.author.name | ellipsis:9}})</span>
-	<div class="ad-controls" ng-if="item.owner_id === loggedUser._id">
-		<i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}" title="{{'POST.RESUME.LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)"></i>
-		<i class="fa fa-pause" title="{{'POST.SUSPEND.LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)"></i>
-		<i class="fa fa-times" title="{{'POST.REMOVE.LABEL' | translate}}" ng-click="confirmBox('POST.REMOVE.LABEL', 'POST.REMOVE.ARE_YOU_SURE', deleteItem, item, this)"></i>
+<div class="post_{{item._id}} display-flex flex-space-between" id="post_{{item._id}}">
+	<div>
+		<span>{{:: postTypes[item.author._type][item.exact_type][item.type] | translate }}</span>
+		<a href="{{ basePath }}post/{{ item._id }}" ng-bind="item[item.title ? 'title' : 'text'] | ellipsis:30"></a>
+
+		<span ng-if="showAuthorName && item.author._type === 'User'" title="{{item.author.name}}" ng-bind="'(' + (item.author.name | ellipsis:9) + ')'"></span>
 	</div>
+
+	<div class="display-flex" ng-if="item.owner_id === loggedUser._id">
+		<button type="button" class="touchable" title="{{'POST.RESUME.LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)">
+			<i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
+		</button>
+		<button type="button" class="touchable" title="{{'POST.SUSPEND.LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)">
+			<i class="fa fa-pause"></i>
+		</button>
+		<button type="button" class="touchable" title="{{'POST.REMOVE.LABEL' | translate}}" ng-click="confirmBox('POST.REMOVE.LABEL', 'POST.REMOVE.ARE_YOU_SURE', deleteItem, item, this)">
+			<i class="fa fa-times"></i>
+		</button>
+	</div>
+
 </div>

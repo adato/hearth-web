@@ -54,13 +54,13 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	 *	- {function} cb - callback to call on finish
 	 */
 	function getPosts(opts) {
-		return $q(function(resolve, reject) {
+		return $q((resolve, reject) => {
 			var type = opts.active ? 'active' : 'inactive';
       if (opts.getPostsStatus.running) {
         opts.getPostsQ.push([resolve, reject, type]);
       } else {
         opts.getPostsStatus.running = true;
-        opts.resource(opts.params || {}, function (res) {
+        opts.resource(opts.params || {}, res => {
           opts.getPostsStatus.running = false;
           res.data.forEach(function (item) {
             if ($rootScope.isPostActive(item)) {
