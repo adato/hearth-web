@@ -529,6 +529,11 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 	}
 }
 
+// show full heart on hover, but only when there is no loading
+.fa-hover-heart:hover > .fa:not(.fa-spinner)::before {
+	content: '\f004';
+}
+
 #confirm-delete,
 #confirm-report {
 	button {

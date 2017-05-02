@@ -127,6 +127,14 @@ angular.module('hearth.services').factory('Post', [
         url: $$config.apiPath + '/posts/:postId/related/vote',
         method: 'POST'
       }
+			heart: {
+				url: $$config.apiPath + '/posts/:postId/hearts',
+				method: 'POST'
+			},
+			unheart: {
+				url: $$config.apiPath + '/posts/:postId/hearts',
+				method: 'DELETE'
+			}
 		});
 	}
 ]);

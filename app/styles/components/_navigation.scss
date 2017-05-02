@@ -85,12 +85,8 @@ nav {
 		margin-left: 6px;
 		margin-right: 5px;
 	}
-	// }
 }
 
-// .exit-off-canvas {
-// 	box-shadow: -4px 0 4px rgba(0, 0, 0, 0.3), 4px 0 4px rgba(0, 0, 0, 0.5);
-// }
 .move-right .exit-off-canvas {
 	position: absolute;
 	display: block;
@@ -217,84 +213,10 @@ nav {
 	.small-search {
 		padding: 0px;
 		text-align: center;
-		// a.button {
-		// 	height: 40px;
-		// 	line-height: 40px;
-		// 	padding-left: 10px;
-		// 	padding-right: 10px;
-		// 	font-size: 14px;
-		// 	background-color: #4CCBDE;
-		// 	border-radius: 8px;
-		// 	border-top-left-radius: 0px;
-		// 	border-bottom-left-radius: 0px;
-		// 	color: white;
-		// 	left: 0px;
-		// 	min-width: initial;
-		// 	&:hover {
-		// 		background-color: darken(#4CCBDE, 20%);
-		// 	}
-		// }
 		.search-button-container {
 			position: relative;
 			float: right;
-			// .search-filters {
-			// 	position: absolute;
-			// 	top: 36px;
-			// 	left: -150px;
-			// 	z-index: 10;
-			// 	ul {
-			// 		background-color: white;
-			// 		border: 1px solid #DDD;
-			// 		width: 150px;
-			// 		text-align: left;
-			// 		margin-left: 0px;
-			// 		list-style: none;
-			// 		li {
-			// 			padding: 10px;
-			// 			padding-left: 20px;
-			// 			cursor: pointer;
-			// 			&:hover {
-			// 				background-color: #EEE;
-			// 			}
-			// 			&.active {
-			// 				font-weight: bold;
-			// 			}
-			// 		}
-			// 	}
-			// }
 		}
-		// .desktop-search-input-container {
-		// 	overflow: hidden;
-		// 	display: block;
-		// 	position: relative;
-		//
-		// 	input {
-		// 		width: 100%;
-		// 		display: block;
-		// 		border-top-right-radius: 0em;
-		// 		border-bottom-right-radius: 0em;
-		// 		margin: 0;
-		// 		padding-right: 45px;
-		// 		border: unset !important;
-		// 		box-shadow: unset !important;
-		// 		height: 40px;
-		// 	}
-		// 	.search-icons {
-		// 		cursor: pointer;
-		// 		color: #9B9B9B;
-		// 		position: absolute;
-		// 		top: 7px;
-		// 		right: 15px;
-		// 		i {
-		// 			&.fa-sort-desc {
-		// 				position: relative;
-		// 				font-size: 20px;
-		// 				top: -2px;
-		// 				margin-left: 0px;
-		// 			}
-		// 		}
-		// 	}
-		// }
 	}
 }
 
@@ -307,22 +229,15 @@ nav {
 		padding: 6px;
 		max-width:$global-width;
 
-		.dropdown-container a{
-
-		}
-
 		section.bar-columns {
 			padding:0;
 
 			&.logo-column {
-				// float:left;
 				width:20%;
-				// margin-top:5px;
-				// margin-left:5px;
 			}
 			&.searchbox-column {
 				float:left;
-				width:28%;
+				width:30%;
 				position:relative;
 
 				.search-input-submit-icon {
@@ -333,104 +248,70 @@ nav {
 					cursor: pointer;
 				}
 			}
+
+			.top-bar-separator {
+				width: $size-medium;
+				display: inline-block;
+			}
+
 			&.icons-column {
-				float:right;
-				width:50%;
-				text-align: right;
-				padding-right:15px;
-
-				label {
-					cursor: pointer;
-				}
-
-				.header-item{
-					& .fa{
-						position: relative;
-						font-size: 25px;
-						top: -3px;
-					}
-					& .fa.icon-community {
-						left: -7px;
-					}
-				}
-				& .header-item,
-				& .header-item > i{
-					color: lighten($secondary-color, 25%);
-					transition: color 1s, text-shadow 2s;
-				}
-				.avatar-image{
-					transition: opacity 1s;
-					box-shadow: 0 0 0px 2px lighten($secondary-color, 25%);
-				}
-				&>*{
-					display: inline-block;
+				width:55%;
+				a.icon-item {
+					display:inline-block;
+					min-width:70px;
+					height:56px;
+					margin-top:-1px; // fix for height
+					padding:5px;
 					text-align: center;
-					label {
-						color: lighten($secondary-color, 25%);
-						transition: color 1s, text-shadow 2s;
-						line-height: 1;
-						font-size: 13px;
-					}
-					margin: {
-						left: 4px;
-						right: 4px;
-					}
-					&.active,
-					&:hover {
-						color: lighten($secondary-color, 50%) !important;
 
-						label {
-							color: lighten($secondary-color, 50%);
+					.inner-icon {
+						&, & * { 
+							color:$white; 
+							text-align: center;
+							font-size:small;
 						}
-						.avatar-image{
-							opacity: 1;
-							box-shadow: 0 0 0px 2px lighten($secondary-color, 25%), 0 0 5px white;
-						}
-					}
-				}
-				.top-bar-messages {
-					display: inline-block;
 
-					.messages-icon::after {
-						color: #ffa97a;
-						left: 0;
-						right: 0;
-						// top: -7px;
-						position: absolute;
-						z-index: -1;
-						font-size: 30px;
-					}
-					& > a:hover .messages-icon::after,
-					& > a.active .messages-icon::after {
-						color: lighten($secondary-color, 50%);
-					}
-					.messages-icon {
-						background: none;
-						color: #fa5800;
-						font-weight: bold;
-						position: relative;
-						z-index: 1;
-						height: 30px;
-						width: 30px;
-						top: -10px;
-						display: inline-block;
-
-						& > span {
-							position: relative;
+						span.fa { font-size:$size-large; display:block; margin: 0 auto 1px auto; }
+						span.fa.icon-community { margin-left: -14px; /* offset for very wide community icon */ }
+						span.fa.flag.flag-circular { width:26px; height:26px; }
+						span.fa.fa-sign-in { font-size:25px;}
+						span.fa.fa-question-circle { font-size:25px;}
+						.messages-icon::after {
+							color: $white;
+							left: 0;
+							right: 0;
 							top: 10px;
+							position: absolute;
+							z-index: -1;
+							font-size: 30px;
+						}
+						.messages-icon {
+							display:block;
+							background: none;
+							font-weight: bold;
+							position: relative;
+							z-index: 1;
+							height: $size-large;
+							width: 30px;
+							top: -14px;
+							display: inline-block;
+
+							& > span {
+								position: relative;
+								top: 9px;
+								color:$secondary-color;
+								font-family: $body-font-family;
+							}
 						}
 					}
-				}
-				.avatar {
-					img {
-						width: 25px;
-						height: 25px;
+					&.logged-user-dropdown .avatar .avatar-image { border:3px solid $white; }
+
+					&:hover, &.active {
+						background: $white;
+						.inner-icon .messages-icon > span { color: $white; }
+						.inner-icon, .inner-icon *, .inner-icon .messages-icon::after { color:$secondary-color; }
+						&.logged-user-dropdown .avatar .avatar-image { border-color:$secondary-color; }
 					}
-				}
-				.top-bar-separator {
-					width: 40px;
-					height: 40px;
-					display: inline-block;
 				}
 			}
 		}
@@ -455,7 +336,7 @@ nav {
 		.social-menu {
 			margin-left: 4px;
 			list-style: none;
-      background-color: #fff;
+    		background-color: #fff;
 
 			li {
 				width: 37px;
@@ -517,7 +398,6 @@ nav {
 	font-style: normal;
 	font-weight: normal;
 	text-decoration: inherit;
-	transition: color 1s, text-shadow 2s;
 }
 
 .off-canvas a {
