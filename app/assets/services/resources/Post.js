@@ -126,7 +126,7 @@ angular.module('hearth.services').factory('Post', [
       vote: {
         url: $$config.apiPath + '/posts/:postId/related/vote',
         method: 'POST'
-      }
+      },
 			heart: {
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'POST'
