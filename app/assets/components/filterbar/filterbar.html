@@ -1,13 +1,24 @@
-<div class="clearfix filterbar-wrap">
-	<div class="clearfix filterbar-header">
-		<div class="insert-button-container small-12 large-3 show-for-large right">
-			<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block">
-				{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
-			</a>
-		</div>
-		<div class="small-12 medium-10 large-7 medium-push-2 filter-left">
-			<div class="toggleFilter">
-				<a ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
+<div class="filterbar-wrap">
+	<div class="box display-flex flex-space-between">
+		<div class="small-12 medium-10 large-7 display-flex">
+      <div class="hide-for-small-only padding-right-medium">
+        <nav>
+        <div class="dropdown-container">
+          <div dropdown="#filter-gift-drop" hover="true">Dary i přání
+          </div>
+          <ul class="dropdown menu vertical" data-dropdown-menu id="filter-gift-drop">
+            <li><a href="#">Item 1</a></li>
+            <li><a href="#">Item 2</a></li>
+            <li><a href="#">Item 3</a></li>
+            <li><a href="#">Item 4</a></li>
+          </ul>
+        </div>
+        </nav>
+      </div>
+      <div class="hide-for-small-only padding-right-medium">Povaha</div>
+      <div class="hide-for-small-only padding-right-medium">Čas přidání</div>
+      <!-- Dalsi moznosti-->
+      <a ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
 					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
 					<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
 					<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
@@ -15,13 +26,18 @@
 						{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}
 					</a>
 				</a>
-				<span class="right">
+		</div>
+    <div class="">
 					<a test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
 					<a test-beacon="filterbar-show-posts-on-map" ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
-				</span>
-			</div>
-		</div>
-	</div>
+    </div>
+    <div class="small-12 large-3 show-for-large">
+      <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block">
+        {{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
+      </a>
+    </div>
+
+  </div>
 	<article class="filter-container medium-push-2 medium-10 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
 		<filter id="filter" class="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>
 	</article>
