@@ -1,4 +1,4 @@
-<div class="post_{{item._id}} display-flex flex-space-between" id="post_{{item._id}}">
+<div class="ad post_{{item._id}} display-flex flex-space-between" id="post_{{item._id}}">
 	<div>
 		<span>{{:: postTypes[item.author._type][item.exact_type][item.type] | translate }}</span>
 		<a href="{{ basePath }}post/{{ item._id }}" ng-bind="item[item.title ? 'title' : 'text'] | ellipsis:30"></a>
