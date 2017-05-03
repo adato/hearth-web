@@ -59,11 +59,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 				$scope.activityLog.push(...res.data);
 
-        activityLogOffset += res.headers('X-Pagination-Count');
-				if (activityLogOffset === res.headers('X-Pagination-Total') || res.data.length === 0) {
+        activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);
+				if (activityLogOffset === parseInt(res.headers('X-Pagination-Total'), 10) || res.data.length === 0) {
 					activityLogComplete = true;
 				}
-
 				done();
       }, err => {
 				$scope.activityLogFetchRunning = false;
