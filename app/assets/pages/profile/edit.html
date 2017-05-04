@@ -56,7 +56,7 @@
 					</label>
 					<label class="flex-1">
 						<span translate="MY_INTERESTS"></span>
-						<tags-input id="interests" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
+						<tags-input id="interests" test-beacon="interests-tags-input" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
 							<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
 						</tags-input>
 					</label>
@@ -185,14 +185,14 @@
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_FACEBOOK"></span>
-							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
+							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')" test-beacon="social-fb">
 							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_TWITTER"></span>
-							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
+							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')" test-beacon="social-twitter">
 							<div class="form-error" ng-show="showError.social_networks['twitter']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
@@ -201,14 +201,14 @@
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_LINKEDIN"></span>
-							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
+							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')" test-beacon="social-linkedin">
 							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_GOOGLEPLUS"></span>
-							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
+							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')" test-beacon="social-gplus">
 							<div class="form-error" ng-show="showError.social_networks['googleplus']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
@@ -218,14 +218,14 @@
 						<label>
 							<i class="fa fa-globe"></i>&nbsp;<span translate="MY_WEB"></span>
 							<div ng-repeat="web in profile.webs track by $index" class="block flex flex-align-start">
-								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
+								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)" test-beacon="web-input">
 								<button ng-hide="$first" type="button" class="touchable" ng-click="profile.webs.splice($index,1)">
 									<i class="fa fa-times-circle"></i>
 								</button>
 							</div>
 							<div class="form-error" ng-show="showError.social_networks['webs']" translate="ERR_INVALID_URL"></div>
 							<div>
-								<a ng-click="profile.webs.push('')">
+								<a ng-click="profile.webs.push('')" test-beacon="web-adder">
 									<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD_NEXT_WEB"></span>
 								</a>
 							</div>
