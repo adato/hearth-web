@@ -34,18 +34,19 @@ angular.module('hearth.directives').directive('itemList', [
 				function init() {
 					scope.options = scope.options || {};
 					if (typeof scope.options.getData !== 'function') throw new TypeError('Unsupported itemList setup');
+					var responseTransform = scope.options.responseTransform || angular.identity;
 
 					var items;
 					content.innerHTML = '';
 
 					// call for data
-					var promise = scope.options.getData(scope.options.getParams || {})
+					var promise = scope.options.getData(scope.options.getParams || {});
 
 					// normalize $resource and $q api
 					promise = promise.$promise || promise;
 
 					promise.then(res => {
-						items = res;
+						items = responseTransform(res);
 						return $templateRequest(scope.options.templateUrl);
 					}).then(template => {
 						scope.loading = false;
