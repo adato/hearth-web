@@ -1,6 +1,6 @@
 <div class="communities">
 	<a ng-if="loggedUser._id" ng-click="toggleForm()" community-form-toggler class="button button-send small-12 medium-3 large-3 pull-right">
-		<i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
+    <i class="fa fa-plus"></i><span>{{:: 'CREATE_COMMUNITY' | translate}}</span>
 	</a>
 	<div class="community-list-add-form clearfix hide" community-list-add-focusser>
 		<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>

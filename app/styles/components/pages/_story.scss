@@ -1,0 +1,14 @@
+.story-image img {
+    width: 100%;
+    max-width: 510px;
+}
+
+.iframe-video {
+    width: 240px;
+    height: 120px;
+
+    @include breakpoint(medium up) {
+        width: 560px;
+        height: 280px;
+    }
+}

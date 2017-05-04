@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window', 'ConversationAux',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window, ConversationAux) {
+	'$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window', 'ConversationAux',
+	function($http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window, ConversationAux) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -17,30 +17,26 @@ angular.module('hearth.services').factory('Auth', [
 					name: '',
 					loggedIn: false
 				};
-				return $session.then(function(session) {
+				return Session.get(session => {
 					if (session._id) {
 						$rootScope.user = session;
 						$rootScope.user.loggedIn = true;
 						$.cookie('user_id', session._id);
 
-						$rootScope.$emit('onUserLogin', session);
+						// start services that should only run for logged in users
 						ConversationAux.init();
 
 						if (session.get_logged_in_user && session.get_logged_in_user.location) {
 							var loc = session.get_logged_in_user.location;
 							$$config.defaultMapLocation = [loc[1], loc[0]];
 						}
-					} else {
-						$rootScope.$emit('unathorizedUserLogin');
 					}
-					$rootScope.$emit('authorize');
 					return done();
 				}, doneErr);
 			},
 			refreshUserInfo: function() {
-				Session.show(function(res) {
-					if (res.get_logged_in_user)
-						$rootScope.loggedUser = res.get_logged_in_user;
+				Session.get(res => {
+					if (res.get_logged_in_user) $rootScope.loggedUser = res.get_logged_in_user;
 				});
 			},
 			setOAuth: function(value) {
@@ -57,10 +53,8 @@ angular.module('hearth.services').factory('Auth', [
 				}, cb, cb);
 			},
 			logout: function(cb) {
-				return $session.then(function(session) {
-					if (session._id) {
-						delete session._id;
-					}
+				return Session.get(session => {
+					if (session._id) delete session._id;
 					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				}, function() {
 					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
@@ -81,6 +75,9 @@ angular.module('hearth.services').factory('Auth', [
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
 			},
+      getUserLanguages: function () {
+        return this.isLoggedIn() ? $rootScope.loggedUser.user_languages.join(',') : $rootScope.language;
+      },
 			changePassword: function(password, success) {
 				return $http.post($$config.apiPath + '/change-password', {
 					password: password

@@ -1,8 +1,12 @@
+a.button {
+    text-decoration: none;
+}
 .button {
   margin: 0;
   font-weight: bold;
   font-family: $body-font-family;
   white-space: nowrap;
+  transition: all .25s ease-out;
 
   @include breakpoint(medium down) {
     padding-top: 14px;
@@ -99,7 +103,10 @@
     border: $colorDarkGray;
   }
 
-    //	min-width: 30 * $ui-small-grid-size;
+  > i:first-child:not(:last-child) {
+    margin-right: $size-small;
+  }
+  //	min-width: 30 * $ui-small-grid-size;
     //	padding: 0px $ui-grid-size;
     //	margin: 0;
     //	font-weight: 600;

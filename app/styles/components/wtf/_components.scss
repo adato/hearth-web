@@ -178,6 +178,11 @@
 .nowrap{
 	white-space: nowrap;
 }
+.oneliner{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 /* LIST */
 .no-list,

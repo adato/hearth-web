@@ -107,7 +107,7 @@
 						// 	<p class='margin-vertical-none'><strong class='text-uppercase'>" + q.name + "</strong></p>\
 						// 	<small>" + q.position.long + "</small>\
 						// </div>"
-						+ "<p class='lead'>" + q.text + "</p>\
+						+ "<p class='lead-a'>" + q.text + "</p>\
 						<p class='text-align-right large-only-a'>\
 							&mdash;&nbsp;" + q.name + "<br />\
 							<small class='text-muted'><i>" + q.position.long + "</i></small>\

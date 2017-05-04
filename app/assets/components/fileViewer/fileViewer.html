@@ -1,7 +1,7 @@
 <div class="file-viewer">
-	<ul>
-		<li ng-repeat="file in message.file_attachments">
-			<i class="fa fa-file"></i>
+	<ul class="file-viewer-list">
+		<li class="file-viewer-item" ng-repeat="file in message.file_attachments">
+			<i class="fa fa-file file-viewer-icon"></i>
 			<a ng-click="download(message, $index)" title="{{file.name}}">{{file.name}}</a>
 		</li>
 	</ul>

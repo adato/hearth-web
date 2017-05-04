@@ -35,7 +35,7 @@ angular.module('hearth.directives').directive('filter', [
 					inactive: null,
 					keywords: [],
 					days: null,
-					post_language: null,
+					post_language: 'my',
 				};
 
 				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
@@ -134,22 +134,24 @@ angular.module('hearth.directives').directive('filter', [
 						params.order = 'distance';
 					}
 
-					// by post language
-					if (filter.post_language) {
-						// own language (selected from ui box)
-						if (filter.post_language == 'other' && typeof filter.post_language_other != 'undefined' && filter.post_language_other != null && filter.post_language_other.length > 0) {
-							// thou return only them code, neigh them name
-							var langs = filter.post_language_other.map(function(item) {
-								return item.code;
-							})
-							params['lang[]'] = langs;
-						}
+          // all languages
+          if (filter.post_language == 'all') {
+            params.lang = 'all';
+          }
+          // own language (selected from ui box)
+          if (filter.post_language == 'other' && typeof filter.post_language_other != 'undefined' && filter.post_language_other != null && filter.post_language_other.length > 0) {
+            // thou return only them code, neigh them name
+            let lang = filter.post_language_other.map(function (item) {
+              return item.code;
+            });
+            params.lang = lang.join(',');
+          }
 
-						// all languages I speak, taken from session
-						if (filter.post_language == 'my') {
-							params['lang[]'] = $rootScope.loggedUser.user_languages;
-						}
-					}
+          // all languages I speak, taken from session
+          if (filter.post_language == 'my') {
+            params.lang = Auth.getUserLanguages();
+          }
+
 					return params;
 				};
 
@@ -160,28 +162,23 @@ angular.module('hearth.directives').directive('filter', [
 
 					var filter_post_language_other = [];
 
-					var getParamPostLanguage = function(lang_param) {
-						if (typeof lang_param == 'undefined' || lang_param == null || lang_param.length == 0) {
-							return filterDefault.post_language;
-						} else {
-							if (typeof lang_param === 'string') {
-								lang_param = [lang_param];
-							}
-							// if it is the same as in session, check 'my'
-							if (JSON.stringify(lang_param.sort()) == JSON.stringify($rootScope.loggedUser.user_languages.sort())) {
-								return 'my';
-							} else {
-								// otherwise check 'other' and prefill select box
-								lang_param.forEach(function(userLang) {
-									filter_post_language_other.push({
-										'code': userLang,
-										'name': $translate.instant('MY_LANG.' + userLang)
-									});
-								});
-								return 'other';
-							}
-						}
-					}
+          var getParamPostLanguage = function (lang_param) {
+            if (lang_param == 'all') {
+              return 'all';
+            }
+            // if it is the same as in session or default filter
+            if (typeof lang_param == 'undefined' || JSON.stringify(lang_param.split(',').sort()) == JSON.stringify(Auth.getUserLanguages().split(',').sort())) {
+              return 'my';
+            }
+            // otherwise check 'other' and prefill select box
+            lang_param.split(',').forEach(function (userLang) {
+              filter_post_language_other.push({
+                'code': userLang,
+                'name': $translate.instant('MY_LANG.' + userLang)
+              });
+            });
+            return 'other';
+          }
 
 					var filter = {
 						query: params.query || filterDefault.query,
@@ -189,7 +186,7 @@ angular.module('hearth.directives').directive('filter', [
 						type: params.type || filterDefault.type,
 						post_type: params.post_type || filterDefault.post_type,
 						days: params.days || filterDefault.days,
-						post_language: getParamPostLanguage(params['lang[]']), // !! because of lang array
+						post_language: getParamPostLanguage(params.lang),
 						post_language_other: filter_post_language_other,
 						r_lang: params.r_lang,
 						my_section: params.my_section,
@@ -297,7 +294,7 @@ angular.module('hearth.directives').directive('filter', [
 				scope.recountPosts = function() {
 					var f = convertFilterToParams(scope.filter);
 					if (!f.type) f.type = scope.type;
-
+          if (f.lang == 'all') delete f.lang;
 					Filter.getFilterCount(f, function(count) {
 						scope.filterCount = count;
 					});

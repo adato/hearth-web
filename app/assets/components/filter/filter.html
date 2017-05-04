@@ -81,7 +81,7 @@
 			<div ng-show="configOptionsShow.postLanguage" class="medium-display-table-row language-container">
 				<h5 class="medium-display-table-cell nowrap-addon padding-bottom-small">{{:: 'FULLTEXT.FILTER.BY_LANGUAGE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<radio ng-type="radio" model="filter.post_language" value="null">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
+					<radio ng-type="radio" model="filter.post_language" value="'all'">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
 					<radio ng-type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
 					<radio ng-type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
 					<div class="autocomplete-container" ng-show="filter.post_language == 'other'">
@@ -99,9 +99,8 @@
 				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>
 		</div>
-		<div ng-show="configOptionsShow.saveFilter" class="margin-left-large">
-			<checkbox signed-in model="filterSave" class="margin-bottom-none" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
-			</checkbox>
+		<div ng-if='loggedUser' ng-show="configOptionsShow.saveFilter" class="margin-left-large">
+			<checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
 		</div>
 	</section>
 </div>

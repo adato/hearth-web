@@ -1,11 +1,11 @@
 .file-viewer {
-	ul {
+	& > .file-viewer-list {
 		margin-left: 33px;
-		
-		li {
+
+		& > .file-viewer-item {
 			list-style: none;
 
-			i {
+			& > .file-viewer-icon {
 				color: $primary-color;
 			}
 		}

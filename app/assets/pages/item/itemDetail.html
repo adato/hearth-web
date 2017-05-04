@@ -178,7 +178,7 @@
 										</div>
 									</div>
 								</div>
-								<div class=''>
+								<div class='display-flex'>
 									<div class='touchable-wrapper touchable-inverted-round'>
 										<a analytics-custom analytics-event="Share" analytics-category="Link" class='touchable' analytics-label="Share post link" title="Link" href="" ng-click="openLinkSharingBox(item)">
 											<span class="fa-stack">
@@ -211,6 +211,7 @@
 											</span>
 										</a>
 									</div>
+									<div heart item="item" class="margin-left-medium"></div>
 								</div>
 							</div>
 						</footer>
@@ -221,10 +222,12 @@
 							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
 						<article ng-repeat="(id, item) in :: replies track by item.conversation_id" class='box-section' ng-if=":: replies.length">
-							<section class='display-table'>
-								<div class='display-table-cell addon user'>
+							<section class="display-table">
+								<div class="display-table-cell addon padding-right-medium">
 									<div info-box="item.author" infobox-index="$index" infobox-class="'on-item-detail'">
-										<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
+										<div class="user">
+											<avatar src=":: item.author.avatar.normal" type=":: item.author._type" href=":: getProfileLink(item.author._type, item.author._id)"></avatar>
+										</div>
 									</div>
 								</div>
 								<div class='display-table-cell'>
@@ -287,6 +290,14 @@
 					</div>
 				</div>
 			</div>
+
+			<div ng-show="relatedLoaded" class="margin-top-large">
+        <hr />
+				<h3 translate="POSTS_RELATED_QUESTION"></h3>
+				<item-list options="relatedPostsOptions"></item-list>
+        <vote-yes-no ng-if="relatedLoaded" title="{{:: 'POSTS_RELATED_VOTE_QUESTION' | translate }}" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
+			</div>
+
 		</section>
 	</div>
 </article>
