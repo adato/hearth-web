@@ -1,3 +1,5 @@
+const beacon = require('../utils.js').beacon;
+
 describe('hearth bookmarks', function() {
 
   beforeAll(function() {
