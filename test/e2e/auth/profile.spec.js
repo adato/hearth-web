@@ -31,7 +31,7 @@ describe('user profile', function() {
 		// go to profile-edit
 		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
 		browser.sleep(500);
-		beacon('dropdown-edit-profile')click();
+		beacon('dropdown-edit-profile').click();
 	}
 
 	function setInputField(input, value, textarea) {
