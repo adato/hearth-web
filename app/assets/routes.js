@@ -5,15 +5,14 @@ angular.module('hearth').config([
 		// delay routing - first load all dependencies (user session, translations)
 		$urlRouterProvider.deferIntercept();
 		$urlRouterProvider.rule(function($injector, $location) {
+			const re = /(.+)(\/+)(\?.*)?$/;
+			const path = $location.url();
 
-			var re = /(.+)(\/+)(\?.*)?$/
-			var path = $location.url();
-
-			if (re.test(path)) {
-				return path.replace(re, '$1$3')
-			}
+			if (re.test(path)) return path.replace(re, '$1$3')
 			return false;
 		});
+
+		const { SIGNED_IN } = window.$$config.policy;
 
 		$stateProvider
 			.state('market', {
@@ -168,6 +167,7 @@ angular.module('hearth').config([
 				url: '',
 				controller: 'ProfileDataFeedCtrl',
 				templateUrl: 'assets/pages/profile/subviews/home.html',
+				policy: SIGNED_IN
 			})
 			.state('profile.subview', {
 				title: false,
@@ -179,17 +179,20 @@ angular.module('hearth').config([
 					if (!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath + $stateParams.page + '.html';
-				}
+				},
+				policy: SIGNED_IN
 			})
 			.state('profileEdit', {
 				url: '/profile-edit',
 				templateUrl: 'assets/pages/profile/edit.html',
 				controller: 'ProfileEditCtrl',
+				policy: SIGNED_IN
 			})
 			.state('profileSettings', {
 				url: '/profile-settings',
 				templateUrl: 'assets/pages/profile/editSettings.html',
 				controller: 'ProfileSettingsCtrl',
+				policy: SIGNED_IN
 			})
 			.state('communityEdit', {
 				url: '/community/:id/edit',

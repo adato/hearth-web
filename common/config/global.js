@@ -53,6 +53,9 @@ window['$$config'] = {
 		"Post": "post",
 		"Conversation": "messages",
 	},
+	policy: {
+		SIGNED_IN: 'SINGED_ID'
+	},
 	postTypes: {
 		User: {
 			gift: {

@@ -84,6 +84,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
 
+			console.log('TO', toState);
+
+			if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
+				event.preventDefault();
+				return $state.go('login');
+			}
+
 			// retain optional state params on specified route groups
 			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
 				locationSearch = $location.search();
