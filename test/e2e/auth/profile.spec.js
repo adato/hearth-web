@@ -23,7 +23,7 @@ describe('user profile', function() {
 	}
 
 	function navigateToMyProfile() {
-		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
+		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
 		beacon('dropdown-my-profile').click();
 	}
 

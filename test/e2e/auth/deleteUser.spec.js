@@ -10,7 +10,7 @@ describe('hearth remove user', function() {
 	it('should be able to remove user', function() {
 
 		function getVisibleErrors(driver) {
-			var errors = driver.findElements(by.css(".delete-account div.error span"));
+			var errors = driver.findElements(by.css('[test-beacon="profile-delete-form"] [test-beacon="user-delete-errors"] *'));
 			return protractor.promise.filter(errors, function(error) {
 				return error.isDisplayed();
 			})
@@ -20,7 +20,7 @@ describe('hearth remove user', function() {
 		}
 
     // user should be logged in
-    var navigationMenu = element(by.css(".logged-user-dropdown"));
+    var navigationMenu = beacon('logged-user-dropdown');
     expect(navigationMenu.isPresent()).toBeTruthy();
 
     // go to user setting
@@ -31,8 +31,8 @@ describe('hearth remove user', function() {
 		// should be on profile settings
 		expect(element(by.css('.profile-settings')).isPresent()).toBeTruthy();
 
-		var delTextarea = element(by.css(".delete-account textarea"));
-		var delPassword = element(by.css('.delete-account input[type="password"]'));
+		var delTextarea = beacon('user-delete-reason');
+		var delPassword = beacon('user-delete-password');
 		var delButton = beacon('delete-account-button');
 
 		delPassword.sendKeys('Wrong password');
@@ -50,7 +50,7 @@ describe('hearth remove user', function() {
 				delButton.click();
 				browser.sleep(500);
 
-				expect(element(by.css('.logged-user-dropdown')).isPresent()).toBeFalsy();
+				expect(beacon('logged-user-dropdown').isPresent()).toBeFalsy();
 			});
 		});
 	});

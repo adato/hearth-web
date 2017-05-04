@@ -5,8 +5,7 @@ describe('hearth bookmarks', function() {
   });
 
 	function navigateToMyFav() {
-		//var myUserLink = element(by.css('a.logged-user-dropdown')).click();
-		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
+		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
 		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(0).element(by.css('a.ng-binding'));
 		topMenuLink.click();
 
