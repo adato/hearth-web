@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.fileUpload
- * @description 
+ * @description
  * @restrict A
  */
 
@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('maxLenCounter', [
 				maxLen: "=",
 				value: "=",
 			},
-			template: '<div>' + "<div class='tright len-counter' translate='WRITTEN_FROM_ALLOWED' translate-values='{maxLen: maxLen, len: len}' }}</div>" + '</div>',
+			template: '<div>' + "<div class='text-right len-counter' translate='WRITTEN_FROM_ALLOWED' translate-values='{maxLen: maxLen, len: len}' }}</div>" + '</div>',
 			link: function($scope, el, attrs) {
 				$scope.maxLen = $scope.maxLen || 300;
 				$scope.len = 0;
