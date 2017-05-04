@@ -130,10 +130,6 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/static/components.html',
 				controller: 'ComponentsCtrl'
 			})
-			.state('ad', {
-				url: '/ad/:id',
-				controller: 'ItemDetailOld'
-			})
 			.state('post', {
 				url: '/post/:id',
 				templateUrl: 'assets/pages/item/itemDetail.html',
@@ -143,17 +139,20 @@ angular.module('hearth').config([
 				title: 'messages.0',
 				url: '/messages',
 				templateUrl: 'assets/pages/messages/list.html',
-				controller: 'MessagesCtrl'
+				controller: 'MessagesCtrl',
+				policy: SIGNED_IN
 			})
 			.state('messages.new', {
 				titleIgnore: true,
 				url: '/new',
-				template: '<conversation-add></conversation-add>'
+				template: '<conversation-add></conversation-add>',
+				policy: SIGNED_IN
 			})
 			.state('messages.detail', {
 				titleIgnore: true,
 				url: '/:id',
-				template: '<conversation-detail></conversation-detail>'
+				template: '<conversation-detail></conversation-detail>',
+				policy: SIGNED_IN
 			})
 			.state('profile', {
 				title: false,
@@ -161,6 +160,7 @@ angular.module('hearth').config([
 				url: '/profile/:id',
 				templateUrl: 'assets/pages/profile/profile.html',
 				controller: 'ProfileCtrl',
+				policy: SIGNED_IN
 			})
 			.state('profile.default', {
 				title: false,
@@ -198,18 +198,21 @@ angular.module('hearth').config([
 				url: '/community/:id/edit',
 				templateUrl: 'assets/pages/community/editCommunity.html',
 				controller: 'CommunityCreateCtrl',
+				policy: SIGNED_IN
 			})
 			.state('community', {
 				abstract: true,
 				url: '/community/:id',
 				templateUrl: 'assets/pages/community/profile.html',
 				controller: 'CommunityProfileCtrl',
+				policy: SIGNED_IN
 			})
 			.state('community.default', {
 				title: false,
 				url: '',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: 'assets/pages/community/subviews/home.html',
+				policy: SIGNED_IN
 			})
 			.state('community.subview', {
 				title: false,
@@ -222,7 +225,8 @@ angular.module('hearth').config([
 					if (!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath + $stateParams.page + '.html';
-				}
+				},
+				policy: SIGNED_IN
 			})
       .state('uikit', {
         url: '/uikit',

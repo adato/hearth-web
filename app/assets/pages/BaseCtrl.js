@@ -84,10 +84,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
 
-			console.log('TO', toState);
-
 			if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
 				event.preventDefault();
+				UnauthReload.setLocation(toState.url.slice(1));
 				return $state.go('login');
 			}
 
