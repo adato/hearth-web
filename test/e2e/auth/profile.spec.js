@@ -187,9 +187,9 @@ describe('user profile', function() {
 	it('should be able to change user webs', function() {
 
 		// webs and internets
-		beacon('social-fb').clear().sendKeys('http://profile' + randomNumber + '.com');
+		element.all(by.css('[test-beacon="web-input"]')).get(0).clear().sendKeys('http://profile' + randomNumber + '.com');
 		beacon('web-adder').click();
-		beacon('social-twitter').clear().sendKeys('http://another.profile' + randomNumber + '.com');
+		element.all(by.css('[test-beacon="web-input"]')).get(1).clear().sendKeys('http://another.profile' + randomNumber + '.com');
 
 		clickSubmitButton();
 	});
@@ -248,9 +248,9 @@ describe('user profile', function() {
 		beacon('social-linkedin').clear();
 		beacon('social-gplus').clear();
 
-		beacon('web-input').clear();
+		element.all(by.css('[test-beacon="web-input"]')).get(0).clear();
 		beacon('web-adder').click();
-		beacon('web-input').clear();
+		element.all(by.css('[test-beacon="web-input"]')).get(1).clear();
 
 		clickSubmitButton();
 	});

@@ -94,15 +94,18 @@ tags-input {
 		display: block;
 		width: 100%;
 		margin-top: 5px;
-		padding: 5px 0;
+		// padding: 5px 0;
 		border: 1px solid rgba(0, 0, 0, 0.2);
 		background-color: white;
 		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 		z-index: 999;
+
 		.suggestion-list {
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
+			max-height: 300px;
+			overflow-y: scroll;
 		}
 		.suggestion-item {
 			padding: 5px 10px;
