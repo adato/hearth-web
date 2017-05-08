@@ -12,7 +12,7 @@ angular.module('hearth').config([
 			return false;
 		});
 
-		const { SIGNED_IN } = window.$$config.policy;
+		const { SIGNED_IN, UNAUTH } = window.$$config.policy;
 
 		$stateProvider
 			.state('market', {
@@ -63,7 +63,8 @@ angular.module('hearth').config([
 			})
 			.state('token-login', {
 				url: '/token-login/:token',
-				controller: 'TokenLoginCtrl'
+				controller: 'TokenLoginCtrl',
+				policy: UNAUTH
 			})
 			.state('fill-email', {
 				url: '/fill-email/:token',
@@ -73,17 +74,21 @@ angular.module('hearth').config([
 			.state('confirm-email', {
 				url: '/confirm-email',
 				templateUrl: 'assets/pages/userForms/confirmEmail.html',
-				controller: 'ConfirmEmailCtrl'
+				controller: 'ConfirmEmailCtrl',
+				// signes in the new-coming user. so it is probably better to leave available for signed users
+				// policy: UNAUTH
 			})
 			.state('login', {
 				url: '/login',
 				templateUrl: 'assets/pages/userForms/login.html',
-				controller: 'LoginCtrl'
+				controller: 'LoginCtrl',
+				policy: UNAUTH
 			})
 			.state('reg', {
 				url: '/register?facebook',
 				templateUrl: 'assets/pages/userForms/register.html',
-				controller: 'RegisterCtrl'
+				controller: 'RegisterCtrl',
+				policy: UNAUTH
 			})
 			.state('search', {
 				url: '/search?query',

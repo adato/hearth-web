@@ -54,7 +54,8 @@ window['$$config'] = {
 		"Conversation": "messages",
 	},
 	policy: {
-		SIGNED_IN: 'SINGED_ID'
+		SIGNED_IN: 'SINGED_ID',
+		UNAUTH: 'UNAUTH'
 	},
 	postTypes: {
 		User: {

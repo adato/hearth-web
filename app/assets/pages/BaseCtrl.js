@@ -84,10 +84,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
 
-			if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
-				event.preventDefault();
-				UnauthReload.setLocation(toState.url.slice(1));
-				return $state.go('login');
+			if (toState.policy) {
+				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
+					event.preventDefault();
+					UnauthReload.setLocation(toState.url.slice(1));
+					return $state.go('login');
+				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
+					event.preventDefault();
+					return $state.go('error404');
+				}
 			}
 
 			// retain optional state params on specified route groups

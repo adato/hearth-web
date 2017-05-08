@@ -117,10 +117,11 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			if (params.showNoOauthAccountWarning)
 				$scope.showError.noOauthAccountFound = true;
 
-			if (Auth.isLoggedIn()) {
-				$location.replace();
-				return $location.path($rootScope.referrerUrl || '/');
-			}
+			// this should never happen - replaced by routing policies
+			// if (Auth.isLoggedIn()) {
+			// 	$location.replace();
+			// 	return $location.path($rootScope.referrerUrl || '/');
+			// }
 
 			$(".login_name").focus();
 		};
