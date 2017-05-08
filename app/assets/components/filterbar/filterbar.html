@@ -4,44 +4,57 @@
 
       <!-- Post type filter-->
       <div class="hide-for-small-only padding-right-medium">
-        Dary i přání
-        <ul>
-          <li><a ng-click="addFilter('post_type',null)">Všechny dary i přání</a></li>
-          <li><a ng-click="addFilter('post_type','offer')">Jen dary</a>
-            <ul>
-              <li><a href="#">Jen přijmu</a></li>
-              <li><a href="#">Jen půjčím</a></li>
-            </ul>
-          </li>
-          <li><a ng-click="addFilter('post_type','need')">Jen přání</a>
-            <ul>
-              <li><a href="#">Jen půjčím si</a></li>
-              <li><a href="#">Jen přijmu</a></li>
-            </ul>
-          </li>
-        </ul>
+				<div class="dropdown-wrapper">
+					<a href="javascript:;" dropdown="#filter-post-type">
+						<span translate="{{ filter.post_type || 'ADS_ALL' }}"></span>
+					</a>
+	        <!-- Dary i přání -->
+	        <ul id="filter-post-type" class="actions-dropdown" style="display:none;">
+	          <li><a ng-click="addFilter('post_type', null)">Všechny dary i přání</a></li>
+	          <li><a ng-click="addFilter('post_type', 'offer')">Jen dary</a>
+	            <ul>
+	              <li><a href="#">Jen přijmu</a></li>
+	              <li><a href="#">Jen půjčím</a></li>
+	            </ul>
+	          </li>
+	          <li><a ng-click="addFilter('post_type','need')">Jen přání</a>
+	            <ul>
+	              <li><a href="#">Jen půjčím si</a></li>
+	              <li><a href="#">Jen přijmu</a></li>
+	            </ul>
+	          </li>
+	        </ul>
+      	</div>
       </div>
 
       <!-- Character filter-->
       <div class="hide-for-small-only padding-right-medium">
-        Povaha
-        <ul>
-          <li><a ng-click="addFilter('character',null)">Nezávisle na povaze</a></li>
-          <li><a ng-click="addFilter('character','energy')">Jen Energie</a></li>
-          <li><a ng-click="addFilter('character','mass')">Jen Hmota</a></li>
-          <li><a ng-click="addFilter('character','information')">Jen Informace</a></li>
-        </ul>
+				<div class="dropdown-wrapper">
+					<a href="javascript:;" dropdown="#filter-character">
+        		Povaha
+					</a>
+	        <ul id="filter-character" class="actions-dropdown" style="display:none;">
+	          <li><a ng-click="addFilter('character',null)">Nezávisle na povaze</a></li>
+	          <li><a ng-click="addFilter('character','energy')">Jen Energie</a></li>
+	          <li><a ng-click="addFilter('character','mass')">Jen Hmota</a></li>
+	          <li><a ng-click="addFilter('character','information')">Jen Informace</a></li>
+	        </ul>
+      	</div>
       </div>
 
       <!-- Time filter-->
       <div class="hide-for-small-only padding-right-medium">
-        Čas přidání
-        <ul>
-          <li><a ng-click="addFilter('days',null)">Nezávisle na čase přidání</a></li>
-          <li><a ng-click="addFilter('days',1)">Dnes</a></li>
-          <li><a ng-click="addFilter('days',3)">3 dny</a></li>
-          <li><a ng-click="addFilter('days',7)">Týden</a></li>
-        </ul>
+				<div class="dropdown-wrapper">
+					<a href="javascript:;" dropdown="#filter-days">
+        		Čas přidání
+					</a>
+	        <ul id="filter-days" class="actions-dropdown" style="display:none;">
+	          <li><a ng-click="addFilter('days',null)">Nezávisle na čase přidání</a></li>
+	          <li><a ng-click="addFilter('days',1)">Dnes</a></li>
+	          <li><a ng-click="addFilter('days',3)">3 dny</a></li>
+	          <li><a ng-click="addFilter('days',7)">Týden</a></li>
+	        </ul>
+      	</div>
       </div>
 
       <!-- Dalsi moznosti-->
@@ -55,8 +68,8 @@
 				</a>
 		</div>
     <div class="">
-					<a test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
-					<a test-beacon="filterbar-show-posts-on-map" ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
+			<a test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
+			<a test-beacon="filterbar-show-posts-on-map" ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
     </div>
     <div class="small-12 large-3 show-for-large">
       <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block">
