@@ -3,56 +3,86 @@
 		<div class="small-12 medium-10 large-7 display-flex">
 
       <!-- Post type filter-->
-      <div class="hide-for-small-only padding-right-medium">
-        Dary i přání
-        <ul>
-          <li><a ng-click="addFilter('post_type',null)">Všechny dary i přání</a></li>
-          <li><a ng-click="addFilter('post_type','offer')">Jen dary</a>
-            <ul>
-              <li><a href="#">Jen přijmu</a></li>
-              <li><a href="#">Jen půjčím</a></li>
-            </ul>
-          </li>
-          <li><a ng-click="addFilter('post_type','need')">Jen přání</a>
-            <ul>
-              <li><a href="#">Jen půjčím si</a></li>
-              <li><a href="#">Jen přijmu</a></li>
-            </ul>
-          </li>
-        </ul>
+      <div class="cursor-pointer nowrap position-relative padding-right-medium hide-for-small-only"
+           ng-click="postTypeActive = !postTypeActive">
+        <span ng-class="{'filter-selected': filter.post_type != null}">
+          {{ 'MARKETPLACE.FILTER.POST_TYPE.' + (filter.post_type.toUpperCase() || 'NAME') | translate}}
+          <i ng-show="postTypeActive" class="fa fa-chevron-up"></i>
+          <i ng-show="!postTypeActive" class="fa fa-chevron-down"></i>
+        </span>
+        <div class='filter-window' ng-class="{'is-active': postTypeActive}">
+          <ul>
+            <li><a ng-click="addFilter('post_type',null)">{{:: 'MARKETPLACE.FILTER.POST_TYPE.ALL' | translate}}</a></li>
+            <li><a ng-click="addFilter('post_type','offer')">{{:: 'MARKETPLACE.FILTER.POST_TYPE.OFFER' | translate}}</a>
+              <ul>
+                <li><a href="#">Jen daruji</a></li>
+                <li><a href="#">Jen půjčím</a></li>
+              </ul>
+            </li>
+            <li><a ng-click="addFilter('post_type','need')">{{:: 'MARKETPLACE.FILTER.POST_TYPE.NEED' | translate}}</a>
+              <ul>
+                <li><a href="#">Jen půjčím si</a></li>
+                <li><a href="#">Jen přijmu</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- Character filter-->
-      <div class="hide-for-small-only padding-right-medium">
-        Povaha
-        <ul>
-          <li><a ng-click="addFilter('character',null)">Nezávisle na povaze</a></li>
-          <li><a ng-click="addFilter('character','energy')">Jen Energie</a></li>
-          <li><a ng-click="addFilter('character','mass')">Jen Hmota</a></li>
-          <li><a ng-click="addFilter('character','information')">Jen Informace</a></li>
-        </ul>
+      <div class="cursor-pointer nowrap position-relative padding-right-medium hide-for-small-only"
+           ng-click="characterActive = !characterActive">
+        <span ng-class="{'filter-selected': filter.character != null}">
+          {{ 'MARKETPLACE.FILTER.CHARACTER.' + (filter.character.toUpperCase() || 'NAME') | translate}}
+          <i ng-show="characterActive" class="fa fa-chevron-up"></i>
+          <i ng-show="!characterActive" class="fa fa-chevron-down"></i>
+        </span>
+        <div class='filter-window' ng-class="{'is-active': characterActive}">
+          <ul>
+            <li><a ng-click="addFilter('character',null)">{{:: 'MARKETPLACE.FILTER.CHARACTER.ALL' | translate}}</a></li>
+            <li><a ng-click="addFilter('character','energy')">{{:: 'MARKETPLACE.FILTER.CHARACTER.ENERGY' | translate}}</a></li>
+            <li><a ng-click="addFilter('character','mass')">{{:: 'MARKETPLACE.FILTER.CHARACTER.MASS' | translate}}</a></li>
+            <li><a ng-click="addFilter('character','information')">{{:: 'MARKETPLACE.FILTER.CHARACTER.INFORMATION' | translate}}</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- Time filter-->
-      <div class="hide-for-small-only padding-right-medium">
-        Čas přidání
-        <ul>
-          <li><a ng-click="addFilter('days',null)">Nezávisle na čase přidání</a></li>
-          <li><a ng-click="addFilter('days',1)">Dnes</a></li>
-          <li><a ng-click="addFilter('days',3)">3 dny</a></li>
-          <li><a ng-click="addFilter('days',7)">Týden</a></li>
-        </ul>
+      <div class="cursor-pointer nowrap position-relative padding-right-medium hide-for-small-only"
+           ng-click="timeActive = !timeActive">
+        <span ng-class="{'filter-selected': filter.days != null}">
+          {{ 'MARKETPLACE.FILTER.TIME.' + (filter.days.toUpperCase() || 'NAME') | translate}}
+          <i ng-show="timeActive" class="fa fa-chevron-up"></i>
+          <i ng-show="!timeActive" class="fa fa-chevron-down"></i>
+        </span>
+        <div class='filter-window' ng-class="{'is-active': timeActive}">
+          <ul>
+            <li><a ng-click="addFilter('days',null)">{{:: 'MARKETPLACE.FILTER.TIME.ALL' | translate}}</a></li>
+            <li><a ng-click="addFilter('days','1')">{{:: 'MARKETPLACE.FILTER.TIME.1' | translate}}</a></li>
+            <li><a ng-click="addFilter('days','3')">{{:: 'MARKETPLACE.FILTER.TIME.3' | translate}}</a></li>
+            <li><a ng-click="addFilter('days','7')">{{:: 'MARKETPLACE.FILTER.TIME.7' | translate}}</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Dalsi moznosti-->
-      <a ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
-					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
-					<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
-					<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
-					<a ng-show="filterOn" class="cancelFilter" ng-click="cancelFilter()">
+      <!-- Next filter possibilities-->
+      <!-- Mobile view-->
+      <a class="show-for-small-only" ng-click="toggleFilter()">
+         <i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+         <i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+         {{::'MARKETPLACE.FILTER.TITLE' | translate}}
+      </a>
+      <!-- Tablet and desktop-->
+      <div class="cursor-pointer hide-for-small-only" ng-click="toggleFilter()">
+					<span class="next-options-title padding-right-medium">
+            {{::'MARKETPLACE.FILTER.NEXT_OPTIONS' | translate}}
+            <i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+            <i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+          </span>
+					<a ng-show="filterOn" class="cancelFilter nowrap" ng-click="cancelFilter()">
 						{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}
 					</a>
-				</a>
+      </div>
 		</div>
     <div class="">
 					<a test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
