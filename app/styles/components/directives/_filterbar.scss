@@ -30,24 +30,98 @@
 	}
 
 	.filter-container {
-		@extend .box;
-		padding: $ui-grid-size;
-		clear: both;
-		margin-top: 2 * $ui-small-grid-size;
-		max-height: 1000px;
+	// 	@extend .box;
+	// 	padding: $ui-grid-size;
+	// 	clear: both;
+	// 	margin-top: 2 * $ui-small-grid-size;
+	// 	max-height: 1000px;
 		transition: all .3s ease-in;
+
+		&.box {
+			padding-top: $size-medium;
+			padding-bottom: $size-medium;
+		}
 	}
 
+	// WHY is this here when jQuery is there and it is definitely not going anywhere?
 	.animated-hidden {
 		height: 0px;
 		max-height: 0px;
-		margin-top: 0;
-		margin-bottom: 0;
-		padding-top: 0;
-		padding-bottom: 0;
-		overflow-y: hidden;
-		transition: all .3s ease-in;
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		overflow: hidden;
+		// transition: all .3s ease-in;
 	}
+
+  // .filter-window {
+  //   display: none;
+  // }
+  //
+  // .filter-window ul {
+  //   list-style: none;
+  // }
+  // .filter-window.is-active {
+  //   position: absolute;
+  //   display: flex;
+  //   flex-direction: column;
+  //   top: calc(100% + 7px);
+  //   padding-right: $size-medium;
+  //   padding-top: $size-medium;
+  //   background: white;
+  //   border-radius: 8px;
+  //   box-shadow: 0 1px 8px rgba(0,0,0,.6);
+  //   z-index: 10;
+  // }
+  //
+  // .filter-window li {
+  //   border-bottom: 1px solid #ddd;
+  // }
+  //
+  // .filter-window li:last-child {
+  //   border-bottom: none;
+  // }
+  //
+  // .filter-window a {
+  //   display: flex;
+  //   align-items: center;
+  //   padding: 8px 12px 8px 8px;
+  //   white-space: nowrap;
+  //   font-size: 16px;
+  //   font-weight: 700;
+  //   font-family: 'Raleway';
+  //   color: #4a4a4a;
+  // }
+  //
+  // .filter-window li:first-child a {
+  //   border-top-left-radius: 5px;
+  //   border-top-right-radius: 5px;
+  // }
+  // .filter-window li:last-child a {
+  //   border-bottom-left-radius: 5px;
+  //   border-bottom-right-radius: 5px;
+  // }
+  // .filter-window li a:hover {
+  //   background: #f4f4f4;
+  // }
+  //
+  	.filter-label {
+		color: $dark-gray;
+
+		&.filter-selected {
+			color: $primary-color;
+		}
+	}
+
+  // .cursor-pointer {
+  //   cursor: pointer;
+  // }
+  // @include breakpoint(medium up) {
+  //   .next-options-title, .cancelFilter {
+  //     font-size: smaller;
+  //   }
+  // }
 }
 
 @include breakpoint(medium up) {
