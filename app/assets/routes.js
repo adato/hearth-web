@@ -54,12 +54,14 @@ angular.module('hearth').config([
 			.state('reset-pass', {
 				url: '/reset-password',
 				templateUrl: 'assets/pages/userForms/resetPassword.html',
-				controller: 'ResetPwdCtrl'
+				controller: 'ResetPwdCtrl',
+				policy: UNAUTH
 			})
 			.state('forgot-pass', {
 				url: '/forgotten-password',
 				templateUrl: 'assets/pages/userForms/forgottenPassword.html',
-				controller: 'ForgottenPasswordCtrl'
+				controller: 'ForgottenPasswordCtrl',
+				policy: UNAUTH
 			})
 			.state('token-login', {
 				url: '/token-login/:token',
