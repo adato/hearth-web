@@ -164,3 +164,8 @@ html[lang='en'] #section-marketplace,
 html[lang='sk'] #section-marketplace {
 	display: none;
 }
+
+[language-only-en] {display: none}
+html[lang='en'] [language-only-en] {display: inherit}
+[language-no-en] {display: inherit}
+html[lang='en'] [language-no-en] {display: none}
