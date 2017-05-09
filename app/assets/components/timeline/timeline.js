@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('timeline',['$rootScope', function
     },
     templateUrl: 'assets/components/timeline/timeline.html',
     link: function (scope, el) {
-
+      scope.postTypes = $$config.postTypes;
       scope.getProfileLink = $rootScope.getProfileLink;
 
       scope.getIconType = item => {
