@@ -12,7 +12,7 @@
 		          <i ng-show="postTypeActive" class="fa fa-chevron-up"></i>
 		          <i ng-show="!postTypeActive" class="fa fa-chevron-down"></i>
 		        </a>
-		        <ul class="actions-dropdown" id="filter-post-type" style="display: none;">
+		        <ul class="actions-dropdown dropdown-align-right margin-top-small" id="filter-post-type" style="display: none;">
 		          <li><a ng-click="addFilter('post_type',null)" translate="MARKETPLACE.FILTER.POST_TYPE.ALL"></a></li>
 		          <li><a ng-click="addFilter('post_type','offer')" translate="MARKETPLACE.FILTER.POST_TYPE.OFFER"></a>
 		            <ul>
@@ -36,11 +36,26 @@
 		          <i ng-show="characterActive" class="fa fa-chevron-up"></i>
 		          <i ng-show="!characterActive" class="fa fa-chevron-down"></i>
 		        </a>
-		        <ul class='actions-dropdown' id="filter-character" style="display: none;">
-		          <li><a ng-click="addFilter('character',null)" translate="MARKETPLACE.FILTER.CHARACTER.ALL"></a></li>
-		          <li><a ng-click="addFilter('character','energy')" translate="MARKETPLACE.FILTER.CHARACTER.ENERGY"></a></li>
-		          <li><a ng-click="addFilter('character','mass')" translate="MARKETPLACE.FILTER.CHARACTER.MASS"></a></li>
-		          <li><a ng-click="addFilter('character','information')" translate="MARKETPLACE.FILTER.CHARACTER.INFORMATION"></a></li>
+		        <ul class="actions-dropdown margin-top-small" id="filter-character" style="display: none;">
+		          <li>
+								<a ng-click="addFilter('character',null)" translate="MARKETPLACE.FILTER.CHARACTER.ALL">
+								</a>
+							</li>
+		          <li>
+								<a ng-click="addFilter('character','energy')" translate="MARKETPLACE.FILTER.CHARACTER.ENERGY">
+									<!-- <i class="touchable fa fa-fw" event-stopper ng-class="filter.character === 'energy' ? 'check-square-o' : 'square-o'"> -->
+								</a>
+							</li>
+		          <li>
+								<a ng-click="addFilter('character','mass')" translate="MARKETPLACE.FILTER.CHARACTER.MASS">
+									<!-- <i class="touchable fa fa-fw" event-stopper ng-class="filter.character === 'mass' ? 'check-square-o' : 'square-o'"> -->
+								</a>
+							</li>
+		          <li>
+								<a ng-click="addFilter('character','information')" translate="MARKETPLACE.FILTER.CHARACTER.INFORMATION">
+									<!-- <i class="touchable fa fa-fw" event-stopper ng-class="filter.character === 'information' ? 'check-square-o' : 'square-o'"> -->
+								</a>
+							</li>
 		        </ul>
 		      </div>
 
@@ -51,7 +66,7 @@
 		          <i ng-show="timeActive" class="fa fa-chevron-up"></i>
 		          <i ng-show="!timeActive" class="fa fa-chevron-down"></i>
 		        </a>
-		        <ul class='actions-dropdown' id="filter-time" style="display: none;">
+		        <ul class="actions-dropdown margin-top-small" id="filter-time" style="display: none;">
 		          <li><a ng-click="addFilter('days',null)" translate="MARKETPLACE.FILTER.TIME.ALL"></a></li>
 		          <li><a ng-click="addFilter('days','1')" translate="MARKETPLACE.FILTER.TIME.1"></a></li>
 		          <li><a ng-click="addFilter('days','3')" translate="MARKETPLACE.FILTER.TIME.3"></a></li>
@@ -98,7 +113,7 @@
 	  </div>
   </div>
 
-	<div class="filter-container box medium-10 medium-push-2 large-12 large-push-0 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+	<div class="filter-container box small-10 small-push-2 medium-12 medium-push-0 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
     <!--<filter id="filter" class="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>-->
     <div ng-show="inited">
 
