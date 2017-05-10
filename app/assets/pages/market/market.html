@@ -36,6 +36,9 @@
 			<div ng-show="!filterIsOn" class="row block">
 				<div class="column small-12 medium-10 medium-push-2 box text-center" translate="MARKETPLACE.NOTHING_FOUND_WITH_OPTIONS" translate-compile translate-values="{changeFilterAttrs: 'ng-click=\'toggleFilter()\'', editLangsAttrs: 'ui-sref=\'profileEdit\''}" ></div>
 			</div>
+			<div ng-if="dataFetchError" class="row block">
+				<div class="column small-12 medium-10 medium-push-2 box text-center" translate="MARKETPLACE.NOTHING_FOUND"></div>
+			</div>
 		</div>
 
 		<div id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">

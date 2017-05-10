@@ -167,6 +167,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			}, function(err) {
 				// error handler
 				$scope.loaded = true;
+				$scope.dataFetchError = true;
 				$(".loading").hide();
 			});
 		};
