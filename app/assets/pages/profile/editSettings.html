@@ -1,4 +1,4 @@
-<div class="box" ng-show="loaded">
+<div class="box" ng-show="loaded" test-beacon="profile-settings">
 	<div>
 
 		<div class="block flex-grid">
@@ -94,7 +94,7 @@
 							<label>
 								<span translate="FILL_NEW_PASS"></span>
 								<show-text-in-password>
-									<input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" required ng-minlength="5" />
+									<input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" test-beacon="new-password" required ng-minlength="5" />
 								</show-text-in-password>
 								<div class="form-error" ng-show="showError.newPass">
 									<span ng-show="profileSettingsForm.newPass.$error.required" translate="ERR_NOT_FILLED_NEW_PASS"></span>

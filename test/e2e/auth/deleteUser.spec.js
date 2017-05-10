@@ -26,10 +26,10 @@ describe('hearth remove user', function() {
     // go to user setting
 
 		browser.actions().mouseMove(navigationMenu).perform();
-		element(by.css("nav .user-settings-link")).click();
+		beacon('user-settings-link').click();
 
 		// should be on profile settings
-		expect(element(by.css('.profile-settings')).isPresent()).toBeTruthy();
+		expect(beacon('profile-settings').isPresent()).toBeTruthy();
 
 		var delTextarea = beacon('user-delete-reason');
 		var delPassword = beacon('user-delete-password');
@@ -38,7 +38,7 @@ describe('hearth remove user', function() {
 		delPassword.sendKeys('Wrong password');
 
 		// focus out from password to see error
-		element(by.id("newPass")).sendKeys('a');
+		beacon('new-password').sendKeys('a');
 		element.all(getVisibleErrors).then(function (items) {
 			// there will be shown error that we put there wrong password
 			expect(items.length).toBe(1);

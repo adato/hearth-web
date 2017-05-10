@@ -186,9 +186,9 @@
 		</div>
 
 		<nav class="display-flex flex-align-center top-bar show-for-large" data-topbar ng-cloak>
-			
+
 			<!-- this is desktop topbar, visible all the time -->
-			
+
 			<section class="bar-columns logo-column">
 				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
 					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
@@ -245,7 +245,7 @@
 							<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
 					</li>
 					<li>
-						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link">
+						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
 							<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
 					</li>
 
