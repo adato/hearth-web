@@ -91,7 +91,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					return $state.go('login');
 				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
 					event.preventDefault();
-					return $state.go('error404');
+					return $state.go('market');
 				}
 			}
 
