@@ -13,7 +13,6 @@
 			box-shadow: 0 0 5px rgba(100,100,100,.5);
 
 			a {
-				// color: #1fb1e8;
 				color: $primary-color;
 				font-weight: 600;
 
@@ -30,17 +29,11 @@
 	}
 
 	.filter-container {
-	// 	@extend .box;
-	// 	padding: $ui-grid-size;
-	// 	clear: both;
-	// 	margin-top: 2 * $ui-small-grid-size;
-	// 	max-height: 1000px;
+    @include breakpoint(medium up) {
+      padding-top: $size-medium;
+      padding-bottom: $size-medium;
+    }
 		transition: all .3s ease-in;
-
-		&.box {
-			padding-top: $size-medium;
-			padding-bottom: $size-medium;
-		}
 	}
 
 	// WHY is this here when jQuery is there and it is definitely not going anywhere?
@@ -106,22 +99,17 @@
   //   background: #f4f4f4;
   // }
   //
-  	.filter-label {
+  .filter-label,
+  .map-label,
+  .next-options-label,
+  .actions-dropdown a {
 		color: $dark-gray;
 
 		&.filter-selected {
 			color: $primary-color;
+      font-weight: bold;
 		}
 	}
-
-  // .cursor-pointer {
-  //   cursor: pointer;
-  // }
-  // @include breakpoint(medium up) {
-  //   .next-options-title, .cancelFilter {
-  //     font-size: smaller;
-  //   }
-  // }
 }
 
 @include breakpoint(medium up) {
