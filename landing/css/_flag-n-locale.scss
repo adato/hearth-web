@@ -77,6 +77,9 @@
 	display: block;
 	min-width: 200px;
 	margin: 0;
+}
+.hover-window li a,
+.hover-window li a:hover {
 	border-bottom: 1px solid #ddd;
 }
 .hover-window li a.nav-item {

@@ -1,12 +1,3 @@
-/*
-    tlačítka
-    trojtečky mezi odstavci
-    rámeček okolo obličeje "Mají nás rádi" (+ tečka s uvozovkami)
-    odkazy v horním menu
-    odkazy u inspirace
-    šipka pro scroll dolů ... IMG lol
-*/
-
 html.variant-green {
     .button
     {
@@ -19,9 +10,12 @@ html.variant-green {
     }
     .bulletize-paragraphs>p:before,
     .button.hollow,
-    .nav-item:not(.button),
-    a:not(.button),
-    .img-rotator.controls
+    // .nav-item:not(.button),
+    a,
+    .main-navigation .nav-item:not(.button):hover,
+    .img-rotator.controls,
+    .img-rotator.controls [rotate-left]:hover,
+    .img-rotator.controls [rotate-right]:hover
     {
         color: $tertiary-color;
     }
