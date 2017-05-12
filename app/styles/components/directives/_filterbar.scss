@@ -1,4 +1,5 @@
 .filterbar-wrap {
+   margin-bottom: $size-large;
 
 	.filterbar-header {
 
@@ -31,7 +32,6 @@
 	.filter-container {
     @include breakpoint(medium up) {
       padding-top: $size-medium;
-      padding-bottom: $size-medium;
     }
 		transition: all .3s ease-in;
 	}
@@ -103,7 +103,7 @@
   .map-label,
   .next-options-label,
   .actions-dropdown a {
-		color: $dark-gray;
+		color: black;
 
 		&.filter-selected {
 			color: $primary-color;

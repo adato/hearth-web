@@ -49,8 +49,6 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         };
 
         scope.applyFilter = () => {
-          console.log("scope.filter");
-          console.log(scope.filter);
           if ($.isEmptyObject(scope.filter)) {
             scope.reset();
           } else {
