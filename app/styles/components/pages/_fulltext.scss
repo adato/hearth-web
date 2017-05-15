@@ -1,9 +1,4 @@
 .fulltext {
-	header {
-		text-align: center;
-		margin:3*$ui-small-grid-size;
-		margin-bottom:$ui-grid-size;
-	}
 	.searchInProgress {
 		opacity: 0.3;
 		transition: opacity .3s ease-out;

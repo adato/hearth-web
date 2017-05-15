@@ -5,28 +5,15 @@
 		margin-top: 15%;
 	}
 }
-/*
-@include breakpoint(large up) {
-	.ngdialog-invite-box .ngdialog-content {
-		margin-left: 335px !important;
-		margin-top: 240px !important;
-	}
-	.invite-box {
-		min-width: 600px;
-	}
-}
-*/
 .invite-box {
 	ul {
 		list-style: none;
-		// text-align: center;
 		margin-top: 3rem;
 		margin-bottom: 2rem;
 		margin-left: 0;
 		li {
 			padding: .5rem;
 			display: inline;
-			// text-align: center;
 		}
 	}
 	.social {
@@ -66,12 +53,4 @@
 			}
 		}
 	}
-	// .emailForm {
-	// 	label {
-	// 		margin: 10px 0;
-	// 	}
-	// 	.error {
-	// 		margin-top: 10px;
-	// 	}
-	// }
 }
