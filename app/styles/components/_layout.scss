@@ -60,6 +60,7 @@ img.blur {
 
 .text-in-input {
   position: relative;
+
   .fa {
     position: absolute;
     top: 0.783rem;
@@ -109,6 +110,17 @@ img.blur {
 //   max-width: 150px;
 // }
 
+
+.block {
+    margin-bottom: $size-medium;
+}
+// .block:last-child {
+//     margin-bottom: 0;
+// }
+
+.block--leading-icon {
+    margin-top: $size-tiny;
+}
 
 /* is to be combined with style attribute max-height */
 .block-height-limiter {

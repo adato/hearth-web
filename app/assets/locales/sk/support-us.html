@@ -76,7 +76,7 @@
 						<img src="{{ config.imgUrl }}/logo-dark.png" width="200" style="padding:10px;">
 					</a>
 				</div>
-				<div class="small-12 large-7 columns">
+				<div class="small-12 large-7 columns block">
 					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(0); }}</textarea>
 				</div>
 
@@ -85,7 +85,7 @@
 						<img src="{{ config.imgUrl }}/logo-orange.png" width="200">
 					</a>
 				</div>
-				<div class="small-12 large-7 columns">
+				<div class="small-12 large-7 columns block">
 					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(1); }}</textarea>
 				</div>
 
@@ -94,7 +94,7 @@
 						<img src="{{ config.imgUrl }}/logo.png" style="background:#7c766a; padding:10px;" width="200">
 					</a>
 				</div>
-				<div class="small-12 large-7 columns">
+				<div class="small-12 large-7 columns block">
 					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(2); }}</textarea>
 				</div>
 
@@ -221,19 +221,27 @@
 				<p>Vďaka, že Hearthu pomáhaš šíriť radosť ďalej.</p>
 
 				<div class="small-12 large-3 columns">
-					<label for="type">{{'Čo chcem:' | translate}}</label><br>
+					<label for="type">{{'Čo chcem:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
-					<checkbox model="postalAddressData.badges" on-update="void()" value="true" value-off="false">Placky</checkbox>
-					<input type="number" ng-model="postalAddressData.numBadges" name="num-badges" class="display-inline-block" />
-					<span class="display-inline-block" style="width:25px;"></span>
-					<checkbox model="postalAddressData.stickers" on-update="void()" value="true" value-off="false">Samolepky</checkbox>
-					<input type="number" ng-model="postalAddressData.numStickers" name="num-stickers" class="display-inline-block" />
+				<div class="small-12 large-9 columns block">
+					<div class="flex flex-divided-large flex-wrap">
+						<div class="flex flex-divided-large">
+							<checkbox model="postalAddressData.badges" on-update="void()" value="true" value-off="false">Placky</checkbox>
+							<input type="number" ng-model="postalAddressData.numBadges" name="num-badges" class="display-inline-block" />
+						</div>
+						<div class="flex flex-divided-large">
+							<!-- <span class="display-inline-block" style="width:25px;"></span> -->
+							<checkbox model="postalAddressData.stickers" on-update="void()" value="true" value-off="false">Samolepky</checkbox>
+							<input type="number" ng-model="postalAddressData.numStickers" name="num-stickers" class="display-inline-block" />
+						</div>
+					</div>
 				</div>
+				<div></div>
+
 				<div class="small-12 large-3 columns">
 					<label for="email">{{'Email:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="email" type="email"  ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email" ng-pattern="emailPattern"/>
 				</div>
 
@@ -242,28 +250,28 @@
 				<div class="small-12 large-3 columns">
 					<label for="fullname">{{'Meno, priezvisko:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="fullname" type="text" name="fullname" ng-model="postalAddressData.fullName" class="form-control text-input top" placeholder="Meno"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
 					<label for="street">{{'Ulica, číslo:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="street" type="text" name="street" ng-model="postalAddressData.street" class="form-control text-input top" placeholder="Ulica"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
 					<label for="city">{{'Mesto:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="city" type="text" name="city" ng-model="postalAddressData.city" class="form-control text-input top" placeholder="Mesto"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
 					<label for="psc">{{'PSČ:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="psc" type="text" name="psc" ng-model="postalAddressData.psc" class="form-control text-input top" placeholder="PSČ"/>
 				</div>
 
@@ -295,21 +303,26 @@
 		</div>
 
 		<div ng-show="!contactDataEmailSent">
-			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form row" novalidate autofocus>
+			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form" novalidate autofocus>
 				<p>Skvelé, vyzerá to tak, že sa čoskoro uvidíme. Napíš nám, prosím, pár riadkov o tom, čo dokážeš. Frontend, backend, UX…? Pridaj aj zopár projektov, na ktorých pracuješ, alebo máš za sebou. A taktiež kontakt a my sa ti obratom ozveme.</p>
-				<div class="small-12 large-3 columns">
-					<label for="message-text">{{'Môžem darovať:' | translate}}</label>
-				</div>
-				<div class="small-12 large-9 columns">
-					<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
+				<div class="block row">
+					<div class="small-12 large-3 columns">
+						<label for="message-text">{{'Môžem darovať:' | translate}}</label>
+					</div>
+					<div class="small-12 large-9 columns block">
+						<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
+					</div>
 				</div>
 
-				<div class="small-12 large-3 columns">
-					<label for="email">{{'E-mail na mňa:' | translate}}</label>
+				<div class="block row">
+					<div class="small-12 large-3 columns">
+						<label for="email">{{'E-mail na mňa:' | translate}}</label>
+					</div>
+					<div class="small-12 large-9 columns block">
+						<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="emailPattern" />
+					</div>
 				</div>
-				<div class="small-12 large-9 columns">
-					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="emailPattern" />
-				</div>
+
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>

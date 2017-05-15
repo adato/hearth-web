@@ -111,11 +111,11 @@
 	z-index: 1000;
 
 	hr {
-		height: 0;
+		// height: 0;
 		margin-top: $ui-small-grid-size;
 		margin-bottom: $ui-small-grid-size;
-		border: none;
-		border-bottom: 1px solid lighten($ui-color-lighter, 15%);
+		// border: none;
+		// border-bottom: 1px solid lighten($ui-color-lighter, 15%);
 	}
 	b {
 		font-weight: $ui-text-weight-bolder;

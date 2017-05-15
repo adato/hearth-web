@@ -8,12 +8,12 @@
 		h2 {
 			text-align: center;
 		}
-		hr {
-			border: none;
-			border-bottom: 1px solid #ddd;
-			margin-top: 15px;
-			margin-bottom: 25px;
-		}
+		// hr {
+		// 	border: none;
+		// 	border-bottom: 1px solid #ddd;
+		// 	margin-top: 15px;
+		// 	margin-bottom: 25px;
+		// }
 	}
 	section.situation {
 		border-bottom: 1px solid #ddd;
@@ -244,18 +244,18 @@
 
 .support-us-modal {
 	label {
-		margin-top: 2 * $ui-small-grid-size;
+		margin-top: $size-tiny;
 	}
 	.columns>label:not(.ui-checkbox) {
-		float:right;
-		text-align:right;
+		// float:right;
+		text-align: right;
 	}
 	@include breakpoint(medium down) {
 		label {
-			margin-top:0;
+			margin-top: 0;
 		}
-		.columns>label:not(.ui-checkbox) {
-			float:none;
+		.columns > label:not(.ui-checkbox) {
+			text-align: inherit;
 		}
 	}
 	input[type="number"] {
@@ -288,5 +288,123 @@
 	}
 	.margin-bottom-larger {
 		margin-bottom:40px;
+	}
+}
+
+
+.timeline-page {
+	display:block; 
+
+	h2 { color: $dark-gray; }
+
+	.timeline {
+		width:50%;
+		clear:both;
+		&::before {
+			content:'';
+			display:block;
+			width:20px;
+			height:20px;
+			border-radius:50%;
+			background:$secondary-color;
+			box-shadow: 0px 0px 0px 3px #fff;
+			//border:2px solid $tertiary-color;
+			margin-top:10px;
+			top:30px;
+			position:relative;
+			margin-left:-51px;
+		}
+
+		&:nth-child(odd) {
+			padding-right:40px;
+			border-right:2px solid $medium-gray;
+			margin-left:2px;
+			float:left;
+			h2, h3, p {
+				text-align: right;
+			}
+			&::before {
+				left:100%;
+				margin-left:31px;
+			}
+		}
+		&:nth-child(even) {
+			padding-left:40px;
+			border-left:2px solid $medium-gray;
+			float:right;
+		}
+
+		@include breakpoint(small down) {
+			width:100%;
+			h2 { font-weight:bold; text-align: center;}
+			h3 { text-align: center; }
+			&::before {
+				display:none;
+			}
+			&:nth-child(odd) {
+				padding-right:0;
+				float:none;
+				border:none;
+				margin-left:0;
+				p {
+					text-align:unset;
+				}
+				h2, h3 { text-align:center;}
+			}
+			&:nth-child(even) {
+				padding-left:0;
+				border:none;
+				float:none;
+			}
+		}
+
+	}
+
+
+	&>p {
+		clear:both;
+	}
+}
+
+.contacts-page {
+	.hero {
+		font-size:large;
+	}
+	.address {
+		text-align:center;
+		display:inline-block;
+		background: $light-gray;
+		border-radius:$global-radius;
+		padding:$size-medium;
+		line-height:initial;
+		font-size:medium;
+		margin-top:$size-medium;
+		margin-bottom:$size-large;
+	}
+	h2 {
+		clear:both;
+		display:table;
+		border-bottom:1px solid $primary-color;
+		margin: $size-medium auto;
+	}
+	.profile {
+		width:50%;
+		@include breakpoint(small down) {
+			width:100%;
+		}
+		float:left;
+		padding:10px;
+		h3>small {
+			display: block;
+			line-height: 100%;
+			font-size:70%;
+			color:$dark-gray;
+		}
+		&.profile-full {
+			width:100%;
+		}
+		&:nth-child(even) {
+			clear:both;
+		}
 	}
 }
