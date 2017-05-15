@@ -13,7 +13,7 @@
 	            <h4>
 	              <a ng-href="{{ post.link }}" target="_blank" ng-bind="post.title"></a>
 	            </h4>
-	            <div class="hide-all-images block" ng-bind-html="post.text"></div>
+	            <div class="hide-all-images block block-height-limiter" style="max-height: 14rem" ng-bind-html="post.text"></div>
 	            <a ng-href="{{ post.link }}" target="_blank" translate="OUR_BLOG.READ_ON_BLOG"></a>
           	</div>
           </div>
