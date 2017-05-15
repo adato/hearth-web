@@ -17,6 +17,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
           query: null,
           type: null,
           post_type: null,
+          post_exact_type: null,
           character: null,
           distance: 25,
           inactive: null,
@@ -42,10 +43,16 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
           filterSelected: false
         });
 
-        // add single filter property and apply filter
+        // add multiple filter properties
+        scope.addFilters = (props) => {
+          new Map(props).forEach(function(value, key) {
+            scope.addFilter(key, value);
+          });
+        };
+
+        // add single filter property
         scope.addFilter = (name, value) => {
           scope.filter[name] = value;
-          scope.applyFilter();
         };
 
         scope.applyFilter = () => {
@@ -59,7 +66,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
 
         // convert parameters from scope to location fields
         function convertFilterToParams(filter) {
-          var fields = ['query', 'type', 'inactive', 'post_type', 'days', 'lang', 'r_lang', 'my_section', 'character'],
+          var fields = ['query', 'type', 'inactive', 'post_type', 'post_exact_type', 'days', 'lang', 'r_lang', 'my_section', 'character'],
             related = [],
             // character = [],
             params = {};
@@ -144,6 +151,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
             inactive: params.inactive || filterDefault.inactive,
             type: params.type || filterDefault.type,
             post_type: params.post_type || filterDefault.post_type,
+            post_exact_type: params.post_exact_type || filterDefault.post_exact_type,
             days: params.days || filterDefault.days,
             post_language: getParamPostLanguage(params.lang),
             post_language_other: filter_post_language_other,
@@ -298,7 +306,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         });
 
         // watchers
-        scope.$watch('filter', scope.recountPosts, true);
+        scope.$watch('filter', scope.applyFilter, true);
         scope.$watch('filterShown', function(isShown) {
           if (isShown) scope.recountPosts();
         });

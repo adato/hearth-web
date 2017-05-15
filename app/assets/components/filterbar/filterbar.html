@@ -8,21 +8,47 @@
 		      <!-- Post type filter-->
 		      <div class="position-relative nowrap hide-for-small-only">
 						<a href="javascript:;" class="filter-label" dropdown="#filter-post-type" ng-class="{'filter-selected': filter.post_type != null}">
-		          {{ 'MARKETPLACE.FILTER.POST_TYPE.' + (filter.post_type.toUpperCase() || 'NAME') | translate}}
+		          {{ 'MARKETPLACE.FILTER.POST_TYPE.' + (filter.post_type.toUpperCase() || 'NAME') + (filter.post_exact_type.toUpperCase()) | translate}}
 		          <i class="fa fa-chevron-down"></i>
 		        </a>
 		        <ul class="actions-dropdown dropdown-align-right margin-top-small" id="filter-post-type" style="display: none;">
-		          <li><a ng-click="addFilter('post_type',null)"  ng-class="{'filter-selected': filter.post_type === null}" translate="MARKETPLACE.FILTER.POST_TYPE.ALL"></a></li>
-		          <li><a ng-click="addFilter('post_type','offer')" ng-class="{'filter-selected': filter.post_type === 'offer'}" translate="MARKETPLACE.FILTER.POST_TYPE.OFFER"></a>
+		          <li>
+                <a ng-click="addFilters([['post_type',null] , ['post_exact_type',null]])" ng-class="{'filter-selected': filter.post_type === null && filter.post_exact_type === null}"
+                   translate="MARKETPLACE.FILTER.POST_TYPE.ALL">
+                </a>
+              </li>
+		          <li>
+                <a ng-click="addFilters([['post_type','offer'] , ['post_exact_type',null]])" ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === null}"
+                     translate="MARKETPLACE.FILTER.POST_TYPE.OFFER">
+                </a>
 		            <ul>
-		              <li><a href="#">Jen daruji</a></li>
-		              <li><a href="#">Jen půjčím</a></li>
+		              <li>
+                    <a ng-click="addFilters([['post_type','offer'] , ['post_exact_type','gift']])"
+                         ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === 'gift'}" translate="MARKETPLACE.FILTER.POST_TYPE.OFFERGIFT">
+                    </a>
+                  </li>
+		              <li>
+                    <a ng-click="addFilters([['post_type','offer'] , ['post_exact_type','loan']])"
+                         ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === 'loan'}"  translate="MARKETPLACE.FILTER.POST_TYPE.OFFERLOAN">
+                    </a>
+                  </li>
 		            </ul>
 		          </li>
-		          <li><a ng-click="addFilter('post_type','need')" ng-class="{'filter-selected': filter.post_type === 'need'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEED"></a>
+		          <li>
+                <a ng-click="addFilters([['post_type','need'] , ['post_exact_type',null]])"
+                     ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === null}" translate="MARKETPLACE.FILTER.POST_TYPE.NEED">
+                </a>
 		            <ul>
-		              <li><a href="#">Jen půjčím si</a></li>
-		              <li><a href="#">Jen přijmu</a></li>
+		              <li>
+                    <a ng-click="addFilters([['post_type','need'] , ['post_exact_type','loan']])"
+                       ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === 'loan'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEEDLOAN">
+                    </a>
+                  </li>
+		              <li>
+                    <a ng-click="addFilters([['post_type','need'] , ['post_exact_type','gift']])"
+                       ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === 'gift'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEEDGIFT">
+                    </a>
+                  </li>
 		            </ul>
 		          </li>
 		        </ul>
@@ -210,12 +236,6 @@
           </div>
         </section>
         <section class="footer display-flex">
-          <div class="large-6">
-            <button ng-click="applyFilter()" class="button expanded" ng-disabled="!filterCount">
-              {{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
-              <b ng-if="filterCount !== false">({{filterCount}})</b>
-            </button>
-          </div>
           <div ng-if='loggedUser' ng-show="configOptionsShow.saveFilter" class="margin-left-large">
             <checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
           </div>
