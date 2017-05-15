@@ -140,11 +140,7 @@ angular.module('hearth.services').factory('Filter', [
 				$rootScope.$broadcast("filterReseted");
 				this.deleteUserFilter();
 
-				// on search page there is query param mandatory
-				var query = ($state.current.name == "search") ? $state.params.query : null;
-
-				$state.go($state.current.name, {
-					query: query,
+				$state.go('market', {
 					type: null
 				}, {
 					reload: true

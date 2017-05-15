@@ -62,23 +62,16 @@
 		        </a>
 		        <ul class="actions-dropdown margin-top-small" id="filter-character" style="display: none;">
 		          <li>
-								<a ng-click="addFilter('character',null)" ng-class="{'filter-selected': filter.character === null}" translate="MARKETPLACE.FILTER.CHARACTER.ALL">
-								</a>
+								<a ng-click="addFilter('character',null)" ng-class="{'filter-selected': filter.character === null}" translate="MARKETPLACE.FILTER.CHARACTER.ALL"></a>
 							</li>
 		          <li>
-								<a ng-click="addFilter('character','energy')" ng-class="{'filter-selected': filter.character === 'energy'}" translate="MARKETPLACE.FILTER.CHARACTER.ENERGY">
-									<!-- <i class="touchable fa fa-fw" event-stopper ng-class="filter.character === 'energy' ? 'check-square-o' : 'square-o'"> -->
-								</a>
+								<a ng-click="addFilter('character','energy')" ng-class="{'filter-selected': filter.character === 'energy'}" translate="MARKETPLACE.FILTER.CHARACTER.ENERGY"></a>
 							</li>
 		          <li>
-								<a ng-click="addFilter('character','mass')" ng-class="{'filter-selected': filter.character === 'mass'}" translate="MARKETPLACE.FILTER.CHARACTER.MASS">
-									<!-- <i class="touchable fa fa-fw" event-stopper ng-class="filter.character === 'mass' ? 'check-square-o' : 'square-o'"> -->
-								</a>
+								<a ng-click="addFilter('character','mass')" ng-class="{'filter-selected': filter.character === 'mass'}" translate="MARKETPLACE.FILTER.CHARACTER.MASS"></a>
 							</li>
 		          <li>
-								<a ng-click="addFilter('character','information')" ng-class="{'filter-selected': filter.character === 'information'}" translate="MARKETPLACE.FILTER.CHARACTER.INFORMATION">
-									<!-- <i class="touchable fa fa-fw" event-stopper ng-class="filter.character === 'information' ? 'check-square-o' : 'square-o'"> -->
-								</a>
+								<a ng-click="addFilter('character','information')" ng-class="{'filter-selected': filter.character === 'information'}" translate="MARKETPLACE.FILTER.CHARACTER.INFORMATION"></a>
 							</li>
 		        </ul>
 		      </div>
@@ -158,9 +151,9 @@
               <h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_CHARACTER' | translate }}</h5>
               <div class="radio-container medium-display-table-cell">
                 <div class="display-inline-block margin-right-large" ng-repeat="character in postCharacter">
-                  <checkbox model="filter[character.name]" value="true" class="margin-right-none">
+                  <radio ng-type="radio" model="filter.character" value="character.name" class="margin-right-none">
                     <span translate="{{:: character.translate }}"></span>
-                  </checkbox>
+                  </radio>
                   <i class="fa fa-question-circle color-dark-gray" aria-hidden="true" tipsy tipsy-on-show="logCharInfoShown" title="{{character.translateText | translate}}"></i>
                 </div>
               </div>
@@ -211,7 +204,7 @@
               <div class="medium-display-table-cell padding-bottom-small">
                 <div class="row">
                   <div class="column" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
-                    <input class="bottom-line-input" type="text" id="geolocation" ng-model="filter.name" />
+                    <input style="box-shadow: none !important;" type="text" id="geolocation" ng-model="filter.name" ng-model-options="{updateOn : 'blur'}" />
                   </div>
                   <div class="column small-5 medium-4 range-select-container" ng-show="filter.lat && filter.lon && filter.name">
                     <input type="range" ng-model="filter.distance" step="25" min="25" max="100">

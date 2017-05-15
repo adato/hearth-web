@@ -15,11 +15,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		$scope.postTypes = $$config.postTypes;
 		$scope.loaded = true;
 
-		$scope.$on('$destroy', function() {
-			$scope.topArrowText.top = '';
-			$scope.topArrowText.bottom = '';
-		});
-
 		angular.extend($scope, {
 			queryText: $stateParams.query || '',
 			items: [],
@@ -106,13 +101,12 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		$scope.init = function() {
 			$scope.languageCode = $rootScope.language;
 			$scope.load();
-
-			$scope.$on('filterReseted', $scope.reload);
-			$scope.$on('filterApplied', $scope.reload);
-		}
+		};
 
 		$scope.$on("$destroy", function() {
 			$rootScope.setFulltextSearch('');
+      $scope.topArrowText.top = '';
+      $scope.topArrowText.bottom = '';
 		});
 
 		$scope.init();
