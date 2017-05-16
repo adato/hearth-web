@@ -139,7 +139,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.retrievePosts = function(params) {
 			$scope.dataFetchError = false;
-			
+
 			var paramObject = JSON.parse(JSON.stringify(params));
 			if (paramObject.page) delete paramObject.page;
 
