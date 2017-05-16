@@ -26,7 +26,7 @@ angular.module('hearth').config([
 				reloadOnSearch: false
 			})
 			.state('market-refresh', {
-				url: "/market",
+				url: '/market',
 				controller: ['$location', function($location) {
 					$location.path('/'); // just for refresh purposes
 				}],
@@ -38,17 +38,17 @@ angular.module('hearth').config([
 			})
 			.state('communities', {
 				abstract: true,
-				url: "/communities",
+				url: '/communities',
 				templateUrl: 'assets/pages/community/communities.html',
 				controller: 'CommunitiesCtrl'
 			})
 			.state('communities.suggested', {
-				url: "",
+				url: '',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl'
 			})
 			.state('communities.all', {
-				url: "/all",
+				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl'
 			})

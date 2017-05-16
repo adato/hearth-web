@@ -31,7 +31,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
-		var itemTypes = ['post', 'banner']; //, 'community', 'user', 'conversation']; no more types needed for now
+		var itemTypes = ['post', 'blogposts']; //, 'banner', 'community', 'user', 'conversation']; no more types needed for now
 		var templateDir = 'assets/components/item/items/';
 
 		if ($state.params.query) {
@@ -55,6 +55,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				Rollbar.error("HEARTH: No template found for this content", item);
 				done('No template found for this content', '');
 				return false;
+			}
+
+			// insert blogposts into scope for HearthCrowdfundingBanner directive
+			if (item._type === 'blogposts') {
+				scope.blogposts = HearthCrowdfundingBanner.blogposts;
 			}
 
 			templates[item._type.toLowerCase()](scope, done);
