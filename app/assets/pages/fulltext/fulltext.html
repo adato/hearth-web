@@ -2,7 +2,10 @@
 	<filterbar-fulltext></filterbar-fulltext>
 
 	<section class="box">
-		<div ng-if="items.length" class="text-center margin-bottom-large" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {counter: totalCounter, value: queryText}"></div>
+		<div ng-if="items.length" class="text-center margin-bottom-large">
+			<div translate="FULLTEXT_WE_FOUND_RESULTS" translate-values="{counter: totalCounter, value: queryText}"></div>
+			<hr />
+		</div>
 
 		<div ng-if="!items.length && loaded" class="small-12 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
 

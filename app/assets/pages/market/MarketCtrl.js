@@ -34,12 +34,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var itemTypes = ['post', 'blogposts']; //, 'banner', 'community', 'user', 'conversation']; no more types needed for now
 		var templateDir = 'assets/components/item/items/';
 
-		if ($state.params.query) {
-			$rootScope.searchQuery.query = $state.params.query;
-		}
-		if ($state.params.type) {
-			$rootScope.searchQuery.type = $state.params.type;
-		}
+		$rootScope.searchQuery.query = $state.params.query || null;
+		$rootScope.searchQuery.type = $state.params.type || 'post';
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();

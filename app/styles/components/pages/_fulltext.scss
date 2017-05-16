@@ -59,8 +59,10 @@
 		}
 	}
 	.search-item {
-		margin: {
-			bottom: 2* $fontSize;
+		margin-bottom: $size-large;
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 
 		&.inactive {

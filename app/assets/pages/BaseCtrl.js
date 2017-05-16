@@ -160,7 +160,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * When submitted fulltext search
 		 */
-		$scope.search = function(searchQuery) {
+		$scope.search = searchQuery => {
 			if (!searchQuery.query) {
 				$("#search").focus();
 				return false;
@@ -301,19 +301,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 
-		$rootScope.reloadToMarketplace = function() {
-			$rootScope.searchQuery = {
-				query: null,
-				type: 'post'
-			};
-			$state.go('market', {
-				query: null,
-				type: null
-			}, {
-				reload: false
-			});
-			$scope.$broadcast('reloadMarketplace');
-		};
+		// $rootScope.reloadToMarketplace = function() {
+		// 	$rootScope.searchQuery = {
+		// 		query: null,
+		// 		type: 'post'
+		// 	};
+		// 	$state.go('market', {
+		// 		query: null,
+		// 		type: null
+		// 	}, {
+		// 		reload: false
+		// 	});
+		// 	$scope.$broadcast('reloadMarketplace');
+		// };
 
 		/**
 		 * When clicked on logout button
@@ -773,11 +773,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// return false if post is inactive
 		$rootScope.isPostActive = item => item.state === 'active';
 
-		$rootScope.toggleSearchBar = function(value) {
+		$rootScope.toggleSearchBar = value => {
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);
 
 			if ($rootScope.searchBarDisplayed) {
-				$('#searchContainer').slideDown('slow', function() {
+				$('#searchContainer').slideDown('slow', () => {
 					$('#searchContainer').show();
 					angular.element('#search').focus();
 				});
@@ -798,7 +798,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		};
 
-		$rootScope.isSearchBarShown = function() {
+		$rootScope.isSearchBarShown = () => {
 			return $rootScope.searchBarDisplayed;
 		};
 
@@ -811,7 +811,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;
 
-		$scope.$on('$destroy', function() {
+		$scope.$on('$destroy', () => {
 			angular.element(window).unbind('scroll');
 		});
 	}
