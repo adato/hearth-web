@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="html">
 <head>
+	<script src='https://cdn.optimizely.com/js/8246840690.js'></script>
 	<meta charset='utf-8' />
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -18,7 +19,7 @@
 
 	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 	<link rel='stylesheet' type='text/css' href='./css/main.css' />
-	<link href="https://fonts.googleapis.com/css?family=Merriweather|Raleway&amp;subset=latin-ext" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Merriweather|Raleway&amp;subset=latin-ext' rel='stylesheet'>
 
 
 	<script>
@@ -71,12 +72,12 @@
 
 			var cookieFactory = window.aeg.cookieFactory;
 
-			var en = 'en',
-				cs = 'cs',
-				sk = 'sk';
+			var en = 'en';
+			var cs = 'cs';
+			var sk = 'sk';
 
-			var defaultLanguage = en,
-				languageCookie = 'language';
+			var defaultLanguage = en;
+			var languageCookie = 'language';
 
 			// all langs except default en language
 			// what langs can be specified in url as /lang/...
@@ -161,8 +162,11 @@
 						<li>
 							<a href='#how-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 						</li>
-						<li>
-							<a href='#support-us' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+						<li language-no-en>
+							<a href='#from-our-blog' class='nav-item' t='LANDING_PAGE.MENU.GET_INSPIRED'>Inspirujte se</a>
+						</li>
+						<li language-only-en>
+							<a href='#testimonies' class='nav-item' t='LANDING_PAGE.MENU.TESTIMONIALS'>Mají nás rádi</a>
 						</li>
 					</ul>
 				</div>
@@ -174,8 +178,11 @@
 				<li>
 					<a href='#how-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 				</li>
-				<li>
-					<a href='#support-us' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+				<li language-no-en>
+					<a href='#from-our-blog' class='nav-item' t='LANDING_PAGE.MENU.GET_INSPIRED'>Inspirujte se</a>
+				</li>
+				<li language-only-en>
+					<a href='#testimonies' class='nav-item' t='LANDING_PAGE.MENU.TESTIMONIALS'>Mají nás rádi</a>
 				</li>
         <li>
           <a href='/app/login' class='nav-item' t='LANDING_PAGE.MENU.LOGIN' user-not-logged style='display: none'>
@@ -195,13 +202,13 @@
 					<div class='hr margin-vertical-none'></div>
 					<ul class='margin-none padding-medium sub-link-list'>
 						<li>
-							<a class='nav-item' href='/app'>
+							<a class='nav-item has-hover-effect' href='/app'>
 								<i class='fa fa-fw hearth-flame margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.MARKETPLACE'>Podívat se na tržiště</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/app/messages'>
+							<a class='nav-item has-hover-effect' href='/app/messages'>
 								<i class='fa fa-fw fa-envelope-o margin-right-small'></i>
 								<div class='flex flex-space-between flex-1'>
 									<span t='LANDING_PAGE.MENU.MESSAGES'>Zprávy</span>
@@ -210,25 +217,25 @@
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' profile-link>
+							<a class='nav-item has-hover-effect' profile-link>
 								<i class='fa fa-fw fa-user margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.PROFILE'>Profil</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/app/profile-edit'>
+							<a class='nav-item has-hover-effect' href='/app/profile-edit'>
 								<i class='fa fa-fw fa-edit margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.EDIT_PROFILE'>Upravit profil</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/app/profile-settings'>
+							<a class='nav-item has-hover-effect' href='/app/profile-settings'>
 								<i class='fa fa-fw fa-cog margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.SETTINGS'>Nastavení</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='#' logout>
+							<a class='nav-item has-hover-effect' href='#' logout>
 								<i class='fa fa-fw fa-sign-out margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.LOGOUT'>Odhlásit se</span>
 							</a>
@@ -336,52 +343,56 @@
 			<translation hidden rel='NUMBER_OF_GIFTS' t='LANDING_PAGE.SECTION.MARKETPLACE.NUMBER_OF_GIFTS'></translation>
 			<div class='medium-flex inverted'>
 				<div class='flex-1 masonry-wrapper'>
-					<a href='/app/?keywords=kniha' class='flex masonry-item masonry-hover-zoom' id='image-mp-1'>
+					<a href='/app/?character[]=energy' class='flex masonry-item masonry-hover-zoom' id='image-mp-1'>
 						<div class='image-target'></div>
-						<div class='flex-1 flex flex-column'>
-							<h2>knihy, knížky a jiné čtivo</h2>
+						<div class='flex-1 flex flex-column full-height flex-align-center'>
+							<div class='flex-1 flex flex-align-center'>
+								<div class='text-align-center'>
+									<h2 t='CATEGORY_ENERGY'></h2>
+									<div>
+										<div class='button secondary small'>
+											<span character-fill='energy' t='LANDING_PAGE.SECTION.MARKETPLACE.SHOW_GIFTS_AND_WISHES'></span>
+										</div>
+									</div>
+									<small class='text-white' t='LANDING_PAGE.SECTION.MARKETPLACE.CATEGORY_ENERGY_TEXT'></small>
+								</div>
+							</div>
 						</div>
 					</a>
 				</div>
 				<div class='flex-1 masonry-wrapper'>
-					<a href='/app/?keywords=prevoz' class='flex masonry-item masonry-hover-zoom' id='image-mp-2'>
+					<a href='/app/?character[]=mass' class='flex masonry-item masonry-hover-zoom' id='image-mp-2'>
 						<div class='image-target'></div>
-						<div class='flex-1 flex flex-column'>
-							<h2>doprava a převoz nejen darů</h2>
+						<div class='flex-1 flex flex-column full-height flex-align-center'>
+							<div class='flex-1 flex flex-align-center'>
+								<div class='text-align-center'>
+									<h2 t='CATEGORY_MASS'></h2>
+									<div>
+										<div class='button secondary small'>
+											<span character-fill='mass' t='LANDING_PAGE.SECTION.MARKETPLACE.SHOW_GIFTS_AND_WISHES'></span>
+										</div>
+									</div>
+									<small class='text-white' t='LANDING_PAGE.SECTION.MARKETPLACE.CATEGORY_MASS_TEXT'></small>
+								</div>
+							</div>
 						</div>
 					</a>
 				</div>
 				<div class='flex-1 masonry-wrapper'>
-					<a href='/app/?keywords=zahrada' class='flex masonry-item masonry-hover-zoom' id='image-mp-3'>
+					<a href='/app/?character[]=information' class='flex masonry-item masonry-hover-zoom' id='image-mp-3'>
 						<div class='image-target'></div>
-						<div class='flex-1 flex flex-column'>
-							<h2>rostlinky a vybavení na zahradu</h2>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class='medium-flex'>
-				<div class='flex-1 masonry-wrapper'>
-					<a href='/app/?keywords=kurz' class='flex masonry-item masonry-hover-zoom' id='image-mp-4'>
-						<div class='image-target'></div>
-						<div class='flex-1 flex flex-column'>
-							<h2>kurzy a vzdělávání</h2>
-						</div>
-					</a>
-				</div>
-				<div class='flex-1 masonry-wrapper'>
-					<a href='/app/?keywords=obleceni' class='flex masonry-item masonry-hover-zoom' id='image-mp-5'>
-						<div class='image-target'></div>
-						<div class='flex-1 flex flex-column'>
-							<h2>oblečení všeho druhu</h2>
-						</div>
-					</a>
-				</div>
-				<div class='flex-1 masonry-wrapper'>
-					<a href='/app/?keywords=jazyk' class='flex masonry-item masonry-hover-zoom' id='image-mp-6'>
-						<div class='image-target'></div>
-						<div class='flex-1 flex flex-column'>
-							<h2>překlady a jazykové lekce</h2>
+						<div class='flex-1 flex flex-column full-height flex-align-center'>
+							<div class='flex-1 flex flex-align-center'>
+								<div class='text-align-center'>
+									<h2 t='CATEGORY_INFORMATION'></h2>
+									<div>
+										<div class='button secondary small'>
+											<span character-fill='information' t='LANDING_PAGE.SECTION.MARKETPLACE.SHOW_GIFTS_AND_WISHES'></span>
+										</div>
+									</div>
+									<small class='text-white' t='LANDING_PAGE.SECTION.MARKETPLACE.CATEGORY_INFORMATION_TEXT'></small>
+								</div>
+							</div>
 						</div>
 					</a>
 				</div>
@@ -416,7 +427,7 @@
 		</section>
 		<div class='slash'></div>
 	</div>
-	<div class='section contains-slash'>
+	<div class='section contains-slash' id='testimonies'>
 		<section>
 			<h1 t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE_WHO_LIKE_US'>Mají nás rádi</h1>
 			<div class='text-align-center large-quote'>“</div>
@@ -466,8 +477,8 @@
 
 			              <!-- Nav tabs -->
 										<div class='img-rotator controls'>
-											<i rotate-left class='color-primary fa fa-chevron-left fa-2x cursor-pointer'></i>
-											<i rotate-right class='color-primary fa fa-chevron-right fa-2x cursor-pointer'></i>
+											<i rotate-left class='fa fa-chevron-left fa-2x cursor-pointer'></i>
+											<i rotate-right class='fa fa-chevron-right fa-2x cursor-pointer'></i>
 										</div>
 			              <ul class='nav nav-justified' id='nav-tabs' role='tablist' tab-headers>
 											<!--
@@ -494,7 +505,7 @@
 		</div>
 	</div>
 	<div class='section contains-slash background-alternate' id='from-our-blog' blog-post-section>
-		<section id='target-deje-se'>
+		<section>
 			<h1 t='LANDING_PAGE.SECTION.GET_INSPIRED.GET_INSPIRED'>Inspirujte se</h1>
 			<div translation-holder--read-on-our-blog data-attr-t translation-t='LANDING_PAGE.SECTION.GET_INSPIRED.READ_ON_OUR_BLOG'></div>
 			<div class='medium-flex flex-align-start flex-divided-medium' blog-posts-wrapper>
@@ -517,7 +528,7 @@
           a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
         </p>
       </div>
-			<div class='medium-flex flex-align-start flex-medium-divide'>
+			<div class='medium-flex flex-align-start flex-divided-medium'>
 				<div class='flex-div flex-1 blog-block'>
 					<h5><strong t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.HEADER'>Přispěj finančně</strong></h5>
 					<p t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.TEXT'>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš. Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>

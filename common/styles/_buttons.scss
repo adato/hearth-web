@@ -30,6 +30,7 @@ a.button {
     }
     &:focus,
     &:active {
+        color: $white;
       background-color: scale-color($secondary-color, $lightness: -10%);
     }
   }
@@ -40,6 +41,7 @@ a.button {
 
   &.offer {
     background-color: $tertiary-color;
+
     &:focus,
     &:active {
       background-color: scale-color($tertiary-color, $lightness: -10%) !important;

@@ -4,8 +4,12 @@ exports.config = {
   allScriptsTimeout: 60000,
   getPageTimeout: 60000,
   capabilities: {
-    'browserName': 'chrome' // or 'firefox', 'safari'
+    'browserName': 'chrome',
+    chromeOptions: {
+      args: ['--no-sandbox']
+    }
   },
+
 
   specs: [
     testFolder + 'unauth/marketplace.spec.js',
