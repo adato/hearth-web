@@ -22,9 +22,7 @@
 		</span>
 
 		<div class="block">
-			<div class="padding-bottom-3">
-				{{:: 'COMMUNITY_RATING_JOIN_REALIZED_GIFT' | translate }}
-			</div>
+			<div class="padding-bottom-small" translate="COMMUNITY_RATING_JOIN_REALIZED_GIFT"></div>
 			<select id="ratingsPostsSelect" ng-model="rating.post_id">
 				<option value="" ng-selected="true">{{:: 'COMMUNITY_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				<optgroup ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_POST_TITLE' | translate }}">

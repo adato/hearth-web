@@ -17,6 +17,8 @@ angular.module('hearth').config([
 
 		$stateProvider
 			.state('market', {
+				// @kamil - query and type params must remain so that they get cleaned on route change
+				// TODO even though i have no idea why that happens
 				url: '/?query&type',
 				params: {
 					showMessage: ''

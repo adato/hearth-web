@@ -172,6 +172,14 @@
 .word-wrap{
 	word-wrap: break-word;
 }
+.text-epic {
+	font-size: 7rem;
+	line-height: 100%;
+
+	@include breakpoint(large up) {
+		font-size: 10rem;
+	}
+}
 
 /* /TEXT */
 
