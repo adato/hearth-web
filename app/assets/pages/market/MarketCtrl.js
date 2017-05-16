@@ -95,7 +95,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			}
 			$scope.debug && console.timeEnd("Posts pushed to array and built");
 			done(data);
-		};
+		}
 
 		function finishLoading(data, isLast) {
 			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
@@ -112,7 +112,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.disableLazyLoad = false;
 				if (!isLast) $scope.loading = false;
 			});
-		};
+		}
 
 		// As temporary fix of issue #1010, this will retrieve newly added post from cache
 		// and try if it in array of posts, if not, insert it, if yes delete it from cache
@@ -131,13 +131,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// if there is not, add him to the top
 			data.unshift(newPost);
 			return data;
-		};
+		}
 
 		$scope.toggleFilter = function() {
 			$scope.$broadcast("filterOpen");
 		};
 
 		$scope.retrievePosts = function(params) {
+			$scope.dataFetchError = false;
+			
 			var paramObject = JSON.parse(JSON.stringify(params));
 			if (paramObject.page) delete paramObject.page;
 
@@ -148,7 +150,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// params.type = "community,user,post";
 			// params.query = "*";
 			paramObject.type = itemTypes.join(',');
-			Post.query(paramObject, function(data) {
+			Post.query(paramObject, data => {
 				$scope.loaded = true;
 				$(".loading").hide();
 
@@ -164,7 +166,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				// iterativly add loaded data to the list and then call finishLoading
 				addItemsToList($('#market-item-list'), data, 0, finishLoading.bind($scope));
 				$rootScope.$emit('postsLoaded');
-			}, function(err) {
+			}, err => {
 				// error handler
 				$scope.loaded = true;
 				$scope.dataFetchError = true;
@@ -210,11 +212,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			refreshTags();
 			// if there are keywords, add them to search
 			if ($.isArray(params.keywords)) {
-				params.keywords = params.keywords.join(",");
+				params.keywords = params.keywords.join(',');
 			}
 
-			$scope.debug && console.time("Market posts loaded and displayed");
-			$scope.debug && console.time("Market posts loaded from API");
+			$scope.debug && console.time('Market posts loaded and displayed');
+			$scope.debug && console.time('Market posts loaded from API');
 
 			if ($scope.debug) $log.debug('Loading content');
 			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
