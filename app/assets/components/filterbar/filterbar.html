@@ -6,7 +6,7 @@
 				<div class="flex-1 flex-grid flex-align-center">
 
 		      <!-- Post type filter-->
-		      <div class="position-relative nowrap hide-for-small-only">
+		      <div ng-show="configOptionsShow.market" class="position-relative nowrap hide-for-small-only">
 						<a href="javascript:;" class="filter-label" dropdown="#filter-post-type" ng-class="{'filter-selected': filter.post_type != null}">
 		          {{ 'MARKETPLACE.FILTER.POST_TYPE.' + (filter.post_type.toUpperCase() || 'NAME') + (filter.post_exact_type.toUpperCase()) | translate}}
 		          <i class="fa fa-chevron-down"></i>
@@ -55,7 +55,7 @@
 		      </div>
 
 		      <!-- Character filter-->
-		      <div class="position-relative nowrap hide-for-small-only">
+		      <div ng-show="configOptionsShow.market" class="position-relative nowrap hide-for-small-only">
 		        <a href="javascript:;" class="filter-label" dropdown="#filter-character" ng-class="{'filter-selected': filter.character != null}">
 		          {{ 'MARKETPLACE.FILTER.CHARACTER.' + (filter.character.toUpperCase() || 'NAME') | translate}}
 		          <i class="fa fa-chevron-down"></i>
@@ -77,7 +77,7 @@
 		      </div>
 
 		      <!-- Time filter-->
-		      <div class="position-relative nowrap hide-for-small-only">
+		      <div ng-show="configOptionsShow.market" class="position-relative nowrap hide-for-small-only">
 		        <a href="javascript:;" class="filter-label" dropdown="#filter-time" ng-class="{'filter-selected': filter.days != null}">
 		          {{ 'MARKETPLACE.FILTER.TIME.' + (filter.days.toUpperCase() || 'NAME') | translate}}
 		          <i class="fa fa-chevron-down"></i>
@@ -92,16 +92,16 @@
 
 		      <!-- Next options label-->
 		      <!-- Mobile view-->
-		      <a class="show-for-small-only" ng-click="toggleFilter()">
+		      <a ng-class="{'show-for-small-only': configOptionsShow.market}" ng-click="toggleFilter()">
 		       <i ng-show="filterSelected" class="fa fa-chevron-up"></i>
 		       <i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
 		       {{::'MARKETPLACE.FILTER.TITLE' | translate}}
 		      </a>
-          <a href="javascript:;" ng-show="filterOn" class="show-for-small-only" ng-click="cancelFilter()">
+          <a ng-class="{'show-for-small-only': configOptionsShow.market}" href="javascript:;" ng-show="filterOn" ng-click="cancelFilter()">
             {{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate }}
           </a>
 		      <!-- Tablet and desktop-->
-		      <small class="nowrap flex-grid hide-for-small-only" ng-click="toggleFilter()">
+		      <small ng-show="configOptionsShow.market" class="nowrap flex-grid hide-for-small-only" ng-click="toggleFilter()">
 						<a href="javascript:;" class="next-options-label">
 		          {{::'MARKETPLACE.FILTER.NEXT_OPTIONS' | translate}}
 		        </a>
@@ -113,7 +113,7 @@
 
 				</div>
 
-				<div class="nowrap">
+				<div ng-show="configOptionsShow.market" class="nowrap">
 					<a class="map-label" test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
 					<a class="map-label" test-beacon="filterbar-show-posts-on-map" ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
 				</div>

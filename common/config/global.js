@@ -118,8 +118,8 @@ window['$$config'] = {
 		need: 'PEOPLE_COUNT_OFFER_PL'
 	},
 	filterOptions: {
-		default: ['keywords', 'character', 'postType', 'postTime', 'author', 'location', 'postLanguage', 'saveFilter'],
-		search: ['location', 'entityType']
+		default: ['market', 'keywords', 'character', 'postType', 'postTime', 'author', 'location', 'postLanguage', 'saveFilter'],
+		search: ['fulltext', 'location', 'entityType']
 	}
 };
 

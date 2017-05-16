@@ -101,6 +101,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		$scope.init = function() {
 			$scope.languageCode = $rootScope.language;
 			$scope.load();
+      $scope.$on('filterApplied', $scope.reload);
 		};
 
 		$scope.$on("$destroy", function() {
