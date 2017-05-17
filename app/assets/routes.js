@@ -17,6 +17,8 @@ angular.module('hearth').config([
 
 		$stateProvider
 			.state('market', {
+				// @kamil - query and type params must remain so that they get cleaned on route change
+				// TODO even though i have no idea why that happens
 				url: '/?query&type',
 				params: {
 					showMessage: ''
@@ -26,7 +28,7 @@ angular.module('hearth').config([
 				reloadOnSearch: false
 			})
 			.state('market-refresh', {
-				url: "/market",
+				url: '/market',
 				controller: ['$location', function($location) {
 					$location.path('/'); // just for refresh purposes
 				}],
@@ -38,17 +40,17 @@ angular.module('hearth').config([
 			})
 			.state('communities', {
 				abstract: true,
-				url: "/communities",
+				url: '/communities',
 				templateUrl: 'assets/pages/community/communities.html',
 				controller: 'CommunitiesCtrl'
 			})
 			.state('communities.suggested', {
-				url: "",
+				url: '',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl'
 			})
 			.state('communities.all', {
-				url: "/all",
+				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl'
 			})

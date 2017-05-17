@@ -39,10 +39,11 @@ angular.module('hearth.services').service('PageTitle', [
 
 			title += ((append) ? ' ' + append : '');
 
-			if (title && postfix)
+			if (title && postfix) {
 				title += delimiter + postfix;
-			else if (!title)
+			} else if (!title) {
 				title = postfix;
+			}
 
 			self.setTitle(title);
 		};
