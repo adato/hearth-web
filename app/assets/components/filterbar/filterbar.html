@@ -134,10 +134,10 @@
       <hr class="margin-none" />
       <div ng-show="inited">
 
-        <section class="filter-inner block">
+        <div class="filter-inner">
           <input type="hidden" ng-model="filter.query" value="searchQuery.query" />
           <input type="hidden" ng-model="filter.type" value="searchQuery.type" />
-          <div class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical">
+          <div class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical skip-last-row-border">
             <div ng-show="configOptionsShow.keywords" class="medium-display-table-row keywords-container" ng-if="inited">
               <h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
               <div class="medium-display-table-cell padding-bottom-small">
@@ -203,10 +203,10 @@
               <h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
               <div class="medium-display-table-cell padding-bottom-small">
                 <div class="row">
-                  <div class="column" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
+                  <div class="column padding-none" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
                     <input style="box-shadow: none !important;" type="text" id="geolocation" ng-model="filter.name" ng-model-options="{updateOn : 'blur'}" />
                   </div>
-                  <div class="column small-5 medium-4 range-select-container" ng-show="filter.lat && filter.lon && filter.name">
+                  <div class="column small-5 medium-4 padding-right-none" ng-show="filter.lat && filter.lon && filter.name">
                     <input type="range" ng-model="filter.distance" step="25" min="25" max="100">
                     <span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
                   </div>
@@ -219,7 +219,7 @@
                 <radio ng-type="radio" model="filter.post_language" value="'all'">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
                 <radio ng-type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
                 <radio ng-type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
-                <div class="autocomplete-container" ng-show="filter.post_language == 'other'">
+                <div class="autocomplete-container margin-top-small" ng-show="filter.post_language == 'other'">
                   <tags-input ng-model="filter.post_language_other" display-property="name" key-property="code" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
                     <auto-complete source="queryLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
                   </tags-input>
@@ -227,12 +227,13 @@
               </div>
             </div>
           </div>
-        </section>
-        <section class="footer display-flex">
-          <div ng-if='loggedUser' ng-show="configOptionsShow.saveFilter" class="margin-left-large">
-            <checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
-          </div>
-        </section>
+        </div>
+
+        <div class="footer" ng-if="loggedUser" ng-show="configOptionsShow.saveFilter">
+					<hr class="margin-top-none margin-bottom-small" />
+          <checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
+        </div>
+
       </div>
 
     </div>

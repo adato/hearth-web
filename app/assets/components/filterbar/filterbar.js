@@ -179,8 +179,8 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         };
 
 
-        scope.toggleFilter = () => {
-          scope.filterSelected = !scope.filterSelected;
+        scope.toggleFilter = value => {
+          scope.filterSelected = value !== void 0 ? value : !scope.filterSelected;
         };
 
         scope.testFilterActive = () => {
@@ -314,7 +314,9 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         });
 
         // listeners
-        scope.$on('filterOpen', scope.toggleFilter);
+        scope.$on('filterOpen', () => {
+          scope.toggleFilter(true);
+        });
         scope.$on('filterReset', scope.cancelFilter);
 
         scope.$on('filterClose', function() {
