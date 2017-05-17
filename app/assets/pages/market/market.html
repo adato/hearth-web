@@ -49,7 +49,7 @@
 			<div class="column small-12 medium-10 medium-push-2 box text-center" translate="MARKETPLACE.NOTHING_FOUND" translate-values="{attrs: 'ui-sref=\'market\' ui-sref-opts=\'{reload: true, notify: true}\''}" translate-compile></div>
 		</div>
 
-		<div ng-show="!dataFetchError" id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">
+		<div ng-if="!dataFetchError" id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">
 			<!-- <item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by item._id" user="user" community="null"></item> -->
 		</div>
 	</div>

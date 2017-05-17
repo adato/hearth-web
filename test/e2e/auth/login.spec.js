@@ -7,7 +7,7 @@ describe('hearth login/logout', function () {
     //login first
     protractor.helpers.login();
 
-    var navigationMenu = element(by.css(".logged-user-dropdown"));
+    var navigationMenu = beacon('logged-user-dropdown');
     expect(navigationMenu.isPresent()).toBeTruthy();
 
     // logout
