@@ -13,39 +13,39 @@
 		        </a>
 		        <ul class="actions-dropdown dropdown-align-right margin-top-small" id="filter-post-type" style="display: none;">
 		          <li>
-                <a ng-click="addFilters([['post_type',null] , ['post_exact_type',null]])" ng-class="{'filter-selected': filter.post_type === null && filter.post_exact_type === null}"
+                <a ng-click="addFilters({'post_type':null , 'post_exact_type':null})" ng-class="{'filter-selected': filter.post_type === null && filter.post_exact_type === null}"
                    translate="MARKETPLACE.FILTER.POST_TYPE.ALL">
                 </a>
               </li>
 		          <li>
-                <a ng-click="addFilters([['post_type','offer'] , ['post_exact_type',null]])" ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === null}"
+                <a ng-click="addFilters({'post_type':'offer' , 'post_exact_type':null})" ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === null}"
                      translate="MARKETPLACE.FILTER.POST_TYPE.OFFER">
                 </a>
 		            <ul>
 		              <li>
-                    <a ng-click="addFilters([['post_type','offer'] , ['post_exact_type','gift']])"
+                    <a ng-click="addFilters({'post_type':'offer' , 'post_exact_type':'gift'})"
                          ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === 'gift'}" translate="MARKETPLACE.FILTER.POST_TYPE.OFFERGIFT">
                     </a>
                   </li>
 		              <li>
-                    <a ng-click="addFilters([['post_type','offer'] , ['post_exact_type','loan']])"
+                    <a ng-click="addFilters({'post_type':'offer' , 'post_exact_type':'loan'})"
                          ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === 'loan'}"  translate="MARKETPLACE.FILTER.POST_TYPE.OFFERLOAN">
                     </a>
                   </li>
 		            </ul>
 		          </li>
 		          <li>
-                <a ng-click="addFilters([['post_type','need'] , ['post_exact_type',null]])"
+                <a ng-click="addFilters({'post_type':'need' , 'post_exact_type':null})"
                      ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === null}" translate="MARKETPLACE.FILTER.POST_TYPE.NEED">
                 </a>
 		            <ul>
 		              <li>
-                    <a ng-click="addFilters([['post_type','need'] , ['post_exact_type','loan']])"
+                    <a ng-click="addFilters({'post_type':'need' , 'post_exact_type':'loan'})"
                        ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === 'loan'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEEDLOAN">
                     </a>
                   </li>
 		              <li>
-                    <a ng-click="addFilters([['post_type','need'] , ['post_exact_type','gift']])"
+                    <a ng-click="addFilters({'post_type':'need' , 'post_exact_type':'gift'})"
                        ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === 'gift'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEEDGIFT">
                     </a>
                   </li>
@@ -223,6 +223,7 @@
                   <tags-input ng-model="filter.post_language_other" display-property="name" key-property="code" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
                     <auto-complete source="queryLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
                   </tags-input>
+                  <div ng-if="error_other_lang_empty" class="form-error" translate="ERROR_LANGUAGE_REQUIRED"></div>
                 </div>
               </div>
             </div>

@@ -38,6 +38,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         scope.postCharacter = $window.$$config.postCharacter;
 				scope.filterType = $state.params.type;
 				scope.searchParams = '';
+        scope.error_other_lang_empty;
 
         angular.extend(scope, {
           filterSelected: false
@@ -45,9 +46,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
 
         // add multiple filter properties
         scope.addFilters = (props) => {
-          new Map(props).forEach(function(value, key) {
-            scope.addFilter(key, value);
-          });
+          angular.merge(scope.filter, props);
         };
 
         // add single filter property
@@ -56,8 +55,12 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         };
 
         scope.applyFilter = () => {
+          scope.error_other_lang_empty = false;
           // Don't apply filter, when just switch to other languages without selected language
-          if(scope.filter.post_language === 'other' && !scope.filter.post_language_other.length)  return;
+          if(scope.filter.post_language === 'other' && !scope.filter.post_language_other.length)  {
+            scope.error_other_lang_empty = true;
+            return;
+          }
 
           Filter.apply(convertFilterToParams(scope.filter), scope.filterSave, true);
         };
@@ -304,6 +307,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
 
         // watchers
         scope.$watch('filter', (newValue,oldValue) => {
+        // Apply should not be called, when init
           if (newValue !== oldValue) {
             scope.applyFilter();
           }
