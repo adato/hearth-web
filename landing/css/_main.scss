@@ -35,7 +35,7 @@ h1, h2, h3 {
 .delinkify,
 .delinkify:hover {
   // text-decoration: none;
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 /**************************************
@@ -86,9 +86,10 @@ h1, h2, h3 {
 
 html, body, p,
 h1, h2, h3, h4, h5, h6,
-.nav-item,
-.footer-link {
-  color: #4a4a4a
+// prepended with #html to overpower _ab.scss options
+html.html .nav-item:not(.button),
+html.html .footer-link {
+  color: #4a4a4a;
 }
 
 /*******************

@@ -59,11 +59,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
           // Don't apply filter, when just switch to other languages without selected language
           if(scope.filter.post_language === 'other' && !scope.filter.post_language_other.length)  return;
 
-          if ($.isEmptyObject(scope.filter)) {
-            scope.reset();
-          } else {
-            Filter.apply(convertFilterToParams(scope.filter), scope.filterSave, true);
-          }
+          Filter.apply(convertFilterToParams(scope.filter), scope.filterSave, true);
         };
 
         // convert parameters from scope to location fields
@@ -307,7 +303,12 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
         });
 
         // watchers
-        scope.$watch('filter', scope.applyFilter, true);
+        scope.$watch('filter', (newValue,oldValue) => {
+          if (newValue !== oldValue) {
+            scope.applyFilter();
+          }
+        },true);
+
         scope.$watch('filterShown', function(isShown) {
           if (isShown) scope.recountPosts();
         });
