@@ -223,7 +223,7 @@
                   <tags-input ng-model="filter.post_language_other" display-property="name" key-property="code" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
                     <auto-complete source="queryLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
                   </tags-input>
-                  <div ng-if="error_other_lang_empty" class="form-error" translate="ERROR_LANGUAGE_REQUIRED"></div>
+                  <div ng-if="error_other_lang_empty" class="form-error" translate="FILTER.ERROR_LANGUAGE_REQUIRED"></div>
                 </div>
               </div>
             </div>
