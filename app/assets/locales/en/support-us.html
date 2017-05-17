@@ -17,7 +17,6 @@
 		<p>One off, recurring, or any sum on a regular basis in an amount you choose. Goodwill doesn’t have an exchange rate and we know every gift to Hearth matters.</p>
 		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Donate to Hearth</a>
 	</div>
-
 </div>
 
 <hr />
@@ -72,7 +71,7 @@
 						<img src="{{:: config.imgUrl }}/logo-dark.png" width="200" style="padding:10px;">
 					</a>
 				</div>
-				<div class="small-12 large-7 columns">
+				<div class="small-12 large-7 columns block">
 					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(0); }}</textarea>
 				</div>
 
@@ -81,7 +80,7 @@
 						<img src="{{:: config.imgUrl }}/logo-orange.png" width="200">
 					</a>
 				</div>
-				<div class="small-12 large-7 columns">
+				<div class="small-12 large-7 columns block">
 					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(1); }}</textarea>
 				</div>
 
@@ -90,7 +89,7 @@
 						<img src="{{:: config.imgUrl }}/logo.png" style="background:#7c766a; padding:10px;" width="200">
 					</a>
 				</div>
-				<div class="small-12 large-7 columns">
+				<div class="small-12 large-7 columns block">
 					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(2); }}</textarea>
 				</div>
 
@@ -214,19 +213,27 @@
 				<p>Thanks for helping to spread joy for Hearth. </p>
 
 				<div class="small-12 large-3 columns">
-					<label for="type">{{'I want:' | translate}}</label><br>
+					<label for="type">{{'I want:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
-					<checkbox model="postalAddressData.badges" on-update="void()" value="true" value-off="false">Badges</checkbox>
-					<input type="number" ng-model="postalAddressData.numBadges" name="num-badges" class="display-inline-block" />
-					<span class="display-inline-block" style="width:25px;"></span>
-					<checkbox model="postalAddressData.stickers" on-update="void()" value="true" value-off="false">Stickers</checkbox>
-					<input type="number" ng-model="postalAddressData.numStickers" name="num-stickers" class="display-inline-block" />
+				<div class="small-12 large-9 columns block">
+					<div class="flex flex-divided-large flex-wrap">
+						<div class="flex flex-divided-large">
+							<checkbox model="postalAddressData.badges" on-update="void()" value="true" value-off="false">Badges</checkbox>
+							<input type="number" ng-model="postalAddressData.numBadges" name="num-badges" class="display-inline-block" />
+						</div>
+						<div class="flex flex-divided-large">
+							<!-- <span class="display-inline-block" style="width:25px;"></span> -->
+							<checkbox model="postalAddressData.stickers" on-update="void()" value="true" value-off="false">Stickers</checkbox>
+							<input type="number" ng-model="postalAddressData.numStickers" name="num-stickers" class="display-inline-block" />
+						</div>
+					</div>
 				</div>
+				<div></div>
+
 				<div class="small-12 large-3 columns">
 					<label for="email">{{'Email:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="email" type="email" ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email" ng-pattern="emailPattern"/>
 				</div>
 
@@ -235,28 +242,28 @@
 				<div class="small-12 large-3 columns">
 					<label for="fullname">{{'Name, surname:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="fullname" type="text" name="fullname" ng-model="postalAddressData.fullName" class="form-control text-input top" placeholder="Name"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
 					<label for="street">{{'Street, number:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="street" type="text" name="street" ng-model="postalAddressData.street" class="form-control text-input top" placeholder="Street"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
 					<label for="city">{{'City, country:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="city" type="text" name="city" ng-model="postalAddressData.city" class="form-control text-input top" placeholder="City and country"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
 					<label for="psc">{{'Postcode:' | translate}}</label>
 				</div>
-				<div class="small-12 large-9 columns">
+				<div class="small-12 large-9 columns block">
 					<input id="psc" type="text" name="psc" ng-model="postalAddressData.psc" class="form-control text-input top" placeholder="Postcode"/>
 				</div>
 
@@ -288,21 +295,26 @@
 		</div>
 
 		<div ng-show="!contactDataEmailSent">
-			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form row" novalidate autofocus>
+			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form" novalidate autofocus>
 				<p>Wow, looks like we‘re about to meet soon. Please give us few words about your skills. Front end, back end, UX…? Add couple of projects you have finished or are working on. Plus a contact and we’ll get back to you.</p>
-				<div class="small-12 large-3 columns">
-					<label for="message-text">{{'I can give:' | translate}}</label>
-				</div>
-				<div class="small-12 large-9 columns">
-					<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
+				<div class="row">
+					<div class="small-12 large-3 columns">
+						<label for="message-text">{{'I can give:' | translate}}</label>
+					</div>
+					<div class="small-12 large-9 columns block">
+						<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
+					</div>
 				</div>
 
-				<div class="small-12 large-3 columns">
-					<label for="email">{{'My e-mail:' | translate}}</label>
+				<div class="row">
+					<div class="small-12 large-3 columns">
+						<label for="email">{{'My e-mail:' | translate}}</label>
+					</div>
+					<div class="small-12 large-9 columns block">
+						<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="emailPattern"/>
+					</div>
 				</div>
-				<div class="small-12 large-9 columns">
-					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="emailPattern"/>
-				</div>
+
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>

@@ -89,7 +89,7 @@
 					margin-bottom: 5px;
 				}
 				hr {
-					margin: 10px;
+					// margin: 10px;
 					&.orange {
 						border-color: lighten($secondary-color, 40);
 					}
@@ -301,9 +301,9 @@
 		}
 	}
 	.ratings-received {
-		.author-selector {
-			float: left;
-		}
+		// .author-selector {
+		// 	float: left;
+		// }
 		button {
 			&.positive {
 				background-color: #58af08;
@@ -318,6 +318,7 @@
 		.ratingReply {
 			.formStyle {
 				width: 100%;
+
 				.cancel-reply {
 					font-weight: bold;
 					position: relative;
@@ -349,16 +350,17 @@
 	}
 	.rating-form {
 		@extend .item-box-forms;
-		overflow: visible !important;
-		margin: auto;
-		h5 {
-			font-weight: 600;
-		}
-		label {
-			margin-bottom: 15px;
-			font-size: $ui-text-font-size;
-			margin-right: $ui-grid-size;
-		}
+		// overflow: visible !important;
+		// margin: auto;
+		//
+		// h5 {
+		// 	font-weight: 600;
+		// }
+		// label {
+		// 	// margin-bottom: 15px;
+		// 	// font-size: $ui-text-font-size;
+		// 	// margin-right: $ui-grid-size;
+		// }
 
 		.need-offer-selector  {
 			label {
@@ -414,14 +416,14 @@
 			font-size: 120%;
 			color: $quaternary-color;
 			margin: 0;
-			padding: $size-small $size-big;
+			padding: $size-small $size-large;
 		}
 		.buttons {
 			text-align: center;
-      margin-top: $size-medium;
+			margin-top: $size-medium;
 		}
 		p {
-			margin: $size-small $size-big 0;
+			margin: $size-small $size-large 0;
 		}
 	}
 	.left-pane {
@@ -503,8 +505,8 @@
 				font-size: 110%;
 				font-weight: bold;
 				margin: {
-					left: 20px;
-					right: 20px;
+					left: 25px;
+					right: 25px;
 					top: 10px;
 				}
 				;
@@ -531,8 +533,8 @@
 		padding: 0;
 		.user-about {
 			.line {
-				margin-left: 20px;
-				margin-right: 20px;
+				margin-left: $size-large;
+				margin-right: $size-large;
 				div.descr {
 					word-wrap: break-word;
 					margin-top: $ui-small-grid-size;

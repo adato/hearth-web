@@ -8,6 +8,13 @@ var reporter = new HtmlScreenshotReporter({
 });
 
 exports.config = {
+  capabilities: {
+    'browserName': 'chrome',
+    chromeOptions: {
+      args: ['--no-sandbox']
+    }
+  },
+
   directConnect: true,
 	specs: [
 		testFolder + 'unauth/marketplace.spec.js',

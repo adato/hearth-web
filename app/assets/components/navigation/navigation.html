@@ -80,6 +80,16 @@
 			<li>
 				<label>{{:: 'TOP_BAR_ABOUT' | translate}} </label>
 			</li>
+			<li ng-if=":: language === 'cs'">
+				<a ui-sref="aboutUs" translate="MENU.ABOUT_US"></a>
+			</li>
+			<li ng-if=":: language === 'cs'">
+				<a ui-sref="ourStory" translate="MENU.OUR_STORY"></a>
+			</li>
+			<li ng-if=":: language === 'cs'">
+				<a ui-sref="contacts" translate="MENU.CONTACTS"></a>
+			</li>
+
 			<li>
 				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}">{{:: 'MENU.TERMS' | translate}}</a>
 			</li>
@@ -361,7 +371,6 @@
 							</ul>
 						</li>
 					</ul>
-					<!-- OTHER LANGS MENU -->
 					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop" ng-if=":: language !== 'cs'">
 						<li>
 							<a ng-href="{{:: basePath }}terms">{{:: 'MENU.TERMS' | translate}}</a>
@@ -414,7 +423,7 @@
 							</ul>
 						</li>
 					</ul>
-					<!-- ----------- -->
+					<!--------------->
 				</div>
 			</section>
 			<div class="clear"></div>
