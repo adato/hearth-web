@@ -7,7 +7,7 @@
 			<hr />
 		</div>
 
-		<div ng-if="!items.length && loaded" class="text-center" translate="FULLTEXT_NOTHING_FOUND_RELATED_TO" translate-values="{value: queryText}"></div>
+		<div ng-if="!items.length && loaded" class="text-center remove-p-margins" translate="FULLTEXT_NOTHING_FOUND_RELATED_TO" translate-values="{value: queryText}"></div>
 
 		<section id="fulltextSearchResults">
 			<article ng-repeat="item in items" class="row search-item" ng-class="{'inactive': item._type == 'Post' && !item.isActive}" ng-switch="item._type">
