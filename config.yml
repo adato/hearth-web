@@ -178,3 +178,5 @@ PATHS:
       js:
         - "landing/js/libs.js"
         - "landing/js/**/*.js"
+    common:
+      scss: "common/styles/**/*.scss"

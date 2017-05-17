@@ -1,56 +1,56 @@
-.profile-edit {
-	section {
-		&.languages {
-			position: relative;
-			margin-left: 70px;
-
-			.autocomplete {
-				max-height: 240px;
-				overflow-y: scroll;
-			}
-		}
-		&.interests {
-			position: relative;
-
-			.autocomplete {
-				max-height: 240px;
-				overflow-y: scroll;
-			}
-		}
-		&.contact {
-			.contact-phone {
-				.intl-tel-input {
-					display: block;
-
-					.country-list {
-						min-width: 252px;
-						margin: 0;
-					}
-				}
-			}
-		}
-		&.webs {
-			.web-item {
-				position: relative;
-				.fa-times-circle {
-					position: absolute;
-					top: 5px;
-					right: 5px;
-				}
-			}
-		}
-	}
-}
-
-.profile-settings {
-	@extend .common-profile-settings;
-	.language-select {
-		width: initial !important;
-		min-width: 200px;
-	}
-	.configure-notifications {
-		.button-send {
-			margin-bottom: 0px;
-		}
-	}
-}
+// .profile-edit {
+// 	section {
+// 		&.languages {
+// 			position: relative;
+// 			margin-left: 70px;
+//
+// 			.autocomplete {
+// 				max-height: 240px;
+// 				overflow-y: scroll;
+// 			}
+// 		}
+// 		&.interests {
+// 			position: relative;
+//
+// 			.autocomplete {
+// 				max-height: 240px;
+// 				overflow-y: scroll;
+// 			}
+// 		}
+// 		&.contact {
+// 			.contact-phone {
+// 				.intl-tel-input {
+// 					display: block;
+//
+// 					.country-list {
+// 						min-width: 252px;
+// 						margin: 0;
+// 					}
+// 				}
+// 			}
+// 		}
+// 		&.webs {
+// 			.web-item {
+// 				position: relative;
+// 				.fa-times-circle {
+// 					position: absolute;
+// 					top: 5px;
+// 					right: 5px;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+//
+// .profile-settings {
+// 	@extend .common-profile-settings;
+// 	.language-select {
+// 		width: initial !important;
+// 		min-width: 200px;
+// 	}
+// 	.configure-notifications {
+// 		.button-send {
+// 			margin-bottom: 0px;
+// 		}
+// 	}
+// }

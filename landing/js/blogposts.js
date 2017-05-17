@@ -1,16 +1,16 @@
 ;(function(window, config) {
 	'use strict';
 
-	var request = window.aeg.request,
-		$ = window.aeg.$,
-		fe = window.aeg.fe,
-		formatDate = window.aeg.formatDate;
+	var request = window.aeg.request;
+	var $ = window.aeg.$;
+	var fe = window.aeg.fe;
+	var formatDate = window.aeg.formatDate;
 
-	var posts = [],
-		postsSectionWrapperSelector = '[blog-post-section]',
-		postsElementWrapperSelector = '[blog-posts-wrapper]',
-		postsElementWrapper = $(postsElementWrapperSelector),
-		readOnBlogTranslationSelector = '[translation-holder--read-on-our-blog]';
+	var posts = [];
+	var postsSectionWrapperSelector = '[blog-post-section]';
+	var postsElementWrapperSelector = '[blog-posts-wrapper]';
+	var postsElementWrapper = $(postsElementWrapperSelector);
+	var readOnBlogTranslationSelector = '[translation-holder--read-on-our-blog]';
 
 	// If posts element wrapper is not present on the page, kill all blog posts processing
 	if (postsElementWrapper && postsElementWrapper.length) {
@@ -58,14 +58,14 @@
 		var standaradizedPost = document.createElement('div');
 		standaradizedPost.className = 'flex-div flex-1 blog-block';
 
-		var title = params.post.querySelector('title'),
-			link = params.post.querySelector('link'),
-			text = params.post.querySelector('description'),
-			textHTML = '', // variable for transfrerring xml into html
-			pubDate = params.post.querySelector('pubDate');
+		var title = getElInnerHtmlAsText(params.post.querySelector('title'), {strip: 'title'});
+		var link = getElInnerHtmlAsText(params.post.querySelector('link'), {strip: 'link'});
+		var text = getElInnerHtmlAsText(params.post.querySelector('description'), {strip: 'description'});
+		var textHTML = ''; // variable for transfrerring xml into html
+		var pubDate = getElInnerHtmlAsText(params.post.querySelector('pubDate'), {strip: 'pubDate'});
 
 		// strip text of CDATA
-		if (text && text.innerHTML) textHTML = text.innerHTML.replace('<![CDATA[', '').replace(']]>', '');
+		if (text) textHTML = text.replace('<![CDATA[', '').replace(']]>', '');
 
 		// try to get image from the text html (this must happen after stripping CDATA)
 		var image = document.createElement('div');
@@ -73,24 +73,38 @@
 		image = image.querySelector('[data-blogpost-thumbnail] img');
 
 		// try to format publishing date
-		var formattedPubDate = formatDate(new Date(pubDate.innerHTML));
+		var formattedPubDate = formatDate(new Date(pubDate));
 
-		var readOnBlog = 'Blog',
-			readOnBlogTranslation = $(readOnBlogTranslationSelector);
+		var readOnBlog = 'Blog';
+		var readOnBlogTranslation = $(readOnBlogTranslationSelector);
 		if (readOnBlogTranslation && readOnBlogTranslation.length) readOnBlog = readOnBlogTranslation[0].getAttribute('translation');
 
-		standaradizedPost.innerHTML = ""
+
+		standaradizedPost.innerHTML = ''
 			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
 			+ (formattedPubDate ? '<small class="display-inline-block text-muted margin-bottom-large">' + formattedPubDate + '</small>' : '')
-			+ (title && title.innerHTML ? '<h5 class="blog-heading">'
-				+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '">' : '')
-			 		+ title.innerHTML
-				+ (link && link.childNodes.length ? '</a>' : '')
+			+ (title ? '<h5 class="blog-heading">'
+				+ (!!link ? '<a target="_blank" href="' + link + '">' : '')
+			 		+ title
+				+ (!!link ? '</a>' : '')
 			+ '</h5>' : '')
 			+ (textHTML ? '<div class="faux-paragraph">' + textHTML + '</div>' : '')
-			+ (link && link.childNodes.length ? '<div><a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="margin-top-medium">' + readOnBlog + '</a></div>' : '');
+			+ (!!link ? '<a target="_blank" href="' + link + '" class="margin-top-medium">' + readOnBlog + '</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
+	}
+
+	/**
+	 *	because IE is the BESTEST BROWSER EVER!
+	 *
+	 *	- opts - {String} strip - xml tag to strip
+	 */
+	function getElInnerHtmlAsText(el, opts) {
+		opts = opts || {};
+		var s = new XMLSerializer();
+		var str = s.serializeToString(el);
+		if (opts.strip) str = str.substring(opts.strip.length + 2, str.length - (opts.strip.length + 3));
+		return str;
 	}
 
 	function getElHtml(el) {
