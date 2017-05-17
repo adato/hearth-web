@@ -63,7 +63,15 @@
 				</label>
 			</div>
 
-			<div class="block text-center">
+      <div class="block">
+        <p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }}
+          <a href="" ng-click="showTerms()">{{ 'WITH_TERMS_OF_USE' | translate }}</a>
+        </p>
+        <p style="font-style: italic">{{ 'AUTH.REGISTER.FRIENDLY_AGREEMENT' | translate}} <i class="fa fa-heart"></i>
+        </p>
+      </div>
+
+      <div class="block text-center">
 				<button class="button" type="submit" test-beacon="register-button">
 					<i class="fa fa-user"></i>
 					<span translate="SIGNUP_BUTTON"></span>
@@ -80,10 +88,6 @@
 			</div>
 			<hr/>
 			<div class="bottom">
-				<p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }}
-					<a href="" ng-click="showTerms()">{{ 'WITH_TERMS_OF_USE' | translate }}</a>
-				</p>
-
 				<p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }}
 					<a href="{{ basePath }}login">{{ 'LOGIN_TO_HEARTH' | translate }}</a>
 				</p>
