@@ -3,12 +3,12 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.ResetPwdCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('ResetPwdCtrl', [
-	'$scope', 'Auth', '$location', 'Notify',
-	function($scope, Auth, $location, Notify) {
+	'$scope', 'Auth', '$location', 'Notify', '$state',
+	function($scope, Auth, $location, Notify, $state) {
 		$scope.token = true;
 		$scope.sent = false;
 		$scope.tokenVerified = false;
@@ -48,15 +48,19 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 		 */
 		$scope.resetPassword = function(data) {
 			$scope.showError.topError = false;
-			if (!$scope.validateData(data))
-				return false;
+			if (!$scope.validateData(data)) return false;
 
-			function onSuccess() {
+			User.resetPassword({
+				token: $scope.token,
+				password: data.password,
+				confirm: data.password
+			}, res => {
 				Notify.addSingleTranslate('NOTIFY.NEW_PASS_SUCCESS', Notify.T_SUCCESS);
-				$location.url("/login");
-			}
-
-			return Auth.resetPassword($scope.token, data.password, onSuccess);
+				// $location.url('/login');
+				$state.go('login');
+			}, err => {
+				console.warn(err);
+			});
 		};
 
 		/**
@@ -65,19 +69,16 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 		$scope.validateToken = function(token) {
 
 			// if token is not given, then show message
-			if (!token)
-				return $scope.tokenVerified = true;
-			else {
+			if (!token) return $scope.tokenVerified = true;
 
-				// if token is given, check api
-				Auth.checkResetPasswordToken(token, function(res) {
-					if (!res.ok) {
-						// if not valid, set him to false
-						$scope.token = false;
-					}
-					$scope.tokenVerified = true;
-				});
-			}
+			// if token is given, check api
+			User.checkResetPasswordToken({ token }, res => {
+				if (!res.ok) {
+					// if not valid, set him to false
+					$scope.token = false;
+				}
+				$scope.tokenVerified = true;
+			});
 		}
 
 		// check token code if is valid

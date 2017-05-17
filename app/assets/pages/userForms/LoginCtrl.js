@@ -57,14 +57,18 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			if (resendingEmail) return;
 			resendingEmail = true;
 
-			Auth.resendActivationEmail(invalidEmail, function(res) {
+			User.resendActivationEmail({
+				user: {
+					email: invalidEmail
+				}
+			}, res => {
 				resendingEmail = false;
 
 				if (res.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				}
-			}, function() {
+			}, err => {
 				resendingEmail = false;
 			});
 		};

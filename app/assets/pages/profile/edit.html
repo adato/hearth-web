@@ -8,7 +8,7 @@
 					<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{ profile.avatar.large }}" resized-thumbnail-image/>
 					<div class="text">
 						<i class="fa fa-plus-square-o"></i>
-						<span translate="CHOOSE_AVATAR_FILE"</span>
+						<span translate="CHOOSE_AVATAR_FILE"></span>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 					</label>
 					<label class="flex-1">
 						<span translate="MY_INTERESTS"></span>
-						<tags-input id="interests" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
+						<tags-input id="interests" test-beacon="interests-tags-input" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
 							<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
 						</tags-input>
 					</label>
@@ -96,35 +96,38 @@
 				<h2 translate="CONTACTS"></h2>
 
 				<div class="block">
-					<div class="medium-flex-grid">
-						<!-- main email -->
-						<div class="flex-1">
-							<label>
-								<span translate="MY_EMAIL"></span> *
-								<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" type='email' name="email" ng-required="true" mailgun-validator="1" ng-model-options="{ updateOn: 'blur' }">
-								<span ng-show="profileEditForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
-								<div class="form-error" ng-show="showError.email">
-									<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-									<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
-									<span ng-show="profileEditForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
-								</div>
-							</label>
-							<!-- <span mailgun-validator-did-you-mean id="1" target="profile.email"></span> -->
+					<div class="block">
+						<div class="medium-flex-grid">
+							<!-- main email -->
+							<div class="flex-1">
+								<label>
+									<span translate="MY_EMAIL"></span> *
+									<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" type='email' name="email" ng-required="true" mailgun-validator="1" ng-model-options="{ updateOn: 'blur' }">
+									<span ng-show="profileEditForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
+									<div class="form-error" ng-show="showError.email">
+										<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+										<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+										<span ng-show="profileEditForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
+									</div>
+								</label>
+								<!-- <span mailgun-validator-did-you-mean id="1" target="profile.email"></span> -->
+							</div>
+							<div class="flex-1">
+								<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
+								<privacy-selector ng-model="profile.visible_attributes.email"></privacy-selector>
+							</div>
 						</div>
-						<div class="flex-1">
-							<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
-							<privacy-selector ng-model="profile.visible_attributes.email"></privacy-selector>
+
+						<div ng-hide="showContactMail">
+							<a ng-click="showContactMail = true || profile.contact_email">
+								<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD"></span>
+							</a>
 						</div>
 					</div>
 
-					<div>
-						<a ng-click="showContactMail = true || profile.contact_email" ng-hide="showContactMail">
-							<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD"></span>
-						</a>
-					</div>
-					<div ng-show="showContactMail">
+					<div ng-show="showContactMail" class="block">
 						<!-- contact email -->
-						<div class="block medium-flex-grid">
+						<div class="medium-flex-grid">
 							<div class="flex-1">
 								<label>
 									<span translate="MY_CONTACT_EMAIL"></span>
@@ -185,14 +188,14 @@
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_FACEBOOK"></span>
-							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
+							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')" test-beacon="social-fb">
 							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_TWITTER"></span>
-							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
+							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')" test-beacon="social-twitter">
 							<div class="form-error" ng-show="showError.social_networks['twitter']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
@@ -201,14 +204,14 @@
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_LINKEDIN"></span>
-							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
+							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')" test-beacon="social-linkedin">
 							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="block flex-1">
 						<label>
 							<span translate="MY_GOOGLEPLUS"></span>
-							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
+							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')" test-beacon="social-gplus">
 							<div class="form-error" ng-show="showError.social_networks['googleplus']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
@@ -218,14 +221,14 @@
 						<label>
 							<i class="fa fa-globe"></i>&nbsp;<span translate="MY_WEB"></span>
 							<div ng-repeat="web in profile.webs track by $index" class="block flex flex-align-start">
-								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
+								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)" test-beacon="web-input">
 								<button ng-hide="$first" type="button" class="touchable" ng-click="profile.webs.splice($index,1)">
 									<i class="fa fa-times-circle"></i>
 								</button>
 							</div>
 							<div class="form-error" ng-show="showError.social_networks['webs']" translate="ERR_INVALID_URL"></div>
 							<div>
-								<a ng-click="profile.webs.push('')">
+								<a ng-click="profile.webs.push('')" test-beacon="web-adder">
 									<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD_NEXT_WEB"></span>
 								</a>
 							</div>
