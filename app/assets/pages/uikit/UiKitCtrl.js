@@ -89,6 +89,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       // bind submit function to controller
       // ctrl.testFormSubmit = (data, form) => {
       $scope.testFormSubmit = (data, form) => {
+        form.$setDirty();
 
         $scope.savingFormSuccess = false;
         $scope.savingFormError = false;
@@ -128,13 +129,13 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     <span translate="PERSON.NAME"></span>
     <input type="text" name="name" ng-model="testFormData.name" translate-attr="{placeholder: 'PERSON.NAME'}" required minlength="2" />
     <div class="help-text" translate="PERSON.NAME.HELPTEXT"></div>
-    <div class="form-error" ng-if="testForm.name.$dirty && testForm.name.$error.required" translate="ERROR.REQUIRED"></div>
-    <div class="form-error" ng-if="testForm.name.$dirty && testForm.name.$error.minlength" translate="ERROR.MIN_LENGTH" translate-values="{length: 2}"></div>
+    <div class="form-error" ng-if="(testForm.$submitted || testForm.name.$dirty) && testForm.name.$error.required" translate="ERROR.REQUIRED"></div>
+    <div class="form-error" ng-if="(testForm.$submitted || testForm.name.$dirty) && testForm.name.$error.minlength" translate="ERROR.MIN_LENGTH" translate-values="{length: 2}"></div>
   </label>
   <label class="block">
     <span translate="PERSON.SURNAME"></span>
     <input type="text" name="surname" ng-model="testFormData.surname" translate-attr="{placeholder: 'PERSON.SURNAME'}" required />
-    <div class="form-error" ng-show="testForm.surname.$dirty && testForm.surname.$error.required" translate="ERROR.REQUIRED"></div>
+    <div class="form-error" ng-show="(testForm.$submitted || testForm.surname.$dirty) && testForm.surname.$error.required" translate="ERROR.REQUIRED"></div>
   </label>
   <div class="flex flex-divided-medium">
     <button class="button" type="submit" translate="FORM.SUBMIT"></button>
