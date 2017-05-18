@@ -31,8 +31,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		$scope.loadingData = false;
 
 		$scope.userPostCount = {
-			'active': 0,
-			'inactive': 0
+			active: 0,
+			inactive: 0
 		};
 		$scope.userBookmarkCount = 0; // default zero counters
 
@@ -227,12 +227,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			// var compiledTemplate;
 
 			// counter for template
-			$scope.userPostCount = {
-				active: 0,
-				inactive: 0
-			};
+			$scope.userPostCount.active = 0;
+			$scope.userPostCount.inactive = 0;
 
-			finishLoading();
+			getPostsResult.active.length = 0;
+			getPostsResult.inactive.length = 0;
+			getPostsQ.length = 0;
 
 			$scope.postListActiveOptions = {
 				getData: ProfileUtils.getPosts.bind(null, {
@@ -262,6 +262,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				templateUrl: templateUrl,
 				inactivateTags: true
 			};
+
+			$rootScope.$emit('itemList.refresh')
 
 		}
 
@@ -307,7 +309,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				}
 			], finishLoading);
 
-			$scope.$on('postUpdated', $scope.refreshItemInfo);
 		}
 
 		$scope.cancelEdit = function() {
