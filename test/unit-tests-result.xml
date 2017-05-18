@@ -1,15 +1,22 @@
 <?xml version="1.0"?>
-<testsuite name="PhantomJS 2.1.1 (Windows 8 0.0.0)" package="" timestamp="2017-01-26T11:13:35" id="0" hostname="Gasmachine-MKII" tests="8" errors="0" failures="0" time="0.291">
+<testsuite name="PhantomJS 2.1.1 (Windows 8 0.0.0)" package="" timestamp="2017-05-18T14:14:33" id="0" hostname="Gasmachine-MKII" tests="15" errors="0" failures="0" time="0.408">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
   </properties>
-  <testcase name="Access to Hearth blocked by IP address User is redirect to the access denied page" time="0.104" classname="Access to Hearth blocked by IP address"/>
-  <testcase name="avatar directive directive html template is loaded" time="0.031" classname="avatar directive"/>
-  <testcase name="item directive - market place item 2-way binding is set as expected" time="0.116" classname="item directive - market place item"/>
-  <testcase name="Register controller Cannot register, if blocked by email address" time="0.014" classname="Register controller"/>
-  <testcase name="ConversationAux factory should exist" time="0.009" classname="ConversationAux factory"/>
-  <testcase name="ConversationAux factory .getFirstConversationIdIfAny() should exist" time="0.008" classname="ConversationAux factory"/>
-  <testcase name="ConversationAux factory .getFirstConversationIdIfAny() should return empty string" time="0.009" classname="ConversationAux factory"/>
+  <testcase name="Access to Hearth blocked by IP address User is redirect to the access denied page" time="0.024" classname="Access to Hearth blocked by IP address"/>
+  <testcase name="avatar directive directive html template is loaded" time="0.097" classname="avatar directive"/>
+  <testcase name="item directive - market place item 2-way binding is set as expected" time="0.117" classname="item directive - market place item"/>
+  <testcase name="Register controller Cannot register, if blocked by email address" time="0.027" classname="Register controller"/>
+  <testcase name="ConversationAux factory should exist" time="0.013" classname="ConversationAux factory"/>
+  <testcase name="ConversationAux factory .getFirstConversationIdIfAny() should exist" time="0.01" classname="ConversationAux factory"/>
+  <testcase name="ConversationAux factory .getFirstConversationIdIfAny() should return empty string" time="0.011" classname="ConversationAux factory"/>
+  <testcase name="LocationJsonDataTransform factory should exist" time="0.01" classname="LocationJsonDataTransform factory"/>
+  <testcase name="LocationJsonDataTransform factory .getLocationJson() should exist" time="0.013" classname="LocationJsonDataTransform factory"/>
+  <testcase name="LocationJsonDataTransform factory .getLocationJson() should return object with correct address data" time="0.015" classname="LocationJsonDataTransform factory"/>
+  <testcase name="LocationJsonDataTransform factory .getLocationJson() should throw parse error when passed invalid data" time="0.012" classname="LocationJsonDataTransform factory"/>
+  <testcase name="LocationJsonDataTransform factory .insertLocationJson() should exist" time="0.013" classname="LocationJsonDataTransform factory"/>
+  <testcase name="LocationJsonDataTransform factory .insertLocationJson() should return object with place_id" time="0.029" classname="LocationJsonDataTransform factory"/>
+  <testcase name="LocationJsonDataTransform factory .insertLocationJson() should throw an error when invalid data is passed" time="0.017" classname="LocationJsonDataTransform factory"/>
   <testcase name="Simple JS test  Test 2 + 2" time="0" classname="Simple JS test "/>
   <system-out>
     <![CDATA[
