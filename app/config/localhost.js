@@ -21,7 +21,7 @@ $$localConfig = {
 	rollbar: '6b7753ee76e044a7a9d41c62cde53f17',
 	websocket: {
 		url: 'wss://api.dev.hearth.net/cable',
-		debug: true
+		debug: false
 	},
 	hotjar: '56502',
 	mixpanel: {

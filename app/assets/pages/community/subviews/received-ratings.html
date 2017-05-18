@@ -1,10 +1,10 @@
 <div ng-include="'assets/pages/community/subviews/ratingsPanel.html'"></div>
 <div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! data.length">
 	<div class="item">
-		<p>{{:: 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
+		<p translate="PROFILE.POSTS.NO_RECEIVED_RATINGS_ME"></p>
 	</div>
 </div>
-<div class="ratings-received row rating-item" id="received-rating-form" ng-show="showUserRatingForm && ! mine">
+<div class="ratings-received row rating-item margin-bottom-large" id="received-rating-form" ng-show="showUserRatingForm && ! mine">
 	<section class="large-2 hide-for-small-only medium-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>

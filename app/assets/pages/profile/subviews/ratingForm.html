@@ -1,7 +1,7 @@
 <div class="content">
 	<h5 class="text-emphasize">{{:: 'ADD_USER_RATING' | translate }} {{info.name}}</h5>
 	<div class="rating-notify-box"></div>
-	<h6>{{:: 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h6>
+	<h6 translate="USER_RATING_SCORE_SELECT_TEXT"></h6>
 
 	<div class="block">
 		<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
@@ -19,9 +19,7 @@
 		</span>
 
 		<div class="block">
-			<div class="padding-bottom-3">
-				{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
-			</div>
+			<div class="padding-bottom-small" translate="USER_RATING_JOIN_REALIZED_GIFT"></div>
 			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				<option value="" ng-selected="true">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				<optgroup ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_POST_TITLE' | translate }}">

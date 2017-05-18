@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
-	'$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify',
-	function($scope, Auth, $location, ResponseErrors, Email, Notify) {
+	'$scope', 'ResponseErrors', 'Email', 'Notify', '$state',
+	function($scope, ResponseErrors, Email, Notify, $state) {
 		var resendingEmail = false;
 		var invalidEmail = null;
 
@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 
 		$scope.errors = new ResponseErrors();
 
-		$scope.testEmailExists = function(email, form, inputName, cb) {
+		function testEmailExists(email, form, inputName, cb) {
 			$scope[form][inputName].$error.unknown = false;
 			// dont check when email is blank
 			if (!email) return false;
@@ -49,14 +49,14 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 			if (resendingEmail) return;
 			resendingEmail = true;
 
-			Auth.resendActivationEmail(invalidEmail, function(res) {
+			User.resendActivationEmail(invalidEmail, res => {
 				resendingEmail = false;
 
 				if (res.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				}
-			}, function() {
+			}, err => {
 				resendingEmail = false;
 			});
 		};
@@ -68,7 +68,7 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 				cb && cb(false);
 			} else {
 				// else test if email exists
-				$scope.testEmailExists(form.email, 'resetPasswordForm', 'email', cb);
+				testEmailExists(form.email, 'resetPasswordForm', 'email', cb);
 			}
 		};
 
@@ -80,22 +80,22 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 			// is email valid?
 			$scope.validateEmail($scope.data, function(res) {
 				if (!res) return false;
-
-				if ($scope.sending)
-					return false;
+				if ($scope.sending) return false;
 				$scope.sending = true;
 
-				return Auth.requestPasswordReset($scope.data.email).success(function(res) {
+				return User.requestPasswordReset({
+					email: $scope.data.email
+				}, res => {
 					$scope.sending = false;
 
-					if (res.ok == false && res.error && res.error == 'account_not_confirmed') {
+					if (res.error == 'account_not_confirmed') {
 						$scope.showError.inactiveAccount = true;
 						invalidEmail = $scope.data.email;
 					} else {
 						Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
-						$location.url("/login");
+						$state.go('login');
 					}
-				}).error(function(data, status) {
+				}, err => {
 					$scope.sending = false;
 				});
 			});

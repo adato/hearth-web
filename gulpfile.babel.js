@@ -296,6 +296,7 @@ function imagesLanding() {
 
 // App configs
 function configs() {
+  // console.log('Running config build with environtment', ENVIRONMENT);
   return gulp.src([
     PATHS.src.configs.app[ENVIRONMENT],
     PATHS.src.configs.global,
