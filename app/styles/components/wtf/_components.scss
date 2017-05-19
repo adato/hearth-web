@@ -87,6 +87,11 @@
 		&.nowrap-addon{width: 1%; white-space: nowrap;}
 	}
 }
+.skip-last-row-border .display-table-row:last-child .display-table-cell,
+.skip-last-row-border .medium-display-table-row:last-child .medium-display-table-cell,
+.skip-last-row-border .large-display-table-row:last-child .large-display-table-cell {
+	border-bottom: none;
+}
 /* table addons */
 .table-with-icons .display-table-cell{
 	padding-bottom: $size-small;

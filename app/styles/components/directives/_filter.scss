@@ -1,9 +1,4 @@
 .filter {
-	tags-input {
-		.tags {
-			@extend .bottom-line-input;
-		}
-	}
 	span.distance {
 		color: $ui-color-lighter;
 	}
@@ -21,25 +16,6 @@
 
 }
 
-.bottom-line-input {
-	min-height: 30px;
-	margin: 0 !important;
-	padding: 0 !important;
-	border-radius: 0;
-	border: none !important;
-	border-bottom: 1px solid $ui-input-text-color !important;
-	box-shadow: none !important;
-	font-size: $ui-text-font-size;
-}
-input.bottom-line-input {
-	height: 30px;
-}
-input.bottom-line-input:focus {
-	border: none !important;
-	border-bottom: 1px solid $ui-input-text-color !important;
-	box-shadow: none !important;
-	outline: none;
-}
 // @include breakpoint(large up) {
 // 	.insert-button-container {
 // 		padding-left: 10px;
