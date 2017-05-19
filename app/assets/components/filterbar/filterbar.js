@@ -112,8 +112,10 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
             params.lang = lang.join(',');
           }
 
-          // all languages I speak, taken from session
+          params.my_lang = 0;
+          // all languages I speak, taken from user profile or session.
           if (filter.post_language == 'my') {
+            params.my_lang = 1;
             params.lang = Auth.getUserLanguages();
           }
 
