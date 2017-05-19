@@ -84,6 +84,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
 
+			if (toState.policy) {
+				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
+					event.preventDefault();
+					UnauthReload.setLocation(toState.url.slice(1));
+					return $state.go('login');
+				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
+					event.preventDefault();
+					return $state.go('market');
+				}
+			}
+
 			// retain optional state params on specified route groups
 			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
 				locationSearch = $location.search();

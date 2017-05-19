@@ -17,12 +17,13 @@ angular.module('hearth.services').service('UnauthReload', [
 		 */
 		self.checkAuth = function() {
 			// if not logged
-			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) {
+			if (! ($rootScope.loggedUser && $rootScope.loggedUser._id)) {
 				$rootScope.loginRequired = true;
+
 				// set return path and refresh on login
-				$.cookie(cookieName, $location.path().slice(1), {
-					path: '/'
-				});
+				// console.log($location.path(), $location.path().slice(1));
+				self.setLocation($location.path().slice(1))
+
 				// $location.path('login');
 				// $state.go('login', {
 				// 	location: 'replace'
@@ -64,6 +65,8 @@ angular.module('hearth.services').service('UnauthReload', [
 		self.getLocation = function() {
 			return $.cookie(cookieName);
 		};
+
+		self.setLocation = path => $.cookie(cookieName, path, {path: '/'});
 
 	}
 ]);
