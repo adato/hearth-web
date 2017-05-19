@@ -81,7 +81,7 @@ $ui-color-lighter: #999;
 $ui-input-height: 30px;
 $ui-button-height: 44px;
 $ui-input-error-color: #d95208; // darken(#ff782e, 15%);
-$ui-box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
+$ui-box-shadow: 0px 0px $size-tiny rgba(100, 100, 100, .5);
 $ui-navbar-height: 100px;
 
 $defaultShadow: 1px 1px 6px gray;

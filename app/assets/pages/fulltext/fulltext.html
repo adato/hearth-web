@@ -1,5 +1,5 @@
 <article class="row fulltext" when-scrolled="load(1)" offset="300" loading-in-progress="!loaded">
-	<filterbar-fulltext></filterbar-fulltext>
+  <filterbar></filterbar>
 
 	<section class="box">
 		<div ng-if="items.length" class="text-center margin-bottom-large">
@@ -7,16 +7,16 @@
 			<hr />
 		</div>
 
-		<div ng-if="!items.length && loaded" class="small-12 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
+		<div ng-if="!items.length && loaded" class="text-center remove-p-margins" translate="FULLTEXT_NOTHING_FOUND_RELATED_TO" translate-values="{value: queryText}"></div>
 
 		<section id="fulltextSearchResults">
 			<article ng-repeat="item in items" class="row search-item" ng-class="{'inactive': item._type == 'Post' && !item.isActive}" ng-switch="item._type">
-				<section class="large-2 small-3 medium-2 columns text-center">
+				<section class="column small-3 medium-2 text-center">
 					<div info-box="item.author || item">
 						<avatar src="item.avatar.normal" href="getProfileLink(item.author._type || item._type, item.author._id || item._id)" type="item.item_type"></avatar>
 					</div>
 				</section>
-				<section class="large-10 small-9 medium-10 columns">
+				<section class="column small-9 medium-10">
 					<div>
 						<div class="row headline">
 							<div class="title columns" ng-class="{'small-12 medium-8 large-8 position-relative': item._type === 'Post'}">
