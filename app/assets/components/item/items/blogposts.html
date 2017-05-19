@@ -1,0 +1,24 @@
+<article class="item-common item-banner">
+	<div class="row">
+    <section class="column medium-2 show-for-medium padding-top-small">
+		</section>
+
+		<div class="column small-12 medium-10 padding-none">
+			<section class="box padding-bottom-small" ng-init="marketplace.expanded = false;">
+				<h3 translate="OUR_BLOG.GET_INSPIRED"></h3>
+				<div class="display-medium-flex flex-divide-medium flex-align-start">
+          <div class="flex-div flex-1 box padding-none margin-bottom-medium" ng-repeat="post in blogposts">
+            <a ng-href="{{ post.link }}" target="_blank" class="blog-image display-block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></a>
+						<div class="padding-medium">
+	            <h4>
+	              <a ng-href="{{ post.link }}" target="_blank" ng-bind="post.title"></a>
+	            </h4>
+	            <div class="hide-all-images block block-height-limiter" style="max-height: 14rem" ng-bind-html="post.text"></div>
+	            <a ng-href="{{ post.link }}" target="_blank" translate="OUR_BLOG.READ_ON_BLOG"></a>
+          	</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</article>

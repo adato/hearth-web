@@ -2,9 +2,9 @@
 <div class="community-applications-list" ng-if="subPageLoaded">
 	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 		<div class="application">
-			<div class="applications-item">
+			<div class="position-relative">
 				<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
-					<avatar class="left margin-bottom-20" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
+					<avatar class="left block" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
 				</div>
 				<div class="applications-text">
 					<a href="{{ basePath }}profile/{{item._id}} ">

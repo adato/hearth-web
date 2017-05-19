@@ -8,7 +8,6 @@ angular.module('hearth', [
 		'hearth.constants',
 		'hearth.utils',
 		'hearth.geo',
-		'hearth.messages',
 		'hearth.templates',
 
 		'ngSanitize',
@@ -162,8 +161,8 @@ angular.module('hearth', [
 
 			ipnConfig.skipUtilScriptDownload = true;
 		}
-	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window) {
+	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window', 'Session', 'User',
+		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window, Session, User) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
@@ -217,42 +216,8 @@ angular.module('hearth', [
 					angular.extend($rootScope, Auth.getSessionInfo());
 
 					// if is logged, check if he wanted to see some restricted page
-					if ($rootScope.loggedUser._id) {
-						if (!$.cookie('forceRefresh')) {
-							var cookies = $.cookie();
+					if ($rootScope.loggedUser._id) UnauthReload.checkLocation();
 
-							for (var cookie in cookies) {
-								$.removeCookie(cookie);
-							}
-
-							$.cookie('forceRefresh', Date.now(), {
-								expires: 30 * 12 * 20,
-								path: '/'
-							});
-
-							Auth.logout(function() {
-								location.reload('/login');
-							});
-							// function cb() {
-							// 	location.reload('/login');
-							// }
-							// Session.get(session => {
-							// 	if (session._id) delete session._id;
-							// 	// $http.post($$config.apiPath + '/logout').success(cb).error(cb);
-							// 	User.logout({}, cb, cb);
-							// }, err => {
-							// 	// $http.post($$config.apiPath + '/logout').success(cb).error(cb);
-							// 	User.logout({}, cb, cb);
-							// });
-						}
-
-						UnauthReload.checkLocation();
-					} else {
-						$.cookie('forceRefresh', Date.now(), {
-							expires: 30 * 12 * 20,
-							path: '/'
-						});
-					}
 					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
 						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
 							mixpanel.identify($rootScope.loggedUser._id);
@@ -308,6 +273,18 @@ angular.module('hearth', [
 				done(null);
 			}
 
+			// UNCOMMENT FOR OFFLINE MODE .. HA!
+			// kept in if, just to make sure it never makes its way into production
+			// if ($$config.env === 'development') {
+			// 	console.info('OFFLINE MODE ACTIVE');
+			// 	$urlRouter.sync();
+			// 	$urlRouter.listen();
+			// 	$rootScope.initFinished = true;
+			// 	$rootScope.loggedUser = $rootScope.loggedUser || {};
+			// 	$rootScope.loggedUser._id = 1;
+			// 	$rootScope.$broadcast("initFinished");
+			// }
+
 			// Init hearth core parts
 			async.parallel({
 				language: initLanguage, // download language files
@@ -318,19 +295,17 @@ angular.module('hearth', [
 				$urlRouter.sync();
 				$urlRouter.listen();
 
-				$rootScope.debug = !!$.cookie("debug");
+				$rootScope.debug = !!$.cookie('debug');
 				$rootScope.initFinished = true;
-				$rootScope.$broadcast("initFinished");
+				$rootScope.$broadcast('initFinished');
 			});
 		}
-	]).run([
-		'PageTitle',
-		function(PageTitle) {
+	]).run(['PageTitle', function(PageTitle) {
 			/** Set default title, postfix, delimiter */
 			PageTitle.setDefault('', 'Hearth.net');
-		}
-	]);
+	}]);
 
+// INIT MODULES
 angular.module('hearth.constants', []);
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
@@ -341,8 +316,3 @@ angular.module('hearth.utils', []);
  * @description all code working with Google MAPS api
  */
 angular.module('hearth.geo', []);
-
-/**
- * @description all code solves messaging feature
- */
-angular.module('hearth.messages', []);

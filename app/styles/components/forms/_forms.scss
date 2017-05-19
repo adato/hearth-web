@@ -12,17 +12,57 @@ input[type="search"],
 input[type="tel"],
 input[type="time"],
 input[type="url"],
+input[type="file"],
+select,
 textarea,
 button,
 .button {
 	-webkit-border-radius: $global-radius;
 	border-radius: $global-radius;
 	resize: none;
+	margin-bottom: 0;
+}
+
+:not(form).ng-invalid:not(.ng-pristine),
+:not(form).ng-invalid:not(.ng-pristine):focus {
+	border: 1px solid $alert-color !important;
+	box-shadow: inset 0 0 5px $ui-input-error-color !important;
+}
+
+select {
+	// foundation triangle background position fix
+	background-position: right -.5rem center;
+}
+
+// label,
+.intl-tel-input {
+	display: block
+}
+input,
+textarea,
+tags-input {
+	width: 100%;
+}
+tags-input input {
+	width: initial !important;
 }
 
 textarea{
 	max-height: 200px;
 }
+
+// temp from profile edit
+textarea,
+tags-input.textarea-height > div > .tags {
+	// line-height: 1.33 !important;
+	// min-height: 200px;
+	min-height: 80px;
+}
+// tags-input .tags,
+// textarea {
+// 	padding: $size-medium;
+// }
+// /temp
 
 input,
 textarea,
@@ -69,10 +109,11 @@ textarea, input {
 	}
 
 	// all possible form elements margin-bottom removal
-	label{margin-bottom: 0 !important;}
+	// label{margin-bottom: 0 !important;}
 	input,
 	select,
-	textarea {
+	textarea,
+	.select2-container {
 		margin-bottom: 0;
 	}
 }
@@ -141,64 +182,62 @@ textarea, input {
 	}
 }
 
-label {
-	color: #4a4a4a;
-}
-
 /// common form items, included as @extend
 .item-box-forms {
-	textarea {
-		height: 85px;
-		resize: vertical;
-		transition: height 0.2s;
-	}
-	label {
-		cursor: pointer;
-		margin-bottom: 10px;
-		line-height: 1;
-		font-weight: $ui-text-weight-bolder;
-		color: #333;
-	}
+	// textarea {
+	// 	height: 85px;
+	// 	resize: vertical;
+	// 	transition: height 0.2s;
+	// }
+
+	// label {
+		// cursor: pointer;
+		// margin-bottom: 10px;
+		// line-height: 1;
+		// font-weight: $ui-text-weight-bolder;
+		// color: #333;
+	// }
+
 	// fix stuff
-	a {
-		font-weight: $ui-text-weight-bolder;
-	}
-	input,
-	select,
-	textarea {
-		border: $ui-input-border-style;
-		font-family: $body-font-family;
-		box-shadow: none !important; // uh oh
-		font-size: $ui-text-font-size;
-		color: $ui-input-text-color;
-		&.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
-			border: 1px solid $ui-input-error-color !important;
-		}
-	}
-	input[type="radio"] {
-		box-shadow: none !important;
-	}
-	input[type="text"],
-	input[type="email"] {
-		box-shadow: none !important;
-		font-size: $ui-text-font-size !important;
-		line-height: 1.3;
-		height: 6 * $ui-small-grid-size;
-		padding: $ui-small-grid-size;
-		padding-left: $ui-small-grid-size * 2;
-	}
-	select {
-		border-radius: $global-radius;
-		height: $ui-input-height;
-		line-height: $ui-text-font-size;
-		padding: 0 15px;
-		font-weight: $ui-text-weight-bolder;
-		-moz-appearance: none;
-		outline: none;
-		&:disabled {
-			background-color: #ddd !important;
-		}
-	}
+	// a {
+	// 	font-weight: $ui-text-weight-bolder;
+	// }
+	// input,
+	// select,
+	// textarea {
+	// 	border: $ui-input-border-style;
+	// 	font-family: $body-font-family;
+	// 	box-shadow: none !important; // uh oh
+	// 	font-size: $ui-text-font-size;
+	// 	color: $ui-input-text-color;
+	// 	&.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
+	// 		border: 1px solid $ui-input-error-color !important;
+	// 	}
+	// }
+	// input[type="radio"] {
+	// 	box-shadow: none !important;
+	// }
+	// input[type="text"],
+	// input[type="email"] {
+	// 	box-shadow: none !important;
+	// 	font-size: $ui-text-font-size !important;
+	// 	line-height: 1.3;
+	// 	height: 6 * $ui-small-grid-size;
+	// 	padding: $ui-small-grid-size;
+	// 	padding-left: $ui-small-grid-size * 2;
+	// }
+	// select {
+	// 	border-radius: $global-radius;
+	// 	height: $ui-input-height;
+	// 	line-height: $ui-text-font-size;
+	// 	padding: 0 15px;
+	// 	font-weight: $ui-text-weight-bolder;
+	// 	-moz-appearance: none;
+	// 	outline: none;
+	// 	&:disabled {
+	// 		background-color: #ddd !important;
+	// 	}
+	// }
 	div.error {
 		font-size: $ui-text-font-size;
 		/*top: -2 * $ui-small-grid-size;*/
@@ -218,12 +257,12 @@ label {
 			height: $ui-title-font-size;
 			text-align: left;
 		}
-		hr {
-			border: 0;
-			border-bottom: $ui-border-style;
-			margin-top: $ui-grid-size;
-			margin-bottom: $ui-small-grid-size * 2;
-		}
+		// hr {
+		// 	border: 0;
+		// 	border-bottom: $ui-border-style;
+		// 	margin-top: $ui-grid-size;
+		// 	margin-bottom: $ui-small-grid-size * 2;
+		// }
 		ul.message-line {
 			margin: 0;
 			padding: 0;
@@ -261,6 +300,11 @@ label {
 		padding-right: $size-tiny;
 		font: normal normal normal 14px/1 FontAwesome;
 	}
+}
+
+.help-text,
+.form-error {
+	margin-top: 0;
 }
 
 

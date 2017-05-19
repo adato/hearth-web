@@ -45,32 +45,11 @@ angular.module('hearth.services').factory('Auth', [
 			login: function(credentials, cb, errCb) {
 				User.login(credentials, cb, errCb);
 			},
-			resendActivationEmail: function(email, cb) {
-				return User.resendActivationEmail({
-					user: {
-						email: email
-					}
-				}, cb, cb);
-			},
-			logout: function(cb) {
-				return Session.get(session => {
-					if (session._id) delete session._id;
-					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
-				}, function() {
-					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
-				});
-			},
 			setToken: function(token) {
 				$.cookie(TOKEN_NAME, token, {
 					expires: 30 * 12 * 30,
 					path: '/'
 				});
-			},
-			destroyLogin: function() {
-				$.removeCookie(TOKEN_NAME, {
-					path: $$config.basePath
-				});
-				$rootScope.user.loggedIn = false;
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
@@ -78,20 +57,10 @@ angular.module('hearth.services').factory('Auth', [
       getUserLanguages: function () {
         return this.isLoggedIn() ? $rootScope.loggedUser.user_languages.join(',') : $rootScope.language;
       },
-			changePassword: function(password, success) {
-				return $http.post($$config.apiPath + '/change-password', {
-					password: password
-				}).success(function(data) {
-					return success(data);
-				});
-			},
 			getCredentials: function() {
 				return $rootScope.user.get_logged_in_user || {
 					_id: null
 				};
-			},
-			getCommunityCredentials: function() {
-				return $rootScope.user.active_identity || null;
 			},
 			getBaseCredentials: function() {
 				if ($rootScope.user._id) {
@@ -108,38 +77,6 @@ angular.module('hearth.services').factory('Auth', [
 					loggedUser: this.getCredentials(),
 					loggedEntity: this.getBaseCredentials(),
 				}
-			},
-			confirmRegistration: function(hash, success, error) {
-				User.confirmRegistration({
-					hash: hash
-				}, success, error);
-			},
-			completeEmailForRegistration: function(data, success, err) {
-				return User.completeEmailForRegistration(data, success, err);
-			},
-			requestPasswordReset: function(email) {
-				return $http.post($$config.apiPath + '/reset_password', {
-					email: email,
-				}, {
-					errorNotify: {
-						code: 'NOTIFY.RESET_PASSWORD_FAILED',
-						container: '.forgot-pass-notify-container'
-					}
-				});
-			},
-			checkResetPasswordToken: function(token, cb) {
-				return $http.get($$config.apiPath + '/users/check_reset_password_token?token=' + token).success(function(res) {
-					return cb(res);
-				}).error(function(res) {
-					return cb(res);
-				});
-			},
-			resetPassword: function(token, password, success, error) {
-				User.resetPassword({
-					token: token,
-					password: password,
-					confirm: password
-				}, success, error);
 			},
 			processLoginResponse: function(data) {
 				if (data.email_token) {

@@ -1,0 +1,43 @@
+html.variant-green {
+    .button
+    {
+        @extend .button.offer;
+    }
+    .nav.nav-justified>li>a .quote,
+    .background-primary
+    {
+        background-color: $tertiary-color;
+    }
+    .bulletize-paragraphs>p:before,
+    .button.hollow,
+    // .nav-item:not(.button),
+    a,
+    .main-navigation .nav-item:not(.button):hover,
+    .img-rotator.controls,
+    .img-rotator.controls [rotate-left]:hover,
+    .img-rotator.controls [rotate-right]:hover
+    {
+        color: $tertiary-color;
+    }
+    .sub-link-list .nav-item:hover
+    {
+        color: scale-color($tertiary-color, $lightness: -10%);
+    }
+    a:hover
+    {
+        border-bottom: 1px solid $tertiary-color;
+    }
+    .button.hollow
+    {
+        border-color: $tertiary-color;
+    }
+    .nav.nav-justified>li>a .img-circle
+    {
+        box-shadow: 0 0 0 5px $tertiary-color;
+    }
+
+    .decorated-circle-flame
+    {
+        background-image: url('../img/arrow-down-green.png');
+    }
+}

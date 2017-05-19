@@ -3,12 +3,12 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.FillEmailCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('FillEmailCtrl', [
-	'$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$stateParams',
-	function($scope, Auth, $location, ResponseErrors, Email, Notify, $stateParams) {
+	'$scope', 'ResponseErrors', 'Email', 'Notify', '$stateParams', 'User',
+	function($scope, ResponseErrors, Email, Notify, $stateParams, User) {
 		$scope.twitter_token = false;
 		$scope.data = {
 			email: '',
@@ -39,7 +39,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
 		$scope.validateEmail = function(form, cbValid, cbInvalid) {
 
-			// if email is invalid 
+			// if email is invalid
 			if ($scope.fillEmailForm.email.length) {
 				cbInvalid && cbInvalid('email invalid');
 			} else {
@@ -54,14 +54,14 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
 			// is email valid?
 			$scope.validateEmail($scope.data, function() {
-				// valid email, ready to go on ... 
+				// valid email, ready to go on ...
 
-				return Auth.completeEmailForRegistration($scope.data, function() { // success
+				return User.completeEmailForRegistration($scope.data, res => {
 					$scope.sending = false;
 					Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
 					$scope.hideForm();
 
-				}, function(err, status) { // error
+				}, function(err, status) {
 					$scope.sending = false;
 					$scope.errors = new ResponseErrors({
 						status: status,

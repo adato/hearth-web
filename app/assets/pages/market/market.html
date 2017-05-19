@@ -11,6 +11,14 @@
 	</div>
 
 	<!-- <marketplace-banner class="leader-banner show-for-large" target="_blank" image="borrow-lend" code="leader-banner" language="{{language}}" title="" href="" click="editItem(null)"></marketplace-banner> -->
+	<div class="row margin-horizontal-none margin-bottom-large">
+		<div class="column medium-10 medium-push-2 box padding-none overflow-hidden">
+			<a href="https://www.facebook.com/AckeeCZ/videos/1067242950044227/" target="_blank">
+				<img class="show-for-small-only" alt="Hearth-mobile-app" src="{{:: config.imgUrl }}/banner/ackee-m.jpg" />
+				<img class="show-for-medium" alt="Hearth-mobile-app" src="{{:: config.imgUrl }}/banner/ackee-l.jpg" />
+			</a>
+		</div>
+	</div>
 
 	<filterbar></filterbar>
 
@@ -23,32 +31,35 @@
 		</div>
 	</div>
 
+	<div class="column small-12 medium-10 medium-push-2 padding-none">
+		<div class="callout alert" ng-if="firstPageNotShown()" translate="MARKETPLACE.NOT_ON_FIRST_PAGE" translate-values="{sref: 'market({page: 1})'}" translate-compile></div>
+		<div class="callout alert" ng-if="showLimitedPostsMessageAuth" translate="LIMITED_POSTS_MESSAGE_AUTH" translate-compile translate-values="{'attrs': 'ng-href=\'profile-edit\''}">logged</div>
+		<div class="callout alert" ng-if="showLimitedPostsMessageUnauth" translate="LIMITED_POSTS_MESSAGE_UNAUTH"></div>
+	</div>
+
 	<div ng-hide="loaded" class="margin-top">&nbsp;</div>
 	<div class="small-12 columns" ng-hide="!loaded">
 		<div class="marketplace-items-container" ng-if="!items.length">
-			<div ng-show="filterIsOn" class="row">
-				<div class="small-12 medium-10 medium-push-2 columns box text-center not-found-box">
-					<p class="padding-2" ng-bind-html="'MARKETPLACE.FILTER_NOT_FOUND' | translate"></p>
+			<div ng-show="filterIsOn" class="row block">
+				<div class="column small-12 medium-10 medium-push-2 box text-center">
+					<p translate="MARKETPLACE.FILTER_NOT_FOUND"></p>
 					<div class="small-6 columns text-center">
-						<a ng-click="toggleFilter()">{{:: "MARKETPLACE.EDIT_FILTER" | translate}}</a>
+						<a ng-click="toggleFilter()" translate="MARKETPLACE.EDIT_FILTER"></a>
 					</div>
 					<div class="small-6 columns text-center">
-						<a ng-click="resetFilter()">{{:: "MARKETPLACE.RESET_FILTER" | translate}}</a>
+						<a ng-click="resetFilter()" translate="MARKETPLACE.RESET_FILTER"></a>
 					</div>
 				</div>
 			</div>
-			<div ng-show="!filterIsOn" class="row">
-				<div class="small-10 small-push-2 columns box text-center not-found-box">
-					<p class="padding-2">{{:: "MARKETPLACE.NOTHING_FOUND" | translate }}</p>
-				</div>
+			<div ng-show="!filterIsOn" class="row block">
+				<div class="column small-12 medium-10 medium-push-2 box text-center" translate="MARKETPLACE.NOTHING_FOUND_WITH_OPTIONS" translate-compile translate-values="{changeFilterAttrs: 'ng-click=\'toggleFilter()\'', editLangsAttrs: 'ui-sref=\'profileEdit\''}" ></div>
 			</div>
 		</div>
+		<div ng-if="dataFetchError" class="row block">
+			<div class="column small-12 medium-10 medium-push-2 box text-center" translate="MARKETPLACE.NOTHING_FOUND" translate-values="{attrs: 'ui-sref=\'market\' ui-sref-opts=\'{reload: true, notify: true}\''}" translate-compile></div>
+		</div>
 
-		<div class='callout alert not-first-page-callout' ng-if='firstPageNotShown()' translate='MARKETPLACE.NOT_ON_FIRST_PAGE' translate-values='{sref: "market({page: 1})"}' translate-compile></div>
-    <div class='callout alert not-first-page-callout' ng-if='showLimitedPostsMessageAuth' translate='LIMITED_POSTS_MESSAGE_AUTH' translate-compile translate-values="{'attrs': 'ng-href=\'profile-edit\''}">logged</div>
-    <div class='callout alert not-first-page-callout' ng-if='showLimitedPostsMessageUnauth' translate='LIMITED_POSTS_MESSAGE_UNAUTH'></div>
-
-		<div id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">
+		<div ng-if="!dataFetchError" id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">
 			<!-- <item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by item._id" user="user" community="null"></item> -->
 		</div>
 	</div>

@@ -1,15 +1,17 @@
-<div class="page-not-found">
-	<div class="large-6 small-12 medium-12 columns text-center error404-icon">
+<div class="page-not-found medium-flex-grid">
+	<div class="flex-1 text-center error404-icon">
 		<img ng-src="{{:: config.imgUrl }}/tv.png">
 	</div>
-	<div class="large-6 small-12 medium-12 columns text-center margin-vertical-large">
-		<h1>
-			<big>404</big>
-			<br>{{:: 'ERROR_404_SUBHEADER' | translate }}</h1>
-		<h2>{{:: 'NO_SIGNAL_ON_THIS_PAGE' | translate }}</h2>
+	<div class="flex-1 text-center margin-vertical-large">
+		<h1 class="text-epic color-secondary">404</h1>
+		<h2 translate="ERROR_404_SUBHEADER" class="color-secondary"></h2>
+		<hr class="margin-vertical-small" />
+		<h2 translate="NO_SIGNAL_ON_THIS_PAGE"></h2>
+		<hr class="margin-vertical-small" />
 		<br>
-		<button class="button" ng-click="goToFeedback()">{{:: 'FEEDBACK' | translate }}</button> &nbsp;
-		<button class="button" ng-click="goToMarket()">{{:: 'GO_BACK_TO_MARKET' | translate }}</button>
+		<div class="flex inline-flex flex-divided-medium flex-wrap">
+			<button type="button" class="button" ng-click="goToFeedback()" translate="FEEDBACK"></button>
+			<button type="button" class="button" ng-click="goToMarket()" translate="GO_BACK_TO_MARKET"></button>
+		</div>
 	</div>
-	<div class="clear"></div>
 </div>

@@ -49,19 +49,21 @@
 	white-space: nowrap;
 	font-size: 14px;
 	font-family: 'Raleway';
-	// text-decoration: none;
-	@extend .delinkify;
 }
+
 @media (min-width: 400px) {
 	.nav-item {
 		margin: 0 4px;
 		font-size: 14px
 	}
 }
-.nav-item:hover.has-hover-effect {
-	// text-decoration: underline;
-	@extend .linkify;
-}
+
 .main-navigation {
 	display: flex;
+}
+.main-navigation .nav-item {
+	border-bottom: none !important;
+}
+.main-navigation .nav-item:not(.button):hover {
+	color: $secondary-color;
 }
