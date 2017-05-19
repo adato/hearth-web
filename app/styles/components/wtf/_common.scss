@@ -1,18 +1,14 @@
-.select-style {
-	position: relative;
-	top: 2px;
-	width: unset;
-	min-width: 120px;
-	background-color: white;
-	border: 1px solid #d7d7d7;
-	border-radius: 8px;
-	box-shadow: 0 0 7px #ddd inset;
-	z-index: 20;
-}
-
-.full-width {
-	width: 100%;
-}
+// .select-style {
+// 	position: relative;
+// 	top: 2px;
+// 	width: unset;
+// 	min-width: 120px;
+// 	background-color: white;
+// 	border: 1px solid #d7d7d7;
+// 	border-radius: 8px;
+// 	box-shadow: 0 0 7px #ddd inset;
+// 	z-index: 20;
+// }
 
 .bold {
 	font-weight: bold;
@@ -71,21 +67,21 @@
 	}
 	/* /todo */
 
-	.box-content{
+	.box-content {
 		padding: $size-large $size-large 0;
 
-		a{
+		a {
 			color: $primary-color;
 		}
 	}
-	&.no-result p{
+	&.no-result p {
 		margin: 1.25rem 0.5rem;
 	}
 
-	&.sectioned-box{
+	&.sectioned-box {
 		padding: 0 0 $size-small 0;
 
-		header{
+		header {
 			padding: $size-medium $size-large;
 			margin-bottom: 0;
 
@@ -93,7 +89,7 @@
 				font-size: $global-font-size;
 			}
 		}
-		.box-section{
+		.box-section {
 			padding: $size-large;
 			margin-bottom: $size-small;
 
@@ -105,13 +101,13 @@
 				background-color: lighten($tertiary-color, 50%);
 			}
 
-			.display-table-cell.user{
+			.display-table-cell.user {
 				padding-top: $size-small;
 				padding-right: $size-big;
 			}
 		}
 	}
-	footer{
+	footer {
 		border-bottom-left-radius: $global-radius;
 		border-bottom-right-radius: $global-radius;
 	}
@@ -329,14 +325,6 @@ textarea {
 	}
 }
 
-.tleft {
-	text-align: left;
-}
-
-.tright {
-	text-align: right;
-}
-
 input::-ms-clear,
 input::-ms-reveal,
 textarea::-ms-clear {
@@ -362,56 +350,12 @@ textarea::-ms-clear {
 	}
 }
 
-.padding-small{padding: $size-small;}
-.padding-small-vertical{padding-top: $size-small; padding-bottom: $size-small;}
-.padding-small-horizontal{padding-right: $size-small; padding-left: $size-small;}
-
-.padding-medium{padding: $size-medium;}
-.padding-medium-vertical{padding-top: $size-medium; padding-bottom: $size-medium;}
-.padding-medium-horizontal{padding-right: $size-medium; padding-left: $size-medium;}
-
-.padding-large{padding: 1$size-large;}
-
-.margin-small-right{margin-right: $size-small;}
-
-/* todo remove */
-.padding-top {
-	padding-top: 1rem;
-}
-
-.padding-bottom {
-	padding-bottom: 1rem;
-}
-
-.padding-bottom-3 {
-	padding-bottom: 0.3rem;
-}
-
-.padding-left-0 {
-	padding-left: 0px;
-}
-/* /todo remove */
-
 .hyphenate {
 	-ms-word-break: break-word;
 	word-wrap: break-word;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
-}
-
-.margin-bottom-20 {
-	margin-bottom: 20px;
-}
-
-button.disabled,
-button[disabled],
-.button.disabled,
-.button[disabled] {
-	background-color: lighten($primary-color, 30%);
-	&:hover {
-		background-color: lighten($primary-color, 30%);
-	}
 }
 
 .elevated-authority-function,
@@ -432,6 +376,16 @@ a.elevated-authority-function:active{
 
 /* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability
 to remove !important would be also nice .. someday */
+// ! BELONGS TO _buttons.scss
+button.disabled,
+button[disabled],
+.button.disabled,
+.button[disabled] {
+	background-color: lighten($primary-color, 30%);
+	&:hover {
+		background-color: lighten($primary-color, 30%);
+	}
+}
 button.neutral,
 button.neutral:disabled{
 	background-color: darken($colorLightGray, 20%) !important;
@@ -441,40 +395,6 @@ button.neutral:focus{
 	background-color: $quaternary-color !important;
 }
 /* /kamil */
-
-.margin-auto {
-	margin: auto;
-}
-
-.margin-left-10 {
-	margin-left: 10px;
-}
-.margin-right-20 {
-	margin-right: 20px;
-}
-.margin-top-10 {
-	margin-top: 10px;
-}
-.margin-top-20 {
-	margin-top: 20px;
-}
-
-.margin-0 {
-	margin: 0px;
-}
-
-.padding-0 {
-	margin: 0px;
-}
-
-.label-block {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-.label-checked {
-	font-weight: bold;
-}
 
 .lowercase {
 	text-transform: lowercase;
@@ -497,19 +417,19 @@ button.neutral:focus{
 	}
 }
 
-.styled-list{
+.styled-list {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 
-	.list-item{
+	.list-item {
 		margin: 0;
-		padding: .3125rem;
+		padding: $size-small;
 		list-style: none;
 	}
 }
 #fb-root>.fb_dialog {
-	z-index:100000 !important; // set higher than 999999 (which is ngdialog)
+	z-index: 100000 !important; // set higher than 999999 (which is ngdialog)
 }
 
 .exit-off-canvas{

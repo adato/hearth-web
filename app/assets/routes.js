@@ -5,18 +5,19 @@ angular.module('hearth').config([
 		// delay routing - first load all dependencies (user session, translations)
 		$urlRouterProvider.deferIntercept();
 		$urlRouterProvider.rule(function($injector, $location) {
+			const re = /(.+)(\/+)(\?.*)?$/;
+			const path = $location.url();
 
-			var re = /(.+)(\/+)(\?.*)?$/
-			var path = $location.url();
-
-			if (re.test(path)) {
-				return path.replace(re, '$1$3')
-			}
+			if (re.test(path)) return path.replace(re, '$1$3')
 			return false;
 		});
 
+		const { SIGNED_IN, UNAUTH } = window.$$config.policy;
+
 		$stateProvider
 			.state('market', {
+				// @kamil - query and type params must remain so that they get cleaned on route change
+				// TODO even though i have no idea why that happens
 				url: '/?query&type',
 				params: {
 					showMessage: ''
@@ -26,7 +27,7 @@ angular.module('hearth').config([
 				reloadOnSearch: false
 			})
 			.state('market-refresh', {
-				url: "/market",
+				url: '/market',
 				controller: ['$location', function($location) {
 					$location.path('/'); // just for refresh purposes
 				}],
@@ -38,33 +39,36 @@ angular.module('hearth').config([
 			})
 			.state('communities', {
 				abstract: true,
-				url: "/communities",
+				url: '/communities',
 				templateUrl: 'assets/pages/community/communities.html',
 				controller: 'CommunitiesCtrl'
 			})
 			.state('communities.suggested', {
-				url: "",
+				url: '',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl'
 			})
 			.state('communities.all', {
-				url: "/all",
+				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl'
 			})
 			.state('reset-pass', {
 				url: '/reset-password',
 				templateUrl: 'assets/pages/userForms/resetPassword.html',
-				controller: 'ResetPwdCtrl'
+				controller: 'ResetPwdCtrl',
+				policy: UNAUTH
 			})
 			.state('forgot-pass', {
 				url: '/forgotten-password',
 				templateUrl: 'assets/pages/userForms/forgottenPassword.html',
-				controller: 'ForgottenPasswordCtrl'
+				controller: 'ForgottenPasswordCtrl',
+				policy: UNAUTH
 			})
 			.state('token-login', {
 				url: '/token-login/:token',
-				controller: 'TokenLoginCtrl'
+				controller: 'TokenLoginCtrl',
+				policy: UNAUTH
 			})
 			.state('fill-email', {
 				url: '/fill-email/:token',
@@ -74,17 +78,21 @@ angular.module('hearth').config([
 			.state('confirm-email', {
 				url: '/confirm-email',
 				templateUrl: 'assets/pages/userForms/confirmEmail.html',
-				controller: 'ConfirmEmailCtrl'
+				controller: 'ConfirmEmailCtrl',
+				// signes in the new-coming user. so it is probably better to leave available for signed users
+				// policy: UNAUTH
 			})
 			.state('login', {
 				url: '/login',
 				templateUrl: 'assets/pages/userForms/login.html',
-				controller: 'LoginCtrl'
+				controller: 'LoginCtrl',
+				policy: UNAUTH
 			})
 			.state('reg', {
 				url: '/register?facebook',
 				templateUrl: 'assets/pages/userForms/register.html',
-				controller: 'RegisterCtrl'
+				controller: 'RegisterCtrl',
+				policy: UNAUTH
 			})
 			.state('search', {
 				url: '/search?query',
@@ -131,10 +139,6 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/static/components.html',
 				controller: 'ComponentsCtrl'
 			})
-			.state('ad', {
-				url: '/ad/:id',
-				controller: 'ItemDetailOld'
-			})
 			.state('post', {
 				url: '/post/:id',
 				templateUrl: 'assets/pages/item/itemDetail.html',
@@ -144,17 +148,20 @@ angular.module('hearth').config([
 				title: 'messages.0',
 				url: '/messages',
 				templateUrl: 'assets/pages/messages/list.html',
-				controller: 'MessagesCtrl'
+				controller: 'MessagesCtrl',
+				policy: SIGNED_IN
 			})
 			.state('messages.new', {
 				titleIgnore: true,
 				url: '/new',
-				template: '<conversation-add></conversation-add>'
+				template: '<conversation-add></conversation-add>',
+				policy: SIGNED_IN
 			})
 			.state('messages.detail', {
 				titleIgnore: true,
 				url: '/:id',
-				template: '<conversation-detail></conversation-detail>'
+				template: '<conversation-detail></conversation-detail>',
+				policy: SIGNED_IN
 			})
 			.state('profile', {
 				title: false,
@@ -162,12 +169,14 @@ angular.module('hearth').config([
 				url: '/profile/:id',
 				templateUrl: 'assets/pages/profile/profile.html',
 				controller: 'ProfileCtrl',
+				policy: SIGNED_IN
 			})
 			.state('profile.default', {
 				title: false,
 				url: '',
 				controller: 'ProfileDataFeedCtrl',
 				templateUrl: 'assets/pages/profile/subviews/home.html',
+				policy: SIGNED_IN
 			})
 			.state('profile.subview', {
 				title: false,
@@ -179,34 +188,40 @@ angular.module('hearth').config([
 					if (!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath + $stateParams.page + '.html';
-				}
+				},
+				policy: SIGNED_IN
 			})
 			.state('profileEdit', {
 				url: '/profile-edit',
 				templateUrl: 'assets/pages/profile/edit.html',
 				controller: 'ProfileEditCtrl',
+				policy: SIGNED_IN
 			})
 			.state('profileSettings', {
 				url: '/profile-settings',
 				templateUrl: 'assets/pages/profile/editSettings.html',
 				controller: 'ProfileSettingsCtrl',
+				policy: SIGNED_IN
 			})
 			.state('communityEdit', {
 				url: '/community/:id/edit',
 				templateUrl: 'assets/pages/community/editCommunity.html',
 				controller: 'CommunityCreateCtrl',
+				policy: SIGNED_IN
 			})
 			.state('community', {
 				abstract: true,
 				url: '/community/:id',
 				templateUrl: 'assets/pages/community/profile.html',
 				controller: 'CommunityProfileCtrl',
+				policy: SIGNED_IN
 			})
 			.state('community.default', {
 				title: false,
 				url: '',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: 'assets/pages/community/subviews/home.html',
+				policy: SIGNED_IN
 			})
 			.state('community.subview', {
 				title: false,
@@ -219,7 +234,8 @@ angular.module('hearth').config([
 					if (!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath + $stateParams.page + '.html';
-				}
+				},
+				policy: SIGNED_IN
 			})
       .state('uikit', {
         url: '/uikit',

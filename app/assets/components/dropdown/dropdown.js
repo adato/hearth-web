@@ -3,65 +3,57 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.dropdown
- * @description 
+ * @description
  * @restrict E
  */
 
-angular.module('hearth.directives').directive('dropdown', [
-	'$document',
-	function($document) {
-		return {
-			restrict: 'A',
-			replace: false,
-			scope: {
-				dropdown: "@", // class or id of element to show/hide
-				hover: "=" // show/hide dropdown also on hover event
-			},
-			link: function($scope, el, attrs) {
-				var target;
+angular.module('hearth.directives').directive('dropdown', ['$document', '$timeout', 'DOMTraversalService', function($document, $timeout, DOMTraversalService) {
 
-				// get target element to show/hide 
-				function getTarget() {
-					if (target)
-						return target;
-					return target = $document.find($scope.dropdown);
-				}
+	return {
+		restrict: 'A',
+		scope: {
+			dropdown: '@', // class or id of element to show/hide
+			hover: '=' // show/hide dropdown also on hover event
+		},
+		link: function($scope, el, attrs) {
 
-				// display targeted element and hide others dropdowns
-				function show() {
-					$document.find(".dropdown").css("display", "none");
-					getTarget().css("display", "block");
-				}
+			// on element click toggle dropdown
+			el.on('click', event => {
+				const action = getTarget().css('display') == 'block' ? hideDropdown : showDropdown;
+				hideDropdown();
+				$timeout(action);
+			});
 
-				// hide targeted element
-				function hide() {
-					getTarget().css("display", "none");
-				}
-
-				// on element click toggle dropdown
-				el.on('click', function($event) {
-
-					$event.stopPropagation();
-					getTarget().css("display") == 'block' ? hide() : show();
-				});
-
-				if ($scope.hover) {
-					el.parent().on('mouseenter', show);
-					el.parent().on('mouseleave', hide);
-				}
-
-				// when clicked somewhere else, hide dropdown
-				$document.on("click", hide);
-
-				// when changed target - delete cached value
-				$scope.$watch("dropdown", function(val) {
-					target = null;
-				});
-
-				$scope.$on('$destroy', function() {
-					$document.off('click', hide);
-				})
+			if ($scope.hover) {
+				el.parent().on('mouseenter', showDropdown);
+				el.parent().on('mouseleave', hideDropdown);
 			}
+
+			// when clicking outside of dropdown label, hide dropdown
+			$document.on('click', e => DOMTraversalService.hasParent(e.target, el) ? false : hideDropdown());
+
+			// clean-up
+			$scope.$on('$destroy', () => {
+				$document.off('click', hideDropdown);
+			});
+
+			///////////////
+
+			// return the dropdown element to show/hide
+			function getTarget() {
+				return $document.find($scope.dropdown);
+			}
+
+			function showDropdown() {
+				getTarget().css('display', 'block');
+			}
+
+			// hide dropdown
+			function hideDropdown() {
+				getTarget().css('display', 'none');
+			}
+
 		}
 	}
-]);
+
+}]);

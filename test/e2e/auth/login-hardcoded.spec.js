@@ -27,6 +27,6 @@ describe('hearth hardcoded login', function() {
 
 		// send registration
 		loginButton.click();
-		expect(element(by.css('.logged-user-dropdown')).isPresent()).toBeTruthy();
+		expect(beacon('logged-user-dropdown').isPresent()).toBeTruthy();
 	});
 });

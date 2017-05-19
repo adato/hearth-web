@@ -1,4 +1,4 @@
-describe('logged user', function() {  
+describe('logged user', function() {
 
   it('should log in using default credentials', function () {
     protractor.helpers.login();
@@ -17,8 +17,8 @@ describe('logged user', function() {
   it('should see list of 15 posts', function () {
     expect(element.all(by.repeater('item in items')).count()).toBe(15);
   });
-  
-  it('should see modal dialog with textarea after click on first few items` buttons', function () { 
+
+  it('should see modal dialog with textarea after click on first few items` buttons', function () {
     element.all(by.repeater('item in items')).then(function(items) {
        items.forEach(function (item, key) {
          var buttonElement = item.element(by.css('button.small'));
@@ -34,7 +34,8 @@ describe('logged user', function() {
   });
 
   it('should see create/edit dialog after "create new" click', function () {
-    var createButton = element(by.css('.insert-button-container>a.button'));
+    // var createButton = element(by.css('.insert-button-container>a.button'));
+    var createButton = beacon('new-post-button');
     createButton.click();
     expect(element(by.css('.itemEdit.modal')).isDisplayed()).toBe(true);
     element(by.css('.itemEdit.modal a.fleft.close')).click();

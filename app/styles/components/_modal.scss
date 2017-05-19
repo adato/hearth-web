@@ -76,7 +76,7 @@
 		margin-bottom: 4%;
 	    margin-left: auto;
 	    margin-right: auto;
-		padding: .5rem;
+		padding: 2rem;
 	}
 	.ngdialog-close {
 		border-radius: 5px;
@@ -225,13 +225,13 @@ body.ngdialog-open {
 	.ngdialog-overlay {
 		display: none;
 	}
-	label {
-		font-size: $global-font-size;
-		display: inline-block;
+	// label {
+	// 	font-size: $global-font-size;
+	// 	display: inline-block;
 		// .fa {
 		// 	margin-right: 4px;
 		// }
-	}
+	// }
 	a {
 		color: $primary-color;
 
@@ -256,17 +256,18 @@ body.ngdialog-open {
 		}
 	}
 	.head {
-		text-align: center;
+		// text-align: center;
 		h2 {
-			font-weight: normal;
-			font-size: 25px;
-			text-align: center;
+			// font-weight: normal;
+			font-weight: bold;
+			font-size: $ui-title-font-size;
+			// text-align: center;
 		}
 	}
-	hr {
-		border: 1px solid #bbb8b1;
-		margin-bottom: 22px;
-	}
+	// hr {
+	// 	border: 1px solid #bbb8b1;
+	// 	margin-bottom: 22px;
+	// }
 	.error {
 		color: red;
 		font-size: 16px;
@@ -331,37 +332,37 @@ body.ngdialog-open {
 		max-width: 420px !important;
 		margin: 0 auto;
 
-		.confirm-box {
-			padding: 15px;
-		}
+		// .confirm-box {
+		// 	padding: 15px;
+		// }
 
-		.head {
-			position: relative;
-			h2 {
-				font-size: 16px;
-				font-weight: bold;
-				margin-bottom: 5px;
-        text-align: left;
-			}
-			.close {
-				display: none;
-				color: #ddd;
-				cursor: pointer;
-				font-size: 35px;
-				position: absolute;
-				right: 0;
-				top: 0;
-				transition: color 0s ease 0s, all 0.8s ease 0s;
-				&:hover {
-					color: #aaa;
-				}
-			}
-		}
-		hr {
-			margin: 0 0 15px 0 !important;
-			border: none;
-			border-bottom: 1px solid $colorLightGray;
-		}
+		// .head {
+			// position: relative;
+			// h2 {
+				// font-size: 16px;
+				// font-weight: bold;
+				// margin-bottom: 5px;
+        		// text-align: left;
+			// }
+			// .close {
+			// 	display: none;
+			// 	color: #ddd;
+			// 	cursor: pointer;
+			// 	font-size: 35px;
+			// 	position: absolute;
+			// 	right: 0;
+			// 	top: 0;
+			// 	transition: color 0s ease 0s, all 0.8s ease 0s;
+			// 	&:hover {
+			// 		color: #aaa;
+			// 	}
+			// }
+		// }
+		// hr {
+		// 	margin: 0 0 15px 0 !important;
+		// 	border: none;
+		// 	border-bottom: 1px solid $colorLightGray;
+		// }
 		.text-right a {
 			color: $primary-color;
 			&:hover {
@@ -408,9 +409,9 @@ body.ngdialog-open {
 				margin-top: 0px;
 			}
 
-			hr {
-				margin-bottom: 18px;
-			}
+			// hr {
+			// 	margin-bottom: 18px;
+			// }
 		}
 		.close {
 			position: absolute;

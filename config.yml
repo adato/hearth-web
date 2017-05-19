@@ -156,6 +156,7 @@ PATHS:
     app:
       scss:
         - "app/styles/**/*.scss"
+        - "common/styles/*.scss"
       js:
         - "app/assets/**/*.js"
       html:
@@ -171,6 +172,7 @@ PATHS:
       index: "landing/html"
       scss:
         - "landing/css/*.scss"
+        - "common/styles/*.scss"
       img:
         - "landing/img/**/*.*"
       fonts:
@@ -178,3 +180,5 @@ PATHS:
       js:
         - "landing/js/libs.js"
         - "landing/js/**/*.js"
+    common:
+      scss: "common/styles/**/*.scss"

@@ -53,12 +53,14 @@
 
 @import "components/mixins/social";
 
-@import "components/pages/404";
 @import "components/directives/avatar";
 @import "components/directives/authorSelector";
 @import "components/directives/bubble";
+@import "components/directives/karmaBar";
 @import "../../common/styles/buttons";
 @import "components/forms/checkbox";
+@import "components/forms/errors";
+@import "components/forms/telInput";
 @import "components/wtf/common";
 @import "components/pages/communities";
 @import "components/pages/communityProfile";
@@ -96,9 +98,8 @@
 @import "components/pages/profile";
 @import "components/pages/profileCommon";
 @import "components/pages/profileEdit";
-@import "components/pages/profileEditCommon";
 @import "components/pages/story";
-@import "components/wtf/removePostFromCommunity";
+// @import "components/wtf/removePostFromCommunity";
 @import "components/tipsy";
 @import "components/pages/tutorial";
 @import "components/wtf/responzivity";
@@ -109,5 +110,6 @@
 @import "components/wtf/v2Style";
 
 @import "components/layout";
+@import "../../common/styles/flex";
 
 @import "temp";

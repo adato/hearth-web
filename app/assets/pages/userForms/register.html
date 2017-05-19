@@ -3,27 +3,25 @@
 	<span ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</span>
 </h1>
 
-<div class="register-login-dialog" ng-cloak>
+<div class="box register-login-dialog" ng-cloak>
 	<div class="register-form row">
 		<div class="headMessage error"></div>
 		<form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
 			<div class="register-notify-area"></div>
       <div class='alert-box alert' ng-show="showError.blockedUserByEmail">
         <i class="fa fa-exclamation-triangle"></i>
-        <span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile
-              translate-values="{'attrs': 'ng-href=\'feedback\''}">
+        <span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
 	    </span>
       </div>
 			<p ng-if="!params.facebook">{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
 
 			<p ng-bind-html="'SIGNUP_HEADING_TEXT_FB' | translate" ng-if="params.facebook"></p>
 
-			<div class="row">
-				<div class="small-12 medium-6 large-6 columns">
+			<div class="row block">
+				<div class="small-12 medium-6 large-6 columns" title="{{showError | json}}">
 					<label for="first_name">{{'FIRST_NAME_PLACEHOLDER' | translate}}</label>
 					<input id="first_name" type="text" class="register_name" name="first_name" ng-model="user.first_name" ng-focus="showError.first_name = false" ng-blur="showError.first_name = true" class="form-control text-input top" required ng-minlength="2" />
-
-					<div class="moveUp error" ng-show="showError.first_name">
+					<div class="form-error" ng-show="showError.first_name && (registerForm.first_name.$error.required || registerForm.first_name.$error.user || registerForm.first_name.$error.minlength)">
 						<span ng-show="registerForm.first_name.$error.required">{{ 'ERR_NOT_FILLED_FIRST_NAME' | translate }}</span>
 						<span ng-show="registerForm.first_name.$error.used">{{ 'SIGNUP_ERR_BAD_FIRST_NAME' | translate }}</span>
 						<span ng-show="registerForm.first_name.$error.minlength">{{ 'SIGNUP_ERR_SHORT_FIRST_NAME' | translate }}</span>
@@ -34,41 +32,50 @@
 					<input id="last_name" type="text" class="register_name" name="last_name" ng-model="user.last_name" class="form-control text-input top" />
 				</div>
 			</div>
-			<div class="text-in-input">
-				<label for="email">{{'EMAIL_PLACEHOLDER' | translate}}</label>
-				<input id="email" type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
-				<span ng-show="registerForm.$pending.mailgun || registerForm.$pending.used" class="fa fa-spin fa-spinner" style="top:2.2rem;"></span>
+
+			<div class="text-in-input block">
+				<label for="email">
+					<span translate="EMAIL_PLACEHOLDER"></span>
+					<input id="email" type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
+					<i ng-show="registerForm.$pending.mailgun || registerForm.$pending.used" class="fa fa-spin fa-spinner" style="top:2.2rem;"></i>
+					<div class="form-error" ng-show="showError.email">
+						<span ng-show="registerForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+						<span ng-show="registerForm.email.$error.used">{{ 'ERR_EMAIL_EXISTS' | translate }}</span>
+						<span ng-show="registerForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+						<span ng-show="registerForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
+						<span ng-show="apiErrors.email">{{ apiErrors.email | translate }}</span>
+					</div>
+				</label>
 			</div>
-			<div class="moveUp error" ng-show="showError.email">
-				<span ng-show="registerForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
-				<span ng-show="registerForm.email.$error.used">{{ 'ERR_EMAIL_EXISTS' | translate }}</span>
-				<span ng-show="registerForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
-				<span ng-show="registerForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
-				<span ng-show="apiErrors.email">{{ apiErrors.email | translate }}</span>
-			</div>
+
 			<!-- 			<span mailgun-validator-did-you-mean target="user.email"></span> -->
-			<div>
-				<label for="password">{{'PASS_PLACEHOLDER' | translate}}</label>
-				<show-text-in-password>
-					<input id="password" type="password" name="password" ng-model="user.password" ng-focus="showError.password = false" ng-blur="showError.password = true" class="form-control text-input top" required ng-minlength="4" />
-				</show-text-in-password>
+
+			<div class="block">
+				<label for="password">
+					<span translate="PASS_PLACEHOLDER"></span>
+					<show-text-in-password>
+						<input id="password" type="password" name="password" ng-model="user.password" ng-focus="showError.password = false" ng-blur="showError.password = true" class="form-control text-input top" required ng-minlength="4" />
+					</show-text-in-password>
+					<div class="form-error" ng-show="showError.password">
+						<span ng-show="registerForm.password.$error.required">{{ 'SIGNUP_ERR_NO_PASSWORD' | translate }}</span>
+						<span ng-show="registerForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
+					</div>
+				</label>
 			</div>
-			<div class="moveUp error" ng-show="showError.password">
-				<span ng-show="registerForm.password.$error.required">{{ 'SIGNUP_ERR_NO_PASSWORD' | translate }}</span>
-				<span ng-show="registerForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
-			</div>
-			<div class="text-center">
+			<div class="text-center block">
 				<button class="button" type="submit" test-beacon="register-button" ng-disabled="sending">
-					<i class="fa fa-user"></i> {{ 'SIGNUP_BUTTON' | translate }}
+					<i class="fa fa-user"></i>
+					<span translate="SIGNUP_BUTTON"></span>
 				</button>
 			</div>
-			<div class="clear"></div>
+
 			<hr/>
+
 			<div class="social-login">
 				<p>{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
-				<a ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
+				<a tabindex="0" ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
 				<a ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
-				<a ng-click="oauthRegister('google')" class="fa fa-google"></a>
+				<a tabindex="0" ng-click="oauthRegister('google')" class="fa fa-google"></a>
 			</div>
 			<hr/>
 			<div class="bottom">

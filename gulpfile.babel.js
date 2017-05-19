@@ -21,7 +21,7 @@ const $ = plugins();
 // Causes browser reload on file changes
 const BROWSER_RELOAD = !!(yargs.argv.reload);
 
-const LOCAL_ENV = 'localhost'
+const LOCAL_ENV = 'localhost';
 const DEV_ENV = 'development';
 const STAGE_ENV = 'staging';
 const PROD_ENV = 'production';
@@ -296,6 +296,7 @@ function imagesLanding() {
 
 // App configs
 function configs() {
+  // console.log('Running config build with environtment', ENVIRONMENT);
   return gulp.src([
     PATHS.src.configs.app[ENVIRONMENT],
     PATHS.src.configs.global,
@@ -385,7 +386,7 @@ function watch() {
   gulp.watch(PATHS.index).on('all', getSeries(copyRoot));
   gulp.watch(PATHS.src.app.html).on('all', getSeries(templates));
   gulp.watch(['common/config/**/*.js', 'app/config/**/*.js']).on('all', getSeries(configs));
-  gulp.watch(PATHS.src.app.scss).on('all', getSeries(sass));
+  gulp.watch([PATHS.src.app.scss, PATHS.src.common.scss]).on('all', getSeries(sass));
   gulp.watch(PATHS.src.app.js).on('all', getSeries(javascript));
   gulp.watch(PATHS.src.app.img).on('all', getSeries(images));
 

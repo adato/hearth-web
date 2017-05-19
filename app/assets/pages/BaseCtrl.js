@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -83,6 +83,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * scroll to top of the page, if not, refresh page with fixed height
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+
+			if (toState.policy) {
+				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
+					event.preventDefault();
+					UnauthReload.setLocation(toState.url.slice(1));
+					return $state.go('login');
+				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
+					event.preventDefault();
+					return $state.go('market');
+				}
+			}
 
 			// retain optional state params on specified route groups
 			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
@@ -160,7 +171,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * When submitted fulltext search
 		 */
-		$scope.search = function(searchQuery) {
+		$scope.search = searchQuery => {
 			if (!searchQuery.query) {
 				$("#search").focus();
 				return false;
@@ -301,26 +312,33 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 
-		$rootScope.reloadToMarketplace = function() {
-			$rootScope.searchQuery = {
-				query: null,
-				type: 'post'
-			};
-			$state.go('market', {
-				query: null,
-				type: null
-			}, {
-				reload: false
-			});
-			$scope.$broadcast('reloadMarketplace');
-		};
+		// $rootScope.reloadToMarketplace = function() {
+		// 	$rootScope.searchQuery = {
+		// 		query: null,
+		// 		type: 'post'
+		// 	};
+		// 	$state.go('market', {
+		// 		query: null,
+		// 		type: null
+		// 	}, {
+		// 		reload: false
+		// 	});
+		// 	$scope.$broadcast('reloadMarketplace');
+		// };
 
 		/**
 		 * When clicked on logout button
 		 */
+		function logoutCb() {
+			$rootScope.refreshToPath($$config.basePath);
+		}
 		$scope.logout = function() {
-			Auth.logout(function() {
-				$rootScope.refreshToPath($$config.basePath);
+			// Auth.logout(function() {
+			Session.get(session => {
+				if (session._id) delete session._id;
+				User.logout({}, logoutCb, logoutCb);
+			}, err => {
+				User.logout({}, logoutCb, logoutCb);
 			});
 		};
 
@@ -773,11 +791,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// return false if post is inactive
 		$rootScope.isPostActive = item => item.state === 'active';
 
-		$rootScope.toggleSearchBar = function(value) {
+		$rootScope.toggleSearchBar = value => {
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);
 
 			if ($rootScope.searchBarDisplayed) {
-				$('#searchContainer').slideDown('slow', function() {
+				$('#searchContainer').slideDown('slow', () => {
 					$('#searchContainer').show();
 					angular.element('#search').focus();
 				});
@@ -798,7 +816,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		};
 
-		$rootScope.isSearchBarShown = function() {
+		$rootScope.isSearchBarShown = () => {
 			return $rootScope.searchBarDisplayed;
 		};
 
@@ -811,7 +829,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;
 
-		$scope.$on('$destroy', function() {
+		$scope.$on('$destroy', () => {
 			angular.element(window).unbind('scroll');
 		});
 	}
