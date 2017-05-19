@@ -98,16 +98,12 @@
 		       {{::'MARKETPLACE.FILTER.TITLE' | translate}}
 		      </a>
           <a ng-class="{'show-for-small-only': configOptionsShow.market}" href="javascript:;" ng-show="filterOn" ng-click="cancelFilter()">
-            {{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate }}
+            <small translate="MARKETPLACE.FILTER.CANCEL_FILTER_BAR"></small>
           </a>
 		      <!-- Tablet and desktop-->
 		      <small ng-show="configOptionsShow.market" class="nowrap flex-grid hide-for-small-only" ng-click="toggleFilter()">
-						<a href="javascript:;" class="next-options-label">
-		          {{::'MARKETPLACE.FILTER.NEXT_OPTIONS' | translate}}
-		        </a>
-						<a href="javascript:;" ng-show="filterOn" class="hide-for-medium-only" ng-click="cancelFilter()">
-							{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate }}
-						</a>
+						<a href="javascript:;" class="next-options-label" translate="MARKETPLACE.FILTER.NEXT_OPTIONS"></a>
+						<a href="javascript:;" ng-show="filterOn" class="hide-for-medium-only" ng-click="cancelFilter()" translate="MARKETPLACE.FILTER.CANCEL_FILTER_BAR"></a>
 		      </small>
 
 
@@ -141,8 +137,7 @@
             <div ng-show="configOptionsShow.keywords" class="medium-display-table-row keywords-container" ng-if="inited">
               <h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
               <div class="medium-display-table-cell padding-bottom-small">
-                <tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
-                            max-length="20">
+                <tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3" max-length="20">
                   <auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
                 </tags-input>
               </div>
@@ -202,7 +197,7 @@
             <div ng-show="configOptionsShow.location" class="medium-display-table-row location-container">
               <h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
               <div class="medium-display-table-cell padding-bottom-small">
-                <div class="row">
+                <div class="row margin-none">
                   <div class="column padding-none" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
                     <input style="box-shadow: none !important;" type="text" id="geolocation" ng-model="filter.name" ng-model-options="{updateOn : 'blur'}" />
                   </div>

@@ -30,15 +30,12 @@
 	}
 
 	.filter-container {
-    transition: all .3s ease-in;
+        transition: all .3s ease-in;
+        padding-top: $size-medium;
 
-    .ui-checkbox {
-      display: inline-block;
-    }
-
-    @include breakpoint(medium up) {
-      padding-top: $size-medium;
-    }
+        .ui-checkbox {
+            display: inline-block;
+        }
 	}
 
 	// WHY is this here when jQuery is there and it is definitely not going anywhere?
