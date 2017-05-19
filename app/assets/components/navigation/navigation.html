@@ -1,4 +1,4 @@
-<section id="navigation">
+<section id="navigation" class="navigation">
 	<!-- <aside class="off-canvas position-left" data-off-canvas data-content-overlay data-close-on-click test-beacon="off-canvas-content"> -->
 	<aside class="off-canvas position-left" test-beacon="off-canvas-content">
 		<ul class="submenu menu vertical">
@@ -20,7 +20,7 @@
 				</label>
 			</li>
 			<li>
-				<a ng-click="reloadToMarketplace()" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }}
 				</a>
 			</li>
@@ -156,7 +156,7 @@
 				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleSidebar(); mixpanelTrackMenu()">
 					<i class="fa fa-bars"></i>
 				</a>
-				<a ng-click="reloadToMarketplace()" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 					<img class="hearth-logo" src="/app/assets/img/logo.png">
 				</a>
 			</div>
@@ -190,7 +190,7 @@
 			<!-- this is desktop topbar, visible all the time -->
 
 			<section class="bar-columns logo-column">
-				<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
+				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
 					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
 				</a>
 			</section>
@@ -202,13 +202,12 @@
 
 			<section class="bar-columns icons-column">
 			<div class="topbar-icons-wrapper pull-right">
-				<a ng-click="reloadToMarketplace()" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="inner-icon">
 						<span class="fa icon-marketplace"></span>
 						{{:: 'HOMEPAGE_MARKET' | translate }}
 					</div>
 				</a>
-
 
 				<a ui-sref="communities.suggested" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 					<div class="inner-icon">
@@ -216,7 +215,6 @@
 						{{:: 'COMMUNITIES' | translate }}
 					</div>
 				</a>
-
 
 				<div class="top-bar-separator"></div>
 				<div class="top-bar-separator"></div>

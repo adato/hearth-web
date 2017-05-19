@@ -81,7 +81,7 @@ $ui-color-lighter: #999;
 $ui-input-height: 30px;
 $ui-button-height: 44px;
 $ui-input-error-color: #d95208; // darken(#ff782e, 15%);
-$ui-box-shadow: 0px 0px 5px rgba(100, 100, 100, .5);
+$ui-box-shadow: 0px 0px $size-tiny rgba(100, 100, 100, .5);
 $ui-navbar-height: 100px;
 
 $defaultShadow: 1px 1px 6px gray;
@@ -141,6 +141,9 @@ $colorLightGray: $light-gray;
 $colorDarkGray: $quaternary-color;
 $colorLink: $primary-color;
 // /custom temp
+
+$karma-bar-positive: #bbd320;
+$karma-bar-empty: #ababab;
 
 
 // 2. Breakpoints
@@ -333,7 +336,7 @@ $button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
 // 12. Button Group
 // ----------------
 
-$buttongroup-margin: 1rem;
+$buttongroup-margin: 0;
 $buttongroup-spacing: $size-medium;
 $buttongroup-child-selector: '.button';
 $buttongroup-expand-max: 6;

@@ -1,9 +1,4 @@
 .fulltext {
-	header {
-		text-align: center;
-		margin:3*$ui-small-grid-size;
-		margin-bottom:$ui-grid-size;
-	}
 	.searchInProgress {
 		opacity: 0.3;
 		transition: opacity .3s ease-out;
@@ -64,8 +59,10 @@
 		}
 	}
 	.search-item {
-		margin: {
-			bottom: 2* $fontSize;
+		margin-bottom: $size-large;
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 
 		&.inactive {

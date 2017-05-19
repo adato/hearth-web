@@ -8,8 +8,9 @@
 
 angular.module('hearth.services').factory('DOMTraversalService', [function() {
 
-	var factory = {
-		findParentBySelector: findParentBySelector
+	const factory = {
+		findParentBySelector,
+		hasParent
 	};
 
 	return factory;
@@ -31,5 +32,19 @@ angular.module('hearth.services').factory('DOMTraversalService', [function() {
 		}
 		return false;
 	}
+
+	/**
+	 *	Return true if @el has @parent as a parent, false otherwise
+	 *	@el {DOM Node}
+	 *	@parent {DOM Node}
+	 *	@return {Boolean}
+	 */
+	function hasParent(el, parent) {
+    while (el.parentNode) {
+      if (el === parent) return true;
+      el = el.parentNode;
+    }
+    return false;
+  }
 
 }]);

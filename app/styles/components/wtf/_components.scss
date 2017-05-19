@@ -87,6 +87,11 @@
 		&.nowrap-addon{width: 1%; white-space: nowrap;}
 	}
 }
+.skip-last-row-border .display-table-row:last-child .display-table-cell,
+.skip-last-row-border .medium-display-table-row:last-child .medium-display-table-cell,
+.skip-last-row-border .large-display-table-row:last-child .large-display-table-cell {
+	border-bottom: none;
+}
 /* table addons */
 .table-with-icons .display-table-cell{
 	padding-bottom: $size-small;
@@ -171,6 +176,14 @@
 }
 .word-wrap{
 	word-wrap: break-word;
+}
+.text-epic {
+	font-size: 7rem;
+	line-height: 100%;
+
+	@include breakpoint(large up) {
+		font-size: 10rem;
+	}
 }
 
 /* /TEXT */
@@ -301,6 +314,7 @@
 .background-primary{background-color: $primary-color !important}
 .background-secondary{background-color: $secondary-color !important}
 .background-white{background-color: $white !important}
+.background-light-gray{background-color: $colorLightGray !important}
 /* /COLOR */
 
 /* LINKS */
@@ -333,15 +347,15 @@ a.link-secondary{
 /* /CALLOUT */
 
 /* LOADING */
-.loading-in-progress{
+.loading-in-progress {
 	font-family: FontAwesome;
 	-webkit-animation: fa-spin 2s infinite linear;
 	animation: fa-spin 2s infinite linear;
 }
-.has-overlay-loading{
+.has-overlay-loading {
 	position: relative;
 }
-.has-overlay-loading.loading-in-progress::after{
+.has-overlay-loading.loading-in-progress::after {
 	content: $fa-loading-icon;
 	position: absolute;
 	top: 0; right: 0; bottom: 0; left: 0;
@@ -353,7 +367,7 @@ a.link-secondary{
 	background-color: rgba(255,255,255,.4);
 	z-index: 1000;
 }
-.has-loading-icon{
+.has-loading-icon {
 	position: absolute;
 	left: 6px; top: 15px;
 }
@@ -362,19 +376,24 @@ a.link-secondary{
 		top: 8px;
 	}
 }
-.has-loading-icon.loading-in-progress::before{
+.has-loading-icon.loading-in-progress::before {
 	content: $fa-loading-icon;
 	display: inline-block;
 }
 /* /LOADING */
 
+.round {
+	border-radius: $global-radius;
+}
+
 /* WATERFALL CLASSES */
-.paragraph-all-unstyle p{
+.paragraph-all-unstyle p {
 	margin: 0 !important;
 	line-height: inherit;
 	font-size: inherit;
 }
 /* /WATERFALL CLASSES */
+
 .full-width {
   width: 100%;
 }
