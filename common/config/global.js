@@ -53,6 +53,10 @@ window['$$config'] = {
 		"Post": "post",
 		"Conversation": "messages",
 	},
+	policy: {
+		SIGNED_IN: 'SINGED_ID',
+		UNAUTH: 'UNAUTH'
+	},
 	postTypes: {
 		User: {
 			gift: {
@@ -118,8 +122,8 @@ window['$$config'] = {
 		need: 'PEOPLE_COUNT_OFFER_PL'
 	},
 	filterOptions: {
-		default: ['keywords', 'character', 'postType', 'postTime', 'author', 'location', 'postLanguage', 'saveFilter'],
-		search: ['location', 'entityType']
+		default: ['market', 'keywords', 'character', 'postType', 'postTime', 'author', 'location', 'postLanguage', 'saveFilter'],
+		search: ['fulltext', 'location', 'entityType']
 	}
 };
 

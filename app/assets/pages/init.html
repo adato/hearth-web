@@ -1,23 +1,27 @@
 <div class="ngdialog ngdialog-theme-default notifyOverlay" id="maitenancePage">
 	<div class="ngdialog-overlay"></div>
 	<div class="ngdialog-content" ng-cloak>
-		<h2 ng-if="isMaintenanceMode" translate-cloak ng-bind-html=":: 'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
+		<h2 ng-if="isMaintenanceMode" translate-cloak translate="SERVER_MAITENANCE_MESSAGE"></h2>
 	</div>
 </div>
+
 <div class="ngdialog ngdialog-theme-default notifyOverlay" id="criticalError">
 	<div class="ngdialog-overlay"></div>
 	<div class="ngdialog-content" ng-cloak>
-		<h2 translate-cloak ng-bind-html=":: 'APP_CRITICAL_ERROR' | translate"></h2>
+		<h2 translate-cloak translate="APP_CRITICAL_ERROR"></h2>
 	</div>
 </div>
+
 <div class="offline-dialog" id="offlineNotify" ng-class="{display: isOfflineMode}" ng-cloak>
-	<div class="content" ng-cloak>
-		<span ng-bind-html=":: 'YOU_ARE_OFFLINE' | translate"></span> &nbsp;&nbsp;
-		<button class="button dont-disable" ng-click="checkOnlineState()">{{ 'RELOAD_PAGE' | translate }}
+	<div class="content flex flex-center flex-divided-large" ng-cloak>
+		<div class="remove-p-margins" translate="YOU_ARE_OFFLINE"></div>
+		<button class="button dont-disable" ng-click="checkOnlineState()">
+			<span translate="RELOAD_PAGE"></span>
 			<i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i>
 		</button>
 	</div>
 </div>
+
 <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
 
 <div class="off-canvas-wrap" ng-class='{"move-right": leftSidebarShown}' test-beacon="off-canvas-wrapper">
@@ -27,24 +31,24 @@
 		<a class="exit-off-canvas" ng-click='toggleSidebar(false)'></a>
 	</div>
 
-	<div id='language-panel' style='display: none'>
-		<ul class='styled-list flag-list' ng-controller='LanguageChangeCtrl as languageChange'>
-			<li class='list-item' ng-if='languageChange.currentLanguage != "cs"'>
-				<a ng-click='languageChange.switchLang("cs")'>
-					<i class='flag flag-cs'></i>
-					<span translate='LANGUAGE.CZECH'></span>
+	<div id="language-panel" style="display: none">
+		<ul class="styled-list flag-list" ng-controller="LanguageChangeCtrl as languageChange">
+			<li class="list-item" ng-if="languageChange.currentLanguage != 'cs'">
+				<a ng-click="languageChange.switchLang('cs')">
+					<i class="flag flag-cs"></i>
+					<span translate="LANGUAGE.CZECH"></span>
 				</a>
 			</li>
-			<li class='list-item' ng-if='languageChange.currentLanguage != "en"'>
-				<a ng-click='languageChange.switchLang("en")'>
-					<i class='flag flag-en'></i>
-					<span translate='LANGUAGE.ENGLISH'></span>
+			<li class="list-item" ng-if="languageChange.currentLanguage != 'en'">
+				<a ng-click="languageChange.switchLang('en')">
+					<i class="flag flag-en"></i>
+					<span translate="LANGUAGE.ENGLISH"></span>
 				</a>
 			</li>
-			<li class='list-item' ng-if='languageChange.currentLanguage != "sk"'>
-				<a ng-click='languageChange.switchLang("sk")'>
-					<i class='flag flag-sk'></i>
-					<span translate='LANGUAGE.SLOVAK'></span>
+			<li class="list-item" ng-if="languageChange.currentLanguage != 'sk'">
+				<a ng-click="languageChange.switchLang('sk')">
+					<i class="flag flag-sk"></i>
+					<span translate="LANGUAGE.SLOVAK"></span>
 				</a>
 			</li>
 		</ul>
@@ -63,5 +67,4 @@
 			</div>
 		</section>
 	</div>
-</div>
 </div>
