@@ -66,7 +66,7 @@
 			var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
 				($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
 				'libraries=places,geometry&language=';
-			document.write('<script id="google-maps-script" async src="' + googleApiScriptUrl + window.preferredLanguage + '"><\/script>');
+			document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + window.preferredLanguage + '"><\/script>');
 		})();
 	</script>
 	<script type="text/javascript">
