@@ -144,9 +144,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		};
 
 		$scope.init = function() {
-			if (Auth.isLoggedIn()) {
-				return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
-			}
+
+			// replaced by routing policies
+			// if (Auth.isLoggedIn()) {
+			// 	return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+			// }
 
 			$scope.termsPath = '/app/locales/' + $rootScope.language + '/terms.html';
 		};
