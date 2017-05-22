@@ -12,21 +12,21 @@
 	.map-container {
 		height: 250px;
 		clear: both;
-		margin-top: 10px;
+		margin-top: $size-small;
 	}
 	.map-controll {
 		padding-top: 15px;
 	}
 	.location-input {
-		.map-icon {
-			margin-right: 25px;
-			i span {
-				position: relative;
-				top: 10px;
-				right: 10px;
-				font-size: 5px;
-			}
-		}
+		// .map-icon {
+		// 	margin-right: 25px;
+		// 	i span {
+		// 		position: relative;
+		// 		top: 10px;
+		// 		right: 10px;
+		// 		font-size: 5px;
+		// 	}
+		// }
 		&.disabled {
 			.tags {
 				background-color: #DDD !important;

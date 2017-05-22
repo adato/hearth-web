@@ -84,7 +84,7 @@ div.img-circle {
 
 .nav.nav-justified > li > a { position: relative; }
 .nav.nav-justified > li > a:hover,
-.nav.nav-justified > li > a:focus { background-color: transparent; }
+.nav.nav-justified > li > a:focus { background-color: transparent; border-bottom: none}
 .nav.nav-justified > li > a .quote {
     position: absolute;
     left: 0px;
@@ -152,6 +152,9 @@ div.img-circle {
     .nav.nav-justified > li > a .quote { right: 8px; bottom: 8px; }
 }
 
+.img-rotator.controls {
+	color: $secondary-color;
+}
 .img-rotator.controls [rotate-right],
 .img-rotator.controls [rotate-left] {
 	position: absolute;

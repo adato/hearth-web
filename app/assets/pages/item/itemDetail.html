@@ -1,7 +1,7 @@
 <article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
-		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !item.text && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted) || (item && !isMine && item.state === "expired")'>
+		<section class="item-status-bar box small-12 text-center" ng-if='(item && !item.text && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted) || (item && !isMine && item.state === "expired")'>
 			<p class="margin-none" ng-show="item && !item.text && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
@@ -178,7 +178,7 @@
 										</div>
 									</div>
 								</div>
-								<div class=''>
+								<div class='display-flex'>
 									<div class='touchable-wrapper touchable-inverted-round'>
 										<a analytics-custom analytics-event="Share" analytics-category="Link" class='touchable' analytics-label="Share post link" title="Link" href="" ng-click="openLinkSharingBox(item)">
 											<span class="fa-stack">
@@ -211,6 +211,7 @@
 											</span>
 										</a>
 									</div>
+									<div heart item="item" class="margin-left-medium"></div>
 								</div>
 							</div>
 						</footer>
@@ -289,6 +290,14 @@
 					</div>
 				</div>
 			</div>
+
+			<div ng-show="relatedLoaded" class="margin-top-large">
+        <hr />
+				<h3 translate="POSTS_RELATED_QUESTION"></h3>
+				<item-list options="relatedPostsOptions"></item-list>
+        <vote-yes-no ng-if="relatedLoaded" title="{{:: 'POSTS_RELATED_VOTE_QUESTION' | translate }}" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
+			</div>
+
 		</section>
 	</div>
 </article>

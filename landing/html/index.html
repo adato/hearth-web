@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="html">
 <head>
+	<script src='https://cdn.optimizely.com/js/8246840690.js'></script>
 	<meta charset='utf-8' />
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -18,7 +19,7 @@
 
 	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 	<link rel='stylesheet' type='text/css' href='./css/main.css' />
-	<link href="https://fonts.googleapis.com/css?family=Merriweather|Raleway&amp;subset=latin-ext" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Merriweather|Raleway&amp;subset=latin-ext' rel='stylesheet'>
 
 
 	<script>
@@ -161,8 +162,11 @@
 						<li>
 							<a href='#how-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 						</li>
-						<li>
-							<a href='#support-us' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+						<li language-no-en>
+							<a href='#from-our-blog' class='nav-item' t='LANDING_PAGE.MENU.GET_INSPIRED'>Inspirujte se</a>
+						</li>
+						<li language-only-en>
+							<a href='#testimonies' class='nav-item' t='LANDING_PAGE.MENU.TESTIMONIALS'>Mají nás rádi</a>
 						</li>
 					</ul>
 				</div>
@@ -174,8 +178,11 @@
 				<li>
 					<a href='#how-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 				</li>
-				<li>
-					<a href='#support-us' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+				<li language-no-en>
+					<a href='#from-our-blog' class='nav-item' t='LANDING_PAGE.MENU.GET_INSPIRED'>Inspirujte se</a>
+				</li>
+				<li language-only-en>
+					<a href='#testimonies' class='nav-item' t='LANDING_PAGE.MENU.TESTIMONIALS'>Mají nás rádi</a>
 				</li>
         <li>
           <a href='/app/login' class='nav-item' t='LANDING_PAGE.MENU.LOGIN' user-not-logged style='display: none'>
@@ -195,13 +202,13 @@
 					<div class='hr margin-vertical-none'></div>
 					<ul class='margin-none padding-medium sub-link-list'>
 						<li>
-							<a class='nav-item' href='/app'>
+							<a class='nav-item has-hover-effect' href='/app'>
 								<i class='fa fa-fw hearth-flame margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.MARKETPLACE'>Podívat se na tržiště</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/app/messages'>
+							<a class='nav-item has-hover-effect' href='/app/messages'>
 								<i class='fa fa-fw fa-envelope-o margin-right-small'></i>
 								<div class='flex flex-space-between flex-1'>
 									<span t='LANDING_PAGE.MENU.MESSAGES'>Zprávy</span>
@@ -210,25 +217,25 @@
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' profile-link>
+							<a class='nav-item has-hover-effect' profile-link>
 								<i class='fa fa-fw fa-user margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.PROFILE'>Profil</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/app/profile-edit'>
+							<a class='nav-item has-hover-effect' href='/app/profile-edit'>
 								<i class='fa fa-fw fa-edit margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.EDIT_PROFILE'>Upravit profil</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/app/profile-settings'>
+							<a class='nav-item has-hover-effect' href='/app/profile-settings'>
 								<i class='fa fa-fw fa-cog margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.SETTINGS'>Nastavení</span>
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='#' logout>
+							<a class='nav-item has-hover-effect' href='#' logout>
 								<i class='fa fa-fw fa-sign-out margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.LOGOUT'>Odhlásit se</span>
 							</a>
@@ -420,7 +427,7 @@
 		</section>
 		<div class='slash'></div>
 	</div>
-	<div class='section contains-slash'>
+	<div class='section contains-slash' id='testimonies'>
 		<section>
 			<h1 t='LANDING_PAGE.SECTION.TESTIMONIALS.PEOPLE_WHO_LIKE_US'>Mají nás rádi</h1>
 			<div class='text-align-center large-quote'>“</div>
@@ -470,8 +477,8 @@
 
 			              <!-- Nav tabs -->
 										<div class='img-rotator controls'>
-											<i rotate-left class='color-primary fa fa-chevron-left fa-2x cursor-pointer'></i>
-											<i rotate-right class='color-primary fa fa-chevron-right fa-2x cursor-pointer'></i>
+											<i rotate-left class='fa fa-chevron-left fa-2x cursor-pointer'></i>
+											<i rotate-right class='fa fa-chevron-right fa-2x cursor-pointer'></i>
 										</div>
 			              <ul class='nav nav-justified' id='nav-tabs' role='tablist' tab-headers>
 											<!--
@@ -498,10 +505,10 @@
 		</div>
 	</div>
 	<div class='section contains-slash background-alternate' id='from-our-blog' blog-post-section>
-		<section id='target-deje-se'>
+		<section>
 			<h1 t='LANDING_PAGE.SECTION.GET_INSPIRED.GET_INSPIRED'>Inspirujte se</h1>
 			<div translation-holder--read-on-our-blog data-attr-t translation-t='LANDING_PAGE.SECTION.GET_INSPIRED.READ_ON_OUR_BLOG'></div>
-			<div class='medium-flex flex-align-start flex-medium-divide' blog-posts-wrapper>
+			<div class='medium-flex flex-align-start flex-divided-medium' blog-posts-wrapper>
 				<!--
 					HERE COME BLOG POSTS
 				-->
@@ -521,7 +528,7 @@
           a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
         </p>
       </div>
-			<div class='medium-flex flex-align-start flex-medium-divide'>
+			<div class='medium-flex flex-align-start flex-divided-medium'>
 				<div class='flex-div flex-1 blog-block'>
 					<h5><strong t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.HEADER'>Přispěj finančně</strong></h5>
 					<p t='LANDING_PAGE.SECTION.SUPPORT_US.FINANCIALLY.TEXT'>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš. Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>
@@ -574,9 +581,9 @@
 						<div class='flex-1'>
 							<h5 class='text-emphasize flex-1'>Navigace</h5>
 							<div >
-								<div><a href='http://adato.cz/' t='LANDING_PAGE.SECTION.CONTACT.ABOUT_US'>O nás</a></div>
-								<div><a href='http://adato.cz/pribeh/' t='LANDING_PAGE.SECTION.CONTACT.STORY'>Příběh</a></div>
-								<div><a href='http://adato.cz/kontakt/' t='LANDING_PAGE.SECTION.CONTACT.PEOPLE_IN_ADATO'>Lidé v Adato</a></div>
+								<div><a href='/app/about-us' t='LANDING_PAGE.SECTION.CONTACT.ABOUT_US'>O nás</a></div>
+								<div><a href='/app/our-story' t='LANDING_PAGE.SECTION.CONTACT.STORY'>Příběh</a></div>
+								<div><a href='/app/contacts' t='LANDING_PAGE.SECTION.CONTACT.PEOPLE_IN_ADATO'>Lidé v Adato</a></div>
 							</div>
 						</div>
 					</div>

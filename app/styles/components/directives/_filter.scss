@@ -52,6 +52,11 @@ input.bottom-line-input:focus {
 // 		}
 // 	}
 // }
+.filter-inner label {
+	margin-bottom: 0;
+}
+
+
 .radio-container {
 	padding-bottom: $size-small;
 	span>small {

@@ -23,30 +23,28 @@ describe('user profile', function() {
 	}
 
 	function navigateToMyProfile() {
-		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
-		var topMenuLink = element(by.css('[test-beacon="dropdown-my-profile"]'));
-		topMenuLink.click();
+		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
+		beacon('dropdown-my-profile').click();
 	}
 
 	function navigateToEditProfile() {
 		// go to profile-edit
 		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
 		browser.sleep(500);
-		var topMenuLink = element(by.css('[test-beacon="dropdown-edit-profile"]'));
-		topMenuLink.click();
+		beacon('dropdown-edit-profile').click();
 	}
 
 	function setInputField(input, value, textarea) {
 		log("setInputField (" + input + ") = " + value);
 		browser.sleep(200);
-		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
+		var el = element(by.css('[test-beacon="profile-edit-form"] ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
 		el.clear();
 		el.sendKeys(value);
 	}
 
 
 	function assertInputField(input, value, textarea) {
-		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
+		var el = element(by.css('[test-beacon="profile-edit-form"] ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
 		el.getAttribute('value').then(function(gotvalue) {
     		expect(value).toBe(gotvalue);
 		});
@@ -55,7 +53,7 @@ describe('user profile', function() {
 
 	function addTagToInput(input, value, downArrow) {
 		log("addTagToInput (" + input + ") = " + value);
-		var el = element(by.css('#profileEditForm '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
+		var el = element(by.css('[test-beacon="profile-edit-form"] '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
 		el.sendKeys(value);
 		browser.sleep(1000);
 		if (downArrow == true) {
@@ -129,21 +127,21 @@ describe('user profile', function() {
 	});
 
 	it('should be able to change interests', function () {
-		clearTagInput('.interests #interests');
-		addTagToInput('.interests #interests', 'sport');
-		addTagToInput('.interests #interests', 'pes');
-		addTagToInput('.interests #interests', 'jazyky');
-		addTagToInput('.interests #interests', 'cestovani');
+		clearTagInput('[test-beacon="interests-tags-input"]');
+		addTagToInput('[test-beacon="interests-tags-input"]', 'sport');
+		addTagToInput('[test-beacon="interests-tags-input"]', 'pes');
+		addTagToInput('[test-beacon="interests-tags-input"]', 'jazyky');
+		addTagToInput('[test-beacon="interests-tags-input"]', 'cestovani');
 
 		clickSubmitButton();
 	});
 
 	it('should be able to change localities', function () {
 		// locality
-		clearTagInput('.location-input');
-		addTagToInput('.location-input', 'kralupy nad vltavou', true);
+		clearTagInput('[test-beacon="location-input-wrapper"]');
+		addTagToInput('[test-beacon="location-input-wrapper"]', 'kralupy nad vltavou', true);
 		browser.sleep(200);
-		addTagToInput('.location-input', 'nadrazni 740/56', true);
+		addTagToInput('[test-beacon="location-input-wrapper"]', 'nadrazni 740/56', true);
 		browser.sleep(200);
 		// adding languages, which are localised, thus we must know our language or type language-agnostic words :)
 
@@ -155,12 +153,12 @@ describe('user profile', function() {
     const LANG_SELECTOR = 'language-section';
     const LANG_INPUT = beacon(LANG_SELECTOR);
     log(LANG_INPUT);
-		clearTagInput('section.languages');
-		addTagToInput('section.languages', 'ang'); // esperanto
+		clearTagInput('[test-beacon="language-section"]');
+		addTagToInput('[test-beacon="language-section"]', 'ang'); // esperanto
 		browser.sleep(200);
-		addTagToInput('section.languages', 'rus'); // rusky or russian
+		addTagToInput('[test-beacon="language-section"]', 'rus'); // rusky or russian
 		browser.sleep(200);
-		addTagToInput('section.languages', 'portu'); // portugalsky or portugese
+		addTagToInput('[test-beacon="language-section"]', 'portu'); // portugalsky or portugese
 		browser.sleep(200);
 
 		clickSubmitButton();
@@ -177,10 +175,10 @@ describe('user profile', function() {
 	it('should be able to change networks info', function() {
 
 		// social networks
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear().sendKeys('http://facebook.com/profile' + randomNumber);
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear().sendKeys('http://twitter.com/profile' + randomNumber);
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear().sendKeys('http://linkedin.com/profile' + randomNumber);
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear().sendKeys('http://plus.google.com/profile' + randomNumber);
+    beacon('social-fb').clear().sendKeys('http://facebook.com/profile' + randomNumber);
+		beacon('social-twitter').clear().sendKeys('http://twitter.com/profile' + randomNumber);
+		beacon('social-linkedin').clear().sendKeys('http://linkedin.com/profile' + randomNumber);
+		beacon('social-gplus').clear().sendKeys('http://plus.google.com/profile' + randomNumber);
 
 		clickSubmitButton();
 	});
@@ -189,9 +187,9 @@ describe('user profile', function() {
 	it('should be able to change user webs', function() {
 
 		// webs and internets
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear().sendKeys('http://profile' + randomNumber + '.com');
-		element(by.css('#profileEditForm .webs a')).click();
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear().sendKeys('http://another.profile' + randomNumber + '.com');
+		element.all(by.css('[test-beacon="web-input"]')).get(0).clear().sendKeys('http://profile' + randomNumber + '.com');
+		beacon('web-adder').click();
+		element.all(by.css('[test-beacon="web-input"]')).get(1).clear().sendKeys('http://another.profile' + randomNumber + '.com');
 
 		clickSubmitButton();
 	});
@@ -205,28 +203,28 @@ describe('user profile', function() {
 		assertInputField('about', 'About_' + randomNumber, true); // textarea
 		assertInputField('phone', '+420 777 ' + randomNumber + ' ' + randomNumber);
 
-		assertTagInputItemCount('.location-input', 2); // expect tag-input length to be 2
-		assertTagInputItemCount('.interests #interests', 4);
-		assertTagInputItemCount('section.languages', 3);
+		assertTagInputItemCount('[test-beacon="location-input-wrapper"]', 2); // expect tag-input length to be 2
+		assertTagInputItemCount('[test-beacon="interests-tags-input"]', 4);
+		assertTagInputItemCount('[test-beacon="language-section"]', 3);
 
 
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).getAttribute('value').then(function(gotvalue){
+		beacon('social-fb').getAttribute('value').then(function(gotvalue){
     		expect(gotvalue).toBe('http://facebook.com/profile' + randomNumber);
 		});
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).getAttribute('value').then(function(gotvalue){
+		beacon('social-twitter').getAttribute('value').then(function(gotvalue){
 			expect(gotvalue).toBe('http://twitter.com/profile' + randomNumber);
 		});
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).getAttribute('value').then(function(gotvalue){
+		beacon('social-linkedin').getAttribute('value').then(function(gotvalue){
 			expect(gotvalue).toBe('http://linkedin.com/profile' + randomNumber);
 		});
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).getAttribute('value').then(function(gotvalue){
+		beacon('social-gplus').getAttribute('value').then(function(gotvalue){
 			expect(gotvalue).toBe('http://plus.google.com/profile' + randomNumber);
 		});
 
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).getAttribute('value').then(function(gotvalue){
+		element.all(by.css('[test-beacon="web-input"]')).get(0).getAttribute('value').then(gotvalue => {
 			expect(gotvalue).toBe('http://profile' + randomNumber + '.com');
 		});
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).getAttribute('value').then(function(gotvalue){
+		element.all(by.css('[test-beacon="web-input"]')).get(1).getAttribute('value').then(gotvalue => {
 			expect(gotvalue).toBe('http://another.profile' + randomNumber + '.com');
 		});
 	});
@@ -239,20 +237,20 @@ describe('user profile', function() {
 		setInputField('phone', '');
 		setInputField('about', '', true); // textarea
 
-		clearTagInput('.interests #interests');
-		clearTagInput('.location-input');
-		clearTagInput('section.languages');
-		addTagToInput('section.languages', 'ang'); // add one language to pass a validation
+		clearTagInput('[test-beacon="interests-tags-input"]');
+		clearTagInput('[test-beacon="location-input-wrapper"]');
+		clearTagInput('[test-beacon="language-section"]');
+		addTagToInput('[test-beacon="language-section"]', 'ang'); // add one language to pass a validation
 		browser.sleep(200);
 
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear();
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear();
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear();
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear();
+		beacon('social-fb').clear();
+		beacon('social-twitter').clear();
+		beacon('social-linkedin').clear();
+		beacon('social-gplus').clear();
 
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear();
-		element(by.css('#profileEditForm .webs a')).click();
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear();
+		element.all(by.css('[test-beacon="web-input"]')).get(0).clear();
+		beacon('web-adder').click();
+		element.all(by.css('[test-beacon="web-input"]')).get(1).clear();
 
 		clickSubmitButton();
 	});
