@@ -20,11 +20,7 @@
 
   function init({ additionalParams } = {}) {
 
-		// update links with additional params
-		fe($(CHARACTER_LINK_SELECTOR), link => {
-			// the expectation is that there already is a '?' char in the link
-			link.setAttribute('href', link.getAttribute('href') + '&' + additionalParams);
-		});
+		var updateLinks = false;
 
 		// insert post counts into buttons
     fe($(CHARACTER_FILL_SELECTOR), item => {
@@ -36,13 +32,24 @@
           if (!(res && res.counters && res.counters.post)) return console.warn('Failed to load post counters');
 
           // only replace if the number is high enough so that it doesn't discourage users
-          if (res.counters.post > ACCEPTABILITY_THRESHOLD) item.innerHTML = NUMBER_OF_GIFTS_TRANSLATION.replace(NUMBER_VARIABLE, res.counters.post);
+          if (res.counters.post > ACCEPTABILITY_THRESHOLD) {
+						updateLinks = true;
+						item.innerHTML = NUMBER_OF_GIFTS_TRANSLATION.replace(NUMBER_VARIABLE, res.counters.post);
+					}
         } else {
           console.error('Failed to fetch item counts for character "' + character + '"');
         }
       }
       req.send();
     });
+
+		if (!updateLinks) return;
+
+		// update links with additional params
+		fe($(CHARACTER_LINK_SELECTOR), link => {
+			// the expectation is that there already is a '?' char in the link
+			link.setAttribute('href', link.getAttribute('href') + '&' + additionalParams);
+		});
 
   }
 
