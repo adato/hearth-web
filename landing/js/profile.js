@@ -48,13 +48,13 @@
 		req.onload = function() {
 			if (req.status === 200) {
 				profile = JSON.parse(req.responseText);
-				// console.log(profile);
+				console.log(profile);
 				fillProfile(profile);
 			} else {
 				profileNotLogged();
 				console.log('Profile request failed. Returned status of ' + req.status);
 			}
-			if (typeof window.marketplaceMasonryInit === 'function') window.marketplaceMasonryInit({additionalParams: 'lang=' + (profile ? profile.user_languages.join(',') : document.querySelector('html').getAttribute('lang'))});
+			if (typeof window.marketplaceMasonryInit === 'function') window.marketplaceMasonryInit({additionalParams: 'lang=' + (profile ? (profile.user_languages.join(',') + '&my-lang=1') : document.querySelector('html').getAttribute('lang'))});
 		};
 		req.send();
 

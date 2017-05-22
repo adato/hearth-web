@@ -8,6 +8,7 @@
 
   const CHAR_FILL = 'character-fill';
   const CHARACTER_FILL_SELECTOR = '[' + CHAR_FILL + ']';
+	const CHARACTER_LINK_SELECTOR = '[character-link]';
 
   const NUMBER_OF_GIFTS_TRANSLATION_SELECTOR = 'translation[rel="NUMBER_OF_GIFTS"]';
   const NUMBER_VARIABLE = '{{count}}';
@@ -18,6 +19,14 @@
   window.marketplaceMasonryInit = init;
 
   function init({ additionalParams } = {}) {
+
+		// update links with additional params
+		fe($(CHARACTER_LINK_SELECTOR), link => {
+			// the expectation is that there already is a '?' char in the link
+			link.setAttribute('href', link.getAttribute('href') + '&' + additionalParams);
+		});
+
+		// insert post counts into buttons
     fe($(CHARACTER_FILL_SELECTOR), item => {
       const character = item.getAttribute(CHAR_FILL);
       const req = requestApi('GET', apiPath + '/search?counters=true&type=post&character=' + character + (additionalParams ? '&' + additionalParams : ''));
@@ -34,6 +43,7 @@
       }
       req.send();
     });
+
   }
 
 })(window, window.hearthConfig);
