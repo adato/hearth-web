@@ -14,15 +14,6 @@
 
 	<!-- <marketplace-banner class="leader-banner show-for-large" target="_blank" image="borrow-lend" code="leader-banner" language="{{language}}" title="" href="" click="editItem(null)"></marketplace-banner> -->
 
-	<div class="row margin-horizontal-none margin-bottom-large">
-		<div class="column box padding-none overflow-hidden">
-			<a href="https://www.facebook.com/AckeeCZ/videos/1067242950044227/" target="_blank">
-				<img class="show-for-small-only" alt="Hearth-mobile-app" src="{{:: config.imgUrl }}/banner/ackee-m.jpg" />
-				<img class="show-for-medium" alt="Hearth-mobile-app" src="{{:: config.imgUrl }}/banner/ackee-l.jpg" />
-			</a>
-		</div>
-	</div>
-
 	<div>
 		<div class="callout alert" ng-if="firstPageNotShown()" translate="MARKETPLACE.NOT_ON_FIRST_PAGE" translate-values="{sref: 'market({page: 1})'}" translate-compile></div>
 		<div class="callout alert" ng-if="showLimitedPostsMessageAuth" translate="LIMITED_POSTS_MESSAGE_AUTH" translate-compile translate-values="{'attrs': 'ng-href=\'profile-edit\''}">logged</div>

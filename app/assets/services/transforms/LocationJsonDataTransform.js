@@ -62,7 +62,9 @@ angular.module('hearth.services').factory('LocationJsonDataTransform', ['$window
 			return ret;
 
 		} catch (e) {
-			throw new Error("An error ocured while parsing input data: " + e.message);
+			// silent fail in case of "wrong" data
+			// and return original entity
+			return entity;
 		}
 	}
 
