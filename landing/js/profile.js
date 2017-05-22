@@ -48,7 +48,7 @@
 		req.onload = function() {
 			if (req.status === 200) {
 				profile = JSON.parse(req.responseText);
-				console.log(profile);
+				// console.log(profile);
 				fillProfile(profile);
 			} else {
 				profileNotLogged();
