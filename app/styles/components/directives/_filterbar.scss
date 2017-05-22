@@ -1,5 +1,5 @@
 .filterbar-wrap {
-	margin-bottom: $ui-grid-size;
+   margin-bottom: $size-large;
 
 	.filterbar-header {
 
@@ -14,7 +14,6 @@
 			box-shadow: 0 0 5px rgba(100,100,100,.5);
 
 			a {
-				// color: #1fb1e8;
 				color: $primary-color;
 				font-weight: 600;
 
@@ -31,23 +30,36 @@
 	}
 
 	.filter-container {
-		@extend .box;
-		padding: $ui-grid-size;
-		clear: both;
-		margin-top: 2 * $ui-small-grid-size;
-		max-height: 1000px;
-		transition: all .3s ease-in;
+        transition: all .3s ease-in;
+        padding-top: $size-medium;
+
+        .ui-checkbox {
+            display: inline-block;
+        }
 	}
 
+	// WHY is this here when jQuery is there and it is definitely not going anywhere?
 	.animated-hidden {
 		height: 0px;
 		max-height: 0px;
-		margin-top: 0;
-		margin-bottom: 0;
-		padding-top: 0;
-		padding-bottom: 0;
-		overflow-y: hidden;
-		transition: all .3s ease-in;
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		overflow: hidden;
+		// transition: all .3s ease-in;
+	}
+
+  .filter-label,
+  .map-label,
+  .next-options-label,
+  .actions-dropdown a {
+		color: black;
+
+		&.filter-selected {
+			color: $primary-color;
+      font-weight: bold;
+		}
 	}
 }
 
