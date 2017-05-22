@@ -40,6 +40,7 @@
     "json3": "~3.3.2",
     "angular-sanitize": "~1.6.x",
     "angular-resource": "~1.6.x",
+    "angular-messages": "~1.6.x",
     "moment": "~2.10.6",
     "angular-ui-router": "~0.4.2",
     "autosize": "~3.0.13",
