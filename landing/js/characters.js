@@ -15,13 +15,12 @@
   const NUMBER_OF_GIFTS_TRANSLATION = $(NUMBER_OF_GIFTS_TRANSLATION_SELECTOR)[0].innerHTML;
   const ACCEPTABILITY_THRESHOLD = 10;
 
+	var linksUpdated = false;
+
   // expose fn so that it can be called
   window.marketplaceMasonryInit = init;
 
   function init({ additionalParams } = {}) {
-
-		var updateLinks = false;
-
 		// insert post counts into buttons
     fe($(CHARACTER_FILL_SELECTOR), item => {
       const character = item.getAttribute(CHAR_FILL);
@@ -33,8 +32,9 @@
 
           // only replace if the number is high enough so that it doesn't discourage users
           if (res.counters.post > ACCEPTABILITY_THRESHOLD) {
-						updateLinks = true;
 						item.innerHTML = NUMBER_OF_GIFTS_TRANSLATION.replace(NUMBER_VARIABLE, res.counters.post);
+
+						updateLinks(additionalParams);
 					}
         } else {
           console.error('Failed to fetch item counts for character "' + character + '"');
@@ -42,15 +42,16 @@
       }
       req.send();
     });
+  }
 
-		if (!updateLinks) return;
-
-		// update links with additional params
+	// update links with additional params
+	function updateLinks(additionalParams) {
+		if (linksUpdated || !additionalParams) return false;
+		linksUpdated = true;
 		fe($(CHARACTER_LINK_SELECTOR), link => {
 			// the expectation is that there already is a '?' char in the link
 			link.setAttribute('href', link.getAttribute('href') + '&' + additionalParams);
 		});
-
-  }
+	}
 
 })(window, window.hearthConfig);
