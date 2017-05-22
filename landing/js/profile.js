@@ -33,6 +33,7 @@
 	} else {
 		fe($(notLoggedSelector), function(el) {el.style.display = 'inherit'; el.classList.add('inited');});
 		fe($(loggedSelector), function(el) {el.style.display = 'none'; el.classList.add('inited');});
+		initCharacterLinks();
 	}
 
 	// expose logout function
@@ -54,7 +55,7 @@
 				profileNotLogged();
 				console.log('Profile request failed. Returned status of ' + req.status);
 			}
-			if (typeof window.marketplaceMasonryInit === 'function') window.marketplaceMasonryInit({additionalParams: 'lang=' + (profile ? profile.user_languages.join(',') : document.querySelector('html').getAttribute('lang'))});
+			initCharacterLinks(profile);
 		};
 		req.send();
 
@@ -129,6 +130,10 @@
 				el.addEventListener('click', logout)
 			}
 		});
+	}
+
+	function initCharacterLinks(profile) {
+		if (typeof window.marketplaceMasonryInit === 'function') window.marketplaceMasonryInit({additionalParams: 'lang=' + (profile ? (profile.user_languages.join(',') + '&my-lang=1') : document.querySelector('html').getAttribute('lang'))});
 	}
 
 })(window, window.hearthConfig);
