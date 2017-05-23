@@ -129,13 +129,17 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     <span translate="PERSON.NAME"></span>
     <input type="text" name="name" ng-model="testFormData.name" translate-attr="{placeholder: 'PERSON.NAME'}" required minlength="2" />
     <div class="help-text" translate="PERSON.NAME.HELPTEXT"></div>
-    <div class="form-error" ng-if="(testForm.$submitted || testForm.name.$dirty) && testForm.name.$error.required" translate="ERROR.REQUIRED"></div>
-    <div class="form-error" ng-if="(testForm.$submitted || testForm.name.$dirty) && testForm.name.$error.minlength" translate="ERROR.MIN_LENGTH" translate-values="{length: 2}"></div>
+    <div ng-messages="testForm.name.$error" ng-show="testForm.name.$dirty">
+      <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
+      <div ng-messages-include="assets/components/form/ngMessages/minlength.html"></div>
+    </div>
   </label>
   <label class="block">
     <span translate="PERSON.SURNAME"></span>
     <input type="text" name="surname" ng-model="testFormData.surname" translate-attr="{placeholder: 'PERSON.SURNAME'}" required />
-    <div class="form-error" ng-show="(testForm.$submitted || testForm.surname.$dirty) && testForm.surname.$error.required" translate="ERROR.REQUIRED"></div>
+    <div ng-messages="testForm.surname.$error" ng-show="testForm.name.$dirty">
+      <div ng-message="required" translate="PERSON.SURNAME.ERROR_REQUIRED"></div>
+    </div>
   </label>
   <div class="flex flex-divided-medium">
     <button class="button" type="submit" translate="FORM.SUBMIT"></button>
