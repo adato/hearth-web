@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth',
-	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth) {
+	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'ItemAux',
+	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, ItemAux) {
 
 		var marketplaceInited = false;
 
@@ -61,7 +61,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			templates[item._type.toLowerCase()](scope, done);
 		}
 
-		function addItemsToList(container, data, index, done) {
+		function addItemsToList({ container, data, index, done, exemplaryPosts }) {
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
@@ -81,6 +81,16 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						marker.insertBefore(clone);
 					}
 
+					// Add exemplary posts
+					if (exemplaryPosts && index === 1) {
+						console.log(exemplaryPosts, post);
+						const exemplaryPostsScope = $rootScope.$new()
+						exemplaryPostsScope.posts = exemplaryPosts
+
+						$compile(ItemAux.getExemplaryPostsOpts().template)(exemplaryPostsScope).insertBefore(clone)
+						exemplaryPosts = false
+					}
+
 					// Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
 					// Timeout for the check must be set long enough for the slidedown to take its full effect.
 					$timeout(function() {
@@ -90,10 +100,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
 
 					// Start next recursion cycle.
-					addItemsToList(container, data, index + 1, done);
+					addItemsToList({ container, data, index: index + 1, done, exemplaryPosts });
 
 				});
 			}
+
 			$scope.debug && console.timeEnd("Posts pushed to array and built");
 			done(data);
 		}
@@ -152,7 +163,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// params.type = "community,user,post";
 			// params.query = "*";
 			paramObject.type = itemTypes.join(',');
-			Post.query(paramObject, data => {
+
+			const qParams = {
+				posts: Post.query(paramObject).$promise
+			}
+			if (1) qParams.exemplaryPosts = ItemAux.getExemplaryPosts()
+			$q.all(qParams).then(({ posts: data, exemplaryPosts }) => {
+
 				$scope.loaded = true;
 				$(".loading").hide();
 
@@ -165,8 +182,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					data.data = HearthCrowdfundingBanner.decorateMarketplace(data.data);
 				}
 				$scope.debug && console.time("Posts pushed to array and built");
+
 				// iterativly add loaded data to the list and then call finishLoading
-				addItemsToList($('#market-item-list'), data, 0, finishLoading.bind($scope));
+				addItemsToList({ container: $('#market-item-list'), data, index: 0, done: finishLoading.bind($scope), exemplaryPosts });
 				$rootScope.$emit('postsLoaded');
 			}, err => {
 				// error handler

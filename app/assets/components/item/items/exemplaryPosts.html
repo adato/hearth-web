@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="column small-12 medium-10 medium-push-2 padding-none">
+
+    <div class="box block">
+      <div ng-repeat="post in posts track by post.id">
+
+        <h1 ng-bind="post.title"></h1>
+        <div ng-bind="post.text"></div>
+
+        <hr ng-if='!$last'>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -6,13 +6,14 @@
  * @description functions for marketplace items / posts
  */
 
-angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics',
-	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics) {
+angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache',
+	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache) {
 
 		const factory = {
 			addItemToBookmarks,
 			confirmSuspend,
 			getExemplaryPosts,
+			getExemplaryPostsOpts,
 			hideItem,
 			heart,
 			postHeartedByUser,
@@ -52,6 +53,12 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 					}
 				])
 			})
+		}
+
+		function getExemplaryPostsOpts() {
+			return {
+				template: $templateCache.get('assets/components/item/items/exemplaryPosts.html')
+			}
 		}
 
 		/**
