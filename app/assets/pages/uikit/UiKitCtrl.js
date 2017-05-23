@@ -129,7 +129,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     <span translate="PERSON.NAME"></span>
     <input type="text" name="name" ng-model="testFormData.name" translate-attr="{placeholder: 'PERSON.NAME'}" required minlength="2" />
     <div class="help-text" translate="PERSON.NAME.HELPTEXT"></div>
-    <div ng-messages="testForm.name.$error" ng-show="testForm.name.$dirty">
+    <div ng-messages="testForm.name.$error" ng-show="testForm.$submitted || testForm.name.$dirty">
       <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
       <div ng-messages-include="assets/components/form/ngMessages/minlength.html"></div>
     </div>
@@ -137,7 +137,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
   <label class="block">
     <span translate="PERSON.SURNAME"></span>
     <input type="text" name="surname" ng-model="testFormData.surname" translate-attr="{placeholder: 'PERSON.SURNAME'}" required />
-    <div ng-messages="testForm.surname.$error" ng-show="testForm.name.$dirty">
+    <div ng-messages="testForm.surname.$error" ng-show="testForm.$submitted || testForm.surname.$dirty">
       <div ng-message="required" translate="PERSON.SURNAME.ERROR_REQUIRED"></div>
     </div>
   </label>
