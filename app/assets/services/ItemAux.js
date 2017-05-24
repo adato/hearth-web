@@ -42,6 +42,11 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 
 		function getExemplaryPosts() {
 			return $q((resolve, reject) => {
+				Post.exemplaryPosts(res => {
+					console.log('POSTS', res);
+				}, err => {
+					console.warn('ERROR', err);
+				})
 				return resolve([
 					{
 						id: 1,

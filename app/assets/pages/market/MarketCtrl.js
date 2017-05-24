@@ -83,11 +83,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					// Add exemplary posts
 					if (exemplaryPosts && index === 1) {
-						console.log(exemplaryPosts, post);
-						const exemplaryPostsScope = $rootScope.$new()
-						exemplaryPostsScope.posts = exemplaryPosts
-
-						$compile(ItemAux.getExemplaryPostsOpts().template)(exemplaryPostsScope).insertBefore(clone)
+						$compile(ItemAux.getExemplaryPostsOpts().template)(angular.merge($rootScope.$new(), {posts: exemplaryPosts})).insertBefore(clone)
 						exemplaryPosts = false
 					}
 
