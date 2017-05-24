@@ -146,6 +146,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
       if (!Filter.isSet()) {
         paramObject.lang = userLanguages;
+        paramObject.my_lang = 1;
       }
 
 			// params.type = "community,user,post";

@@ -23,9 +23,10 @@ describe('LocationJsonDataTransform factory', function() {
 			expect(result.locations[0].address).toEqual("Malovarská 280, 273 24 Velvary, Česká republika");
 		});
 
-		it('should throw parse error when passed invalid data', function() {
-			var userDataJson = '{ blabla }';
-			expect(function () { locFactory.getLocationJson(userDataJson); }).toThrow(new Error("An error ocured while parsing input data: JSON Parse error: Expected '}'"));
+		it('should return same object when invalid data is passed', function() {
+			var userDataJson = '{ bla }';
+			var result = locFactory.getLocationJson(userDataJson);
+			expect(result).toEqual('{ bla }');
 		});
 	});
 
