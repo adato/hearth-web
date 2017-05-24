@@ -77,12 +77,13 @@
 
 	<div class="flex-6">
 
-		<div class="box applications block" ng-if="mine">
-			<div ng-if="!applications.length">
+		<div class="box applications block" ng-if="mine && applications.length">
+		<!-- <div ng-if="!applications.length">
 				<h3>{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
 				<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 			</div>
-			<div ng-if="applications.length">
+			<div ng-if="applications.length"> -->
+			<div>
 				<h3 class="small-8 fleft">{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}: {{applications.length}}</h3>
 				<a class="fright" ng-if="false">{{:: 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
 

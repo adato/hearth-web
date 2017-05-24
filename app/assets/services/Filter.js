@@ -93,6 +93,7 @@ angular.module('hearth.services').factory('Filter', [
         delete l.page;
         delete l.postdetail;
         delete l.query;
+				delete l.my_lang;
         let userLanguages = Auth.getUserLanguages();
         let res = typeof l.lang == 'undefined' || JSON.stringify([l.lang].sort())==JSON.stringify([userLanguages].sort());
         if(res) {

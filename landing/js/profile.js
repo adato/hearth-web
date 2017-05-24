@@ -1,28 +1,27 @@
 ;(function(window, config) {
 	'use strict';
 
-	var $ = window.aeg.$,
-		cookieFactory = window.aeg.cookieFactory,
- 		fe = window.aeg.fe,
-		requestApi = window.aeg.requestApi;
+	const $ = window.aeg.$;
+	const cookieFactory = window.aeg.cookieFactory;
+ 	const fe = window.aeg.fe;
+	const requestApi = window.aeg.requestApi;
 
 	//
 	//	PROFILE
 	//
-	var profile,
-		apiPath = config.apiPath,
-		authTokenIdentificator = config.authTokenIdentificator;
+	var profile;
+	const apiPath = config.apiPath;
+	const authTokenIdentificator = config.authTokenIdentificator;
 
-	var loggedSelector = '[user-logged]',
-		notLoggedSelector = '[user-not-logged]',
-		profileSectionSelector = '#profileSection',
-		profileAvatarSelector = '[profile-image]',
-		profileAvatarDefault = '/img/no-avatar.jpg',
-		profileFullNameSelector = '[profile-name]',
-		profileLinkSelector = '[profile-link]',
-		logoutNodeIdentificator = '[logout]',
-		unreadMessagesBadgeSelector = '[message-count]';
-
+	const loggedSelector = '[user-logged]';
+	const notLoggedSelector = '[user-not-logged]';
+	const profileSectionSelector = '#profileSection';
+	const profileAvatarSelector = '[profile-image]';
+	const profileAvatarDefault = '/img/no-avatar.jpg';
+	const profileFullNameSelector = '[profile-name]';
+	const profileLinkSelector = '[profile-link]';
+	const logoutNodeIdentificator = '[logout]';
+	const unreadMessagesBadgeSelector = '[message-count]';
 
 	// COOKIE PATH ERROR FIX-UP
 	cookieFactory.remove(authTokenIdentificator, '/cs');
@@ -34,6 +33,7 @@
 	} else {
 		fe($(notLoggedSelector), function(el) {el.style.display = 'inherit'; el.classList.add('inited');});
 		fe($(loggedSelector), function(el) {el.style.display = 'none'; el.classList.add('inited');});
+		initCharacterLinks();
 	}
 
 	// expose logout function
@@ -55,6 +55,7 @@
 				profileNotLogged();
 				console.log('Profile request failed. Returned status of ' + req.status);
 			}
+			initCharacterLinks(profile);
 		};
 		req.send();
 
@@ -129,6 +130,10 @@
 				el.addEventListener('click', logout)
 			}
 		});
+	}
+
+	function initCharacterLinks(profile) {
+		if (typeof window.marketplaceMasonryInit === 'function') window.marketplaceMasonryInit({additionalParams: 'lang=' + (profile ? (profile.user_languages.join(',') + '&my-lang=1') : document.querySelector('html').getAttribute('lang'))});
 	}
 
 })(window, window.hearthConfig);

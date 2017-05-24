@@ -164,8 +164,9 @@ html[lang='en'] .language-panel .lang-en {
 	LANG DEPENDENT
 *******************/
 html[lang='en'] [blog-post-section],
-html[lang='en'] #section-marketplace,
-html[lang='sk'] #section-marketplace {
+// html[lang='en'] #section-marketplace,
+// html[lang='sk'] #section-marketplace
+{
 	display: none;
 }
 
