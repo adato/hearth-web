@@ -26,19 +26,22 @@
 				<h2 translate="USER_NOTIFICATION"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
           <div class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="PROFILE.EDIT.FREQUENCY.SENDING"></span>
+            <span translate="PROFILE.EDIT.SEND.FREQUENCY.HOW_OFTEN"></span>
             <select ng-model="notify.send_emails.frequency">
               <option value="immediately" ng-selected="notify.send_emails.frequency === 'immediately'"
-                      translate="PROFILE.EDIT.FREQUENCY.IMMEDIATELY"></option>
+                      translate="PROFILE.EDIT.SEND.FREQUENCY.IMMEDIATELY"></option>
               <option value="once_day" ng-selected="notify.send_emails.frequency === 'once_day'"
-                      translate="PROFILE.EDIT.FREQUENCY.ONCE_DAY"></option>
+                      translate="PROFILE.EDIT.SEND.FREQUENCY.ONCE_DAY"></option>
               <option value="all_once_day" ng-selected="notify.send_emails.frequency === 'all_once_day'"
-                      translate="PROFILE.EDIT.FREQUENCY.ALL_ONCE_DAY"></option>
+                      translate="PROFILE.EDIT.SEND.FREQUENCY.ALL_ONCE_DAY"></option>
               <option value="off" ng-selected="notify.send_emails.frequency === 'off'"
-                      translate="PROFILE.EDIT.FREQUENCY.OFF"></option>
+                      translate="PROFILE.EDIT.SEND.FREQUENCY.OFF"></option>
             </select>
           </div>
-					<div>
+          <div class="margin-bottom-small" ng-if="userHasRight('post.suspend')">
+            <span translate="PROFILE.EDIT.SEND.WHICH"></span>
+					</div>
+          <div>
 						<checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
 							{{:: 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
 						</checkbox>
