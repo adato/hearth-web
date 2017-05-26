@@ -48,7 +48,7 @@
 .box {
 	background-color: white;
 	border-radius: $global-radius;
-	padding: $ui-grid-size;
+	padding: $size-large;
 	box-shadow: $ui-box-shadow;
 
 	/* @kamil todo - delete if nothing breaks without it*/
@@ -78,6 +78,7 @@
 		margin: 1.25rem 0.5rem;
 	}
 
+	/* This box style makes inner boxes of different color */
 	&.sectioned-box {
 		padding: 0 0 $size-small 0;
 
@@ -107,6 +108,20 @@
 			}
 		}
 	}
+
+	&.box--with-subboxes {
+		padding: 0;
+
+		& > .subbox {
+			padding: $size-large;
+			border-bottom: 1px solid $colorLightGray;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+
 	footer {
 		border-bottom-left-radius: $global-radius;
 		border-bottom-right-radius: $global-radius;

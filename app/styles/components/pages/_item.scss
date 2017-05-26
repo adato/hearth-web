@@ -74,6 +74,26 @@ a.user{
 	border-bottom-right-radius: 50%;
 	transform: rotate(45deg);
 	z-index: 5;
+
+	&.non-responsive {
+		width: 32px;
+		height: 32px;
+
+		& > i {
+			width: 17px; height: 17px;
+			background-size: 17px 17px;
+		}
+	}
+
+	@include breakpoint(medium up) {
+
+		// means that the type will be moved to the .box border on medium up displays
+		// margin-left size is tightly bound to the its wrapping .flex-divided-medium classes negative margins
+		&.left-aligned {
+			margin-left: -($size-big + $size-big) !important;
+		}
+
+	}
 }
 .item-option-bg-offer,
 .item-option-bg-lend {
@@ -136,6 +156,7 @@ button.active[disabled] .item-option-bg-type {
 	margin-left: -15px;
 	right: -30px;
 }
+
 @include breakpoint(medium up) {
 	.item-option-bg-type {
 		width: 32px;
@@ -324,6 +345,8 @@ button.active[disabled] .item-option-bg-type {
 	p a:hover {
 		color: $primary-color;
 	}
+
+	/* TODO this is stupid */
 	header {
 		line-height: $size-large;
 
@@ -340,6 +363,18 @@ button.active[disabled] .item-option-bg-type {
 				&:hover span {
 					text-decoration: underline;
 				}
+			}
+		}
+	}
+	.item-header {
+		color: $black;
+		word-wrap: break-word;
+
+		a {
+			color: $black;
+
+			&:hover > *{
+				text-decoration: underline;
 			}
 		}
 	}

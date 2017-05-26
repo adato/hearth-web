@@ -6,9 +6,17 @@
  * @description new post scope can be created using this service
  */
 
-angular.module('hearth.services').service('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList',
-	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList) {
+angular.module('hearth.services').factory('PostScope', [
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'ItemAux',
+	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList, ItemAux) {
+
+		const factory = {
+			getPostScope
+		}
+
+		return factory
+
+		////////////////
 
 		function getPostScope(post, $scope) {
 			var author = post;
@@ -28,10 +36,11 @@ angular.module('hearth.services').service('PostScope', [
 			scope.postLanguage = LanguageList.translate(post.language);
 			angular.extend(scope, ItemServices);
 
-			scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
-			scope.item.text_parsed = $filter('nl2br')($filter('linky')(scope.item.text, '_blank'));
-			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
-			scope.item.text_short_parsed = $filter('linky')(scope.item.text_short, '_blank');
+			// scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
+			// scope.item.text_parsed = $filter('nl2br')($filter('linky')(scope.item.text, '_blank'));
+			// scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
+			// scope.item.text_short_parsed = $filter('linky')(scope.item.text_short, '_blank');
+			ItemAux.extendForDisplay(scope.item)
 
 			var timeout = null;
 			var updateTimeAgo = function() {
@@ -73,8 +82,5 @@ angular.module('hearth.services').service('PostScope', [
 			return scope;
 		}
 
-		return {
-			'getPostScope': getPostScope
-		};
 	}
 ]);

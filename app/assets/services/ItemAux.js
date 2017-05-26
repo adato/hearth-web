@@ -6,16 +6,18 @@
  * @description functions for marketplace items / posts
  */
 
-angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache',
-	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache) {
+angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache', '$locale', '$filter',
+	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache, $locale, $filter) {
 
 		const factory = {
 			addItemToBookmarks,
 			confirmSuspend,
+			extendForDisplay,
 			getExemplaryPosts,
 			getExemplaryPostsOpts,
 			hideItem,
 			heart,
+			isPostActive,
 			postHeartedByUser,
 			logCharInfoShown,
 			removeItemFromBookmarks,
@@ -40,23 +42,22 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			});
 		}
 
+		function extendForDisplay(item) {
+			item.updated_at_timeago = $filter('ago')(item.updated_at);
+			item.updated_at_date = $filter('date')(item.updated_at, $locale.DATETIME_FORMATS.medium);
+			item.text_parsed = $filter('nl2br')($filter('linky')(item.text, '_blank'));
+			item.text_short = $filter('ellipsis')(item.text, 270, true);
+			item.text_short_parsed = $filter('linky')(item.text_short, '_blank');
+		}
+
 		function getExemplaryPosts() {
 			return $q((resolve, reject) => {
 				Post.exemplaryPosts(res => {
 					console.log('POSTS', res);
+					return resolve(res.data)
 				}, err => {
-					console.warn('ERROR', err);
+					console.warn('ERROR', err)
 				})
-				return resolve([
-					{
-						id: 1,
-						title: 'asdf',
-					},
-					{
-						id: 2,
-						title: 'qwer'
-					}
-				])
 			})
 		}
 
@@ -176,6 +177,12 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			}, err => {
 				item.heartLoading = false;
 			});
+		}
+
+		function isPostActive(item = {}) {
+			// this gets called way too often
+			// console.log(item);
+			return item.state === 'active'
 		}
 
 		function postHeartedByUser({ item, userId }) {

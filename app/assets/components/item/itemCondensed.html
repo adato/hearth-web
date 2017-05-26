@@ -1,0 +1,25 @@
+<div class="item-common margin-bottom-none" id="post_{{:: ctrl.item._id }}" ng-class=":: {inactive: !ctrl.isPostActive(item)}">
+  <div class="flex flex-divided-medium block">
+    <div class="item-option-bg-type left-aligned non-responsive" ng-class="'item-option-bg-' + (ctrl.item.exact_type == 'gift' ? ctrl.item.type : (ctrl.item.type == 'offer' ? 'lend' : 'borrow'))">
+      <i></i>
+    </div>
+    <avatar class="small-avatar-small" type="ctrl.item.author._type" src="ctrl.item.author.avatar.normal" size="small"></avatar>
+    <div>
+      <div class="text-emphasize" ng-bind="item.author.name"></div>
+      <div class="color-dark-gray" ng-bind="item.updated_at_timeago" title="{{:: item.updated_at_date }}"></div>
+    </div>
+  </div>
+  <div>
+    <h3 class="item-header">
+      <a ui-sref="post({id: ctrl.item._id})">
+        <strong ng-class=":: 'color-' + ctrl.item.type" translate="{{:: ctrl.item.postTypeCode }}"></strong><strong ng-bind=":: '\u00A0' + (ctrl.item.title | ellipsis:100)"></strong>
+      </a>
+    </h3>
+    <span class="validity-warning" ng-if="ctrl.isExpiringSoon" translate="POSTS.DETAIL.POST_EXPIRING_SOON"></span>
+    <div ng-if="item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isActive" class="error" translate="POST.SUSPENDED_BY_ADMIN"></div>
+    <span class="fa fa-lock" ng-if="ctrl.item.is_private" translate-attr="{title: 'VISIBLE_FOR_FRIENDS'}"></span>
+  </div>
+  <div class="word-wrap">
+    <p class="margin-none" ng-bind-html=":: ctrl.item.text | linky:'_blank' | nl2br | ellipsis:200"></p>
+  </div>
+</div>
