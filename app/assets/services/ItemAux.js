@@ -17,9 +17,12 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			getExemplaryPostsOpts,
 			hideItem,
 			heart,
+			isMyPost,
 			isPostActive,
-			postHeartedByUser,
 			logCharInfoShown,
+			logPostAction,
+			logPostTextToggle,
+			postHeartedByUser,
 			removeItemFromBookmarks,
 			replyItem
 		};
@@ -180,6 +183,10 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			});
 		}
 
+		function isMyPost(item = {}) {
+			return item.owner_id === ($rootScope.user && $rootScope.user._id)
+		}
+
 		function isPostActive(item = {}) {
 			// this gets called way too often
 			// console.log(item);
@@ -204,6 +211,23 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			$analytics.eventTrack('Character info shown', {
 				'Location': location,
 				'context': $state.current.name
+			});
+		}
+
+		function logPostAction(event, scope) {
+			$analytics.eventTrack(event + ' (Post)', {
+				'is_mine': scope.mine,
+				'type': scope.item.type,
+				'exact_type': scope.item.exact_type,
+			});
+		}
+
+		/**
+		 *	@param {String} action - [expanded|collapsed]
+		 */
+		function logPostTextToggle({ action, post }) {
+			$analytics.eventTrack('Post text length ' + action , {
+				post_id: post._id
 			});
 		}
 

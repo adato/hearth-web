@@ -15,7 +15,6 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
 
   return {
     restrict: 'AE',
-    replace: true,
     scope: {
       item: '='
     },
@@ -30,6 +29,7 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
       ctrl.postTypes = $window.$$config.postTypes
       ctrl.isPostActive = ItemAux.isPostActive
       ctrl.userHasRight = Rights.userHasRight
+      ctrl.logPostTextToggle = ItemAux.logPostTextToggle
 
       $scope.$watch('item', newItem => {
         ctrl.item = newItem
@@ -37,8 +37,7 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
         ctrl.item.postTypeCode = PostUtils.getPostTypeCode(newItem.author._type, newItem.type, newItem.exact_type)
       })
 
-    }],
-    link: function (scope, el, attrs) {}
+    }]
   }
 
 }])

@@ -89,14 +89,21 @@ a.user {
 		}
 	}
 
+	// when the icon is not moved to the border (see below) it should
+	// maintain a consistent spacing with its surroundings
 	@include breakpoint(medium up) {
-
-		// means that the type will be moved to the .box border on medium up displays
-		// margin-left size is tightly bound to the its wrapping .flex-divided-medium classes negative margins
 		&.left-aligned {
-			margin-left: -($size-big + $size-big) !important;
-		}
+			// means that the type will be moved to the .box border on medium up displays
+			// margin-left size is tightly bound to the its wrapping .flex-divided-medium classes negative margins
+			margin-left: -37px !important;
 
+			// & + .info-box .avatar {
+			// 	margin-left: $size-small;
+			// }
+			& + .info-box {
+				margin-left: $size-tiny;
+			}
+		}
 	}
 }
 .item-option-bg-offer,
@@ -351,7 +358,9 @@ button.active[disabled] .item-option-bg-type {
 		color: $primary-color;
 	}
 
-	/* TODO this is stupid */
+	/* TODO this is stupid
+		header is not supposed to go here
+	*/
 	header {
 		line-height: $size-large;
 
@@ -371,7 +380,9 @@ button.active[disabled] .item-option-bg-type {
 			}
 		}
 	}
+
 	.item-header {
+		font-size: $ui-title-font-size;
 		color: $black;
 		word-wrap: break-word;
 

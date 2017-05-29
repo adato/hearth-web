@@ -66,17 +66,14 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.isActive = $rootScope.isPostActive(post);
 
 			// is this my post? if so, show controll buttons and etc
-			scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
+			scope.mine = ItemAux.isMyPost(scope.item)
 
 			scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until, moment.ISO_8601).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
 
+			scope.logPostTextToggle = ItemAux.logPostTextToggle
 
-			scope.analytics = function(event) {
-				$analytics.eventTrack(event + ' (Post)', {
-					'is_mine': scope.mine,
-					'type': scope.item.type,
-					'exact_type': scope.item.exact_type,
-				});
+			scope.analytics = ev => {
+				ItemAux.logPostAction(ev, scope)
 			}
 
 			return scope;

@@ -54,7 +54,7 @@
 					<header class="item-section row">
 						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
 							<span class="color-dark-gray" title="{{:: item.updated_at_date }}">{{:: item.updated_at_timeago}}</span>
-							<div class="display-inline-block" ng-include="'assets/components/item/itemDropdown.html'"></div>
+							<div class="display-inline-block" item-dropdown="item"></div>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium">
 							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="display-inline-block position-relative">
@@ -93,9 +93,12 @@
 
 					<div class="item-section text-container word-wrap">
 						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html=":: item.text_parsed" test-beacon="marketplace-item-text"></p>
+						<a href="" ng-click="marketplace.expanded = false; logPostTextToggle({action: 'collapsed', post: item})" ng-if="item.text.length >= 270 && marketplace.expanded">
+			        <strong ng-class=":: 'color-' + item.type" translate="MARKETPLACE.POST.CLICK_TO_COLLAPSE"></strong>
+			      </a>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html=":: item.text_short_parsed"></span>
-							<a ng-click="marketplace.expanded = true">
+							<a ng-click="marketplace.expanded = true; logPostTextToggle({action: 'expanded', post: item})">
 								<b ng-class="'color-' + item.type">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</b>
 							</a>
 						</p>
