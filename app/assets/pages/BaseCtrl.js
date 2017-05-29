@@ -87,8 +87,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (toState.policy) {
 				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
 					event.preventDefault();
-					UnauthReload.setLocation(toState.url.slice(1));
-					return $state.go('login');
+
+					// here we store a location to the state to which we wanted to go which will
+					// be used by login ctrl upon successful login
+					UnauthReload.setLocation($state.href(toState, toParams));
+
+					// we need to replace the current history entry so that we can always push the browser back button
+					// and not wind up on login again
+					return $state.go('login', {}, {location: 'replace'});
+
 				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
 					event.preventDefault();
 					return $state.go('market');

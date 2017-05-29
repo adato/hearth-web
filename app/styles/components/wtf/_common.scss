@@ -109,12 +109,19 @@
 		}
 	}
 
+	/*
+		EXAMPLE
+		.box.box--with-subboxes
+			.subbox
+			.subbox
+			.subbox
+	*/
 	&.box--with-subboxes {
 		padding: 0;
 
 		& > .subbox {
 			padding: $size-large;
-			border-bottom: 1px solid $colorLightGray;
+			border-bottom: 1px solid $medium-gray;
 
 			&:last-child {
 				border-bottom: none;

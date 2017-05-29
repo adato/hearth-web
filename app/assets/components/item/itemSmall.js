@@ -2,8 +2,8 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.timeline
- * @description show the list of events happen in community.
+ * @name hearth.directives.itemSmall
+ * @description small item bow with settable template
  * @restrict AE
  */
 angular.module('hearth.directives').directive('itemSmall', ['$rootScope', function ($rootScope) {
