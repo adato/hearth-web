@@ -21,7 +21,7 @@
     </li>
     <li>
       <!-- hide post -->
-      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'HIDE_AD'}" ng-click="ctrl.confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ItemAux.hideItem, item, this)" translate="MARKETPLACE.POST.HIDE_POST"></a>
+      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'HIDE_AD'}" ng-click="ctrl.confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ctrl.ItemAux.hideItem, ctrl.item, this, 'SIGNED_IN')" translate="MARKETPLACE.POST.HIDE_POST"></a>
       <!-- /hide post -->
     </li>
     <li>

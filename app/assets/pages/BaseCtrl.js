@@ -674,8 +674,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * callback: function to call when confirmed
 		 * params: array of params to pass into callback when confirmed
 		 * callbackScope: if callback should be called with some scope
+		 * {String} policy - from $$config.policy
 		 */
-		$rootScope.confirmBox = function(title, text, callback, params, callbackScope) {
+		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy) {
+
+			if (policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
 			// create new scope of confirmBox
 			var scope = $scope.$new();

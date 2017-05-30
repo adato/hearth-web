@@ -27,6 +27,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.showLimitedPostsMessageAuth = false;
     $scope.showLimitedPostsMessageUnauth = false;
 
+		// variable controlling that exemplary posts are only inserted once
+		var exemplaryPostsInserted = false
+
 		var userLanguages = undefined;
 		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
@@ -83,8 +86,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					// Add exemplary posts
 					// only for unlogged users who are not filtering though
-					if (!(Auth.isLoggedIn() || Filter.isSet()) && exemplaryPosts && exemplaryPosts.length && index === 1) {
+					if (!(Auth.isLoggedIn() || Filter.isSet()) && exemplaryPosts && exemplaryPosts.length && index === 1 && !exemplaryPostsInserted) {
 						$compile(ItemAux.getExemplaryPostsOpts().template)(angular.merge($rootScope.$new(), {posts: exemplaryPosts, logPostTextToggle: ItemAux.logPostTextToggle})).insertBefore(clone)
+						exemplaryPostsInserted = true
 						exemplaryPosts = false
 					}
 
