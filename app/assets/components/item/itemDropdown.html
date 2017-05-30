@@ -15,45 +15,45 @@
     </li>
     <li>
       <!-- flag post -->
-      <a ng-if="! ctrl.mine && ctrl.item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate }}" tipsy disabled translate="MARKETPLACE.POST.FLAG_POST"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate }}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="MARKETPLACE.POST.FLAG_POST"></a>
+      <a ng-if="! ctrl.mine && ctrl.item.spam_reported" translate-attr="{title: 'REPORT_HARMFUL_AD_ONLY_ONCE'}" tipsy disabled translate="MARKETPLACE.POST.FLAG_POST"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'REPORT_HARMFUL_AD'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="MARKETPLACE.POST.FLAG_POST"></a>
       <!-- /flag post -->
     </li>
     <li>
       <!-- hide post -->
-      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="ctrl.confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ItemAux.hideItem, item, this)" translate="MARKETPLACE.POST.HIDE_POST"></a>
+      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'HIDE_AD'}" ng-click="ctrl.confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ItemAux.hideItem, item, this)" translate="MARKETPLACE.POST.HIDE_POST"></a>
       <!-- /hide post -->
     </li>
     <li>
-      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
+      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
     </li>
 
     <!-- admin only -->
-    <li ng-if=':: ctrl.userHasRight("post.suspend") && ctrl.isActive'>
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
       <hr />
     </li>
-    <li ng-if=':: ctrl.userHasRight("post.suspend") && ctrl.isActive'>
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
       <a class='elevated-authority-function' ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(item, this) : ctrl.pauseToggle(item, 'confirm-pause-' + item._id))">
         <span ng-if="ctrl.isActive" translate="POST.SUSPEND.LABEL"></span>
         <span ng-if="!ctrl.isActive" translate="POST.RESUME.LABEL"></span>
       </a>
     </li>
     <!-- TODO: in future there will be another user privilegs then post.suspend -->
-    <li ng-if=':: ctrl.userHasRight("post.suspend")'>
-      <a ng-if=":: !ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.FOLLOW.LABEL"></a>
-      <a ng-if=":: ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.UNFOLLOW.LABEL"></a>
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+      <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.FOLLOW.LABEL"></a>
+      <a ng-if="ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.UNFOLLOW.LABEL"></a>
     </li>
-    <li ng-if=':: ctrl.userHasRight("post.suspend")'>
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <hr />
       <span>
         <span translate="CHARACTER"></span>:
          <span ng-repeat="itemEntry in ctrl.item.character">
-            <span ng-repeat="postCharEntry in postCharacter | filter:{name:itemEntry}">{{ postCharEntry.translate | translate }}</span>
+            <span ng-repeat="postCharEntry in ctrl.postCharacter | filter:{name:itemEntry}" translate="{{:: postCharEntry.translate }}"></span>
          </span>
       </span>
     </li>
-    <li ng-if=':: ctrl.userHasRight("post.suspend")'>
-      <span>{{:: "USER_LANGUAGE" | translate}}: {{:: postLanguage}} </span>
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+      <span ng-bind=":: ('USER_LANGUAGE' | translate) + ': ' + ctrl.postLanguage"></span>
     </li>
     <!-- /admin only -->
   </ul>
