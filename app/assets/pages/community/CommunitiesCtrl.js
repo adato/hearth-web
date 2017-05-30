@@ -7,11 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('CommunitiesCtrl', [
-	'$scope', '$rootScope', 'CommunityMemberships', 'Community', 'UnauthReload',
-	function($scope, $rootScope, CommunityMemberships, Community, UnauthReload) {
+	'$scope', '$rootScope', '$state',
+	function($scope, $rootScope, $state) {
+    // $rootScope.myCommunities is not set yet. How to resolve it?
+    // var state = $rootScope.myCommunities.length ? 'communities.my': 'communities.suggested';
+    // $state.go(state);
+
 		$scope.loaded = false;
 		$scope.loadedFirstBatch = false;
-		// my communities are loaded already in BaseCtrl for top navigation
 
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
 			$scope.pageSegment = route.name;

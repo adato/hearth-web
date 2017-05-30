@@ -25,7 +25,9 @@
 	<div class="clear"></div>
 	<div class="communities">
 		<div class="community-list">
-			<community-item item="item" ng-repeat="(id, item) in data track by item._id" user="mine && info"></community-item>
+      <div ng-repeat="(id, item) in data track by item._id">
+        <community-item class="box block" item="item" user="mine && info"></community-item>
+      </div>
 			<div class="clear"></div>
 		</div>
 	</div>

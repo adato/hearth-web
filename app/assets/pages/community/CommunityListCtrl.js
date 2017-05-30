@@ -7,15 +7,29 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', 'Community', 'UnauthReload', '$state', '$filter', 'UniqueFilter',
-	function($scope, Community, UnauthReload, $state, $filter, UniqueFilter) {
+	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'UnauthReload', '$state', '$filter', 'UniqueFilter',
+	function($scope, $rootScope, Community, CommunityMemberships, UnauthReload, $state, $filter, UniqueFilter) {
+    var vm = this;
+    vm.myCommunities;
+    vm.showColumns = true;
 		$scope.list = [];
 		$scope.loading = false;
 		$scope.loadingFinished = false;
 		var ItemFilter = new UniqueFilter();
 
 		$scope.load = function() {
-			if ($scope.loadingFinished || $scope.loading) return false;
+      if ($scope.loadingFinished || $scope.loading) return false;
+
+      // my communities are loaded in BaseCtrl after login
+      if($state.current.name == 'communities.my') {
+        vm.myCommunities = true;
+        vm.showColumns = false;
+        $scope.list = $rootScope.myCommunities;
+        $scope.$parent.loadedFirstBatch = true;
+        $scope.loadingFinished = true;
+        return;
+      }
+
       $scope.loading = true;
 			var conf = {
 				limit: 20,
