@@ -44,13 +44,13 @@ angular.module('hearth').config([
 				controller: 'CommunitiesCtrl'
 			})
       .state('communities.my', {
-        url: '/my',
+        url: '',
         templateUrl: 'assets/pages/community/communityList.html',
         controller: 'CommunityListCtrl',
         controllerAs: 'vm'
       })
 			.state('communities.suggested', {
-				url: '',
+				url: '/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
         controllerAs: 'vm'

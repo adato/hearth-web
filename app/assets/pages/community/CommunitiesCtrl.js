@@ -7,12 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunitiesCtrl', [
-	'$scope', '$rootScope', '$state',
-	function($scope, $rootScope, $state) {
-    // $rootScope.myCommunities is not set yet. How to resolve it?
-    // var state = $rootScope.myCommunities.length ? 'communities.my': 'communities.suggested';
-    // $state.go(state);
-
+	'$scope',
+	function($scope) {
 		$scope.loaded = false;
 		$scope.loadedFirstBatch = false;
 

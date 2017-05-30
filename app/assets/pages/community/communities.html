@@ -1,19 +1,22 @@
 <div class="communities">
-	<a ng-if="loggedUser._id" ng-click="toggleForm()" community-form-toggler class="button button-send small-12 medium-3 large-3 pull-right">
-    <i class="fa fa-plus"></i><span>{{:: 'CREATE_COMMUNITY' | translate}}</span>
-	</a>
+  <div class="flex flex-space-between">
+    <h1 ng-bind=":: 'COMMUNITIES' | translate "></h1>
+    <a ng-if="loggedUser._id" ng-click="toggleForm()" community-form-toggler
+       class="button button-send">
+      <i class="fa fa-plus"></i><span>{{:: 'CREATE_COMMUNITY' | translate}}</span>
+    </a>
+  </div>
 	<div class="community-list-add-form clearfix hide" community-list-add-focusser>
 		<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>
 	</div>
-  <h1 ng-bind=":: 'COMMUNITIES' | translate "></h1>
 </div>
 <div class="bottom-tabs" ng-if="loadedFirstBatch">
 	<ul>
     <li ng-if="myCommunities.length">
-      <a dont-jump-top href="{{:: basePath }}communities/my" ng-class="{selected: pageSegment =='communities.my'}">{{:: 'YOUR_COMMUNITIES' | translate}}</a>
+      <a dont-jump-top href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.my'}">{{:: 'YOUR_COMMUNITIES' | translate}}</a>
     </li>
 		<li>
-			<a dont-jump-top href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
+			<a dont-jump-top href="{{:: basePath }}communities/suggested" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
 		</li>
 		<li>
 			<a dont-jump-top href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>

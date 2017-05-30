@@ -1,4 +1,4 @@
-<div ng-if="list.length" class="community-list row clearfix small" when-scrolled="load()" offset="300" loading-in-progress="loading">
+<div ng-if="list.length" class="community-list row clearfix" when-scrolled="vm.load()" offset="300" loading-in-progress="loading">
   <div ng-if="vm.myCommunities" class="columns">
     <h5>
       {{:: 'YOU_ARE_MEMBER' | translate}} {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}

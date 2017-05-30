@@ -19,15 +19,15 @@
 				}
 			}
 		}
-    .height-small {
-      height: 8rem !important;
-    }
 		.community-item {
       padding: $size-medium;
       height: 11.5rem;
 			word-wrap: break-word;
       overflow: hidden;
       width: 100%;
+      &.height-small {
+        height: 8rem;
+      }
       p {
         margin-bottom: 0;
       }
@@ -46,12 +46,12 @@
 
 		}
 	}
-	// RESPONSIVE // Smazat
+	// RESPONSIVE
 	// duplicates, how to solve this?
 	@include breakpoint(medium only) {
 		.community-list.small .community-item {
 			margin: 1.5*$ui-small-grid-size 0;
-			height: 8rem; // nechat
+			height: 8rem;
 		}
 	}
 }
