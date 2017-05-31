@@ -8,9 +8,7 @@
 
 angular.module('hearth.services').factory('LanguageList', ['$translate', function($translate) {
 
-	var languageCodesList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk',
-    'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he', 'sq', 'hy', 'az', 'be', 'da', 'et', 'fo', 'fa',
-    'ka', 'te', 'hu', 'is', 'id', 'ky', 'lv', 'lt', 'mk', 'ms', 'mn', 'nn', 'tt', 'sr', 'sl', 'sw', 'th', 'ur', 'uz', 'vi'];
+  var languageCodesList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he', 'sq', 'hy', 'az', 'be', 'da', 'et', 'fo', 'fa', 'ka', 'te', 'hu', 'is', 'id', 'ky', 'lv', 'lt', 'mk', 'ms', 'mn', 'nn', 'tt', 'sr', 'sl', 'sw', 'th', 'ur', 'uz', 'vi'];
 
 
 	var factory = {
