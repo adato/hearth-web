@@ -1,7 +1,7 @@
 <div class="messages messages-add">
 	<form ng-submit="addMessage(message)" novalidate name="addMessageForm">
 		<div class="form-section" ng-if="recipient">
-			<label>{{:: 'MESSAGES.ADD.RECIPIENT' | translate }}</label>
+			<label translate="MESSAGING.CREATE.RECIPIENT"></label>
 			<div class="display-flex margin-top-small">
 				<avatar src="recipient.avatar.normal" type="recipient._type" size="mini" class="margin-right-small"></avatar>
 				<span title="{{ recipient.name }}">{{ recipient.name | ellipsis:55 }}</span>
@@ -9,45 +9,43 @@
 		</div>
 		<div class="form-section" ng-if="!recipient">
 			<label>
-				{{:: 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
+				{{:: 'MESSAGING.CREATE.RECIPIENT' | translate }} *
 				<user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.recipients_ids"></user-selector>
 			</label>
-			<div class="error" ng-show="showError.recipients_ids">{{:: 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</div>
+			<div class="error" ng-show="showError.recipients_ids" translate="MESSAGING.CREATE.NOTIFY.ERROR_NO_RECIPIENT"></div>
 		</div>
 		<div class="form-section" ng-if="userHasRight('post.suspend')">
-			<checkbox class="display-inline-block" model="message.from_admin" value="true" value-off="false" on-update="void()" disable="recipient.only_replies" ng-attr-disabled="recipient.only_replies">
-				{{:: 'MESSAGES.ADD.AS_ADMIN' | translate }}
+			<checkbox class="display-inline-block" model="message.from_admin" value="true" value-off="false" on-update="void()" disable="recipient.only_replies" ng-attr-disabled="recipient.only_replies">{{ :: 'MESSAGING.CREATE.SEND_AS_ADMIN' | translate }}
 			</checkbox>
 		</div>
 		<div class="form-section">
 			<label>
-				{{:: 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
-				<input name="title" ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
+				{{ :: 'MESSAGING.CREATE.SUBJECT' | translate }}
+				<input name="title" ng-required="true" ng-attr-placeholder="{{:: 'MESSAGING.CREATE.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type="text" />
 			</label>
 		</div>
 		<div class="form-section">
 			<label>
-				{{:: 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
+				{{:: 'MESSAGING.CREATE.TEXT' | translate }} *
 				<!-- <textarea rows="5" name="text" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea> -->
-				<textarea ctrl-enter-submit ng-disabled="sendingMessage" class="margin-bottom-none" ng-focus="showError.text = false" ng-blur="showError.text = true" rows="5" id="reply-text" name="text" autosize-textarea ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}"
-								ng-model="message.text"></textarea>
+				<textarea ctrl-enter-submit ng-disabled="sendingMessage" class="margin-bottom-none" ng-focus="showError.text = false" ng-blur="showError.text = true" rows="5" id="reply-text" name="text" autosize-textarea ng-required="true" ng-attr-placeholder="{{:: 'MESSAGING.CREATE.TEXT_PLACEHOLDER' | translate }}" ng-model="message.text"></textarea>
 			</label>
 			<div class="error" ng-show="addMessageForm.text.$invalid && showError.text">
-				<span ng-show="addMessageForm.text.$error.required">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="addMessageForm.text.$error.minlength">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="addMessageForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
+				<span ng-show="addMessageForm.text.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+				<span ng-show="addMessageForm.text.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+				<span ng-show="addMessageForm.text.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 			</div>
 		</div>
 		<div id="message-footer" class="display-flex flex-space-between flex-reverse">
 			<div class="display-flex flex-reverse flex-divide-medium">
 				<button ng-disabled="sendingMessage" type="submit" class="button flex-div">
 					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
-					{{:: 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
+					{{ :: 'MESSAGING.CREATE.ACTION_SEND' | translate }}
 				</button>
 				<files-picker ng-model="message.attachments_attributes" class="flex-div" files-multiple="true"></files-picker>
 			</div>
 			<div>
-				<a ui-sref="messages.detail({id: getFirstConversationId()})" class="revert-changes">{{:: 'CANCEL' | translate }}</a>
+				<a ui-sref="messages.detail({id: getFirstConversationId()})" class="revert-changes" translate="COMMON.ACTION_CANCEL"></a>
 			</div>
 		</div>
 	</form>
