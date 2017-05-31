@@ -5,7 +5,8 @@
 			<span class="fleft conversation-title" ng-if="info">
 				<span class="left" ng-if="info.titleDetail && !info.titleCustom">
 					<span ng-if="!info.post">{{:: info.titleDetail| ellipsis:120 }}</span>
-					<span ng-if="info.post">{{:: 'MESSAGING.MESSAGE.REPLY_TO' | translate }}
+					<span ng-if="info.post">
+						<span translate="MESSAGING.MESSAGE.REPLY_TO"></span>
 						<a class="post_link" href="{{:: getProfileLink('Post', info.post._id)}}">{{:: info.post.type_code | translate }} {{:: info.titleDetail | ellipsis:100 }}</a>
 					</span> (&nbsp;
 					<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()">{{:: 'MESSAGING.MESSAGE.PARTICIPANTS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a>

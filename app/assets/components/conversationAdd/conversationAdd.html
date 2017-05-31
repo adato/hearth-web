@@ -9,24 +9,25 @@
 		</div>
 		<div class="form-section" ng-if="!recipient">
 			<label>
-				{{:: 'MESSAGING.CREATE.RECIPIENT' | translate }} *
+				<span translate="MESSAGING.CREATE.RECIPIENT"></span> *
 				<user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.recipients_ids"></user-selector>
 			</label>
 			<div class="error" ng-show="showError.recipients_ids" translate="MESSAGING.CREATE.NOTIFY.ERROR_NO_RECIPIENT"></div>
 		</div>
 		<div class="form-section" ng-if="userHasRight('post.suspend')">
-			<checkbox class="display-inline-block" model="message.from_admin" value="true" value-off="false" on-update="void()" disable="recipient.only_replies" ng-attr-disabled="recipient.only_replies">{{ :: 'MESSAGING.CREATE.SEND_AS_ADMIN' | translate }}
+			<checkbox class="display-inline-block" model="message.from_admin" value="true" value-off="false" on-update="void()" disable="recipient.only_replies" ng-attr-disabled="recipient.only_replies">
+				<span translate="MESSAGING.CREATE.SEND_AS_ADMIN"></span>
 			</checkbox>
 		</div>
 		<div class="form-section">
 			<label>
-				{{ :: 'MESSAGING.CREATE.SUBJECT' | translate }}
+				<span translate="MESSAGING.CREATE.SUBJECT"></span>
 				<input name="title" ng-required="true" ng-attr-placeholder="{{:: 'MESSAGING.CREATE.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type="text" />
 			</label>
 		</div>
 		<div class="form-section">
 			<label>
-				{{:: 'MESSAGING.CREATE.TEXT' | translate }} *
+				<span translate="MESSAGING.CREATE.TEXT"></span> *
 				<!-- <textarea rows="5" name="text" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea> -->
 				<textarea ctrl-enter-submit ng-disabled="sendingMessage" class="margin-bottom-none" ng-focus="showError.text = false" ng-blur="showError.text = true" rows="5" id="reply-text" name="text" autosize-textarea ng-required="true" ng-attr-placeholder="{{:: 'MESSAGING.CREATE.TEXT_PLACEHOLDER' | translate }}" ng-model="message.text"></textarea>
 			</label>
@@ -40,7 +41,7 @@
 			<div class="display-flex flex-reverse flex-divide-medium">
 				<button ng-disabled="sendingMessage" type="submit" class="button flex-div">
 					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
-					{{ :: 'MESSAGING.CREATE.ACTION_SEND' | translate }}
+					<span translate="MESSAGING.CREATE.ACTION_SEND"></span>
 				</button>
 				<files-picker ng-model="message.attachments_attributes" class="flex-div" files-multiple="true"></files-picker>
 			</div>
