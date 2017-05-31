@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'UnauthReload', '$state', '$filter', 'UniqueFilter',
-	function($scope, $rootScope, Community, CommunityMemberships, UnauthReload, $state, $filter, UniqueFilter) {
+	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter',
+	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter) {
     var vm = this;
     vm.myCommunities;
     vm.showColumns = true;
@@ -63,7 +63,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
       $scope.loading = true;
 
       // my communities are loaded in BaseCtrl
-      if ($rootScope.communitiesLoaded) {
+      if ($rootScope.communitiesLoaded || !Auth.isLoggedIn()) {
         initCommunities()
       } else {
         // wait for load
