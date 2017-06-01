@@ -60,7 +60,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 			var deviceHeader = $http.defaults.headers.common['X-DEVICE'];
 			delete $http.defaults.headers.common['X-DEVICE'];
 
-			$http.get('https://blog.hearth.net/category/pribehy-a-inspirace/feed/', {
+			$http.get('https://blog.hearth.net/category/sdilime/feed/', {
 				withCredentials: false,
 				headers: {
 					'Content-Type': undefined
