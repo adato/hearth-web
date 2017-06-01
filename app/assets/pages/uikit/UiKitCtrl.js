@@ -125,6 +125,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     <div translate="FORM.SAVING_FAILED"></div>
     <span>reason, if any</span>
   </div>
+
   <label class="block">
     <span translate="PERSON.NAME"></span>
     <input type="text" name="name" ng-model="testFormData.name" translate-attr="{placeholder: 'PERSON.NAME'}" required minlength="2" />
@@ -134,6 +135,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       <div ng-messages-include="assets/components/form/ngMessages/minlength.html"></div>
     </div>
   </label>
+
   <label class="block">
     <span translate="PERSON.SURNAME"></span>
     <input type="text" name="surname" ng-model="testFormData.surname" translate-attr="{placeholder: 'PERSON.SURNAME'}" required />
@@ -141,6 +143,23 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       <div ng-message="required" translate="PERSON.SURNAME.ERROR_REQUIRED"></div>
     </div>
   </label>
+
+  <label class="block">
+    <div class="box box--checkbox">
+      <div class="checkbox--input-wrapper">
+        <span class="fa-stack" tabindex="0" checkbox-keypress-handler>
+          <i class="fa fa-fw fa-stack-1x fa-square checkbox--self-bg"></i>
+          <i class="fa fa-fw fa-stack-1x checkbox--self" ng-class="{ 'fa-check-square': testFormData.eula, 'fa-square-o': !testFormData.eula}"></i>
+        </span>
+        <input type="checkbox" hidden ng-model="testFormData.eula" name="eula" required />
+    	</div>
+      <div class="checkbox--label-wrapper" translate="EULA.ACCEPT"></div>
+    </div>
+    <div ng-messages="testForm.eula.$error" ng-show="testForm.$submitted || testForm.eula.$dirty">
+      <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
+    </div>
+  </label>
+
   <div class="flex flex-divided-medium">
     <button class="button" type="submit" translate="FORM.SUBMIT"></button>
     <i class="fa fa-spinner fa-spin" ng-if="formLoading"></i>

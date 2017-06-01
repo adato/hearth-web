@@ -1,5 +1,6 @@
 .ui-checkbox {
 	margin-right: $size-big;
+
 	.fa {
 		width: rem-calc(16);
 		font-size: rem-calc(16);
@@ -12,4 +13,34 @@
 			color: lighten($primary-color, 25%);
 		}
 	}
+}
+.ui-checkbox--input-wrapper {
+	margin-right: $size-tiny
+}
+
+.box.box--checkbox {
+	display: flex;
+	overflow: hidden;
+	align-items: stretch;
+	padding: 0;
+
+	.checkbox--input-wrapper {
+		display: flex;
+		align-items: center;
+		margin: 0;
+		padding: $size-small;
+		background: $colorLightGray;
+	}
+	& > .checkbox--label-wrapper {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		padding: $size-small $size-medium;
+	}
+}
+.checkbox--self {
+	color: $primary-color;
+}
+.checkbox--self-bg {
+	color: $white;
 }
