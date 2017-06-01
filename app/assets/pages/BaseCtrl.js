@@ -9,9 +9,8 @@
 angular.module('hearth.controllers').controller('BaseCtrl', [
 	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session',
 	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session) {
-		var timeout;
 		var itemEditOpened = false;
-		$rootScope.myCommunities = false;
+		$rootScope.myCommunities = [];
 		$rootScope.pageName = '';
 		$rootScope.searchQuery = {
 			query: null,
@@ -83,6 +82,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * scroll to top of the page, if not, refresh page with fixed height
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+
+			if (toState.policy) {
+				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
+					event.preventDefault();
+					UnauthReload.setLocation(toState.url.slice(1));
+					return $state.go('login');
+				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
+					event.preventDefault();
+					return $state.go('market');
+				}
+			}
 
 			// retain optional state params on specified route groups
 			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
@@ -236,7 +246,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
-				$rootScope.myCommunities = res;
+        $rootScope.myCommunities.length = 0;
+        $rootScope.myCommunities.push(...res);
 				$rootScope.myAdminCommunities = [];
 				res.forEach(function(item) {
 					// create list of communities I'm admin in

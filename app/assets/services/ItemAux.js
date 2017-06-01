@@ -65,11 +65,9 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		 * Function will add item to users bookmarks
 		 */
 		function addItemToBookmarks(post) {
-			if (post.is_bookmarked)
-				return false;
+			if (post.is_bookmarked) return false;
 
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
 
 			UserBookmarks.add({
 				'postId': post._id
@@ -86,14 +84,12 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 		 * Function will remove item from users bookmarks
 		 */
 		function removeItemFromBookmarks(post) {
-			if (!post.is_bookmarked)
-				return false;
+			if (!post.is_bookmarked) return false;
 
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true);
 
 			UserBookmarks.remove({
-				'postId': post._id
+				postId: post._id
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_bookmarked = !post.is_bookmarked;

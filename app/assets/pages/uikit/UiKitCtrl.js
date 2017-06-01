@@ -7,26 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('UiKitCtrl', [
-  '$scope', '$sce',
-  function ($scope, $sce) {
+  '$scope', '$sce', '$compile', '$timeout',
+  function ($scope, $sce, $compile, $timeout) {
+
+    // @kamil Can't use controllerAs here because I don't know how to bind to ctrl with $compile
+    // const ctrl = this;
+
     $scope.buttons = [];
     $scope.typographies = [];
     $scope.inputs = [];
-
-
-    /*
-     Prepare data for binding to html
-     */
-    const prepareElementData = (scopeElementList, inputDataList) => {
-      inputDataList.forEach((element) => {
-        scopeElementList.push({
-          name: element.name || "",
-          code: $sce.trustAsHtml(element.code),
-          description: (element.desc || "") + " " + element.code
-        });
-      });
-
-    };
 
     /*
      Data section
@@ -71,12 +60,119 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         {code: '<textarea placeholder="Text area ..."></textarea>'},
       ];
     };
-    const init = () => {
+
+    init();
+
+    ///////////////////////////////////////////////////////////////////////
+
+    function init() {
       prepareElementData($scope.buttons, getButtonsData());
       prepareElementData($scope.typographies, getTypographiesData());
       prepareElementData($scope.inputs, getInputsData());
-    };
+      compileData(getFormData());
+    }
 
-    init();
+    function getFormData() {
+
+      // every first attempt to submit will end success, every other will simulate an error
+      var submitWillBeSuccess = true;
+
+      // prepare models
+      $scope.formLoading;
+      $scope.savingFormError;
+      $scope.savingFormSuccess;
+      $scope.validationError;
+      $scope.testFormData = {
+        name: '',
+        surname: ''
+      };
+      // bind submit function to controller
+      // ctrl.testFormSubmit = (data, form) => {
+      $scope.testFormSubmit = (data, form) => {
+        form.$setDirty();
+
+        $scope.savingFormSuccess = false;
+        $scope.savingFormError = false;
+
+        // validation
+        $scope.validationError = false;
+        if (!form.$valid) return $scope.validationError = true;
+
+        // simulate API call
+        $scope.formLoading = true;
+        $timeout(() => {
+          if (submitWillBeSuccess) {
+            $scope.formLoading = false;
+            $scope.savingFormSuccess = true;
+            form.$setPristine();
+            form.$setUntouched();
+
+          } else {
+            $scope.formLoading = false;
+            $scope.savingFormError = true;
+          }
+          submitWillBeSuccess = !submitWillBeSuccess;
+        }, 1000);
+
+      };
+
+      // and return template
+      return {
+        code:
+`<form name="testForm" id="testForm" ng-submit="testFormSubmit(testFormData, testForm, uiKit)" novalidate>
+  <div ng-show="savingFormSuccess" class="callout cursor-pointer success" ng-click="savingFormSuccess = false" translate="FORM.SAVING_SUCCESS"></div>
+  <div ng-show="savingFormError" class="callout cursor-pointer error" ng-click="savingFormError = false">
+    <div translate="FORM.SAVING_FAILED"></div>
+    <span>reason, if any</span>
+  </div>
+  <label class="block">
+    <span translate="PERSON.NAME"></span>
+    <input type="text" name="name" ng-model="testFormData.name" translate-attr="{placeholder: 'PERSON.NAME'}" required minlength="2" />
+    <div class="help-text" translate="PERSON.NAME.HELPTEXT"></div>
+    <div ng-messages="testForm.name.$error" ng-show="testForm.$submitted || testForm.name.$dirty">
+      <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
+      <div ng-messages-include="assets/components/form/ngMessages/minlength.html"></div>
+    </div>
+  </label>
+  <label class="block">
+    <span translate="PERSON.SURNAME"></span>
+    <input type="text" name="surname" ng-model="testFormData.surname" translate-attr="{placeholder: 'PERSON.SURNAME'}" required />
+    <div ng-messages="testForm.surname.$error" ng-show="testForm.$submitted || testForm.surname.$dirty">
+      <div ng-message="required" translate="PERSON.SURNAME.ERROR_REQUIRED"></div>
+    </div>
+  </label>
+  <div class="flex flex-divided-medium">
+    <button class="button" type="submit" translate="FORM.SUBMIT"></button>
+    <i class="fa fa-spinner fa-spin" ng-if="formLoading"></i>
+  </div>
+</form>`,
+        selector: '[form-data]',
+        scopeId: 'formData',
+      };
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+
+    /**
+     * HELPER FUNCTIONS
+     */
+
+    // Bind data directly to template
+    function compileData(data) {
+      angular.element(data.selector).append($compile(data.code)($scope));
+      $scope[data.scopeId] = data.code;
+    }
+
+    // Prepare data for binding to html
+    function prepareElementData(scopeElementList, inputDataList) {
+      inputDataList.forEach(element => {
+        scopeElementList.push({
+          name: element.name || "",
+          code: $sce.trustAsHtml(element.code),
+          description: (element.desc || "") + " " + element.code
+        });
+      });
+    }
+
   }
 ]);

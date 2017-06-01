@@ -92,6 +92,8 @@ angular.module('hearth.services').factory('Filter', [
         var l = JSON.parse(JSON.stringify($location.search()));
         delete l.page;
         delete l.postdetail;
+        delete l.query;
+				delete l.my_lang;
         let userLanguages = Auth.getUserLanguages();
         let res = typeof l.lang == 'undefined' || JSON.stringify([l.lang].sort())==JSON.stringify([userLanguages].sort());
         if(res) {
@@ -140,11 +142,11 @@ angular.module('hearth.services').factory('Filter', [
 				$rootScope.$broadcast("filterReseted");
 				this.deleteUserFilter();
 
-				// on search page there is query param mandatory
-				var query = ($state.current.name == "search") ? $state.params.query : null;
+        // on search page there is query param mandatory
+        var query = ($state.current.name == "search") ? $state.params.query : null;
 
 				$state.go($state.current.name, {
-					query: query,
+          query: query,
 					type: null
 				}, {
 					reload: true

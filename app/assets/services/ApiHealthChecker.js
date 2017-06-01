@@ -139,7 +139,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 					$rootScope.isMaintenanceMode = true;
 					$rootScope.isOfflineMode = false;
 				} else if (statusCode == 0) {
-
 					self.setOfflineMode();
 				}
 			});

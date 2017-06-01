@@ -1,6 +1,6 @@
 <h1 class="text-center">
-	<span ng-if="!params.facebook">{{ 'SIGNUP_HEADING' | translate }}</span>
-	<span ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</span>
+	<span ng-if="!params.facebook" translate="SIGNUP_HEADING"></span>
+	<span ng-if="params.facebook" translate="SIGNUP_HEADING_FB"></span>
 </h1>
 
 <div class="box register-login-dialog" ng-cloak>
@@ -13,7 +13,7 @@
         <span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
 	    </span>
       </div>
-			<p ng-if="!params.facebook">{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
+      <p ng-if="!params.facebook"><span translate="SIGNUP_HEADING_TEXT"></span></p>
 
 			<p ng-bind-html="'SIGNUP_HEADING_TEXT_FB' | translate" ng-if="params.facebook"></p>
 
@@ -22,9 +22,9 @@
 					<label for="first_name">{{'FIRST_NAME_PLACEHOLDER' | translate}}</label>
 					<input id="first_name" type="text" class="register_name" name="first_name" ng-model="user.first_name" ng-focus="showError.first_name = false" ng-blur="showError.first_name = true" class="form-control text-input top" required ng-minlength="2" />
 					<div class="form-error" ng-show="showError.first_name && (registerForm.first_name.$error.required || registerForm.first_name.$error.user || registerForm.first_name.$error.minlength)">
-						<span ng-show="registerForm.first_name.$error.required">{{ 'ERR_NOT_FILLED_FIRST_NAME' | translate }}</span>
-						<span ng-show="registerForm.first_name.$error.used">{{ 'SIGNUP_ERR_BAD_FIRST_NAME' | translate }}</span>
-						<span ng-show="registerForm.first_name.$error.minlength">{{ 'SIGNUP_ERR_SHORT_FIRST_NAME' | translate }}</span>
+						<span ng-show="registerForm.first_name.$error.required" translate="ERR_NOT_FILLED_FIRST_NAME"></span>
+						<span ng-show="registerForm.first_name.$error.used" translate="SIGNUP_ERR_BAD_FIRST_NAME"></span>
+						<span ng-show="registerForm.first_name.$error.minlength" translate="SIGNUP_ERR_SHORT_FIRST_NAME"></span>
 					</div>
 				</div>
 				<div class="small-12 medium-6 large-6 columns">
@@ -57,14 +57,24 @@
 						<input id="password" type="password" name="password" ng-model="user.password" ng-focus="showError.password = false" ng-blur="showError.password = true" class="form-control text-input top" required ng-minlength="4" />
 					</show-text-in-password>
 					<div class="form-error" ng-show="showError.password">
-						<span ng-show="registerForm.password.$error.required">{{ 'SIGNUP_ERR_NO_PASSWORD' | translate }}</span>
-						<span ng-show="registerForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
+						<span ng-show="registerForm.password.$error.required" translate="SIGNUP_ERR_NO_PASSWORD"></span>
+						<span ng-show="registerForm.password.$error.minlength" translate="SIGNUP_ERR_SHORT_PASSWORD"></span>
 					</div>
 				</label>
 			</div>
 
-			<div class="block text-center">
-				<button class="button" type="submit" test-beacon="register-button">
+      <div class="block">
+        <p>
+          <span translate="YOU_ARE_ACCEPTING_TERMS"></span>
+          <a href="" ng-click="showTerms()"><span translate="WITH_TERMS_OF_USE"></span></a>
+        </p>
+        <p>
+          <span class="support-text" translate="AUTH.REGISTER.FRIENDLY_AGREEMENT"></span>
+        </p>
+      </div>
+
+			<div class="text-center block">
+				<button class="button" type="submit" test-beacon="register-button" ng-disabled="sending">
 					<i class="fa fa-user"></i>
 					<span translate="SIGNUP_BUTTON"></span>
 				</button>
@@ -80,10 +90,6 @@
 			</div>
 			<hr/>
 			<div class="bottom">
-				<p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }}
-					<a href="" ng-click="showTerms()">{{ 'WITH_TERMS_OF_USE' | translate }}</a>
-				</p>
-
 				<p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }}
 					<a href="{{ basePath }}login">{{ 'LOGIN_TO_HEARTH' | translate }}</a>
 				</p>

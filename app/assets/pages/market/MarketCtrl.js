@@ -135,7 +135,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.toggleFilter = function() {
-			$scope.$broadcast("filterOpen");
+			$scope.$broadcast('filterOpen');
 		};
 
 		$scope.retrievePosts = function(params) {
@@ -146,6 +146,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
       if (!Filter.isSet()) {
         paramObject.lang = userLanguages;
+        paramObject.my_lang = 1;
       }
 
 			// params.type = "community,user,post";

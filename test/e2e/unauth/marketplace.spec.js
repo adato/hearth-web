@@ -102,7 +102,7 @@ describe('hearth unauth marketplace', function () {
 
 
   function loginDialogTest(type) {
-    var createButton = element(by.css('.insert-button-container>a.button'));
+    var createButton = beacon('new-post-button');
     var loginModal = element(by.css('.register-login-dialog .alert-box.alert'));
     var loginModalCloseButton = element(by.css('.register-login-dialog span.close'));
     var iconAdd = beacon('open-new-post-dialog-toggle-mobile');

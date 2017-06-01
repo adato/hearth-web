@@ -179,15 +179,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
+		$scope.setCharacter = character => {
+			$scope.post.character.length = 0;
+			$scope.post.character.push(character.name);
+			$scope.checkCharacter();
+		};
 		$scope.checkCharacter = function() {
-			var character = $scope.post.character || [];
-			var count = character.length;
+			var count = ($scope.post.character || []).length;
 
 			if (!count) {
 				$scope.createAdForm.character.$invalid = true;
 				$scope.createAdForm.character.$setValidity('required', false);
 				$scope.createAdForm.character.$setValidity('max', true);
-			} else if (count > 2) {
+			} else if (count > 1) {
 				$scope.createAdForm.character.$invalid = true;
 				$scope.createAdForm.character.$setValidity('required', true);
 				$scope.createAdForm.character.$setValidity('max', false);
@@ -490,13 +494,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if ($scope.preset)
 				$scope.post = angular.extend($scope.post, $scope.preset);
 
-			// if post is invalid, show message and run validation (it will show errors in invalid fields)
-			if ($scope.isInvalid) {
-				$scope.showInvalidPostMessage = true;
-				$timeout(function() {
+			$timeout(() => {
+				// if post is invalid, show message and run validation (it will show errors in invalid fields)
+				if ($scope.isInvalid) {
+					$scope.showInvalidPostMessage = true;
 					testForm($scope.post);
-				}, 1000);
-			}
+				}
+
+				// check character is enabled here by default for the transition to only one character allowance
+				$scope.checkCharacter();
+
+			}, 1000);
+
 		};
 
 		$scope.toggleLockField = function() {

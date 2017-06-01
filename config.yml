@@ -76,7 +76,7 @@ PATHS:
         - "app/libs/jquery.autosize.js"
         - "app/libs/jquery.mailgun_validator.js"
         - "bower_components/fastclick/lib/fastclick.js"
-        - "bower_components/foundation/js/foundation.min.js"
+        # - "bower_components/foundation/js/foundation.min.js"
         - "bower_components/foundation-datepicker/js/foundation-datepicker.js"
         - "bower_components/jquery-color/jquery.color.js"
         - "bower_components/moment/min/moment.min.js"
@@ -157,6 +157,7 @@ PATHS:
     app:
       scss:
         - "app/styles/**/*.scss"
+        - "common/styles/*.scss"
       js:
         - "app/assets/**/*.js"
       html:
@@ -172,6 +173,7 @@ PATHS:
       index: "landing/html"
       scss:
         - "landing/css/*.scss"
+        - "common/styles/*.scss"
       img:
         - "landing/img/**/*.*"
       fonts:

@@ -1,4 +1,4 @@
-<section id="navigation">
+<section id="navigation" class="navigation">
 	<!-- <aside class="off-canvas position-left" data-off-canvas data-content-overlay data-close-on-click test-beacon="off-canvas-content"> -->
 	<aside class="off-canvas position-left" test-beacon="off-canvas-content">
 		<ul class="submenu menu vertical">
@@ -209,7 +209,7 @@
 					</div>
 				</a>
 
-				<a ui-sref="communities.suggested" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
+				<a ui-sref="communities.my" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 					<div class="inner-icon">
 						<span class="fa icon-community"></span>
 						{{:: 'COMMUNITIES' | translate }}

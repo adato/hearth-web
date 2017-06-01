@@ -1,29 +1,239 @@
-<div class="clearfix filterbar-wrap">
-	<div class="clearfix filterbar-header">
-		<div class="insert-button-container small-12 large-3 show-for-large right">
-			<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block">
-				{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
-			</a>
-		</div>
-		<div class="small-12 medium-10 large-7 medium-push-2 filter-left">
-			<div class="toggleFilter">
-				<a ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
-					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
-					<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
-					<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
-					<a ng-show="filterOn" class="cancelFilter" ng-click="cancelFilter()">
-						{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}
-					</a>
-				</a>
-				<span class="right">
-					<a test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
-					<a test-beacon="filterbar-show-posts-on-map" ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
-				</span>
+<div class="filterbar-wrap">
+	<div class="box padding-vertical-medium">
+		<div class="flex-grid flex-align-center">
+
+			<div class="flex-1 flex-grid flex-space-between">
+				<div class="flex-1 flex-grid flex-align-center">
+
+		      <!-- Post type filter-->
+		      <div ng-show="configOptionsShow.market" class="position-relative nowrap hide-for-small-only">
+						<a href="javascript:;" class="filter-label" dropdown="#filter-post-type" ng-class="{'filter-selected': filter.post_type != null}">
+		          {{ 'MARKETPLACE.FILTER.POST_TYPE.' + (filter.post_type.toUpperCase() || 'NAME') + (filter.post_exact_type.toUpperCase()) | translate}}
+		          <i class="fa fa-chevron-down"></i>
+		        </a>
+		        <ul class="actions-dropdown dropdown-align-right margin-top-small" id="filter-post-type" style="display: none;">
+		          <li>
+                <a ng-click="addFilters({'post_type':null , 'post_exact_type':null})" ng-class="{'filter-selected': filter.post_type === null && filter.post_exact_type === null}"
+                   translate="MARKETPLACE.FILTER.POST_TYPE.ALL">
+                </a>
+              </li>
+		          <li>
+                <a ng-click="addFilters({'post_type':'offer' , 'post_exact_type':null})" ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === null}"
+                     translate="MARKETPLACE.FILTER.POST_TYPE.OFFER">
+                </a>
+		            <ul>
+		              <li>
+                    <a ng-click="addFilters({'post_type':'offer' , 'post_exact_type':'gift'})"
+                         ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === 'gift'}" translate="MARKETPLACE.FILTER.POST_TYPE.OFFERGIFT">
+                    </a>
+                  </li>
+		              <li>
+                    <a ng-click="addFilters({'post_type':'offer' , 'post_exact_type':'loan'})"
+                         ng-class="{'filter-selected': filter.post_type === 'offer' && filter.post_exact_type === 'loan'}"  translate="MARKETPLACE.FILTER.POST_TYPE.OFFERLOAN">
+                    </a>
+                  </li>
+		            </ul>
+		          </li>
+		          <li>
+                <a ng-click="addFilters({'post_type':'need' , 'post_exact_type':null})"
+                     ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === null}" translate="MARKETPLACE.FILTER.POST_TYPE.NEED">
+                </a>
+		            <ul>
+		              <li>
+                    <a ng-click="addFilters({'post_type':'need' , 'post_exact_type':'loan'})"
+                       ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === 'loan'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEEDLOAN">
+                    </a>
+                  </li>
+		              <li>
+                    <a ng-click="addFilters({'post_type':'need' , 'post_exact_type':'gift'})"
+                       ng-class="{'filter-selected': filter.post_type === 'need' && filter.post_exact_type === 'gift'}" translate="MARKETPLACE.FILTER.POST_TYPE.NEEDGIFT">
+                    </a>
+                  </li>
+		            </ul>
+		          </li>
+		        </ul>
+		      </div>
+
+		      <!-- Character filter-->
+		      <div ng-show="configOptionsShow.market" class="position-relative nowrap hide-for-small-only">
+		        <a href="javascript:;" class="filter-label" dropdown="#filter-character" ng-class="{'filter-selected': filter.character != null}">
+		          {{ 'MARKETPLACE.FILTER.CHARACTER.' + (filter.character.toUpperCase() || 'NAME') | translate}}
+		          <i class="fa fa-chevron-down"></i>
+		        </a>
+		        <ul class="actions-dropdown margin-top-small" id="filter-character" style="display: none;">
+		          <li>
+								<a ng-click="addFilter('character',null)" ng-class="{'filter-selected': filter.character === null}" translate="MARKETPLACE.FILTER.CHARACTER.ALL"></a>
+							</li>
+		          <li>
+								<a ng-click="addFilter('character','energy')" ng-class="{'filter-selected': filter.character === 'energy'}" translate="MARKETPLACE.FILTER.CHARACTER.ENERGY"></a>
+							</li>
+		          <li>
+								<a ng-click="addFilter('character','mass')" ng-class="{'filter-selected': filter.character === 'mass'}" translate="MARKETPLACE.FILTER.CHARACTER.MASS"></a>
+							</li>
+		          <li>
+								<a ng-click="addFilter('character','information')" ng-class="{'filter-selected': filter.character === 'information'}" translate="MARKETPLACE.FILTER.CHARACTER.INFORMATION"></a>
+							</li>
+		        </ul>
+		      </div>
+
+		      <!-- Time filter-->
+		      <div ng-show="configOptionsShow.market" class="position-relative nowrap hide-for-small-only">
+		        <a href="javascript:;" class="filter-label" dropdown="#filter-time" ng-class="{'filter-selected': filter.days != null}">
+		          {{ 'MARKETPLACE.FILTER.TIME.' + (filter.days.toUpperCase() || 'NAME') | translate}}
+		          <i class="fa fa-chevron-down"></i>
+		        </a>
+		        <ul class="actions-dropdown margin-top-small" id="filter-time" style="display: none;">
+		          <li><a ng-click="addFilter('days',null)" ng-class="{'filter-selected': filter.days === null}" translate="MARKETPLACE.FILTER.TIME.ALL"></a></li>
+		          <li><a ng-click="addFilter('days','1')" ng-class="{'filter-selected': filter.days === '1'}" translate="MARKETPLACE.FILTER.TIME.1"></a></li>
+		          <li><a ng-click="addFilter('days','3')" ng-class="{'filter-selected': filter.days === '3'}" translate="MARKETPLACE.FILTER.TIME.3"></a></li>
+		          <li><a ng-click="addFilter('days','7')" ng-class="{'filter-selected': filter.days === '7'}" translate="MARKETPLACE.FILTER.TIME.7"></a></li>
+		        </ul>
+		      </div>
+
+		      <!-- Next options label-->
+		      <!-- Mobile view-->
+		      <a ng-class="{'show-for-small-only': configOptionsShow.market}" ng-click="toggleFilter()">
+		       <i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+		       <i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+		       {{::'MARKETPLACE.FILTER.TITLE' | translate}}
+		      </a>
+          <a ng-class="{'show-for-small-only': configOptionsShow.market}" href="javascript:;" ng-show="filterOn" ng-click="cancelFilter()">
+            <small translate="MARKETPLACE.FILTER.CANCEL_FILTER_BAR"></small>
+          </a>
+		      <!-- Tablet and desktop-->
+		      <small ng-show="configOptionsShow.market" class="nowrap flex-grid hide-for-small-only" ng-click="toggleFilter()">
+						<a href="javascript:;" class="next-options-label" translate="MARKETPLACE.FILTER.NEXT_OPTIONS"></a>
+						<a href="javascript:;" ng-show="filterOn" class="hide-for-medium-only" ng-click="cancelFilter()" translate="MARKETPLACE.FILTER.CANCEL_FILTER_BAR"></a>
+		      </small>
+
+
+				</div>
+
+				<div ng-show="configOptionsShow.market" class="nowrap">
+					<a class="map-label" test-beacon="filterbar-show-posts-on-map" ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
+					<a class="map-label" test-beacon="filterbar-show-posts-on-map" ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
+				</div>
+
 			</div>
-		</div>
-	</div>
-	<article class="filter-container medium-push-2 medium-10 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
-		<filter id="filter" class="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>
-	</article>
-	<div class="clear"></div>
+
+		    <!-- <div class="small-12 large-3 "> -->
+	    <div class="show-for-large">
+	      <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block" test-beacon="new-post-button">
+	        {{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
+	      </a>
+	    </div>
+
+	  </div>
+
+    <!-- Next options filter-->
+    <div class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+      <hr class="margin-none" />
+      <div ng-show="inited">
+
+        <div class="filter-inner">
+          <input type="hidden" ng-model="filter.query" value="searchQuery.query" />
+          <input type="hidden" ng-model="filter.type" value="searchQuery.type" />
+          <div class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical skip-last-row-border">
+            <div ng-show="configOptionsShow.keywords" class="medium-display-table-row keywords-container" ng-if="inited">
+              <h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
+              <div class="medium-display-table-cell padding-bottom-small">
+                <tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3" max-length="20">
+                  <auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
+                </tags-input>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.character" class="medium-display-table-row show-for-small-only">
+              <h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_CHARACTER' | translate }}</h5>
+              <div class="radio-container medium-display-table-cell">
+                <div class="display-inline-block margin-right-large" ng-repeat="character in postCharacter">
+                  <radio ng-type="radio" model="filter.character" value="character.name" class="margin-right-none">
+                    <span translate="{{:: character.translate }}"></span>
+                  </radio>
+                  <i class="fa fa-question-circle color-dark-gray" aria-hidden="true" tipsy tipsy-on-show="logCharInfoShown" title="{{character.translateText | translate}}"></i>
+                </div>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.postType" class="medium-display-table-row show-for-small-only">
+              <h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
+              <div class="radio-container medium-display-table-cell">
+                <radio ng-type="radio" model="filter.post_type" value="'offer'">
+                  <span ng-bind-html=":: 'MARKETPLACE.FILTER.ADS_OFFER' | translate"></span>
+                </radio>
+                <radio ng-type="radio" model="filter.post_type" value="'need'">
+                  <span ng-bind-html=":: 'MARKETPLACE.FILTER.ADS_NEED' | translate"></span>
+                </radio>
+                <radio ng-type="radio" model="filter.post_type" value="null">
+                  <span ng-bind-html=":: 'MARKETPLACE.FILTER.ADS_ALL' | translate"></span>
+                </radio>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.entityType" class="medium-display-table-row">
+              <h5 class="medium-display-table-cell nowrap-addon">{{:: 'FULLTEXT.FILTER.BY_TYPE' | translate }}</h5>
+              <div class="radio-container medium-display-table-cell">
+                <radio ng-type="radio" model="filter.type" value="null">{{:: 'FULLTEXT.FILTER.TYPE.ALL' | translate}}</radio>
+                <radio ng-type="radio" model="filter.type" value="'post'">{{:: 'FULLTEXT.FILTER.TYPE.POSTS' | translate}}</radio>
+                <radio ng-type="radio" model="filter.type" value="'user'">{{:: 'FULLTEXT.FILTER.TYPE.PEOPLE' | translate}}</radio>
+                <radio ng-type="radio" model="filter.type" value="'community'">{{:: 'FULLTEXT.FILTER.TYPE.COMMUNITY' | translate}}</radio>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.postTime" class="medium-display-table-row show-for-small-only">
+              <h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h5>
+              <div class="radio-container medium-display-table-cell">
+                <radio ng-type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
+                <radio ng-type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
+                <radio ng-type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
+                <radio ng-type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.author" class="medium-display-table-row">
+              <h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h5>
+              <div class="radio-container medium-display-table-cell">
+                <checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+                <checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+                <checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}
+                </checkbox>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.location" class="medium-display-table-row location-container">
+              <h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
+              <div class="medium-display-table-cell padding-bottom-small">
+                <div class="row margin-none">
+                  <div class="column padding-none" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
+                    <input style="box-shadow: none !important;" type="text" id="geolocation" ng-model="filter.name" ng-model-options="{updateOn : 'blur'}" />
+                  </div>
+                  <div class="column small-5 medium-4 padding-right-none" ng-show="filter.lat && filter.lon && filter.name">
+                    <input type="range" ng-model="filter.distance" step="25" min="25" max="100">
+                    <span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-show="configOptionsShow.postLanguage" class="medium-display-table-row language-container">
+              <h5 class="medium-display-table-cell nowrap-addon padding-bottom-small">{{:: 'FULLTEXT.FILTER.BY_LANGUAGE' | translate }}</h5>
+              <div class="radio-container medium-display-table-cell">
+                <radio ng-type="radio" model="filter.post_language" value="'all'">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
+                <radio ng-type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
+                <radio ng-type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
+                <div class="autocomplete-container margin-top-small" ng-show="filter.post_language == 'other'">
+                  <tags-input ng-model="filter.post_language_other" display-property="name" key-property="code" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+                    <auto-complete source="queryLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
+                  </tags-input>
+                  <div ng-if="error_other_lang_empty" class="form-error" translate="FILTER.ERROR_LANGUAGE_REQUIRED"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer" ng-if="loggedUser" ng-show="configOptionsShow.saveFilter">
+					<hr class="margin-top-none margin-bottom-small" />
+          <checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
