@@ -240,7 +240,7 @@ angular.module('hearth').config([
       .state('uikit', {
         url: '/uikit',
         templateUrl: 'assets/pages/uikit/uikit.html',
-        controller: 'UiKitCtrl'
+        controller: 'UiKitCtrl',
       })
 			.state('aboutUs', {
 				url: '/about-us',
