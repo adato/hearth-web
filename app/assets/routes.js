@@ -43,15 +43,23 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/community/communities.html',
 				controller: 'CommunitiesCtrl'
 			})
+      .state('communities.my', {
+        url: '',
+        templateUrl: 'assets/pages/community/communityList.html',
+        controller: 'CommunityListCtrl',
+        controllerAs: 'vm'
+      })
 			.state('communities.suggested', {
-				url: '',
+				url: '/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
-				controller: 'CommunityListCtrl'
+				controller: 'CommunityListCtrl',
+        controllerAs: 'vm'
 			})
 			.state('communities.all', {
 				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
-				controller: 'CommunityListCtrl'
+				controller: 'CommunityListCtrl',
+        controllerAs: 'vm'
 			})
 			.state('reset-pass', {
 				url: '/reset-password',
