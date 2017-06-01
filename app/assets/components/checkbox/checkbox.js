@@ -19,54 +19,34 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 		transclude: true,
 		scope: {
 			model: '=',
-			value: '=',
-			valueOff: '=',
+			name: '=?',
 			onUpdate: '&',
 			disable: '=?'
 		},
 		templateUrl: (el, attrs) => {
 			return 'assets/components/checkbox/checkbox.html'
 		},
-		link: function(scope, el) {
-			scope.checked = false
+		bindToController: true,
+		controllerAs: 'ctrl',
+		controller: ['$scope', function(scope) {
 
-			scope.toggle = function() {
-				if (scope.disable) return;
-				scope.checked = !scope.checked
 
-				if (angular.isArray(scope.model)) {
-					const index = scope.model.indexOf(scope.value)
-					if (index > -1) {
-						scope.model.splice(index, 1)
-					} else {
-						scope.model.push(scope.value)
-					}
-				} else {
-					scope.model = scope.checked ? scope.value : scope.valueOff
-				}
 
-				if (scope.onUpdate) scope.onUpdate({value: scope.model})
-			}
+		}],
+		link: function(scope, el, attrs, ctrl) {
 
 			// keyboard support - toggle checkbox on spacebar press
 			const SPACE = 32
-			el[0].querySelector('.qs-keypress-event-handle').addEventListener('keypress', event => {
+			el[0].querySelector('[checkbox-keypress-handler]').addEventListener('keypress', event => {
 				const key = event.keyCode || event.charCode
 				if (key === SPACE) {
-					scope.toggle()
-					if (!scope.$$phase) scope.$apply()
+					console.log('SPACE', ctrl);
+					// scope.toggle()
+					ctrl.model = (ctrl.model === ctrl.value) ? ctrl.valueOff : ctrl.value
+					// if (!scope.$$phase) scope.$apply()
 
 					// space simulates a page-down by default - prevent this
 					event.preventDefault()
-				}
-			})
-
-			scope.$watch('model', value => {
-				if (angular.isArray(scope.model)) {
-					var index = scope.model.indexOf(value)
-					scope.checked = index > -1
-				} else {
-					scope.checked = value === scope.value
 				}
 			})
 

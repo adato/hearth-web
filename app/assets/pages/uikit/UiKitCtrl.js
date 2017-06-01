@@ -145,16 +145,9 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
   </label>
 
   <label class="block">
-    <div class="box box--checkbox">
-      <div class="checkbox--input-wrapper">
-        <span class="fa-stack" tabindex="0" checkbox-keypress-handler>
-          <i class="fa fa-fw fa-stack-1x fa-square checkbox--self-bg"></i>
-          <i class="fa fa-fw fa-stack-1x checkbox--self" ng-class="{ 'fa-check-square': testFormData.eula, 'fa-square-o': !testFormData.eula}"></i>
-        </span>
-        <input type="checkbox" hidden ng-model="testFormData.eula" name="eula" required />
-    	</div>
-      <div class="checkbox--label-wrapper" translate="EULA.ACCEPT"></div>
-    </div>
+    <checkbox model="testFormData.eula" required name="eula">
+      <span translate="EULA.ACCEPT"></span>
+    </checkbox>
     <div ng-messages="testForm.eula.$error" ng-show="testForm.$submitted || testForm.eula.$dirty">
       <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
     </div>
@@ -169,6 +162,17 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         scopeId: 'formData',
       };
     }
+
+    // <div class="box box--checkbox">
+    //   <div class="checkbox--input-wrapper">
+    //     <span class="fa-stack" tabindex="0" checkbox-keypress-handler>
+    //       <i class="fa fa-fw fa-stack-1x fa-square checkbox--self-bg"></i>
+    //       <i class="fa fa-fw fa-stack-1x checkbox--self" ng-class="{ 'fa-check-square': testFormData.eula, 'fa-square-o': !testFormData.eula}"></i>
+    //     </span>
+    //     <input type="checkbox" hidden ng-model="testFormData.eula" name="eula" required />
+    // 	</div>
+    //   <div class="checkbox--label-wrapper" translate="EULA.ACCEPT"></div>
+    // </div>
 
     ///////////////////////////////////////////////////////////////////////
 
