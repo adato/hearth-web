@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, ItemAux) {
 		var timeout;
 		var itemEditOpened = false;
-		$rootScope.myCommunities = false;
+		$rootScope.myCommunities = [];
 		$rootScope.pageName = '';
 		$rootScope.searchQuery = {
 			query: null,
@@ -254,7 +254,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
-				$rootScope.myCommunities = res;
+        $rootScope.myCommunities.length = 0;
+        $rootScope.myCommunities.push(...res);
 				$rootScope.myAdminCommunities = [];
 				res.forEach(function(item) {
 					// create list of communities I'm admin in
