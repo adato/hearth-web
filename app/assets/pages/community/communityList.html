@@ -1,4 +1,14 @@
-<div ng-if="list.length" class="community-list row clearfix small" when-scrolled="load()" offset="300" loading-in-progress="loading">
-	<community-item item="item" ng-class="{end: $last}" ng-repeat="(id, item) in list track by item._id"></community-item>
+<div ng-if="list.length" class="community-list row clearfix" when-scrolled="vm.load()" offset="300" loading-in-progress="loading">
+  <div ng-if="vm.myCommunities" class="columns">
+    <h5>
+      {{:: 'YOU_ARE_MEMBER' | translate}} {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
+      <span ng-if="myAdminCommunities.length">
+					{{:: 'FROM_THAT' | translate }} {{'IN_X.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}'}} {{:: 'ADMIN_7_CASE' | translate }}
+      </span>
+    </h5>
+  </div>
+  <div ng-class="{'medium-6': vm.showColumns, end: $last}" class="small-12 columns" ng-repeat="(id, item) in list track by item._id">
+	  <community-item ng-class="{'height-small': vm.myCommunities}" class="box block" item="item" user="loggedUser"></community-item>
+  </div>
 </div>
 <div loading show="loading"></div>
