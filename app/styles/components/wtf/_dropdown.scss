@@ -117,6 +117,16 @@
 		right: -$size-medium;
 	}
 
+	// contains a responsive-padding circle around its fa-chevron, thus
+	// requires a custom handling
+	.item-common & {
+
+		@include breakpoint(medium down) {
+			right: -.6rem;
+			top: calc(100% - 5px);
+		}
+	}
+
 	ul, li {
 		margin: 0;
 		list-style: none;

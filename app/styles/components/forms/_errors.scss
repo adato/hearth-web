@@ -2,3 +2,7 @@
 .form-error {
     display: block;
 }
+
+[ng-message] {
+    @extend .form-error
+}
