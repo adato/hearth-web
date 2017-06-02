@@ -535,7 +535,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.showTerms = function() {
-			$rootScope.openModalContainer('/app/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS');
+			$rootScope.openModalContainer('/assets/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS');
 		};
 
 		/**
