@@ -60,7 +60,7 @@
 				<h2 translate="USER_MESSAGES"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="messageSettingsForm" id="messageSettingsForm">
 					<div>
-						<checkbox model="notify.get_messages.only_replies" type="checkbox" value="true" value-off="false">
+						<checkbox model="notify.get_messages.only_replies">
 							{{:: 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
 						</checkbox>
 					</div>

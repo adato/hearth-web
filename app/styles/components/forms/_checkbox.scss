@@ -1,53 +1,34 @@
+/**
+ *	Default checkbox styling
+ */
 checkbox {
 	display: block;
+}
+.checkbox--self {
+	color: $white;
+}
+.checkbox--self-bg {
+	color: $primary-color;
+}
+.checkbox--inner-wrapper {
+	display: flex;
+	overflow: hidden;
+	align-items: stretch;
 
-	.checkbox--self {
-		color: $primary-color;
-	}
-	.checkbox--self-bg {
-		color: $white;
-	}
-
-	&[disabled]{
+	&.disabled {
 		cursor: default !important;
 		color: $colorDarkGray !important;
 
 		@include disabled();
 
-		.checkbox--self {
-			color: $medium-gray;
-		}
+		// i still want to see the disabled value
+		// .checkbox--self {
+		// 	color: $medium-gray;
+		// }
 		.checkbox--self-bg {
 			color: $medium-gray;
 		}
 	}
-}
-
-.ui-checkbox {
-	margin-right: $size-big;
-
-	.fa {
-		width: rem-calc(16);
-		font-size: rem-calc(16);
-		color: $primary-color;
-	}
-	&[disabled]{
-		cursor: default !important;
-		color: $colorDarkGray !important;
-		& > .fa{
-			color: lighten($primary-color, 25%);
-		}
-	}
-}
-.ui-checkbox--input-wrapper {
-	margin-right: $size-tiny
-}
-
-// default checkbox styling
-.checkbox--inner-wrapper {
-	display: flex;
-	overflow: hidden;
-	align-items: stretch;
 }
 .checkbox--input-wrapper {
 	display: flex;
@@ -102,4 +83,28 @@ checkbox {
 		border-radius: 0;
 		box-shadow: none;
 	}
+}
+
+//////////////////////////////
+// LEGACY
+// still used by radio buttons
+
+.ui-checkbox {
+	margin-right: $size-big;
+
+	.fa {
+		width: rem-calc(16);
+		font-size: rem-calc(16);
+		color: $primary-color;
+	}
+	&[disabled]{
+		cursor: default !important;
+		color: $colorDarkGray !important;
+		& > .fa{
+			color: lighten($primary-color, 25%);
+		}
+	}
+}
+.ui-checkbox--input-wrapper {
+	margin-right: $size-tiny
 }

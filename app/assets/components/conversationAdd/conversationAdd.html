@@ -15,7 +15,7 @@
 			<div class="error" ng-show="showError.recipients_ids">{{:: 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</div>
 		</div>
 		<div class="form-section" ng-if="userHasRight('post.suspend')">
-			<checkbox class="display-inline-block" model="message.from_admin" on-update="void()" disable="recipient.only_replies" ng-attr-disabled="recipient.only_replies">
+			<checkbox class="display-inline-block" model="message.from_admin" disabled="recipient.only_replies">
 				{{:: 'MESSAGES.ADD.AS_ADMIN' | translate }}
 			</checkbox>
 		</div>

@@ -3,10 +3,10 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.checkbox
- * @description
+ * @description selfdescript
  * @example
- *		<checkbox model="filter.user" required>
- *			<span translate="MARKETPLACE.FILTER.INDIVIDUALS"></span>
+ *		<checkbox model="magic.unicorns" required disabled="someExpression('orFunction')">
+ *			<span translate="LOOK_PAPA.TRANSCLUSION_WITH_NO_HANDS"></span>
  *		</checkbox>
  * @restrict E
  */
@@ -32,6 +32,11 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 
 			const ctrl = this
 
+			ctrl.change = () => {
+				if (ctrl.disabled) return
+				ctrl.model = !ctrl.model
+			}
+
 			/**
 			 *	Simulate an html behaviour - if the attr is there, it is true no matter its value
 			 *	Also the truthness doesn't change with changes on the element
@@ -47,11 +52,14 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 			el[0].querySelector('[checkbox-keypress-handler]').addEventListener('keypress', event => {
 				const key = event.keyCode || event.charCode
 				if (key === SPACE) {
-					ctrl.model = !ctrl.model
-					if (!scope.$$phase) scope.$apply()
 
 					// space simulates a page-down by default - prevent this
 					event.preventDefault()
+
+					if (ctrl.disabled) return
+
+					ctrl.model = !ctrl.model
+					if (!scope.$$phase) scope.$apply()
 				}
 			})
 

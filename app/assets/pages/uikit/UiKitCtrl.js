@@ -156,22 +156,26 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     <select name="gender" ng-model="testFormData.gender" required translate-attr="{placeholder: 'PERSON.GENDER'}" required ng-options="gender.value as (gender.title | translate) for gender in genderList">
       <option value="" translate="GENDER.SELECT"></option>
     </select>
+    <div class="help-text">Notice how the placeholder option (with empty value) is entered directly, while all the other options are generated from a controller list</div>
     <div ng-messages="testForm.surname.$error" ng-show="testForm.$submitted || testForm.surname.$dirty">
       <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
     </div>
   </label>
 
-  <div class="block box box--checkbox-list">
-    <label>
-      <checkbox model="testFormData.sth1" name="sth1" class="box box--checkbox">
-        <span translate="SOMETHING.ONE"></span>
-      </checkbox>
-    </label>
-    <label>
-      <checkbox model="testFormData.sth2" name="sth2" class="box box--checkbox" ng-disabled="testFormData.sth1">
-        <span translate="SOMETHING.TWO"></span>
-      </checkbox>
-    </label>
+  <div class="block">
+    <div class="box box--checkbox-list">
+      <label>
+        <checkbox model="testFormData.sth1" name="sth1" class="box box--checkbox">
+          <span translate="SOMETHING.ONE"></span>
+        </checkbox>
+      </label>
+      <label>
+        <checkbox model="testFormData.sth2" name="sth2" class="box box--checkbox" disabled="testFormData.sth1">
+          <span translate="SOMETHING.TWO"></span>
+        </checkbox>
+      </label>
+    </div>
+    <div class="help-text">This checkbox list logic doesn't make sense but showcases how to style such lists and how to apply the disabled attribute</div>
   </div>
 
   <div class="block flex-grid">
