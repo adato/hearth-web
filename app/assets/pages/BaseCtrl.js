@@ -535,8 +535,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.showTerms = function() {
-			$rootScope.openModalContainer('/assets/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS');
-		};
+			$rootScope.openModalContainer('assets/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS')
+		}
 
 		/**
 		 * Function will show modal window where community admin can remove post from his community
