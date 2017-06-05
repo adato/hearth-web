@@ -35,34 +35,34 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.oauthRegister = (provider, eulaAccepted) => {
 
 			if (!eulaAccepted) {
-				return $rootScope.confirmBox('EULA.ACCEPTATION_TEXT', 'AUTH.REGISTER.FRIENDLY_AGREEMENT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'EULA.AGREE', cancelText: 'EULA.DISAGREE'})
+				return $rootScope.confirmBox('EULA.I_ACCEPT_EULA', 'AUTH.REGISTER.FRIENDLY_AGREEMENT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'EULA.AGREE', cancelText: 'EULA.DISAGREE'})
+				// 'EULA.ACCEPTATION_TEXT',
 			}
 
 			// twitter works differently than google and facebook
 			if (provider === 'twitter') return $window.location.href = $scope.twitterAuthUrl
 
 			// switch serializer for this call to allow unencoded brackets
-			var serializer = $http.defaults.paramSerializer;
-			$http.defaults.paramSerializer = RubySerializer;
-			$scope.showError.blockedUserByEmail = false;
+			var serializer = $http.defaults.paramSerializer
+			$http.defaults.paramSerializer = RubySerializer
+			$scope.showError.blockedUserByEmail = false
 
 			$auth.authenticate(provider, {
 				language: preferredLanguage,
 				user_action: 'register'
 			}).then(function(response) {
 				if (response.status == 200) {
-					Auth.processLoginResponse(response.data);
+					Auth.processLoginResponse(response.data)
 				} else {
-					$scope.loginError = true;
+					$scope.loginError = true
 				}
 				// switch serializer back only after the EP call has responded
-				$http.defaults.paramSerializer = serializer;
+				$http.defaults.paramSerializer = serializer
 			}, function(error) {
-				$scope.apiErrors = new ResponseErrors(error);
-				if ($scope.apiErrors.blockedUserByEmail)
-					$scope.showError.blockedUserByEmail = true;
-			});
-		};
+				$scope.apiErrors = new ResponseErrors(error)
+				if ($scope.apiErrors.blockedUserByEmail) $scope.showError.blockedUserByEmail = true
+			})
+		}
 
 		$scope.validateData = function(user) {
 			var invalid = false;

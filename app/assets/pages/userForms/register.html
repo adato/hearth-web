@@ -13,9 +13,9 @@
         <span translate="SIGNUP_BLOCKED_EMAIL_ERROR" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
 	    </span>
       </div>
-      <p ng-if="!params.facebook"><span translate="SIGNUP_HEADING_TEXT"></span></p>
+      <p class="text-center" ng-if="!params.facebook"><span translate="SIGNUP_HEADING_TEXT"></span></p>
 
-			<p ng-bind-html="'SIGNUP_HEADING_TEXT_FB' | translate" ng-if="params.facebook"></p>
+			<p class="text-center" translate="SIGNUP_HEADING_TEXT_FB" ng-if="params.facebook"></p>
 
 			<div class="row block">
 				<div class="small-12 medium-6 large-6 columns" title="{{showError | json}}">
@@ -94,7 +94,7 @@
 			<hr/>
 
 			<div class="social-login">
-				<p>{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
+				<p class="text-center">{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
 				<!-- <a href="" ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
 				<a href="" ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
 				<a href="" ng-click="oauthRegister('google')" class="fa fa-google"></a> -->
@@ -110,7 +110,7 @@
 			</div>
 		</form>
 		<div class="register-successful success">
-			<p ng-bind-html="'SIGNUP_WAS_SUCCESSFUL' | translate"></p>
+			<p class="text-center" translate="SIGNUP_WAS_SUCCESSFUL"></p>
 		</div>
 	</div>
 </div>
