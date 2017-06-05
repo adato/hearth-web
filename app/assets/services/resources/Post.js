@@ -134,6 +134,10 @@ angular.module('hearth.services').factory('Post', [
 			unheart: {
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'DELETE'
+			},
+			exemplaryPosts: {
+				merthod: 'GET',
+				url: $$config.apiPath + '/posts/exemplary'
 			}
 		});
 	}

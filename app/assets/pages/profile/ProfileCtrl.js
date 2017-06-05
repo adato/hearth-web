@@ -51,7 +51,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.serializeUser = function(user) {
 			user.cities = $scope.citiesToString(user);
-			user.created_at_days = Time.getDateDiffToNow(user.created_at);
+			user.created_at_days = Time.getDateDiffToNow(user.confirmed_at);
 			user.karma = Karma.count(user.up_votes, user.down_votes);
 			return user;
 		};

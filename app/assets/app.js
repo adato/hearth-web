@@ -13,6 +13,7 @@ angular.module('hearth', [
 		'ngSanitize',
 		'ngResource',
 		'ngDialog',
+		'ngMessages',
 		'tmh.dynamicLocale',
 		'ui.select',
 		'ui.router',

@@ -29,6 +29,8 @@ describe('Access to Hearth blocked by IP address', function () {
     $http.get(PATH.EXPECT_ACCESS_DENIED)
       .then(() => {
         expect($location.path()).toEqual('/app/access-denied.html');
+      }).catch(err => {
+        // mandatory catch so that the test runs through on angular 1.6
       });
 
     $httpBackend.flush();
