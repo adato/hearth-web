@@ -1,30 +1,27 @@
 timeline {
-    display: block;
-    margin-left: -$size-large;
-    margin-right: -$size-large;
+  display: block;
+  margin-left: -$size-large;
+  margin-right: -$size-large;
+  margin-bottom: -$size-large;
 
-    p {
-        margin: 0 0 0 $size-small;
-    }
-    header {
-        margin-bottom: $size-small;
-    }
 
-    // diss the item common margin that is not desired in timeline
-    .item-common {
-        margin-bottom: 0;
-    }
+  p {
+    margin: 0 0 0 $size-small;
+  }
+  header {
+    margin-bottom: $size-small;
+  }
+
+  // diss the item common margin that is not desired in timeline
+  .item-common {
+    margin-bottom: 0;
+  }
+
+  .box {
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #cacaca;
+  }
 
 }
-.timeline-item {
 
-    a.nostyle:link, a.nostyle:visited {
-        text-decoration: inherit;
-        color: inherit;
-        cursor: auto;
-    }
-
-    .date {
-        font-size: small;
-    }
-}
