@@ -5,7 +5,7 @@
  * @name hearth.directives.checkbox
  * @description
  * @example
- *		<checkbox model="filter.user" value="true">
+ *		<checkbox model="filter.user" required>
  *			<span translate="MARKETPLACE.FILTER.INDIVIDUALS"></span>
  *		</checkbox>
  * @restrict E
@@ -15,22 +15,29 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 
 	return {
 		restrict: 'E',
-		replace: true,
 		transclude: true,
 		scope: {
 			model: '=',
-			name: '=?',
-			onUpdate: '&',
-			disable: '=?'
+			name: '@?',
+			onUpdate: '&?',
+			disabled: '=?',
+			required: '=?'
 		},
 		templateUrl: (el, attrs) => {
 			return 'assets/components/checkbox/checkbox.html'
 		},
 		bindToController: true,
 		controllerAs: 'ctrl',
-		controller: ['$scope', function(scope) {
+		controller: ['$scope', '$attrs', function(scope, $attrs) {
 
+			const ctrl = this
 
+			/**
+			 *	Simulate an html behaviour - if the attr is there, it is true no matter its value
+			 *	Also the truthness doesn't change with changes on the element
+			 *	if this ever needs to be changed or extended - $attrs.$observe() should be a good start
+			 */
+			if ($attrs.required !== void 0) ctrl.required = true
 
 		}],
 		link: function(scope, el, attrs, ctrl) {
@@ -40,10 +47,8 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 			el[0].querySelector('[checkbox-keypress-handler]').addEventListener('keypress', event => {
 				const key = event.keyCode || event.charCode
 				if (key === SPACE) {
-					console.log('SPACE', ctrl);
-					// scope.toggle()
-					ctrl.model = (ctrl.model === ctrl.value) ? ctrl.valueOff : ctrl.value
-					// if (!scope.$$phase) scope.$apply()
+					ctrl.model = !ctrl.model
+					if (!scope.$$phase) scope.$apply()
 
 					// space simulates a page-down by default - prevent this
 					event.preventDefault()

@@ -1,3 +1,28 @@
+checkbox {
+	display: block;
+
+	.checkbox--self {
+		color: $primary-color;
+	}
+	.checkbox--self-bg {
+		color: $white;
+	}
+
+	&[disabled]{
+		cursor: default !important;
+		color: $colorDarkGray !important;
+
+		@include disabled();
+
+		.checkbox--self {
+			color: $medium-gray;
+		}
+		.checkbox--self-bg {
+			color: $medium-gray;
+		}
+	}
+}
+
 .ui-checkbox {
 	margin-right: $size-big;
 
@@ -18,29 +43,63 @@
 	margin-right: $size-tiny
 }
 
-.box.box--checkbox {
+// default checkbox styling
+.checkbox--inner-wrapper {
 	display: flex;
 	overflow: hidden;
 	align-items: stretch;
+}
+.checkbox--input-wrapper {
+	display: flex;
+	align-items: center;
+}
+.checkbox--label-wrapper {
+	display: flex;
+	align-items: center;
+	cursor: default;
+}
+
+/**
+ *	Checkbox styling with boxed design
+ *	Example:
+ *		checkbox.box.box--checkbox(model='foo')
+ *			span(translate='bar')
+ */
+.box.box--checkbox {
 	padding: 0;
+	overflow: hidden;
 
 	.checkbox--input-wrapper {
-		display: flex;
-		align-items: center;
 		margin: 0;
 		padding: $size-small;
 		background: $colorLightGray;
 	}
-	& > .checkbox--label-wrapper {
+	.checkbox--label-wrapper {
 		flex: 1;
-		display: flex;
-		align-items: center;
 		padding: $size-small $size-medium;
 	}
 }
-.checkbox--self {
-	color: $primary-color;
+
+/**
+ *	Example:
+ *		.box-checkbox-list
+ *			label
+ *				checkbox.box.box--checkbox(model='asdf')
+ *					span(translate='asdf.qwer')
+ */
+.box.box--checkbox-list {
+	padding: 0;
+	overflow: hidden;
 }
-.checkbox--self-bg {
-	color: $white;
+.box--checkbox-list > label {
+	border-bottom: 1px solid $medium-gray;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	& > .box {
+		border-radius: 0;
+		box-shadow: none;
+	}
 }

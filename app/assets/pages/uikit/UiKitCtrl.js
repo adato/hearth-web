@@ -85,36 +85,43 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       $scope.testFormData = {
         name: '',
         surname: ''
-      };
+      }
+      $scope.genderList = [
+        {title: 'GENDER.AGENDER', value: 'agender'},
+        {title: 'GENDER.ANDROGYNE', value: 'androgyne'},
+        {title: 'GENDER.ANDROGYNOUS', value: 'androgynous'},
+        {title: 'GENDER.BIGENDER', value: 'bigender'},
+        {title: 'GENDER.CIS', value: 'cis'}
+      ]
       // bind submit function to controller
       // ctrl.testFormSubmit = (data, form) => {
       $scope.testFormSubmit = (data, form) => {
-        form.$setDirty();
+        form.$setDirty()
 
-        $scope.savingFormSuccess = false;
-        $scope.savingFormError = false;
+        $scope.savingFormSuccess = false
+        $scope.savingFormError = false
 
         // validation
-        $scope.validationError = false;
-        if (!form.$valid) return $scope.validationError = true;
+        $scope.validationError = false
+        if (!form.$valid) return $scope.validationError = true
 
         // simulate API call
-        $scope.formLoading = true;
+        $scope.formLoading = true
         $timeout(() => {
           if (submitWillBeSuccess) {
-            $scope.formLoading = false;
-            $scope.savingFormSuccess = true;
-            form.$setPristine();
-            form.$setUntouched();
+            $scope.formLoading = false
+            $scope.savingFormSuccess = true
+            form.$setPristine()
+            form.$setUntouched()
 
           } else {
-            $scope.formLoading = false;
-            $scope.savingFormError = true;
+            $scope.formLoading = false
+            $scope.savingFormError = true
           }
-          submitWillBeSuccess = !submitWillBeSuccess;
-        }, 1000);
+          submitWillBeSuccess = !submitWillBeSuccess
+        }, 1000)
 
-      };
+      }
 
       // and return template
       return {
@@ -145,7 +152,43 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
   </label>
 
   <label class="block">
-    <checkbox model="testFormData.eula" required name="eula">
+    <span translate="PERSON.SURNAME"></span>
+    <select name="gender" ng-model="testFormData.gender" required translate-attr="{placeholder: 'PERSON.GENDER'}" required ng-options="gender.value as (gender.title | translate) for gender in genderList">
+      <option value="" translate="GENDER.SELECT"></option>
+    </select>
+    <div ng-messages="testForm.surname.$error" ng-show="testForm.$submitted || testForm.surname.$dirty">
+      <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
+    </div>
+  </label>
+
+  <div class="block box box--checkbox-list">
+    <label>
+      <checkbox model="testFormData.sth1" name="sth1" class="box box--checkbox">
+        <span translate="SOMETHING.ONE"></span>
+      </checkbox>
+    </label>
+    <label>
+      <checkbox model="testFormData.sth2" name="sth2" class="box box--checkbox" ng-disabled="testFormData.sth1">
+        <span translate="SOMETHING.TWO"></span>
+      </checkbox>
+    </label>
+  </div>
+
+  <div class="block flex-grid">
+    <label>
+      <checkbox model="testFormData.sth3" required name="sth3">
+        <span translate="SOMETHING.THREE"></span>
+      </checkbox>
+    </label>
+    <label>
+      <checkbox model="testFormData.sth4" required name="sth4">
+        <span translate="SOMETHING.FOUR"></span>
+      </checkbox>
+    </label>
+  </div>
+
+  <label class="block">
+    <checkbox model="testFormData.eula" required name="eula" class="box box--checkbox">
       <span translate="EULA.ACCEPT"></span>
     </checkbox>
     <div ng-messages="testForm.eula.$error" ng-show="testForm.$submitted || testForm.eula.$dirty">
@@ -160,19 +203,8 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 </form>`,
         selector: '[form-data]',
         scopeId: 'formData',
-      };
+      }
     }
-
-    // <div class="box box--checkbox">
-    //   <div class="checkbox--input-wrapper">
-    //     <span class="fa-stack" tabindex="0" checkbox-keypress-handler>
-    //       <i class="fa fa-fw fa-stack-1x fa-square checkbox--self-bg"></i>
-    //       <i class="fa fa-fw fa-stack-1x checkbox--self" ng-class="{ 'fa-check-square': testFormData.eula, 'fa-square-o': !testFormData.eula}"></i>
-    //     </span>
-    //     <input type="checkbox" hidden ng-model="testFormData.eula" name="eula" required />
-    // 	</div>
-    //   <div class="checkbox--label-wrapper" translate="EULA.ACCEPT"></div>
-    // </div>
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -182,8 +214,8 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     // Bind data directly to template
     function compileData(data) {
-      angular.element(data.selector).append($compile(data.code)($scope));
-      $scope[data.scopeId] = data.code;
+      angular.element(data.selector).append($compile(data.code)($scope))
+      $scope[data.scopeId] = data.code
     }
 
     // Prepare data for binding to html
@@ -193,9 +225,9 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
           name: element.name || "",
           code: $sce.trustAsHtml(element.code),
           description: (element.desc || "") + " " + element.code
-        });
-      });
+        })
+      })
     }
 
   }
-]);
+])
