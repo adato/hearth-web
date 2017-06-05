@@ -192,9 +192,10 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
   </div>
 
   <label class="block">
-    <checkbox model="testFormData.eula" required name="eula" class="box box--checkbox">
+    <checkbox model="testFormData.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': testForm.eula.$invalid && (testForm.$submitted || testForm.eula.$dirty)}">
       <span translate="EULA.ACCEPT"></span>
     </checkbox>
+    <div class="help-text">Invalid border is set manually</div>
     <div ng-messages="testForm.eula.$error" ng-show="testForm.$submitted || testForm.eula.$dirty">
       <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
     </div>
