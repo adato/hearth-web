@@ -180,12 +180,12 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
   <div class="block flex-grid">
     <label>
-      <checkbox model="testFormData.sth3" required name="sth3">
+      <checkbox model="testFormData.sth3" name="sth3">
         <span translate="SOMETHING.THREE"></span>
       </checkbox>
     </label>
     <label>
-      <checkbox model="testFormData.sth4" required name="sth4">
+      <checkbox model="testFormData.sth4" name="sth4">
         <span translate="SOMETHING.FOUR"></span>
       </checkbox>
     </label>
