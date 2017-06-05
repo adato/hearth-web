@@ -54,66 +54,7 @@
 					<header class="item-section row">
 						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
 							<span class="color-dark-gray" title="{{:: item.updated_at_date }}">{{:: item.updated_at_timeago}}</span>
-							<div class="dropdown-wrapper">
-								<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if=":: !mine">
-									<div bubble-placeholder="bookmark-reminder"></div>
-									<div bubble-placeholder="hide-post"></div>
-									<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none margin-left-medium round gray"
-													title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id}}" test-beacon="marketplace-item-dropdown-toggle">
-										<i class="fa fa-fw fa-chevron-down"></i>
-									</span>
-								</div>
-								<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
-									<li>
-										<!-- bookmark post -->
-										<a ng-if="! mine && item.is_bookmarked" ng-click="ItemAux.removeItemFromBookmarks(item);  analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-										<a ng-if="! mine && !item.is_bookmarked " ng-click="ItemAux.addItemToBookmarks(item); analytics( 'Bookmark clicked');" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
-										<!-- /bookmark post -->
-									</li>
-									<li>
-										<!-- flag post -->
-										<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-										<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)" test-beacon="marketplace-item-flag">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-										<!-- /flag post -->
-									</li>
-									<li>
-										<!-- hide post -->
-										<a ng-if="!mine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ItemAux.hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
-										<!-- /hide post -->
-									</li>
-									<li>
-										<a ng-if=":: ! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
-									</li>
-
-									<!-- admin only -->
-									<li ng-if=':: userHasRight("post.suspend") && isActive'>
-										<hr />
-									</li>
-									<li ng-if=':: userHasRight("post.suspend") && isActive'>
-										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">
-											<span ng-if="isActive">{{:: "POST.SUSPEND.LABEL" | translate }}</span>
-											<span ng-if="!isActive">{{:: "POST.RESUME.LABEL" | translate }}</span>
-										</a>
-									</li>
-									<!-- TODO: in future there will be another user privilegs then post.suspend -->
-									<li ng-if=':: userHasRight("post.suspend")'>
-										<a ng-if=":: !item.is_followed" class="elevated-authority-function" ng-click="followItem(item)">{{:: "POST.FOLLOW.LABEL" | translate}}</a>
-										<a ng-if=":: item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)">{{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
-									</li>
-                  <li ng-if=':: userHasRight("post.suspend")'>
-                    <hr />
-                    <span>{{:: "CHARACTER" | translate}}:
-                       <span ng-repeat="itemEntry in item.character">
-                          <span ng-repeat="postCharEntry in postCharacter | filter : { name:itemEntry }">{{ postCharEntry.translate | translate }}</span>
-                       </span>
-                    </span>
-                  </li>
-                  <li ng-if=':: userHasRight("post.suspend")'>
-                    <span>{{:: "USER_LANGUAGE" | translate}}: {{:: postLanguage}} </span>
-                  </li>
-									<!-- /admin only -->
-								</ul>
-							</div>
+							<div class="display-inline-block" item-dropdown="item"></div>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium">
 							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="display-inline-block position-relative">
@@ -152,9 +93,12 @@
 
 					<div class="item-section text-container word-wrap">
 						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html=":: item.text_parsed" test-beacon="marketplace-item-text"></p>
+						<a href="" ng-click="marketplace.expanded = false; logPostTextToggle({action: 'collapsed', post: item})" ng-if="item.text.length >= 270 && marketplace.expanded">
+			        <strong ng-class=":: 'color-' + item.type" translate="MARKETPLACE.POST.CLICK_TO_COLLAPSE"></strong>
+			      </a>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html=":: item.text_short_parsed"></span>
-							<a ng-click="marketplace.expanded = true">
+							<a ng-click="marketplace.expanded = true; logPostTextToggle({action: 'expanded', post: item})">
 								<b ng-class="'color-' + item.type">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</b>
 							</a>
 						</p>

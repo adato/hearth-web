@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ResetPwdCtrl', [
-	'$scope', 'Auth', '$location', 'Notify', '$state',
-	function($scope, Auth, $location, Notify, $state) {
+	'$scope', 'Auth', '$location', 'Notify', '$state', 'User',
+	function($scope, Auth, $location, Notify, $state, User) {
+
 		$scope.token = true;
 		$scope.sent = false;
 		$scope.tokenVerified = false;
@@ -56,9 +57,9 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 				confirm: data.password
 			}, res => {
 				Notify.addSingleTranslate('NOTIFY.NEW_PASS_SUCCESS', Notify.T_SUCCESS);
-				// $location.url('/login');
 				$state.go('login');
 			}, err => {
+				// notify for this err is done by resource so there is no need to do it here again
 				console.warn(err);
 			});
 		};
