@@ -28,7 +28,7 @@
           </div>
         </div>
         <div ng-if="item.verb == 'community_new_post' || item.verb == 'new_post'">
-          <timeline-post item="item.object"></timeline-post>
+          <div item-small item="item.object" type="condensed" class="box block"></div>
         </div>
         <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
           <div ng-init='receivedRatings = [item.object]'>
