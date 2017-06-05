@@ -6,7 +6,7 @@
 <div class="box register-login-dialog" ng-cloak>
 	<div class="register-form row">
 		<div class="headMessage error"></div>
-		<form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
+		<form ng-cloak ng-submit="register(user, registerForm)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
 			<div class="register-notify-area"></div>
       <div class='alert-box alert' ng-show="showError.blockedUserByEmail">
         <i class="fa fa-exclamation-triangle"></i>
@@ -64,13 +64,24 @@
 			</div>
 
       <div class="block">
-        <p>
+				<label>
+			    <checkbox model="user.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': registerForm.eula.$invalid && (registerForm.$submitted || registerForm.eula.$dirty)}">
+						<div>
+				      <p translate="EULA.ACCEPTATION_TEXT" translate-values="{attrs: 'ng-click: showTerms()'}" translate-compile></p>
+							<p translate="AUTH.REGISTER.FRIENDLY_AGREEMENT"></p>
+						</div>
+			    </checkbox>
+			    <div ng-messages="registerForm.eula.$error" ng-show="registerForm.$submitted || registerForm.eula.$dirty">
+			      <div ng-message="required" translate="EULA.ERROR_REQUIRED"></div>
+			    </div>
+			  </label>
+        <!-- <p>
           <span translate="YOU_ARE_ACCEPTING_TERMS"></span>
           <a href="" ng-click="showTerms()"><span translate="WITH_TERMS_OF_USE"></span></a>
         </p>
         <p>
           <span class="support-text" translate="AUTH.REGISTER.FRIENDLY_AGREEMENT"></span>
-        </p>
+        </p> -->
       </div>
 
 			<div class="text-center block">
@@ -84,9 +95,12 @@
 
 			<div class="social-login">
 				<p>{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
-				<a tabindex="0" ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
-				<a ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
-				<a tabindex="0" ng-click="oauthRegister('google')" class="fa fa-google"></a>
+				<!-- <a href="" ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
+				<a href="" ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
+				<a href="" ng-click="oauthRegister('google')" class="fa fa-google"></a> -->
+				<a href="" ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
+				<a href="" ng-click="oauthRegister('twitter')" class="fa fa-twitter"></a>
+				<a href="" ng-click="oauthRegister('google')" class="fa fa-google"></a>
 			</div>
 			<hr/>
 			<div class="bottom">
