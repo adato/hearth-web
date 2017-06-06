@@ -55,7 +55,7 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 
 		function getExemplaryPosts() {
 			return $q((resolve, reject) => {
-				Post.exemplaryPosts(res => {
+				Post.exemplaryPosts({lang: $rootScope.language}, res => {
 					return resolve(res.data)
 				}, err => {
 					const epError = 'Error during exemplary-posts fetch: ' + ( (() => { try{ return JSON.stringify(err) } catch (e) { return err } })() )
