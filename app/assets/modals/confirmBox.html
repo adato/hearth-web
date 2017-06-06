@@ -1,11 +1,9 @@
 <div class="confirm-box">
   <div class="head">
-		<h2 class="small-12" translate="{{ title }}"></h2>
+		<h2 translate="{{ title }}"></h2>
     <hr />
   </div>
-	<div>
-		<p class="small-12" translate="{{ text }}"></p>
-	</div>
+	<div translate="{{ text }}" translate-values="{{ translationValues }}" translate-compile></div>
 	<div class="display-flex flex-space-between flex-reverse">
     <button class="button" ng-click="confirm()" translate="{{ confirmText || 'OK' }}"></button>
 		<a class="revert-changes" ng-click="closeThisDialog()" translate="{{ cancelText || 'CANCEL' }}"></a>

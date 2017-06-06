@@ -679,18 +679,28 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * {String} confirmText - what to translate for confirmation [OK]
 		 * {String} cancelText - what to translate for cancel [CANCEL]
 		 */
-		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy, {confirmText, cancelText} = {}) {
+		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy, {confirmText, cancelText, translationValues} = {}) {
 
 			if (policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
 			// create new scope of confirmBox
 			var scope = $scope.$new()
-			scope.title = title
-			scope.text = text
-			scope.callback = callback
 			scope.params = angular.isArray(params) ? params : [params]
-			scope.confirmText = confirmText
-			scope.cancelText = cancelText
+
+			// scope.title = title
+			// scope.text = text
+			// scope.callback = callback
+			// scope.confirmText = confirmText
+			// scope.cancelText = cancelText
+			// scope.translationValues = translationValues
+			angular.extend(scope, {
+				title,
+				text,
+				callback,
+				confirmText,
+				cancelText,
+				translationValues,
+			})
 
 			if (callbackScope) scope.callbackScope = callbackScope;
 

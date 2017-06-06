@@ -66,25 +66,15 @@
       <div class="block">
 				<label>
 			    <checkbox model="user.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': registerForm.eula.$invalid && (registerForm.$submitted || registerForm.eula.$dirty)}">
-						<div>
-				      <p translate="EULA.ACCEPTATION_TEXT" translate-values="{attrs: 'ng-click: showTerms()'}" translate-compile></p>
-							<p translate="AUTH.REGISTER.FRIENDLY_AGREEMENT"></p>
-						</div>
+						<div translate="EULA.ACCEPTATION_TEXT" translate-values="{attrs: 'ng-click=\'showTerms()\''}" translate-compile></div>
 			    </checkbox>
 			    <div ng-messages="registerForm.eula.$error" ng-show="registerForm.$submitted || registerForm.eula.$dirty">
 			      <div ng-message="required" translate="EULA.ERROR_REQUIRED"></div>
 			    </div>
 			  </label>
-        <!-- <p>
-          <span translate="YOU_ARE_ACCEPTING_TERMS"></span>
-          <a href="" ng-click="showTerms()"><span translate="WITH_TERMS_OF_USE"></span></a>
-        </p>
-        <p>
-          <span class="support-text" translate="AUTH.REGISTER.FRIENDLY_AGREEMENT"></span>
-        </p> -->
       </div>
 
-			<div class="text-center block">
+      <div class="block text-center">
 				<button class="button" type="submit" test-beacon="register-button" ng-disabled="sending">
 					<i class="fa fa-user"></i>
 					<span translate="SIGNUP_BUTTON"></span>
@@ -94,7 +84,7 @@
 			<hr/>
 
 			<div class="social-login">
-				<p class="text-center">{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
+				<p>{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
 				<!-- <a href="" ng-click="oauthRegister('facebook')" class="fa fa-facebook"></a>
 				<a href="" ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
 				<a href="" ng-click="oauthRegister('google')" class="fa fa-google"></a> -->

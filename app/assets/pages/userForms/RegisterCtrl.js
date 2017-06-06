@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.oauthRegister = (provider, eulaAccepted) => {
 
 			if (!eulaAccepted) {
-				return $rootScope.confirmBox('EULA.I_ACCEPT_EULA', 'AUTH.REGISTER.FRIENDLY_AGREEMENT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'EULA.AGREE', cancelText: 'EULA.DISAGREE'})
+				return $rootScope.confirmBox('EULA.I_ACCEPT_EULA', 'EULA.ACCEPTATION_TEXT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'EULA.AGREE', cancelText: 'EULA.DISAGREE', translationValues: '{attrs: "ng-click=showTerms()"}'})
 				// 'EULA.ACCEPTATION_TEXT',
 			}
 
