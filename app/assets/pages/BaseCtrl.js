@@ -460,8 +460,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				itemEditOpened = false;
 			}, 2000);
 
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
 			// createDraft
 			var scope = $scope.$new();

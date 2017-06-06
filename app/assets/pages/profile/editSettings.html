@@ -24,8 +24,15 @@
 			</div>
 			<div class="flex-1">
 				<h2 translate="USER_NOTIFICATION"></h2>
-				<form ng-submit="saveNotificationSettings(notify)" name="notificcationSettingsForm" id="notificcationSettingsForm">
-					<div>
+				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
+          <label class="block" ng-if="userHasRight('post.suspend')">
+            <span translate="PROFILE.EDIT.SEND.FREQUENCY.HOW_OFTEN"></span>
+            <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
+          </label>
+          <div class="block" ng-if="userHasRight('post.suspend')">
+            <span translate="PROFILE.EDIT.SEND.WHICH"></span>
+					</div>
+          <div>
 						<checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
 							{{:: 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
 						</checkbox>
