@@ -13,9 +13,9 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     // @kamil Can't use controllerAs here because I don't know how to bind to ctrl with $compile
     // const ctrl = this;
 
-    $scope.buttons = [];
-    $scope.typographies = [];
-    $scope.inputs = [];
+    $scope.buttons = []
+    $scope.typographies = []
+    $scope.inputs = []
 
     /*
      Data section
@@ -61,15 +61,29 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       ];
     };
 
-    init();
+    function getAvatarData() {
+      return {
+        code: `<div class="avatar-stack">
+  <avatar size="small" src="loggedUser.avatar.normal" type="\'User\'"></avatar>
+  <avatar size="small"></avatar>
+  <avatar size="small"></avatar>
+  <avatar size="small"></avatar>
+</div>`,
+        selector: '[avatars]',
+        scopeId: 'avatars'
+      }
+    }
+
+    init()
 
     ///////////////////////////////////////////////////////////////////////
 
     function init() {
-      prepareElementData($scope.buttons, getButtonsData());
-      prepareElementData($scope.typographies, getTypographiesData());
-      prepareElementData($scope.inputs, getInputsData());
-      compileData(getFormData());
+      prepareElementData($scope.buttons, getButtonsData())
+      prepareElementData($scope.typographies, getTypographiesData())
+      prepareElementData($scope.inputs, getInputsData())
+      compileData(getAvatarData())
+      compileData(getFormData())
     }
 
     function getFormData() {

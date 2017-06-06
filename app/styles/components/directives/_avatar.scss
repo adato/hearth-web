@@ -61,3 +61,24 @@ $large-avatar-size: 295px;
 		}
 	}
 }
+
+.avatar-stack {
+	display: flex;
+	flex-direction: row-reverse;
+
+	& > .avatar {
+		position: relative;
+
+		&.avatar-small {
+			margin-left: -$small-avatar-size / 1.5;
+
+			&:last-child {
+				margin-left: 0;
+			}
+		}
+
+		& > .avatar-image {
+			border: 2px solid $white;
+		}
+	}
+}
