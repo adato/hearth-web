@@ -20,8 +20,12 @@ timeline {
   .box {
     border-radius: 0;
     box-shadow: none;
-    border-top: 1px solid #cacaca;
+    border-top: 1px solid $medium-gray;
   }
 
+  .timeline:last-child .box {
+    border-bottom-right-radius: $global-radius;
+    border-bottom-left-radius: $global-radius;
+  }
 }
 
