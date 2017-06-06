@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		};
 		$scope.sent = false; // show result msg
 		$scope.sending = false; // lock - send user only once
-		$scope.termsPath = false;
+		// $scope.termsPath = false;
 		$scope.params = $stateParams;
 		$scope.apiErrors = {};
 		$scope.showError = {
@@ -150,7 +150,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			// 	return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
 			// }
 
-			$scope.termsPath = '/app/locales/' + $rootScope.language + '/terms.html';
+			// $scope.termsPath = 'assets/locales/' + $rootScope.language + '/terms.html';
 		};
 
 		$scope.$on('initFinished', $scope.init);

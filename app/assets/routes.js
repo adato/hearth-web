@@ -127,11 +127,6 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/static/localizationPage.html',
 				controller: 'StaticPageCtrl'
 			})
-			.state('new-terms', { // duplicate of previous, redirected to classic terms, keep for some time, then remove pls
-				url: '/new-terms',
-				templateUrl: 'assets/pages/static/terms.html',
-				controller: 'TermsCtrl'
-			})
 			.state('support-us', {
 				url: '/support-us',
 				templateUrl: 'assets/pages/static/localizationPage.html',
