@@ -1,12 +1,11 @@
-<div>
-  <div class="flex flex-wrap flex-divided-medium rating block">
+<div class="rating">
+  <div class="flex flex-wrap flex-divided-medium block">
     <div class="flex flex-divided-medium flex-wrap">
-      <div class="rating-icon left-aligned non-responsive">
-        <i class="fa " ng-class="vm.item.object.score == 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
+      <div class="rating-icon-bg left-aligned non-responsive">
+        <i class="fa rating-icon" ng-class="vm.item.object.score === 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
       </div>
-      <div info-box=":: vm.item.author">
-        <avatar class="small-avatar-small margin-left-small" type="vm.item.author._type"
-                src="vm.item.author.avatar.normal" size="small"></avatar>
+      <div>
+        AVATAR -> AVATAR
       </div>
     </div>
     <div>
@@ -16,8 +15,16 @@
     </div>
   </div>
 
-  <div class="rating-message word-wrap">
-    <span translate="POSITIVE"></span>
+  <div class="rating-message" ng-class="vm.item.object.score === 1 ? 'positive' : 'negative'">
+    <b>
+      <span ng-if="vm.item.object.score === 1" translate="POSITIVE"></span>
+      <span ng-if="vm.item.object.score === -1" translate="NEGATIVE"></span>
+    </b>
+    <small ng-if="vm.item.object.post_id" class="rating-relation">
+      &nbsp;{{:: 'RATING_TO_POST' | translate }}
+      <a href="{{:: vm.getProfileLink('Post', vm.item.object.post_id )}}" title="{{:: postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title }}">
+        {{:: postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title}}</a>.
+    </small>
     <div ng-bind-html=":: vm.item.object.text"></div>
   </div>
 </div>
