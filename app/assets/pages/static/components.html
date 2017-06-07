@@ -6,23 +6,23 @@
 			padding: 1em;
 			border-radius: 8px;
 		}
-		
+
 		code {
 			color: #5E5D5E;
 		}
-		
+
 		.deprecated {
 			display: inline-block;
 			margin-top: 20px;
 			opacity: .8;
 			color: #999;
 		}
-		
+
 		.deprecated:before {
 			content: "deprecated:";
 			color: red;
 		}
-		
+
 		.move-bot {
 			top: 0 !important;
 		}
@@ -275,8 +275,8 @@
 				<br>
 				<br>
 				<br>
-				<checkbox model="components.checkbox" on-update="void()" value="1">Checkbox item 1</checkbox>
-				<checkbox model="components.checkbox" on-update="void()" value="2">Checkbox item 2</checkbox> {{ components.checkbox }}
+				<checkbox model="components.checkbox" on-update="void()">Checkbox item 1</checkbox>
+				<checkbox model="components.checkbox" on-update="void()">Checkbox item 2</checkbox> {{ components.checkbox }}
 				<br>
 				<br>
 				<radio model="components.radio" type="radio" value="false" value-off="true" checked="!components.radio">Radio item 1</radio>

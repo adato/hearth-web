@@ -1,6 +1,7 @@
 $terms-width: 32em;
 $max-modal-window-width:32em;
 
+// WHAT A GREAT THING THAT SOMETHING NAMED REGISTER-LOGIN-DIALOG IS USED FRIGGING EVERYWHERE
 .register-login-dialog {
 	// background: none repeat scroll 0 0 #fff;
 	// border-radius: $global-radius;
@@ -26,9 +27,16 @@ $max-modal-window-width:32em;
 	.success {
 		color: $success-color;
 	}
+
+	// BAD STYLING IS BAD
 	p {
 		text-align: center;
+
 	}
+	.box--checkbox p {
+		text-align: left;
+	}
+
 	a,
 	a:visited {
 		color: $primary-color;
