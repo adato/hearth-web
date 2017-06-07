@@ -33,7 +33,7 @@
       <hr />
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
-      <a class='elevated-authority-function' ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(item, 'confirm-pause-' + item._id))">
+      <a class="elevated-authority-function" ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id))">
         <span ng-if="ctrl.isActive" translate="POST.SUSPEND.LABEL"></span>
         <span ng-if="!ctrl.isActive" translate="POST.RESUME.LABEL"></span>
       </a>
