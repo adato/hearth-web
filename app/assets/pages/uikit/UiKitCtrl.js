@@ -66,8 +66,6 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         code: `<div class="avatar-stack">
   <avatar size="small" src="loggedUser.avatar.normal" type="\'User\'"></avatar>
   <avatar size="small"></avatar>
-  <avatar size="small"></avatar>
-  <avatar size="small"></avatar>
 </div>`,
         selector: '[avatars]',
         scopeId: 'avatars'

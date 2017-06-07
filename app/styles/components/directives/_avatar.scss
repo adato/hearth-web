@@ -64,15 +64,18 @@ $large-avatar-size: 295px;
 
 .avatar-stack {
 	display: flex;
-	flex-direction: row-reverse;
+	// flex-direction: row-reverse;
 
 	& > .avatar {
 		position: relative;
+		z-index: 2;
+
+		&:nth-child(2) {z-index: 1}
 
 		&.avatar-small {
-			margin-left: -$small-avatar-size / 1.5;
+			margin-left: -$small-avatar-size / 3;
 
-			&:last-child {
+			&:first-child {
 				margin-left: 0;
 			}
 		}
