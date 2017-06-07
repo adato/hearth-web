@@ -17,8 +17,10 @@ angular.module('hearth.directives').directive('rating', [function() {
     bindToController: true,
     controllerAs: 'vm',
 
-    controller: ['$rootScope', function($rootScope) {
+    controller: ['$rootScope', '$scope', function($rootScope, $scope) {
+      var vm = this
       vm.getProfileLink= $rootScope.getProfileLink
+      vm.item = $scope.item
     }]
   }
 
