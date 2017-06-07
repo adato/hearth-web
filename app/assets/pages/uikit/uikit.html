@@ -12,9 +12,9 @@
 <h2>Typography</h2>
 <div ng-repeat="item in typographies">
   <div class="flex flex-divide-medium flex-space-between">
-    <div class="flex-div" ng-bind="item.name"></div>
-    <div class="flex-div" ng-bind-html="item.code"></div>
-    <div class="flex-div" ng-bind="item.description"></div>
+    <div ng-bind="item.name"></div>
+    <div ng-bind-html="item.code"></div>
+    <div ng-bind="item.description"></div>
   </div>
   <br/>
 </div>
@@ -31,6 +31,13 @@
 <h2>Form</h2>
 <div class="block">Fully functional form example. Every other form submit throws an error!</div>
 <div class="block" form-data></div>
-<div class="box background-light-gray">
+<div class="box background-light-gray block">
   <pre ng-bind="formData"></pre>
+</div>
+
+<h2>Avatar stack</h2>
+<div class="block">Disclaimer: the left-most image is the last one in markup [also now this only works for avatar size="small" so far]</div>
+<div class="block flex" avatars></div>
+<div class="box background-light-gray block">
+  <pre ng-bind="avatars"></pre>
 </div>
