@@ -58,7 +58,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
 				return User.completeEmailForRegistration($scope.data, res => {
 					$scope.sending = false;
-					Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
+					Notify.addSingleTranslate('AUTH.NOTIFY.SUCCESS_COMPLETE_REGISTRATION', Notify.T_SUCCESS);
 					$scope.hideForm();
 
 				}, function(err, status) {
