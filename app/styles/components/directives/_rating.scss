@@ -1,0 +1,19 @@
+.rating {
+
+  .rating-icon {
+    color: $white;
+    background-color: $primary-color;
+    border-radius: 50%;
+
+    @include breakpoint(medium up) {
+      &.left-aligned {
+        margin-left: -30px !important;
+      }
+    }
+  }
+  .rating-message {
+    border: 1px solid $black;
+
+  }
+
+}

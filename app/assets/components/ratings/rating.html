@@ -1,0 +1,23 @@
+<div>
+  <div class="flex flex-wrap flex-divided-medium rating block">
+    <div class="flex flex-divided-medium flex-wrap">
+      <div class="rating-icon left-aligned non-responsive">
+        <i class="fa " ng-class="vm.item.object.score == 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
+      </div>
+      <div info-box=":: vm.item.author">
+        <avatar class="small-avatar-small margin-left-small" type="vm.item.author._type"
+                src="vm.item.author.avatar.normal" size="small"></avatar>
+      </div>
+    </div>
+    <div>
+      <div ng-bind-html="vm.item.text"></div>
+      <div class="color-dark-gray" ng-bind="vm.item.object.created_at | ago"
+           title="{{:: vm.item.object.created_at | date:DATETIME_FORMATS.medium}}"></div>
+    </div>
+  </div>
+
+  <div class="rating-message word-wrap">
+    <span translate="POSITIVE"></span>
+    <div ng-bind-html=":: vm.item.object.text"></div>
+  </div>
+</div>

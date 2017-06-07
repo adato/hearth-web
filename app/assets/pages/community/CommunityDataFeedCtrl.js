@@ -45,8 +45,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         communityId: $stateParams.id,
         offset: activityLogOffset,
         limit: ACTIVITY_LIMIT,
-        filter: 'community_new_post',
-        include_full: 'Post',
+        filter: 'community_new_post,new_rating_received,new_rating',
+        include_full: 'Post,Rating',
 				// filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
 				// include_full: 'Post,Rating',
         // groups: 'community_accepted_user'
@@ -58,7 +58,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					activity.text = Activities.getActivityTranslation(activity);
 					return activity;
 				});
-
 				$scope.activityLog.push(...res.data);
 
         activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);
