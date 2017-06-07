@@ -1,13 +1,13 @@
 <div class="modal v2 static-page-container">
 	<header>
 		<span ng-click="close()" class="close fa fa-times"></span>
-		<h1 ng-if="heading">{{ heading | translate }}</h1>
+		<h1 ng-if="heading" translate="{{ heading }}"></h1>
 		<hr />
 	</header>
 	<section>
-		<ng-include src="path"></ng-include>
+		<div ng-include="path"></div>
 	</section>
 	<footer>
-		<a ng-click="close()">{{:: 'CLOSE' | translate }}</a>
+		<a ng-click="close()" translate="CLOSE"></a>
 	</footer>
 </div>

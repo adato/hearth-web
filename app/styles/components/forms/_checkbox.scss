@@ -42,6 +42,12 @@ checkbox {
 	display: flex;
 	align-items: center;
 	cursor: default;
+
+	// if someone decides to use a paragraph (or two) inside the label
+	// say no to its margin
+	p:last-child {
+		margin-bottom: 0;
+	}
 }
 
 /**
