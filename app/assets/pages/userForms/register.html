@@ -17,7 +17,7 @@
       <p class="text-center" translate="AUTH.REGISTER.TEXT_FACEBOOK" ng-if="params.facebook"></p>
 
 			<div class="row block">
-				<div class="small-12 medium-6 large-6 columns" title="{{showError | json}}">
+				<div class="small-12 medium-6 large-6 columns">
 					<label for="first_name" translate="PROFILE.FIRST_NAME"></label>
 					<input id="first_name" type="text" class="register_name" name="first_name" ng-model="user.first_name" ng-focus="showError.first_name = false" ng-blur="showError.first_name = true" class="form-control text-input top" required ng-minlength="2" />
 					<div class="form-error" ng-show="showError.first_name && (registerForm.first_name.$error.required || registerForm.first_name.$error.user || registerForm.first_name.$error.minlength)">
