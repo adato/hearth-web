@@ -40,9 +40,7 @@
 				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)" translate="AUTH.LOGIN_NAVIGATION_ITEM"></a>
 			</li>
 			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">
-					{{:: 'AUTH.REGISTER_NAVIGATION_ITEM' | translate }}
-				</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)" translate="AUTH.REGISTER_NAVIGATION_ITEM"></a>
 			</li>
 		</ul>
 		<ul class="menu vertical" ng-show="loggedUser._id">
