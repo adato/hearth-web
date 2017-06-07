@@ -116,7 +116,7 @@ function clean(done) {
 // Combine JavaScript into one file
 // In production, the file is minified
 function javascript() {
-  return gulp.src(PATHS.src.app.js, PATHS.javascript)
+  return gulp.src(PATHS.src.app.js)//, PATHS.javascript)
     .pipe($.sourcemaps.init())
     .pipe($.babel({ignore: ['what-input.js']}))
     .pipe($.concat('app.js'))

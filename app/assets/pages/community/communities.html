@@ -1,35 +1,22 @@
 <div class="communities">
-	<a ng-if="loggedUser._id" ng-click="toggleForm()" community-form-toggler class="button button-send small-12 medium-3 large-3 pull-right">
-    <i class="fa fa-plus"></i><span>{{:: 'CREATE_COMMUNITY' | translate}}</span>
-	</a>
+  <div class="flex flex-space-between">
+    <h1 translate="COMMUNITIES"></h1>
+    <button type="button" class="button" ng-click="toggleForm()" community-form-toggler>
+      <i class="fa fa-plus"></i>
+      <span translate="CREATE_COMMUNITY"></span>
+    </button>
+  </div>
 	<div class="community-list-add-form clearfix hide" community-list-add-focusser>
 		<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>
-	</div>
-	<div class="myCommunities small-12" ng-if="myCommunities !== false">
-		<h4 ng-bind=":: 'YOUR_COMMUNITIES' | translate "></h4>
-		<div class="my-communities" ng-if="myCommunities.length">
-			<h5>
-				{{:: 'YOU_ARE_MEMBER' | translate}} {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
-				<span ng-if="myAdminCommunities.length">
-					{{:: 'FROM_THAT' | translate }} {{'IN_X.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}'}} {{:: 'ADMIN_7_CASE' | translate }}
-				</span>
-			</h5>
-			<div class="clear"></div>
-			<br />
-			<div class="community-list clearfix">
-				<community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
-			</div>
-		</div>
-		<div class="my-communities" ng-if="! myCommunities.length">
-			<h5>{{:: 'COMMUNITY.USER_ISNT_MEMBER_OF_ANY_COMMUNITY' | translate }}</h5>
-			<div class="clear"></div>
-		</div>
 	</div>
 </div>
 <div class="bottom-tabs" ng-if="loadedFirstBatch">
 	<ul>
+    <li ng-if="myCommunities.length">
+      <a dont-jump-top href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.my'}">{{:: 'YOUR_COMMUNITIES' | translate}}</a>
+    </li>
 		<li>
-			<a dont-jump-top href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
+			<a dont-jump-top href="{{:: basePath }}communities/suggested" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
 		</li>
 		<li>
 			<a dont-jump-top href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>

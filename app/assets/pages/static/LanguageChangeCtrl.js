@@ -3,18 +3,24 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.LanguageChangeCtrl
- * @description Language controller
+ * @description controller providing functions for language changes
  */
 
-angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['LanguageSwitch', '$rootScope', function(LanguageSwitch, $rootScope) {
-	var ctrl = this;
-	ctrl.currentLanguage = preferredLanguage;
-	ctrl.switchLang = function(lang) {
-		LanguageSwitch.switchTo(lang, true);
-	};
-	ctrl.languageStrings = LanguageSwitch.languageStrings;
-	ctrl.toggleLanguageSelectionDialog = function() {
-		$rootScope.top();
-		LanguageSwitch.toggleLanguageSelectionDialog();
-	};
+angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['LanguageSwitch', '$rootScope', '$window', function(LanguageSwitch, $rootScope, $window) {
+
+	const ctrl = this
+
+	ctrl.currentLanguage = $window.preferredLanguage
+
+	ctrl.switchLang = lang => {
+		LanguageSwitch.switchTo(lang, true)
+	}
+
+	ctrl.languageStrings = LanguageSwitch.languageStrings
+
+	ctrl.toggleLanguageSelectionDialog = () => {
+		$rootScope.top()
+		LanguageSwitch.toggleLanguageSelectionDialog()
+	}
+
 }]);

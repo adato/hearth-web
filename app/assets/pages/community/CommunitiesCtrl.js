@@ -7,21 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('CommunitiesCtrl', [
-	'$scope', '$rootScope', 'CommunityMemberships', 'Community', 'UnauthReload',
-	function($scope, $rootScope, CommunityMemberships, Community, UnauthReload) {
-		$scope.loaded = false;
-		$scope.loadedFirstBatch = false;
-		// my communities are loaded already in BaseCtrl for top navigation
+	'$scope', 'Auth', '$rootScope',
+	function($scope, Auth, $rootScope) {
+
+		$scope.loaded = false
+		$scope.loadedFirstBatch = false
 
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
-			$scope.pageSegment = route.name;
-		});
+			$scope.pageSegment = route.name
+		})
 
-		$scope.toggleForm = function(event) {
-			$('[community-form-toggler]').slideToggle();
-			$('[community-list-add-focusser]').toggle();
-			$('[community-list-add-focusser]').removeClass('hide');
-		};
+		$scope.toggleForm = () => {
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
+
+			$('[community-form-toggler]').slideToggle()
+			$('[community-list-add-focusser]').toggle()
+			$('[community-list-add-focusser]').removeClass('hide')
+		}
 
 	}
-]);
+])

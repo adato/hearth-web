@@ -184,7 +184,7 @@
 								<input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited==true" class="date full-width" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" required>
 							</label>
 							<div class="flex-1">
-								<checkbox class="margin-left-large" model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">
+								<checkbox class="margin-left-large" model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()">
 									<span translate="UNLIMITED"></span>
 								</checkbox>
 							</div>

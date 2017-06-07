@@ -43,15 +43,23 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/community/communities.html',
 				controller: 'CommunitiesCtrl'
 			})
+      .state('communities.my', {
+        url: '',
+        templateUrl: 'assets/pages/community/communityList.html',
+        controller: 'CommunityListCtrl',
+        controllerAs: 'vm'
+      })
 			.state('communities.suggested', {
-				url: '',
+				url: '/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
-				controller: 'CommunityListCtrl'
+				controller: 'CommunityListCtrl',
+        controllerAs: 'vm'
 			})
 			.state('communities.all', {
 				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
-				controller: 'CommunityListCtrl'
+				controller: 'CommunityListCtrl',
+        controllerAs: 'vm'
 			})
 			.state('reset-pass', {
 				url: '/reset-password',
@@ -118,11 +126,6 @@ angular.module('hearth').config([
 				url: '/terms',
 				templateUrl: 'assets/pages/static/localizationPage.html',
 				controller: 'StaticPageCtrl'
-			})
-			.state('new-terms', { // duplicate of previous, redirected to classic terms, keep for some time, then remove pls
-				url: '/new-terms',
-				templateUrl: 'assets/pages/static/terms.html',
-				controller: 'TermsCtrl'
 			})
 			.state('support-us', {
 				url: '/support-us',
@@ -240,7 +243,7 @@ angular.module('hearth').config([
       .state('uikit', {
         url: '/uikit',
         templateUrl: 'assets/pages/uikit/uikit.html',
-        controller: 'UiKitCtrl'
+        controller: 'UiKitCtrl',
       })
 			.state('aboutUs', {
 				url: '/about-us',

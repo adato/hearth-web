@@ -1,0 +1,60 @@
+<div class="dropdown-wrapper nowrap">
+  <div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if=":: !ctrl.mine">
+    <div bubble-placeholder="bookmark-reminder"></div>
+    <div bubble-placeholder="hide-post"></div>
+    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POSTS.DETAIL.EXPAND_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" test-beacon="marketplace-item-dropdown-toggle">
+      <i class="fa fa-fw fa-chevron-down"></i>
+    </span>
+  </div>
+  <ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
+    <li>
+      <!-- bookmark post -->
+      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.ItemAux.removeItemFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="MARKETPLACE.POST.UNBOOKMARK_POST"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.ItemAux.addItemToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="MARKETPLACE.POST.BOOKMARK_POST"></a>
+      <!-- /bookmark post -->
+    </li>
+    <li>
+      <!-- flag post -->
+      <a ng-if="! ctrl.mine && ctrl.item.spam_reported" translate-attr="{title: 'REPORT_HARMFUL_AD_ONLY_ONCE'}" tipsy disabled translate="MARKETPLACE.POST.FLAG_POST"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'REPORT_HARMFUL_AD'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="MARKETPLACE.POST.FLAG_POST"></a>
+      <!-- /flag post -->
+    </li>
+    <li>
+      <!-- hide post -->
+      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'HIDE_AD'}" ng-click="ctrl.confirmBox('POST.HIDE.LABEL', 'POST.HIDE.ARE_YOU_SURE', ctrl.ItemAux.hideItem, ctrl.item, this, 'SIGNED_IN')" translate="MARKETPLACE.POST.HIDE_POST"></a>
+      <!-- /hide post -->
+    </li>
+    <li>
+      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
+    </li>
+
+    <!-- admin only -->
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
+      <hr />
+    </li>
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
+      <a class='elevated-authority-function' ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(item, 'confirm-pause-' + item._id))">
+        <span ng-if="ctrl.isActive" translate="POST.SUSPEND.LABEL"></span>
+        <span ng-if="!ctrl.isActive" translate="POST.RESUME.LABEL"></span>
+      </a>
+    </li>
+    <!-- TODO: in future there will be another user privilegs then post.suspend -->
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+      <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.FOLLOW.LABEL"></a>
+      <a ng-if="ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.UNFOLLOW.LABEL"></a>
+    </li>
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+      <hr />
+      <span>
+        <span translate="CHARACTER"></span>:
+         <span ng-repeat="itemEntry in ctrl.item.character">
+            <span ng-repeat="postCharEntry in ctrl.postCharacter | filter:{name:itemEntry}" translate="{{:: postCharEntry.translate }}"></span>
+         </span>
+      </span>
+    </li>
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+      <span ng-bind=":: ('USER_LANGUAGE' | translate) + ': ' + ctrl.postLanguage"></span>
+    </li>
+    <!-- /admin only -->
+  </ul>
+</div>

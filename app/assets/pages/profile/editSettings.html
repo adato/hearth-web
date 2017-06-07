@@ -24,25 +24,32 @@
 			</div>
 			<div class="flex-1">
 				<h2 translate="USER_NOTIFICATION"></h2>
-				<form ng-submit="saveNotificationSettings(notify)" name="notificcationSettingsForm" id="notificcationSettingsForm">
-					<div>
-						<checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
-							{{:: 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
+				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
+          <label class="block" ng-if="userHasRight('post.suspend')">
+            <span translate="PROFILE.EDIT.SEND.FREQUENCY.HOW_OFTEN"></span>
+            <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
+          </label>
+          <div class="block" ng-if="userHasRight('post.suspend')">
+            <span translate="PROFILE.EDIT.SEND.WHICH"></span>
+					</div>
+          <div>
+						<checkbox model="notify.send_emails.expiring" name="emailPostExpiring">
+							<span translate="NOTIFICATION.ALERT_EXPIRING_POSTS"></span>
 						</checkbox>
 					</div>
 					<div>
-						<checkbox model="notify.send_emails.expired" type="checkbox" value="true" value-off="false">
-							{{:: 'NOTIFICATION.ALERT_EXPIRED_POSTS' | translate }}
+						<checkbox model="notify.send_emails.expired" name="emailPostExpired">
+							<span translate="NOTIFICATION.ALERT_EXPIRED_POSTS"></span>
 						</checkbox>
 					</div>
 					<div>
-						<checkbox model="notify.send_emails.new_conversation" type="checkbox" value="true" value-off="false">
-							{{:: 'NOTIFICATION.ALERT_NEW_CONVERSATION' | translate }}
+						<checkbox model="notify.send_emails.new_conversation" name="conversationNew">
+							<span translate="NOTIFICATION.ALERT_NEW_CONVERSATION"></span>
 						</checkbox>
 					</div>
 					<div>
-						<checkbox model="notify.send_emails.new_message" type="checkbox" value="true" value-off="false">
-							{{:: 'NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION' | translate }}
+						<checkbox model="notify.send_emails.new_message" name="conversationUpdate">
+							<span translate="NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
 						</checkbox>
 					</div>
 					<div class="flex flex-reverse">
@@ -60,7 +67,7 @@
 				<h2 translate="USER_MESSAGES"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="messageSettingsForm" id="messageSettingsForm">
 					<div>
-						<checkbox model="notify.get_messages.only_replies" type="checkbox" value="true" value-off="false">
+						<checkbox model="notify.get_messages.only_replies">
 							{{:: 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
 						</checkbox>
 					</div>
