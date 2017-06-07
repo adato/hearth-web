@@ -26,16 +26,22 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
 
       const ctrl = this
 
+      ctrl.item = $scope.item
+      extend(ctrl.item)
+
       ctrl.postTypes = $window.$$config.postTypes
       ctrl.isPostActive = ItemAux.isPostActive
       ctrl.userHasRight = Rights.userHasRight
       ctrl.logPostTextToggle = ItemAux.logPostTextToggle
 
-      $scope.$watch('item', newItem => {
-        ctrl.item = newItem
-        ItemAux.extendForDisplay(ctrl.item)
-        ctrl.item.postTypeCode = PostUtils.getPostTypeCode(newItem.author._type, newItem.type, newItem.exact_type)
-      })
+      $scope.$watch('ctrl.item', extend)
+
+      function extend(item) {
+        if (!item) return
+        ctrl.item = item
+        ItemAux.extendForDisplay(item)
+        item.postTypeCode = PostUtils.getPostTypeCode(item.author._type, item.type, item.exact_type)
+      }
 
     }]
   }

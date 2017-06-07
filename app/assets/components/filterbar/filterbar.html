@@ -188,10 +188,9 @@
             <div ng-show="configOptionsShow.author" class="medium-display-table-row">
               <h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h5>
               <div class="radio-container medium-display-table-cell">
-                <checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
-                <checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
-                <checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}
-                </checkbox>
+                <checkbox model="filter.user">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+                <checkbox model="filter.community">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+                <checkbox ng-show="loggedUser" model="filter.my_section">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}</checkbox>
               </div>
             </div>
             <div ng-show="configOptionsShow.location" class="medium-display-table-row location-container">
@@ -227,7 +226,7 @@
 
         <div class="footer" ng-if="loggedUser" ng-show="configOptionsShow.saveFilter">
 					<hr class="margin-top-none margin-bottom-small" />
-          <checkbox model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
+          <checkbox model="filterSave" on-update="toggleSaveFilter(value)">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
         </div>
 
       </div>

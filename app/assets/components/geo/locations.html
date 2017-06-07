@@ -1,10 +1,10 @@
 <div class="location-picker">
 	<div class="location-input" ng-class="{disabled: disabled}" test-beacon="location-input-wrapper">
-		<div class="flex-grid flex-space-between">
+		<div class="flex flex-align-center flex-divided-medium flex-space-between">
 			<label>
 				{{ 'POST_PLACE_LABEL' | translate}}
 			</label>
-			<div class="flex-grid">
+			<div class="flex flex-align-center flex-divided-medium">
 				<div>
 					<a ng-click="toggleMap()" class="nowrap">
 						<i class="fa fa-map-marker"></i>
@@ -12,7 +12,7 @@
 						<span ng-if="!mapIsVisible" translate="POSTS.DETAIL.SHOW_MAP"></span>
 					</a>
 				</div>
-				<checkbox ng-show="!required" model="disabled" value="true" value-off="false" class="margin-vertical-none nowrap">
+				<checkbox ng-show="!required" model="disabled" class="margin-vertical-none nowrap">
 					{{ 'LOCATION_DOES_NOT_MATTER' | translate }}
 				</checkbox>
 			</div>

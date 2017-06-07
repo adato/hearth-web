@@ -1,5 +1,107 @@
+/**
+ *	Default checkbox styling
+ */
+checkbox {
+	display: block;
+
+	&.invalid {
+		border: 1px solid $alert-color !important;
+	}
+}
+.checkbox--self {
+	color: $white;
+}
+.checkbox--self-bg {
+	color: $primary-color;
+}
+.checkbox--inner-wrapper {
+	display: flex;
+	overflow: hidden;
+	align-items: stretch;
+
+	&.disabled {
+		cursor: default !important;
+		color: $colorDarkGray !important;
+
+		@include disabled();
+
+		// i still want to see the disabled value
+		// .checkbox--self {
+		// 	color: $medium-gray;
+		// }
+		.checkbox--self-bg {
+			color: $medium-gray;
+		}
+	}
+}
+.checkbox--input-wrapper {
+	display: flex;
+	align-items: center;
+}
+.checkbox--label-wrapper {
+	display: flex;
+	align-items: center;
+	cursor: default;
+
+	// if someone decides to use a paragraph (or two) inside the label
+	// say no to its margin
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
+
+/**
+ *	Checkbox styling with boxed design
+ *	Example:
+ *		checkbox.box.box--checkbox(model='foo')
+ *			span(translate='bar')
+ */
+.box.box--checkbox {
+	padding: 0;
+	overflow: hidden;
+
+	.checkbox--input-wrapper {
+		margin: 0;
+		padding: $size-small;
+		background: $colorLightGray;
+	}
+	.checkbox--label-wrapper {
+		flex: 1;
+		padding: $size-small $size-medium;
+	}
+}
+
+/**
+ *	Example:
+ *		.box-checkbox-list
+ *			label
+ *				checkbox.box.box--checkbox(model='asdf')
+ *					span(translate='asdf.qwer')
+ */
+.box.box--checkbox-list {
+	padding: 0;
+	overflow: hidden;
+}
+.box--checkbox-list > label {
+	border-bottom: 1px solid $medium-gray;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	& > .box {
+		border-radius: 0;
+		box-shadow: none;
+	}
+}
+
+//////////////////////////////
+// LEGACY
+// still used by radio buttons
+
 .ui-checkbox {
 	margin-right: $size-big;
+
 	.fa {
 		width: rem-calc(16);
 		font-size: rem-calc(16);
@@ -12,4 +114,7 @@
 			color: lighten($primary-color, 25%);
 		}
 	}
+}
+.ui-checkbox--input-wrapper {
+	margin-right: $size-tiny
 }

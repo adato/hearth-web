@@ -1,10 +1,10 @@
 <div class="communities">
   <div class="flex flex-space-between">
-    <h1 ng-bind=":: 'COMMUNITIES' | translate "></h1>
-    <a ng-if="loggedUser._id" ng-click="toggleForm()" community-form-toggler
-       class="button button-send">
-      <i class="fa fa-plus"></i><span>{{:: 'CREATE_COMMUNITY' | translate}}</span>
-    </a>
+    <h1 translate="COMMUNITIES"></h1>
+    <button type="button" class="button" ng-click="toggleForm()" community-form-toggler>
+      <i class="fa fa-plus"></i>
+      <span translate="CREATE_COMMUNITY"></span>
+    </button>
   </div>
 	<div class="community-list-add-form clearfix hide" community-list-add-focusser>
 		<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>
