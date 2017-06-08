@@ -29,3 +29,8 @@ timeline {
   }
 }
 
+@include breakpoint(medium up) {
+    .timeline-wrapper-max-width {
+        max-width: 60%;
+    }
+}
