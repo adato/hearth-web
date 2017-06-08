@@ -1,8 +1,8 @@
-<h1 class="text-center">{{ 'EMAIL_CONFIRMATION_HEADER' | translate }}</h1>
+<h1 class="text-center" translate="AUTH.CONFIRM_EMAIL.TITLE"></h1>
 
 <div class="box register-login-dialog confirm-register-dialog">
 	<div class="headMessage error"></div>
-	<p>{{ 'EMAIL_CONFIRMATION_TEXT' | translate }}</p>
+	<p translate="AUTH.CONFIRM_EMAIL.TEXT"></p>
 	<div class="activate-account-notify-container"></div>
-	<p class="error" ng-if="brokenLink" ng-bind-html="'ACTIVATE_ACCOUNT_BROKEN_LINK' | translate"></p>
+	<p class="error" ng-if="brokenLink" ng-bind-html="'AUTH.NOTIFY.ERROR_BROKEN_ACTIVATION_LINK' | translate"></p>
 </div>
