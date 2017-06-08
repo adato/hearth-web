@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty', '$window',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport, ConversationAux, $state, IsEmpty, $window) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty', '$window',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, ResponsiveViewport, ConversationAux, $state, IsEmpty, $window) {
 
 		// start processing socket events
 		ConversationAux.init({
