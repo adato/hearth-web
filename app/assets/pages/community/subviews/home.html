@@ -1,9 +1,84 @@
-<br/>
-<br/>
-<div class="profile-listings-v1 community-listings" ng-if="subPageLoaded">
-	<div class="left-pane">
-		<div class="box applications" ng-if="mine && applications.length">
-			<!-- <div ng-if="!applications.length">
+<div class="medium-flex-grid" ng-if="subPageLoaded">
+
+	<div class="flex-4" style="order: 2">
+
+		<div class="user-about box block">
+			<div class="display-flex flex-align-start">
+				<h3>{{:: 'MEET_COMMUNITY' | translate }} {{ info.name }}</h3>
+				<div class="show-for-small-only margin-left-medium">
+					<button class="touchable" type="button" ng-click="aboutShown = !aboutShown">
+					  <i class="fa" ng-class="aboutShown ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+          </button>
+				</div>
+			</div>
+
+			<div ng-class="aboutShown ? '' : 'show-for-medium'">
+				<div class="block">
+					<user-intel-readout entity="info"></user-intel-readout>
+					<div class="descr reg-date">
+						<i class="fa fa-asterisk"></i>
+						<span>{{:: 'COMMUNITY_HAS_REGISTERED' | translate }}</span> {{ info.created_at | ago }}
+					</div>
+				</div>
+				<div class="display-flex flex-space-between">
+					<div class="display-flex">
+						<div>
+							<a tabindex="0" class="bold" ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})" ng-click="sendMessage(info)">{{:: 'MESSAGES.SEND_TO_COMMUNITY_ADMIN' | translate }}</a>
+						</div>
+						<div class="margin-top-small">
+							<a tabindex="0" class="bold" ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)" ng-click="sendMessage(info, {toAllMembers: true})" translate="MESSAGES.SEND_TO_ALL_COMMUNITY_MEMBERS"></a>
+						</div>
+					</div>
+					<div class="social">
+						<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
+							<i class="fa fa-twitter-square"></i>
+						</a>
+						<a target="_blank" ng-if="info.facebook" href="{{:: info.facebook}}">
+							<i class="fa fa-facebook-square"></i>
+						</a>
+						<a target="_blank" ng-if="info.googleplus" href="{{:: info.googleplus}}">
+							<i class="fa fa-google-plus-square"></i>
+						</a>
+						<a target="_blank" ng-if="info.linkedin" href="{{:: info.linkedin}}">
+							<i class="fa fa-linkedin"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <div class="box block show-for-medium">
+      <h3>
+        {{:: 'COMMUNITY_POSTS' | translate }}
+        <a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{:: 'AD_ADD_LABEL' | translate}}">
+          <i class="fa fa-plus-square"></i>
+        </a>
+      </h3>
+
+      <div class="clear"></div>
+      <div ng-if="mine">
+        <div ng-if="!posts.data.length && !info.post_total">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</div>
+        <div ng-if="!posts.data.length && info.post_total > 0">{{:: 'COMMUNITY_HAS_ONLY_INACTIVE_POSTS' | translate }}</div>
+      </div>
+      <div ng-if="!mine">
+        <p ng-if="!posts.data.length">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
+      </div>
+      <div class="margin-bottom-small" ng-include="'assets/components/item/itemSmall.html'" ng-repeat="(id, item) in posts.data track by item._id" ng-init="hidePost = !mine; showAuthorName = true"></div>
+      <div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
+        <a href="{{:: communityLink }}/posts">
+          <button class="button">
+            <i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
+          </button>
+        </a>
+      </div>
+    </div>
+
+	</div>
+
+	<div class="flex-6">
+
+		<div class="box applications block" ng-if="mine && applications.length">
+		<!-- <div ng-if="!applications.length">
 				<h3>{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
 				<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 			</div>
@@ -46,99 +121,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="ads box" ng-if="!info.is_member && info.terms">
-			<h3 class="iblock">{{:: 'COMMUNITY_TERMS' | translate }}</h3>
+
+		<div class="box block" ng-if="!info.is_member && info.terms">
+			<h3>{{:: 'COMMUNITY_TERMS' | translate }}</h3>
 			<p ng-bind-html="info.terms | linky:'_blank':{rel: 'nofollow'} | nl2br"></p>
 		</div>
-		<div class="ratings box home-ratings" ng-if="receivedRatings.length">
-			<h3>{{:: 'COMMUNITY_RATING_TITLE' | translate}}</h3>
 
-			<div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
-			<div class="buttons">
-				<a href="{{:: getProfileLink('Community', info._id)}}/received-ratings">
-					<button class="button">
-						<i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}
-					</button>
-				</a>
-			</div>
-		</div>
-		<div class="ads box">
-			<h3 class="iblock">
-				{{:: 'COMMUNITY_POSTS' | translate }}
-				<a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{:: 'AD_ADD_LABEL' | translate}}">
-					<i class="fa fa-plus-square"></i>
-				</a>
-			</h3>
+    <div class="box block">
+      <h3>{{:: 'COMMUNITY_ACTIVITY' | translate }}</h3>
+      <p ng-if="mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
+      <p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
 
-			<div class="clear"></div>
-			<div ng-if="mine">
-				<p ng-if="!posts.data.length && !info.post_total">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
+      <div ng-if="activityLog.length">
+        <timeline timeline-items="activityLog" load-next="loadCommunityActivities()"></timeline>
+				<div loading show="activityLogFetchRunning" class="margin-top-large"></div>
+      </div>
+    </div>
 
-				<p ng-if="!posts.data.length && info.post_total > 0">{{:: 'COMMUNITY_HAS_ONLY_INACTIVE_POSTS' | translate }}</p>
-			</div>
-			<div ng-if="!mine">
-				<p ng-if="!posts.data.length">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
-			</div>
-			<div ng-include="'assets/components/item/itemSmall.html'" ng-repeat="(id, item) in posts.data track by item._id" ng-init="hidePost = !mine; showAuthorName = true"></div>
-			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
-				<a href="{{:: communityLink }}/posts">
-					<button class="button">
-						<i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
-					</button>
-				</a>
-			</div>
-		</div>
 	</div>
-	<div class="right-pane">
-		<div class="user-about box">
-			<h3>{{:: 'MEET_COMMUNITY' | translate }} {{ info.name }}</h3>
 
-			<div class="line">
-				<user-intel-readout entity="info"></user-intel-readout>
-				<div class="descr reg-date fleft">
-					<i class="fa fa-asterisk"></i>
-					<span>{{:: 'COMMUNITY_HAS_REGISTERED' | translate }}</span> {{ info.created_at | ago }}
-				</div>
-			</div>
-			<div class="clear"></div>
-			<div class="line display-flex flex-space-between margin-top-small">
-				<div>
-					<div>
-						<a tabindex="0" class="bold" ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})" ng-click="sendMessage(info)">{{:: 'MESSAGES.SEND_TO_COMMUNITY_ADMIN' | translate }}</a>
-					</div>
-					<div class="margin-top-small">
-						<a tabindex="0" class="bold" ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)" ng-click="sendMessage(info, {toAllMembers: true})"
-										translate="MESSAGES.SEND_TO_ALL_COMMUNITY_MEMBERS"></a>
-					</div>
-				</div>
-				<div class="social">
-					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
-						<i class="fa fa-twitter-square"></i>
-					</a>
-					<a target="_blank" ng-if="info.facebook" href="{{:: info.facebook}}">
-						<i class="fa fa-facebook-square"></i>
-					</a>
-					<a target="_blank" ng-if="info.googleplus" href="{{:: info.googleplus}}">
-						<i class="fa fa-google-plus-square"></i>
-					</a>
-					<a target="_blank" ng-if="info.linkedin" href="{{:: info.linkedin}}">
-						<i class="fa fa-linkedin"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="activities box">
-			<h3>{{:: 'COMMUNITY_ACTIVITY' | translate }}</h3>
-
-			<p ng-if="mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
-
-			<p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
-
-			<div ng-if="activityLog.length">
-				<div ng-include="'assets/components/activityList/activityList.html'"></div>
-			</div>
-		</div>
-	</div>
 </div>
-<div class="clear"></div>
 <div loading show="!subPageLoaded"></div>

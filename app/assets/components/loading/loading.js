@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.loading
- * @description 
+ * @description
  * @restrict E
  */
 

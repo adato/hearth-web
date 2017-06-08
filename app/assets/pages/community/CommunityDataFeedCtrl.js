@@ -7,11 +7,19 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', '$q',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, $q) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', '$q',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, $q) {
 		angular.extend($scope, ItemServices);
-		$scope.activityShow = false;
 		$scope.loadingData = false;
+
+		const ACTIVITY_LIMIT = 10;
+		$scope.activityShow = false;
+		$scope.activityLog = [];
+		$scope.activityLogFetchRunning;
+		var activityLogComplete;
+		// Count of all activities includes activities inside the groups
+    var activityLogOffset = 0;
+
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
 		var inited = false;
@@ -21,11 +29,46 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'members': loadCommunityMember,
 			'about': loadCommunityAbout,
 			'applications': loadCommunityApplications,
-			'activity': loadCommunityActivityLog,
+			'activity': $scope.loadCommunityActivities,
 			'received-ratings': loadReceivedRatings,
 			'given-ratings': loadGivenRatings,
 		};
 		var templatePath = 'assets/components/item/items/post.html';
+
+    $scope.loadCommunityActivities = (done) => {
+			if (activityLogComplete || $scope.activityLogFetchRunning) return;
+			$scope.activityLogFetchRunning = true;
+
+			done = typeof done === 'function' ? done : angular.identity;
+
+      Community.getActivityLog({
+        communityId: $stateParams.id,
+        offset: activityLogOffset,
+        limit: ACTIVITY_LIMIT,
+				filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
+				include_full: 'Post,Rating',
+        groups: 'community_accepted_user'
+      }, res => {
+				$scope.activityLogFetchRunning = false;
+				$scope.activityShow = true;
+
+				res.data.map(function(activity) {
+					activity.text = Activities.getActivityTranslation(activity);
+					return activity;
+				});
+
+				$scope.activityLog.push(...res.data);
+
+        activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);
+				if (activityLogOffset === parseInt(res.headers('X-Pagination-Total'), 10) || res.data.length === 0) {
+					activityLogComplete = true;
+				}
+				done();
+      }, err => {
+				$scope.activityLogFetchRunning = false;
+				done()
+			});
+    };
 
 		$scope.loadBottom = function() {
 			$scope.loadingData = true;
@@ -57,7 +100,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 		function processData(res) {
 			res = ItemFilter.filter(res);
-
 			$scope.data = $scope.data.concat(res);
 			finishLoading(res);
 		}
@@ -271,26 +313,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		function loadCommunityHome(id) {
 			async.parallel([
 				function(done) {
-					CommunityActivityLog.get({
-						communityId: id,
-						limit: 5
-					}, function(res) {
-
-						$scope.activityShow = false;
-						$scope.activityLog = [];
-						$timeout(function() {
-
-							res.map(function(activity) {
-								activity.text = Activities.getActivityTranslation(activity);
-								return activity;
-							});
-
-							$scope.activityLog = res;
-							$scope.activityShow = true;
-						});
-
-						done(null);
-					}, done);
+					$scope.loadCommunityActivities(done);
 				},
 				function(done) {
 					CommunityApplicants.query({
@@ -324,12 +347,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			], finishLoading);
 
 			$scope.$on('postUpdated', $scope.refreshItemInfo);
-		}
-
-		function loadCommunityActivityLog(id) {
-			CommunityActivityLog.get({
-				communityId: id
-			}, processData, processDataErr);
 		}
 
 		// =================================== Public Methods ====================================
