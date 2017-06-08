@@ -1,19 +1,22 @@
 <div class="rating">
-  <div class="flex flex-wrap flex-divided-medium block">
-    <div class="flex flex-divided-medium flex-wrap">
-      <div class="rating-icon-bg left-aligned non-responsive">
-        <i class="fa rating-icon" ng-class="vm.item.object.score == 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
-      </div>
-      <div info-box=":: vm.item.object.entity_from" asdf='qwer'>
-        <div class="avatar-stack margin-left-small">
-          <avatar class="small-avatar-small" type="vm.item.object.entity_from._type" src="vm.item.object.entity_from.avatar.normal" size="small"></avatar>
-          <avatar class="small-avatar-small" type="vm.item.object.entity_to._type" src="vm.item.object.entity_to.avatar.normal" size="small"></avatar>
+  <div class="block">
+    <div class="flex flex-divided-medium">
+      <div class="flex flex-divided-medium flex-1">
+        <div class="rating-icon-bg left-aligned non-responsive">
+          <i class="fa rating-icon"
+             ng-class="vm.item.object.score == 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
+        </div>
+        <div info-box=":: vm.item.object.entity_from">
+          <div class="avatar-stack margin-left-small">
+            <avatar class="small-avatar-small" type="vm.item.object.entity_from._type" src="vm.item.object.entity_from.avatar.normal" size="small"></avatar>
+            <avatar class="small-avatar-small" type="vm.item.object.entity_to._type" src="vm.item.object.entity_to.avatar.normal" size="small"></avatar>
+          </div>
         </div>
       </div>
+      <div class="color-dark-gray" ng-bind="vm.item.object.created_at | ago" title="{{:: vm.item.object.created_at | date:DATETIME_FORMATS.medium}}"></div>
     </div>
     <div>
       <div ng-bind-html="vm.item.text"></div>
-      <div class="color-dark-gray" ng-bind="vm.item.object.created_at | ago" title="{{:: vm.item.object.created_at | date:DATETIME_FORMATS.medium}}"></div>
     </div>
   </div>
 
