@@ -1,8 +1,8 @@
-<div class="dropdown-wrapper nowrap">
+<div class="dropdown-wrapper nowrap" item-dropdown-scope>
   <div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if=":: !ctrl.mine">
     <div bubble-placeholder="bookmark-reminder"></div>
     <div bubble-placeholder="hide-post"></div>
-    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POSTS.DETAIL.EXPAND_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" test-beacon="marketplace-item-dropdown-toggle">
+    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POSTS.DETAIL.EXPAND_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[item-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
       <i class="fa fa-fw fa-chevron-down"></i>
     </span>
   </div>
@@ -33,7 +33,7 @@
       <hr />
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
-      <a class='elevated-authority-function' ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(item, 'confirm-pause-' + item._id))">
+      <a class="elevated-authority-function" ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id))">
         <span ng-if="ctrl.isActive" translate="POST.SUSPEND.LABEL"></span>
         <span ng-if="!ctrl.isActive" translate="POST.RESUME.LABEL"></span>
       </a>
