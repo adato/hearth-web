@@ -1,6 +1,6 @@
 <div class="new-message itemEdit formStyle modal">
 	<div class="head">
-		<h2 title='{{user | json}}'>
+		<h2>
 			{{ (params.for_all_members ? 'MESSAGES.SEND_TO_ALL_COMMUNITY_MEMBERS' : (user._type === "Community" ? 'MESSAGES.SEND_TO_COMMUNITY_ADMIN' : 'MESSAGES.NEW_MESSAGE')) | translate}}
 		</h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
