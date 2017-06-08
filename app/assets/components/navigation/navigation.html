@@ -32,7 +32,7 @@
 			<li>
 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
-					{{:: 'TOP_BAR_MESSAGES' | translate }}
+					<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
@@ -219,14 +219,14 @@
 				<div class="top-bar-separator"></div>
 				<div class="top-bar-separator"></div>
 
- 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
+ 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
 					<div class="inner-icon">
 						<span class="fa messages-icon">
 							<span ng-if="messagesCounters.unread" class="unread-counter">
 								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
 							</span>
 						</span>
-						{{:: 'TOP_BAR_MESSAGES' | translate }}
+						<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 					</div>
 				</a>
 				<div class="dropdown-container">
