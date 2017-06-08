@@ -1,4 +1,4 @@
-Hearth (Front end)
+Hearth.net (Front end)
 ==================
 Front and app is based on Angular.
  
