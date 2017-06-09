@@ -33,6 +33,7 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
       ctrl.isPostActive = ItemAux.isPostActive
       ctrl.userHasRight = Rights.userHasRight
       ctrl.logPostTextToggle = ItemAux.logPostTextToggle
+      ctrl.getProfileLink = $rootScope.getProfileLink
 
       $scope.$watch('ctrl.item', extend)
 
