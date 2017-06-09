@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.avatar
- * @description 
+ * @description
  * @restrict E
  */
 

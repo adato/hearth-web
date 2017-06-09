@@ -153,3 +153,9 @@
 .flex-10{flex: 10;}
 .flex-11{flex: 11;}
 .flex-12{flex: 12;}
+
+@include breakpoint(small only) {
+	.small-flex-order-2 {
+		order: 2;
+	}
+}

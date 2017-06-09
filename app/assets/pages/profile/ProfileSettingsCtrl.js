@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'LanguageSwitch', '$rootScope', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload', 'CountryList', '$filter',
-	function($scope, LanguageSwitch, $rootScope, Password, ChangePassword, $timeout, User, Notify, UnauthReload, CountryList, $filter) {
+	'$scope', 'LanguageSwitch', '$rootScope', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload', 'CountryList', '$translate',
+	function($scope, LanguageSwitch, $rootScope, Password, ChangePassword, $timeout, User, Notify, UnauthReload, CountryList, $translate) {
 		$scope.loaded = true;
 		$scope.lang = false; // used in view
 		$scope.changeSubmitted = false;
@@ -30,6 +30,20 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			newPass: false
 		};
 		$scope.d = new Date();
+
+    $scope.selectFrequencies = [{
+      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.IMMEDIATELY'),
+      value: 'immediately'
+    }, {
+      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.ONCE_DAY'),
+      value: 'once_day'
+    }, {
+      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.ALL_ONCE_DAY'),
+      value: 'all_once_day'
+    }, {
+      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.OFF'),
+      value: 'off'
+    }];
 
 		/**
 		 * Validate delete account form

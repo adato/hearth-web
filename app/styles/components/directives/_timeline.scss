@@ -1,0 +1,39 @@
+timeline {
+  display: block;
+  margin-left: -$size-large;
+  margin-right: -$size-large;
+  margin-bottom: -$size-large;
+
+
+  p {
+    margin: 0 0 0 $size-small;
+  }
+  header {
+    margin-bottom: $size-small;
+  }
+
+  a.entity-name {
+    @extend .entity-name;
+  }
+  // diss the item common margin that is not desired in timeline
+  .item-common {
+    margin-bottom: 0;
+  }
+
+  .box {
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid $medium-gray;
+  }
+
+  .timeline:last-child .box {
+    border-bottom-right-radius: $global-radius;
+    border-bottom-left-radius: $global-radius;
+  }
+}
+
+@include breakpoint(medium up) {
+    .timeline-wrapper-max-width {
+        max-width: 60%;
+    }
+}

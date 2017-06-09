@@ -1,6 +1,7 @@
 @charset 'utf-8';
 
 @import '../../common/styles/settings';
+@import '../../common/styles/mixins/general';
 @import 'foundation';
 @import 'motion-ui';
 
@@ -109,6 +110,7 @@
 @import "components/forms/uiSelect";
 @import "components/pages/userForms";
 @import "components/wtf/v2Style";
+@import "components/directives/timeline";
 @import "components/labels";
 
 @import "components/layout";

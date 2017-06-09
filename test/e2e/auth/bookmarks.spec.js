@@ -55,6 +55,7 @@ describe('hearth bookmarks', function() {
 	});
 
 	it('should be able to go to profile and see bookmarked items', function() {
+    browser.sleep(500);
 		// navigate to profile through top menu
 		navigateToMyFav();
 
