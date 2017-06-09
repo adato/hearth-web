@@ -26,15 +26,15 @@
 
     <!-- <div class="flex flex-align-start flex-divided-medium flex-wrap"> -->
     <div class="header-margin">
-      <h3 class="item-header display-inline-block margin-bottom-none">
+      <h3 class="item-header display-inline margin-bottom-none">
         <a ui-sref="post({id: ctrl.item._id})">
           <strong ng-class=":: 'color-' + ctrl.item.type" translate="{{:: ctrl.item.postTypeCode }}"></strong><strong ng-bind=":: '\u00A0' + (ctrl.item.title | ellipsis:100)"></strong>
         </a>
       </h3>
-      <i class="fa fa-lock" ng-if="ctrl.item.is_private" translate-attr="{title: 'VISIBLE_FOR_FRIENDS'}"></i>
-      <div class="label hollow danger" ng-if="ctrl.item.state === 'suspended' && !(item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item))" translate="POST.STATE.SUSPENDED"></div>
-      <div class="label hollow danger" ng-if="ctrl.item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item)" translate="POST.SUSPENDED_BY_ADMIN"></div>
-      <div class="label hollow danger" ng-if="ctrl.item.state === 'expired'" translate="POST.STATE.EXPIRED"></div>
+      <i class="fa fa-lock margin-left-small" ng-if="ctrl.item.is_private" translate-attr="{title: 'VISIBLE_FOR_FRIENDS'}"></i>
+      <div class="label hollow danger margin-left-small" ng-if="ctrl.item.state === 'suspended' && !(item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item))" translate="POST.STATE.SUSPENDED"></div>
+      <div class="label hollow danger margin-left-small" ng-if="ctrl.item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item)" translate="POST.SUSPENDED_BY_ADMIN"></div>
+      <div class="label hollow danger margin-left-small" ng-if="ctrl.item.state === 'expired'" translate="POST.STATE.EXPIRED"></div>
     </div>
     <span class="validity-warning" ng-if="ctrl.isExpiringSoon" translate="POSTS.DETAIL.POST_EXPIRING_SOON"></span>
 
