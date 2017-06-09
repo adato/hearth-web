@@ -19,9 +19,9 @@ angular.module('hearth.utils').directive('whenScrolled', [
 				offset: '='
 			},
 			link: function(scope, element, attr) {
-				var el = scope.innerScrolling ? element : angular.element(window),
-					offset = scope.offset || 100,
-					innerHeight = el[0].innerHeight;
+				var el = scope.innerScrolling ? element : angular.element(window);
+				var offset = scope.offset || 100;
+				var innerHeight = el[0].innerHeight;
 				var currentScrollTop, lastScrollTop;
 
 				function process($event) {
@@ -41,22 +41,22 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					}
 				}
 
-				function processWithResite() {
+				function processWithResize() {
 					scope.$root.debug && $log.log('whenScrolled resize handler called');
 					innerHeight = el[0].innerHeight;
 					process({
-						event: 'processWithResite'
+						event: 'processWithResize'
 					});
 				}
 
 				// scope.$watch('loadingInProgress', function(val, oldval) // removed, it caused infinite loadings
 
 				el.bind('scroll', process)
-				angular.element(window).bind('resize', processWithResite);
+				angular.element(window).bind('resize', processWithResize);
 
 				scope.$on('$destroy', function() {
 					el.unbind('scroll', process);
-					angular.element(window).unbind('resize', processWithResite);
+					angular.element(window).unbind('resize', processWithResize);
 					el = null;
 					scope.$root.debug && $log.log('whenScrolled destroyed');
 				});

@@ -135,6 +135,8 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API
 
+			$httpProvider.defaults.headers.common['X-Pagination-Count'];
+
 			var params = $.getUrlVars();
 			if (params['apiError'])
 				params['apiError'].split(',').forEach(function(type) {
