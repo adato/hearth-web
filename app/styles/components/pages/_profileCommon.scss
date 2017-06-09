@@ -400,6 +400,7 @@
 	// @kamil - this needs to be cleared to use one global box style
 	.box {
 		background: lighten($colorLightGray, 10%);
+    margin-bottom: $size-medium;
 
 		// @kamil - only disable top and horizontal paddings to not destroy the design, yet let the bottom padding to be applied from global styles
 		// padding: 0 0 1px 0;
