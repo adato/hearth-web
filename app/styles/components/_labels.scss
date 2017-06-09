@@ -1,0 +1,13 @@
+.label {
+
+    &.hollow {
+        background: transparent;
+        border-width: 1px;
+        border-style: solid;
+
+        &.danger {
+            color: $alert-color;
+            border-color: $alert-color;
+        }
+    }
+}
