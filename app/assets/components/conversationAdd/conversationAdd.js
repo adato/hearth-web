@@ -139,7 +139,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 						if ($scope.onSuccess) {
 							$scope.onSuccess(res);
 						} else {
-							Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
+							Notify.addSingleTranslate('MESSAGING.NOTIFY.SUCCESS_MESSAGE_SEND', Notify.T_SUCCESS);
 						}
 
 						ConversationAux.addConversationToList({
