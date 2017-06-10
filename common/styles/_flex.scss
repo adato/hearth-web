@@ -153,3 +153,11 @@
 .flex-10{flex: 10;}
 .flex-11{flex: 11;}
 .flex-12{flex: 12;}
+
+/**
+ *	If one wants to use text-overflow: ellipsis in a flex environment
+ *	it is required to set a min-width: something on its enwrapping parent flexes
+ */
+.flex-ellipsis-wrapper {
+	min-width: 0;
+}

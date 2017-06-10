@@ -53,7 +53,7 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 				resendingEmail = false;
 
 				if (res.ok === true) {
-					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
+					Notify.addSingleTranslate('AUTH.NOTIFY.SUCCESS_RESEND_EMAIL', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				}
 			}, err => {
@@ -92,7 +92,7 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 						$scope.showError.inactiveAccount = true;
 						invalidEmail = $scope.data.email;
 					} else {
-						Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
+						Notify.addSingleTranslate('AUTH.NOTIFY.SUCCESS_RESET_PASSWORD', Notify.T_SUCCESS);
 						$state.go('login');
 					}
 				}, err => {

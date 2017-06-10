@@ -7,11 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'ItemAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, ItemAux) {
 		var timeout;
 		var itemEditOpened = false;
-		$rootScope.myCommunities = false;
+		$rootScope.myCommunities = [];
 		$rootScope.pageName = '';
 		$rootScope.searchQuery = {
 			query: null,
@@ -87,8 +87,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (toState.policy) {
 				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
 					event.preventDefault();
-					UnauthReload.setLocation(toState.url.slice(1));
-					return $state.go('login');
+
+					// here we store a location to the state to which we wanted to go which will
+					// be used by login ctrl upon successful login
+					UnauthReload.setLocation($state.href(toState, toParams));
+
+					// we need to replace the current history entry so that we can always push the browser back button
+					// and not wind up on login again
+					return $state.go('login', {}, {location: 'replace'});
+
 				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
 					event.preventDefault();
 					return $state.go('market');
@@ -247,7 +254,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
-				$rootScope.myCommunities = res;
+        $rootScope.myCommunities.length = 0;
+        $rootScope.myCommunities.push(...res);
 				$rootScope.myAdminCommunities = [];
 				res.forEach(function(item) {
 					// create list of communities I'm admin in
@@ -452,8 +460,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				itemEditOpened = false;
 			}, 2000);
 
-			if (!Auth.isLoggedIn())
-				return $rootScope.showLoginBox(true);
+			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
 			// createDraft
 			var scope = $scope.$new();
@@ -527,8 +534,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.showTerms = function() {
-			$rootScope.openModalContainer('/app/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS');
-		};
+			$rootScope.openModalContainer('assets/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS')
+		}
 
 		/**
 		 * Function will show modal window where community admin can remove post from his community
@@ -667,15 +674,32 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * callback: function to call when confirmed
 		 * params: array of params to pass into callback when confirmed
 		 * callbackScope: if callback should be called with some scope
+		 * {String} policy - from $$config.policy
+		 * {String} confirmText - what to translate for confirmation [OK]
+		 * {String} cancelText - what to translate for cancel [CANCEL]
 		 */
-		$rootScope.confirmBox = function(title, text, callback, params, callbackScope) {
+		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy, {confirmText, cancelText, translationValues} = {}) {
+
+			if (policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
 			// create new scope of confirmBox
-			var scope = $scope.$new();
-			scope.title = title;
-			scope.text = text;
-			scope.callback = callback;
-			scope.params = angular.isArray(params) ? params : [params];
+			var scope = $scope.$new()
+			scope.params = angular.isArray(params) ? params : [params]
+
+			// scope.title = title
+			// scope.text = text
+			// scope.callback = callback
+			// scope.confirmText = confirmText
+			// scope.cancelText = cancelText
+			// scope.translationValues = translationValues
+			angular.extend(scope, {
+				title,
+				text,
+				callback,
+				confirmText,
+				cancelText,
+				translationValues,
+			})
 
 			if (callbackScope) scope.callbackScope = callbackScope;
 
@@ -689,8 +713,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				closeByDocument: false,
 				showClose: false,
 				closeByEscape: true,
-			});
-		};
+			})
+		}
 
 		// this will flash post box with some background color
 		$rootScope.blinkPost = function(item) {
@@ -789,7 +813,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		// return false if post is inactive
-		$rootScope.isPostActive = item => item.state === 'active';
+		$rootScope.isPostActive = ItemAux.isPostActive;
 
 		$rootScope.toggleSearchBar = value => {
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);

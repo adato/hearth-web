@@ -1,17 +1,17 @@
-<h1 class="text-center">{{ 'FILL_EMAIL_TO_COMPLETE_REGISTRATION' | translate }}</h1>
+<h1 class="text-center" translate="AUTH.FILL_EMAIL.TITLE"></h1>
 
 <div class="box register-login-dialog">
 	<div class="fill-email-notify-container"></div>
 	<form ng-submit="fillEmail()" name="fillEmailForm" novalidate class="register-login-form">
 		<div class="block">
-			<span ng-bind-html="'FILL_EMAIL_FOR_TWITTER_LOGIN' | translate"></span>
-			<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
+			<span ng-bind-html="'AUTH.FILL_EMAIL.TEXT' | translate"></span>
+			<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'AUTH.EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
 			<span ng-show="fillEmailForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
 			<div class="form-error" ng-show="showError.email">
-				<span ng-show="fillEmailForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
-				<span ng-show="fillEmailForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
-				<span ng-show="fillEmailForm.email.$error.used">{{ 'ALREADY_USED_EMAIL' | translate }}</span>
-				<span ng-show="fillEmailForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
+				<span ng-show="fillEmailForm.email.$error.email" translate="AUTH.NOTIFY.ERROR_BAD_EMAIL_FORMAT"></span>
+				<span ng-show="fillEmailForm.email.$error.required" translate="AUTH.NOTIFY.ERROR_NOT_FILLED_EMAIL"></span>
+				<span ng-show="fillEmailForm.email.$error.used" translate="AUTH.NOTIFY.ERROR_EMAIL_ALREADY_USED"></span>
+				<span ng-show="fillEmailForm.email.$error.mailgun" ng-bind-html=":: 'AUTH.NOTIFY.ERROR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 			</div>
 		<div>
 		<!-- <span mailgun-validator-did-you-mean target="data.email"></span> -->
@@ -20,12 +20,13 @@
 
 		<div class="bottom">
 			<button class="button" type="submit">
-				<i class="fa fa-sign-in"></i> {{ 'COMPLETE' | translate }}
+				<i class="fa fa-sign-in"></i>
+				<span translate="COMMON.ACTION_CONTINUE"></span>
 			</button>
 		</div>
 
 	</form>
 	<div class="register-successful success">
-		<p ng-bind-html="'SIGNUP_WAS_SUCCESSFUL' | translate"></p>
+		<p ng-bind-html="'AUTH.NOTIFY.SUCCESS_REGISTERED' | translate"></p>
 	</div>
 </div>

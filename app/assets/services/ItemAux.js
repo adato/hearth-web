@@ -6,16 +6,23 @@
  * @description functions for marketplace items / posts
  */
 
-angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics',
-	function(ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics) {
+angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache', '$locale', '$filter',
+	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache, $locale, $filter) {
 
 		const factory = {
 			addItemToBookmarks,
 			confirmSuspend,
+			extendForDisplay,
+			getExemplaryPosts,
+			getExemplaryPostsOpts,
 			hideItem,
 			heart,
-			postHeartedByUser,
+			isMyPost,
+			isPostActive,
 			logCharInfoShown,
+			logPostAction,
+			logPostTextToggle,
+			postHeartedByUser,
 			removeItemFromBookmarks,
 			replyItem
 		};
@@ -36,6 +43,32 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 				showClose: false,
 				closeByEscape: true,
 			});
+		}
+
+		function extendForDisplay(item) {
+			item.updated_at_timeago = $filter('ago')(item.updated_at);
+			item.updated_at_date = $filter('date')(item.updated_at, $locale.DATETIME_FORMATS.medium);
+			item.text_parsed = $filter('nl2br')($filter('linky')(item.text, '_blank'));
+			item.text_short = $filter('ellipsis')(item.text, 270, true);
+			item.text_short_parsed = $filter('linky')(item.text_short, '_blank');
+		}
+
+		function getExemplaryPosts() {
+			return $q((resolve, reject) => {
+				Post.exemplaryPosts({lang: $rootScope.language}, res => {
+					return resolve(res.data)
+				}, err => {
+					const epError = 'Error during exemplary-posts fetch: ' + ( (() => { try{ return JSON.stringify(err) } catch (e) { return err } })() )
+					Rollbar.error(epError)
+					console.warn(erError)
+				})
+			})
+		}
+
+		function getExemplaryPostsOpts() {
+			return {
+				template: $templateCache.get('assets/components/item/items/exemplaryPosts.html')
+			}
 		}
 
 		/**
@@ -150,6 +183,16 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			});
 		}
 
+		function isMyPost(item = {}) {
+			return item.owner_id === ($rootScope.user && $rootScope.user._id)
+		}
+
+		function isPostActive(item = {}) {
+			// this gets called way too often
+			// console.log(item);
+			return item.state === 'active'
+		}
+
 		function postHeartedByUser({ item, userId }) {
 
 			if (item.hearted_by_me !== void 0) return item.hearted_by_me;
@@ -168,6 +211,23 @@ angular.module('hearth.services').factory('ItemAux', ['ngDialog', 'Auth', '$root
 			$analytics.eventTrack('Character info shown', {
 				'Location': location,
 				'context': $state.current.name
+			});
+		}
+
+		function logPostAction(event, scope) {
+			$analytics.eventTrack(event + ' (Post)', {
+				'is_mine': scope.mine,
+				'type': scope.item.type,
+				'exact_type': scope.item.exact_type,
+			});
+		}
+
+		/**
+		 *	@param {String} action - [expanded|collapsed]
+		 */
+		function logPostTextToggle({ action, post }) {
+			$analytics.eventTrack('Post text length ' + action , {
+				post_id: post._id
 			});
 		}
 

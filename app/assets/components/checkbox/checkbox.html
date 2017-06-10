@@ -1,4 +1,11 @@
-<label class="ui-checkbox" ng-click="toggle()" ng-class="{on: checked}">
-	<i class="fa qs-keypress-event-handle" ng-class="{ 'fa-check-square': checked, 'fa-square-o': !checked}" tabindex="0"></i>
-	<span ng-transclude></span>
-</label>
+<div class="checkbox--inner-wrapper" ng-click="ctrl.change(ctrl.model)" ng-class="{disabled: ctrl.disabled}">
+	<div class="checkbox--input-wrapper">
+		<span class="fa-stack" ng-attr-tabindex="{{ ctrl.disabled ? undefined : '0' }}" checkbox-keypress-handler>
+			<i class="fa fa-fw fa-stack-1x fa-square checkbox--self"></i>
+			<i class="fa fa-fw fa-stack-1x checkbox--self-bg" ng-class="{ 'fa-check-square': ctrl.model, 'fa-square-o': !ctrl.model}"></i>
+		</span>
+		<input type="checkbox" hidden ng-model="ctrl.model" name="{{ ctrl.name }}" ng-change="ctrl.onChange({value: ctrl.model})" ng-disabled="ctrl.disabled" ng-if="ctrl.required !== undefined" required />
+		<input type="checkbox" hidden ng-model="ctrl.model" name="{{ ctrl.name }}" ng-change="ctrl.onChange({value: ctrl.model})" ng-disabled="ctrl.disabled" ng-if="ctrl.required === undefined" />
+	</div>
+	<div class="checkbox--label-wrapper" ng-transclude></div>
+</div>

@@ -2,16 +2,17 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ProfileCtrl
- * @description
+ * @name hearth.controllers.ProfileEditCtrl
+ * @description controller for profile editation form page
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators', 'ProfileUtils', 'Interest', '$q', 'LanguageList', '$translate',
 	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators, ProfileUtils, Interest, $q, LanguageList, $translate) {
-		$scope.loaded = false;
-		$scope.sending = false;
-		$scope.profile = false;
+
+		$scope.loaded = false
+		$scope.sending = false
+		$scope.profile = {}
 		$scope.showError = {
 			locations: false,
 			first_name: false,
@@ -22,17 +23,17 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			message: false,
 			social_networks: [],
 			avatar: {}
-		};
-		$scope.avatarUploadOpts = ProfileUtils.getUploadOpts();
-		$scope.avatarUploadOpts.uploadingQueue = $scope.imageUploading;
-		$scope.avatarUploadOpts.error = $scope.showError.avatar;
+		}
+		$scope.avatarUploadOpts = ProfileUtils.getUploadOpts()
+		$scope.avatarUploadOpts.uploadingQueue = $scope.imageUploading
+		$scope.avatarUploadOpts.error = $scope.showError.avatar
 
-		$scope.parameters = ProfileUtils.params;
+		$scope.parameters = ProfileUtils.params
 
 		/* languages supported in "languages-i-speak" section */
-		$scope.languageList = LanguageList.localizedList;
+		$scope.languageList = LanguageList.localizedList
 		/* Array that will be filled with user's languages */
-		$scope.userLanguage = [];
+		$scope.userLanguage = []
 
 
 		$scope.loadLanguages = function(query) {

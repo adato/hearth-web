@@ -42,18 +42,18 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	var FILTER_ARCHIVE = 'archived';
 
 	var factory = {
-		addConversationToList: addConversationToList,
-		addConversationParticipants: addConversationParticipants,
-		deserializeConversation: deserializeConversation,
-		init: init,
-		getFirstConversationIdIfAny: getFirstConversationIdIfAny,
-		getLastMessageTime: getLastMessageTime,
-		handleEvent: handleEvent,
-		loadConversation: loadConversation,
-		loadConversationMessages: loadConversationMessages,
-		loadConversations: loadConversations,
-		MESSAGE_LIMIT: MESSAGE_LIMIT,
-		removeConversationFromList: removeConversationFromList
+		addConversationToList,
+		addConversationParticipants,
+		deserializeConversation,
+		init,
+		getFirstConversationIdIfAny,
+		getLastMessageTime,
+		handleEvent,
+		loadConversation,
+		loadConversationMessages,
+		loadConversations,
+		MESSAGE_LIMIT,
+		removeConversationFromList
 	};
 
 	return factory;

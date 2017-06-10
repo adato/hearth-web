@@ -13,6 +13,7 @@ angular.module('hearth', [
 		'ngSanitize',
 		'ngResource',
 		'ngDialog',
+		'ngMessages',
 		'tmh.dynamicLocale',
 		'ui.select',
 		'ui.router',
@@ -133,6 +134,8 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API
+
+			$httpProvider.defaults.headers.common['X-Pagination-Count'];
 
 			var params = $.getUrlVars();
 			if (params['apiError'])
