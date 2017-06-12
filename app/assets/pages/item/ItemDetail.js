@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate', '$sce', '$q',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate, $sce, $q) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate', '$sce', '$q', 'PrerenderService',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate, $sce, $q, PrerenderService) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -73,6 +73,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			Post.get({
 				postId: $stateParams.id
 			}, function(data) {
+        if(data && (data.status === 404 || data.state === "suspended" || data.state === "expired")) {
+          // set meta info for prerender
+          PrerenderService.setStatusCode('404');
+        }
 				$scope.item = data;
 
 				$scope.setTitle(data);
@@ -171,6 +175,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
 
+		$scope.$on('$destroy', function() {
+		  PrerenderService.setStatusCode(null)
+    })
 
 		$rootScope.initFinished && $scope.load();
 	}
