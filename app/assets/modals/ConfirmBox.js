@@ -23,6 +23,8 @@ angular.module('hearth.controllers').controller('ConfirmBox', [
 			var scope = $scope.callbackScope || this;
 			$scope.closeThisDialog();
 
+			if (!$scope.callback) return;
+
 			if ($scope.params)
 				$scope.callback.apply(scope, $scope.params);
 			else
