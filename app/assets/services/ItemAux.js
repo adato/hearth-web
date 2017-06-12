@@ -65,9 +65,12 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			})
 		}
 
-		function getExemplaryPostsOpts() {
-			return {
-				template: $templateCache.get('assets/components/item/items/exemplaryPosts.html')
+		function getExemplaryPostsOpts(posts) {
+			this.template = $templateCache.get('assets/components/item/items/exemplaryPosts.html')
+			this.listOptions = {
+				disableLoading: true,
+			  getData: () => {return $q((resolve, reject) => resolve(posts))},
+			  templateUrl: 'assets/components/item/items/post.html',
 			}
 		}
 
