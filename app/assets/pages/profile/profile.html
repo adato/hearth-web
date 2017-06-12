@@ -1,7 +1,7 @@
 <div loading show="!profileLoaded"></div>
 <div class="profile-view profile-common" ng-show="profileLoaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
 	<div class="user" ng-show="!info">
-		<p>{{:: 'ERR_USER_NOT_FOUND' | translate }}</p>
+		<p translate="PROFILE.NOTIFY.ERROR_USER_NOT_FOUND"></p>
 	</div>
 	<header ng-show="info" class="margin-bottom-large">
 		<div class="user-basic large-12 columns">
@@ -12,21 +12,21 @@
 					</a>
 				</h1>
 				<div class="button-group large">
-					<button class="button others" ng-click="openUserRatingForm()"> {{:: 'THUMB_UP' | translate }}
-					</button>
+					<button class="button others" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK"></button>
 					<button ng-if="!info.is_followed" class="hollow button others" ng-click="toggleFollow(info._id)">
-						<i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
+						<i class="fa fa-plus"></i> <span translate="PROFILE.ACTION_FOLLOW"></span>
 					</button>
 					<button ng-if="info.is_followed" class="hollow button" ng-click="toggleFollow(info._id)">
-						<i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
+						<i class="fa fa-times"></i> <span translate="PROFILE.ACTION_UNFOLLOW"></span>
 					</button>
 					<button ng-if="mine" ng-click="openInviteBox()" class="button">
 						<i class="fa fa-forward"></i>
-						<span ng-bind-html=":: 'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
+						<span ng-bind-html=":: 'PROFILE.ACTION_INVITE_FRIENDS' | translate"></span>
 					</button>
 					<a href="{{:: basePath }}profile-edit" class="mine">
 						<button class="button secondary">
-							<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
+							<i class="fa fa-edit"></i> <span translate="PROFILE.ACTION_EDIT"></span>
+						</button>
 					</a>
 				</div>
 			</div>

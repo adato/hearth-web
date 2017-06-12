@@ -49,15 +49,15 @@
 			</li>
 			<li>
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profile.default', {id: loggedUser._id})}">
-					<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
+					<i class="fa fa-user"></i> {{:: 'PROFILE.NAVIGATION_ITEM'| translate }}</a>
 			</li>
 			<li>
 				<a ui-sref="profileEdit" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileEdit')}">
-					<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
+					<i class="fa fa-edit"></i> {{:: 'PROFILE.EDIT.NAVIGATION_ITEM'| translate }}</a>
 			</li>
 			<li>
 				<a ui-sref="profileSettings" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileSettings')}">
-					<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
+					<i class="fa fa-cog"></i> {{:: 'SETTINGS.NAVIGATION_ITEM'| translate }}</a>
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities track by item._id">
