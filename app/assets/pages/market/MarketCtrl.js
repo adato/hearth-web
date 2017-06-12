@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'ItemAux',
-	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, ItemAux) {
+	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'ItemAux', 'Rights',
+	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, ItemAux, Rights) {
 
 		var marketplaceInited = false;
 
@@ -86,7 +86,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					// Add exemplary posts
 					// only for unlogged users who are not filtering though
-					if (!(Auth.isLoggedIn() || Filter.isSet()) && exemplaryPosts && exemplaryPosts.length && index === 1 && !exemplaryPostsInserted) {
+					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.length && index === 1 && !exemplaryPostsInserted) {
 						$compile(ItemAux.getExemplaryPostsOpts().template)(angular.merge($rootScope.$new(), {posts: exemplaryPosts, logPostTextToggle: ItemAux.logPostTextToggle})).insertBefore(clone)
 						exemplaryPostsInserted = true
 						exemplaryPosts = false
