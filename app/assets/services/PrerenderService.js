@@ -7,6 +7,7 @@
  */
 
 angular.module('hearth.services').factory('PrerenderService', [ function() {
+
   const factory = {
     statusCode: null,
     setStatusCode
@@ -14,7 +15,10 @@ angular.module('hearth.services').factory('PrerenderService', [ function() {
 
   return factory
 
+  //////////////
+
   function setStatusCode(code) {
     factory.statusCode = code
   }
-}]);
+
+}])

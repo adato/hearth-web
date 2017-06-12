@@ -10,21 +10,25 @@
 angular.module('hearth.directives').directive('prerenderStatus', ['PrerenderService', function(PrerenderService) {
 
   return {
-    restrict: 'AE',
-    scope: {
-    },
-    template: '<meta name="prerender-status-code" content="{{vm.status.statusCode}}" ng-if="vm.allowedStatuses[vm.status.statusCode]" />',
-    controllerAs: 'vm',
-    controller: [function() {
+    restrict: 'A',
+    link: function(scope, el, attrs) {
 
-      const vm = this
-
-      vm.status = PrerenderService
-      vm.allowedStatuses = {
+      const allowedStatuses = {
         '404' : true
       }
+      const metaAttrs = 'name="prerender-status-code"'
 
-    }]
+      scope.$watch(function() {
+        return PrerenderService.statusCode
+      }, newValue => {
+        if (allowedStatuses[newValue]) {
+          el.append(`<meta ${metaAttrs} content="${newValue}" />`)
+        } else {
+          el.find(`meta[${metaAttrs}]`).remove()
+        }
+      })
+
+    }
   }
 
 }])
