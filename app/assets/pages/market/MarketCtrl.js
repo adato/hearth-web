@@ -86,7 +86,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					// Add exemplary posts
 					// only for users who are not filtering though
-					if (!Filter.isSet() && exemplaryPosts && exemplaryPosts.length && index === 0 && !exemplaryPostsInserted) {
+					if (!(Auth.isLoggedIn() || Filter.isSet()) && exemplaryPosts && exemplaryPosts.length && index === 0 && !exemplaryPostsInserted) {
 						const opts = new ItemAux.getExemplaryPostsOpts(exemplaryPosts)
 						$compile(opts.template)(angular.merge($rootScope.$new(), {listOptions: opts.listOptions, logPostTextToggle: ItemAux.logPostTextToggle})).insertBefore(clone)
 						exemplaryPostsInserted = true
