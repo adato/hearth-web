@@ -22,9 +22,9 @@
 			<span class="right" conversation-options>
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{:: info._id }}" translate-attr="{ title:'MESSAGING.CONVERSATIONS.ACTIONS_MENU_TITLE'}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{:: info._id }}" style="display:none;">
-					<a ng-if="!info.is_archived" ng-click="confirmBox('MESSAGING.CONVERSATIONS.DIALOG_ARCHIVE.LABEL', 'MESSAGING.CONVERSATIONS.DIALOG_ARCHIVE.TEXT', archiveConversation, info._id, this)" class="action-link" translate="MESSAGING.CONVERSATIONS.ACTION_ARCHIVE"></a>
-					<a ng-if="info.is_member" ng-click="confirmBox('MESSAGING.CONVERSATIONS.DIALOG_LEAVE.LABEL', 'MESSAGING.CONVERSATIONS.DIALOG_LEAVE.TEXT', leaveConversation, info._id, this)" class="action-link" translate="MESSAGING.CONVERSATIONS.ACTION_LEAVE"></a>
-					<a ng-click="confirmBox('MESSAGING.CONVERSATIONS.DIALOG_DELETE.LABEL', 'MESSAGING.CONVERSATIONS.DIALOG_DELETE.TEXT', deleteConversation, info._id, this)" class="action-link" translate="MESSAGING.CONVERSATIONS.ACTION_DELETE"></a>
+					<a ng-if="!info.is_archived" ng-click="confirmBox({title: 'MESSAGING.CONVERSATIONS.DIALOG_ARCHIVE.LABEL', text: 'MESSAGING.CONVERSATIONS.DIALOG_ARCHIVE.TEXT', callback: archiveConversation, params: info._id, callbackScope: this})" class="action-link" translate="MESSAGING.CONVERSATIONS.ACTION_ARCHIVE"></a>
+					<a ng-if="info.is_member" ng-click="confirmBox({title: 'MESSAGING.CONVERSATIONS.DIALOG_LEAVE.LABEL', text: 'MESSAGING.CONVERSATIONS.DIALOG_LEAVE.TEXT', callback: leaveConversation, params: info._id, callbackScope: this})" class="action-link" translate="MESSAGING.CONVERSATIONS.ACTION_LEAVE"></a>
+					<a ng-click="confirmBox({title: 'MESSAGING.CONVERSATIONS.DIALOG_DELETE.LABEL', text: 'MESSAGING.CONVERSATIONS.DIALOG_DELETE.TEXT', callback: deleteConversation, params: info._id, callbackScope: this})" class="action-link" translate="MESSAGING.CONVERSATIONS.ACTION_DELETE"></a>
 					<a ng-show="info.read" ng-click="markConversationAsUnread(info)" class="action-link divider" translate="MESSAGING.CONVERSATIONS.ACTION_MARK_AS_UNREAD"></a>
 					<a ng-click="toggleParticipantsForm()" class="action-link" translate="MESSAGING.MESSAGE.ACTION_ADD_PARTICIPANT"></a>
 				</div>
