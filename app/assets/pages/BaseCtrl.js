@@ -677,8 +677,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * {String} policy - from $$config.policy
 		 * {String} confirmText - what to translate for confirmation [OK]
 		 * {String} cancelText - what to translate for cancel [CANCEL]
+		 * {Boolean} hideCancel - hides cancel button if true
 		 */
-		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy, {confirmText, cancelText, translationValues} = {}) {
+		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy, {confirmText, cancelText, translationValues, hideCancel} = {}) {
 
 			if (policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
@@ -699,6 +700,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				confirmText,
 				cancelText,
 				translationValues,
+				hideCancel,
 			})
 
 			if (callbackScope) scope.callbackScope = callbackScope;
