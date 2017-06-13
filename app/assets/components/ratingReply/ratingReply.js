@@ -47,7 +47,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 					}, function(res) {
 						scope.rating.comment = res;
 						scope.closeReply();
-						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
+						Notify.addSingleTranslate('PROFILE.RATING.NOTIFY.SUCCESS_RATING_REPLY', Notify.T_SUCCESS);
 					});
 				};
 			}
