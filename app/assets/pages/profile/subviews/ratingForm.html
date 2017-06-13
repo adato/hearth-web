@@ -1,33 +1,33 @@
 <div class="content">
-	<h5 class="text-emphasize">{{:: 'ADD_USER_RATING' | translate }} {{info.name}}</h5>
+	<h5 class="text-emphasize"><span translate="PROFILE.RATING.RATE_USER"></span> {{info.name}}</h5>
 	<div class="rating-notify-box"></div>
-	<h6 translate="USER_RATING_SCORE_SELECT_TEXT"></h6>
+	<h6 translate="PROFILE.RATING.TITLE"></h6>
 
 	<div class="block">
 		<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
 	</div>
 
 	<div class="block">
-		<needofferselector required-shown='rating.requiredMessageShown' model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}"></needofferselector>
+		<needofferselector required-shown='rating.requiredMessageShown' model="rating.score" text-true="{{:: 'PROFILE.RATING.POSITIVE' | translate}}" text-false="{{:: 'PROFILE.RATING.NEGATIVE' | translate}}"></needofferselector>
 	</div>
 
 	<form ng-submit="sendRating(rating, ratingForm)" id="ratingForm" name="ratingForm" novalidate>
-		<h6>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h6>
+		<h6 translate="PROFILE.RATING.SELECT_POST.TITLE"></h6>
 		<span ng-if="loadingRatingPosts">
-			<i class="fa fa-spin fa-spinner"></i> {{:: 'COMMON.LOADING' | translate }}
+			<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
 			<br>
 		</span>
 
 		<div class="block">
-			<div class="padding-bottom-small" translate="USER_RATING_JOIN_REALIZED_GIFT"></div>
+			<div class="padding-bottom-small" translate="PROFILE.RATING.SELECT_POST.DESCRIPTION"></div>
 			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
-				<option value="" ng-selected="true">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-				<optgroup ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_POST_TITLE' | translate }}">
+				<option value="" ng-selected="true" translate="PROFILE.RATING.SELECT_POST.DEFAULT"></option>
+				<optgroup ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'PROFILE.RATING.SELECT_POST.COMMON_POSTS' | translate }}">
 					<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
 						{{:: postTypes[rating.current_community._id != loggedUser._id ? "Community" : "User"][post.exact_type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.owner_id === loggedUser._id ? loggedUser.name : info.name}})
 					</option>
 				</optgroup>
-				<optgroup ng-if="ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
+				<optgroup ng-if="ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'PROFILE.RATING.SELECT_POST.ACTIVE_POSTS' | translate }}">
 					<option ng-repeat="post in ratingActivePosts | orderBy: '-updated_at'" title="{{:: post.title}}" value="{{:: post._id }}">
 						{{:: postTypes[post.author._type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.author.name}})
 					</option>
@@ -35,23 +35,23 @@
 			</select>
 		</div>
 
-		<div class="block" ng-if="(!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts) && (!ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts)" translate="RATING_NO_COMMON_POST_IN_3_MONTHS"></div>
+		<div class="block" ng-if="(!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts) && (!ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts)" translate="PROFILE.RATING.SELECT_POST.NO_POSTS"></div>
 
 		<label class="block">
-			<span translate="RATINGS_LABEL_WRITE_SOME_WORD"></span>
-			<input-max-length input-type="textarea" show-counter="true" min-length="{{:: rating_setup.RATING_TEXT_MIN_LENGTH }}" max-length="{{:: rating_setup.RATING_TEXT_MAX_LENGTH }}" isrequired="yes" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" model="rating.text" name="text" id="reply-text"></input-max-length>
+			<span translate="PROFILE.RATING.WRITE_RATING"></span>
+			<input-max-length input-type="textarea" show-counter="true" min-length="{{:: rating_setup.RATING_TEXT_MIN_LENGTH }}" max-length="{{:: rating_setup.RATING_TEXT_MAX_LENGTH }}" isrequired="yes" placeholder="{{:: 'PROFILE.RATING.WRITE_RATING_PLACEHOLDER' | translate }}" model="rating.text" name="text" id="reply-text"></input-max-length>
 			<div class="form-error" ng-show="showError.text">
-				<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
-				<span ng-show="ratingForm.text.$error.minlength">{{:: 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
+				<span ng-show="ratingForm.text.$error.required" translate="PROFILE.RATING.NOTIFY.ERROR_NO_FILLED_RATING"></span>
+				<span ng-show="ratingForm.text.$error.minlength" translate="PROFILE.RATING.NOTIFY.ERROR_RATING_TOO_SHORT"></span>
 			</div>
 		</label>
 
 		<div class="flex flex-space-between flex-reverse">
 			<button type="submit" class="button" ng-class="{ 'positive': rating.score == true, 'negative': rating.score == false, 'neutral': isNull(rating.score)}">
-				{{:: 'SEND_USER_RATING' | translate }} &nbsp;
+				<span translate="PROFILE.RATING.ACTION_SUBMIT"></span> &nbsp;
 				<i class="score-icon fa" ng-hide="isNull(rating.score)" ng-class="{'icon-rating-negative': rating.score == false,'icon-rating-positive': rating.score}"></i>
 			</button>
-			<a ng-click="closeUserRatingForm()" tabindex="0" class="revert-changes" translate="CANCEL"></a>
+			<a ng-click="closeUserRatingForm()" tabindex="0" class="revert-changes" translate="COMMON.ACTION_CANCEL"></a>
 		</div>
 
 	</form>
