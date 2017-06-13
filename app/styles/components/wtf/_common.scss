@@ -46,6 +46,8 @@
 }
 
 .box {
+	display: block;
+	padding: $ui-grid-size;
 	background-color: white;
 	border-radius: $global-radius;
 	padding: $size-large;
@@ -77,6 +79,20 @@
 	&.no-result p {
 		margin: 1.25rem 0.5rem;
 	}
+
+	// UNUSED ATM
+	// .box--list > & {
+	// 	border-radius: 0;
+	//
+	// 	&:first-child {
+	// 		border-top-left-radius: $global-radius;
+	// 		border-top-right-radius: $global-radius;
+	// 	}
+	// 	&:last-child {
+	// 		border-bottom-left-radius: $global-radius;
+	// 		border-bottom-right-radius: $global-radius;
+	// 	}
+	// }
 
 	/* This box style makes inner boxes of different color */
 	&.sectioned-box {

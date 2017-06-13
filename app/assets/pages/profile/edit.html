@@ -8,7 +8,7 @@
 					<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{ profile.avatar.large }}" resized-thumbnail-image/>
 					<div class="text">
 						<i class="fa fa-plus-square-o"></i>
-						<span translate="CHOOSE_AVATAR_FILE"></span>
+						<span translate="PROFILE.EDIT.UPLOAD_AVATAR_IMAGE"></span>
 					</div>
 				</div>
 			</div>
@@ -21,22 +21,22 @@
 					<i class="fa fa-fw fa-2x block--leading-icon fa-user"></i>
 				</div>
 				<div class="flex-1">
-					<h2 translate="WHO"></h2>
+					<h2 translate="PROFILE.EDIT.ME_TITLE"></h2>
 					<div class="medium-flex-grid">
 						<label for="first_name" class="block flex-1">
-							<span translate="FIRST_NAME"></span> *
-							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
-							<div class="form-error" ng-show="profileEditForm.first_name.$error.required" translate="ERR_NOT_FILLED_FIRST_NAME"></div>
+							<span translate="PROFILE.EDIT.FIRST_NAME"></span> *
+							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'PROFILE.EDIT.FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
+							<div class="form-error" ng-show="profileEditForm.first_name.$error.required" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_FILLED_FIRST_NAME"></div>
 						</label>
 						<label for="last_name" class="block flex-1">
-							<span translate="LAST_NAME"></span>
-							<input type="text" name="last_name" placeholder="{{:: 'LAST_NAME' | translate }}" ng-model="profile.last_name" id="last_name" />
+							<span translate="PROFILE.EDIT.LAST_NAME"></span>
+							<input type="text" name="last_name" placeholder="{{:: 'PROFILE.EDIT.LAST_NAME' | translate }}" ng-model="profile.last_name" id="last_name" />
 						</label>
 					</div>
 					<div>
 						<label>
-							<span translate="MY_WORK"></span>
-							<input type='text' placeholder="{{:: 'MY_WORK_EXAMPLE' | translate }}" ng-model="profile.work" name="my_work">
+							<span translate="PROFILE.EDIT.MY_WORK"></span>
+							<input type='text' placeholder="{{:: 'PROFILE.EDIT.MY_WORK_EXAMPLE' | translate }}" ng-model="profile.work" name="my_work">
 						</label>
 					</div>
 				</div>
@@ -48,15 +48,15 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-heart"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="ABOUT_ME"></h2>
+				<h2 translate="PROFILE.EDIT.ABOUT_ME_TITLE"></h2>
 				<div class="medium-flex-grid">
 					<label class="flex-1">
-						<span translate="MY_TELL_ABOUT"></span>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
+						<span translate="PROFILE.EDIT.ABOUT_ME_LABEL"></span>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'PROFILE.EDIT.ABOUT_ME_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
 					</label>
 					<label class="flex-1">
-						<span translate="MY_INTERESTS"></span>
-						<tags-input id="interests" test-beacon="interests-tags-input" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
+						<span translate="PROFILE.EDIT.MY_INTERESTS"></span>
+						<tags-input id="interests" test-beacon="interests-tags-input" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'PROFILE.EDIT.MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
 							<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
 						</tags-input>
 					</label>
@@ -69,7 +69,7 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="WHERE"></h2>
+				<h2 translate="PROFILE.EDIT.LOCATIONS_TITLE"></h2>
 				<!-- TODO this was wrapped in ng-if="profile" .. WHY? -->
 				<locations locations="profile.locations" is-required="true" show-error="showError.locations"></locations>
 			</div>
@@ -80,11 +80,11 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-comments"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
-				<h2 translate="MY_LANGUAGES"></h2>
-				<tags-input ng-model="userLanguage" display-property="name" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+				<h2 translate="PROFILE.EDIT.MY_LANGUAGES_TITLE"></h2>
+				<tags-input ng-model="userLanguage" display-property="name" placeholder="{{:: 'PROFILE.EDIT.ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
 					<auto-complete source="loadLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
 				</tags-input>
-				<div class="form-error" ng-show="showError.user_language" translate="ERR_NOT_FILLED_LANGUAGES"></div>
+				<div class="form-error" ng-show="showError.user_language" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_FILLED_LANGUAGES"></div>
 			</div>
 		</div>
 
@@ -93,7 +93,7 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-phone"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
-				<h2 translate="CONTACTS"></h2>
+				<h2 translate="PROFILE.EDIT.CONTACTS_TITLE"></h2>
 
 				<div class="block">
 					<div class="block">
@@ -101,26 +101,26 @@
 							<!-- main email -->
 							<div class="flex-1">
 								<label>
-									<span translate="MY_EMAIL"></span> *
+									<span translate="PROFILE.EDIT.EMAIL"></span> *
 									<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" type='email' name="email" ng-required="true" mailgun-validator="1" ng-model-options="{ updateOn: 'blur' }">
 									<span ng-show="profileEditForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
 									<div class="form-error" ng-show="showError.email">
-										<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-										<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
-										<span ng-show="profileEditForm.email.$error.mailgun" ng-bind-html=":: 'ERR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
+										<span ng-show="profileEditForm.email.$error.email" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_VALID_EMAIL"></span>
+										<span ng-show="profileEditForm.email.$error.required" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_FILLED_EMAIL"></span>
+										<span ng-show="profileEditForm.email.$error.mailgun" ng-bind-html=":: 'AUTH.NOTIFY.ERROR_MAILGUN_NOT_VALID_EMAIL' | translate"></span>
 									</div>
 								</label>
 								<!-- <span mailgun-validator-did-you-mean id="1" target="profile.email"></span> -->
 							</div>
 							<div class="flex-1">
-								<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
+								<label translate="PROFILE.EDIT.WHO_CAN_SEE_IT"></label>
 								<privacy-selector ng-model="profile.visible_attributes.email"></privacy-selector>
 							</div>
 						</div>
 
 						<div ng-hide="showContactMail">
 							<a ng-click="showContactMail = true || profile.contact_email">
-								<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD"></span>
+								<i class="fa fa-plus-square"></i>&nbsp;<span translate="COMMON.ACTION_ADD"></span>
 							</a>
 						</div>
 					</div>
@@ -130,12 +130,12 @@
 						<div class="medium-flex-grid">
 							<div class="flex-1">
 								<label>
-									<span translate="MY_CONTACT_EMAIL"></span>
+									<span translate="PROFILE.EDIT.MY_CONTACT_EMAIL"></span>
 									<input ng-model="profile.contact_email" ng-focus="contactEmailFocus()" ng-blur="contactEmailBlur()" name="contact_email" type='email' mailgun-validator="2" ng-model-options="{ updateOn: 'blur' }">
-									<div class="help-text" translate="MY_CONTACT_EMAIL_EXAMPLE"></div>
+									<div class="help-text" translate="PROFILE.EDIT.MY_CONTACT_EMAIL_EXAMPLE"></div>
 									<div class="form-error" ng-show="showError.contact_email">
-										<span ng-show="profileEditForm.contact_email.$error.email" translate="ERR_NOT_VALID_EMAIL"></span>
-										<span ng-show="profileEditForm.contact_email.$error.mailgun" translate="ERR_MAILGUN_NOT_VALID_EMAIL"></span>
+										<span ng-show="profileEditForm.contact_email.$error.email" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_VALID_EMAIL"></span>
+										<span ng-show="profileEditForm.contact_email.$error.mailgun" translate="AUTH.NOTIFY.ERROR_MAILGUN_NOT_VALID_EMAIL"></span>
 									</div>
 								</label>
 								<span ng-show="profileEditForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
@@ -144,14 +144,14 @@
 							</div>
 							<div class="flex-1">
 								<label>
-									<span translate="PROFILE.CONTACT.WHO_CAN_SEE_IT"></span>
+									<span translate="PROFILE.EDIT.WHO_CAN_SEE_IT"></span>
 									<privacy-selector ng-model="profile.visible_attributes.contact_email"></privacy-selector>
 								</label>
 							</div>
 						</div>
 						<div>
 							<a ng-click="hideContactEmail()">
-								<span class="fa fa-minus-square"></span>&nbsp;<span translate="REMOVE"></span>
+								<span class="fa fa-minus-square"></span>&nbsp;<span translate="COMMON.ACTION_REMOVE"></span>
 							</a>
 						</div>
 					</div>
@@ -161,10 +161,10 @@
 					<!-- phone -->
 					<div class="flex-1">
 						<label>
-							<i class="fa fa-phone"></i>&nbsp;<span translate="MY_PHONE"></span>
+							<i class="fa fa-phone"></i>&nbsp;<span translate="PROFILE.EDIT.PHONE"></span>
 							<input type="tel" ng-focus="showError.phone = false" ng-blur="validatePhone($event)" name="phone" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone">
 							<div ng-show="showError.phone">
-								<span class="form-error" ng-show="profileEditForm.phone.$error.internationalPhoneNumber">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
+								<span class="form-error" ng-show="profileEditForm.phone.$error.internationalPhoneNumber" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_VALID_PHONE"></span>
 							</div>
 						</label>
 					</div>
@@ -183,53 +183,53 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
-				<h2 translate="MY_NETWORKS"></h2>
+				<h2 translate="PROFILE.EDIT.NETWORKS_TITLE"></h2>
 				<div class="medium-flex-grid">
 					<div class="block flex-1">
 						<label>
-							<span translate="MY_FACEBOOK"></span>
-							<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')" test-beacon="social-fb">
-							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
+							<span translate="PROFILE.EDIT.MY_FACEBOOK"></span>
+							<input placeholder="{{ 'COMMON.EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" type="url" ng-blur="updateUrl($event, profile, 'facebook')" test-beacon="social-fb">
+							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="block flex-1">
 						<label>
-							<span translate="MY_TWITTER"></span>
-							<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')" test-beacon="social-twitter">
-							<div class="form-error" ng-show="showError.social_networks['twitter']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
+							<span translate="PROFILE.EDIT.MY_TWITTER"></span>
+							<input placeholder="{{ 'COMMON.EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" type="url" ng-blur="updateUrl($event, profile, 'twitter')" test-beacon="social-twitter">
+							<div class="form-error" ng-show="showError.social_networks['twitter']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 				</div>
 				<div class="medium-flex-grid">
 					<div class="block flex-1">
 						<label>
-							<span translate="MY_LINKEDIN"></span>
-							<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')" test-beacon="social-linkedin">
-							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
+							<span translate="PROFILE.EDIT.MY_LINKEDIN"></span>
+							<input placeholder="{{ 'COMMON.EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" type="url" ng-blur="updateUrl($event, profile, 'linkedin')" test-beacon="social-linkedin">
+							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 					<div class="block flex-1">
 						<label>
-							<span translate="MY_GOOGLEPLUS"></span>
-							<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')" test-beacon="social-gplus">
-							<div class="form-error" ng-show="showError.social_networks['googleplus']" translate="ERR_SOCIAL_NETWORK_NAME"></div>
+							<span translate="PROFILE.EDIT.MY_GOOGLEPLUS"></span>
+							<input placeholder="{{ 'COMMON.EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" type="url" ng-blur="updateUrl($event, profile, 'googleplus')" test-beacon="social-gplus">
+							<div class="form-error" ng-show="showError.social_networks['googleplus']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
 						</label>
 					</div>
 				</div>
 				<div class="medium-flex-grid">
 					<div class="block flex-1">
 						<label>
-							<i class="fa fa-globe"></i>&nbsp;<span translate="MY_WEB"></span>
+							<i class="fa fa-globe"></i>&nbsp;<span translate="PROFILE.EDIT.MY_WEB"></span>
 							<div ng-repeat="web in profile.webs track by $index" class="block flex flex-align-start">
-								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)" test-beacon="web-input">
+								<input placeholder="{{ 'COMMON.EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)" test-beacon="web-input">
 								<button ng-hide="$first" type="button" class="touchable" ng-click="profile.webs.splice($index,1)">
 									<i class="fa fa-times-circle"></i>
 								</button>
 							</div>
-							<div class="form-error" ng-show="showError.social_networks['webs']" translate="ERR_INVALID_URL"></div>
+							<div class="form-error" ng-show="showError.social_networks['webs']" translate="PROFILE.EDIT.NOTIFY.ERROR_INVALID_URL"></div>
 							<div>
 								<a ng-click="profile.webs.push('')" test-beacon="web-adder">
-									<i class="fa fa-plus-square"></i>&nbsp;<span translate="ADD_NEXT_WEB"></span>
+									<i class="fa fa-plus-square"></i>&nbsp;<span translate="PROFILE.EDIT.ACTION_ADD_NEXT_WEB"></span>
 								</a>
 							</div>
 						</label>
@@ -239,8 +239,8 @@
 			</div>
 		</div>
 		<div class="display-flex flex-reverse flex-space-between block">
-			<button type="submit" class="button" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5" translate="SAVE"></button>
-			<a ui-sref="profile.default({id: loggedUser._id})" class="revert-changes" translate="CANCEL_CHANGES"></a>
+			<button type="submit" class="button" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5" translate="COMMON.ACTION_SAVE"></button>
+			<a ui-sref="profile.default({id: loggedUser._id})" class="revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
 		</div>
 	</form>
 </div>

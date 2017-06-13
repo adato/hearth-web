@@ -98,7 +98,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					}, function(res) {
 						$scope.sendingActionRequest = false;
 
-						Notify.addSingleTranslate('NOTIFY.CONVERSATION_' + type + '_SUCCESS', Notify.T_SUCCESS);
+						Notify.addSingleTranslate('MESSAGING.NOTIFY.SUCCESS_CONVERSATION_' + type + '', Notify.T_SUCCESS);
 					}, function(err) {
 						$scope.sendingActionRequest = false;
 

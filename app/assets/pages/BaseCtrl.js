@@ -675,17 +675,31 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * params: array of params to pass into callback when confirmed
 		 * callbackScope: if callback should be called with some scope
 		 * {String} policy - from $$config.policy
+		 * {String} confirmText - what to translate for confirmation [OK]
+		 * {String} cancelText - what to translate for cancel [CANCEL]
 		 */
-		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy) {
+		$rootScope.confirmBox = function(title, text, callback, params, callbackScope, policy, {confirmText, cancelText, translationValues} = {}) {
 
 			if (policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
 
 			// create new scope of confirmBox
-			var scope = $scope.$new();
-			scope.title = title;
-			scope.text = text;
-			scope.callback = callback;
-			scope.params = angular.isArray(params) ? params : [params];
+			var scope = $scope.$new()
+			scope.params = angular.isArray(params) ? params : [params]
+
+			// scope.title = title
+			// scope.text = text
+			// scope.callback = callback
+			// scope.confirmText = confirmText
+			// scope.cancelText = cancelText
+			// scope.translationValues = translationValues
+			angular.extend(scope, {
+				title,
+				text,
+				callback,
+				confirmText,
+				cancelText,
+				translationValues,
+			})
 
 			if (callbackScope) scope.callbackScope = callbackScope;
 
@@ -699,8 +713,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				closeByDocument: false,
 				showClose: false,
 				closeByEscape: true,
-			});
-		};
+			})
+		}
 
 		// this will flash post box with some background color
 		$rootScope.blinkPost = function(item) {

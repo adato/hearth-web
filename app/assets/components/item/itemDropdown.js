@@ -35,13 +35,15 @@ angular.module('hearth.directives').directive('itemDropdown', ['$rootScope', fun
       ctrl.removeItemFromCommunity = $rootScope.removeItemFromCommunity
       ctrl.openReportBox = $rootScope.openReportBox
 
-      $scope.$watch('item', newItem => {
+      const runOnce = $scope.$watch('item', newItem => {
         ctrl.item = newItem
 
         ctrl.mine = ItemAux.isMyPost(ctrl.item)
-        ctrl.isActive = $rootScope.isPostActive(ctrl.item)
+        ctrl.isActive = ItemAux.isPostActive(ctrl.item)
         ctrl.postLanguage = LanguageList.translate(ctrl.item.language)
         ctrl.analytics = ev => ItemAux.logPostAction(ev, {mine: ctrl.mine, item: ctrl.item})
+
+        runOnce()
       })
 
     }]

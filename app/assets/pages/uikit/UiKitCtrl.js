@@ -97,36 +97,43 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       $scope.testFormData = {
         name: '',
         surname: ''
-      };
+      }
+      $scope.genderList = [
+        {title: 'GENDER.AGENDER', value: 'agender'},
+        {title: 'GENDER.ANDROGYNE', value: 'androgyne'},
+        {title: 'GENDER.ANDROGYNOUS', value: 'androgynous'},
+        {title: 'GENDER.BIGENDER', value: 'bigender'},
+        {title: 'GENDER.CIS', value: 'cis'}
+      ]
       // bind submit function to controller
       // ctrl.testFormSubmit = (data, form) => {
       $scope.testFormSubmit = (data, form) => {
-        form.$setDirty();
+        form.$setDirty()
 
-        $scope.savingFormSuccess = false;
-        $scope.savingFormError = false;
+        $scope.savingFormSuccess = false
+        $scope.savingFormError = false
 
         // validation
-        $scope.validationError = false;
-        if (!form.$valid) return $scope.validationError = true;
+        $scope.validationError = false
+        if (!form.$valid) return $scope.validationError = true
 
         // simulate API call
-        $scope.formLoading = true;
+        $scope.formLoading = true
         $timeout(() => {
           if (submitWillBeSuccess) {
-            $scope.formLoading = false;
-            $scope.savingFormSuccess = true;
-            form.$setPristine();
-            form.$setUntouched();
+            $scope.formLoading = false
+            $scope.savingFormSuccess = true
+            form.$setPristine()
+            form.$setUntouched()
 
           } else {
-            $scope.formLoading = false;
-            $scope.savingFormError = true;
+            $scope.formLoading = false
+            $scope.savingFormError = true
           }
-          submitWillBeSuccess = !submitWillBeSuccess;
-        }, 1000);
+          submitWillBeSuccess = !submitWillBeSuccess
+        }, 1000)
 
-      };
+      }
 
       // and return template
       return {
@@ -137,6 +144,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     <div translate="FORM.SAVING_FAILED"></div>
     <span>reason, if any</span>
   </div>
+
   <label class="block">
     <span translate="PERSON.NAME"></span>
     <input type="text" name="name" ng-model="testFormData.name" translate-attr="{placeholder: 'PERSON.NAME'}" required minlength="2" />
@@ -146,6 +154,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       <div ng-messages-include="assets/components/form/ngMessages/minlength.html"></div>
     </div>
   </label>
+
   <label class="block">
     <span translate="PERSON.SURNAME"></span>
     <input type="text" name="surname" ng-model="testFormData.surname" translate-attr="{placeholder: 'PERSON.SURNAME'}" required />
@@ -153,6 +162,57 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       <div ng-message="required" translate="PERSON.SURNAME.ERROR_REQUIRED"></div>
     </div>
   </label>
+
+  <label class="block">
+    <span translate="PERSON.SURNAME"></span>
+    <select name="gender" ng-model="testFormData.gender" required translate-attr="{placeholder: 'PERSON.GENDER'}" required ng-options="gender.value as (gender.title | translate) for gender in genderList">
+      <option value="" translate="GENDER.SELECT"></option>
+    </select>
+    <div class="help-text">Notice how the placeholder option (with empty value) is entered directly, while all the other options are generated from a controller list</div>
+    <div ng-messages="testForm.surname.$error" ng-show="testForm.$submitted || testForm.surname.$dirty">
+      <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
+    </div>
+  </label>
+
+  <div class="block">
+    <div class="box box--checkbox-list">
+      <label>
+        <checkbox model="testFormData.sth1" name="sth1" class="box box--checkbox">
+          <span translate="SOMETHING.ONE"></span>
+        </checkbox>
+      </label>
+      <label>
+        <checkbox model="testFormData.sth2" name="sth2" class="box box--checkbox" disabled="testFormData.sth1">
+          <span translate="SOMETHING.TWO"></span>
+        </checkbox>
+      </label>
+    </div>
+    <div class="help-text">This checkbox list logic doesn't make sense but showcases how to style such lists and how to apply the disabled attribute</div>
+  </div>
+
+  <div class="block flex-grid">
+    <label>
+      <checkbox model="testFormData.sth3" name="sth3">
+        <span translate="SOMETHING.THREE"></span>
+      </checkbox>
+    </label>
+    <label>
+      <checkbox model="testFormData.sth4" name="sth4">
+        <span translate="SOMETHING.FOUR"></span>
+      </checkbox>
+    </label>
+  </div>
+
+  <label class="block">
+    <checkbox model="testFormData.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': testForm.eula.$invalid && (testForm.$submitted || testForm.eula.$dirty)}">
+      <span translate="EULA.ACCEPT"></span>
+    </checkbox>
+    <div class="help-text">Invalid border is set manually</div>
+    <div ng-messages="testForm.eula.$error" ng-show="testForm.$submitted || testForm.eula.$dirty">
+      <div ng-messages-include="assets/components/form/ngMessages/required.html"></div>
+    </div>
+  </label>
+
   <div class="flex flex-divided-medium">
     <button class="button" type="submit" translate="FORM.SUBMIT"></button>
     <i class="fa fa-spinner fa-spin" ng-if="formLoading"></i>
@@ -160,7 +220,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 </form>`,
         selector: '[form-data]',
         scopeId: 'formData',
-      };
+      }
     }
 
     ///////////////////////////////////////////////////////////////////////
@@ -171,8 +231,8 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     // Bind data directly to template
     function compileData(data) {
-      angular.element(data.selector).append($compile(data.code)($scope));
-      $scope[data.scopeId] = data.code;
+      angular.element(data.selector).append($compile(data.code)($scope))
+      $scope[data.scopeId] = data.code
     }
 
     // Prepare data for binding to html
@@ -182,9 +242,9 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
           name: element.name || "",
           code: $sce.trustAsHtml(element.code),
           description: (element.desc || "") + " " + element.code
-        });
-      });
+        })
+      })
     }
 
   }
-]);
+])

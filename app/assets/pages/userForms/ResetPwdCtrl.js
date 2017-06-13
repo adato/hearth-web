@@ -56,7 +56,7 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 				password: data.password,
 				confirm: data.password
 			}, res => {
-				Notify.addSingleTranslate('NOTIFY.NEW_PASS_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('AUTH.NOTIFY.SUCCESS_RESET_PASSWORD', Notify.T_SUCCESS);
 				$state.go('login');
 			}, err => {
 				// notify for this err is done by resource so there is no need to do it here again

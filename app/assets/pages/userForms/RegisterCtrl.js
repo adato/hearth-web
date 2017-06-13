@@ -14,7 +14,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			email: '',
 			first_name: '',
 			last_name: '',
-			password: ''
+			password: '',
+			eula: false
 		};
 		$scope.sent = false; // show result msg
 		$scope.sending = false; // lock - send user only once
@@ -31,29 +32,37 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('register');
 
-		$scope.oauthRegister = function(provider) {
+		$scope.oauthRegister = (provider, eulaAccepted) => {
+
+			if (!eulaAccepted) {
+				return $rootScope.confirmBox('AUTH.REGISTER.EULA.I_ACCEPT_EULA', 'AUTH.REGISTER.EULA.ACCEPTATION_TEXT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'AUTH.REGISTER.EULA.ACTION_AGREE', cancelText: 'AUTH.REGISTER.EULA.ACTION_DISAGREE', translationValues: '{attrs: "ng-click=showTerms()"}'})
+				// 'EULA.ACCEPTATION_TEXT',
+			}
+
+			// twitter works differently than google and facebook
+			if (provider === 'twitter') return $window.location.href = $scope.twitterAuthUrl
+
 			// switch serializer for this call to allow unencoded brackets
-			var serializer = $http.defaults.paramSerializer;
-			$http.defaults.paramSerializer = RubySerializer;
-			$scope.showError.blockedUserByEmail = false;
+			var serializer = $http.defaults.paramSerializer
+			$http.defaults.paramSerializer = RubySerializer
+			$scope.showError.blockedUserByEmail = false
 
 			$auth.authenticate(provider, {
 				language: preferredLanguage,
 				user_action: 'register'
 			}).then(function(response) {
 				if (response.status == 200) {
-					Auth.processLoginResponse(response.data);
+					Auth.processLoginResponse(response.data)
 				} else {
-					$scope.loginError = true;
+					$scope.loginError = true
 				}
 				// switch serializer back only after the EP call has responded
-				$http.defaults.paramSerializer = serializer;
+				$http.defaults.paramSerializer = serializer
 			}, function(error) {
-				$scope.apiErrors = new ResponseErrors(error);
-				if ($scope.apiErrors.blockedUserByEmail)
-					$scope.showError.blockedUserByEmail = true;
-			});
-		};
+				$scope.apiErrors = new ResponseErrors(error)
+				if ($scope.apiErrors.blockedUserByEmail) $scope.showError.blockedUserByEmail = true
+			})
+		}
 
 		$scope.validateData = function(user) {
 			var invalid = false;
@@ -81,9 +90,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.hideForm = function() {
 			$(".register-login-form").slideUp('slow', function() {});
 			$(".register-successful").slideDown('slow', function() {});
-			// $state.go('market', {
-			// 	showMessage: $filter('translate')('SIGNUP_WAS_SUCCESSFUL')
-			// });
 		};
 
 		$scope.sendRegistration = function(user) {
@@ -106,10 +112,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 			User.add(params, $scope.user, function() {
 				$scope.sending = false;
-
-				//     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
-				//     // $location.path('/');
-
 				$scope.hideForm();
 
 				return $analytics.eventTrack('registration email sent', {
@@ -136,10 +138,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			$http.defaults.paramSerializer = serializer;
 		};
 
-		$scope.register = function(user) {
+		$scope.register = (user, form) => {
 			user.language = LanguageSwitch.uses();
 
-			if (!$scope.validateData(user)) return false;
+			if (!$scope.validateData(user) || form.$invalid) return false;
 			$scope.sendRegistration(user);
 		};
 

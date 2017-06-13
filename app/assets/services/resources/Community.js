@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').factory('Community', [
-	'$resource', 'LocationJsonDataTransform',
+	'$resource', 'LocationJsonDataTransform', 'plainResponseInterceptor',
 
-	function($resource, LocationJsonDataTransform) {
+	function($resource, LocationJsonDataTransform, plainResponseInterceptor) {
 		return $resource($$config.apiPath + '/communities/:_id', {
 			_id: "@_id"
 		}, {
@@ -75,10 +75,13 @@ angular.module('hearth.services').factory('Community', [
 			suggested: {
 				url: $$config.apiPath + '/related_communities',
 				method: 'GET',
+				isArray: true
+			},
+			getActivityLog: {
+				method: 'GET',
+				url: $$config.apiPath + '/communities/:communityId/activity_feed',
 				isArray: true,
-				params: {
-					r: Math.random()
-				}
+				interceptor: plainResponseInterceptor
 			}
 		});
 	}

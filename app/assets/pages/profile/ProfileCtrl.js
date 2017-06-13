@@ -82,7 +82,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.mine = $rootScope.isMine($stateParams.id);
 				$scope.profileLoaded = true;
 
-				PageTitle.setTranslate('TITLE.user-profile-page', res.name);
+				PageTitle.setTranslate('PROFILE.EDIT.TITLE', res.name);
 				res.avatar = res.avatar || {};
 				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);
 				// broadcast event for load subpages

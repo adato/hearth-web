@@ -3,7 +3,7 @@
 	<div class="user" ng-if="! info">
 		<p>{{:: 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
 	</div>
-	<header ng-if="info">
+	<header ng-if="info" class="margin-bottom-large">
 		<div class="user-basic large-12 columns">
       <div class="display-medium-flex flex-space-between">
         <h1>
@@ -97,7 +97,7 @@
 				</div>
 			</a>
 		</div>
+		<div class="clear"></div>
 	</header>
-	<div class="clear"></div>
 	<div ng-show="topLoaded" ui-view></div>
 </div>
