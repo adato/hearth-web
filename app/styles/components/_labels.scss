@@ -5,9 +5,13 @@
         border-width: 1px;
         border-style: solid;
 
-        &.danger {
+        &.alert {
             color: $alert-color;
             border-color: $alert-color;
+        }
+        &.warning {
+            color: $warning-color;
+            border-color: $warning-color;
         }
     }
 }
