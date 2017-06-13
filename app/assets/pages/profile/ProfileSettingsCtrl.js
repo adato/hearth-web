@@ -32,16 +32,16 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.d = new Date();
 
     $scope.selectFrequencies = [{
-      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.IMMEDIATELY'),
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.IMMEDIATELY'),
       value: 'immediately'
     }, {
-      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.ONCE_DAY'),
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.ONCE_DAY'),
       value: 'once_day'
     }, {
-      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.ALL_ONCE_DAY'),
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.ALL_ONCE_DAY'),
       value: 'all_once_day'
     }, {
-      title: $translate.instant('PROFILE.EDIT.SEND.FREQUENCY.OFF'),
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.OFF'),
       value: 'off'
     }];
 
@@ -71,17 +71,16 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			$rootScope.globalLoading = false;
 			// if ok, reload browser and show notify
 			if (res.ok) {
-
-				Notify.addTranslateAfterRefresh('NOTIFY.ACCOUNT_DELETE_SUCCESS', Notify.T_SUCCESS);
+				Notify.addTranslateAfterRefresh('SETTINGS.NOTIFY.SUCCESS_DELETE_ACCOUNT', Notify.T_SUCCESS);
 				window.location.replace("/app/");
 			} else if (res.reason == 'community admin') {
 				// when user has community, show notify - hack for problem with view handling
 				$timeout(function() {
-					return Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED_COMMUNITY', Notify.T_ERROR, '.notify-container-delete-user');
+					return Notify.addTranslate('SETTINGS.NOTIFY.ERROR_DELETE_FAILED_COMMUNITY_OWNER', Notify.T_ERROR, '.notify-container-delete-user');
 				}, 500);
 			} else {
 				// when there is general error
-				Notify.addSingleTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('SETTINGS.NOTIFY.ERROR_DELETE_ACCOUNT', Notify.T_ERROR);
 			}
 		};
 
@@ -159,7 +158,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					$scope.showError.newPass = false;
 				});
 
-				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_PASSWORD_CHANGED', Notify.T_SUCCESS);
 			}
 		};
 
@@ -215,7 +214,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 			User.editSettings(data, function(res) {
 				$rootScope.user.settings = settings;
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS);
 			});
 
 		};
@@ -229,7 +228,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				man_country_code: countryCode
 			}, function(res) {
 				$rootScope.loggedUser.country_code = countryCode;
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS);
 			});
 		};
 

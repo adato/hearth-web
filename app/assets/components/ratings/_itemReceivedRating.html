@@ -28,7 +28,8 @@
 					<i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
 				<small ng-if="item.post_id">
 					&nbsp;{{:: 'RATING_TO_POST' | translate }}
-					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a>.
+					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title }}">
+            {{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title | ellipsis:40}}</a>.
 				</small>
 			</div>
 			<div class="clear"></div>

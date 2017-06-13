@@ -49,15 +49,21 @@
 			</li>
 			<li>
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profile.default', {id: loggedUser._id})}">
-					<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
+					<i class="fa fa-user"></i> 
+					<span translate="PROFILE.NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 			<li>
 				<a ui-sref="profileEdit" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileEdit')}">
-					<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
+					<i class="fa fa-edit"></i> 
+					<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 			<li>
 				<a ui-sref="profileSettings" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileSettings')}">
-					<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
+					<i class="fa fa-cog"></i> 
+					<span translate="SETTINGS.NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities track by item._id">
@@ -234,15 +240,21 @@
 				<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
 					<li>
 						<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
-							<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
+							<i class="fa fa-user"></i>
+							<span translate="PROFILE.NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 					<li>
 						<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
-							<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
+							<i class="fa fa-edit"></i>
+							<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 					<li>
 						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
-							<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
+							<i class="fa fa-cog"></i> 
+							<span translate="SETTINGS.NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 
 					<li class="divider" ng-if="myAdminCommunities.length"></li>

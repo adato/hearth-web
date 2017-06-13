@@ -43,6 +43,7 @@ $large-avatar-size: 295px;
 		}
 	}
 	&.avatar-small{
+    min-width: 40px;
 		width: $small-avatar-size;
 	}
 	&.avatar-normal{
@@ -58,6 +59,30 @@ $large-avatar-size: 295px;
 	@include breakpoint(small down) {
 		&.small-avatar-small{
 			width: $small-avatar-size !important;
+		}
+	}
+}
+
+.avatar-stack {
+	display: flex;
+	// flex-direction: row-reverse;
+
+	& > .avatar {
+		position: relative;
+		z-index: 2;
+
+		&:nth-child(2) {z-index: 1}
+
+		&.avatar-small {
+			margin-left: -$small-avatar-size / 3;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		& > .avatar-image {
+			border: 2px solid $white;
 		}
 	}
 }
