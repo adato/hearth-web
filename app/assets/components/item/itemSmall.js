@@ -34,6 +34,13 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
       ctrl.userHasRight = Rights.userHasRight
       ctrl.logPostTextToggle = ItemAux.logPostTextToggle
 
+      // temp workaround for links leading to posts that will not be shown
+      ctrl.onlyAllowActive = (item, event) => {
+        if (ItemAux.isPostActive(item)) return
+        event.preventDefault()
+        ItemAux.postInaccessibleModal()
+      }
+
       $scope.$watch('ctrl.item', extend)
 
       function extend(item) {
