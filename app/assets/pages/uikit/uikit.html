@@ -1,8 +1,8 @@
 <h1>UI Kit</h1>
 
-<div class="row">
+<div class="row background-medium-gray round overflow-hidden">
 
-  <div class="column medium-2">
+  <div class="column medium-2 padding-none">
     <ul class="tabs vertical" ng-init="activeTab = 'buttons'">
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'buttons'}" ng-click="activeTab = 'buttons'"><a href="">Buttons</a></li>
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'typography'}" ng-click="activeTab = 'typography'"><a href="">Typography</a></li>
@@ -11,10 +11,10 @@
     </ul>
   </div>
 
-  <div class="column medium-10">
+  <div class="column medium-10 padding-none">
 
-    <div class="tabs-content">
-      <div class="content" ng-show="activeTab === 'buttons'">
+    <div class="tabs-content padding-large">
+      <div class="" ng-show="activeTab === 'buttons'">
 
         <h2>Buttons</h2>
         <div ng-repeat="item in buttons">
@@ -26,7 +26,7 @@
         </div>
 
       </div>
-      <div class="content" ng-show="activeTab === 'typography'">
+      <div class="" ng-show="activeTab === 'typography'">
 
         <h2>Typography</h2>
         <div ng-repeat="item in typographies">
@@ -39,7 +39,7 @@
         </div>
 
       </div>
-      <div class="content" ng-show="activeTab === 'inputs'">
+      <div class="" ng-show="activeTab === 'inputs'">
 
         <h2>Inputs</h2>
         <div ng-repeat="item in inputs">
@@ -51,7 +51,7 @@
         </div>
 
       </div>
-      <div class="content" ng-show="activeTab === 'form'">
+      <div class="" ng-show="activeTab === 'form'">
 
         <h2>Form</h2>
         <div class="block">Fully functional form example. Every other form submit throws an error!</div>

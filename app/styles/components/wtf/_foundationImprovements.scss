@@ -8,6 +8,10 @@
 // 	}
 // }
 
-.tabs-title.is-active {
-	background: $tab-background-active;
+.tabs-title {
+	font-weight: 700;
+
+	&.is-active {
+		background: $tab-background-active;
+	}
 }

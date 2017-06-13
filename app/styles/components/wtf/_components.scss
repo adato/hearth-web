@@ -109,6 +109,10 @@
 
 /* /DISPLAY */
 
+.overflow-hidden {
+	overflow: hidden;
+}
+
 /* VERTICAL-ALIGN */
 .vertical-align-top{
 	vertical-align: top !important;
@@ -319,6 +323,8 @@
 .background-secondary{background-color: $secondary-color !important}
 .background-white{background-color: $white !important}
 .background-light-gray{background-color: $colorLightGray !important}
+.background-medium-gray{background-color: $medium-gray !important}
+.background-dark-gray{background-color: $dark-gray !important}
 /* /COLOR */
 
 /* LINKS */
