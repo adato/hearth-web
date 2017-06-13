@@ -75,7 +75,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			}, function(data) {
         if(data && (data.status === 404 || data.state === "suspended" || data.state === "expired")) {
           // set meta info for prerender
-          PrerenderService.setStatusCode('404');
+          PrerenderService.setStatusCode('404')
         }
 				$scope.item = data;
 
@@ -115,6 +115,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					$scope.isActive = $rootScope.isPostActive($scope.item);
 				}
 			}, function(res) {
+        PrerenderService.setStatusCode('404')
         $scope.setTitle(res);
 				$scope.loaded = true;
 				$scope.item = false;
