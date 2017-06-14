@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('itemDropdown', ['$rootScope', fun
         ctrl.item = newItem
 
         ctrl.mine = ItemAux.isMyPost(ctrl.item)
-        ctrl.isActive = $rootScope.isPostActive(ctrl.item)
+        ctrl.isActive = ItemAux.isPostActive(ctrl.item)
         ctrl.postLanguage = LanguageList.translate(ctrl.item.language)
         ctrl.analytics = ev => ItemAux.logPostAction(ev, {mine: ctrl.mine, item: ctrl.item})
 

@@ -14,12 +14,7 @@ describe('user profile', function() {
 	var logs = [];
 
 	function log(str) {
-		//console.log("\n" + str);
 		logs.push(str);
-	}
-
-	function flushLogs() {
-		console.log(logs.join("\n"));
 	}
 
 	function navigateToMyProfile() {
@@ -140,9 +135,9 @@ describe('user profile', function() {
 		// locality
 		clearTagInput('[test-beacon="location-input-wrapper"]');
 		addTagToInput('[test-beacon="location-input-wrapper"]', 'kralupy nad vltavou', true);
-		browser.sleep(200);
+		browser.sleep(500);
 		addTagToInput('[test-beacon="location-input-wrapper"]', 'nadrazni 740/56', true);
-		browser.sleep(200);
+		browser.sleep(500);
 		// adding languages, which are localised, thus we must know our language or type language-agnostic words :)
 
 		clickSubmitButton();

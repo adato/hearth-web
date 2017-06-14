@@ -58,6 +58,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					activity.text = Activities.getActivityTranslation(activity);
 					return activity;
 				});
+
 				$scope.activityLog.push(...res.data);
 
         activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);

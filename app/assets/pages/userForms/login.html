@@ -1,4 +1,4 @@
-<h1 class="text-center" translate="LOGIN_HEADING"></h1>
+<h1 class="text-center" translate="AUTH.LOGIN.TITLE"></h1>
 
 <div class="box register-login-dialog">
 	<div class="head">
@@ -7,47 +7,50 @@
 	<form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form" test-beacon="login-form">
 		<div ng-if="showMsgOnlyLogged">
 			<div class="alert-box alert">
-				<i class="fa fa-exclamation-triangle"></i>{{ 'LOGIN_REQUIRED' | translate }}
+				<i class="fa fa-exclamation-triangle"></i>
+				<span translate="AUTH.NOTIFY.LOGIN_REQUIRED"></span>
 			</div>
 		</div>
 		<div ng-if="loginError">
 			<div class="alert-box alert radius">
-				<i class="fa fa-exclamation-triangle"></i>{{ 'ACCOUNT.LOGIN.LOGIN_FAILED' | translate }}
+				<i class="fa fa-exclamation-triangle"></i>
+				<span translate="AUTH.NOTIFY.ERROR_LOGIN_FAILED"></span>
 			</div>
 		</div>
-		<p ng-show="showError.badCredentials" class="error" test-beacon="login-bad-credentials">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
-		<p ng-show="showError.inactiveAccount" class="error" translate="LOGIN_INACTIVE_ACCOUNT" translate-compile translate-values="{'attrs': 'ng-click=\'resendActivationEmail()\''}"></p>
+		<p ng-show="showError.badCredentials" class="error" test-beacon="login-bad-credentials" translate="AUTH.NOTIFY.ERROR_WRONG_CREDENTIALS"></p>
+		<p ng-show="showError.inactiveAccount" class="error" translate="AUTH.NOTIFY.ERROR_LOGIN_ACCOUNT_NOT_ACTIVATED" translate-compile translate-values="{'attrs': 'ng-click=\'resendActivationEmail()\''}"></p>
 
 		<label for="email" class="block">
-			<span translate="EMAIL_PLACEHOLDER"></span>
+			<span translate="AUTH.EMAIL_PLACEHOLDER"></span>
 			<input id="email" type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username" ng-model-options="{ updateOn: 'blur' }" class="form-control text-input top" required />
 			<div ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="form-error">
-				<span ng-show="loginForm.username.$error.email" translate="SIGNUP_ERR_BAD_EMAIL_FORMAT"></span>
+				<span ng-show="loginForm.username.$error.email" translate="AUTH.NOTIFY.ERROR_BAD_EMAIL_FORMAT"></span>
 			</div>
 		</label>
 
 		<label for="password" class="block">
-			<span translate="PASS_PLACEHOLDER"></span>
+			<span translate="AUTH.PASSWORD"></span>
 			<input id="password" type="password" class="login_password" name="password" ng-model="data.password" ng-model-options="{ updateOn: 'blur' }" ng-minlength="4" class="form-control text-input top" required />
 			<div ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="form-error">
-				<span ng-show="loginForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
+				<span ng-show="loginForm.password.$error.minlength" translate="AUTH.NOTIFY.ERROR_SHORT_PASSWORD"></span>
 			</div>
 		</label>
 
 		<div class="block text-center">
 			<button class="button" type="submit" test-beacon="login-button">
-				<i class="fa fa-sign-in"></i> {{ 'LOGIN_BUTTON' | translate }}
+				<i class="fa fa-sign-in"></i>
+				<span translate="AUTH.ACTION_LOGIN"></span>
 			</button>
 		</div>
 
 		<p>
-			<a ng-click="closeModal()" href="{{ basePath }}forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a>
+			<a ng-click="closeModal()" href="{{ basePath }}forgotten-password" translate="AUTH.LOGIN.FORGOTTEN_PASSWORD_LINK"></a>
 		</p>
 		<div class="clear"></div>
 		<hr/>
-		<p ng-show="showError.noOauthAccountFound" class="oauth-error" ng-bind-html="'LOGIN_NO_OAUTH_ACCOUNT_FOUND' | translate: {registerUrl:basePath + 'register'}"></p>
+		<p ng-show="showError.noOauthAccountFound" class="oauth-error" ng-bind-html="'AUTH.NOTIFY.NO_OAUTH_ACCOUNT_FOUND' | translate: {registerUrl:basePath + 'register'}"></p>
 		<div class="social-login">
-			<p>{{ 'ACCOUNT.LOGIN.VIA_SOCIAL_NETWORKS' | translate }}</p>
+			<p translate="AUTH.LOGIN.VIA_SOCIAL_NETWORKS"></p>
 			<a ng-click="oauthLogin('facebook')" class="fa fa-facebook"></a>
 			<a ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
 			<a ng-click="oauthLogin('google')" class="fa fa-google"></a>
@@ -55,8 +58,8 @@
 		<hr/>
 		<div class="bottom">
 			<div>
-				{{ 'DONT_HAVE_ACCOUNT_YET' | translate }}
-				<a ng-click="closeModal()" href="{{ basePath }}register">{{ 'SIGNUP' | translate }}</a>
+				<span translate="AUTH.LOGIN.REGISTER_TEXT"></span>
+				<a ng-click="closeModal()" href="{{ basePath }}register" translate="AUTH.ACTION_REGISTER"></a>
 			</div>
 		</div>
 	</form>

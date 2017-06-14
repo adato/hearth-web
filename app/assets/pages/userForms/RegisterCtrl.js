@@ -35,8 +35,16 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.oauthRegister = (provider, eulaAccepted) => {
 
 			if (!eulaAccepted) {
-				return $rootScope.confirmBox('EULA.I_ACCEPT_EULA', 'EULA.ACCEPTATION_TEXT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'EULA.AGREE', cancelText: 'EULA.DISAGREE', translationValues: '{attrs: "ng-click=showTerms()"}'})
-				// 'EULA.ACCEPTATION_TEXT',
+				return $rootScope.confirmBox({
+					title: 'AUTH.REGISTER.EULA.I_ACCEPT_EULA',
+					text: 'AUTH.REGISTER.EULA.ACCEPTATION_TEXT',
+					callback: $scope.oauthRegister,
+					params: [provider, true],
+					callbackScope: $scope,
+					confirmText: 'AUTH.REGISTER.EULA.ACTION_AGREE',
+					cancelText: 'AUTH.REGISTER.EULA.ACTION_DISAGREE',
+					translationValues: '{attrs: "ng-click=showTerms()"}'
+				})
 			}
 
 			// twitter works differently than google and facebook
@@ -90,9 +98,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.hideForm = function() {
 			$(".register-login-form").slideUp('slow', function() {});
 			$(".register-successful").slideDown('slow', function() {});
-			// $state.go('market', {
-			// 	showMessage: $filter('translate')('SIGNUP_WAS_SUCCESSFUL')
-			// });
 		};
 
 		$scope.sendRegistration = function(user) {
@@ -115,10 +120,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 			User.add(params, $scope.user, function() {
 				$scope.sending = false;
-
-				//     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
-				//     // $location.path('/');
-
 				$scope.hideForm();
 
 				return $analytics.eventTrack('registration email sent', {

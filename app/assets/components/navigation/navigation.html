@@ -11,7 +11,7 @@
 			<li ng-if=":: !loggedUser._id" class="tab-bar log-info">
 				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class="display-inline-block" ng-bind-html=":: 'LOG_IN' | translate"></div>
+					<div class="display-inline-block" ng-bind-html=":: 'AUTH.LOGIN_NAVIGATION_ITEM' | translate"></div>
 				</a>
 			</li>
 			<li>
@@ -32,19 +32,15 @@
 			<li>
 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
-					{{:: 'TOP_BAR_MESSAGES' | translate }}
+					<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
 			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">
-					{{:: 'LOG_IN' | translate}}
-				</a>
+				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)" translate="AUTH.LOGIN_NAVIGATION_ITEM"></a>
 			</li>
 			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">
-					{{:: 'SIGNUP' | translate }}
-				</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)" translate="AUTH.REGISTER_NAVIGATION_ITEM"></a>
 			</li>
 		</ul>
 		<ul class="menu vertical" ng-show="loggedUser._id">
@@ -53,15 +49,21 @@
 			</li>
 			<li>
 				<a ui-sref="profile.default({id: loggedUser._id})" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profile.default', {id: loggedUser._id})}">
-					<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
+					<i class="fa fa-user"></i> 
+					<span translate="PROFILE.NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 			<li>
 				<a ui-sref="profileEdit" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileEdit')}">
-					<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
+					<i class="fa fa-edit"></i> 
+					<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 			<li>
 				<a ui-sref="profileSettings" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileSettings')}">
-					<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
+					<i class="fa fa-cog"></i> 
+					<span translate="SETTINGS.NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities track by item._id">
@@ -73,7 +75,9 @@
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li>
 				<a href="" class="logout-link" ng-click="logout()">
-					<i class="fa fa-sign-out"></i> {{:: 'LOGOUT'| translate }}</a>
+					<i class="fa fa-sign-out"></i>
+					<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
+				</a>
 			</li>
 		</ul>
 		<ul class="menu vertical">
@@ -219,14 +223,14 @@
 				<div class="top-bar-separator"></div>
 				<div class="top-bar-separator"></div>
 
- 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
+ 				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
 					<div class="inner-icon">
 						<span class="fa messages-icon">
 							<span ng-if="messagesCounters.unread" class="unread-counter">
 								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
 							</span>
 						</span>
-						{{:: 'TOP_BAR_MESSAGES' | translate }}
+						<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 					</div>
 				</a>
 				<div class="dropdown-container">
@@ -236,15 +240,21 @@
 				<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
 					<li>
 						<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
-							<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
+							<i class="fa fa-user"></i>
+							<span translate="PROFILE.NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 					<li>
 						<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
-							<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
+							<i class="fa fa-edit"></i>
+							<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 					<li>
 						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
-							<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
+							<i class="fa fa-cog"></i> 
+							<span translate="SETTINGS.NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 
 					<li class="divider" ng-if="myAdminCommunities.length"></li>
@@ -257,7 +267,9 @@
 					<li class="divider" ng-if="myAdminCommunities.length"></li>
 					<li>
 						<a href="" ng-click="logout()" test-beacon="nav-logout-link">
-							<i class="fa fa-sign-out"></i>{{:: 'LOGOUT'| translate }}</a>
+							<i class="fa fa-sign-out"></i>
+							<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
+						</a>
 					</li>
 				</ul>
 				</div>
@@ -296,7 +308,7 @@
 				<a ng-if=":: !loggedUser._id" class="icon-item" ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" test-beacon="nav-login">
 					<div class="inner-icon">
 						<span class="fa fa-sign-in"></span>
-						<label>{{:: 'TOP_BAR_SIGN_IN' | translate }}</label>
+						<span translate="AUTH.LOGIN_NAVIGATION_ITEM"></label>
 					</div>
 				</a>
 

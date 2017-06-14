@@ -6,13 +6,13 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-language"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="USER_LANGUAGE_AND_COUNTRY"></h2>
+				<h2 translate="SETTINGS.LANGUAGE_AND_COUNTRY"></h2>
 				<label class="block">
-					<span translate="USING_HEARTH_IN_LANG"></span> <strong translate="HEARTH_IN_THIS_LANG"></strong>. <span translate="CHOOSE_LANGUAGE"></span>
+					<span translate="SETTINGS.USING_HEARTH_IN_LANG"></span> <strong translate="SETTINGS.IN_THIS_LANG"></strong>. <span translate="SETTINGS.CHOOSE_LANGUAGE"></span>
 					<select2 ng-model="lang" ng-change="switchLang(lang)" s2-options="lang as ('MY_LANG.' + lang | translate) for lang in languages"></select2>
 				</label>
 				<label class="block">
-					<span translate="USING_HEARTH_FROM_COUNTRY"></span>
+					<span translate="SETTINGS.USING_HEARTH_FROM_COUNTRY"></span>
 					<select2 ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as item.localizedName for item in countryList"></select2>
 				</label>
 			</div>
@@ -23,37 +23,37 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-bell"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="USER_NOTIFICATION"></h2>
+				<h2 translate="SETTINGS.NOTIFICATIONS.TITLE"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
           <label class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="PROFILE.EDIT.SEND.FREQUENCY.HOW_OFTEN"></span>
+            <span translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></span>
             <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
           </label>
           <div class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="PROFILE.EDIT.SEND.WHICH"></span>
+            <span translate="SETTINGS.NOTIFICATIONS.WHICH"></span>
 					</div>
           <div>
 						<checkbox model="notify.send_emails.expiring" name="emailPostExpiring">
-							<span translate="NOTIFICATION.ALERT_EXPIRING_POSTS"></span>
+							<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRING_POSTS"></span>
 						</checkbox>
 					</div>
 					<div>
 						<checkbox model="notify.send_emails.expired" name="emailPostExpired">
-							<span translate="NOTIFICATION.ALERT_EXPIRED_POSTS"></span>
+							<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRED_POSTS"></span>
 						</checkbox>
 					</div>
 					<div>
 						<checkbox model="notify.send_emails.new_conversation" name="conversationNew">
-							<span translate="NOTIFICATION.ALERT_NEW_CONVERSATION"></span>
+							<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_CONVERSATION"></span>
 						</checkbox>
 					</div>
 					<div>
 						<checkbox model="notify.send_emails.new_message" name="conversationUpdate">
-							<span translate="NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
+							<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
 						</checkbox>
 					</div>
 					<div class="flex flex-reverse">
-						<button type="submit" class="button" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1" translate="SAVE"></button>
+						<button type="submit" class="button" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1" translate="COMMON.ACTION_SAVE"></button>
 					</div>
 				</form>
 			</div>
@@ -64,15 +64,15 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="USER_MESSAGES"></h2>
+				<h2 translate="SETTINGS.MESSAGES"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="messageSettingsForm" id="messageSettingsForm">
 					<div>
 						<checkbox model="notify.get_messages.only_replies">
-							{{:: 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
+							<span translate="SETTINGS.NOTIFICATIONS.MESSAGES_ALLOW_ONLY_POST_REPLIES"></span>
 						</checkbox>
 					</div>
 					<div class="flex flex-reverse">
-						<button type="submit" class="button" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1" translate="SAVE"></button>
+						<button type="submit" class="button" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1" translate="COMMON.ACTION_SAVE"></button>
 					</div>
 				</form>
 			</div>
@@ -83,35 +83,35 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-unlock-alt"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="USER_CHANGE_CREDENTIALS"></h2>
+				<h2 translate="SETTINGS.PASSWORD.TITLE"></h2>
 				<form ng-submit="changePassword(pass)" novalidate id="profileSettingsForm" name="profileSettingsForm">
-					<div ng-if="!presentPassword" translate="CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH"></div>
+					<div ng-if="!presentPassword" translate="SETTINGS.PASSWORD.WARNING_OMNIAUTH"></div>
 					<div ng-if="presentPassword" class="medium-flex-grid">
 						<div class="block flex-1">
 							<label>
-								<span translate="FILL_CURRENT_PASS"></span>
+								<span translate="SETTINGS.PASSWORD.CURRENT"></span>
 								<input type="password" ng-focus="showError.oldPass = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'profileSettingsForm', 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
 								<div class="form-error" ng-show="showError.oldPass">
-									<span ng-show="profileSettingsForm.oldPass.$error.required" translate="ERR_NOT_FILLED_OLD_PASS"></span>
-									<span ng-show="profileSettingsForm.oldPass.$error.notValid" translate="ERR_OLD_PASS_IS_NOT_VALID"></span>
+									<span ng-show="profileSettingsForm.oldPass.$error.required" translate="SETTINGS.NOTIFY.ERROR_NOT_FILLED_OLD_PASS"></span>
+									<span ng-show="profileSettingsForm.oldPass.$error.notValid" translate="SETTINGS.NOTIFY.ERROR_OLD_PASS_IS_NOT_VALID"></span>
 								</div>
 							</label>
 						</div>
 						<div class="block flex-1">
 							<label>
-								<span translate="FILL_NEW_PASS"></span>
+								<span translate="SETTINGS.PASSWORD.NEW"></span>
 								<show-text-in-password>
 									<input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" test-beacon="new-password" required ng-minlength="5" />
 								</show-text-in-password>
 								<div class="form-error" ng-show="showError.newPass">
-									<span ng-show="profileSettingsForm.newPass.$error.required" translate="ERR_NOT_FILLED_NEW_PASS"></span>
-									<span ng-show="profileSettingsForm.newPass.$error.minlength" translate="ERR_TOO_SHORT_NEW_PASS"></span>
+									<span ng-show="profileSettingsForm.newPass.$error.required" translate="SETTINGS.NOTIFY.ERROR_NOT_FILLED_NEW_PASS"></span>
+									<span ng-show="profileSettingsForm.newPass.$error.minlength" translate="SETTINGS.NOTIFY.ERROR_TOO_SHORT_NEW_PASS"></span>
 								</div>
 							</label>
 						</div>
 					</div>
 					<div class="flex flex-reverse">
-						<button type="submit" class="button" analytics-custom analytics-event="edit password" analytics-category="Profile settings" analytics-value="1" translate="SAVE"></button>
+						<button type="submit" class="button" analytics-custom analytics-event="edit password" analytics-category="Profile settings" analytics-value="1" translate="COMMON.ACTION_SAVE"></button>
 					</div>
 				</form>
 			</div>
@@ -122,26 +122,26 @@
 				<i class="fa fa-fw fa-2x block--leading-icon fa-times"></i>
 			</div>
 			<div class="flex-1">
-				<h2 translate="USER_DELETE_PROFILE"></h2>
+				<h2 translate="SETTINGS.DELETE_PROFILE.TITLE"></h2>
 				<form id="profileDeleteForm" name="profileDeleteForm" ng-submit="deleteAccount(leave)" novalidate test-beacon="profile-delete-form">
 					<div class="notify-container-delete-user"></div>
 
 					<label class="block">
-						<span translate="WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE"></span>
+						<span translate="SETTINGS.DELETE_PROFILE.DONT_LEAVE"></span>
 						<textarea ng-model="leave.reason" autosize-textarea test-beacon="user-delete-reason"></textarea>
 					</label>
 
 					<label class="block">
-						<span translate="FILL_CURRENT_PASS"></span>
+						<span translate="SETTINGS.PASSWORD.CURRENT"></span>
 						<input type="password" test-beacon="user-delete-password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
 						<div class="form-error" ng-show="showError.oldPassLeave" test-beacon="user-delete-errors">
-							<span ng-show="profileDeleteForm.oldPassLeave.$error.required" translate="ERR_NOT_FILLED_OLD_PASS"></span>
-							<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid" translate="ERR_OLD_PASS_IS_NOT_VALID"></span>
+							<span ng-show="profileDeleteForm.oldPassLeave.$error.required" translate="SETTINGS.NOTIFY.ERROR_NOT_FILLED_OLD_PASS"></span>
+							<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid" translate="SETTINGS.NOTIFY.ERROR_OLD_PASS_IS_NOT_VALID"></span>
 						</div>
 					</label>
 
 					<div class="flex flex-reverse">
-						<button type="submit" test-beacon="delete-account-button" class="button" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1" translate="USER_DELETE_PROFILE"></button>
+						<button type="submit" test-beacon="delete-account-button" class="button" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1" translate="SETTINGS.DELETE_PROFILE.ACTION_DELETE"></button>
 					</div>
 				</form>
 			</div>

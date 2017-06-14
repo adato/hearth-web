@@ -235,7 +235,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var transformedData;
 
 			if (!$scope.validateData($scope.profile)) {
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
+				Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.ERROR_FORM_HAS_ERRORS', Notify.T_ERROR);
 				$rootScope.scrollToError();
 				return false;
 			}
@@ -256,7 +256,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				// refresh user info - for example avatar in navbar
 				Auth.refreshUserInfo();
 				$location.path('/profile/' + $scope.profile._id);
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS);
 
 			}, function(res) {
 				var data = res.data;
@@ -264,12 +264,12 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 				if (data && errors) {
 					if (errors.contact_email) {
-						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CONTACT_EMAIL_ERROR', Notify.T_ERROR);
+						Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.ERROR_DUPLICATE_EMAIL', Notify.T_ERROR);
 						$scope.showError.contact_email = true;
 						$scope.profileEditForm.contact_email.$setValidity('email_used', false);
 						$rootScope.scrollToError();
 					} else {
-						Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
+						Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.ERROR_SAVE_PROFILE', Notify.T_ERROR);
 					}
 				}
 

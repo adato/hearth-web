@@ -6,12 +6,15 @@ timeline {
 
 
   p {
-    margin: 0 0 0 0;
+    margin: 0 0 0 $size-small;
   }
   header {
     margin-bottom: $size-small;
   }
 
+  a.entity-name {
+    @extend .entity-name;
+  }
   // diss the item common margin that is not desired in timeline
   .item-common {
     margin-bottom: 0;
@@ -29,3 +32,8 @@ timeline {
   }
 }
 
+@include breakpoint(medium up) {
+    .timeline-wrapper-max-width {
+        max-width: 60%;
+    }
+}

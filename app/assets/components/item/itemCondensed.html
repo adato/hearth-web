@@ -1,37 +1,42 @@
-<div class="item-common margin-bottom-none" id="post_{{:: ctrl.item._id }}" ng-class=":: {inactive: !ctrl.isPostActive(item)}">
+<div class="item-common margin-bottom-none" id="post_{{:: ctrl.item._id }}">
 
-  <div class="flex flex-space-between flex-align-start block">
-    <div class="flex flex-wrap flex-divided-medium">
-      <div class="flex flex-divided-medium flex-wrap">
+  <div class="flex flex-space-between block">
+    <div class="flex flex-divided-medium flex-ellipsis-wrapper">
+      <div class="flex flex-divided-medium">
         <div class="item-option-bg-type left-aligned non-responsive" ng-class="'item-option-bg-' + (ctrl.item.exact_type == 'gift' ? ctrl.item.type : (ctrl.item.type == 'offer' ? 'lend' : 'borrow'))">
           <i></i>
         </div>
         <div info-box=":: ctrl.item.author">
-          <avatar class="small-avatar-small margin-left-small" type="ctrl.item.author._type" src="ctrl.item.author.avatar.normal" size="small"></avatar>
+          <avatar class="display-block small-avatar-small margin-left-small" type="ctrl.item.author._type" src="ctrl.item.author.avatar.normal" href="ctrl.getProfileLink(ctrl.item.author._type, ctrl.item.author._id)" size="small"></avatar>
         </div>
       </div>
-      <div>
+      <div class="flex flex-wrap flex-ellipsis-wrapper">
+        <a class="entity-name oneliner full-width" ui-sref="{{:: ctrl.item.author._type === 'User' ? 'profile.default' : 'community.default' }}({id: ctrl.item.author._id})" ng-bind="ctrl.item.author.name"></a>
         <div>
-          <a ui-sref="{{:: ctrl.item.author._type === 'User' ? 'profile.default' : 'community.default' }}({id: ctrl.item.author._id})" class="entity-name" ng-bind="ctrl.item.author.name"></a>
+          <small class="color-dark-gray nowrap" ng-bind="ctrl.item.updated_at_timeago" title="{{:: ctrl.item.updated_at_date }}"></small>
         </div>
-        <div class="color-dark-gray" ng-bind="ctrl.item.updated_at_timeago" title="{{:: ctrl.item.updated_at_date }}"></div>
       </div>
     </div>
     <div>
-      <div item-dropdown="item"></div>
+      <div item-dropdown="ctrl.item"></div>
     </div>
   </div>
 
   <div>
 
-    <h3 class="item-header">
-      <a ui-sref="post({id: ctrl.item._id})">
-        <strong ng-class=":: 'color-' + ctrl.item.type" translate="{{:: ctrl.item.postTypeCode }}"></strong><strong ng-bind=":: '\u00A0' + (ctrl.item.title | ellipsis:100)"></strong>
-      </a>
-    </h3>
+    <!-- <div class="flex flex-align-start flex-divided-medium flex-wrap"> -->
+    <div class="header-margin">
+      <h3 class="item-header display-inline margin-bottom-none margin-right-small">
+        <a ui-sref="post({id: ctrl.item._id})" ng-click="ctrl.onlyAllowActive(ctrl.item, $event)">
+          <strong ng-class=":: 'color-' + ctrl.item.type" translate="{{:: ctrl.item.postTypeCode }}"></strong><strong ng-bind=":: '\u00A0' + (ctrl.item.title | ellipsis:100)"></strong>
+        </a>
+      </h3>
+      <i class="fa fa-lock margin-right-small" ng-if="ctrl.item.is_private" translate-attr="{title: 'VISIBLE_FOR_FRIENDS'}"></i>
+      <div class="label hollow danger margin-right-small" ng-if="ctrl.item.state === 'suspended' && !(item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item))" translate="POST.STATE.SUSPENDED"></div>
+      <div class="label hollow danger margin-right-small" ng-if="ctrl.item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item)" translate="POST.SUSPENDED_BY_ADMIN"></div>
+      <div class="label hollow danger" ng-if="ctrl.item.state === 'expired'" translate="POST.STATE.EXPIRED"></div>
+    </div>
     <span class="validity-warning" ng-if="ctrl.isExpiringSoon" translate="POSTS.DETAIL.POST_EXPIRING_SOON"></span>
-    <div ng-if="item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isActive" class="error" translate="POST.SUSPENDED_BY_ADMIN"></div>
-    <span class="fa fa-lock" ng-if="ctrl.item.is_private" translate-attr="{title: 'VISIBLE_FOR_FRIENDS'}"></span>
 
     <div class="word-wrap">
       <p class="margin-none" ng-if="ctrl.item.text.length >= 270 && !ctrl.textExpanded">

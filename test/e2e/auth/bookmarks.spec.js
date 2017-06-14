@@ -8,7 +8,7 @@ describe('hearth bookmarks', function() {
 
 	function navigateToMyFav() {
 		browser.actions().mouseMove(beacon('logged-user-dropdown'), {x: 0, y: 0}).perform();
-		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(0).element(by.css('a.ng-binding'));
+		var topMenuLink = beacon('dropdown-my-profile');
 		topMenuLink.click();
 
 		var profileBubble = element(by.css('span.shadow.large>a'));
@@ -55,6 +55,7 @@ describe('hearth bookmarks', function() {
 	});
 
 	it('should be able to go to profile and see bookmarked items', function() {
+    browser.sleep(500);
 		// navigate to profile through top menu
 		navigateToMyFav();
 
