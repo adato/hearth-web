@@ -1,7 +1,14 @@
 <div>
   <div class="margin-bottom-large">
     <h3 class="text-center" translate="POST.EXEMPLARY.ABOUT"></h3>
-    <item-list options="listOptions"></item-list>
+    <item-list options="opts.topListOptions"></item-list>
+  </div>
+
+  <div class="margin-bottom-large text-center">
+    <button class="button secondary" ng-click="showAllExemplaryPosts()">Dalsi vybrane...</button>
+    <div ng-if="opts.showAllExemplaryPosts">
+      <item-list options="opts.addListOptions"></item-list>
+    </div>
   </div>
 
   <h3 class="text-center" translate="POST.NEWEST_POSTS"></h3>
