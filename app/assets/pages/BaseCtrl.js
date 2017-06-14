@@ -23,7 +23,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.pageChangeWithScroll = true;
 		$scope.segment = false;
 		$rootScope.searchBarDisplayed = false;
-		$scope.addresses = $$config.itemAddresses;
 		$rootScope.socialLinks = {
 			facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 			gplus: 'https://plus.google.com/share?url=',
@@ -211,13 +210,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * Return profile of item based on its type (community, user, post)
 		 */
-		$rootScope.getProfileLinkByType = function(type) {
-			return $scope.addresses[type];
-		};
-
-		/**
-		 * Return profile of item based on its type (community, user, post)
-		 */
 		$rootScope.getActivityLink = function(object, target_object) {
 			if (target_object)
 				return $rootScope.getProfileLink(target_object._type, target_object._id);
@@ -228,8 +220,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * Return profile of item based on its type and id
 		 */
 		$rootScope.getProfileLink = function(type, id, fullPath) {
-			return (fullPath ? $$config.appUrl : $$config.basePath) + $rootScope.getProfileLinkByType(type) + "/" + id;
-		};
+			return (fullPath ? $$config.appUrl : $$config.basePath) + $$config.itemAddresses[type] + '/' + id
+		}
 
 
 		/**
