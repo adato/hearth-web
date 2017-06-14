@@ -8,8 +8,13 @@
 // 	}
 // }
 
+.tabs-wrapper {
+	background-color: $tab-background;
+	box-shadow: $ui-box-shadow;
+}
 .tabs-title {
 	font-weight: 700;
+	border-bottom: 1px solid $tab-background-active;
 
 	&.is-active {
 		background: $tab-background-active;
