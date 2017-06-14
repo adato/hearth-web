@@ -212,7 +212,7 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 		}
 
 		function postInaccessibleModal() {
-			$rootScope.confirmBox('POST.INACCESSIBLE.HEADER', 'POST.INACCESSIBLE.TEXT', false, false, false, false, {hideCancel: true})
+			$rootScope.confirmBox({title: 'POST.INACCESSIBLE.HEADER', text: 'POST.INACCESSIBLE.TEXT', hideCancel: true})
 		}
 
 		function logCharInfoShown(location, character) {
