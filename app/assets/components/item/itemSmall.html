@@ -10,10 +10,10 @@
 		<button type="button" class="touchable" title="{{'POST.RESUME.LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)">
 			<i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 		</button>
-		<button type="button" class="touchable" title="{{'POST.SUSPEND.LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)">
+		<button type="button" class="touchable" title="{{'POST.SUSPEND.LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox({title: 'POST.SUSPEND.LABEL', text: 'POST.SUSPEND.ARE_YOU_SURE', callback: pauseToggle, params: item, callbackScope: this})">
 			<i class="fa fa-pause"></i>
 		</button>
-		<button type="button" class="touchable" title="{{'POST.REMOVE.LABEL' | translate}}" ng-click="confirmBox('POST.REMOVE.LABEL', 'POST.REMOVE.ARE_YOU_SURE', deleteItem, item, this)">
+		<button type="button" class="touchable" title="{{'POST.REMOVE.LABEL' | translate}}" ng-click="confirmBox({title: 'POST.REMOVE.LABEL', text: 'POST.REMOVE.ARE_YOU_SURE', callback: deleteItem, params: item, callbackScope: this})">
 			<i class="fa fa-times"></i>
 		</button>
 	</div>
