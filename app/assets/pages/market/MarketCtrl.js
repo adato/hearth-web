@@ -88,7 +88,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// only for unlogged users who are not filtering though
 					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.length && index === 0 && !exemplaryPostsInserted) {
 						const opts = new ItemAux.getExemplaryPostsOpts(exemplaryPosts)
-						$compile(opts.template)(angular.merge($rootScope.$new(), {opts: opts, showAllExemplaryPosts: function() {ItemAux.showAllExemplaryPosts(opts);}, logPostTextToggle: ItemAux.logPostTextToggle})).insertBefore(clone)
+
+						$compile(opts.template)(angular.merge($rootScope.$new(), {
+							opts: opts,
+							showAllExemplaryPosts: function() {
+								ItemAux.showAllExemplaryPosts(opts)
+							},
+							logPostTextToggle: ItemAux.logPostTextToggle
+						})).insertBefore(clone)
+
             exemplaryPostsInserted = true
 						exemplaryPosts = false
 					}

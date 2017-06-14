@@ -5,7 +5,7 @@
   </div>
 
   <div class="margin-bottom-large text-center">
-    <button class="button secondary" ng-click="showAllExemplaryPosts()">Dalsi vybrane...</button>
+    <button class="button secondary" ng-click="opts.showAllExemplaryPosts = true">Dalsi vybrane...</button>
     <div ng-if="opts.showAllExemplaryPosts">
       <item-list options="opts.addListOptions"></item-list>
     </div>
