@@ -15,7 +15,6 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			extendForDisplay,
 			getExemplaryPosts,
 			getExemplaryPostsOpts,
-      // showAllExemplaryPosts,
 			hideItem,
 			heart,
 			isMyPost,
@@ -80,12 +79,7 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
         getData: () => {return $q((resolve, reject) => resolve(posts))},
         templateUrl: 'assets/components/item/items/post.html',
       }
-      // this.showAllExemplaryPosts = false
 		}
-
-    // function showAllExemplaryPosts(opts) {
-    //   opts.showAllExemplaryPosts = true;
-    // }
 
 		/**
 		 * Function will hide item from marketplace
