@@ -9,6 +9,7 @@
 // }
 
 .tabs-wrapper {
+	overflow: hidden;
 	background-color: $tab-background;
 	box-shadow: $ui-box-shadow;
 }
