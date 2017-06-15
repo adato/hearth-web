@@ -124,6 +124,9 @@ window['$$config'] = {
 	filterOptions: {
 		default: ['market', 'keywords', 'character', 'postType', 'postTime', 'author', 'location', 'postLanguage', 'saveFilter'],
 		search: ['fulltext', 'location', 'entityType']
+	},
+	usersNameList: {
+		initNameLimit: 3
 	}
 };
 
