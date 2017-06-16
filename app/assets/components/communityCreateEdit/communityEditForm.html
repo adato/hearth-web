@@ -177,7 +177,7 @@
 				<div class="flex-1">
 					<h2 translate="COMMUNITY_CHANGE_ADMIN"></h2>
 					<div class="medium-flex-grid" ng-if="community.member_count > 1">
-						<form ng-submit="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" name="delegateForm" class="flex-1">
+						<form ng-submit="confirmBox({title: 'COMMUNITY.DELEGATE_ADMIN_LABEL', text: 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', callback: change, params: adminChangeId, callbackScope: this})" name="delegateForm" class="flex-1">
 							<label class="block">
 								<span translate="COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN"></span> &nbsp;
 								<select ng-change="changeSelectValue(adminChangeId)" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
@@ -204,7 +204,7 @@
 					</div>
 					<div ng-if="community.member_count == 1" translate="COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE"></div>
 					<div class="flex flex-reverse">
-						<button ng-click="confirmBox('COMMUNITY.COMMUNITY_REMOVE_LABEL', 'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE', delete, null, this)" class="button right" translate="COMMUNITY_DELETE_BUTTON_ANYWAY"></button>
+						<button ng-click="confirmBox({title: 'COMMUNITY.COMMUNITY_REMOVE_LABEL', text: 'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE', callback: delete, callbackScope: this})" class="button right" translate="COMMUNITY_DELETE_BUTTON_ANYWAY"></button>
 					</div>
 				</div>
 			</div>

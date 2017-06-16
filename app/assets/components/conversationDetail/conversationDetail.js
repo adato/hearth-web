@@ -16,7 +16,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 			templateUrl: 'assets/components/conversationDetail/conversationDetail.html',
 			link: function($scope, element) {
 				// PSEUDO INJECTS
-				$scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
 				$scope.getProfileLink = $rootScope.getProfileLink;
 				$scope.loggedUser = $rootScope.loggedUser;
 				$scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
