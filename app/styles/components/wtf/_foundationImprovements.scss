@@ -8,6 +8,9 @@
 // 	}
 // }
 
+////////////////////////
+// TABS EXTENSION
+//
 .tabs-wrapper {
 	overflow: hidden;
 	background-color: $tab-background;
@@ -21,3 +24,12 @@
 		background: $tab-background-active;
 	}
 }
+@include breakpoint(medium up) {
+	.tabs-titles-wrapper {
+		// border-right: 1px solid $tab-background-active;
+	}
+	.tabs-content-wrapper {
+		border-left: 1px solid $tab-background-active;
+	}
+}
+/////////////
