@@ -34,7 +34,7 @@
 						<i class="fa fa-linkedin"></i>
 					</a>
 				</div>
-				<div ng-if="!mine" class="flex flex-divided-medium flex-center flex-wrap">
+				<div class="flex flex-divided-medium flex-center flex-wrap">
 					<button class="button hollow" ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})" ng-click="sendMessage(info)" translate="MESSAGE.CREATE.TO_COMMUNITY_ADMIN" translate-values="{actionAttrs: 'class=\'display-block margin-bottom-tiny\'', recipientAttrs: 'class=\'text-small\''}"></button>
 					<button class="button hollow" ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)" ng-click="sendMessage(info, {toAllMembers: true})" translate="MESSAGE.CREATE.TO_COMMUNITY_MEMBERS" translate-values="{actionAttrs: 'class=\'display-block margin-bottom-tiny\'', recipientAttrs: 'class=\'text-small\''}"></button>
 				</div>
