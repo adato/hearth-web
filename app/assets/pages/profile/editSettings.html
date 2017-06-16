@@ -26,16 +26,16 @@
 				<h2 translate="SETTINGS.NOTIFICATIONS.TITLE"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
           <label class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></span>
+            <h5 translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></h5>
             <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
           </label>
           <div class="block">
-            <span translate="SETTINGS.NOTIFICATIONS.WHICH"></span>
+            <h5 translate="SETTINGS.NOTIFICATIONS.WHICH"></h5>
 					</div>
 					<div class="medium-flex-grid">
 
 						<div class="flex-1 block">
-							<h5 translate="SETTINGS.NOTIFICATIONS.GIFTS_WISHES"></h5>
+							<h6 translate="SETTINGS.NOTIFICATIONS.GIFTS_WISHES"></h6>
 							<div class="box box--checkbox-list">
 					      <label>
 									<checkbox class="box box--checkbox" model="notify.send_emails.expiring" name="emailPostExpiring">
@@ -51,7 +51,7 @@
 						</div>
 
 						<div class="flex-1 block">
-							<h5 translate="SETTINGS.NOTIFICATIONS.CONVERSATIONS"></h5>
+							<h6 translate="SETTINGS.NOTIFICATIONS.CONVERSATIONS"></h6>
 							<div class="box box--checkbox-list">
 								<label>
 									<checkbox class="box box--checkbox" model="notify.send_emails.new_conversation" name="conversationNew">
