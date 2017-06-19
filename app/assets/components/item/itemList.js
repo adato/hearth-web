@@ -14,6 +14,9 @@
  *	cb: function
  * }
  *
+ * example:
+ *	<item-list options="ctrl.listOptions"></item-list>
+ *
  */
 angular.module('hearth.directives').directive('itemList', [
 	'$rootScope', '$q', '$timeout', 'ItemAux', '$compile', 'PostScope', '$templateRequest', '$document',

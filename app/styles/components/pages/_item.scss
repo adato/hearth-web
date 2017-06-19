@@ -22,8 +22,9 @@ $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 
 .entity-name,
 a.user {
-	color: $black;
+	font-size: $small-font-size;
 	font-weight: bold;
+	color: $black;
 }
 a.user {
 	display: block;

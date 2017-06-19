@@ -35,8 +35,16 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.oauthRegister = (provider, eulaAccepted) => {
 
 			if (!eulaAccepted) {
-				return $rootScope.confirmBox('AUTH.REGISTER.EULA.I_ACCEPT_EULA', 'AUTH.REGISTER.EULA.ACCEPTATION_TEXT', $scope.oauthRegister, [provider, true], $scope, false, {confirmText: 'AUTH.REGISTER.EULA.ACTION_AGREE', cancelText: 'AUTH.REGISTER.EULA.ACTION_DISAGREE', translationValues: '{attrs: "ng-click=showTerms()"}'})
-				// 'EULA.ACCEPTATION_TEXT',
+				return $rootScope.confirmBox({
+					title: 'AUTH.REGISTER.EULA.I_ACCEPT_EULA',
+					text: 'AUTH.REGISTER.EULA.ACCEPTATION_TEXT',
+					callback: $scope.oauthRegister,
+					params: [provider, true],
+					callbackScope: $scope,
+					confirmText: 'AUTH.REGISTER.EULA.ACTION_AGREE',
+					cancelText: 'AUTH.REGISTER.EULA.ACTION_DISAGREE',
+					translationValues: '{attrs: "ng-click=showTerms()"}'
+				})
 			}
 
 			// twitter works differently than google and facebook

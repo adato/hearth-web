@@ -6,6 +6,6 @@
 	<div translate="{{ text }}" translate-values="{{ translationValues }}" translate-compile></div>
 	<div class="display-flex flex-space-between flex-reverse">
     <button class="button" ng-click="confirm()" translate="{{ confirmText || 'OK' }}"></button>
-		<a class="revert-changes" ng-click="closeThisDialog()" translate="{{ cancelText || 'CANCEL' }}"></a>
+		<a class="revert-changes" ng-if="!hideCancel" ng-click="closeThisDialog()" translate="{{ cancelText || 'CANCEL' }}"></a>
 	</div>
 </div>

@@ -19,7 +19,7 @@
 				<h4>
 					<a href="{{:: getProfileLink(item._type, item._id) }}">{{item.name|ellipsis:24}}</a>
 				</h4>
-				<a class="mine" ng-click="confirmBox('PROFILE.STOP_FOLLOWING_DIALOG.TEXT', 'PROFILE.STOP_FOLLOWING_DIALOG.TEXT', removeFollower, [item._id, true], this)" translate="PROFILE.ACTION_UNFOLLOW"></a>
+				<a class="mine" ng-click="confirmBox({title: 'PROFILE.STOP_FOLLOWING_DIALOG.TEXT', text: 'PROFILE.STOP_FOLLOWING_DIALOG.TEXT', callback: removeFollower, params: [item._id, true], callbackScope: this})" translate="PROFILE.ACTION_UNFOLLOW"></a>
 			</div>
 		</div>
 	</div>
