@@ -27,10 +27,10 @@
     padding: $size-small;
 
     &.positive {
-      background-color: lighten($tertiary-color, 45%);
+      background-color: lighten($tertiary-color, 20%);
     }
     &.negative {
-      background-color: lighten($primary-color, 30%);
+      background-color: lighten($primary-color, 20%);
     }
 
   }

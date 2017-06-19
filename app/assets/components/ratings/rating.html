@@ -1,35 +1,44 @@
 <div class="rating">
-  <div class="block">
-    <div class="flex flex-divided-medium">
-      <div class="flex flex-divided-medium flex-1">
+  <div class="flex flex-space-between block">
+    <div class="flex flex-divided-medium flex-ellipsis-wrapper">
+      <div class="flex flex-divided-medium">
         <div class="rating-icon-bg left-aligned non-responsive">
           <i class="fa rating-icon"
              ng-class="vm.item.object.score == 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
         </div>
         <div info-box=":: vm.item.object.entity_from">
-          <div class="avatar-stack margin-left-small">
-            <avatar class="small-avatar-small" type="vm.item.object.entity_from._type" src="vm.item.object.entity_from.avatar.normal" size="small"></avatar>
-            <avatar class="small-avatar-small" type="vm.item.object.entity_to._type" src="vm.item.object.entity_to.avatar.normal" size="small"></avatar>
-          </div>
+          <avatar class="display-block small-avatar-small margin-left-small" type="vm.item.object.entity_from._type"
+                  src="vm.item.object.entity_from.avatar.normal"
+                  href="vm.getProfileLink(vm.item.object.entity_from._type, vm.item.object.entity_from._id)"
+                  size="small"></avatar>
         </div>
       </div>
-      <div class="color-dark-gray" ng-bind="vm.item.object.created_at | ago" title="{{:: vm.item.object.created_at | date:DATETIME_FORMATS.medium}}"></div>
-    </div>
-    <div>
-      <div ng-bind-html="vm.item.text"></div>
+      <div class="flex flex-wrap flex-ellipsis-wrapper">
+        <a class="entity-name oneliner full-width"
+           ui-sref="{{:: vm.item.object.entity_from._type === 'User' ? 'profile.default' : 'community.default' }}({id: vm.item.object.entity_from._id})"
+           ng-bind="vm.item.object.entity_from.name"></a>
+        <div>
+          <small class="color-dark-gray nowrap" ng-bind="vm.item.object.created_at | ago"
+                 title="{{:: vm.item.object.created_at | date:DATETIME_FORMATS.medium}}"></small>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div ng-bind-html="vm.item.text" class="header-margin"></div>
+
   <div class="rating-message" ng-class="vm.item.object.score === 1 ? 'positive' : 'negative'">
-    <b>
+    <h6>
       <span ng-if="vm.item.object.score === 1" translate="POSITIVE"></span>
       <span ng-if="vm.item.object.score === -1" translate="NEGATIVE"></span>
-    </b>
-    <small ng-if="vm.item.object.post_id" class="rating-relation">
-      &nbsp;{{:: 'RATING_TO_POST' | translate }}
-      <a href="{{:: vm.getProfileLink('Post', vm.item.object.post_id )}}" title="{{:: postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title }}">
-        {{:: postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title}}</a>.
-    </small>
+    </h6>
+    <h6 ng-if="vm.item.object.post_id" class="rating-relation">
+      {{:: 'RATING_TO_POST' | translate }}
+      <a href="{{:: vm.getProfileLink('Post', vm.item.object.post_id )}}"
+         title="{{:: vm.postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title }}">
+        {{:: vm.postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] |
+        translate}} {{:: vm.item.object.post.title}}</a>.
+    </h6>
     <div ng-bind-html=":: vm.item.object.text"></div>
   </div>
 </div>
