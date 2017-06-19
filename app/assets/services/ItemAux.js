@@ -72,6 +72,7 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 				disableLoading: true,
 			  getData: () => {return $q((resolve, reject) => resolve(posts))},
 			  templateUrl: 'assets/components/item/items/post.html',
+				bindToScope: {viewActivityMeta: {context: 'exemplary'}}
 			}
 		}
 

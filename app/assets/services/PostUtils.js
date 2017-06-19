@@ -34,13 +34,13 @@ angular.module('hearth.services').factory('PostUtils', ['$analytics', '$window',
 	 *	Function that logs to mixpanel that a post has been viewed
 	 *	Logs the posts ID and the current url
 	 */
-	function logViewActivity(item) {
-		$analytics.eventTrack('post-viewed', {
+	function logViewActivity(item, meta = {context: 'default'}) {
+		$analytics.eventTrack('post-viewed', angular.merge(meta, {
 			id: item._id,
 			url: $window.location.pathname + $window.location.search,
 			state: $state.current.name,
 			params: $state.params
-		})
+		}))
 	}
 
 }])

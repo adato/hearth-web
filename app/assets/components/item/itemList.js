@@ -11,6 +11,7 @@
  * 	getParams: {},
  * 	getData: $resource function,
  * 	templateUrl: String,
+ *	bindToScope: {}, // object that will be merged to post scope
  *	cb: function
  * }
  *
@@ -57,6 +58,7 @@ angular.module('hearth.directives').directive('itemList', [
 						var fragment = document.createDocumentFragment();
 						items.forEach(function(item) {
 							let _scope = PostScope.getPostScope(item, $rootScope);
+							angular.merge(_scope, scope.options.bindToScope || {})
 							_scope.delayedView = false;
 							_scope.inactivateTags = !!scope.options.inactivateTags;
 							compiledTemplate(_scope, clone => {
