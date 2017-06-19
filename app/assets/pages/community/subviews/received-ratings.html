@@ -1,7 +1,7 @@
 <div ng-include="'assets/pages/community/subviews/ratingsPanel.html'"></div>
 <div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! data.length">
 	<div class="item">
-		<p translate="PROFILE.POSTS.NO_RECEIVED_RATINGS_ME"></p>
+		<p translate="PROFILE.RATING.NO_RECEIVED_RATINGS_ME"></p>
 	</div>
 </div>
 <div class="ratings-received row rating-item margin-bottom-large" id="received-rating-form" ng-show="showUserRatingForm && ! mine">
@@ -20,11 +20,11 @@
 	<section class="large-10 small-12 columns rating-call-to-action" ng-if="!showUserRatingForm && ! mine && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
-				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}
+				<span translate="PROFILE.RATING.CALL_TO_ACTION"></span>
 				<br />
 				<br />
 				<a href="" ng-click="openUserRatingForm()">
-					<b>{{:: 'THUMB_UP' | translate }}</b>
+					<b translate="PROFILE.ACTION_FEEDBACK"></b>
 				</a>
 			</div>
 		</div>

@@ -1,37 +1,40 @@
 <div loading show="!profileLoaded"></div>
 <div class="community-view profile-common" ng-if="profileLoaded" ng-class="{'mine': mine, 'others': !mine}">
 	<div class="user" ng-if="! info">
-		<p>{{:: 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
+		<p>{{:: 'COMMUNITY.NOTIFY.ERROR_NOT_FOUND' | translate }}</p>
 	</div>
 	<header ng-if="info" class="margin-bottom-large">
 		<div class="user-basic large-12 columns">
       <div class="display-medium-flex flex-space-between">
         <h1>
           <a dont-jump-top href="{{:: communityLink }}">
-            <span>{{:: info.name }}</span>
+          	<span>{{:: info.name }}</span>
           </a>
         </h1>
         <div class="button-group large display-inline-flex">
-          <button ng-if="!mine" class="button" ng-click="openUserRatingForm()">
-            {{:: 'THUMB_UP' | translate }}
-          </button>
+          <button ng-if="!mine" class="button" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK "></button>
           <button class="hollow button" ng-if="!mine && info.is_member" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})">
-            <i class="fa fa-minus"></i> {{:: 'LEAVE_COMMUNITY' | translate}}
+            <i class="fa fa-minus"></i>
+            <span translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></span>
           </button>
           <button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="hollow button">
-            <i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLY' | translate}}
+            <i class="fa fa-plus"></i>
+            <span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
           </button>
           <button ng-if="!mine && info.is_applicant" class="hollow button">
-            <i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
+            <i class="fa fa-plus"></i>
+            <span translate="COMMUNITY.APPLY_FOR_MEMBERSHIP_SENT"></span>
           </button>
           <a href="{{:: communityLink }}/invite-friends" class="right" ng-if="false">
             <button class="button">
-              <i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}
+              <i class="fa fa-share"></i>
+              <span translate="COMMUNITY.ACTION_INVITE_FRIENDS"></span>
             </button>
           </a>
           <a ng-if="mine" href="{{:: communityLink }}/edit">
             <button class="button secondary">
-              <i class="fa fa-gears"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}
+              <i class="fa fa-gears"></i>
+              <span translate="PROFILE.ACTION_EDIT"></span>
             </button>
           </a>
         </div>
@@ -62,7 +65,8 @@
 				<a dont-jump-top href="{{:: communityLink }}/received-ratings" class="bubble small" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}">
 					<span>
 						<b>{{ info.received_ratings_count }}</b>
-						<br /> {{:: 'COMMUNITY_RATINGS' | translate}}
+						<br />
+						<span translate="PROFILE.X_RATINGS"></span>
 					</span>
 				</a>
 			</span>
@@ -70,12 +74,13 @@
 				<a dont-jump-top href="{{:: communityLink }}/about" class="bubble small move-down" ng-class="{'active': (activePage == 'about')}">
 					<span>
 						<b>?</b>
-						<br /> {{:: 'COMMUNITY_ABOUT_SHORT' | translate}}
+						<br />
+						<span translate="COMMUNITY.PROFILE.SHORT_ABOUT"></span>
 					</span>
 				</a>
 			</span>
 			<a dont-jump-top href="{{:: communityLink }}/received-ratings">
-				<div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
+				<div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'PROFILE.POSITIVE_FEEDBACK_COUNT' | translate }}: {{ info.up_votes }} | {{ 'PROFILE.NEGATIVE_FEEDBACK_COUNT' | translate }}: {{ info.down_votes }}">
 					<span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
 						<span>{{ info.karma }}%
 							<i class="fa icon-rating-positive"></i>
@@ -86,12 +91,8 @@
 							<i class="fa icon-rating-negative"></i> {{100 - info.karma}}%
 						</span>
 					</span>
-					<span class="empty" ng-if="info.karma == null && mine">
-						{{:: 'COMMUNITY_PROFILE.TOP.KARMA_NO_RATING_ME' | translate }}
-					</span>
-					<span class="empty" ng-if="info.karma == null && !mine">
-						{{:: 'COMMUNITY_PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
-					</span>
+					<span class="empty" ng-if="info.karma == null && mine" translate="COMMUNITY.PROFILE.NO_RATING_ME"></span>
+					<span class="empty" ng-if="info.karma == null && !mine" translate="COMMUNITY.PROFILE.NO_RATING_OTHER"></span>
 				</div>
 			</a>
 		</div>
