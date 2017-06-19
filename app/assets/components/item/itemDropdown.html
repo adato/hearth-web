@@ -32,7 +32,7 @@
     <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
       <hr />
     </li>
-    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.item.edited_by_admin">
       <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.SUSPEND.LABEL"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
