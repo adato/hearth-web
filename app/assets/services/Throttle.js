@@ -6,20 +6,29 @@
  * @description throttle function
  */
 
-angular.module('hearth.services').service('Throttle', [
-	function() {
-		this.go = function(callback, limit) {
-			var wait = false;
-			limit = limit || 10;
-			return function() {
-				if (!wait) {
-					callback.call();
-					wait = true;
-					setTimeout(function() {
-						wait = false;
-					}, limit);
-				}
-			}
-		};
+angular.module('hearth.services').factory('Throttle', [function() {
+
+	const factory = {
+		go
 	}
-]);
+
+	return factory
+
+	//////////////
+
+	function go(callback, limit = 10) {
+		var wait = false
+		return function() {
+			if (wait) return
+			callback.call()
+			wait = true
+			setTimeout(() => {
+				wait = false
+
+				// call the callback after waiting to make sure we didn't miss something
+				callback.call()
+			}, limit)
+		}
+	}
+
+}])
