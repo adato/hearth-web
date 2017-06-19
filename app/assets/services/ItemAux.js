@@ -70,13 +70,13 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 			this.template = $templateCache.get('assets/components/item/items/exemplaryPosts.html')
 			this.topListOptions = {
 				disableLoading: true,
-			  getData: () => {return $q((resolve, reject) => resolve(posts))},
+			  getData: () => {return $q((resolve, reject) => resolve(posts.main))},
 			  templateUrl: 'assets/components/item/items/post.html',
 			}
       this.addListOptions = {
-			  // when API will support, this will be changed to get additional exemplary posts only
         disableLoading: true,
-        getData: () => {return $q((resolve, reject) => resolve(posts))},
+        getData: () => {return $q((resolve, reject) => resolve(posts.additional))},
+        isEmpty: !posts.additional.length,
         templateUrl: 'assets/components/item/items/post.html',
       }
 		}
