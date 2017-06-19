@@ -32,11 +32,11 @@
     <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
       <hr />
     </li>
-    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
-      <a class="elevated-authority-function" ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id))">
-        <span ng-if="ctrl.isActive" translate="POST.SUSPEND.LABEL"></span>
-        <span ng-if="!ctrl.isActive" translate="POST.RESUME.LABEL"></span>
-      </a>
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
+      <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.SUSPEND.LABEL"></a>
+    </li>
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
+      <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.RESUME.LABEL"></a>
     </li>
     <!-- TODO: in future there will be another user privilegs then post.suspend -->
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
