@@ -17,7 +17,8 @@ angular.module('hearth.directives').directive('actionWhenVisible', ['ViewportUti
       var actionInited = false
 
       // bind watch and do an initial call
-      const watcher = angular.element($window).on('scroll', Throttle.go(actionIniter, 400))
+      const watcher = Throttle.go(actionIniter, 400)
+			angular.element($window).on('scroll', watcher)
       $timeout(actionIniter, 1000)
 
       function actionIniter() {
@@ -30,9 +31,8 @@ angular.module('hearth.directives').directive('actionWhenVisible', ['ViewportUti
         }
       }
 
-      scope.$on('$destroy', function() {
-        console.log('destroying');
-        watcher()
+      scope.$on('$destroy', () => {
+				angular.element($window).off('scroll', watcher)
       })
 
     }
