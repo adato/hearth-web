@@ -42,13 +42,13 @@
 											</li>
 											<li>
 												<!-- flag post -->
-												<a ng-if="! isMine && item.spam_reported" title="{{:: 'POST.DETAIL.ALREADY_FLAGGED' | translate}}" tipsy disabled translate="POST.ACTION_FLAG"></a>
-												<a ng-if="! isMine && !item.spam_reported" title="{{:: 'POST.DETAIL.FLAG_POST_TITLE' | translate}}" ng-click="openReportBox(item)" translate="POST.ACTION_FLAG"></a>
+												<a ng-if="! isMine && item.spam_reported" title="{{:: 'POST.FLAG.ALREADY_FLAGGED' | translate}}" tipsy disabled translate="POST.ACTION_FLAG"></a>
+												<a ng-if="! isMine && !item.spam_reported" title="{{:: 'POST.FLAG.TITLE' | translate}}" ng-click="openReportBox(item)" translate="POST.ACTION_FLAG"></a>
 												<!-- flag post -->
 											</li>
 											<li>
 												<!-- hide post -->
-												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'POST.DETAIL.HIDE_POST_TITLE' | translate}}" ng-click="confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ItemAux.hideItem, params: item, callbackScope: this})" translate="POST.ACTION_HIDE"></a>
+												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'POST.HIDE.TITLE' | translate}}" ng-click="confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ItemAux.hideItem, params: item, callbackScope: this})" translate="POST.ACTION_HIDE"></a>
 												<!-- /hide post -->
 											</li>
 											<li>
@@ -97,8 +97,8 @@
 										{{:: item.title}}
 									</h1>
 									<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
-									<span class="validity-warning" ng-if="isExpiringSoon" translate="POST.DETAIL.EXPIRING_SOON"></span>
-									<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error" translate="POST.DETAIL.SUSPENDED_BY_ADMIN"></div>
+									<span class="validity-warning" ng-if="isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
+									<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 									<!-- TODO!!! add ngif and data -->
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 								</div>

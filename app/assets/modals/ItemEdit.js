@@ -338,10 +338,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.processResult = function(data, post) {
 			$rootScope.globalLoading = false;
 
-			// if($scope.post._id)
-			// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
-			// else
-			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 			$timeout(function() {
 				$scope.closeThisDialog();
 			});
