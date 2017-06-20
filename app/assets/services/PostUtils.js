@@ -35,6 +35,7 @@ angular.module('hearth.services').factory('PostUtils', ['$analytics', '$window',
 	 *	Logs the posts ID and the current url
 	 */
 	function logViewActivity(item, meta = {context: 'default'}) {
+    if (meta.context !== 'default' && $state.current.name !== 'market') console.warn('KEK', item, meta)
 		$analytics.eventTrack('post-viewed', angular.merge(meta, {
 			id: item._id,
 			url: $window.location.pathname + $window.location.search,
