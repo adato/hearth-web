@@ -38,10 +38,6 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.logViewActivity = PostUtils.logViewActivity
 			angular.extend(scope, ItemServices)
 
-			// scope.item.updated_at_date = $filter('date')(scope.item.updated_at, $locale.DATETIME_FORMATS.medium);
-			// scope.item.text_parsed = $filter('nl2br')($filter('linky')(scope.item.text, '_blank'));
-			// scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
-			// scope.item.text_short_parsed = $filter('linky')(scope.item.text_short, '_blank');
 			ItemAux.extendForDisplay(scope.item)
 
 			var timeout = null;

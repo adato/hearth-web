@@ -7,24 +7,26 @@
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('actionWhenVisible', ['ViewportUtils', '$window', 'Throttle', '$timeout', function(ViewportUtils, $window, Throttle, $timeout) {
+angular.module('hearth.directives').directive('actionWhenVisible', ['ViewportUtils', '$window', 'Throttle', function(ViewportUtils, $window, Throttle) {
 
 	return {
 		restrict: 'A',
-		scope: {},
+		scope: {
+			actionWhenVisible: '&'
+		},
 		link: function(scope, element, attrs) {
 
       var actionInited = false
 
       // bind watch and do an initial call
-      const watcher = Throttle.go(actionIniter, 400)
+      const watcher = Throttle.go(actionIniter, 200)
 			angular.element($window).on('scroll', watcher)
-      $timeout(actionIniter, 1000)
+      actionIniter
 
       function actionIniter() {
         const isIn = ViewportUtils.isInViewport(element[0])
         if (!actionInited && isIn) {
-          scope.$eval(attrs.actionWhenVisible)
+          scope.actionWhenVisible()
           actionInited = true
         } else if (actionInited && !isIn) {
           actionInited = false
