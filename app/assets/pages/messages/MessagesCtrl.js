@@ -201,9 +201,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 						id: $state.params.id || res[0]._id
 					});
 				}
-				console.log(resetId);
 				if (resetId && $window.matchMedia('(min-width: 960px)').matches) {
-					console.log('ano');
 					return $state.go('messages.detail', {id: res[0]._id});
 				}
 			});
