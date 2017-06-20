@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'ItemAux', 'PostUtils',
-	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList, ItemAux, PostUtils) {
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'ItemAux', 'PostUtils', '$state',
+	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList, ItemAux, PostUtils, $state) {
 
 		const factory = {
 			getPostScope
@@ -26,6 +26,7 @@ angular.module('hearth.services').factory('PostScope', [
 			var scope = $scope.$new(true)
 
 			scope.config = $rootScope.config
+			scope.$state = $state
 			scope.keywords = $scope.keywordsActive
 			scope.item = post
 			scope.toggleTag = Filter.toggleTag

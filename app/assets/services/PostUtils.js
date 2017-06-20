@@ -34,13 +34,10 @@ angular.module('hearth.services').factory('PostUtils', ['$analytics', '$window',
 	 *	Function that logs to mixpanel that a post has been viewed
 	 *	Logs the posts ID and the current url
 	 */
-	function logViewActivity(item, meta = {context: 'default'}) {
-    if (meta.context !== 'default' && $state.current.name !== 'market') console.warn('KEK', item, meta)
+	function logViewActivity({item, meta = {context: 'default'}, state}) {
 		$analytics.eventTrack('post-viewed', angular.merge(meta, {
 			id: item._id,
-			url: $window.location.pathname + $window.location.search,
-			state: $state.current.name,
-			params: $state.params
+      state
 		}))
 	}
 
