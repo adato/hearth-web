@@ -26,7 +26,7 @@ angular.module('hearth.services').factory('PostScope', [
 			var scope = $scope.$new(true)
 
 			scope.config = $rootScope.config
-			scope.$state = $state
+			scope.stateName = $state.current.name
 			scope.keywords = $scope.keywordsActive
 			scope.item = post
 			scope.toggleTag = Filter.toggleTag
