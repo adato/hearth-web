@@ -26,31 +26,45 @@
 				<h2 translate="SETTINGS.NOTIFICATIONS.TITLE"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
           <label class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></span>
+            <h5 translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></h5>
             <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
           </label>
-          <div class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="SETTINGS.NOTIFICATIONS.WHICH"></span>
+          <div class="block">
+            <h5 translate="SETTINGS.NOTIFICATIONS.WHICH"></h5>
 					</div>
-          <div>
-						<checkbox model="notify.send_emails.expiring" name="emailPostExpiring">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRING_POSTS"></span>
-						</checkbox>
-					</div>
-					<div>
-						<checkbox model="notify.send_emails.expired" name="emailPostExpired">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRED_POSTS"></span>
-						</checkbox>
-					</div>
-					<div>
-						<checkbox model="notify.send_emails.new_conversation" name="conversationNew">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_CONVERSATION"></span>
-						</checkbox>
-					</div>
-					<div>
-						<checkbox model="notify.send_emails.new_message" name="conversationUpdate">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
-						</checkbox>
+					<div class="medium-flex-grid">
+
+						<div class="flex-1 block">
+							<h6 translate="SETTINGS.NOTIFICATIONS.GIFTS_WISHES"></h6>
+							<div class="box box--checkbox-list">
+					      <label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.expiring" name="emailPostExpiring">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRING_POSTS"></span>
+									</checkbox>
+								</label>
+								<label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.expired" name="emailPostExpired">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRED_POSTS"></span>
+									</checkbox>
+								</label>
+							</div>
+						</div>
+
+						<div class="flex-1 block">
+							<h6 translate="SETTINGS.NOTIFICATIONS.CONVERSATIONS"></h6>
+							<div class="box box--checkbox-list">
+								<label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.new_conversation" name="conversationNew">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_CONVERSATION"></span>
+									</checkbox>
+								</label>
+								<label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.new_message" name="conversationUpdate">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
+									</checkbox>
+								</label>
+							</div>
+						</div>
 					</div>
 					<div class="flex flex-reverse">
 						<button type="submit" class="button" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1" translate="COMMON.ACTION_SAVE"></button>
