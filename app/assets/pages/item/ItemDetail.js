@@ -131,13 +131,13 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.setTitle = function(data) {
 			// Post NOT FOUND
 			if (data && data.status === 404) {
-				return PageTitle.setTranslate("POST_NOT_FOUND", "");
+				return PageTitle.setTranslate("POST.NOTIFY.ERROR_NOT_FOUND", "");
 			}
 			if (data && data.state === "expired") {
-				return PageTitle.setTranslate("POST_HAS_ALREADY_EXPIRED", "");
+				return PageTitle.setTranslate("POST.NOTIFY.EXPIRED", "");
 			}
 			if (data && data.state === "suspended") {
-				return PageTitle.setTranslate("POST_WAS_SUSPENDED", "");
+				return PageTitle.setTranslate("POST.NOTIFY.SUSPENDED", "");
 			}
 
 			// Post found
