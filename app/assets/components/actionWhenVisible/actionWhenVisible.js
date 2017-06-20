@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('actionWhenVisible', ['ViewportUti
 
 	return {
 		restrict: 'A',
-		// scope: {},
+		scope: {},
 		link: function(scope, element, attrs) {
 
       var actionInited = false

@@ -36,7 +36,7 @@ angular.module('hearth.services').factory('PostUtils', ['$analytics', '$window',
 	 */
 	function logViewActivity({item, meta = {context: 'default'}, state}) {
     if (meta.context !== 'default' && state !== 'market') console.warn('invalid combo', item, meta, state)
-		$analytics.eventTrack('post-viewed', angular.merge(meta, {
+		$analytics.eventTrack('post-viewed', angular.merge({}, meta, {
 			id: item._id,
       state
 		}))

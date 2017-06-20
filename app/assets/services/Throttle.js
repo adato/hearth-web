@@ -6,7 +6,7 @@
  * @description throttle function
  */
 
-angular.module('hearth.services').factory('Throttle', [function() {
+angular.module('hearth.services').factory('Throttle', ['$timeout', '$rootScope', function($timeout, $rootScope) {
 
 	const factory = {
 		go
@@ -22,7 +22,7 @@ angular.module('hearth.services').factory('Throttle', [function() {
 			if (wait) return
 			callback.call()
 			wait = true
-			setTimeout(() => {
+			$timeout(() => {
 				wait = false
 
 				// call the callback after waiting to make sure we didn't miss something
