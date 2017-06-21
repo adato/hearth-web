@@ -30,9 +30,12 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     const getTypographiesData = () => {
       return [
-        {code: '<h1>Pro lidi s otevřeným srdcem</h1>', name: 'Header 1'},
-        {code: '<h2>Sdílejte dary a přání</h2>', name: 'Header 2'},
-        {code: '<h3>Prostor pro lidi s otevřeným srdcem</h3>', name: 'Header 3'},
+        {name: 'Header 1', code: '<div class="primary-header">Pro lidi s otevřeným srdcem</div>'},
+        {name: 'Header 2', code: '<h2 class="secondary-header">Sdílejte dary a přání</h2>'},
+        {name: 'Header 3', code: '<h3 class="tertiary-header">Prostor pro lidi s otevřeným srdcem</h3>'},
+        {name: 'Header 4', code: '<h4 class="quaternary-header">Prostor pro lidi s otevřeným srdcem</h4>'},
+        {name: 'Header 5', code: '<h5 class="quinary-header">Prostor pro lidi s otevřeným srdcem</h5>'},
+        {name: 'Header 6', code: '<h6 class="senary-header">Prostor pro lidi s otevřeným srdcem</h6>'},
         {
           code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>',
           name: 'Paragraph'
