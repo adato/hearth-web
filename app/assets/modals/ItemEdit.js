@@ -172,37 +172,42 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.cleanNullLocations = function(loc) {
 			for (var i = 0; i < loc.length; i++) {
 				if (!loc[i].coordinates) {
-					loc.splice(i, 1);
-					i--;
+					loc.splice(i, 1)
+					i--
 				}
 			}
-			return loc;
-		};
+			return loc
+		}
 
 		$scope.setCharacter = character => {
-			$scope.post.character.length = 0;
-			$scope.post.character.push(character.name);
-			$scope.checkCharacter();
-		};
+			$scope.post.character.length = 0
+			$scope.post.character.push(character.name)
+			$scope.checkCharacter()
+		}
 		$scope.checkCharacter = function() {
-			var count = ($scope.post.character || []).length;
+			const count = ($scope.post.character || []).length
 
-			if (!count) {
-				$scope.createAdForm.character.$invalid = true;
-				$scope.createAdForm.character.$setValidity('required', false);
-				$scope.createAdForm.character.$setValidity('max', true);
-			} else if (count > 1) {
-				$scope.createAdForm.character.$invalid = true;
-				$scope.createAdForm.character.$setValidity('required', true);
-				$scope.createAdForm.character.$setValidity('max', false);
-			} else {
-				$scope.createAdForm.character.$invalid = false;
-				$scope.createAdForm.character.$setValidity('required', true);
-				$scope.createAdForm.character.$setValidity('max', true);
+			// since the form is now split into two parts, we have to check whether
+			// we even have the character model created yet
+			if ($scope.createAdForm.character) {
+				if (!count) {
+					$scope.createAdForm.character.$invalid = true
+					$scope.createAdForm.character.$setValidity('required', false)
+					$scope.createAdForm.character.$setValidity('max', true)
+				} else if (count > 1) {
+					$scope.createAdForm.character.$invalid = true
+					$scope.createAdForm.character.$setValidity('required', true)
+					$scope.createAdForm.character.$setValidity('max', false)
+				} else {
+					$scope.createAdForm.character.$invalid = false
+					$scope.createAdForm.character.$setValidity('required', true)
+					$scope.createAdForm.character.$setValidity('max', true)
+				}
+
+				return $scope.createAdForm.character.$invalid
 			}
-
-			return $scope.createAdForm.character.$invalid;
-		};
+			return true
+		}
 
 		/**
 		 * Transform - deserialize post to object which can be used in application

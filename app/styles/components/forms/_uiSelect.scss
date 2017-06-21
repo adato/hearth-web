@@ -137,3 +137,185 @@
 		}
 	}
 }
+
+.ui-select-scope-wrapper {
+
+	.select2-choice {
+		display: block;
+		color: $black;
+		size: $global-font-size;
+		min-height: 28px;
+		line-height: 28px;
+		padding-left: $size-small;
+	}
+	// .ui-select-focusser {
+	// 	max-width: 10rem;
+	// 	border: none;
+	// 	box-shadow: none;
+	// }
+	/*!
+	 * ui-select
+	 * http://github.com/angular-ui/ui-select
+	 * Version: 0.19.7 - 2017-04-15T14:28:36.790Z
+	 * License: MIT
+	 */
+
+
+	/* Style when highlighting a search. */
+	.ui-select-highlight {
+	  font-weight: bold;
+	}
+
+	.ui-select-offscreen {
+	  clip: rect(0 0 0 0) !important;
+	  width: 1px !important;
+	  height: 1px !important;
+	  border: 0 !important;
+	  margin: 0 !important;
+	  padding: 0 !important;
+	  overflow: hidden !important;
+	  position: absolute !important;
+	  outline: 0 !important;
+	  left: 0px !important;
+	  top: 0px !important;
+	}
+
+
+	.ui-select-choices-row:hover {
+	  background-color: #f5f5f5;
+	}
+
+	/* Select2 theme */
+
+	/* Mark invalid Select2 */
+	.ng-dirty.ng-invalid > a.select2-choice {
+	    border-color: #D44950;
+	}
+
+	.select2-result-single {
+	  padding-left: 0;
+	}
+
+	.select2-locked > .select2-search-choice-close{
+	  display:none;
+	}
+
+	.select-locked > .ui-select-match-close{
+	    display:none;
+	}
+
+	body > .select2-container.open {
+	  z-index: 9999; /* The z-index Select2 applies to the select2-drop */
+	}
+
+	/* Handle up direction Select2 */
+	.ui-select-container[theme="select2"].direction-up .ui-select-match,
+	.ui-select-container.select2.direction-up .ui-select-match {
+	    border-radius: 4px; /* FIXME hardcoded value :-/ */
+	    border-top-left-radius: 0;
+	    border-top-right-radius: 0;
+	}
+	.ui-select-container[theme="select2"].direction-up .ui-select-dropdown,
+	.ui-select-container.select2.direction-up .ui-select-dropdown {
+	    border-radius: 4px; /* FIXME hardcoded value :-/ */
+	    border-bottom-left-radius: 0;
+	    border-bottom-right-radius: 0;
+
+	    border-top-width: 1px;  /* FIXME hardcoded value :-/ */
+	    border-top-style: solid;
+
+	    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+
+	    margin-top: -4px; /* FIXME hardcoded value :-/ */
+	}
+	.ui-select-container[theme="select2"].direction-up .ui-select-dropdown .select2-search,
+	.ui-select-container.select2.direction-up .ui-select-dropdown .select2-search {
+	    margin-top: 4px; /* FIXME hardcoded value :-/ */
+	}
+	.ui-select-container[theme="select2"].direction-up.select2-dropdown-open .ui-select-match,
+	.ui-select-container.select2.direction-up.select2-dropdown-open .ui-select-match {
+	    border-bottom-color: #5897fb;
+	}
+
+	.ui-select-container[theme="select2"] .ui-select-dropdown .ui-select-search-hidden,
+	.ui-select-container[theme="select2"] .ui-select-dropdown .ui-select-search-hidden input{
+	    opacity: 0;
+	    height: 0;
+	    min-height: 0;
+	    padding: 0;
+	    margin: 0;
+	    border:0;
+	}
+
+	.select2-container .select2-choice .select2-arrow {
+	    display: inline-block;
+	    width: 18px;
+	    height: 100%;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+
+	    // border-left: 1px solid #aaa;
+	    border-radius: 0 4px 4px 0;
+		//
+	    background-clip: padding-box;
+
+		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+		background-repeat: no-repeat;
+		background-size: 9px 6px;
+		background-position: 5px center;
+		padding-right: 1.5rem;
+
+	    // background: #ccc;
+	    // background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee));
+	    // background-image: -webkit-linear-gradient(center bottom, #ccc 0%, #eee 60%);
+	    // background-image: -moz-linear-gradient(center bottom, #ccc 0%, #eee 60%);
+	    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#cccccc', GradientType = 0);
+	    // background-image: linear-gradient(top, #ccc 0%, #eee 60%);
+	}
+
+	.select2-container .select2-choice .select2-arrow b {
+	    display: block;
+	    width: 100%;
+	    height: 100%;
+	    background: url('select2.png') no-repeat 0 1px;
+	}
+
+
+	/* Spinner */
+	.ui-select-refreshing.glyphicon {
+	    position: absolute;
+	    right: 0;
+	    padding: 8px 27px;
+	 }
+
+	@-webkit-keyframes ui-select-spin {
+	  0% {
+	    -webkit-transform: rotate(0deg);
+	    transform: rotate(0deg);
+	  }
+	  100% {
+	    -webkit-transform: rotate(359deg);
+	    transform: rotate(359deg);
+	  }
+	}
+	@keyframes ui-select-spin {
+	  0% {
+	    -webkit-transform: rotate(0deg);
+	    transform: rotate(0deg);
+	  }
+	  100% {
+	    -webkit-transform: rotate(359deg);
+	    transform: rotate(359deg);
+	  }
+	}
+
+	.ui-select-spin {
+	  -webkit-animation: ui-select-spin 2s infinite linear;
+	  animation: ui-select-spin 2s infinite linear;
+	}
+
+	.ui-select-refreshing.ng-animate {
+	  -webkit-animation: none 0s;
+	}
+}
