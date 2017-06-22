@@ -186,7 +186,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.showError.user_language = true;
 			}
 
-
 			if (!$scope.validateSocialNetworks()) {
 				res = false;
 			}
@@ -212,7 +211,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$rootScope.globalLoading = true
 
 			transformedData = transferDataOut(angular.copy($scope.profile))
-			console.log('data',transformedData);
 			const actions = {
 				user: User.edit(transformedData).$promise
 			}
