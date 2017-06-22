@@ -36,75 +36,78 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.userLanguage = []
 
 
-		$scope.loadLanguages = function(query) {
-			var languages = $scope.languageList;
-
-			return languages.filter(function(lang) {
-				return lang.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
-			});
-		};
+		// USED BY TAG PICKER (that has been removed)
+		// $scope.loadLanguages = function(query) {
+		// 	var languages = $scope.languageList;
+		//
+		// 	return languages.filter(function(lang) {
+		// 		return lang.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
+		// 	});
+		// };
 
 		$scope.init = function() {
 
-			UnauthReload.check();
+			UnauthReload.check()
 
-			User.getFullInfo(function(res) {
-				$scope.profile = transformDataIn(res);
-				$scope.loaded = true;
-			}, function(res) {});
-		};
+			User.getFullInfo().$promise.then(res => {
+				$scope.profile = transformDataIn(res)
+				$scope.loaded = true
+			}).catch(err => {
+				console.error('error getting user info:', err)
+			})
+		}
 
 		function transformDataIn(data) {
 
 			data = ProfileUtils.transformDataForUsage({
 				type: ProfileUtils.params.PROFILE_TYPES.USER,
 				profile: data
-			});
+			})
 
 			if (typeof data.user_languages != 'undefined' && data.user_languages.length) {
 				data.user_languages.forEach(function(userLang) {
 					$scope.userLanguage.push({
-						'code': userLang,
-						'name': $translate.instant('MY_LANG.' + userLang)
-					});
-				});
+						code: userLang,
+						name: $translate.instant('MY_LANG.' + userLang)
+					})
+				})
 			}
 
-			$scope.showContactMail = data.contact_email && data.contact_email != '';
-			return data;
-		};
+			$scope.showContactMail = data.contact_email && data.contact_email != ''
+			return data
+		}
 
 		$scope.avatarUploadFailed = function(err) {
-			$scope.uploadingInProgress = false;
-		};
+			$scope.uploadingInProgress = false
+		}
 
 		$scope.avatarUploadStarted = function(argument) {
-			$scope.uploadingInProgress = true;
-		};
+			$scope.uploadingInProgress = true
+		}
 
 		$scope.avatarUploadSucceeded = function(event) {
-			$scope.profile.avatar = angular.fromJson(event.target.responseText);
-			$scope.uploadingInProgress = false;
-		};
+			$scope.profile.avatar = angular.fromJson(event.target.responseText)
+			$scope.uploadingInProgress = false
+		}
 
 		$scope.updateUrl = function($event, model, key) {
-			var input = $($event.target),
-				url = input.val();
+			var input = $($event.target)
+			var url = input.val()
 
 			if (url && !url.match(/http[s]?:\/\/.*/)) {
-				url = 'http://' + url;
+				url = 'http://' + url
 			}
 
 			if (model !== $scope.profile.webs) {
 				// editing social network, not webs
-				$scope.showError.social_networks[key] = !Validators.social(url, key);
+				$scope.showError.social_networks[key] = !Validators.social(url, key)
 			} else {
 				// editing webs
-				$scope.showError.social_networks['webs'] = !Validators.url(url);
+				$scope.showError.social_networks['webs'] = !Validators.url(url)
 			}
 
-			model[key] = url;
-		};
+			model[key] = url
+		}
 
 		$scope.validatePhone = function(event) {
 			$scope.showError.phone = true;
@@ -160,42 +163,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 		};
 
-		$scope.transferDataOut = function(data) {
-			var webs = [];
-			var interests = [];
-
-			// remove empty webs
-			data.webs.forEach(function(web) {
-				if (web) webs.push(web);
-			});
-			data.webs = webs;
-
-			if (data.phone) {
-				data.phone = '+' + data.phone;
-			}
-
-			if (!data.interests) {
-				data.interests = [];
-			} else {
-				for (var i = data.interests.length; i--;) {
-					data.interests[i] = data.interests[i].term;
-				}
-			}
-
-			data.user_languages = [];
-			$scope.userLanguage.forEach(function(userLang) {
-				data.user_languages.push(userLang.code);
-			});
-
-			// avatar
-			if (data.avatar && data.avatar.public_avatar_url) {
-				data.public_avatar_url = data.avatar.public_avatar_url;
-			}
-			delete data.avatar;
-
-			return data;
-		};
-
 		$scope.validateData = function(data) {
 			var res = true;
 
@@ -231,25 +198,26 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			return res;
 		};
 
-		$scope.update = function() {
-			var transformedData;
+		$scope.update = () => {
+			var transformedData
 
 			if (!$scope.validateData($scope.profile)) {
-				Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.ERROR_FORM_HAS_ERRORS', Notify.T_ERROR);
-				$rootScope.scrollToError();
-				return false;
+				Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.ERROR_FORM_HAS_ERRORS', Notify.T_ERROR)
+				$rootScope.scrollToError()
+				return false
 			}
 
-			if ($scope.sending) return false;
-			$scope.sending = true;
-			$rootScope.globalLoading = true;
+			if ($scope.sending) return false
+			$scope.sending = true
+			$rootScope.globalLoading = true
 
-			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
-			var actions = {
+			transformedData = transferDataOut(angular.copy($scope.profile))
+			console.log('data',transformedData);
+			const actions = {
 				user: User.edit(transformedData).$promise
-			};
+			}
 
-			$q.all(actions).then(function(res) {
+			$q.all(actions).then(res => {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 
@@ -305,6 +273,29 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.$watch('showError', function() {
 			$scope.messageBottom = false;
 		}, true);
+
+		//////////////////
+
+		function transferDataOut(data) {
+			// remove empty webs
+			const webs = []
+			data.webs.forEach(web => web && webs.push(web))
+			data.webs = webs
+
+			if (data.phone) data.phone = '+' + data.phone
+
+			data.interests = data.interests || []
+			data.interests = data.interests.map(interest => interest.term)
+
+			data.user_languages = []
+			$scope.userLanguage.forEach(lang => data.user_languages.push(lang.code))
+
+			// avatar
+			if (data.avatar && data.avatar.public_avatar_url) data.public_avatar_url = data.avatar.public_avatar_url
+			delete data.avatar
+
+			return data
+		}
 
 	}
 ]);
