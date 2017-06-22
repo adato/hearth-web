@@ -37,10 +37,13 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         {name: 'Header 5', code: '<h5 class="quinary-header">Prostor pro lidi s otevřeným srdcem</h5>'},
         {name: 'Header 6', code: '<h6 class="senary-header">Prostor pro lidi s otevřeným srdcem</h6>'},
         {
-          code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>',
-          name: 'Paragraph'
+          name: 'Paragraph',
+          code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>'
         },
-        {code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>', name: 'Label'}
+        {
+          name: 'Label',
+          code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>'
+        }
 
       ];
     };
