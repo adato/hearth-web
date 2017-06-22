@@ -135,7 +135,7 @@
 					<!-- <select2 id="post-language" class="select-2-alternate" ng-model="post.language" s2-options="item.code as item.name group by item.group for item in languageList"></select2> -->
 					<ui-select id="post-language" ng-model="post.language" theme="select2">
 						<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
-						<ui-select-choices group-by="'group'" group-filter="[('LANGUAGE.LIST.LABEL_CHOSEN' | translate), ('LANGUAGE.LIST.LABEL_OTHER' | translate)]" repeat="item.code as item in languageList | filter: {code: $select.search}">
+						<ui-select-choices group-by="'group'" group-filter="[('LANGUAGE.LIST.LABEL_CHOSEN' | translate), ('LANGUAGE.LIST.LABEL_OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
 				      <div ng-bind-html="item.name | highlight: $select.search"></div>
 				    </ui-select-choices>
 					</ui-select>
