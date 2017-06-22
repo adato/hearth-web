@@ -186,22 +186,27 @@ $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 
 $h1: 'h1, .primary-header';
+$h2: 'h2, .secondary-header';
+$h3: 'h3, .tertiary-header';
+$h4: 'h4, .quaternary-header';
+$h5: 'h5, .quinary-header';
+$h6: 'h6, .senary-header';
 $header-styles: (
   small: (
-    'h1': ('font-size': 24),
-    'h2': ('font-size': 20),
-    'h3': ('font-size': 19),
-    'h4': ('font-size': 18),
-    'h5': ('font-size': 17),
-    'h6': ('font-size': 16),
+    $h1: ('font-size': 24),
+    $h2: ('font-size': 20),
+    $h3: ('font-size': 19),
+    $h4: ('font-size': 18),
+    $h5: ('font-size': 17),
+    $h6: ('font-size': 16),
   ),
   medium: (
     $h1: ('font-size': 40), // 48
-    'h2': ('font-size': 32), // 40
-    'h3': ('font-size': 25), // 31
-    'h4': ('font-size': 21), // 25
-    'h5': ('font-size': 16), // 20
-    'h6': ('font-size': 16),
+    $h2: ('font-size': 32), // 40
+    $h3: ('font-size': 25), // 31
+    $h4: ('font-size': 21), // 25
+    $h5: ('font-size': 16), // 20
+    $h6: ('font-size': 16),
   ),
 );
 $header-text-rendering: optimizeLegibility;

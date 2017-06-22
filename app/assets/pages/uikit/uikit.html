@@ -32,8 +32,11 @@
         <div ng-repeat="item in typographies">
           <div class="block">
             <div ng-bind="item.name"></div>
-            <div ng-bind-html="item.code"></div>
-            <div class="box background-light-gray padding-tiny" ng-bind="item.description"></div>
+            <div class="flex flex-align-end flex-space-between">
+              <div id="typography-block-{{:: $index }}" ng-bind-html="item.code"></div>
+              <div class="color-dark-gray margin-left-medium" style-getter="#typography-block-{{:: $index }} > *" style-to-get="font-size"></div>
+            </div>
+            <small class="box background-light-gray padding-tiny" ng-bind="item.description"></small>
           </div>
           <br/>
         </div>
