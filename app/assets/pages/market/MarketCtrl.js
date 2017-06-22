@@ -91,11 +91,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
 					  const opts = new ItemAux.getExemplaryPostsOpts(exemplaryPosts)
 
-						epScope = $rootScope.$new()
-						epScope.opts = opts
-						epScope.logPostTextToggle = ItemAux.logPostTextToggle
-
-						clone.before($compile(opts.template)(epScope))
+						$compile(opts.template)(angular.merge($rootScope.$new(), {
+							opts: opts,
+							logPostTextToggle: ItemAux.logPostTextToggle
+						})).insertBefore(clone)
 
             exemplaryPostsInserted = true
 						exemplaryPosts = false
