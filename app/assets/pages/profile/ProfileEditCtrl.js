@@ -35,18 +35,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		/* Array that will be filled with user's languages */
 		$scope.userLanguage = []
 
-
-		// USED BY TAG PICKER (that has been removed)
-		// $scope.loadLanguages = function(query) {
-		// 	var languages = $scope.languageList;
-		//
-		// 	return languages.filter(function(lang) {
-		// 		return lang.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
-		// 	});
-		// };
-
 		$scope.init = function() {
-
 			UnauthReload.check()
 
 			User.getFullInfo().$promise.then(res => {

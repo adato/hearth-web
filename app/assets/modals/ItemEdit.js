@@ -148,11 +148,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			});
 		};
 
-		// $scope.updateImages = function() {
-		// 	$scope.recountImages();
-		// 	$scope.showError.files = {};
-		// };
-
 		// remove image from attachments array
 		// if image is already uploaded - mark him to be deleted
 		// else remove from array
@@ -469,14 +464,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			postCopy.state = (postCopy.state == 'active') ? 'suspended' : 'active';
 			$scope.save(postCopy);
 		};
-
-		/*		$scope.refreshItemInfo = function($event, item) {
-					// if renewed item is this item, refresh him!
-					if (item._id === $scope.post._id) {
-						$scope.post = $scope.transformDataIn(item);
-						$scope.post.type = item.type ? 'offer' : 'need';
-					}
-				};*/
 
 		var SPACE = 32;
 		$scope.toggleCharacterCheckbox = function(event, character) {
