@@ -29,9 +29,17 @@
       <div class="" ng-show="activeTab === 'typography'">
 
         <h2>Typography</h2>
+        <p class="subheader">
+          Headers may be used without class and they will look their default.<br />
+          Or they may be used with one of the header classes which will overload their design.<br />
+          With that said, header level should be driven by document semantics and its design should be driven by class.
+        </p>
+        <p class="subheader">
+          More information on the matter may be found e.g. <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines#Defining_sections" target="_blank">on MDN</a>.
+        </p>
         <div ng-repeat="item in typographies">
           <div class="block">
-            <div ng-bind="item.name"></div>
+            <h3 ng-bind="item.name"></h3>
             <div class="flex flex-align-end flex-space-between">
               <div id="typography-block-{{:: $index }}" ng-bind-html="item.code"></div>
               <div class="color-dark-gray margin-left-medium" style-getter="#typography-block-{{:: $index }} > *" style-to-get="font-size"></div>

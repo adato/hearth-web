@@ -4,5 +4,9 @@
 
 #{$h1, $h2, $h3, $h4, $h5, $h6},
 .header-margin {
-    margin-bottom: $header-margin-bottom
+    margin-bottom: $header-margin-bottom;
+}
+
+#{$h6} {
+    font-weight: bold;
 }
