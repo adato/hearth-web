@@ -1,7 +1,7 @@
 <div class="new-message itemEdit formStyle modal">
 	<div class="head">
 		<h2>
-			{{ (params.for_all_members ? 'MESSAGES.SEND_TO_ALL_COMMUNITY_MEMBERS' : (user._type === "Community" ? 'MESSAGES.SEND_TO_COMMUNITY_ADMIN' : 'MESSAGES.NEW_MESSAGE')) | translate}}
+			{{ (params.for_all_members ? 'COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS' : (user._type === "Community" ? 'COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN' : 'MESSAGING.ACTION_CREATE_MESSAGE')) | translate}}
 		</h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
@@ -11,7 +11,7 @@
 		<conversation-add close="close" on-success="onSuccess" recipient="user" params="params"></conversation-add>
 	</div>
 	<div class="toggle-content success success-msg hidden">
-		<p>{{ 'MESSAGES.NEW_MESSAGE_SENT' | translate }}</p>
+		<p translate="MESSAGING.NOTIFY.SUCCESS_MESSAGE_SEND"></p>
 		<button class="button fright" ng-click="close()" translate translate="COMMON.ACTION_CLOSE"></button>
 	</div>
 	<div class="clear"></div>
