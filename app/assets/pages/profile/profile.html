@@ -77,7 +77,7 @@
 				</a>
 			</span>
 			<a dont-jump-top href="{{:: profileLink }}/received-ratings">
-				<div ng-if='info' class='columns large-8 karma-wrapper' title="{{:: 'PROFILE.KARMA.POSITIVE_COUNT' | translate }}: {{ info.up_votes }} | {{:: 'PROFILE.NEGATIVE_FEEDBACK_COUNT' | translate }}: {{ info.down_votes }}">
+				<div ng-if='info' class='columns large-8 karma-wrapper' title="{{:: 'PROFILE.POSITIVE_FEEDBACK_COUNT' | translate }}: {{ info.up_votes }} | {{:: 'PROFILE.NEGATIVE_FEEDBACK_COUNT' | translate }}: {{ info.down_votes }}">
 					<div class='karma-alt'>
 						<div class='karma-block positive' ng-style='{width: (info.karma) + "%"}' ng-if='info.karma != null && info.karma > 0'>
 							<span ng-bind='info.karma + "%"'></span>
