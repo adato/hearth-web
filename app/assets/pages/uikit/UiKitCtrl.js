@@ -73,7 +73,9 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     function getAvatarData() {
       return {
-        code: `<div class="avatar-stack">
+        code: `<avatar class="block" size="normal" src="loggedUser.avatar.normal" type="\'User\'"></avatar>
+
+<div class="avatar-stack">
   <avatar size="small" src="loggedUser.avatar.normal" type="\'User\'"></avatar>
   <avatar size="small"></avatar>
 </div>`,
