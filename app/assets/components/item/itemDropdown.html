@@ -29,7 +29,7 @@
     </li>
 
     <!-- admin only -->
-    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <hr />
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && (ctrl.item.state === 'active'  || (ctrl.item.state !== 'active' && !ctrl.item.edited_by_admin))">
@@ -38,7 +38,6 @@
     <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
       <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.RESUME.LABEL"></a>
     </li>
-    <!-- TODO: in future there will be another user privilegs then post.suspend -->
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.FOLLOW.LABEL"></a>
       <a ng-if="ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.UNFOLLOW.LABEL"></a>

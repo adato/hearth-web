@@ -743,49 +743,55 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// and close modal or call given callback
 		/**
 		 *	@param paramObject {Object} [optional] - message - the admin message to send to the server along with suspend
+		 *																				- action - overload for action decision
 		 */
-		$rootScope.pauseToggle = function(item, paramObject, cb) {
-			var Action, actionType;
-			paramObject = paramObject || {};
+		$rootScope.pauseToggle = function(item, paramObject = {}, cb) {
+			var Action
+			// var actionType
+			// paramObject = paramObject || {};
 
 			// suspend or play based on post active state
-			if ($rootScope.isPostActive(item)) {
-				Action = Post.suspend;
-				actionType = 'suspend';
+			if (paramObject.action) {
+				Action = paramObject.action
 			} else {
-				// if item is expired, then prolong him, or just resume
-				Action = (item.state == "expired") ? Post.prolong : Post.resume;
-				actionType = 'activate';
+				if ($rootScope.isPostActive(item)) {
+					Action = Post.suspend
+					// actionType = 'suspend'
+				} else {
+					// if item is expired, then prolong him, or just resume
+					Action = (item.state == "expired") ? Post.prolong : Post.resume
+					// actionType = 'activate'
+				}
 			}
 
-			$rootScope.globalLoading = true;
-			var parameters = {
+			$rootScope.globalLoading = true
+			const parameters = {
 				id: item._id
-			};
-			if (paramObject.message) parameters.message = paramObject.message;
+			}
+			if (paramObject.message) parameters.message = paramObject.message
 
 			// call service
-			Action(parameters, res => {
-				if (angular.isFunction(cb)) cb(item);
+			Action(parameters).$promise.then(res => {
+				if (angular.isFunction(cb)) cb(item)
 
-				$rootScope.$broadcast('postUpdated', res);
-				Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
-				$rootScope.globalLoading = false;
+				$rootScope.$broadcast('postUpdated', res)
+				Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS)
+				$rootScope.globalLoading = false
 
-			}, err => {
-				$rootScope.globalLoading = false;
+			}).catch(err => {
+				$rootScope.globalLoading = false
 				if (err.status == 422) {
 					// somethings went wrong - post is not valid
 					// open edit box and show errors
-					$rootScope.editItem(item, true);
+					$rootScope.editItem(item, true)
 				}
-			});
-		};
+			})
+		}
 
 		// small-resolution menu toggle
-		$rootScope.toggleSidebar = function(param) {
-			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown);
-		};
+		$rootScope.toggleSidebar = param => {
+			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown)
+		}
 
 		$rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
 			$timeout(function() {

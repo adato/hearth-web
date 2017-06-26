@@ -52,7 +52,8 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 			if (!data.suspendMessage) return $scope.showErrors.message = true
 
 			$rootScope.pauseToggle($scope.item, {
-				message: data.suspendMessage
+				message: data.suspendMessage,
+				action: Post.suspend
 			}, res => {
 				$scope.closeThisDialog()
 			})
