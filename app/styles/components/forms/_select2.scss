@@ -725,3 +725,7 @@ html[dir="rtl"] .select2-container-multi:not(.ui-select-container) .select2-sear
 	box-shadow: none !important;
 	border: 0;
 }
+
+.select2-search-field input {
+  max-width: 16rem;
+}
