@@ -6,7 +6,7 @@
       </div>
       <div>
         <div class="flex flex-divided-medium flex-align-start flex-wrap">
-          <div ng-repeat="user in vm.usersList | limitTo:vm.avatarLimit track by $index" class="margin-bottom-small" title='{{vm.limit}}'>
+          <div ng-repeat="user in vm.usersList | limitTo:vm.avatarLimit track by $index" class="margin-bottom-small">
             <div info-box="user.object" infobox-class="'on-profile'">
               <avatar type=":: 'User'" src=":: user.object.avatar.normal" size="small" href=":: getProfileLink(user.object._type, user.object._id)"></avatar>
             </div>

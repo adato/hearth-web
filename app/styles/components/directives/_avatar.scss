@@ -34,7 +34,7 @@ $large-avatar-size: 295px;
 	}
 
 	&.faux-avatar {
-		background: $light-gray;
+		background: $medium-gray;
 
 		& > .avatar-image::after {
 			content: attr(avatar-text);
@@ -43,6 +43,8 @@ $large-avatar-size: 295px;
 			top: 0; left: 0;
 			display: block;
 			text-align: center;
+			font-size: $small-font-size;
+			font-weight: bold;
 
 			// NOTE: here we expect that it will be used with avatar small
 			line-height: $small-avatar-size;
