@@ -1,9 +1,35 @@
 /** Foundation improvements */
 
-.top-bar-section {
-	.dropdown {
-		// @include box-shadow(0 1px 2px 1px rgba(black, 0.3));
-		@include border-bottom-radius;
-		overflow: hidden;
+// .top-bar-section {
+// 	.dropdown {
+// 		// @include box-shadow(0 1px 2px 1px rgba(black, 0.3));
+// 		@include border-bottom-radius;
+// 		overflow: hidden;
+// 	}
+// }
+
+////////////////////////
+// TABS EXTENSION
+//
+.tabs-wrapper {
+	overflow: hidden;
+	background-color: $tab-background;
+	box-shadow: $ui-box-shadow;
+}
+.tabs-title {
+	font-weight: 700;
+	border-bottom: 1px solid $tab-background-active;
+
+	&.is-active {
+		background: $tab-background-active;
 	}
 }
+@include breakpoint(medium up) {
+	.tabs-titles-wrapper {
+		// border-right: 1px solid $tab-background-active;
+	}
+	.tabs-content-wrapper {
+		border-left: 1px solid $tab-background-active;
+	}
+}
+/////////////

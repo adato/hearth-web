@@ -20,29 +20,23 @@
 						<span translate="COMMUNITY.PROFILE.HAS_BEEN_REGISTERED"></span> {{ info.created_at | ago }}
 					</div>
 				</div>
-				<div class="display-flex flex-space-between">
-					<div class="display-flex">
-						<div>
-							<a tabindex="0" class="bold" ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})" ng-click="sendMessage(info)" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN"></a>
-						</div>
-						<div class="margin-top-small">
-							<a tabindex="0" class="bold" ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)" ng-click="sendMessage(info, {toAllMembers: true})" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS"></a>
-						</div>
-					</div>
-					<div class="social">
-						<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
-							<i class="fa fa-twitter-square"></i>
-						</a>
-						<a target="_blank" ng-if="info.facebook" href="{{:: info.facebook}}">
-							<i class="fa fa-facebook-square"></i>
-						</a>
-						<a target="_blank" ng-if="info.googleplus" href="{{:: info.googleplus}}">
-							<i class="fa fa-google-plus-square"></i>
-						</a>
-						<a target="_blank" ng-if="info.linkedin" href="{{:: info.linkedin}}">
-							<i class="fa fa-linkedin"></i>
-						</a>
-					</div>
+				<div class="social block">
+					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
+						<i class="fa fa-twitter-square"></i>
+					</a>
+					<a target="_blank" ng-if="info.facebook" href="{{:: info.facebook}}">
+						<i class="fa fa-facebook-square"></i>
+					</a>
+					<a target="_blank" ng-if="info.googleplus" href="{{:: info.googleplus}}">
+						<i class="fa fa-google-plus-square"></i>
+					</a>
+					<a target="_blank" ng-if="info.linkedin" href="{{:: info.linkedin}}">
+						<i class="fa fa-linkedin"></i>
+					</a>
+				</div>
+				<div class="flex flex-divided-medium flex-center flex-wrap">
+					<button class="button hollow" ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})" ng-click="sendMessage(info)" translate="MESSAGE.CREATE.TO_COMMUNITY_ADMIN" translate-values="{actionAttrs: 'class=\'display-block margin-bottom-tiny\'', recipientAttrs: 'class=\'text-small\''}"></button>
+					<button class="button hollow" ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)" ng-click="sendMessage(info, {toAllMembers: true})" translate="MESSAGE.CREATE.TO_COMMUNITY_MEMBERS" translate-values="{actionAttrs: 'class=\'display-block margin-bottom-tiny\'', recipientAttrs: 'class=\'text-small\''}"></button>
 				</div>
 			</div>
 		</div>
