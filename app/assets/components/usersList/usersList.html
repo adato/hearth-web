@@ -6,10 +6,13 @@
       </div>
       <div>
         <div class="flex flex-divided-medium flex-align-start flex-wrap">
-          <div ng-repeat="user in vm.usersList track by $index" class="margin-bottom-small">
+          <div ng-repeat="user in vm.usersList | limitTo:vm.avatarLimit track by $index" class="margin-bottom-small" title='{{vm.limit}}'>
             <div info-box="user.object" infobox-class="'on-profile'">
               <avatar type=":: 'User'" src=":: user.object.avatar.normal" size="small" href=":: getProfileLink(user.object._type, user.object._id)"></avatar>
             </div>
+          </div>
+          <div ng-if="vm.usersList.length > vm.avatarLimit" class="avatar avatar-small faux-avatar margin-bottom-small">
+            <div class="avatar-image" ng-attr-avatar-text="{{'+' + (vm.usersList.length - vm.avatarLimit)}}"></div>
           </div>
         </div>
       </div>

@@ -126,7 +126,7 @@ window['$$config'] = {
 		search: ['fulltext', 'location', 'entityType']
 	},
 	usersNameList: {
-		initNameLimit: 3
+		initNameLimit: 4
 	}
 };
 
