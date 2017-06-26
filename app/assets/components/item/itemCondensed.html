@@ -32,9 +32,9 @@
         </a>
       </h3>
       <i class="fa fa-lock margin-right-small" ng-if="ctrl.item.is_private" translate-attr="{title: 'POST.ONLY_FOR_FRIENDS'}"></i>
-      <div class="label hollow danger margin-right-small" ng-if="ctrl.item.state === 'suspended' && !(item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item))" translate="POST.STATE.SUSPENDED"></div>
-      <div class="label hollow danger margin-right-small" ng-if="ctrl.item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item)" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
-      <div class="label hollow danger" ng-if="ctrl.item.state === 'expired'" translate="POST.STATE.EXPIRED"></div>
+      <div class="label hollow alert margin-right-small" ng-if="ctrl.item.state === 'suspended' && !(item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item))" translate="POST.STATE.SUSPENDED"></div>
+      <div class="label hollow alert margin-right-small" ng-if="ctrl.item.edited_by_admin && ctrl.userHasRight('post.suspend') && !ctrl.isPostActive(ctrl.item)" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
+      <div class="label hollow alert" ng-if="ctrl.item.state === 'expired'" translate="POST.STATE.EXPIRED"></div>
     </div>
     <span class="validity-warning" ng-if="ctrl.isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
 
