@@ -22,15 +22,15 @@
       }
     }
   }
-  .rating-message {
+  .rating-box {
     border-radius: $global-radius;
-    padding: $size-small;
+    padding: $size-medium;
 
     &.positive {
-      background-color: lighten($tertiary-color, 20%);
+      background: rgba($tertiary-color, .2);
     }
     &.negative {
-      background-color: lighten($primary-color, 20%);
+      background: rgba($primary-color, .2);
     }
 
   }

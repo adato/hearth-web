@@ -27,17 +27,17 @@
 
   <div ng-bind-html="vm.item.text" class="header-margin"></div>
 
-  <div class="rating-message" ng-class="vm.item.object.score === 1 ? 'positive' : 'negative'">
+  <div class="rating-box" ng-class="vm.item.object.score === 1 ? 'positive' : 'negative'">
     <h6>
       <span ng-if="vm.item.object.score === 1" translate="POSITIVE"></span>
       <span ng-if="vm.item.object.score === -1" translate="NEGATIVE"></span>
-    </h6>
-    <h6 ng-if="vm.item.object.post_id" class="rating-relation">
-      {{:: 'RATING_TO_POST' | translate }}
-      <a href="{{:: vm.getProfileLink('Post', vm.item.object.post_id )}}"
-         title="{{:: vm.postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title }}">
-        {{:: vm.postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] |
-        translate}} {{:: vm.item.object.post.title}}</a>.
+      <span ng-if="vm.item.object.post_id" class="rating-relation">
+        {{:: 'RATING_TO_POST' | translate }}
+        <a href="{{:: vm.getProfileLink('Post', vm.item.object.post_id )}}"
+           title="{{:: vm.postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title }}">
+           {{:: vm.postTypes[vm.item.object.post.author._type][vm.item.object.post.exact_type][vm.item.object.post.type] | translate}} {{:: vm.item.object.post.title}}
+        </a>
+      </span>
     </h6>
     <div ng-bind-html=":: vm.item.object.text"></div>
   </div>
