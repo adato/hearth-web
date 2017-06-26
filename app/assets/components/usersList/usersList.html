@@ -22,5 +22,5 @@
     </div>
   </div>
   <div ng-if="vm.usersList.length > 1" users-name-list="vm.usersList"></div>
-  <div ng-if="vm.usersList.length === 1" translate="USER.LIST.USER_JOINED_COMMUNITY" translate-values="{user: '<a ui-sref=\'profile.default(vm.usersList[0].object._id)\' ng-bind=\'vm.usersList[0].object.name\'></a>'}" translate-compile></div>
+  <div ng-if="vm.usersList.length === 1" translate="USER.LIST.USER_JOINED_COMMUNITY" translate-values="{user: '<a ui-sref=\'profile.default({id: vm.usersList[0].object._id})\' ng-bind=\'vm.usersList[0].object.name\'></a>'}" translate-compile></div>
 </div>
