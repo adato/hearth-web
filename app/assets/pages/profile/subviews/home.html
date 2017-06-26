@@ -75,7 +75,7 @@
 			<div class="clear"></div>
 			<div class="line display-flex flex-space-between margin-top-small">
 				<div ng-if="!mine">
-					<a href="" tabindex="0" class="bold" ng-if="(userHasRight('post.suspend') || !info.only_replies)" ng-click="sendMessage(info)" translate="MESSAGING.ACTION_SEND_MESSAGE"></a>
+					<button type="button" class="button hollow" ng-if="(userHasRight('post.suspend') || !info.only_replies)" ng-click="sendMessage(info)" translate="MESSAGING.ACTION_SEND_MESSAGE"></a>
 				</div>
 				<div class="social">
 					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">

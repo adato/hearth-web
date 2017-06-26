@@ -29,6 +29,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		// variable controlling that exemplary posts are only inserted once
 		var exemplaryPostsInserted = false
+		// auxiliary variable to be destroyed on marketplace scope destruction
+		var epScope
 
 		var userLanguages = undefined;
 		var marketInited = $q.defer();
@@ -318,13 +320,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('$destroy', function() {
-			$scope.topArrowText.top = '';
-			$scope.topArrowText.bottom = '';
-			$rootScope.cacheInfoBox = {};
-			$scope.debug && $log.debug('Destroy marketCtrl finished');
+			$scope.topArrowText.top = ''
+			$scope.topArrowText.bottom = ''
+			$rootScope.cacheInfoBox = {}
+			$scope.debug && $log.debug('Destroy marketCtrl finished')
 			// we do not want infinit scroll running on other pages than marketplace
-			InfiniteScrollPagination.unbindScroll();
+			InfiniteScrollPagination.unbindScroll()
 
+			epScope.$destroy && epScope.$destroy()
 		});
 
     // default languages

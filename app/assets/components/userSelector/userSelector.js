@@ -8,6 +8,7 @@
 angular.module('hearth.directives').directive('userSelector', [
 	'$rootScope', '$q', 'User', '$timeout',
 	function($rootScope, $q, User, $timeout) {
+
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,11 +20,13 @@ angular.module('hearth.directives').directive('userSelector', [
 			},
 			templateUrl: 'assets/components/userSelector/userSelector.html',
 			link: function($scope, baseElement) {
+
 				var timer = null;
 				$scope.userList = [];
 				$scope.list = {
 					users: $scope.users
 				};
+
 				$scope.$watch("users", function(val) {
 					$scope.list.users = val;
 				});
@@ -39,8 +42,7 @@ angular.module('hearth.directives').directive('userSelector', [
 				 */
 				$scope.getIdList = function() {
 					var list = {};
-					for (var i in $scope.users)
-						list[$scope.users[i]._id] = true;
+					for (var i in $scope.users) list[$scope.users[i]._id] = true;
 					return list;
 				};
 
@@ -64,8 +66,7 @@ angular.module('hearth.directives').directive('userSelector', [
 						type: 'user'
 					};
 
-					if (!s || !s.length)
-						return;
+					if (!s || !s.length) return;
 
 					timer && $timeout.cancel(timer);
 
@@ -87,7 +88,9 @@ angular.module('hearth.directives').directive('userSelector', [
 						$scope.ngFocus && $scope.ngFocus();
 					});
 				});
-			}
+
+			} // link
 		};
+
 	}
 ]);
