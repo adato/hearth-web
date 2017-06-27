@@ -326,8 +326,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.debug && $log.debug('Destroy marketCtrl finished')
 			// we do not want infinit scroll running on other pages than marketplace
 			InfiniteScrollPagination.unbindScroll()
-
-			epScope.$destroy && epScope.$destroy()
+      if (epScope) epScope.$destroy && epScope.$destroy()
 		});
 
     // default languages

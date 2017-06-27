@@ -5,27 +5,22 @@
  * @description Get an email valiated against the server
  * @restrict A
  */
-angular.module('hearth.directives').directive('emailValidator', ['Email', '$q',
-	function(Email, $q) {
-		return {
-			require: 'ngModel',
-			link: function(scope, element, attrs, ctrl) {
-				ctrl.$asyncValidators.used = function(modelValue, viewValue) {
-					var value = modelValue || viewValue;
-					var def = $q.defer();
+angular.module('hearth.directives').directive('emailValidator', ['$q', 'Validators', function($q, Validators) {
 
-					Email.exists({
-						email: value
-					}, function(ok) {
-						// email exists, ie is already registered
-						def.reject();
-					}, function(err) {
-						// can be registered
-						def.resolve();
-					});
-					return def.promise;
-				}
-			}
-		};
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$parsers.push(val => {
+				const valid = val ? Validators.emails(val.split(',').map(e => e.trim())) : false
+        ngModel.$setValidity('format', valid)
+        return valid ? val : void 0
+			})
+			ngModel.$formatters.push(val => {
+				ngModel.$setValidity('format', val ? Validators.emails(val.split(',').map(e => e.trim())) : false)
+				return val
+			})
+		}
 	}
-]);
+
+}])
