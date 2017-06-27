@@ -9,14 +9,14 @@
 		<div ng-if="!isPostActive(post)">
 			<ul class="message-line">
 				<li ng-if="post.state == 'expired' && post.dateOrig">
-					<span translate="POST.NOTIFY.POST_HAS_EXPIRED"></span> 
+					<span translate="POST.NOTIFY.EXPIRED_AT"></span> 
 					{{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}
 				</li>
 				<li ng-if="post.state == 'expired' && !post.dateOrig" 
-					translate="POST.NOTIFY.POST_HAS_ALREADY_EXPIRED">
+					translate="POST.NOTIFY.EXPIRED">
 				</li>
 				<li ng-if="post.state == 'suspended'">
-					<span translate="POST.NOTIFY.POST_HAS_BEEN_DEACTIVATED"></span> 
+					<span translate="POST.NOTIFY.SUSPENDED"></span> 
 					{{ post.suspended_at | date:DATETIME_FORMATS.medium }}
 				</li>
 			</ul>
