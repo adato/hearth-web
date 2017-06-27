@@ -22,16 +22,16 @@
 			<label>
 				<textarea ctrl-enter-submit required autofocus ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message" class="reply-ad-textarea text-input middle"></textarea>
 				<div class="form-error" ng-show="showErrors.message && replyForm.$dirty">
-					<span ng-show="replyForm.message.$error.required">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-					<span ng-show="replyForm.message.$error.minlength">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-					<span ng-show="replyForm.message.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
+					<span ng-show="replyForm.message.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+					<span ng-show="replyForm.message.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+					<span ng-show="replyForm.message.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 				</div>
 			</label>
 		</div>
 
 		<div class="display-flex flex-reverse flex-space-between">
-			<button class="button" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SUBMIT' | translate }}</button>
-			<a ng-click="close()" class="revert-changes" tabindex="0">{{:: 'CANCEL' | translate }}</a>
+			<button class="button" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate="COMMON.ACTION_SUBMIT"></button>
+			<a ng-click="close()" class="revert-changes" tabindex="0" translate="COMMON.ACTION_CANCEL"></a>
 		</div>
 
 	</form>
@@ -39,7 +39,7 @@
 	<div class="reply-ad success success-msg hidden">
 		<p>{{:: 'SEND_REPLY_SUCCESS' | translate }}</p>
 		<section class="bottom display-flex flex-reverse flex-space-between">
-			<button class="button" ng-click="close()">{{:: 'CLOSE' | translate }}</button>
+			<button class="button" ng-click="close()" translate="COMMON.ACTION_CLOSE"></button>
 		</section>
 	</div>
 
