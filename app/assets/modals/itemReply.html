@@ -1,10 +1,9 @@
 <div class="itemReply formStyle modal">
-
 	<div class="head">
 		<div class="display-flex flex-space-between">
 			<h2>
-				<span ng-if="post.type =='offer'" ng-bind-html=":: 'WISH_GIFT' | translate"></span>
-				<span ng-if="post.type == 'need'" ng-bind-html=":: 'OFFER_GIFT' | translate"></span>
+				<span ng-if="post.type =='offer'" ng-bind-html=":: 'POST.ACTION_ASK_FOR_GIFT' | translate"></span>
+				<span ng-if="post.type == 'need'" ng-bind-html=":: 'POST.ACTION_OFFER_GIFT' | translate"></span>
 			</h2>
 			<span ng-click="close()" class="close fa fa-times" tabindex="0"></span>
 		</div>
@@ -20,7 +19,7 @@
 
 		<div class="block">
 			<label>
-				<textarea ctrl-enter-submit required autofocus ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message" class="reply-ad-textarea text-input middle"></textarea>
+				<textarea ctrl-enter-submit required autofocus ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'POST.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message" class="reply-ad-textarea text-input middle"></textarea>
 				<div class="form-error" ng-show="showErrors.message && replyForm.$dirty">
 					<span ng-show="replyForm.message.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
 					<span ng-show="replyForm.message.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
@@ -33,14 +32,12 @@
 			<button class="button" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate="COMMON.ACTION_SUBMIT"></button>
 			<a ng-click="close()" class="revert-changes" tabindex="0" translate="COMMON.ACTION_CANCEL"></a>
 		</div>
-
 	</form>
 
 	<div class="reply-ad success success-msg hidden">
-		<p>{{:: 'SEND_REPLY_SUCCESS' | translate }}</p>
+		<p translate="POST.REPLY.NOTIFY.SUCCESS_SEND_REPLY"></p>
 		<section class="bottom display-flex flex-reverse flex-space-between">
 			<button class="button" ng-click="close()" translate="COMMON.ACTION_CLOSE"></button>
 		</section>
 	</div>
-
 </div>
