@@ -5,7 +5,7 @@
 	<form ng-submit="fillEmail()" name="fillEmailForm" novalidate class="register-login-form">
 		<div class="block">
 			<span ng-bind-html="'AUTH.FILL_EMAIL.TEXT' | translate"></span>
-			<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'AUTH.EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
+			<input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="showError.email = true" ng-focus="showError.email = false;" required placeholder="{{ 'AUTH.EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" email-exists-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
 			<span ng-show="fillEmailForm.$pending.mailgun" class="fa fa-spin fa-spinner"></span>
 			<div class="form-error" ng-show="showError.email">
 				<span ng-show="fillEmailForm.email.$error.email" translate="AUTH.NOTIFY.ERROR_BAD_EMAIL_FORMAT"></span>
