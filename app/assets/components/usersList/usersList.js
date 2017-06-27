@@ -9,17 +9,19 @@ angular.module('hearth.directives').directive('usersList', [function() {
     },
     bindToController: true,
     controllerAs: 'vm',
-    controller: ['$filter', '$locale', '$window', function($filter, $locale, $window) {
+    controller: ['$filter', '$locale', '$window', '$rootScope', function($filter, $locale, $window, $rootScope) {
 
-      const ctrl = this
+      const vm = this
 
-      ctrl.$onInit = () => {
-        ctrl.limit = $window.$$config.usersNameList.initNameLimit
-        ctrl.avatarLimit = $window.$$config.usersNameList.initNameLimit
+      vm.$onInit = () => {
+        vm.limit = $window.$$config.usersNameList.initNameLimit
+        vm.avatarLimit = $window.$$config.usersNameList.initNameLimit
 
-        if (ctrl.other && ctrl.other.created_at) {
-          ctrl.other.created_at_timeago = $filter('ago')(ctrl.other.created_at)
-          ctrl.other.created_at_date = $filter('date')(ctrl.other.created_at, $locale.DATETIME_FORMATS.medium)
+        vm.getProfileLink = $rootScope.getProfileLink
+
+        if (vm.other && vm.other.created_at) {
+          vm.other.created_at_timeago = $filter('ago')(vm.other.created_at)
+          vm.other.created_at_date = $filter('date')(vm.other.created_at, $locale.DATETIME_FORMATS.medium)
         }
       }
 

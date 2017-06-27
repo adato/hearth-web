@@ -1,23 +1,24 @@
 <div>
-  <div class="flex flex-align-start flex-space-between margin-bottom-small">
+  <div class="flex flex-space-between margin-bottom-small">
     <div class="flex flex-divided-medium flex-space-between flex-wrap">
       <div class="box-lead-icon round left-aligned background-primary non-responsive">
         <i class="fa fa-fw fa-user"></i>
       </div>
       <div>
         <div class="flex flex-divided-medium flex-align-start flex-wrap">
-          <div ng-repeat="user in vm.usersList | limitTo:vm.avatarLimit track by $index">
+          <div ng-repeat="user in vm.usersList | limitTo:(vm.usersList.length > vm.avatarLimit ? (vm.avatarLimit - 1) : vm.avatarLimit) track by $index">
             <div info-box="user.object" infobox-class="'on-profile'">
-              <avatar type=":: 'User'" src=":: user.object.avatar.normal" size="small" href=":: getProfileLink(user.object._type, user.object._id)"></avatar>
+              <avatar type=":: 'User'" src=":: user.object.avatar.normal" size="small" href="vm.getProfileLink(user.object._type, user.object._id)"></avatar>
             </div>
           </div>
+          <!-- <avatar ng-if="vm.usersList.length === vm.avatarLimit" type=":: 'User'" src=":: user.object.avatar.normal" size="small" href="vm.getProfileLink(vm.usersList[vm.avatarLimit].object._type, vm.usersList[vm.avatarLimit].object._id)"></avatar> -->
           <div ng-if="vm.usersList.length > vm.avatarLimit" class="avatar avatar-small faux-avatar">
             <div class="avatar-image" ng-attr-avatar-text="{{'+' + (vm.usersList.length - vm.avatarLimit)}}"></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="margin-top-tiny nowrap">
+    <div class="nowrap">
       <small class="color-dark-gray nowrap" ng-bind=":: vm.other.created_at_timeago" title="{{:: vm.other.created_at_date }}"></small>
     </div>
   </div>

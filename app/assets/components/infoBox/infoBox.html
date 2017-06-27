@@ -24,7 +24,7 @@
 							<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span> <a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
 						</div>
 					</div>
-				
+
 					<div class="display-table-row" ng-if=" :: connections.users.length > 1">
 						<div class="display-table-cell addon">
 							<i class="fa fa-fw fa-user"></i>
@@ -104,5 +104,5 @@
 			</div>
 		</div>
 	</div>
-	<ng-transclude></ng-transclude>
+	<div ng-transclude></div>
 </div>
