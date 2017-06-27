@@ -65,7 +65,7 @@
 			<div class="block">
 				<label>{{:: 'PROFILE.INVITATION.MESSAGE' | translate }}</label>
 				<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="300" required="true" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" model="inv.message" name="message"></input-max-length>
-				<div class="error" ng-show="showError.message">
+				<div class="form-error" ng-show="showError.message">
 					<span ng-show="inviteForm.message.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_TEXT' | translate }}</span>
 				</div>
 			</div>
