@@ -1,40 +1,44 @@
 <div class="itemShare formStyle itemEdit modal">
+
 	<div class="head">
-		<h2>
-			{{ 'EMAIL_SHARING.HEADING' | translate}}
-		</h2>
+		<h2 translate="EMAIL_SHARING.HEADING"></h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
 	</div>
-	<form ng-submit="send()" name="emailForm" novalidate class="email-sharing">
+
+	<form ng-submit="send(sharing, emailForm)" name="emailForm" novalidate class="email-sharing">
 		<div class="notify-report-container"></div>
 		<div>
-			<label>{{ 'EMAIL_SHARING.ADDRESS_LABEL' | translate }}</label>
-			<br />
-			<input type="text" ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true; testEmailsFormat(sharing.emails)" placeholder="{{ 'EMAIL_SHARING.ADDRESS_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" required />
-			<div class="moveUp error" ng-show="showErrors.emails && emailForm.$dirty">
-				<span ng-show="emailForm.emails.$error.required">{{ 'ERR_NOT_FILLED_SHARING_EMAIL_ADDRS' | translate }}</span>
-				<span ng-show="emailForm.emails.$error.format">{{ 'ERR_SHARING_EMAIL_ADDRESS_INVALID' | translate }}</span>
-			</div>
-			<label>{{ 'EMAIL_SHARING.TEXT_LABEL' | translate }}</label>
-			<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'EMAIL_SHARING.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message"
-							class="report-reason-textarea text-input middle"></textarea>
-			<div class="moveUp error" ng-show="showErrors.message">
-				<span ng-show="emailForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="emailForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="emailForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
-			</div>
-			<div class="bottom clearfix">
-				<a href="" ng-click="close()" class="fleft close">
-					{{ 'CLOSE' | translate }}
-				</a>
-				<button class="button fright" type="submit" translate>SEND</button>
+
+			<label class="block">
+				<span translate="EMAIL_SHARING.ADDRESS_LABEL"></span>
+				<input type="text" email-validator translate-attr="{placeholder: 'EMAIL_SHARING.ADDRESS_PLACEHOLDER'}" ng-model="sharing.emails" name="emails" required />
+				<div ng-messages="emailForm.emails.$error" ng-show="emailForm.$submitted || emailForm.emails.$dirty">
+					<span ng-message="required" translate="ERR_NOT_FILLED_SHARING_EMAIL_ADDRS"></span>
+					<span ng-message="format" translate="ERR_SHARING_EMAIL_ADDRESS_INVALID"></span>
+				</div>
+			</label>
+
+			<label class="block">
+				<span translate="EMAIL_SHARING.TEXT_LABEL"></span>
+				<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" translate-attr="{placeholder: 'EMAIL_SHARING.TEXT_PLACEHOLDER'}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" class="report-reason-textarea text-input middle"></textarea>
+				<div ng-messages="emailForm.message.$error" ng-show="emailForm.$submitted || emailForm.message.$dirty">
+					<span ng-message="required" translate="required"></span>
+					<span ng-message="minlength" translate="ERR_AD_TEXT_MIN_LEN"></span>
+					<span ng-message="maxlength" translate="ERR_AD_TEXT_LEN"></span>
+				</div>
+			</label>
+
+			<div class="flex flex-reverse flex-space-between">
+				<button class="button" type="submit" translate="SEND"></button>
+				<a href="" ng-click="close()" class="revert-changes" translate="CLOSE"></a>
 			</div>
 		</div>
 	</form>
+
 	<div class="email-sharing success success-msg hidden">
-		<p>{{ 'EMAIL_SHARING.SUCCESS_MESSAGE' | translate }}</p>
-		<button class="button fright" ng-click="close()" translate>CLOSE</button>
-		<div class="clear"></div>
+		<p translate="EMAIL_SHARING.SUCCESS_MESSAGE"></p>
+		<button type="button" class="button" ng-click="close()" translate="CLOSE"></button>
 	</div>
+
 </div>
