@@ -28,7 +28,6 @@ angular.module('hearth', [
 		'satellizer',
 		'MobileDetect',
 		'checklist-model',
-		'rt.select2',
 		'ngActionCable',
 		'internationalPhoneNumber'
 	])

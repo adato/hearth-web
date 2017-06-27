@@ -199,56 +199,55 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		/**
 		 * Change password and validate old pass
 		 */
-		$scope.changePassword = function(pass) {
-			if (!$scope.validateChangePasswordError(pass)) return false;
+		$scope.changePassword = pass => {
+			if (!$scope.validateChangePasswordError(pass)) return false
 
 			// validate old pass
-			$scope.testOldPassword(pass.old, 'profileSettingsForm', 'oldPass', $scope.sendChangeRequest(pass));
-		};
+			$scope.testOldPassword(pass.old, 'profileSettingsForm', 'oldPass', $scope.sendChangeRequest(pass))
+		}
 
-		$scope.saveNotificationSettings = function(settings) {
-			var data = {
+		$scope.saveNotificationSettings = settings => {
+			const data = {
 				_id: $rootScope.loggedUser._id,
 				settings: settings,
-			};
+			}
 
-			User.editSettings(data, function(res) {
-				$rootScope.user.settings = settings;
-				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS);
-			});
+			User.editSettings(data).$promise.then(res => {
+				$rootScope.user.settings = settings
+				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS)
+			})
 
-		};
+		}
 
-		$scope.man_country_code = $rootScope.loggedUser.country_code;
-		$scope.countryList = CountryList.list;
-		$scope.updateCountry = function(countryCode) {
+		$scope.man_country_code = $rootScope.loggedUser.country_code
+		$scope.countryList = CountryList.list
+		$scope.updateCountry = country => {
+			if (!country) return
 			User.editSettings({
 				_id: $rootScope.loggedUser._id
 			}, {
-				man_country_code: countryCode
-			}, function(res) {
-				$rootScope.loggedUser.country_code = countryCode;
-				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS);
-			});
-		};
+				man_country_code: country.alpha_2_code
+			}).$promise.then(res => {
+				$rootScope.loggedUser.country_code = country
+				Notify.addSingleTranslate('SETTINGS.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS)
+			}).catch(err => {
+				console.warn('error saving country code', err)
+			})
+		}
 
 		$scope.init = function() {
 			// for authorized only
-			UnauthReload.check();
-			$scope.notify = $rootScope.user.settings;
-		};
+			UnauthReload.check()
+			$scope.notify = $rootScope.user.settings
+		}
 
 		// switch language to given lang code
-		$scope.switchLang = function(lang) {
-			LanguageSwitch.switchTo(lang);
-		};
+		$scope.switchLang = lang => LanguageSwitch.switchTo(lang)
 
-		$rootScope.$watch("language", function(lang) {
-			$scope.lang = lang;
-		});
+		$rootScope.$watch("language", lang => $scope.lang = lang)
 
-		$rootScope.$on('initLanguageSuccess', $scope.init);
-		$rootScope.$on('initFinished', $scope.init);
-		$rootScope.initFinished && $scope.init();
+		$rootScope.$on('initLanguageSuccess', $scope.init)
+		$rootScope.$on('initFinished', $scope.init)
+		$rootScope.initFinished && $scope.init()
 	}
-]);
+])
