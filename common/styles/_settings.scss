@@ -185,12 +185,12 @@ $header-color: inherit;
 $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 
-$h1: 'h1, .primary-header';
-$h2: 'h2, .secondary-header';
-$h3: 'h3, .tertiary-header';
-$h4: 'h4, .quaternary-header';
-$h5: 'h5, .quinary-header';
-$h6: 'h6, .senary-header';
+$h1: 'h1, .header-1';
+$h2: 'h2, .header-2';
+$h3: 'h3, .header-3';
+$h4: 'h4, .header-4';
+$h5: 'h5, .header-5';
+$h6: 'h6, .header-6';
 $header-styles: (
   small: (
     $h1: ('font-size': 24),
