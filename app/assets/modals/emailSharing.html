@@ -1,7 +1,7 @@
 <div class="itemShare formStyle itemEdit modal">
 
 	<div class="head">
-		<h2 translate="EMAIL_SHARING.HEADING"></h2>
+		<h2 translate="POST.SHARE.BY_EMAIL.HEADER"></h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
 	</div>
@@ -9,36 +9,35 @@
 	<form ng-submit="send(sharing, emailForm)" name="emailForm" novalidate class="email-sharing">
 		<div class="notify-report-container"></div>
 		<div>
-
 			<label class="block">
-				<span translate="EMAIL_SHARING.ADDRESS_LABEL"></span>
-				<input type="text" email-validator translate-attr="{placeholder: 'EMAIL_SHARING.ADDRESS_PLACEHOLDER'}" ng-model="sharing.emails" name="emails" required />
+				<span translate="POST.SHARE.BY_EMAIL.ADDRESS_LABEL"></span>
+				<input type="text" email-validator translate-attr="{placeholder: 'POST.SHARE.BY_EMAIL.ADDRESS_PLACEHOLDER'}" ng-model="sharing.emails" name="emails" required />
 				<div ng-messages="emailForm.emails.$error" ng-show="emailForm.$submitted || emailForm.emails.$dirty">
-					<span ng-message="required" translate="ERR_NOT_FILLED_SHARING_EMAIL_ADDRS"></span>
-					<span ng-message="format" translate="ERR_SHARING_EMAIL_ADDRESS_INVALID"></span>
+					<span ng-message="required" translate="POST.SHARE.BY_EMAIL.NOTIFY.ERROR_NO_ADDRESS"></span>
+					<span ng-message="format" translate="POST.SHARE.BY_EMAIL.NOTIFY.ERROR_ADDRESS_INVALID"></span>
 				</div>
 			</label>
 
 			<label class="block">
-				<span translate="EMAIL_SHARING.TEXT_LABEL"></span>
-				<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" translate-attr="{placeholder: 'EMAIL_SHARING.TEXT_PLACEHOLDER'}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" class="report-reason-textarea text-input middle"></textarea>
+				<span translate="POST.SHARE.BY_EMAIL.TEXT_LABEL"></span>
+				<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" translate-attr="{placeholder: 'POST.SHARE.BY_EMAIL.TEXT_PLACEHOLDER'}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" class="report-reason-textarea text-input middle"></textarea>
 				<div ng-messages="emailForm.message.$error" ng-show="emailForm.$submitted || emailForm.message.$dirty">
-					<span ng-message="required" translate="required"></span>
-					<span ng-message="minlength" translate="ERR_AD_TEXT_MIN_LEN"></span>
-					<span ng-message="maxlength" translate="ERR_AD_TEXT_LEN"></span>
+					<span ng-message="required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+					<span ng-message="minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+					<span ng-message="maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 				</div>
 			</label>
 
 			<div class="flex flex-reverse flex-space-between">
-				<button class="button" type="submit" translate="SEND"></button>
-				<a href="" ng-click="close()" class="revert-changes" translate="CLOSE"></a>
+				<button class="button" type="submit" translate="COMMON.ACTION_SEND"></button>
+				<a href="" ng-click="close()" class="revert-changes" translate="COMMON.ACTION_CLOSE"></a>
 			</div>
 		</div>
 	</form>
 
 	<div class="email-sharing success success-msg hidden">
-		<p translate="EMAIL_SHARING.SUCCESS_MESSAGE"></p>
-		<button type="button" class="button" ng-click="close()" translate="CLOSE"></button>
+		<p translate="POST.SHARE.BY_EMAIL.NOTIFY.SUCCESS_SENT"></p>
+		<button type="button" class="button" ng-click="close()" translate="COMMON.ACTION_CLOSE"></button>
 	</div>
 
 </div>

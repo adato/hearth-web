@@ -1,7 +1,7 @@
 <div class="itemEdit modal remove-post-from-community">
 
 	<div class="head">
-		<h2 translate="POST_COMMUNITY_REMOVE.HEADING"></h2>
+		<h2 translate="POST.REMOVE_FROM_COMMUNITY.TITLE"></h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
 	</div>
@@ -13,34 +13,34 @@
 
 		<div>
 
-			<div class="block" translate="POST_COMMUNITY_REMOVE.INFO"></div>
+			<div class="block" translate="POST.REMOVE_FROM_COMMUNITY.TEXT"></div>
 
 			<div class="community-list margin-bottom-large" ng-show="communitiesCount > 1">
-				<label class="margin-bottom-none" translate="POST_COMMUNITY_REMOVE.SELECT_COMMUNITIES"></label>
+				<label class="margin-bottom-none" translate="POST.REMOVE_FROM_COMMUNITY.SELECT_COMMUNITIES"></label>
 				<div ng-repeat="community in myAdminCommunities" ng-if="post.admin_communities.indexOf(community._id) + 1">
 					<checkbox on-update="showErrors.communities = false" model="communities[community._id]">
 						<avatar src="community.avatar.normal" class="move-bot" size="mini" type="community._type"></avatar>
 						{{community.name}}
 					</checkbox>
 				</div>
-				<div class="error" ng-show="showErrors.communities" translate="ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY">
+				<div class="error" ng-show="showErrors.communities" translate="POST.NOTIFY.ERROR_CHOOSE_COMMUNITY">
 				</div>
 			</div>
 			<div class="community-removed" ng-show="communitiesCount == 1">
-				<span ng-bind-html="'POST_COMMUNITY_REMOVE.POST_WILL_BE_REMOVED_FROM' | translate: {name: communityObj.name}"></span>
+				<span ng-bind-html="'POST.REMOVE_FROM_COMMUNITY.POST_WILL_BE_REMOVED_FROM' | translate: {name: communityObj.name}"></span>
 			</div>
 
-			<label translate="POST_COMMUNITY_REMOVE.REASON_LABEL"></label>
-			<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'POST_COMMUNITY_REMOVE.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" class="report-reason-textarea text-input middle"></textarea>
+			<label translate="POST.REMOVE_FROM_COMMUNITY.REASON_LABEL"></label>
+			<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'POST.REMOVE_FROM_COMMUNITY.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" class="report-reason-textarea text-input middle"></textarea>
 			<div class="form-error" ng-show="showErrors.message">
-				<span ng-show="reportForm.message.$error.required" translate="ERR_REPORT_TEXT_MIN_LEN"></span>
-				<span ng-show="reportForm.message.$error.minlength" translate="ERR_REPORT_TEXT_MIN_LEN"></span>
-				<span ng-show="reportForm.message.$error.maxlength" translate="ERR_REPORT_TEXT_MAX_LEN"></span>
+				<span ng-show="reportForm.message.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+				<span ng-show="reportForm.message.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+				<span ng-show="reportForm.message.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 			</div>
 
 			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
-				<button class="button" type="submit" translate="REPORT"></button>
-				<a href="" ng-click="close()" translate="CLOSE"></a>
+				<button class="button" type="submit" translate="COMMON.ACTION_SUBMIT"></button>
+				<a href="" ng-click="close()" translate="COMMON.ACTION_CLOSE"></a>
 			</div>
 
 		</div>
@@ -48,9 +48,9 @@
 	</form>
 
 	<div class="report-ad success success-msg hidden">
-		<p translate="POST_COMMUNITY_REMOVE.SUCCESS_MESSAGE"></p>
+		<p translate="POST.REMOVE_FROM_COMMUNITY.SUCCESSFULLY_REMOVED"></p>
 		<div class="text-right">
-			<button class="button" ng-click="close()" translate="CLOSE"></button>
+			<button class="button" ng-click="close()" translate="COMMON.ACTION_CLOSE"></button>
 		</div>
 	</div>
 

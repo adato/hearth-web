@@ -43,7 +43,6 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 
 			Post.emailShare(data).$promise.then(res => {
 				$scope.showFinished()
-
 				form.$setPristine()
 				form.$setUntouched()
 			}).catch(err => {

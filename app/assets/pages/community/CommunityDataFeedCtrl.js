@@ -372,7 +372,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				memberId: id
 			}, function(res) {
 				$scope.sendingRemoveMember = false;
-				Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_USER_KICKED', Notify.T_SUCCESS);
 				$scope.init();
 			}, function(res) {
 				$scope.sendingRemoveMember = false;

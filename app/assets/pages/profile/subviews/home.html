@@ -1,19 +1,20 @@
 <div class="profile-listings-v1" ng-show="subPageLoaded">
 	<div class="left-pane">
 		<div class="box ratings home-ratings" ng-if="receivedRatings.length">
-			<h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
-			<h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
+			<h3 class="mine" translate="PROFILE.RATINGS.YOUR_RATINGS"></h3>
+			<h3 class="others" translate="PROFILE.RATINGS.USER_RATINGS"></h3>
 			<div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
-			<p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
-			<p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}}
+			<p class="mine" ng-if="! receivedRatings.length" translate="PROFILE.RATING.YOU_HAVE_NO_RATINGS"></p>
+			<p class="others" ng-if="loaded && ! receivedRatings.length">
+				<span translate="PROFILE.RATING.USER_HAS_NO_RATINGS"></span>
 				<a href="" ng-click="openUserRatingForm()">
-					<b>{{:: 'THUMB_UP' | translate }}</b>
+					<b translate="PROFILE.ACTION_FEEDBACK"></b>
 				</a>
 			</p>
 			<div class="buttons" ng-if="receivedRatings.length">
 				<a ui-sref="profile.subview({page: 'received-ratings'})">
 					<button class="button">
-						<i class="fa fa-angle-double-right"></i>&nbsp;{{:: 'OLDER_RATINGS' | translate }}
+						<i class="fa fa-angle-double-right"></i>&nbsp;<span translate="PROFILE.RATING.OLDER_RATINGS"></span>
 					</button>
 				</a>
 			</div>
@@ -21,29 +22,30 @@
 		<div class="box ads">
 			<h3 ng-if="mine" class="display-flex flex-space-between">
 				<div>
-					<span ng-if="posts.data.length">{{:: 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} {{'POSTS_PL.'+pluralCat(posts.data.length) | translate }}</span>
-					<span ng-if="! posts.data.length">{{:: 'ACTIVE_POSTS' | translate}}</span>
+					<span ng-if="posts.data.length">{{:: 'PROFILE.POSTS.YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} {{'COMMON.X_POSTS.'+pluralCat(posts.data.length) | translate }}</span>
+					<span ng-if="! posts.data.length" translate="PROFILE.POSTS.ACTIVE_POSTS"></span>
 				</div>
 
-				<button type="button" class="touchable" ng-click="editItem(null)" title="{{:: 'AD_ADD_LABEL' | translate}}">
+				<button type="button" class="touchable" ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate}}">
 					<i class="fa fa-plus-square"></i>
 				</button>
 			</h3>
-			<h3 class="others" translate="USER_POSTS"></h3>
+			<h3 class="others" translate="PROFILE.POSTS.USER_POSTS"></h3>
 
 			<div ng-include="'assets/components/item/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index"></div>
 			<!-- === No posts active & inactive === -->
 			<p class="mine" ng-if="! posts.data.length && !info.post_total">
-				{{:: 'PROFILE.HOME.NO_POSTS_ME' | translate}}
-				<a ng-click="editItem(null)" title="{{:: 'AD_ADD_LABEL' | translate}}">{{:: 'AD_ADD_LABEL' | translate }}</a>
+				<span translate="PROFILE.POSTS.NO_POSTS_ME"></span>
+				<a ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate}}" translate="MARKETPLACE.ACTION_CREATE_POST"></a>
 			</p>
-			<p class="others" ng-if="! posts.data.length">{{:: 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+			<p class="others" ng-if="! posts.data.length" translate="PROFILE.POSTS.NO_POSTS_YET"></p>
 			<!-- === No active posts but some inactive === -->
-			<p class="mine" ng-if="! posts.data.length && info.post_total > 0">{{:: 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
+			<p class="mine" ng-if="! posts.data.length && info.post_total > 0" translate="PROFILE.POSTS.ONLY_ACTIVE_POSTS"></p>
 			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 &&  mine)">
 				<a ui-sref="profile.subview({page: 'posts'})">
 					<button class="button">
-						<i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
+						<i class="fa fa-angle-double-right"></i> 
+						<span translate="PROFILE.POSTS.ALL"></span>
 					</button>
 				</a>
 			</div>
@@ -51,28 +53,29 @@
 	</div>
 	<div class="right-pane">
 		<div class="box user-about">
-			<h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{info.name}}</h3>
-			<h3 ng-if="mine">{{:: 'YOUR_PROFILE' | translate }}</h3>
+			<h3 ng-if="!mine"><span translate="PROFILE.MEET_USER"></span> {{info.name}}</h3>
+			<h3 ng-if="mine" translate="PROFILE.YOUR_PROFILE"></h3>
 
 			<div class="line">
 				<user-intel-readout entity="info" type="'profile'"></user-intel-readout>
 				<div class="descr reg-date margin-top-none">
 					<i class="fa fa-asterisk"></i>
-					<span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
-					<span ng-if="mine">{{:: 'YOU_HAVE_REGISTERED' | translate }}</span> {{ info.confirmed_at | ago}}
+					<span ng-if="!mine" translate="PROFILE.USER_HAS_REGISTERED"></span>
+					<span ng-if="mine" translate="PROFILE.YOU_HAVE_REGISTERED"></span> 
+					{{ info.confirmed_at | ago}}
 				</div>
 
 				<div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
-					<p>{{:: 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
+					<p translate="PROFILE.YOUR_PROFILE_IS_EMPTY"></p>
 					<p>
-						<a ui-sref="profileEdit">{{:: 'PROFILE_EDIT.HEADER' | translate}}</a>
+						<a ui-sref="profileEdit" translate="PROFILE.ACTION_EDIT"></a>
 					</p>
 				</div>
 			</div>
 			<div class="clear"></div>
 			<div class="line display-flex flex-space-between margin-top-small">
 				<div ng-if="!mine">
-					<button type="button" class="button hollow" ng-if="(userHasRight('post.suspend') || !info.only_replies)" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
+					<button type="button" class="button hollow" ng-if="(userHasRight('post.suspend') || !info.only_replies)" ng-click="sendMessage(info)" translate="MESSAGING.ACTION_SEND_MESSAGE"></a>
 				</div>
 				<div class="social">
 					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
@@ -91,16 +94,16 @@
 			</div>
 		</div>
 		<div class="box activities">
-			<h3 ng-if="mine">{{:: 'YOUR_ACTIVITY' | translate }}</h3>
-			<h3 ng-if="!mine">{{:: 'USER_ACTIVITY' | translate }}</h3>
+			<h3 ng-if="mine" translate="PROFILE.ACTIVITY.YOUR_ACTIVITY"></h3>
+			<h3 ng-if="!mine" translate="PROFILE.ACTIVITY.USER_ACTIVITY"></h3>
 			<div ng-if="loaded && !(activityLog.length)">
 				<div ng-if="info.created_at_days <= 30">
-					<p ng-if="mine">{{:: 'PROFILE.HOME.NO_ACTIVITY_ME' | translate }}</p>
-					<p ng-if="!mine">{{:: 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+					<p ng-if="mine" translate="PROFILE.ACTIVITY.NO_ACTIVITY_ME"></p>
+					<p ng-if="!mine" translate="PROFILE.ACTIVITY.NO_ACTIVITY_OTHER"></p>
 				</div>
 				<div ng-if="info.created_at_days > 30">
-					<p ng-if="mine">{{:: 'PROFILE.HOME.NO_ACTIVITY_ME_OLDER' | translate }}</p>
-					<p ng-if="!mine">{{:: 'PROFILE.HOME.NO_ACTIVITY_OTHER_OLDER' | translate }}</p>
+					<p ng-if="mine" translate="PROFILE.ACTIVITY.NO_ACTIVITY_ME_OLDER"></p>
+					<p ng-if="!mine" translate="PROFILE.ACTIVITY.NO_ACTIVITY_OTHER_OLDER"></p>
 				</div>
 			</div>
 			<div ng-if="activityLog.length">

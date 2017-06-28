@@ -2,20 +2,22 @@
 	<div class="head">
 		<a ng-click="closeThisDialog()" class="fright close-dialog  close fa fa-times"></a>
 		<h2>
-			<span ng-if="!isDraft" translate="EDIT_POST"></span>
-			<span ng-if="isDraft" translate="CREATE_POST"></span>
+			<span ng-if="!isDraft" translate="POST.CREATE.TITLE_EDIT"></span>
+			<span ng-if="isDraft" translate="POST.CREATE.TITLE"></span>
 		</h2>
 		<hr>
 		<div ng-if="!isPostActive(post)">
 			<ul class="message-line">
 				<li ng-if="post.state == 'expired' && post.dateOrig">
-					{{:: 'POST_HAS_EXPIRED' | translate }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}
+					<span translate="POST.NOTIFY.EXPIRED_AT"></span> 
+					{{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}
 				</li>
-				<li ng-if="post.state == 'expired' && !post.dateOrig">
-					{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}
+				<li ng-if="post.state == 'expired' && !post.dateOrig" 
+					translate="POST.NOTIFY.EXPIRED">
 				</li>
 				<li ng-if="post.state == 'suspended'">
-					{{:: 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}
+					<span translate="POST.NOTIFY.SUSPENDED"></span> 
+					{{ post.suspended_at | date:DATETIME_FORMATS.medium }}
 				</li>
 			</ul>
 		</div>
@@ -23,13 +25,13 @@
 
 	<form ng-submit="save(post)" name="createAdForm" novalidate class="create-ad">
 		<div class="edit-post-notify-container"></div>
-		<div class="form-error" ng-if="showInvalidPostMessage" translate="ERR_ACTION_FAILED_DUE_TO_ERRORS"></div>
+		<div class="form-error" ng-if="showInvalidPostMessage" translate="POST.NOTIFY.ERROR_THERE_ARE_ERRORS"></div>
 
 		<div class="first-step-container">
-			<p ng-bind-html=":: 'POST_BORROW_LEND_INFOTEXT' | translate" ng-show="isDraft" ng-class="{'faa-fade-out margin-none' : twoStepForm.step2}"></p>
+			<p ng-bind-html=":: 'POST.CREATE.BORROW_LEND_TEXT' | translate" ng-show="isDraft" ng-class="{'faa-fade-out margin-none' : twoStepForm.step2}"></p>
 			<div id="type-switch-container" class="display-flex overload-for-overload-for-overload-for-yet-another-guess-what-you-guessed-it-overload">
 				<div class="display-medium-flex flex-divide-medium flex-div flex-1" ng-repeat="itemOptionGroup in itemTypeOptions">
-					<div title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex form-section flex-div flex-medium-divide flex-1 margin-horizontal-small" ng-repeat="itemOption in itemOptionGroup">
+					<div title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED': '' ) | translate }}" tipsy class="display-flex form-section flex-div flex-medium-divide flex-1 margin-horizontal-small" ng-repeat="itemOption in itemOptionGroup">
 						<button type="button" ng-disabled="post.reply_count && ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))" class="flex-1 button button-white full-width flex-div padding-vertical-small padding-horizontal-tiny faa-parent animated-hover display-flex button-type-switch"
 										ng-click="setItemTypeActive({itemType: itemOption, post: post})" ng-class="{active: (post.type == itemOption && (post.exact_type == 'any' || post.exact_type == 'gift')) || ((post.exact_type == 'loan' || post.exact_type == 'any') && ((post.type == 'offer' && itemOption == 'lend') || (post.type == 'need' && itemOption == 'borrow'))),
 											inactive: ((post.type == 'offer' && (itemOption == 'borrow' || itemOption == 'need')) || (post.type == 'need' && (itemOption == 'offer' || itemOption == 'lend')))}">
@@ -47,9 +49,9 @@
 			<div class="display-flex flex-space-between flex-reverse" ng-if="isDraft && !twoStepForm.step2">
 				<!-- show only for "create item" where post.type and exact_type are not choosen -->
 				<div class="nowrap">
-					<button ng-disabled="!post.exact_type || !post.type" class="button" type="button" ng-click="twoStepForm.step2 = true">{{:: 'CONTINUE' | translate }}</button>
+					<button ng-disabled="!post.exact_type || !post.type" class="button" type="button" ng-click="twoStepForm.step2 = true" translate="COMMON.ACTION_CONTINUE"></button>
 				</div>
-				<a href="" ng-click="closeEdit()" class="revert-changes">{{:: 'CANCEL' | translate }}</a>
+				<a href="" ng-click="closeEdit()" class="revert-changes" translate="COMMON.ACTION_CANCEL"></a>
 			</div>
 		</div>
 
@@ -58,7 +60,7 @@
 			<!-- show either for editform, or for step2 of insert form -->
 			<section class="author display-flex flex-wrap">
 				<div class="form-section column small-12 medium-6" ng-show="authorList.length > 1">
-					<author-selector ng-disabled="post.reply_count" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' ) | translate }}" tipsy author-list='authorList'></author-selector>
+					<author-selector ng-disabled="post.reply_count" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.NOTIFY.AUTHOR_SELECT_IS_DISABLED': '' ) | translate }}" tipsy author-list='authorList'></author-selector>
 					<div class="position-relative">
 						<div class="tipsy-overlay" ng-if="post.reply_count"></div>
 					</div>
@@ -67,17 +69,17 @@
 
 			<div class="block">
 				<label>
-					<span translate="POST_TITLE_LABEL"></span>
+					<span translate="POST.CREATE.TITLE_LABEL"></span>
 					<div>
 						<div class="field-group margin-bottom-none">
-							<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius green bold" ng-if="post.type == 'offer'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
-							<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius red bold" ng-if="post.type == 'need'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
-							<input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{:: 'TELL_WHAT' | translate }}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+							<span title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius green bold" ng-if="post.type == 'offer'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
+							<span title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius red bold" ng-if="post.type == 'need'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
+							<input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{:: 'POST.CREATE.TITLE_PLACEHOLDER' | translate }}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 						</div>
 						<div class="form-error" ng-show="createAdForm.title.$invalid && showError.title && createAdForm.$dirty">
-							<span ng-show="createAdForm.title.$error.required" translate="ERR_AD_TITLE_MIN_LEN"></span>
-							<span ng-show="createAdForm.title.$error.minlength" translate="ERR_AD_TITLE_MIN_LEN"></span>
-							<span ng-show="createAdForm.title.$error.maxlength" translate="ERR_AD_TITLE_LEN"></span>
+							<span ng-show="createAdForm.title.$error.required" translate="POST.CREATE.NOTIFY.ERROR_TITLE_TOO_SHORT"></span>
+							<span ng-show="createAdForm.title.$error.minlength" translate="POST.CREATE.NOTIFY.ERROR_TITLE_TOO_SHORT"></span>
+							<span ng-show="createAdForm.title.$error.maxlength" translate="POST.CREATE.NOTIFY.ERROR_TITLE_TOO_LONG"></span>
 						</div>
 						<check-capitals model="post.title" ng-if="showError.title" class="form-error warning"></check-capitals>
 					</div>
@@ -86,12 +88,12 @@
 
 			<div class="block">
 				<label>
-					<span translate="POST_TEXT_LABEL"></span>
-					<textarea id="text" autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required ng-attr-placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.text" name="text" class="create-ad-textarea text-input middle"></textarea>
+					<span translate="POST.CREATE.TEXT_LABEL"></span>
+					<textarea id="text" autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required ng-attr-placeholder="{{ 'POST.CREATE.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.text" name="text" class="create-ad-textarea text-input middle"></textarea>
 					<div class="form-error" ng-show="createAdForm.text.$invalid && showError.text">
-						<span ng-show="createAdForm.text.$error.required" translate="ERR_AD_TEXT_MIN_LEN"></span>
-						<span ng-show="createAdForm.text.$error.minlength" translate="ERR_AD_TEXT_MIN_LEN"></span>
-						<span ng-show="createAdForm.text.$error.maxlength" translate="ERR_AD_TEXT_LEN"></span>
+						<span ng-show="createAdForm.text.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+						<span ng-show="createAdForm.text.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+						<span ng-show="createAdForm.text.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 					</div>
 					<check-capitals model="post.text" ng-if="showError.text" class="form-error warning"></check-capitals>
 				</label>
@@ -99,14 +101,14 @@
 
 			<div class="block files">
 				<label>
-					<span ng-if="!imagesCount" translate="ATTACHE_IMAGES"></span>
-					<span ng-if="imagesCount">{{:: 'IMAGES' | translate }} ({{ post.attachments_attributes.length || 0 }})</span>
+					<span ng-if="!imagesCount" translate="POST.CREATE.IMAGES_LABEL"></span>
+					<span ng-if="imagesCount"><span translate="COMMON.IMAGES"></span> ({{ post.attachments_attributes.length || 0 }})</span>
 				</label>
 				<div>
 					<ul class="fileList">
 						<li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
 							<div class="overlay"></div>
-							<a ng-click="removeImage($index)" title="{{:: 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+							<a ng-click="removeImage($index)" title="{{:: 'POST.CREATE.REMOVE_PHOTO_LABEL' | translate }}">
 								<i class="fa fa-times"></i>
 							</a>
 							<img exif-rotated resized-thumbnail-image ng-src="{{ file.normal || file.public_url }}" title='file' />
@@ -120,21 +122,21 @@
 					</ul>
 					<div class="clear"></div>
 					<div class="clear form-error" ng-show="showError.files">
-						<span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \ 'JPG, JPEG, PNG, GIF\'} " }}</span>
-						<span ng-if="showError.files.badMaxSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize:"+limitMb+"}" }}</span>
-						<span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
-						<span ng-if="showError.files.badMinSizePx">{{:: "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize:"+limitPixelSize+"}" }}</span>
-						<span ng-if="showError.files.uploadError">{{:: "ERROR_WHILE_UPLOADING" | translate }}</span>
+						<span ng-if="showError.files.badFormat" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: 'JPG, JPEG, PNG, GIF'}"></span>
+						<span ng-if="showError.files.badMaxSize" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize:limitMb}"></span>
+						<span ng-if="showError.files.badSizeAll" translate="COMMON.NOTIFY.ERROR_FILES_TOO_BIG" translate-values="{maxSize:maxImageSizeLimit}"></span>
+						<span ng-if="showError.files.badMinSizePx" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize:limitPixelSize}"></span>
+						<span ng-if="showError.files.uploadError" translate="COMMON.NOTIFY.ERROR_UPLOADING"></span>
 					</div>
 				</div>
 			</div>
 
 			<div class="block">
 				<label class="ui-select-scope-wrapper">
-					<span translate='POST.LANGUAGE'></span>:
+					<span translate='POST.CREATE.LANGUAGE_LABEL'></span>:
 					<ui-select id="post-language" ng-model="post.language" theme="select2">
 						<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
-						<ui-select-choices group-by="'group'" group-filter="[('LANGUAGE.LIST.LABEL_CHOSEN' | translate), ('LANGUAGE.LIST.LABEL_OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
+						<ui-select-choices group-by="'group'" group-filter="[('POST.CREATE.LANGUAGES_MAIN' | translate), ('POST.CREATE.LANGUAGES_OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
 				      <div ng-bind-html="item.name | highlight: $select.search"></div>
 				    </ui-select-choices>
 					</ui-select>
@@ -144,7 +146,7 @@
 			<div class="block position-relative">
 				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
-					<span translate="POST_CATEGORY_LABEL"></span>
+					<span translate="POST.CREATE.CATEGORY_LABEL"></span>
 				</label>
 				<div class="flex button-group margin-bottom-none">
 					<label ng-repeat="character in character" class="button flex-1" ng-class="post.character.indexOf(character.name) > -1 ? '' : 'button-white'">
@@ -153,33 +155,33 @@
 					</label>
 				</div>
 				<div class="form-error" ng-show="createAdForm.character.$invalid">
-					<span ng-show="createAdForm.character.$error.required" translate="ERR_AD_CATEGORY"></span>
-					<span ng-show="createAdForm.character.$error.max" translate="ERR_AD_CATEGORY_MAX"></span>
+					<span ng-show="createAdForm.character.$error.required" translate="POST.CREATE.NOTIFY.ERROR_NO_CATEGORY"></span>
+					<span ng-show="createAdForm.character.$error.max" translate="POST.CREATE.NOTIFY.ERROR_MAX_ONE_CATEGORY"></span>
 				</div>
 			</div>
 
 			<div class="block">
 				<label>
-					<span translate="POST_KEYWORDS_LABEL"></span>
-					<tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
+					<span translate="POST.CREATE.KEYWORDS_LABEL"></span>
+					<tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{:: 'COMMON.KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
 						<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 					</tags-input>
 				</label>
 			</div>
 
 			<div class="block">
-				<locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
+				<locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="POST.CREATE.NOTIFY.ERROR_NO_LOCATIONS"></locations>
 			</div>
 
 			<div class="block collapse" ng-class="{ 'collapse-expanded': slide.date }">
 				<label slide-trigger="slide.date">
-					<span translate="POST_EXPIRATION_DATE_LABEL"></span>
+					<span translate="POST.CREATE.EXPIRY_DATE_LABEL"></span>
 					<span ng-if="!slide.date">
-						<span ng-if="!post.valid_until_unlimited && !post.valid_until" translate="NOT_FILLED"></span>
+						<span ng-if="!post.valid_until_unlimited && !post.valid_until" translate="COMMON.NOT_FILLED"></span>
 						<span ng-if="!post.valid_until_unlimited && post.valid_until">
-							({{'UNTIL' | translate }} {{ post.valid_until | date }})
+							({{'COMMON.UNTIL' | translate }} {{ post.valid_until | date }})
 						</span>
-						<span ng-if="post.valid_until_unlimited" class="lowercase" translate="UNLIMITED"></span>
+						<span ng-if="post.valid_until_unlimited" class="lowercase" translate="COMMON.UNLIMITED"></span>
 					</span>
 				</label>
 				<div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
@@ -190,13 +192,13 @@
 							</label>
 							<div class="flex-1">
 								<checkbox class="margin-left-large" model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()">
-									<span translate="UNLIMITED"></span>
+									<span translate="COMMON.UNLIMITED"></span>
 								</checkbox>
 							</div>
 						</div>
 						<div class="form-error" ng-show="!post.valid_until_unlimited && showError.valid_until">
-							<span ng-show="!post.valid_until.trim()" translate="DATE_IS_EMPTY"></span>
-							<span ng-show="post.valid_until.trim()" translate="ERR_DATE_IS_OLD"></span>
+							<span ng-show="!post.valid_until.trim()" translate="POST.CREATE.NOTIFY.ERROR_DATE_IS_EMPTY"></span>
+							<span ng-show="post.valid_until.trim()" translate="POST.CREATE.NOTIFY.ERROR_DATE_IS_IN_PAST"></span>
 						</div>
 					</div>
 				</div>
@@ -205,12 +207,12 @@
 			<div class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
 				<div class="block">
 					<label class="collapse-trigger" slide-trigger="slide.communities">
-						{{:: 'POST_COMMUNITIES_LABEL' | translate }}
+						<span translate="POST.CREATE.COMMUNITIES_LABEL"></span>
 						<span ng-if="post.related_communities.length" ng-bind="' (' + post.related_communities.length + ')'"></span>
 					</label>
 					<div ng-slide-down="slide.communities" lazy-render duration="0.5">
 						<div ng-if="!post.related_communities.length && post.is_private">
-							<community-selector disable="true" tipsy title="{{:: 'POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE' | translate }}" communities="post.related_communities"></community-selector>
+							<community-selector disable="true" tipsy title="{{:: 'POST.CREATE.NOTIFY.NO_COMMUNITIES_WHEN_PRIVATE' | translate }}" communities="post.related_communities"></community-selector>
 						</div>
 						<div ng-if="post.related_communities.length || !post.is_private">
 							<community-selector communities="post.related_communities"></community-selector>
@@ -222,23 +224,23 @@
 			<div class="collapse lock" ng-show="enableLockField">
 				<div class="block">
 					<label slide-trigger="slide.lock" for="lock">
-						{{:: 'POST_LOCK_LABEL' | translate }}
+						<span translate="POST.CREATE.PRIVACY_LABEL"></span>
 						<span ng-if="!slide.lock">
-							<span ng-if="!post.is_private">({{:: 'SHOW_TO_ALL' | translate }})</span>
-							<span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{:: 'SHOW_TO_FRIENDS' | translate }})</span>
-							<span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{:: 'SHOW_TO_COMMUNITY' | translate }})</span>
+							<span ng-if="!post.is_private">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_ALL"></span>)</span>
+							<span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_FRIENDS"></span>)</span>
+							<span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_COMMUNITY"></span>)</span>
 						</span>
 					</label>
 					<ul ng-slide-down="slide.lock" lazy-render duration="0.5">
 						<li>
 							<radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
-								{{:: 'VISIBLE_FOR_ALL' | translate }}
+								<span translate="POST.CREATE.PRIVACY_VISIBLE_FOR_ALL"></span>
 							</radio>
 						</li>
 						<li>
 							<radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
-								<span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-								<span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+								<span ng-if="!post.current_community_id && !post.related_communities.length" translate="POST.CREATE.PRIVACY_VISIBLE_FOR_FRIENDS"></span>
+								<span ng-if="(post.current_community_id || post.related_communities.length)" translate="POST.CREATE.PRIVACY_VISIBLE_FOR_MEMBERS"></span>
 							</radio>
 						</li>
 					</ul>
@@ -247,10 +249,10 @@
 
 			<div class="display-flex flex-space-between flex-reverse">
 				<div class="nowrap">
-					<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="button" ng-disabled="sending" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE_AND_ACTIVATE' | translate }}</button>
-					<button class="button" ng-disabled="sending" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE' | translate }}</button>
+					<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="button" ng-disabled="sending" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate="POST.CREATE.ACTION_SAVE_AND_ACTIVATE"></button>
+					<button class="button" ng-disabled="sending" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate="COMMON.ACTION_SAVE"></button>
 				</div>
-				<a href="" ng-click="closeEdit()">{{:: 'CLOSE' | translate }}</a>
+				<a href="" ng-click="closeEdit()" translate="COMMON.ACTION_CLOSE"></a>
 			</div>
 
 		</div>
