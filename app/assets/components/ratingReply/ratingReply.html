@@ -13,7 +13,7 @@
 		<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="500" required="true" placeholder="{{ 'PROFILE.RATING.WRITE_REPLY_PLACEHOLDER' | translate }}" model="rating.reply_text" name="text" id="reply-text"></input-max-length>
 		<div class="clearfix">&nbsp;</div>
 		<div class="clearfix">
-			<a class="left cancel-reply" ng-click="closeReply(rating)" translate="COMMON.ACTION_CANCEL"></a>
+			<a class="left cancel-reply" ng-click="closeReply()" translate="COMMON.ACTION_CANCEL"></a>
 			<button type="submit" ng-disabled="ratingReplyForm.text.$invalid" class="button right" translate="COMMON.ACTION_SEND"></button>
 		</div>
 	</form>
