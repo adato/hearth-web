@@ -2,23 +2,19 @@
 	<form class="formStyle" ng-submit="sendReply(rating.reply_text)" name="ratingReplyForm" novalidate="">
 		<label for="reply-text">
 			<div class="author-info">
-				<div>{{:: 'PROFILE.RATING.REPLY_TO_USER' | translate}}
+				<div><span translate="PROFILE.RATING.REPLY_TO_USER"></span>
 					<a href="{{:: getProfileLink(rating.entity_from._type, rating.entity_from._id)}}">{{:: rating.entity_from.name}}</a>
-					<span ng-if="rating.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }}
+					<span ng-if="rating.post_id">&nbsp;<span translate="PROFILE.RATING.ON_POST"></span>
 						<a href="{{:: basePath }}post/{{:: rating.post_id}}" title="{{:: rating.post_title }}">{{:: rating.post_title | ellipsis:40}}</a>
 					</span>:
 				</div>
 			</div>
 		</label>
-		<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="500" required="true" placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" model="rating.reply_text" name="text" id="reply-text"></input-max-length>
+		<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="500" required="true" placeholder="{{ 'PROFILE.RATING.WRITE_REPLY_PLACEHOLDER' | translate }}" model="rating.reply_text" name="text" id="reply-text"></input-max-length>
 		<div class="clearfix">&nbsp;</div>
 		<div class="clearfix">
-			<a class="left cancel-reply" ng-click="closeReply(rating)">
-				{{:: 'CANCEL' | translate }}
-			</a>
-			<button type="submit" ng-disabled="ratingReplyForm.text.$invalid" class="button right">
-				{{:: 'SEND' | translate }}
-			</button>
+			<a class="left cancel-reply" ng-click="closeReply(rating)" translate="COMMON.ACTION_CANCEL"></a>
+			<button type="submit" ng-disabled="ratingReplyForm.text.$invalid" class="button right" translate="COMMON.ACTION_SEND"></button>
 		</div>
 	</form>
 </div>

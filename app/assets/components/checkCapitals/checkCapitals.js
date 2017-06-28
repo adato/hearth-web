@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('checkCapitals', [
 			scope: {
 				model: '=',
 			},
-			template: '<div><span ng-if="isLoud">{{:: "ERR_TEXT_TOO_LOUD" | translate }}</span></div>',
+			template: '<div><span ng-if="isLoud" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LOUD"></span></div>',
 			link: function(scope, element, attrs) {
 
 				scope.isLoud = false;
