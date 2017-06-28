@@ -24,6 +24,11 @@ angular.module('hearth.directives').directive('infoBox', [
 			},
 			templateUrl: 'assets/components/infoBox/infoBox.html',
 			link: function(scope, el, attrs) {
+
+				if (attrs.asdf === 'qwer') {
+					console.log(attrs, scope.infoBox);
+				}
+
 				scope.show = false; // infobox shown
 				scope.error = false; // an error occured when loading info
 				scope.info = false; // we will cache infobox content
@@ -117,6 +122,7 @@ angular.module('hearth.directives').directive('infoBox', [
 							scope.show = true;
 							scope.error = false;
 
+							console.log('scope', scope);
 							if ($rootScope.loggedUser._id != scope.infoBox._id) {
 								if (typeof scope.infoBox._type != 'undefined' && scope.infoBox._type == 'Community') {
 									fetchCommunityFollowees();
