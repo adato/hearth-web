@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 			restrict: 'E',
 			replace: true,
 			scope: {
-				rating: "="
+				ratingItem: "="
 			},
 			templateUrl: 'assets/components/ratingReply/ratingReply.html',
 			link: function(scope, el, attrs) {
@@ -22,9 +22,9 @@ angular.module('hearth.directives').directive('ratingReply', [
 				scope.showError = false;
 				scope.getProfileLink = $rootScope.getProfileLink;
 
-				scope.closeReply = function(rating) {
+				scope.closeReply = function() {
 					scope.reply = '';
-					scope.rating.formOpened = false;
+					scope.ratingItem.formOpened = false;
 				};
 
 				scope.sendReply = function(text) {
