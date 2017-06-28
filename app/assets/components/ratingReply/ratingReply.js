@@ -43,9 +43,9 @@ angular.module('hearth.directives').directive('ratingReply', [
 						comment: {
 							text: text
 						},
-						_id: scope.rating._id
+						_id: scope.ratingItem._id
 					}, function(res) {
-						scope.rating.comment = res;
+						scope.ratingItem.comment = res;
 						scope.closeReply();
 						Notify.addSingleTranslate('PROFILE.RATING.NOTIFY.SUCCESS_RATING_REPLY', Notify.T_SUCCESS);
 					});
