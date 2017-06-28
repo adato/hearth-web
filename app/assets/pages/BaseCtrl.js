@@ -499,7 +499,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				$rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
-				Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_DELETED', Notify.T_SUCCESS);
 				$rootScope.globalLoading = false;
 
 				cb && cb(post); // if callback given, call it
@@ -563,7 +563,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, res => {
 				if (res.ok === true) {
 					post.is_followed = !post.is_followed;
-					Notify.addSingleTranslate('NOTIFY.POST_FOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
+					Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_FOLLOWED', Notify.T_SUCCESS);
 				}
 			});
 		};
@@ -584,7 +584,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_followed = !post.is_followed;
-					Notify.addSingleTranslate('NOTIFY.POST_UNFOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
+					Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_UNFOLLOWED', Notify.T_SUCCESS);
 				}
 			});
 		};
@@ -769,7 +769,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				if (angular.isFunction(cb)) cb(item);
 
 				$rootScope.$broadcast('postUpdated', res);
-				Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_UPDATED', Notify.T_SUCCESS);
 				$rootScope.globalLoading = false;
 
 			}, err => {

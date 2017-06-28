@@ -119,11 +119,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function finishLoading(data, isLast) {
-			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
-				value: $scope.items.length
-			});
-			$scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
+			$scope.topArrowText.bottom = $translate.instant('MARKETPLACE.COUNT_TOTAL', {
 				value: data.total
+			});
+			$scope.topArrowText.top = $translate.instant('MARKETPLACE.X_POSTS_HAS_BEEN_READ', {
+				value: $scope.items.length
 			});
 
 			$scope.debug && console.timeEnd("Market posts loaded and displayed");
