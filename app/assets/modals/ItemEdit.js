@@ -439,10 +439,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.postOrig.state = post.state;
 		};
 
+		/**
+		 *	jQuery consumes only a limited set of Angular date formats
+		 *	So - here we change the known discrepancies of formats (mainly for EN and CS)
+		 */
 		function modifyDateFormat(dateFormat) {
-			dateFormat = dateFormat.replace(/yyyy/g, 'y');
-			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
-			return dateFormat;
+			dateFormat = dateFormat.replace(/M/g, 'MM')
+			dateFormat = dateFormat.replace(/d/g, 'dd')
+			dateFormat = dateFormat.replace(/yyyy/g, 'y')
+			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y')
+			return dateFormat
 		}
 
 		$scope.itemDeleted = function($event, item) {
