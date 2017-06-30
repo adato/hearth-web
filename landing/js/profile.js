@@ -78,27 +78,27 @@
 	 *	all those that are for not-logged only, invisible
 	 */
 	function profileLogged() {
-		fe($(loggedSelector), function(el) {el.style.display = '';el.classList.add('inited');});
-		fe($(notLoggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited');});
+		fe($(loggedSelector), function(el) {el.style.display = '';el.classList.add('inited')})
+		fe($(notLoggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited')})
 	}
 	/**
 	 *	function that sets all elements that are for logged users to be invisible and
 	 *	all those that are for not-logged only, visible
 	 */
 	function profileNotLogged() {
-		fe($(notLoggedSelector), function(el) {el.style.display = '';el.classList.add('inited');});
-		fe($(loggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited');});
+		fe($(notLoggedSelector), function(el) {el.style.display = '';el.classList.add('inited')})
+		fe($(loggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited')})
 	}
 
 	/**
 	 *	set all profile attributes
 	 */
 	function fillProfile(profileObject) {
-		profileLogged();
+		profileLogged()
 
-		fe($(profileAvatarSelector), function(el) {el.setAttribute('src', profile.avatar.normal || profileAvatarDefault);});
-		fe($(profileFullNameSelector), function(el) {el.innerHTML = [profile.name, profile.surname].join('\u00A0').trim();});
-		fe($(profileLinkSelector), function(el) {el.setAttribute('href', '/app/profile/' + profile._id);});
+		fe($(profileAvatarSelector), function(el) {el.setAttribute('src', (profile.avatar ? profile.avatar.normal : profileAvatarDefault)})
+		fe($(profileFullNameSelector), function(el) {el.innerHTML = [profile.name, profile.surname].join('\u00A0').trim()})
+		fe($(profileLinkSelector), function(el) {el.setAttribute('href', '/app/profile/' + profile._id)})
 	}
 
 	/**
@@ -106,21 +106,21 @@
 	 * on success delete auth cookie and set ui to not-logged state
 	 */
 	function logout() {
-		var req = requestApi('POST', apiPath + '/logout', {token: apiToken});
+		var req = requestApi('POST', apiPath + '/logout', {token: apiToken})
 		req.onload = function() {
 			if (req.status === 200) {
-				cookieFactory.remove(authTokenIdentificator);
+				cookieFactory.remove(authTokenIdentificator)
 
 				// COOKIE PATH ERROR FIX-UP
-				cookieFactory.remove(authTokenIdentificator, '/cs');
-				cookieFactory.remove(authTokenIdentificator, '/sk');
+				cookieFactory.remove(authTokenIdentificator, '/cs')
+				cookieFactory.remove(authTokenIdentificator, '/sk')
 
-				profileNotLogged();
+				profileNotLogged()
 			} else {
-				console.error('Something went wong during logout:', req);
+				console.error('Something went wong during logout:', req)
 			}
-		};
-		req.send();
+		}
+		req.send()
 	}
 	function initLogoutFunction() {
 		fe($(logoutNodeIdentificator), function(el) {
