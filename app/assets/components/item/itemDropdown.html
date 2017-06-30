@@ -29,16 +29,15 @@
     </li>
 
     <!-- admin only -->
-    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
+    <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <hr />
     </li>
-    <li ng-if=":: ctrl.userHasRight('post.suspend') && ctrl.isActive">
-      <a class="elevated-authority-function" ng-click="(ctrl.isActive ? ctrl.ItemAux.confirmSuspend(ctrl.item, this) : ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id))">
-        <span ng-if="ctrl.isActive" translate="POST.ACTION_SUSPEND"></span>
-        <span ng-if="!ctrl.isActive" translate="POST.ACTION_RESUME"></span>
-      </a>
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && (ctrl.item.state === 'active'  || (ctrl.item.state !== 'active' && !ctrl.item.edited_by_admin))">
+      <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.SUSPEND.LABEL"></a>
     </li>
-    <!-- TODO: in future there will be another user privilegs then post.suspend -->
+    <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
+      <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.RESUME.LABEL"></a>
+    </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.ACTION_FOLLOW"></a>
       <a ng-if="ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.ACTION_UNFOLLOW"></a>
