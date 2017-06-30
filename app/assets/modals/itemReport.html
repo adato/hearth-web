@@ -1,6 +1,6 @@
 <div class="itemReport formStyle itemEdit modal" test-beacon="flag-post-modal">
 	<div class="head">
-		<h2 translate="POST_REPORT.HEADING"></h2>
+		<h2 translate="POST.REPORT.TITLE"></h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
 	</div>
@@ -10,24 +10,24 @@
 		<div class="notify-report-container"></div>
 		<div>
 			<label class="block">
-				<div ng-bind-html="'POST_REPORT.REPORT_INFO' | translate"></div>
-				<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'POST_REPORT.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" class="report-reason-textarea text-input middle"></textarea>
+				<div ng-bind-html="'POST.REPORT.LABEL' | translate"></div>
+				<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'POST.REPORT.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" class="report-reason-textarea text-input middle"></textarea>
 				<div class="form-error" ng-show="showErrors.message && reportForm.$dirty">
-					<span ng-show="reportForm.message.$error.required" translate="ERR_REPORT_TEXT_MIN_LEN"></span>
-					<span ng-show="reportForm.message.$error.minlength" translate="ERR_REPORT_TEXT_MIN_LEN"></span>
-					<span ng-show="reportForm.message.$error.maxlength" translate="ERR_REPORT_TEXT_MAX_LEN"></span>
+					<span ng-show="reportForm.message.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+					<span ng-show="reportForm.message.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+					<span ng-show="reportForm.message.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 				</div>
 			</label>
 			<div class="flex flex-reverse flex-space-between">
-				<button class="button" type="submit" translate="REPORT"></button>
-				<a href="" ng-click="close()" class="fleft close" translate="CLOSE"></a>
+				<button class="button" type="submit" translate="COMMON.ACTION_SUBMIT"></button>
+				<a ng-click="close()" class="revert-changes" translate="COMMON.ACTION_CLOSE"></a>
 			</div>
 		</div>
 	</form>
 
 	<div class="report-ad success success-msg hidden">
-		<p translate="POST_REPORT.SUCCESS_MESSAGE"></p>
-		<button class="button fright" ng-click="close()" translate="CLOSE"></button>
+		<p translate="POST.REPORT.NOTIFY.SUCCESS_MESSAGE_SENT"></p>
+		<button class="button fright" ng-click="close()" translate="COMMON.ACTION_CLOSE"></button>
 	</div>
 
 	<div class="clear"></div>

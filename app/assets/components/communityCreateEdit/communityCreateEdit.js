@@ -226,7 +226,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 								$rootScope.$emit('reloadCommunities');
 								$location.path('/community/' + res._id);
 
-								Notify.addSingleTranslate('NOTIFY.COMMUNITY_' + ($scope.community._id ? 'UPDATE' : 'CREATE') + '_SUCCESS', Notify.T_SUCCESS);
+								Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_' + ($scope.community._id ? 'UPDATE' : 'CREATE'), Notify.T_SUCCESS);
 							},
 							function(res) {
 								$scope.sending = false;
@@ -249,11 +249,12 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 							$rootScope.globalLoading = false;
 							$scope.sendingDelegation = false;
 
+							var msg = 'COMMUNITY.NOTIFY.SUCCESS_DELEGATE_ADMIN';
 							if (needReload) {
-								Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+								Notify.addTranslateAfterRefresh(msg, Notify.T_SUCCESS);
 							} else {
 								$rootScope.$emit('reloadCommunities');
-								Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+								Notify.addSingleTranslate(msg, Notify.T_SUCCESS);
 							}
 
 							$scope.reloadToPath('/community/' + $scope.community._id, needReload);
@@ -286,12 +287,13 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					}, function(res) {
 						$rootScope.globalLoading = false;
 						$scope.sendingDelete = false;
+						var msg = 'COMMUNITY.NOTIFY.SUCCESS_DELETE_COMMUNITY';
 
 						if (!needReload) {
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+							Notify.addSingleTranslate(msg, Notify.T_SUCCESS);
 							$rootScope.$emit('reloadCommunities');
 						} else {
-							Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+							Notify.addTranslateAfterRefresh(msg, Notify.T_SUCCESS);
 						}
 
 						$scope.reloadToPath('/communities', needReload);
@@ -319,7 +321,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 							_id: $scope.community._id,
 							allow_message_to_members: $scope.community.allow_message_to_members
 						}, function(res) {
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_' + ($scope.community._id ? 'UPDATE' : 'CREATE') + '_SUCCESS', Notify.T_SUCCESS);
+							Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_' + ($scope.community._id ? 'UPDATE' : 'CREATE'), Notify.T_SUCCESS);
 						});
 					});
 				};

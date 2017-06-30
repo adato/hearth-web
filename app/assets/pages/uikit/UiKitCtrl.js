@@ -13,9 +13,12 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     // @kamil Can't use controllerAs here because I don't know how to bind to ctrl with $compile
     // const ctrl = this;
 
-    $scope.buttons = []
-    $scope.typographies = []
-    $scope.inputs = []
+    // inited in markup
+    $scope.activeTab
+
+    $scope.buttons = [];
+    $scope.typographies = [];
+    $scope.inputs = [];
 
     /*
      Data section
@@ -34,6 +37,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
           code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>',
           name: 'Paragraph'
         },
+        {code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>', name: 'Label'}
 
       ];
     };

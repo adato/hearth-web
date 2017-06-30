@@ -1,9 +1,7 @@
 <article class="community-item community_{{ item._id }}">
 	<avatar href="basePath+'community/'+item._id" src="item.avatar.normal" type="item._type" class="fleft"></avatar>
 	<div class="content">
-		<div class="fright" ng-if="user && item.admin == user._id">
-			{{ 'ADMIN' | translate }}
-		</div>
+		<div class="fright" ng-if="user && item.admin == user._id" translate="COMMUNITY.ADMIN"></div>
 		<h3>
 			<a ng-href="{{ getProfileLink('Community', item._id) }}">{{item.name}}</a>
 		</h3>

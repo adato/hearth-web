@@ -148,11 +148,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			});
 		};
 
-		// $scope.updateImages = function() {
-		// 	$scope.recountImages();
-		// 	$scope.showError.files = {};
-		// };
-
 		// remove image from attachments array
 		// if image is already uploaded - mark him to be deleted
 		// else remove from array
@@ -172,37 +167,42 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.cleanNullLocations = function(loc) {
 			for (var i = 0; i < loc.length; i++) {
 				if (!loc[i].coordinates) {
-					loc.splice(i, 1);
-					i--;
+					loc.splice(i, 1)
+					i--
 				}
 			}
-			return loc;
-		};
+			return loc
+		}
 
 		$scope.setCharacter = character => {
-			$scope.post.character.length = 0;
-			$scope.post.character.push(character.name);
-			$scope.checkCharacter();
-		};
+			$scope.post.character.length = 0
+			$scope.post.character.push(character.name)
+			$scope.checkCharacter()
+		}
 		$scope.checkCharacter = function() {
-			var count = ($scope.post.character || []).length;
+			const count = ($scope.post.character || []).length
 
-			if (!count) {
-				$scope.createAdForm.character.$invalid = true;
-				$scope.createAdForm.character.$setValidity('required', false);
-				$scope.createAdForm.character.$setValidity('max', true);
-			} else if (count > 1) {
-				$scope.createAdForm.character.$invalid = true;
-				$scope.createAdForm.character.$setValidity('required', true);
-				$scope.createAdForm.character.$setValidity('max', false);
-			} else {
-				$scope.createAdForm.character.$invalid = false;
-				$scope.createAdForm.character.$setValidity('required', true);
-				$scope.createAdForm.character.$setValidity('max', true);
+			// since the form is now split into two parts, we have to check whether
+			// we even have the character model created yet
+			if ($scope.createAdForm.character) {
+				if (!count) {
+					$scope.createAdForm.character.$invalid = true
+					$scope.createAdForm.character.$setValidity('required', false)
+					$scope.createAdForm.character.$setValidity('max', true)
+				} else if (count > 1) {
+					$scope.createAdForm.character.$invalid = true
+					$scope.createAdForm.character.$setValidity('required', true)
+					$scope.createAdForm.character.$setValidity('max', false)
+				} else {
+					$scope.createAdForm.character.$invalid = false
+					$scope.createAdForm.character.$setValidity('required', true)
+					$scope.createAdForm.character.$setValidity('max', true)
+				}
+
+				return $scope.createAdForm.character.$invalid
 			}
-
-			return $scope.createAdForm.character.$invalid;
-		};
+			return true
+		}
 
 		/**
 		 * Transform - deserialize post to object which can be used in application
@@ -338,10 +338,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.processResult = function(data, post) {
 			$rootScope.globalLoading = false;
 
-			// if($scope.post._id)
-			// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
-			// else
-			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 			$timeout(function() {
 				$scope.closeThisDialog();
 			});
@@ -443,10 +439,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.postOrig.state = post.state;
 		};
 
+		/**
+		 *	jQuery consumes only a limited set of Angular date formats
+		 *	So - here we change the known discrepancies of formats (mainly for EN and CS)
+		 */
 		function modifyDateFormat(dateFormat) {
-			dateFormat = dateFormat.replace(/yyyy/g, 'y');
-			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
-			return dateFormat;
+			dateFormat = dateFormat.replace(/M/g, 'MM')
+			dateFormat = dateFormat.replace(/d/g, 'dd')
+			dateFormat = dateFormat.replace(/yyyy/g, 'y')
+			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y')
+			return dateFormat
 		}
 
 		$scope.itemDeleted = function($event, item) {
@@ -464,14 +466,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			postCopy.state = (postCopy.state == 'active') ? 'suspended' : 'active';
 			$scope.save(postCopy);
 		};
-
-		/*		$scope.refreshItemInfo = function($event, item) {
-					// if renewed item is this item, refresh him!
-					if (item._id === $scope.post._id) {
-						$scope.post = $scope.transformDataIn(item);
-						$scope.post.type = item.type ? 'offer' : 'need';
-					}
-				};*/
 
 		var SPACE = 32;
 		$scope.toggleCharacterCheckbox = function(event, character) {

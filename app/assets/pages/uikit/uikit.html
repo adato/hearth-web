@@ -1,43 +1,67 @@
 <h1>UI Kit</h1>
 
-<h2>Buttons</h2>
-<div ng-repeat="item in buttons">
-  <div class="flex flex-space-between">
-    <div ng-bind-html="item.code"></div>
-    <div ng-bind="item.description"></div>
+<div class="row tabs-wrapper round">
+
+  <div class="column medium-2 padding-none tabs-titles-wrapper">
+    <ul class="tabs vertical" ng-init="activeTab = 'buttons'">
+      <li class="tabs-title" ng-class="{'is-active': activeTab === 'buttons'}" ng-click="activeTab = 'buttons'"><a href="">Buttons</a></li>
+      <li class="tabs-title" ng-class="{'is-active': activeTab === 'typography'}" ng-click="activeTab = 'typography'"><a href="">Typography</a></li>
+      <li class="tabs-title" ng-class="{'is-active': activeTab === 'inputs'}" ng-click="activeTab = 'inputs'"><a href="">Inputs</a></li>
+      <li class="tabs-title" ng-class="{'is-active': activeTab === 'form'}" ng-click="activeTab = 'form'"><a href="">Form example</a></li>
+    </ul>
   </div>
-  <br/>
-</div>
 
-<h2>Typography</h2>
-<div ng-repeat="item in typographies">
-  <div class="flex flex-divide-medium flex-space-between">
-    <div ng-bind="item.name"></div>
-    <div ng-bind-html="item.code"></div>
-    <div ng-bind="item.description"></div>
+  <div class="column medium-10 padding-none tabs-content-wrapper">
+
+    <div class="tabs-content padding-large">
+      <div class="" ng-show="activeTab === 'buttons'">
+
+        <h2>Buttons</h2>
+        <div ng-repeat="item in buttons">
+          <div class="flex flex-space-between">
+            <div ng-bind-html="item.code"></div>
+            <div ng-bind="item.description"></div>
+          </div>
+          <br/>
+        </div>
+
+      </div>
+      <div class="" ng-show="activeTab === 'typography'">
+
+        <h2>Typography</h2>
+        <div ng-repeat="item in typographies">
+          <div class="block">
+            <div ng-bind="item.name"></div>
+            <div ng-bind-html="item.code"></div>
+            <div class="box background-light-gray padding-tiny" ng-bind="item.description"></div>
+          </div>
+          <br/>
+        </div>
+
+      </div>
+      <div class="" ng-show="activeTab === 'inputs'">
+
+        <h2>Inputs</h2>
+        <div ng-repeat="item in inputs">
+          <div class="flex flex-space-between">
+            <div ng-bind-html="item.code"></div>
+            <div ng-bind="item.description"></div>
+          </div>
+          <br/>
+        </div>
+
+      </div>
+      <div class="" ng-show="activeTab === 'form'">
+
+        <h2>Form</h2>
+        <div class="block">Fully functional form example. Every other form submit throws an error!</div>
+        <div class="block" form-data></div>
+        <div class="box background-light-gray">
+          <pre ng-bind="formData"></pre>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <br/>
-</div>
 
-<h2>Inputs</h2>
-<div ng-repeat="item in inputs">
-  <div class="flex flex-space-between">
-    <div ng-bind-html="item.code"></div>
-    <div ng-bind="item.description"></div>
-  </div>
-  <br/>
-</div>
-
-<h2>Form</h2>
-<div class="block">Fully functional form example. Every other form submit throws an error!</div>
-<div class="block" form-data></div>
-<div class="box background-light-gray block">
-  <pre ng-bind="formData"></pre>
-</div>
-
-<h2>Avatar stack</h2>
-<div class="block">Disclaimer: the left-most image is the last one in markup [also now this only works for avatar size="small" so far]</div>
-<div class="block flex" avatars></div>
-<div class="box background-light-gray block">
-  <pre ng-bind="avatars"></pre>
 </div>

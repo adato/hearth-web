@@ -7,13 +7,23 @@
 			</div>
 			<div class="flex-1">
 				<h2 translate="SETTINGS.LANGUAGE_AND_COUNTRY"></h2>
-				<label class="block">
+				<label class="block ui-select-scope-wrapper">
 					<span translate="SETTINGS.USING_HEARTH_IN_LANG"></span> <strong translate="SETTINGS.IN_THIS_LANG"></strong>. <span translate="SETTINGS.CHOOSE_LANGUAGE"></span>
-					<select2 ng-model="lang" ng-change="switchLang(lang)" s2-options="lang as ('MY_LANG.' + lang | translate) for lang in languages"></select2>
+					<ui-select id="post-language" ng-model="$parent.lang" theme="select2" search-enabled="false" on-select="switchLang($item, $model)">
+						<ui-select-match placeholder="">{{ ('MY_LANG.' + $select.selected | translate) }}</ui-select-match>
+						<ui-select-choices repeat="item in languages">
+				      <div translate="{{ 'MY_LANG.' + item }}"></div>
+				    </ui-select-choices>
+					</ui-select>
 				</label>
-				<label class="block">
+				<label class="block ui-select-scope-wrapper">
 					<span translate="SETTINGS.USING_HEARTH_FROM_COUNTRY"></span>
-					<select2 ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as item.localizedName for item in countryList"></select2>
+					<ui-select id="man_country_code" ng-model="$parent.man_country_code" theme="select2" on-select="updateCountry($item, $model)">
+						<ui-select-match placeholder="">{{$select.selected.localizedName}}</ui-select-match>
+						<ui-select-choices repeat="item.alpha_2_code as item in countryList | filter: {localizedName: $select.search}">
+				      <div ng-bind-html="item.localizedName | highlight: $select.search"></div>
+				    </ui-select-choices>
+					</ui-select>
 				</label>
 			</div>
 		</div>
@@ -26,31 +36,45 @@
 				<h2 translate="SETTINGS.NOTIFICATIONS.TITLE"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
           <label class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></span>
+            <h5 translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></h5>
             <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
           </label>
-          <div class="block" ng-if="userHasRight('post.suspend')">
-            <span translate="SETTINGS.NOTIFICATIONS.WHICH"></span>
+          <div class="block">
+            <h5 translate="SETTINGS.NOTIFICATIONS.WHICH"></h5>
 					</div>
-          <div>
-						<checkbox model="notify.send_emails.expiring" name="emailPostExpiring">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRING_POSTS"></span>
-						</checkbox>
-					</div>
-					<div>
-						<checkbox model="notify.send_emails.expired" name="emailPostExpired">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRED_POSTS"></span>
-						</checkbox>
-					</div>
-					<div>
-						<checkbox model="notify.send_emails.new_conversation" name="conversationNew">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_CONVERSATION"></span>
-						</checkbox>
-					</div>
-					<div>
-						<checkbox model="notify.send_emails.new_message" name="conversationUpdate">
-							<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
-						</checkbox>
+					<div class="medium-flex-grid">
+
+						<div class="flex-1 block">
+							<h6 translate="SETTINGS.NOTIFICATIONS.GIFTS_WISHES"></h6>
+							<div class="box box--checkbox-list">
+					      <label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.expiring" name="emailPostExpiring">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRING_POSTS"></span>
+									</checkbox>
+								</label>
+								<label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.expired" name="emailPostExpired">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_EXPIRED_POSTS"></span>
+									</checkbox>
+								</label>
+							</div>
+						</div>
+
+						<div class="flex-1 block">
+							<h6 translate="SETTINGS.NOTIFICATIONS.CONVERSATIONS"></h6>
+							<div class="box box--checkbox-list">
+								<label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.new_conversation" name="conversationNew">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_CONVERSATION"></span>
+									</checkbox>
+								</label>
+								<label>
+									<checkbox class="box box--checkbox" model="notify.send_emails.new_message" name="conversationUpdate">
+										<span translate="SETTINGS.NOTIFICATIONS.ALERT_NEW_MESSAGES_IN_CONVERSATION"></span>
+									</checkbox>
+								</label>
+							</div>
+						</div>
 					</div>
 					<div class="flex flex-reverse">
 						<button type="submit" class="button" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1" translate="COMMON.ACTION_SAVE"></button>

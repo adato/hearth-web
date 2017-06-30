@@ -10,11 +10,7 @@
       <div item-small item="item.object" type="condensed" class="box"></div>
     </div>
     <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
-      <div ng-init='receivedRatings = [item.object]'>
-        <div class="box padding-none ratings home-ratings">
-          <div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
-        </div>
-      </div>
+        <div rating item="item" class="box"></div>
     </div>
     <div ng-if="item.verb == 'group' && item.type == 'community_accepted_user'">
       <div class="display-flex flex-wrap">

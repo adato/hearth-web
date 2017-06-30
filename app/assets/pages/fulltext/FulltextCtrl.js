@@ -44,10 +44,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 				$scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
 
-				$scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
+				$scope.topArrowText.bottom = $translate.instant('MARKETPLACE.COUNT_TOTAL', {
 					value: response.total
 				});
-				$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
+				$scope.topArrowText.top = $translate.instant('MARKETPLACE.X_POSTS_HAS_BEEN_READ', {
 					value: $scope.items.length
 				});
 

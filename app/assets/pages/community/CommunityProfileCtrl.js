@@ -54,7 +54,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $rootScope.loggedUser._id === res.admin; // is community mine?
 
-				PageTitle.setTranslate('TITLE.community-profile-page', res.name);
+				PageTitle.setTranslate('COMMUNITY.PROFILE.TITLE', res.name);
 
 			}, function(res) {
 				$scope.loadingCounter--;
@@ -124,7 +124,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				communityId: $scope.info._id
 			}, function(res) {
 				$scope.init();
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_APPLY', Notify.T_SUCCESS);
 				$scope.sendingApplication = false;
 			}, function() {
 				$scope.sendingApplication = false;
@@ -143,7 +143,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 				$scope.rejectApplicationLock = false;
 				$scope.init();
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_REJECT', Notify.T_SUCCESS);
 			}, function() {
 				$scope.rejectApplicationLock = false;
 			});
@@ -159,7 +159,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 				$scope.leaveCommunityLock = false;
 
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_LEAVE', Notify.T_SUCCESS);
 				$scope.init();
 				$rootScope.$emit('reloadCommunities');
 			}, function(res) {
@@ -179,7 +179,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 				$scope.approveApplicationLock = false;
 
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_APPROVE', Notify.T_SUCCESS);
 				$scope.init();
 			}, function() {
 				$scope.approveApplicationLock = false;

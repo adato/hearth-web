@@ -1,0 +1,38 @@
+.rating {
+
+  .rating-icon-bg {
+    position: relative;
+    color: $white;
+    background-color: $primary-color;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+
+    .rating-icon{
+      position: absolute;
+      top:50%;
+      left:50%;
+      margin-left:-10px;
+      margin-top: -7px;
+    }
+
+    @include breakpoint(medium up) {
+      &.left-aligned {
+        margin-left: -37px !important;
+      }
+    }
+  }
+  .rating-box {
+    border-radius: $global-radius;
+    padding: $size-medium;
+
+    &.positive {
+      background: rgba($tertiary-color, .2);
+    }
+    &.negative {
+      background: rgba($primary-color, .2);
+    }
+
+  }
+
+}

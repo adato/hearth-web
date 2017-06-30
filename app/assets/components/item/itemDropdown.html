@@ -2,30 +2,30 @@
   <div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if=":: !ctrl.mine">
     <div bubble-placeholder="bookmark-reminder"></div>
     <div bubble-placeholder="hide-post"></div>
-    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POSTS.DETAIL.EXPAND_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[item-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
+    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POST.ACTION_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[item-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
       <i class="fa fa-fw fa-chevron-down"></i>
     </span>
   </div>
   <ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
     <li>
       <!-- bookmark post -->
-      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.ItemAux.removeItemFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="MARKETPLACE.POST.UNBOOKMARK_POST"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.ItemAux.addItemToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="MARKETPLACE.POST.BOOKMARK_POST"></a>
+      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.ItemAux.removeItemFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="POST.ACTION_UNBOOKMARK"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.ItemAux.addItemToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="POST.ACTION_BOOKMARK"></a>
       <!-- /bookmark post -->
     </li>
     <li>
       <!-- flag post -->
-      <a ng-if="! ctrl.mine && ctrl.item.spam_reported" translate-attr="{title: 'REPORT_HARMFUL_AD_ONLY_ONCE'}" tipsy disabled translate="MARKETPLACE.POST.FLAG_POST"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'REPORT_HARMFUL_AD'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="MARKETPLACE.POST.FLAG_POST"></a>
+      <a ng-if="! ctrl.mine && ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.ALREADY_FLAGGED'}" tipsy disabled translate="POST.ACTION_FLAG"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.TITLE'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="MARKETPLACE.POST.FLAG_POST"></a>
       <!-- /flag post -->
     </li>
     <li>
       <!-- hide post -->
-      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'HIDE_AD'}" ng-click="ctrl.confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ctrl.ItemAux.hideItem, params: ctrl.item, callbackScope: this, policy: 'SIGNED_IN'})" translate="MARKETPLACE.POST.HIDE_POST"></a>
+      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'POST.HIDE.TITLE'}" ng-click="ctrl.confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ctrl.ItemAux.hideItem, params: ctrl.item, callbackScope: this, policy: 'SIGNED_IN'})" translate="POST.ACTION_HIDE"></a>
       <!-- /hide post -->
     </li>
     <li>
-      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
+      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'POST.ACTION_REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
     </li>
 
     <!-- admin only -->
@@ -39,20 +39,20 @@
       <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.RESUME.LABEL"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
-      <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.FOLLOW.LABEL"></a>
-      <a ng-if="ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.UNFOLLOW.LABEL"></a>
+      <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.ACTION_FOLLOW"></a>
+      <a ng-if="ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.unfollowItem(item)" translate="POST.ACTION_UNFOLLOW"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <hr />
       <span>
-        <span translate="CHARACTER"></span>:
+        <span translate="POST.CHARACTER"></span>:
          <span ng-repeat="itemEntry in ctrl.item.character">
             <span ng-repeat="postCharEntry in ctrl.postCharacter | filter:{name:itemEntry}" translate="{{:: postCharEntry.translate }}"></span>
          </span>
       </span>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
-      <span ng-bind=":: ('USER_LANGUAGE' | translate) + ': ' + ctrl.postLanguage"></span>
+      <span ng-bind=":: ('COMMON.LANGUAGE' | translate) + ': ' + ctrl.postLanguage"></span>
     </li>
     <!-- /admin only -->
   </ul>
