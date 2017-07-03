@@ -1,9 +1,9 @@
 <div>
 	<textarea ng-if="inputType === 'textarea'" ng-model="$parent.model" ng-attr-placeholder="{{placeholder}}" name="{{name}}" ng-required="{{ !!(required || isrequired) }}" ng-minlength="minLength" ng-maxlength="maxLength" ng-model-options="{allowInvalid: true}" ng-blur="isBlur()" ng-focus="isFocus()"></textarea>
 	<input ng-if="inputType === 'input'" type="text" ng-model="$parent.model" ng-attr-placeholder="{{placeholder}}" name="{{name}}" ng-required="{{ !!(required || isrequired) }}" ng-minlength="minLength" ng-maxlength="maxLength" ng-model-options="{ allowInvalid: true }" ng-blur="isBlur()" ng-focus="isFocus()" />
-	<div class="text-right help-text" ng-if="showCounter" ng-bind-html="'WRITTEN_FROM_ALLOWED' | translate:{maxLen: maxLength, len: typed}" ng-class="{'error': showError}"></div>
+	<div class="text-right help-text" ng-if="showCounter" ng-bind-html="'COMMON.X_CHARACTERS_ALLOWED' | translate:{maxLen: maxLength, len: typed}" ng-class="{'error': showError}"></div>
 	<div class="form-error" ng-show="!showCounter && (form.$error.minlength || form.$error.maxlength)">
-		<span ng-show="form.$error.minlength && showErrorMin">Text je příliš krátký.</span>
-		<span ng-show="form.$error.maxlength">Text je příliš dlouhý.</span>
+		<span ng-show="form.$error.minlength && showErrorMin" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+		<span ng-show="form.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
 	</div>
 </div>
