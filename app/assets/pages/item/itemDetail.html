@@ -56,18 +56,20 @@
 											</li>
 
 											<!-- admin only -->
-											<li ng-if="userHasRight('post.suspend') && isActive">
+											<li ng-if="userHasRight('post.suspend_any') || userHasRight('post.follow') || userHasRight('post.show_additional_info')">
 												<hr />
 											</li>
-											<li ng-if="userHasRight('post.suspend') && isActive">
-												<a class="elevated-authority-function" ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{ (isActive ? ("POST.ACTION_SUSPEND" | translate) : ("POST.ACTION_RESUME" | translate)) }}</a>
-											</li>
-											<!-- TODO: in future there will be another user privilegs then post.suspend -->
-											<li ng-if='userHasRight("post.suspend")'>
+											<li ng-if="userHasRight('post.suspend_any') && (item.state === 'active'  || (item.state !== 'active' && !item.edited_by_admin))">
+									      <a href="" class="elevated-authority-function" ng-click="ItemAux.confirmSuspend(item, this)" translate="POST.ACTION_RESUME"></a>
+									    </li>
+									    <li ng-if="userHasRight('post.suspend_any') && !isActive">
+									      <a href="" class="elevated-authority-function" ng-click="pauseToggle(item, 'confirm-pause-' + item._id)" translate="POST.ACTION_SUSPEND"></a>
+									    </li>
+											<li ng-if='userHasRight("post.follow")'>
 												<a ng-if="!item.is_followed" class="elevated-authority-function" ng-click="followItem(item)" translate="POST.ACTION_FOLLOW"></a>
 												<a ng-if="item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)" translate="POST.ACTION_UNFOLLOW"></a>
 											</li>
-                      <li ng-if=':: userHasRight("post.suspend")'>
+                      <li ng-if=':: userHasRight("post.show_additional_info")'>
                         <hr/>
                         <span><span translate="POST.CHARACTER"></span>
                            <span ng-repeat="itemEntry in item.character">
@@ -75,7 +77,7 @@
                            </span>
                         </span>
                       </li>
-                      <li ng-if=':: userHasRight("post.suspend")'>
+                      <li ng-if=':: userHasRight("post.show_additional_info")'>
                         <span><span translate="COMMON.LANGUAGE"></span>: {{:: postLanguage}} </span>
                       </li>
 											<!-- /admin only -->
@@ -98,7 +100,7 @@
 									</h1>
 									<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
 									<span class="validity-warning" ng-if="isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
-									<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
+									<div ng-if="item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 									<!-- TODO!!! add ngif and data -->
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 								</div>

@@ -44,7 +44,7 @@
 			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 &&  mine)">
 				<a ui-sref="profile.subview({page: 'posts'})">
 					<button class="button">
-						<i class="fa fa-angle-double-right"></i> 
+						<i class="fa fa-angle-double-right"></i>
 						<span translate="PROFILE.POSTS.ALL"></span>
 					</button>
 				</a>
@@ -61,7 +61,7 @@
 				<div class="descr reg-date margin-top-none">
 					<i class="fa fa-asterisk"></i>
 					<span ng-if="!mine" translate="PROFILE.USER_HAS_REGISTERED"></span>
-					<span ng-if="mine" translate="PROFILE.YOU_HAVE_REGISTERED"></span> 
+					<span ng-if="mine" translate="PROFILE.YOU_HAVE_REGISTERED"></span>
 					{{ info.confirmed_at | ago}}
 				</div>
 
@@ -75,7 +75,7 @@
 			<div class="clear"></div>
 			<div class="line display-flex flex-space-between margin-top-small">
 				<div ng-if="!mine">
-					<button type="button" class="button hollow" ng-if="(userHasRight('post.suspend') || !info.only_replies)" ng-click="sendMessage(info)" translate="MESSAGING.ACTION_SEND_MESSAGE"></a>
+					<button type="button" class="button hollow" ng-if="(userHasRight('messaging.send_custodian_message') || !info.only_replies)" ng-click="sendMessage(info)" translate="MESSAGING.ACTION_SEND_MESSAGE"></a>
 				</div>
 				<div class="social">
 					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
