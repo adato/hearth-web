@@ -444,8 +444,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 *	So - here we change the known discrepancies of formats (mainly for EN and CS)
 		 */
 		function modifyDateFormat(dateFormat) {
-			dateFormat = dateFormat.replace(/M/g, 'MM')
-			dateFormat = dateFormat.replace(/d/g, 'dd')
+			dateFormat = dateFormat.replace(/M+/g, 'MM')
+			dateFormat = dateFormat.replace(/d+/g, 'dd')
 			dateFormat = dateFormat.replace(/yyyy/g, 'y')
 			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y')
 			return dateFormat
