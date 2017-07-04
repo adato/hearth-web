@@ -33,7 +33,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'received-ratings': loadReceivedRatings,
 			'given-ratings': loadGivenRatings,
 		};
-		var templatePath = 'assets/components/item/items/post.html';
+		var templatePath = 'assets/components/post/posts/post.html';
 
     $scope.loadCommunityActivities = (done) => {
 			if (activityLogComplete || $scope.activityLogFetchRunning) return;

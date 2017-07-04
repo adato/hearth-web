@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http', '$q', 'ItemAux',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http, $q, ItemAux) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http', '$q', 'PostAux',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http, $q, PostAux) {
 		var POST_LANGUAGE = 'postLanguage';
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
@@ -509,7 +509,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.post.is_private;
 		};
 
-		$scope.logCharInfoShown = () => {ItemAux.logCharInfoShown('Item edit form. Post ID (' + $scope.post._id + ')')};
+		$scope.logCharInfoShown = () => {PostAux.logCharInfoShown('Item edit form. Post ID (' + $scope.post._id + ')')};
 
 		$scope.init();
 

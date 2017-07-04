@@ -41,7 +41,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		var inited = false;
 		$scope.subPageLoaded = false;
 
-		var templatePath = 'assets/components/item/items/post.html';
+		var templatePath = 'assets/components/post/posts/post.html';
 
 		$scope.paginate = function(params) {
 			params.offset = $scope.data.length;

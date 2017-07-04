@@ -20,8 +20,8 @@
  *
  */
 angular.module('hearth.directives').directive('itemList', [
-	'$rootScope', '$q', '$timeout', 'ItemAux', '$compile', 'PostScope', '$templateRequest', '$document',
-	function($rootScope, $q, $timeout, ItemAux, $compile, PostScope, $templateRequest, $document) {
+	'$rootScope', '$q', '$timeout', 'PostAux', '$compile', 'PostScope', '$templateRequest', '$document',
+	function($rootScope, $q, $timeout, PostAux, $compile, PostScope, $templateRequest, $document) {
 		return {
 			restrict: 'E',
 			scope: {

@@ -6,9 +6,9 @@
  * @description
  */
 
-angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter', 'Bubble', 'ItemAux',
+angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter', 'Bubble', 'PostAux',
 
-	function($rootScope, Filter, Bubble, ItemAux) {
+	function($rootScope, Filter, Bubble, PostAux) {
 		return {
 			showMore: false,
 			expanded: false,
@@ -42,7 +42,7 @@ angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter
 			removeReminder: Bubble.removeReminder,
 			scrollToElement: $rootScope.scrollToElement,
 			userHasRight: $rootScope.userHasRight,
-			ItemAux: ItemAux,
+			PostAux: PostAux,
 		};
 	}
 ]);
