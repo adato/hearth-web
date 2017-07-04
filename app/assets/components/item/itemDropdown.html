@@ -16,7 +16,7 @@
     <li>
       <!-- flag post -->
       <a ng-if="! ctrl.mine && ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.ALREADY_FLAGGED'}" tipsy disabled translate="POST.ACTION_FLAG"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.TITLE'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="MARKETPLACE.POST.FLAG_POST"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.TITLE'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="POST.ACTION_FLAG"></a>
       <!-- /flag post -->
     </li>
     <li>
@@ -33,7 +33,7 @@
       <hr />
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && (ctrl.item.state === 'active'  || (ctrl.item.state !== 'active' && !ctrl.item.edited_by_admin))">
-      <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.SUSPEND.LABEL"></a>
+      <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.ACTION_SUSPEND"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
       <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.RESUME.LABEL"></a>
