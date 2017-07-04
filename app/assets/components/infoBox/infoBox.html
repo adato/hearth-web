@@ -3,11 +3,11 @@
 		<div class="user-info-inner-wrapper">
 			<div loading delayed="false" show="!info && !error" class="loading-bar"></div>
 			<div class="text-center" ng-if="error">
-				<span class="text-danger">{{:: 'INFO_BOX_LOADING_ERROR' | translate }}</span>
+				<span class="text-danger" translate="PROFILE.INFOBOX.NOTIFY.ERROR_LOADING"></span>
 			</div>
 			<div class="inner" ng-if="info">
 				<div class="post-count">
-					<div class="count_accomplished" ng-bind-html=":: ('count-of-wished-and-gifts' | translate: {value: info.post_count.needs + info.post_count.offers })"></div>
+					<div class="count_accomplished" ng-bind-html=":: ('PROFILE.INFOBOX.POSTS_COUNT' | translate: {value: info.post_count.needs + info.post_count.offers })"></div>
 				</div>
 				<div class="author-about" ng-if=":: info.motto" ng-bind=":: info.motto"></div>
 				<user-intel-readout entity="info" type="'infobox'"></user-intel-readout>
@@ -21,7 +21,7 @@
 							<i class="fa fa-fw fa-user"></i>
 						</div>
 						<div class="display-table-cell">
-							<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span> <a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
+							<span ng-bind-html="::'PROFILE.INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span> <a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
 						</div>
 					</div>
 				
@@ -30,12 +30,12 @@
 							<i class="fa fa-fw fa-user"></i>
 						</div>
 						<div class="display-table-cell">
-							<span ng-bind-html=":: 'INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span>
+							<span ng-bind-html=":: 'PROFILE.INFOBOX.CONNECTIONS.COMMON_USERS.'+pluralCat(connections.users.length) | translate:{count:connections.users.length}"></span>
 							<a ng-href="{{:: getProfileLink(connections.users[0]._type, connections.users[0]._id)}}">{{ :: connections.users[0].name }}</a>
-							<span ng-if=":: connections.users.length == 2"> {{ :: 'AND' | translate }} </span>
+							<span ng-if=":: connections.users.length == 2"> {{ :: 'COMMON.AND' | translate }} </span>
 							<span ng-if=":: connections.users.length > 2">, </span>
 							<a ng-href="{{:: getProfileLink(connections.users[1]._type, connections.users[1]._id)}}">{{ :: connections.users[1].name }}</a>
-							<span ng-if=":: connections.users.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.users.length - 2) | translate:{count:+connections.users.length - 2 }"></span>
+							<span ng-if=":: connections.users.length > 2" ng-bind-html="'PROFILE.INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.users.length - 2) | translate:{count:+connections.users.length - 2 }"></span>
 						</div>
 					</div>
 					<!-- common communities -->
@@ -45,7 +45,7 @@
 
 						</div>
 						<div class="display-table-cell">
-							<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_COMMUNITIES.'+pluralCat(connections.userCommunities.length) | translate:{count:connections.userCommunities.length}"></span>
+							<span ng-bind-html="::'PROFILE.INFOBOX.CONNECTIONS.COMMON_COMMUNITIES.'+pluralCat(connections.userCommunities.length) | translate:{count:connections.userCommunities.length}"></span>
 							<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.userCommunities[0].name }}</a>
 						</div>
 					</div>
@@ -55,12 +55,12 @@
 							<i class="fa fa-fw icon-community"></i>
 						</div>
 						<div class="display-table-cell">
-							<span ng-bind-html=":: 'INFOBOX.CONNECTIONS.COMMON_COMMUNITIES.'+pluralCat(connections.userCommunities.length) | translate:{count:connections.userCommunities.length}"></span>
+							<span ng-bind-html=":: 'PROFILE.INFOBOX.CONNECTIONS.COMMON_COMMUNITIES.'+pluralCat(connections.userCommunities.length) | translate:{count:connections.userCommunities.length}"></span>
 							<a ng-href="{{:: getProfileLink(connections.userCommunities[0]._type, connections.userCommunities[0]._id)}}">{{ :: connections.userCommunities[0].name }}</a>
-							<span ng-if=":: connections.userCommunities.length == 2"> {{ :: 'AND' | translate }} </span>
+							<span ng-if=":: connections.userCommunities.length == 2"> {{ :: 'COMMON.AND' | translate }} </span>
 							<span ng-if=":: connections.userCommunities.length > 2">, </span>
 							<a ng-href="{{:: getProfileLink(connections.userCommunities[1]._type, connections.userCommunities[1]._id)}}">{{ :: connections.userCommunities[1].name }}</a>
-							<span ng-if=":: connections.userCommunities.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.userCommunities.length - 2) | translate:{count:+connections.userCommunities.length - 2 }"></span>
+							<span ng-if=":: connections.userCommunities.length > 2" ng-bind-html="'PROFILE.INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.userCommunities.length - 2) | translate:{count:+connections.userCommunities.length - 2 }"></span>
 						</div>
 					</div>
 
@@ -70,7 +70,7 @@
 							<i class="fa fa-fw icon-community"></i>
 						</div>
 						<div class="display-table-cell">
-							<span ng-bind-html="::'INFOBOX.CONNECTIONS.COMMON_COMMUNITY_MEMBERS.'+pluralCat(connections.community.length) | translate:{count:connections.community.length}"></span>
+							<span ng-bind-html="::'PROFILE.INFOBOX.CONNECTIONS.COMMON_COMMUNITY_MEMBERS.'+pluralCat(connections.community.length) | translate:{count:connections.community.length}"></span>
 						<a ng-href="{{:: getProfileLink(connections.community[0]._type, connections.community[0]._id)}}">{{ :: connections.community[0].name }}</a>
 						</div>
 					</div>
@@ -80,12 +80,12 @@
 							<i class="fa fa-fw icon-community"></i>
 						</div>
 						<div class="display-table-cell">
-							<span ng-bind-html=":: 'INFOBOX.CONNECTIONS.COMMON_COMMUNITY_MEMBERS.'+pluralCat(connections.community.length) | translate:{count:connections.community.length}"></span>
+							<span ng-bind-html=":: 'PROFILE.INFOBOX.CONNECTIONS.COMMON_COMMUNITY_MEMBERS.'+pluralCat(connections.community.length) | translate:{count:connections.community.length}"></span>
 							<a ng-href="{{:: getProfileLink(connections.community[0]._type, connections.community[0]._id)}}">{{ :: connections.community[0].name }}</a>
-							<span ng-if=":: connections.community.length == 2"> {{ :: 'AND' | translate }} </span>
+							<span ng-if=":: connections.community.length == 2"> {{ :: 'COMMON.AND' | translate }} </span>
 							<span ng-if=":: connections.community.length > 2">, </span>
 							<a ng-href="{{:: getProfileLink(connections.community[1]._type, connections.community[1]._id)}}">{{ :: connections.community[1].name }}</a>
-							<span ng-if=":: connections.community.length > 2" ng-bind-html="'INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.community.length - 2) | translate:{count:+connections.community.length - 2 }"></span>
+							<span ng-if=":: connections.community.length > 2" ng-bind-html="'PROFILE.INFOBOX.CONNECTIONS.AND_X_OTHER.'+pluralCat(connections.community.length - 2) | translate:{count:+connections.community.length - 2 }"></span>
 						</div>
 					</div>
 				</div>
@@ -99,7 +99,7 @@
 						<a ng-if=":: info.twitter" class="fa fa-fw fa-twitter-square" title="Twitter" href="{{:: info.twitter}}" target="_blank"></a>
 						<a ng-if=":: info.linkedin" class="fa fa-fw fa-linkedin-square" title="LinkedIn" href="{{:: info.linkedin}}" target="_blank"></a>
 					</div>
-					<a class="link-secondary" ng-href="{{:: getProfileLink(info._type, info._id)}}">{{:: 'WHOLE_PROFILE' | translate }}</a>
+					<a class="link-secondary" ng-href="{{:: getProfileLink(info._type, info._id)}}" translate="POST.ACTION_GO_TO_PROFILE"></a>
 				</div>
 			</div>
 		</div>

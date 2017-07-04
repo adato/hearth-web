@@ -5,8 +5,8 @@
 		<div class="file-upload-overlay"></div>
 		<div ng-transclude class="image-preview-content"></div>
 	</div>
-	<div ng-if="showErrors && options.error.badFormat" class="error animate-show" translate="ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: {{ allowedTypes.join(', ') }} }"></div>
-	<div ng-if="showErrors && options.error.badMaxSize" class="error animate-show" translate="ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize: options.limitMb }"></div>
-	<div ng-if="showErrors && options.error.badMinSizePx" class="error animate-show" translate="ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize: options.minSize }"></div>
-	<div ng-if="showErrors && options.error.uploadError" class="error animate-show" translate="ERROR_WHILE_UPLOADING"></div>
+	<div ng-if="showErrors && options.error.badFormat" class="error animate-show" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: {{ allowedTypes.join(', ') }} }"></div>
+	<div ng-if="showErrors && options.error.badMaxSize" class="error animate-show" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize: options.limitMb }"></div>
+	<div ng-if="showErrors && options.error.badMinSizePx" class="error animate-show" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize: options.minSize }"></div>
+	<div ng-if="showErrors && options.error.uploadError" class="error animate-show" translate="COMMON.NOTIFY.ERROR_UPLOADING"></div>
 </div>

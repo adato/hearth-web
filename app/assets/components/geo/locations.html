@@ -1,42 +1,37 @@
 <div class="location-picker">
 	<div class="location-input" ng-class="{disabled: disabled}" test-beacon="location-input-wrapper">
 		<div class="flex flex-align-center flex-divided-medium flex-space-between">
-			<label>
-				{{ 'POST_PLACE_LABEL' | translate}}
-			</label>
+			<label translate="POST.LOCATION_LABEL"></label>
 			<div class="flex flex-align-center flex-divided-medium">
 				<div>
 					<a ng-click="toggleMap()" class="nowrap">
 						<i class="fa fa-map-marker"></i>
-						<span ng-if="mapIsVisible" translate="POSTS.DETAIL.HIDE_MAP"></span>
-						<span ng-if="!mapIsVisible" translate="POSTS.DETAIL.SHOW_MAP"></span>
+						<span ng-if="mapIsVisible" translate="POST.DETAIL.HIDE_MAP"></span>
+						<span ng-if="!mapIsVisible" translate="POST.DETAIL.SHOW_MAP"></span>
 					</a>
 				</div>
-				<checkbox ng-show="!required" model="disabled" class="margin-vertical-none nowrap">
-					{{ 'LOCATION_DOES_NOT_MATTER' | translate }}
+				<checkbox ng-show="!required" model="disabled" class="margin-vertical-none nowrap" translate="POST.EDIT.LOCATION_DOES_NOT_MATTER">
 				</checkbox>
 			</div>
 		</div>
 		<div class="location-map hidden">
 			<div class="map-controll map-point" ng-show="mapPoint && mapPoint.formatted_address">
-				<a class="right" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</a>
+				<a class="right" ng-click="chooseMapLocation()" translate="POST.ACTION_INSERT_LOCATION"></a>
 				<div class="map-point-name" ng-if="mapPointShowName">
 					{{ mapPoint.formatted_address }}
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="map-point-placeholder" ng-if="!mapPoint">
-				{{ 'POSTS.CREATE.CHOOSE_PLACE_FROM_MAP' | translate }}
-			</div>
+			<div class="map-point-placeholder" ng-if="!mapPoint" translate="POST.CREATE.ACTION_CHOOSE_FROM_MAP"></div>
 			<div class="map-container"></div>
 		</div>
-		<tags-input ng-if="initFinished" allow-duplicate-tags="true" refocus-input-on-tab display-property="formatted_address" class="tags tags-input" ng-class="{'ng-invalid': showError && !locations.length && !disabled }" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}"
+		<tags-input ng-if="initFinished" allow-duplicate-tags="true" refocus-input-on-tab display-property="formatted_address" class="tags tags-input" ng-class="{'ng-invalid': showError && !locations.length && !disabled }" ng-model="locations" placeholder="{{ 'POST.CREATE.LOCATION_PLACEHOLDER' | translate }}"
 						replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30" add-from-autocomplete-only="true"
 						allow-leftover-text="true">
 		</tags-input>
 	</div>
 	<div class="form-error" ng-if="errorWrongPlace || showError">
-		<span ng-show="errorWrongPlace">{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
+		<span ng-show="errorWrongPlace" translate="POST.CREATE.NOTIFY.ERROR_UNKNOWN_LOCATION"></span>
 		<span ng-show="showError">{{ errorCode | translate }}</span>
 	</div>
 </div>

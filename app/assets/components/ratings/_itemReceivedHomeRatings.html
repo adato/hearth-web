@@ -2,7 +2,7 @@
 	<div class="display-table">
 		<div class="display-table-cell addon">
 			<div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }" infobox-class="'on-profile'">
-				<a class="" href="{{ getProfileLink(item.entity_from._type, item.entity_from._id) }}">
+				<a href="{{ getProfileLink(item.entity_from._type, item.entity_from._id) }}">
 					<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
 					<div class="name">{{:: item.entity_from.name}}</div>
 				</a>
@@ -27,7 +27,7 @@
 					</div>
 					<div ng-if="!item.hidden" class="rating-text">{{:: item.text}}</div>
 					<div ng-if="item.hidden" class="rating-text">
-						<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+						<i translate="PROFILE.RATING.REMOVED"></i>
 					</div>
 					<div class="rating-reply" ng-if="item.comment">
 						<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
@@ -39,13 +39,13 @@
 								<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 							</div>
 							<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
-							<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+							<i ng-if="item.comment.hidden" translate="PROFILE.RATING.REMOVED"></i>
 						</div>
 					</div>
 					<div class="clear"></div>
 				</div>
 				<div ng-if="!item.comment && mine">
-					<a class="right reply-form-link" href="{{ getProfileLink( info._type, info._id)}}/received-ratings?reply={{item._id}}">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
+					<a class="right reply-form-link" href="{{ getProfileLink( info._type, info._id)}}/received-ratings?reply={{item._id}}" translate="PROFILE.RATING.ACTION_ADD_COMMENT"></a>
 					<div class="clear"></div>
 				</div>
 			</div>

@@ -36,7 +36,7 @@
 			<div class="text-container clear clearfix">
 				<p ng-if="!item.hidden" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 				<p ng-if="item.hidden">
-					<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<i translate="PROFILE.RATING.REMOVED"></i>
 				</p>
 			</div>
 			<div class="rating-reply" ng-if="item.comment">
@@ -49,7 +49,7 @@
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
 					<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
-					<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<i ng-if="item.comment.hidden" translate="PROFILE.RATING.REMOVED"></i>
 				</div>
 				<div class="clear"></div>
 			</div>

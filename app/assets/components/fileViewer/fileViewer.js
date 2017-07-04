@@ -25,7 +25,7 @@ angular.module('hearth.directives').directive('fileViewer', [
 					}, function(res) {
 						$window.location.href = res.url;
 					}, function() {
-						Notify.addSingleTranslate('NOTIFY.ATTACHMENT_DOWNLOAD_FAILED', Notify.T_ERROR);
+						Notify.addSingleTranslate('COMMON.NOTIFY.ERROR_ATTACHMENT_DOWNLOAD_FAILED', Notify.T_ERROR);
 					});
 				};
 			}
