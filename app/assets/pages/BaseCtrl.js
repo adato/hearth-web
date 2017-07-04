@@ -110,7 +110,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 
 			// if a new version is available - make a reload instead of just a state change
-			if (ApiHealthChecker.shouldReload()) return $window.location = $state.href(toState, toParams)
+			if (ApiHealthChecker.shouldReload()) {
+				event.preventDefault()
+				return $window.location = $state.href(toState, toParams)
+			}
 
 			// when changed route, load conversation counters
 			//Auth.isLoggedIn() && Messenger.loadCounters();
