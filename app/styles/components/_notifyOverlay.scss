@@ -24,33 +24,36 @@
 }
 
 #new-version-notify {
-	color: $black;
 	max-height: 0px;
 	overflow: hidden;
+	color: $black;
 	background-color: white;
-	z-index: 20;
-	transition: max-height 1s ease-in-out;
 	border-color: transparent;
+	transition: max-height 1s ease-in-out;
+	z-index: 20;
+
 	&.active {
 		max-height: 500px;
 		border: 1px solid #DDD;
 	}
-	&>div {
+	& > div {
 		padding: 30px 20px 20px;
+
 		p {
-			text-align: center;
 			margin-bottom: 0.8rem;
+			text-align: center;
+
 			i {
-				color: #ddd;
 				display: block;
-				font-size: 3em;
 				margin-bottom: 20px;
+				color: #ddd;
+				font-size: 3em;
 			}
 		}
 		span {
-			cursor: pointer;
-			font-weight: bold;
 			color: $primary-color;
+			font-weight: bold;
+			cursor: pointer;
 		}
 	}
 }
