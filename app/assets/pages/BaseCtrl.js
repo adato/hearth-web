@@ -434,8 +434,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$rootScope.openEditForm = function(scope) {
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemEdit.html',
-				controller: 'ItemEdit',
+				template: $$config.modalTemplates + 'postEdit.html',
+				controller: 'PostEdit',
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: false,
