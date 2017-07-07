@@ -68,11 +68,18 @@ angular.module('hearth.services').factory('ItemAux', ['$q', 'ngDialog', 'Auth', 
 
 		function getExemplaryPostsOpts(posts) {
 			this.template = $templateCache.get('assets/components/item/items/exemplaryPosts.html')
-			this.listOptions = {
+			this.topListOptions = {
 				disableLoading: true,
-			  getData: () => {return $q((resolve, reject) => resolve(posts))},
+			  getData: () => {return $q((resolve, reject) => resolve(posts.main))},
 			  templateUrl: 'assets/components/item/items/post.html',
+				bindToScope: {viewActivityMeta: {context: 'exemplary'}}
 			}
+      this.addListOptions = {
+        disableLoading: true,
+        getData: () => {return $q((resolve, reject) => resolve(posts.additional))},
+        isEmpty: !posts.additional.length,
+        templateUrl: 'assets/components/item/items/post.html',
+      }
 		}
 
 		/**

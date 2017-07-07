@@ -50,9 +50,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			window.location = document.URL;
 		};
 
-		$rootScope.checkOnlineState = function() {
-			ApiHealthChecker.checkOnlineState();
-		};
+		// expose some maintenance page functions
+		// TODO: whole maintenance should be encapsulated in some component
+		$rootScope.checkOnlineState = ApiHealthChecker.checkOnlineState
+		$rootScope.closeMaintenanceNotify = ApiHealthChecker.closeNotify
 
 		$scope.setPageTitle = function(state) {
 			// var state = $state.$current;
@@ -85,56 +86,62 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if (toState.policy) {
 				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
-					event.preventDefault();
+					event.preventDefault()
 
 					// here we store a location to the state to which we wanted to go which will
 					// be used by login ctrl upon successful login
-					UnauthReload.setLocation($state.href(toState, toParams));
+					UnauthReload.setLocation($state.href(toState, toParams))
 
 					// we need to replace the current history entry so that we can always push the browser back button
 					// and not wind up on login again
-					return $state.go('login', {}, {location: 'replace'});
+					return $state.go('login', {}, {location: 'replace'})
 
 				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
-					event.preventDefault();
-					return $state.go('market');
+					event.preventDefault()
+					return $state.go('market')
 				}
 			}
 
 			// retain optional state params on specified route groups
 			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
-				locationSearch = $location.search();
+				locationSearch = $location.search()
 			} else {
-				locationSearch = void 0;
+				locationSearch = void 0
+			}
+
+			// if a new version is available - make a reload to the target state instead of just a state change
+			if (ApiHealthChecker.shouldReload()) {
+				event.preventDefault()
+				return $window.location = $state.href(toState, toParams)
 			}
 
 			// when changed route, load conversation counters
 			//Auth.isLoggedIn() && Messenger.loadCounters();
-			ngDialog.close();
+			ngDialog.close()
 
 			//close small-resolution menu
-			$rootScope.leftSidebarShown = false;
+			$rootScope.leftSidebarShown = false
 
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
-				$rootScope.pageChangeWithScroll = true;
-				return;
+				$rootScope.pageChangeWithScroll = true
+				return
 			}
 
-			if (!$rootScope.addressNew) return $rootScope.top(0, 1);
+			if (!$rootScope.addressNew) return $rootScope.top(0, 1)
 
-			$rootScope.addressOld = $rootScope.addressNew;
-			$rootScope.addressNew = toState.originalPath;
+			$rootScope.addressOld = $rootScope.addressNew
+			$rootScope.addressNew = toState.originalPath
 
-			var r1 = $rootScope.addressOld.split($$config.basePath);
-			var r2 = $rootScope.addressNew.split($$config.basePath);
+			var r1 = $rootScope.addressOld.split($$config.basePath)
+			var r2 = $rootScope.addressNew.split($$config.basePath)
 
 			// if first element in URL of old page is not same as first element in URL of new page
 			// scroll to top - (alias scroll when we come to new URL)
 			if (r1.length < 2 || r2.length < 2 || r1[1] != r2[1]) {
-				$rootScope.top(0, 1);
+				$rootScope.top(0, 1)
 			}
-		});
+		})
 
 		$rootScope.$on("initLanguageSuccess", $scope.setPageTitle);
 
@@ -144,15 +151,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeSuccess", function(ev, current) {
 
-			if (locationSearch) $location.search(locationSearch);
+			if (locationSearch) $location.search(locationSearch)
 
-			$rootScope.pageName = $state.current.name;
-			$scope.segment = current.name;
+			$rootScope.pageName = $state.current.name
+			$scope.segment = current.name
 
-			$("#all").removeClass();
-			$("#all").addClass(current.controller);
-			$scope.setPageTitle(current);
-		});
+			// TODO: what is this even good for?
+			$("#all").removeClass()
+			$("#all").addClass(current.controller)
+
+			$scope.setPageTitle(current)
+		})
 
 
 		/**
@@ -160,61 +169,53 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * Depends on $windo.Rollbar !!
 		 */
 		$rootScope.$on("initSessionSuccess", function(event, user) {
-			if ($window.Rollbar) {
-				$window.Rollbar.configure({
-					payload: {
-						person: {
-							id: user._id,
-							username: user.name,
-							// email is not reachable in session`s user variable, so we omit it
-							email: user.email
-						}
+			if (!$window.Rollbar) return
+
+			$window.Rollbar.configure({
+				payload: {
+					person: {
+						id: user._id,
+						username: user.name,
+						// email is not reachable in session`s user variable, so we omit it
+						email: user.email
 					}
-				});
-			}
-		});
+				}
+			})
+		})
 
 		/**
 		 * When submitted fulltext search
 		 */
 		$scope.search = searchQuery => {
 			if (!searchQuery.query) {
-				$("#search").focus();
-				return false;
+				$("#search").focus()
+				return false
 			}
-			$rootScope.toggleSearchBar(false); // turn off search input
-			$rootScope.top(0, 1);
+			$rootScope.toggleSearchBar(false) // turn off search input
+			$rootScope.top(0, 1)
 			$state.go('search', {
 				query: searchQuery.query,
 				// type: searchQuery.type
-			});
-			searchQuery.query = null;
-		};
-
-		/**
-		 * Close notification of maintenance message about new version
-		 */
-		$rootScope.closeMaintenanceNotify = function() {
-			ApiHealthChecker.closeNotify();
-		};
+			})
+			searchQuery.query = null
+		}
 
 		/**
 		 * Set value of fulltext search
 		 */
 		$rootScope.setFulltextSearch = function(val) {
-			$timeout(function() {
-				$("#searchBox").val(val);
-			});
-		};
+			$timeout(() => {
+				$("#searchBox").val(val)
+			})
+		}
 
 		/**
 		 * Return profile of item based on its type (community, user, post)
 		 */
 		$rootScope.getActivityLink = function(object, target_object) {
-			if (target_object)
-				return $rootScope.getProfileLink(target_object._type, target_object._id);
-			return $rootScope.getProfileLink(object._type, object._id);
-		};
+			if (target_object) return $rootScope.getProfileLink(target_object._type, target_object._id)
+			return $rootScope.getProfileLink(object._type, object._id)
+		}
 
 		/**
 		 * Return profile of item based on its type and id
@@ -228,12 +229,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * Refresh user to given path
 		 */
 		$rootScope.refreshToPath = function(path) {
-			window.location = path || document.URL;
-		};
+			window.location = path || document.URL
+		}
 
 		$rootScope.isMine = function(author_id) {
-			return $scope.loggedUser && author_id === $scope.loggedUser._id;
-		};
+			return $scope.loggedUser && author_id === $scope.loggedUser._id
+		}
 
 		angular.element(window).bind('scroll', function() {
 			if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
@@ -499,7 +500,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				$rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
-				Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_DELETED', Notify.T_SUCCESS);
 				$rootScope.globalLoading = false;
 
 				cb && cb(post); // if callback given, call it
@@ -563,7 +564,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, res => {
 				if (res.ok === true) {
 					post.is_followed = !post.is_followed;
-					Notify.addSingleTranslate('NOTIFY.POST_FOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
+					Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_FOLLOWED', Notify.T_SUCCESS);
 				}
 			});
 		};
@@ -584,7 +585,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_followed = !post.is_followed;
-					Notify.addSingleTranslate('NOTIFY.POST_UNFOLLOWED_SUCCESFULLY', Notify.T_SUCCESS);
+					Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_UNFOLLOWED', Notify.T_SUCCESS);
 				}
 			});
 		};
@@ -743,49 +744,56 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// and close modal or call given callback
 		/**
 		 *	@param paramObject {Object} [optional] - message - the admin message to send to the server along with suspend
+		 *																				- action - overload for action decision
 		 */
-		$rootScope.pauseToggle = function(item, paramObject, cb) {
-			var Action, actionType;
-			paramObject = paramObject || {};
+		$rootScope.pauseToggle = function(item, paramObject = {}, cb) {
+			var Action
+			// var actionType
+			// paramObject = paramObject || {};
 
 			// suspend or play based on post active state
-			if ($rootScope.isPostActive(item)) {
-				Action = Post.suspend;
-				actionType = 'suspend';
+			if (paramObject.action) {
+				Action = paramObject.action
 			} else {
-				// if item is expired, then prolong him, or just resume
-				Action = (item.state == "expired") ? Post.prolong : Post.resume;
-				actionType = 'activate';
+				if ($rootScope.isPostActive(item)) {
+					Action = Post.suspend
+					// actionType = 'suspend'
+				} else {
+					// if item is expired, then prolong him, or just resume
+					Action = (item.state == "expired") ? Post.prolong : Post.resume
+					// actionType = 'activate'
+				}
 			}
 
-			$rootScope.globalLoading = true;
-			var parameters = {
+			$rootScope.globalLoading = true
+			const parameters = {
 				id: item._id
-			};
-			if (paramObject.message) parameters.message = paramObject.message;
+			}
+			if (paramObject.message) parameters.message = paramObject.message
 
 			// call service
-			Action(parameters, res => {
-				if (angular.isFunction(cb)) cb(item);
+			Action(parameters).$promise.then(res => {
+				if (angular.isFunction(cb)) cb(item)
 
-				$rootScope.$broadcast('postUpdated', res);
-				Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
-				$rootScope.globalLoading = false;
+				$rootScope.$broadcast('postUpdated', res)
+				Notify.addSingleTranslate('POST.NOTIFY.SUCCESS_UPDATED', Notify.T_SUCCESS)
+				$rootScope.globalLoading = false
 
-			}, err => {
-				$rootScope.globalLoading = false;
+
+			}).catch(err => {
+				$rootScope.globalLoading = false
 				if (err.status == 422) {
 					// somethings went wrong - post is not valid
 					// open edit box and show errors
-					$rootScope.editItem(item, true);
+					$rootScope.editItem(item, true)
 				}
-			});
-		};
+			})
+		}
 
 		// small-resolution menu toggle
-		$rootScope.toggleSidebar = function(param) {
-			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown);
-		};
+		$rootScope.toggleSidebar = param => {
+			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown)
+		}
 
 		$rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
 			$timeout(function() {

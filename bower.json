@@ -45,7 +45,7 @@
     "moment": "~2.10.6",
     "angular-ui-router": "~0.4.2",
     "autosize": "~3.0.13",
-    "ui-select": "angular-ui-select#~0.13.1",
+    "ui-select": "angular-ui-select#~0.19.1",
     "jquery-color": "~2.1.2",
     "nanoscroller": "0.8.6",
     "flexslider": "~2.5.0",
@@ -60,7 +60,6 @@
     "overlapping-marker-spiderfier": "*",
     "angular-actioncable": "^1.0.1",
     "international-phone-number": "^0.0.16",
-    "angular-select2": "^1.5.2",
     "angular-mocks": "~1.6.x"
   },
   "resolutions": {

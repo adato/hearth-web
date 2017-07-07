@@ -81,9 +81,15 @@
 			</div>
 			<div class="flex-1" test-beacon="language-section">
 				<h2 translate="PROFILE.EDIT.MY_LANGUAGES_TITLE"></h2>
-				<tags-input ng-model="userLanguage" display-property="name" placeholder="{{:: 'PROFILE.EDIT.ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
-					<auto-complete source="loadLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
-				</tags-input>
+				<label class="ui-select-scope-wrapper">
+					<ui-select multiple id="userLanguage" ng-model="$parent.userLanguage" theme="select2" ng-required>
+						<ui-select-match placeholder="{{:: 'PROFILE.EDIT.ADD_OTHER_LANG' | translate }}">{{$item.name}}</ui-select-match>
+						<ui-select-choices group-by="'group'" group-filter="[('LANGUAGE.LIST.LABEL_CHOSEN' | translate), ('LANGUAGE.LIST.LABEL_OTHER' | translate)]" repeat="item as item in languageList | filter: {name: $select.search} track by item.code">
+							<div ng-bind-html="item.name | highlight: $select.search"></div>
+						</ui-select-choices>
+					</ui-select>
+				</label>
+
 				<div class="form-error" ng-show="showError.user_language" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_FILLED_LANGUAGES"></div>
 			</div>
 		</div>
@@ -170,7 +176,7 @@
 					</div>
 					<div class="flex-1">
 						<label>
-							<span translate="PROFILE.CONTACT.WHO_CAN_SEE_IT"></span>
+							<span translate="PROFILE.EDIT.WHO_CAN_SEE_IT"></span>
 							<privacy-selector ng-model="profile.visible_attributes.phone" related-model="{{profile.phone}}" ng-disabled="!profileEditForm.phone.$viewValue || profileEditForm.phone.$error.internationalPhoneNumber"></privacy-selector>
 						</label>
 					</div>

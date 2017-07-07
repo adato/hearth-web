@@ -3,11 +3,11 @@
 
 	<section class="box">
 		<div ng-if="items.length" class="text-center margin-bottom-large">
-			<div translate="FULLTEXT_WE_FOUND_RESULTS" translate-values="{counter: totalCounter, value: queryText}"></div>
+			<div translate="MARKETPLACE.FULLTEXT.WE_FOUND_X_RESULTS" translate-values="{counter: totalCounter, value: queryText}"></div>
 			<hr />
 		</div>
 
-		<div ng-if="!items.length && loaded" class="text-center remove-p-margins" translate="FULLTEXT_NOTHING_FOUND_RELATED_TO" translate-values="{value: queryText}"></div>
+		<div ng-if="!items.length && loaded" class="text-center remove-p-margins" translate="MARKETPLACE.FULLTEXT.NOTHING_FOUND" translate-values="{value: queryText}"></div>
 
 		<section id="fulltextSearchResults">
 			<article ng-repeat="item in items" class="row search-item" ng-class="{'inactive': item._type == 'Post' && !item.isActive}" ng-switch="item._type">
@@ -41,12 +41,13 @@
 								<i class="fa fa-clock-o"></i> {{item.updated_at | ago}}
 							</div>
 						</div>
-						<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !item.isActive" class="error margin-top-small margin-bottom-small">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
+						<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !item.isActive" class="error margin-top-small margin-bottom-small" translate="POST.SUSPENDED_BY_ADMIN"></div>
 
 						<div class="info">
 							<div class="location">
 								<span ng-if="item.location_unlimited">
-									<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
+									<i class="fa fa-map-marker"></i>&nbsp;
+									<span translate="POST.LOCATION.ANYWHERE"></span>
 								</span>
 								<span ng-if="!item.location_unlimited || item.locations.length">
 									<span ng-repeat="(locationId, location) in item.locations" ng-if="location.short_address">

@@ -10,7 +10,7 @@
 angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics', '$state', '$compile', '$document', '$timeout', 'ViewportUtils',
 	function(User, $rootScope, Auth, $analytics, $state, $compile, $document, $timeout, ViewportUtils) {
 
-		var factory = {};
+		const factory = {};
 		factory.isInViewport = ViewportUtils.isInViewport;
 		factory.CLOSE_REASONS = {
 			'DOCUMENT_CLICK': 'document-click',

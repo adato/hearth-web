@@ -1,9 +1,9 @@
 <div ng-if="list.length" class="community-list row clearfix" when-scrolled="vm.load()" offset="300" loading-in-progress="loading">
   <div ng-if="vm.myCommunities" class="columns">
     <h5>
-      {{:: 'YOU_ARE_MEMBER' | translate}} {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
+      {{:: 'PROFILE.YOU_ARE_MEMBER' | translate}} {{ 'PROFILE.OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
       <span ng-if="myAdminCommunities.length">
-					{{:: 'FROM_THAT' | translate }} {{'IN_X.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}'}} {{:: 'ADMIN_7_CASE' | translate }}
+        {{:: 'PROFILE.YOU_ARE_ADMIN' | translate }} {{ 'PROFILE.OF_X_COMMUNITIES.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}' }}.
       </span>
     </h5>
   </div>

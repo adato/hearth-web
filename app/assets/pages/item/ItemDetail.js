@@ -134,20 +134,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.setTitle = function(data) {
-      if (data && data.status === 404) {
-        PageTitle.setTranslate("POST_NOT_FOUND", "");
-        return;
-      }
-      if (data && data.state === "expired") {
-        PageTitle.setTranslate("POST_HAS_ALREADY_EXPIRED", "");
-        return;
-      }
-      if (data && data.state === "suspended") {
-        PageTitle.setTranslate("POST_WAS_SUSPENDED", "");
-        return;
-      }
+			// Post NOT FOUND
+			if (data && data.status === 404) {
+				return PageTitle.setTranslate("POST.NOTIFY.ERROR_NOT_FOUND", "");
+			}
+			if (data && data.state === "expired") {
+				return PageTitle.setTranslate("POST.NOTIFY.EXPIRED", "");
+			}
+			if (data && data.state === "suspended") {
+				return PageTitle.setTranslate("POST.NOTIFY.SUSPENDED", "");
+			}
 
-      // Post found
+			// Post found
 			var author = ($scope.item.author ? $scope.item.author._type : 'User');
 			var title = $translate.instant(PostUtils.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);

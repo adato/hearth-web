@@ -23,11 +23,11 @@
 			</div>
 			<div class="left">
 				<b ng-if="item.score == -1">
-					<i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
+					<i class="score-icon fa icon-rating-negative"></i><span translate="PROFILE.RATING.NEGATIVE"></span></b>
 				<b ng-if="item.score == 1">
-					<i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
+					<i class="score-icon bold fa icon-rating-positive"></i><span translate="PROFILE.RATING.POSITIVE"></span></b>
 				<small ng-if="item.post_id">
-					&nbsp;{{:: 'RATING_TO_POST' | translate }}
+					&nbsp;<span translate="PROFILE.RATING.ON_POST"></span>
 					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title }}">
             {{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title | ellipsis:40}}</a>.
 				</small>
@@ -36,11 +36,11 @@
 			<div class="text-container clearfix">
 				<p ng-if="!item.hidden" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 				<p ng-if="item.hidden">
-					<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<i translate="PROFILE.RATING.REMOVED"></i>
 				</p>
 			</div>
 			<div ng-if="!item.formOpened">
-				<a class="right reply-form-link" ng-if="!item.comment && mine" href="#" ng-click="openRatingReplyForm(item)">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
+				<a class="right reply-form-link" ng-if="!item.comment && mine" ng-click="openRatingReplyForm(item)" translate="PROFILE.RATING.ACTION_ADD_COMMENT"></a>
 				<div class="clear"></div>
 			</div>
 
@@ -54,11 +54,11 @@
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
 					<em ng-if="!item.comment.hidden">„{{ item.comment.text }}”</em>
-					<em ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</em>
+					<em ng-if="item.comment.hidden" translate="PROFILE.RATING.REMOVED"></em>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<rating-reply rating="item" ng-if="item.formOpened"></rating-reply>
+			<rating-reply rating-item="item" ng-if="item.formOpened"></rating-reply>
 		</div>
 	</div>
 </section>
