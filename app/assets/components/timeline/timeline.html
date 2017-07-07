@@ -1,26 +1,15 @@
 <div when-scrolled="loadNext()">
   <div class="timeline" ng-repeat="(id, item) in timelineItems track by $index">
-    <div ng-if="item.verb == 'community_accepted_user'" class="display-inline-block position-relative">
-      <div info-box="item.object" infobox-class="'on-profile'">
-        <avatar type=":: 'User'" src=":: item.object.avatar.small" size="small"
-                href="getProfileLink(item.object._type, item.object._id)"></avatar>
-      </div>
-    </div>
+
     <div ng-if="item.verb == 'community_new_post' || item.verb == 'new_post'">
       <div item-small item="item.object" type="condensed" class="box"></div>
     </div>
+
     <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">
         <div rating item="item" class="box"></div>
     </div>
-    <div ng-if="item.verb == 'group' && item.type == 'community_accepted_user'">
-      <div class="display-flex flex-wrap">
-        <div ng-repeat="userObject in item.objects track by $index" class="margin-right-medium">
-          <div info-box="userObject.object" infobox-class="'on-profile'">
-            <avatar type=":: 'User'" src=":: userObject.object.avatar.normal" size="small"
-                    href="getProfileLink(userObject.object._type, userObject.object._id)"></avatar>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <div class="box" ng-if="item.type == 'community_accepted_user' || item.verb == 'community_accepted_user'" ng-init="ul = (item.objects || [item])" users-list="ul" other="item"></div>
+
   </div>
 </div>
