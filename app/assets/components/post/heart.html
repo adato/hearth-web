@@ -1,5 +1,5 @@
 <div class="display-flex" translate-attr="{title: item.hearted_by_me ? 'POST.HEART.REMOVE' : 'POST.HEART.ADD' }">
-  <a class="touchable fa-hover-heart" ng-click="PostAux.heart({item: item})" ng-init="PostAux.postHeartedByUser({item: item, userId: loggedUser._id})">
+  <a class="touchable fa-hover-heart" ng-click="PostAux.heart({item: item})" ng-init="PostAux.postHeartedByUser({post: item, userId: loggedUser._id})">
     <i class="fa fa-fw" ng-class="( item.heartLoading ? 'fa-spin fa-spinner' : (item.hearted_by_me ? 'fa-heart' : 'fa-heart-o') )"></i>
   </a>
   <span ng-if="item.hearts.length" ng-bind="item.hearts.length"></span>

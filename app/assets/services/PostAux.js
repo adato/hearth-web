@@ -220,7 +220,6 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		}
 
 		function postHeartedByUser({ post, userId }) {
-
 			if (post.hearted_by_me !== void 0) return post.hearted_by_me
 
 			for (var i = post.hearts.length;i--;) {
