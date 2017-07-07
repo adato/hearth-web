@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService', '$templateRequest', '$sce', 'MarketPostCount', 'ProfileUtils',
-	function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService, $templateRequest, $sce, MarketPostCount, ProfileUtils) {
-		angular.extend($scope, ItemServices);
+	'$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'CommunityRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'PostServices', 'UserBookmarks', 'UsersCommunitiesService', '$templateRequest', '$sce', 'MarketPostCount', 'ProfileUtils',
+	function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, CommunityRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, PostServices, UserBookmarks, UsersCommunitiesService, $templateRequest, $sce, MarketPostCount, ProfileUtils) {
+		angular.extend($scope, PostServices);
 		var loadServices = {
 				'home': loadUserHome,
 				'posts': loadUserPosts,

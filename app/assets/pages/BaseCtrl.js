@@ -387,8 +387,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.post = item;
 			ngDialog.open({
-				template: $$config.modalTemplates + 'itemReport.html',
-				controller: 'ItemReport',
+				template: $$config.modalTemplates + 'postReport.html',
+				controller: 'PostReport',
 				scope: scope,
 				closeByEscape: true,
 				showClose: false
@@ -533,7 +533,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * Function will show modal window where community admin can remove post from his community
 		 */
-		$rootScope.removeItemFromCommunity = function(post) {
+		$rootScope.postRemoveFromCommunity = function(post) {
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
@@ -541,8 +541,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			scope.post = post;
 
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'removeItemFromCommunity.html',
-				controller: 'RemoveItemFromCommunity',
+				template: $$config.modalTemplates + 'postRemoveFromCommunity.html',
+				controller: 'PostRemoveFromCommunity',
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: true,

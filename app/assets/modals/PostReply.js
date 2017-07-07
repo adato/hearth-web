@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemReply
+ * @name hearth.controllers.PostReply
  * @description
  */
 
-angular.module('hearth.controllers').controller('ItemReply', [
+angular.module('hearth.controllers').controller('PostReply', [
 	'$scope', '$rootScope', 'PostReplies', 'Notify', '$timeout',
 	function($scope, $rootScope, PostReplies, Notify, $timeout) {
 

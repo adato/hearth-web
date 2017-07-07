@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemSuspend
- * @description controller for ng-dialog when suspending an item
+ * @name hearth.controllers.PostSuspend
+ * @description controller for ng-dialog when suspending a post
  */
 
-angular.module('hearth.controllers').controller('ItemSuspend', [
+angular.module('hearth.controllers').controller('PostSuspend', [
 	'$scope', '$rootScope', '$translate', '$filter', 'Notify', 'Post', '$timeout', 'Rights',
 	function($scope, $rootScope, $translate, $filter, Notify, Post, $timeout, Rights) {
 

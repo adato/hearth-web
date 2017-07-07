@@ -50,7 +50,7 @@ angular.module('hearth.directives').directive('item', [
 				scope.getProfileLink = $rootScope.getProfileLink
 				scope.openReportBox = $rootScope.openReportBox
 				scope.openEmailSharingBox = $rootScope.openEmailSharingBox
-				scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity
+				scope.postRemoveFromCommunity = $rootScope.postRemoveFromCommunity
 				scope.followItem = $rootScope.followItem
 				scope.unfollowItem = $rootScope.unfollowItem
 				scope.userHasRight = Rights.userHasRight

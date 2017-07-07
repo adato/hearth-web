@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'PostAux', '$state',
-	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList, PostAux, $state) {
+	'$rootScope', 'PostServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'PostAux', '$state',
+	function($rootScope, PostServices, $filter, Filter, $locale, $analytics, LanguageList, PostAux, $state) {
 
 		const factory = {
 			getPostScope
@@ -36,7 +36,7 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.language = $rootScope.language
 			scope.postLanguage = LanguageList.translate(post.language)
 			scope.logViewActivity = PostAux.logViewActivity
-			angular.extend(scope, ItemServices)
+			angular.extend(scope, PostServices)
 
 			PostAux.extendForDisplay(scope.item)
 

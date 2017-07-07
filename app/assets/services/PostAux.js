@@ -12,7 +12,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		const postTypes = $$config.postTypes
 
 		const factory = {
-			addItemToBookmarks,
+			addPostToBookmarks,
 			confirmSuspend,
 			extendForDisplay,
 			getExemplaryPosts,
@@ -28,7 +28,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			logViewActivity,
 			postHeartedByUser,
 			postInaccessibleModal,
-			removeItemFromBookmarks,
+			removePostFromBookmarks,
 			replyItem
 		}
 
@@ -36,13 +36,13 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 
 		/////////////////////
 
-		function confirmSuspend(item, scope) {
-			scope.item = item
+		function confirmSuspend(post, scope) {
+			scope.post = post
 			ngDialog.open({
-				template: $$config.modalTemplates + 'suspendItem.html',
-				controller: 'ItemSuspend',
+				template: $$config.modalTemplates + 'postSuspend.html',
+				controller: 'PostSuspend',
 				scope: scope,
-				data: item,
+				data: post,
 				className: 'ngdialog-theme-default',
 				closeByDocument: false,
 				showClose: false,
@@ -50,12 +50,12 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			})
 		}
 
-		function extendForDisplay(item) {
-			item.updated_at_timeago = $filter('ago')(item.updated_at)
-			item.updated_at_date = $filter('date')(item.updated_at, $locale.DATETIME_FORMATS.medium)
-			item.text_parsed = $filter('nl2br')($filter('linky')(item.text, '_blank'))
-			item.text_short = $filter('ellipsis')(item.text, 270, true)
-			item.text_short_parsed = $filter('linky')(item.text_short, '_blank')
+		function extendForDisplay(post) {
+			post.updated_at_timeago = $filter('ago')(post.updated_at)
+			post.updated_at_date = $filter('date')(post.updated_at, $locale.DATETIME_FORMATS.medium)
+			post.text_parsed = $filter('nl2br')($filter('linky')(post.text, '_blank'))
+			post.text_short = $filter('ellipsis')(post.text, 270, true)
+			post.text_short_parsed = $filter('linky')(post.text_short, '_blank')
 		}
 
 		function getExemplaryPosts() {
@@ -98,7 +98,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		}
 
 		/**
-		 * Function will hide item from marketplace
+		 * Function will hide post from marketplace
 		 */
 		function hideItem(post, cb) {
 			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
@@ -123,7 +123,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		/**
 		 * Function will add item to users bookmarks
 		 */
-		function addItemToBookmarks(post) {
+		function addPostToBookmarks(post) {
 			if (post.is_bookmarked) return false
 
 			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
@@ -142,7 +142,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		/**
 		 * Function will remove item from users bookmarks
 		 */
-		function removeItemFromBookmarks(post) {
+		function removePostFromBookmarks(post) {
 			if (!post.is_bookmarked) return false
 
 			if (!Auth.isLoggedIn()) return $rootScope.showLoginBox(true)
@@ -172,8 +172,8 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			$rootScope.$broadcast('suspendPostWatchers')
 
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemReply.html',
-				controller: 'ItemReply',
+				template: $$config.modalTemplates + 'postReply.html',
+				controller: 'PostReply',
 				preCloseCallback: function() {
 					$rootScope.$broadcast('resumePostWatchers')
 				},
@@ -209,28 +209,28 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			})
 		}
 
-		function isMyPost(item = {}) {
-			return item.owner_id === ($rootScope.user && $rootScope.user._id)
+		function isMyPost(post = {}) {
+			return post.owner_id === ($rootScope.user && $rootScope.user._id)
 		}
 
-		function isPostActive(item = {}) {
+		function isPostActive(post = {}) {
 			// this gets called way too often
-			// console.log(item)
-			return item.state === 'active'
+			// console.log(post)
+			return post.state === 'active'
 		}
 
-		function postHeartedByUser({ item, userId }) {
+		function postHeartedByUser({ post, userId }) {
 
-			if (item.hearted_by_me !== void 0) return item.hearted_by_me
+			if (post.hearted_by_me !== void 0) return post.hearted_by_me
 
-			for (var i = item.hearts.length;i--;) {
-				if (item.hearts[i].user_id === userId) {
-					item.hearted_by_me = true
-					return postHeartedByUser({ item, userId })
+			for (var i = post.hearts.length;i--;) {
+				if (post.hearts[i].user_id === userId) {
+					post.hearted_by_me = true
+					return postHeartedByUser({ post, userId })
 				}
 			}
-			item.hearted_by_me = false
-			return postHeartedByUser({ item, userId })
+			post.hearted_by_me = false
+			return postHeartedByUser({ post, userId })
 		}
 
 		function postInaccessibleModal() {

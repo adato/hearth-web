@@ -32,7 +32,7 @@ angular.module('hearth.directives').directive('postDropdown', ['$rootScope', fun
       ctrl.followItem = $rootScope.followItem
       ctrl.unfollowItem = $rootScope.unfollowItem
       ctrl.pauseToggle = $rootScope.pauseToggle
-      ctrl.removeItemFromCommunity = $rootScope.removeItemFromCommunity
+      ctrl.postRemoveFromCommunity = $rootScope.postRemoveFromCommunity
       ctrl.openReportBox = $rootScope.openReportBox
 
       const runOnce = $scope.$watch('item', newItem => {

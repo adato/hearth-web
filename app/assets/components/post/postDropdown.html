@@ -9,8 +9,8 @@
   <ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
     <li>
       <!-- bookmark post -->
-      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.PostAux.removeItemFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="POST.ACTION_UNBOOKMARK"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.PostAux.addItemToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="POST.ACTION_BOOKMARK"></a>
+      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.PostAux.removePostFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="POST.ACTION_UNBOOKMARK"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.PostAux.addPostToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="POST.ACTION_BOOKMARK"></a>
       <!-- /bookmark post -->
     </li>
     <li>
@@ -25,7 +25,7 @@
       <!-- /hide post -->
     </li>
     <li>
-      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'POST.ACTION_REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
+      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'POST.ACTION_REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.postRemoveFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
     </li>
 
     <!-- admin only -->
