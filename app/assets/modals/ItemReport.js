@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemEdit
+ * @name hearth.controllers.ItemReport
  * @description
  */
 

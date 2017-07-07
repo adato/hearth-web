@@ -2,13 +2,14 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemEdit
+ * @name hearth.controllers.ItemReply
  * @description
  */
 
 angular.module('hearth.controllers').controller('ItemReply', [
 	'$scope', '$rootScope', 'PostReplies', 'Notify', '$timeout',
 	function($scope, $rootScope, PostReplies, Notify, $timeout) {
+
 		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;
