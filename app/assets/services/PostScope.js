@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('PostScope', [
-	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'ItemAux', 'PostUtils', '$state',
-	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList, ItemAux, PostUtils, $state) {
+	'$rootScope', 'ItemServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'PostAux', '$state',
+	function($rootScope, ItemServices, $filter, Filter, $locale, $analytics, LanguageList, PostAux, $state) {
 
 		const factory = {
 			getPostScope
@@ -35,10 +35,10 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.delayedView = true
 			scope.language = $rootScope.language
 			scope.postLanguage = LanguageList.translate(post.language)
-			scope.logViewActivity = PostUtils.logViewActivity
+			scope.logViewActivity = PostAux.logViewActivity
 			angular.extend(scope, ItemServices)
 
-			ItemAux.extendForDisplay(scope.item)
+			PostAux.extendForDisplay(scope.item)
 
 			var timeout = null;
 			var updateTimeAgo = function() {
@@ -62,13 +62,13 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.isActive = $rootScope.isPostActive(post)
 
 			// is this my post? if so, show controll buttons and etc
-			scope.mine = ItemAux.isMyPost(scope.item)
+			scope.mine = PostAux.isMyPost(scope.item)
 
 			scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until, moment.ISO_8601).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date())
 
-			scope.logPostTextToggle = ItemAux.logPostTextToggle
+			scope.logPostTextToggle = PostAux.logPostTextToggle
 
-			scope.analytics = ev => ItemAux.logPostAction(ev, scope)
+			scope.analytics = ev => PostAux.logPostAction(ev, scope)
 
 			return scope
 		}

@@ -5,8 +5,8 @@
  * @description Main bar of app
  * @restrict E
  */
-angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList', '$translate', '$window', 'ItemAux',
-  function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList, $translate, $window, ItemAux) {
+angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList', '$translate', '$window', 'PostAux',
+  function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList, $translate, $window, PostAux) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -197,7 +197,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
 
         scope.cancelFilter = () => { Filter.reset(); };
 
-        scope.logCharInfoShown = () => {ItemAux.logCharInfoShown('Filter')};
+        scope.logCharInfoShown = () => {PostAux.logCharInfoShown('Filter')};
 
         scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
         if (!scope.type) scope.type = 'post';
