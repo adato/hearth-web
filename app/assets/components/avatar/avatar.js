@@ -3,25 +3,25 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.avatar
- * @description
+ * @description component that creates an avatar (user or community)
  * @restrict E
  */
 
-angular.module('hearth.directives').directive('avatar', [
-	function() {
-		return {
-			restrict: 'E',
-			replace: true,
-			scope: {
-				'src': '=',
-				'size': '@',
-				'type': '=',
-				'href': '='
-			},
-			templateUrl: 'assets/components/avatar/avatar.html',
-			link: function($scope) {
-				$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user');
-			}
-		};
+angular.module('hearth.directives').directive('avatar', [function() {
+
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: {
+			'src': '=',
+			'size': '@',
+			'type': '=',
+			'href': '='
+		},
+		templateUrl: 'assets/components/avatar/avatar.html',
+		link: function($scope) {
+			$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user')
+		}
 	}
-]);
+
+}])

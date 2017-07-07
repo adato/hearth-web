@@ -28,7 +28,7 @@ angular.module('hearth.directives').directive('tipsy', [
 
 				$scope.$on('$destroy', function() {
 					$timeout.cancel(timeout);
-					el.unbind('mouseleave');
+					if (el) el.unbind('mouseleave');
 				});
 			}
 		}
