@@ -31,6 +31,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var exemplaryPostsInserted = false
 		// auxiliary variable to be destroyed on marketplace scope destruction
 		var epScope
+    var securityCleanupDone
 
 		var userLanguages = undefined;
 		var marketInited = $q.defer();
@@ -67,6 +68,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function addItemsToList({ container, data, index, done, exemplaryPosts }) {
+      if (!securityCleanupDone) {
+        $('#market-item-list').html('')
+        securityCleanupDone = true
+      }
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
@@ -90,8 +95,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// only for unlogged users who are not filtering though
 					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
 					  const opts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
-
-						$compile(opts.template)(angular.merge($rootScope.$new(), {
+            epScope = $rootScope.$new()
+            $compile(opts.template)(angular.merge(epScope, {
 							opts: opts,
 							logPostTextToggle: PostAux.logPostTextToggle
 						})).insertBefore(clone)
@@ -320,6 +325,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('$destroy', function() {
+      $('#market-item-list').html('')
 			$scope.topArrowText.top = ''
 			$scope.topArrowText.bottom = ''
 			$rootScope.cacheInfoBox = {}
