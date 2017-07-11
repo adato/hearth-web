@@ -30,7 +30,7 @@ describe('hearth registration', function () {
 
 	it('should validate fine', function () {
 		// var registerButton = element(by.css('button.button-send'));
-		var registerButton = beacon('register-button'));
+		var registerButton = beacon('register-button');
 		var emailInput = element(by.model('user.email'));
 		var firstNameInput = element(by.model('user.first_name'));
 		var lastNameInput = element(by.model('user.last_name'));

@@ -23,6 +23,7 @@ exports.config = {
 		testFolder + 'auth/profile.spec.js',
 		testFolder + 'auth/bookmarks.spec.js',
 		testFolder + 'auth/market-reportAbusivePost.spec.js',
+		testFolder + 'auth/rateUser.spec.js',
 		testFolder + 'auth/deleteUser.spec.js'
 	],
 	suites: {

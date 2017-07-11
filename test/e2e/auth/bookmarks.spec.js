@@ -36,7 +36,7 @@ describe('hearth bookmarks', function() {
 
 
 	it('should be able to make a bookmark on post detail', function() {
-    protractor.helpers.navigateTo('');
+    	protractor.helpers.navigateTo('');
 		var elAll = element.all(by.className('item-common')).get(1);
 		var postDetailLink = elAll.element(by.css('h1>a'));
 
@@ -55,7 +55,7 @@ describe('hearth bookmarks', function() {
 	});
 
 	it('should be able to go to profile and see bookmarked items', function() {
-    browser.sleep(500);
+    	browser.sleep(500);
 		// navigate to profile through top menu
 		navigateToMyFav();
 
@@ -65,25 +65,33 @@ describe('hearth bookmarks', function() {
 
 	it('should be able to remove bookmarked items from profile', function() {
 		navigateToMyFav();
-
-		var elAll = element.all(by.className('item-common')).get(0);
-		var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
-		var dropdownBookmarkLink = elAll.element(by.css('[test-beacon="marketplace-item-remove-bookmark"]'));
-		var dropdownArrow = elAll.element(by.css('[test-beacon="marketplace-item-dropdown-toggle"]'));
-		var notify = element(by.css('#notify-top>.alert-box'));
 		var marketItems = element.all(by.className('item-common'));
 
+
+		function removeItem() {
+			var elAll = element.all(by.className('item-common')).get(0);
+			var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
+			var dropdownBookmarkLink = elAll.element(by.css('[test-beacon="marketplace-item-remove-bookmark"]'));
+			var dropdownArrow = elAll.element(by.css('[test-beacon="marketplace-item-dropdown-toggle"]'));
+			var notify = element(by.css('#notify-top>.alert-box'));
+
+		    browser.sleep(4000);
+
+			expect(notify.isPresent()).toBeFalsy();
+			expect(expectedDropdown.isDisplayed()).toBeFalsy();
+			dropdownArrow.click();
+			expect(expectedDropdown.isDisplayed()).toBeTruthy();
+			dropdownBookmarkLink.click();
+			expect(notify.isPresent()).toBeTruthy();
+		}
+
 		expect(marketItems.count()).toBe(2); // count items
+		removeItem();
+	    browser.sleep(500);
+		expect(marketItems.count()).toBe(1); // count items
 
-    browser.sleep(4000);
-		expect(notify.isPresent()).toBeFalsy();
-		expect(expectedDropdown.isDisplayed()).toBeFalsy();
-		dropdownArrow.click();
-		expect(expectedDropdown.isDisplayed()).toBeTruthy();
-		dropdownBookmarkLink.click();
-		expect(notify.isPresent()).toBeTruthy();
-
-		// TODO uncomment this test when HEARTH-1082 is fixed
-		// expect(marketItems.count()).toBe(1); // count items
+		removeItem();
+		browser.sleep(500);
+		expect(marketItems.count()).toBe(0); // count items	
 	});
 });
