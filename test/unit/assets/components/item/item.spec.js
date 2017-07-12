@@ -1,4 +1,4 @@
-describe('item directive - market place item', function () {
+/*describe('item directive - market place item', function () {
   var $compile;
   var $rootScope;
   var $httpBackend;
@@ -94,3 +94,4 @@ describe('item directive - market place item', function () {
   }
 
 });
+*/

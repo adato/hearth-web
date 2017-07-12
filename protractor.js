@@ -18,7 +18,8 @@ exports.config = {
     testFolder + 'auth/profile.spec.js',
     testFolder + 'auth/bookmarks.spec.js',
     testFolder + 'auth/market-reportAbusivePost.spec.js',
-    testFolder + 'auth/deleteUser.spec.js'
+    testFolder + 'auth/rateUser.spec.js',
+//    testFolder + 'auth/deleteUser.spec.js'
   ],
   suites: {
     'unauth': [testFolder + 'unauth/marketplace.spec.js'],
@@ -30,6 +31,9 @@ exports.config = {
     'quick': [
       testFolder + 'auth/login-hardcoded.spec.js',
       testFolder + 'auth/market-reportAbusivePost.spec.js'
+    ],
+    'rating': [
+      testFolder + 'auth/rateUser.spec.js'
     ]
   },
 
