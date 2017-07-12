@@ -13,7 +13,7 @@ describe('hearth rate user', function () {
         var avatar = beacon('item-detail-avatar');
         var profileRatingButton = beacon('profile-rating-button');
         var ratingForm = element(by.css('.ratings-received .rating-form .content'));
-        var allGoodOption = element(by.css('.ratings-received .rating-form .content')).all(by.css('.radio>i')).get(0);
+        var allGoodOption = element(by.css('.ratings-received .rating-form .content')).all(by.css('.ui-checkbox.radio')).get(0);
         var ratingSubmitButton = element(by.css('.ratings-received .rating-form .content')).element(by.css('button[type="submit"]'));
         var ratingTextarea = element(by.css('.ratings-received .rating-form .content')).element(by.css('textarea[name="text"]'));
         var firstRatingItem = element.all(by.css('.rating-listing article.rating-item')).get(0);
@@ -35,6 +35,7 @@ describe('hearth rate user', function () {
         }).then(function () {
             // on profile with rating form expanded
             expect(ratingForm.isPresent()).toBeTruthy();
+            browser.sleep(1000);
             return allGoodOption.click();
 
         }).then(function () {

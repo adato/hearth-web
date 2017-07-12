@@ -31,6 +31,9 @@ exports.config = {
     'quick': [
       testFolder + 'auth/login-hardcoded.spec.js',
       testFolder + 'auth/market-reportAbusivePost.spec.js'
+    ],
+    'rating': [
+      testFolder + 'auth/rateUser.spec.js'
     ]
   },
 
