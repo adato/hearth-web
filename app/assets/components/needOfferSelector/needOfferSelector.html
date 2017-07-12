@@ -1,11 +1,9 @@
 <div class="need-offer-selector">
-	<div>
-		<radio model="model" value="true" ng-disabled="ngDisabled" value-off="false" checked="model">
-			{{ textTrue }}
-		</radio>
-		<radio model="model" value="false" ng-disabled="ngDisabled" value-off="true" checked="!model">
-			{{ textFalse }}
-		</radio>
-	</div>
+	<radio model="model" value="true" ng-disabled="ngDisabled" value-off="false" checked="model">
+		{{ textTrue }}
+	</radio>
+	<radio model="model" value="false" ng-disabled="ngDisabled" value-off="true" checked="!model">
+		{{ textFalse }}
+	</radio>
 	<div class='error' ng-if='requiredMessageShown' translate="PROFILE.NOTIFY.ERROR_SELECT_RATING"></div>
 </div>

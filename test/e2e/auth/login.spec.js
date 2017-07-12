@@ -3,7 +3,7 @@ const beacon = require('../utils.js').beacon;
 describe('hearth login/logout', function () {
 
   // login itself
-  it('should be able to login/logout user', function () {
+  it('should be able to login and then logout a static user', function () {
     //login first
     protractor.helpers.login();
 
@@ -11,12 +11,11 @@ describe('hearth login/logout', function () {
     expect(navigationMenu.isPresent()).toBeTruthy();
 
     // logout
-    browser.actions().mouseMove(navigationMenu).perform();
-    beacon('nav-logout-link').click();
+    protractor.helpers.logout();
 
     browser.sleep(1000);
-    var loginButton = beacon('nav-login');
-    expect(loginButton.isPresent()).toBeTruthy();
+    var navigationMenu = beacon('logged-user-dropdown');
+    expect(navigationMenu.isPresent()).toBeFalsy();
   });
 
   it('should not login with wrong credentials ', function () {

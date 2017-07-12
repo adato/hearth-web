@@ -12,7 +12,7 @@
 					</a>
 				</h1>
 				<div class="button-group large">
-					<button class="button others" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK"></button>
+					<button class="button others" ng-click="openUserRatingForm()" test-beacon="profile-rating-button" translate="PROFILE.ACTION_FEEDBACK"></button>
 					<button ng-if="!info.is_followed" class="hollow button others" ng-click="toggleFollow(info._id)">
 						<i class="fa fa-plus"></i> <span translate="PROFILE.ACTION_FOLLOW"></span>
 					</button>

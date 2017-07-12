@@ -201,7 +201,7 @@
 				</div>
 				<div class="column large-3 end has-delimiter show-for-large">
 					<div class='text-center margin-bottom-medium'>
-						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2 position-relative display-block'>
+						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2 position-relative display-block' test-beacon="item-detail-avatar">
 							<avatar class='margin-top-medium ' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
 							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
 							<karma-bar for="item.author"></karma-bar>

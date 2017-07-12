@@ -45,13 +45,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         communityId: $stateParams.id,
         offset: activityLogOffset,
         limit: ACTIVITY_LIMIT,
-        filter: 'community_new_post,new_rating_received,new_rating',
+        filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
         include_full: 'Post,Rating',
-				// filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
-				// include_full: 'Post,Rating',
-        // groups: 'community_accepted_user'
-      }, res => {
-				$scope.activityLogFetchRunning = false;
+        groups: 'community_accepted_user'
+      }).$promise.then(res => {
+				// $scope.activityLogFetchRunning = false;
 				$scope.activityShow = true;
 
 				res.data.map(function(activity) {
@@ -65,8 +63,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				if (activityLogOffset === parseInt(res.headers('X-Pagination-Total'), 10) || res.data.length === 0) {
 					activityLogComplete = true;
 				}
-				done();
-      }, err => {
+				// done();
+      }).catch(err => {
+				// TODO: make better error report
+				console.error('error getting activity log')
+			}).finally(() => {
 				$scope.activityLogFetchRunning = false;
 				done()
 			});
