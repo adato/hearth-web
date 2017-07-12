@@ -13,9 +13,9 @@ describe('hearth rate user', function () {
         var avatar = beacon('item-detail-avatar');
         var profileRatingButton = beacon('profile-rating-button');
         var ratingForm = element(by.css('.ratings-received .rating-form .content'));
-        var allGoodOption = element.all(by.css('.ratings-received .rating-form .content .radio')).get(0);
-        var ratingSubmitButton = element(by.css('.ratings-received .rating-form .content button[type="submit"]'));
-        var ratingTextarea = element(by.css('.ratings-received .rating-form .content textarea[name="text"]'));
+        var allGoodOption = element(by.css('.ratings-received .rating-form .content')).all(by.css('.radio>i')).get(0);
+        var ratingSubmitButton = element(by.css('.ratings-received .rating-form .content')).element(by.css('button[type="submit"]'));
+        var ratingTextarea = element(by.css('.ratings-received .rating-form .content')).element(by.css('textarea[name="text"]'));
         var firstRatingItem = element.all(by.css('.rating-listing article.rating-item')).get(0);
         var firstRatingItemDetail = firstRatingItem.element(by.css('.text-container>p'));
         var ratingText = "Hello user! This is a message from an automaton. I`m a simple testing bot and I just accidentaly tripped over your profile. So, yeah, you`re great, have a nice day!";
