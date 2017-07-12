@@ -1,6 +1,6 @@
 <div>
   <span ng-repeat="user in vm.usersNameList | limitTo:(vm.usersNameList.length > vm.limit ? (vm.limit - 1) : vm.limit) track by $index">
-    <a ui-sref="profile.default({id: user.object._id})" ng-bind="user.object.name"></a><span ng-bind="($last ? '' : ((vm.limit === vm.usersNameList.length && $index === (vm.usersNameList.length - 2)) ? ' ' + ('AND' | translate) + ' ' : ', '))"></span>
+    <a ui-sref="profile.default({id: user.object._id})" ng-bind="user.object.name"></a><span ng-bind="($last ? '' : ((vm.limit === vm.usersNameList.length && $index === (vm.usersNameList.length - 2)) ? ' ' + ('COMMON.AND' | translate) + ' ' : ', '))"></span>
   </span>
-  <span ng-init="vm.anchorAttrs = 'ng-click=\'vm.limit = vm.usersNameList.length\' href=\'\''" translate="USER.LIST.USERS_JOINED_COMMUNITY" translate-values="{users: '<span ng-if=\'vm.limit < vm.usersNameList.length\' translate=\'USER.LIST.OTHERS_COUNT\' translate-values=\'{ count: (vm.usersNameList.length - vm.limit), anchorAttrs: vm.anchorAttrs }\' translate-compile></span>'}" translate-compile></span>
+  <span ng-init="vm.anchorAttrs = 'ng-click=\'vm.limit = vm.usersNameList.length\' href=\'\''" translate="COMMUNITY.ACTIVITY.USERS_JOINED_COMMUNITY" translate-values="{users: '<span ng-if=\'vm.limit < vm.usersNameList.length\' translate=\'COMMUNITY.ACTIVITY.AND_X_MORE\' translate-values=\'{ count: (vm.usersNameList.length - vm.limit), anchorAttrs: vm.anchorAttrs }\' translate-compile></span>'}" translate-compile></span>
 </div>

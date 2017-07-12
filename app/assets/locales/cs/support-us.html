@@ -100,7 +100,7 @@
 
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
-					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
 				</div>
 			</form>
 		</div>
@@ -154,7 +154,7 @@
 				<div class="small-12 columns">&nbsp;</div>
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
-					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
 				</div>
 			</form>
 		</div>
@@ -172,7 +172,7 @@
 		<div ng-include="'support-us-endorse'"></div>
 		<div class="clear"></div>
 		<div class="display-flex flex-space-between margin-top-medium">
-			<a ng-click="closeThisDialog()">{{:: 'CLOSE' | translate }}</a>
+			<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
 		</div>
 	</div>
 </script>
@@ -277,15 +277,15 @@
 
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
-					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
-					<button type="submit" class="button button-send" ng-disabled="sendEmailWithPostalData.$invalid"> {{ 'SEND' | translate }} </button>
+					<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithPostalData.$invalid" translate="COMMON.ACTION_SEND"></button>
 				</div>
 			</form>
 		</div>
 		<div ng-show="addressDataEmailSent">
 			<p class="success">Díky za zájem. Během několika dní se můžeš těšit na balíček.</p>
 			<div class="display-flex flex-space-between margin-top-medium">
-				<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -324,15 +324,15 @@
 
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
-					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
-					<button type="submit" class="button button-send" ng-disabled="sendEmailWithContactData.$invalid"> {{ 'SEND' | translate }} </button>
+					<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithContactData.$invalid" translate="COMMON.ACTION_SEND"></button>
 				</div>
 			</form>
 		</div>
 		<div ng-show="contactDataEmailSent">
 			<p class="success">Díky za zájem, brzy se Ti ozveme na uvedený e-mail.</p>
 			<div class="display-flex flex-space-between margin-top-medium">
-				<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -358,7 +358,7 @@
 				</div>
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
-					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
 				</div>
 			</form>
 		</div>
