@@ -36,7 +36,7 @@
       <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.ACTION_SUSPEND"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
-      <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.RESUME.LABEL"></a>
+      <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.ACTION_RESUME"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend')">
       <a ng-if="!ctrl.item.is_followed" class="elevated-authority-function" ng-click="ctrl.followItem(item)" translate="POST.ACTION_FOLLOW"></a>
