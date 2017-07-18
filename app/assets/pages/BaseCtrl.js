@@ -527,7 +527,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.showTerms = function() {
-			$rootScope.openModalContainer('assets/locales/' + $rootScope.language + '/terms.html', 'MENU.TERMS')
+			$rootScope.openModalContainer('assets/locales/' + $rootScope.language + '/terms.html', 'HEARTH.TERMS.NAVIGATION_ITEM')
 		}
 
 		/**

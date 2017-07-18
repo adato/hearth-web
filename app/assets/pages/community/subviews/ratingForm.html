@@ -40,7 +40,7 @@
 
 		<div class="block" ng-if="(!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts) && (!ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts)" translate="PROFILE.RATING.SELECT_POST.NO_POSTS"></div>
 
-		<label class="block">
+		<label class="block clearfix">
 			<span translate="PROFILE.RATING.WRITE_RATING"></span>
 			<textarea autosize-textarea rows="4" style="height: 120px;" name="text" ng-attr-placeholder="{{:: 'PROFILE.RATING.WRITE_RATING_COMMUNITY_PLACEHOLDER' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" required class="text-input" ng-minlength="3"></textarea>
 			<max-len-counter class="fright" max-len="300" value="rating.text"></max-len-counter>

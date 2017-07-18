@@ -37,7 +37,7 @@
 
 		<div class="block" ng-if="(!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts) && (!ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts)" translate="PROFILE.RATING.SELECT_POST.NO_POSTS"></div>
 
-		<label class="block">
+		<label class="block clearfix">
 			<span translate="PROFILE.RATING.WRITE_RATING"></span>
 			<input-max-length input-type="textarea" show-counter="true" min-length="{{:: rating_setup.RATING_TEXT_MIN_LENGTH }}" max-length="{{:: rating_setup.RATING_TEXT_MAX_LENGTH }}" isrequired="yes" placeholder="{{:: 'PROFILE.RATING.WRITE_RATING_PLACEHOLDER' | translate }}" model="rating.text" name="text" id="reply-text"></input-max-length>
 			<div class="form-error" ng-show="showError.text">
