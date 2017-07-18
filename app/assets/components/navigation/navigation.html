@@ -316,7 +316,7 @@
 				</a>
 
 				<div class="dropdown-container">
-					<a title="{{::'HEARTH.PROJECT_NAVIGATION_ITEM' | translate }}" class='icon-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback', 'support-us'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+					<a title="{{::'HEARTH.PROJECT_NAVIGATION_ITEM' | translate }}" class='icon-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback', 'support-us'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about" test-beacon="hearth-project-dropdown">
 						<div class="inner-icon">
 							<span class="fa fa-question-circle"></span>
 							<span translate="HEARTH.PROJECT_NAVIGATION_ITEM"></span>
@@ -346,7 +346,7 @@
 							<a ui-sref="taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
+							<a ui-sref="feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
 						</li>
 						<li>
 							<a ui-sref="support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
@@ -394,7 +394,7 @@
 							<a ng-href="{{:: basePath }}support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ng-href="{{:: basePath }}feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
+							<a ng-href="{{:: basePath }}feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
 						</li>
 						<li class="divider"></li>
 						<li>
