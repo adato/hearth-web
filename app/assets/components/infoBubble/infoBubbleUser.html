@@ -1,2 +1,28 @@
-<h1 class="header-6">User</h1>
-<div ng-bind="bubble.model.fullName"></div>
+<div>
+  <div class="flex flex-space-between flex-align-start info-bubble-content">
+    <avatar type="bubble.model._type" src="bubble.model.avatar.large"></avatar>
+    <div>
+      <div class="block">
+        <h1 class="header-6" ng-bind="bubble.model.name"></h1>
+        <div class="text-muted">
+          <span translate="RATING.COUNT" translate-values="{count: (bubble.model.down_votes + bubble.model.up_votes)}"></span>
+          <span>&bull;</span>
+          <span ng-show="bubble.model.locations.length" ng-bind="bubble.model.locations[0].formatted_address"></span>
+        </div>
+      </div>
+    <div>
+      <span ng-bind="bubble.model.about_shortened"></span>
+    </div>
+    </div>
+  </div>
+  <hr class="margin-none" />
+  <div class="flex flex-space-between info-bubble-content">
+    <a ui-sref="profile.subview({id: bubble.model._id, page: 'posts'})" class="button tertiary" translate="GIFT.NEW_GIFTS_COUNT" translate-values="{count: bubble.model.gift_count}"></a>
+    <div>
+      <span ng-if="bubble.model.is_followee" translate="PROFILE.YOU_ARE_FOLLOWEE"></span>
+      <a href="" ng-if="!bubble.model.is_followee" translate="PROFILE.ACTION_FOLLOW" ng-click="bubble.fn.follow"></a>
+      <span>&bull;</span>
+      <a ui-sref="profile.default({id: bubble.model._id})" translate="PROFILE.PROFILE"></a>
+    </div>
+  </div>
+</div>
