@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$
 
   const INFO_BUBBLE_SELECTOR = '[info-bubble-focusser]'
   const INTENT_DELAY = 300
-  const INTENT_HIDE_DELAY = 300
+  const INTENT_HIDE_DELAY = 300 // must be smaller or equal to INTENT_DELAY
   const BUBBLE_MARGIN = 10
 
   const validTypes = {
@@ -61,6 +61,9 @@ angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$
     // make sure the bubble element exists
     getBubble(type)
 
+    // here I have to make sure that the element is in the variable, because I may have removed it in hide
+    hoveredElement = element[0]
+
     if (ctrl) InfoBubbleModel.model = ctrl.infoBubble
     element.after(bubbleElement)
     InfoBubbleModel.shown = true
@@ -102,15 +105,14 @@ angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$
 
   function hide() {
     InfoBubbleModel.shown = false
+    hoveredElement = void 0
     if (!$rootScope.$$phase) $rootScope.$apply()
   }
 
   function initIntent(argObject) {
 
-    if (argObject.element[0] === hoveredElement) {
-      hoveredElement = argObject.element[0]
-      $timeout.cancel(hideIntent)
-    }
+    if (argObject.element[0] === hoveredElement) return $timeout.cancel(hideIntent)
+    hoveredElement = argObject.element[0]
 
     intent = $timeout(show.bind(null, argObject), INTENT_DELAY)
   }
