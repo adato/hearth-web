@@ -232,9 +232,70 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       $scope.infoBubble
       $scope.infoBubbleModels = [
         {
-          fullName: 'Luke Skywalker'
+          // available immediately
+          "_id":"the.force.is.strong",
+          "_type":"User",
+          "name":"Luke Skywalker",
+          "first_name":"Luke",
+          "last_name":"Skywalker",
+          "avatar":{
+            "normal":"../img/no-avatar.jpg",
+            "large":"../img/no-avatar.jpg",
+            "size":[400,400]
+          },
+          "down_votes":0,
+          "up_votes":4,
+
+          // available on demand
+          "created_at": "2015-04-12T10:06:44.331+02:00",
+          "confirmed_at":"2015-04-12T10:08:05.025+02:00",
+          "about":"Jsem osůbka,která toho štěstíčka v životě moc nedostává..Nebýt lidí,kterým záleží i na jiných lidech...kdoví kde bych s dcerou byla..Já Vám tady všem moc a mooc děkuju.\nOmlouvám se,že neodepisuju poštou.....vím ,že bych si čas měla najít...,slibuju ,že napravím....",
+          "work":"dělnice",
+          "facebook":"",
+          "googleplus":null,
+          "linkedin":null,
+          "twitter":null,
+          "webs":[],
+          "interests":["vyšívání","pletení","filmy o válce...a téměř jakékoliv dokumenty."],
+          "only_replies":false,
+          "motto":"Jsem osůbka,která toho štěstíčka v životě moc nedostává..Nebýt lidí...",
+          "man_country_code":null,
+          "user_languages":["cs"],
+          "language":"cs",
+          "updated_at":"2017-07-04T11:31:12.760+02:00",
+          "last_login":"2017-06-11T07:45:34.337+02:00",
+          "notification_disabled":null,
+          "communities_count":0,
+          "followers_count":5,
+          "followees_count":0,
+          "friends_count":0,
+          "post_count":{"needs":3,"offers":1},
+          "is_followed":false,
+          "is_followee":false,
+          "visible_attributes":null,
+          "locations":[
+            {
+              "place_id":"ChIJj6tXOEMaDUcRACoVZg-vAAQ",
+              "coordinates":[15.5870415,49.3983782],
+              "address":"586 01 Jihlava, Česká republika",
+              "short_address":"Jihlava, CZ",
+              "formatted_address":"586 01 Jihlava, Česká republika",
+            }
+          ],
+          "formatted_phone":null,
+          "email":null,
+          "contact_email":null,
+          "phone":null,
+          "present_password":true,
+          "about_shortened":"Jsem osůbka,která toho štěstíčka v životě moc nedostává..Nebýt lidí..."
         }, {
-          location: 'Beggar\'s Canyon, Tatooine'
+          "center":[14.4378005,50.0755381],
+          "location":{
+            "type":"envelope",
+            "coordinates":[[14.2244534,50.177403],[14.7067946,49.9419362]]
+          },
+          "types":["locality","political"],
+          "short_address":"Praha, CZ"
         }
       ]
 
