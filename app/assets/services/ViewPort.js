@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('Viewport', [
-	'$translate', '$window', '$log',
-	function($translate, $window, $log) {
+	'$window', '$log',
+	function($window, $log) {
 
 		var viewportHeight;
 		var self = this;

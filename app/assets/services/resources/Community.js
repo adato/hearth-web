@@ -38,7 +38,7 @@ angular.module('hearth.services').factory('Community', [
 			edit: {
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_UPDATE_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_UPDATE'
 				},
 				transformRequest: [LocationJsonDataTransform.insertLocationJson]
 			},
@@ -56,19 +56,19 @@ angular.module('hearth.services').factory('Community', [
 			patch: {
 				method: 'PATCH',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_UPDATE_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_UPDATE'
 				}
 			},
 			remove: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_DELETE_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_DELETE_COMMUNITY'
 				}
 			},
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_CREATE_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_CREATE'
 				},
 				transformRequest: [LocationJsonDataTransform.insertLocationJson]
 			},

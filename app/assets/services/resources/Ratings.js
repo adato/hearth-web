@@ -15,7 +15,7 @@ angular.module('hearth.services').factory('Ratings', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.RATING_REPLY_FAILED'
+					code: 'PROFILE.RATING.NOTIFY.ERROR_RATING_REPLY'
 				}
 			}
 		});
