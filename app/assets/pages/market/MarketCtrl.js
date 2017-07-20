@@ -29,6 +29,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		// variable controlling that exemplary posts are only inserted once
 		var exemplaryPostsInserted = false
+		// auxiliary variable to be destroyed on marketplace scope destruction
+		var epScope
+    var securityCleanupDone
 
 		var userLanguages = undefined;
 		var marketInited = $q.defer();
@@ -65,6 +68,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function addItemsToList({ container, data, index, done, exemplaryPosts }) {
+      if (!securityCleanupDone) {
+        $('#market-item-list').html('')
+        securityCleanupDone = true
+      }
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
@@ -88,8 +95,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// only for unlogged users who are not filtering though
 					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
 					  const opts = new ItemAux.getExemplaryPostsOpts(exemplaryPosts)
-
-						$compile(opts.template)(angular.merge($rootScope.$new(), {
+            epScope = $rootScope.$new()
+            $compile(opts.template)(angular.merge(epScope, {
 							opts: opts,
 							logPostTextToggle: ItemAux.logPostTextToggle
 						})).insertBefore(clone)
@@ -117,11 +124,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function finishLoading(data, isLast) {
-			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
-				value: $scope.items.length
-			});
-			$scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
+			$scope.topArrowText.bottom = $translate.instant('MARKETPLACE.COUNT_TOTAL', {
 				value: data.total
+			});
+			$scope.topArrowText.top = $translate.instant('MARKETPLACE.X_POSTS_HAS_BEEN_READ', {
+				value: $scope.items.length
 			});
 
 			$scope.debug && console.timeEnd("Market posts loaded and displayed");
@@ -318,13 +325,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('$destroy', function() {
-			$scope.topArrowText.top = '';
-			$scope.topArrowText.bottom = '';
-			$rootScope.cacheInfoBox = {};
-			$scope.debug && $log.debug('Destroy marketCtrl finished');
+      $('#market-item-list').html('')
+			$scope.topArrowText.top = ''
+			$scope.topArrowText.bottom = ''
+			$rootScope.cacheInfoBox = {}
+			$scope.debug && $log.debug('Destroy marketCtrl finished')
 			// we do not want infinit scroll running on other pages than marketplace
-			InfiniteScrollPagination.unbindScroll();
-
+			InfiniteScrollPagination.unbindScroll()
+      if (epScope) epScope.$destroy && epScope.$destroy()
 		});
 
     // default languages

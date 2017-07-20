@@ -60,53 +60,53 @@ window['$$config'] = {
 	postTypes: {
 		User: {
 			gift: {
-				need: 'NEED',
-				offer: 'OFFER'
+				need: 'NEED',  		 // POST.I.NEED
+				offer: 'OFFER'		 // POST.I.OFFER
 			},
 			loan: {
-				need: 'BORROW',
-				offer: 'LEND'
+				need: 'BORROW', 	 // POST.I.BORROW
+				offer: 'LEND'   	 // POST.I.LEND
 			},
 			any: {
-				need: 'NEED_BORROW',
-				offer: 'OFFER_LEND'
+				need: 'NEED_BORROW', // POST.I.NEED_BORROW
+				offer: 'OFFER_LEND'  // POST.I.OFFER_LEND
 			},
-			need: 'DOES_WISH',
-			offer: 'DOES_GIVE',
-			false: 'DOES_WISH',
-			true: 'DOES_GIVE'
+			need: 'DOES_WISH',		 // POST.I.NEED
+			offer: 'DOES_GIVE',		 // POST.I.OFFER
+			false: 'DOES_WISH',		 // POST.I.NEED
+			true: 'DOES_GIVE'		 // POST.I.OFFER
 		},
 		Community: {
 			gift: {
-				need: 'WE_NEED',
-				offer: 'WE_OFFER'
+				need: 'WE_NEED',	 // POST.WE.NEED
+				offer: 'WE_OFFER'	 // POST.WE.OFFER
 			},
 			loan: {
-				need: 'WE_BORROW',
-				offer: 'WE_LEND'
+				need: 'WE_BORROW',	 // POST.WE.BORROW
+				offer: 'WE_LEND'	 // POST.WE.LEND
 			},
 			any: {
-				need: 'WE_NEED_BORROW',
-				offer: 'WE_OFFER_LEND'
+				need: 'WE_NEED_BORROW',	// POST.WE.NEED_BORROW
+				offer: 'WE_OFFER_LEND'  // POST.WE.OFFER_LEND
 			},
-			need: 'WE_NEED',
-			offer: 'WE_OFFER',
-			false: 'WE_NEED',
-			true: 'WE_OFFER'
+			need: 'WE_NEED',		 // POST.WE.NEED
+			offer: 'WE_OFFER',		 // POST.WE.OFFER
+			false: 'WE_NEED',		 // POST.WE.NEED
+			true: 'WE_OFFER'		 // POST.WE.OFFER
 		}
 	},
 	postCharacter: [{
 		name: 'energy',
-		translate: 'CATEGORY_ENERGY',
-		translateText: 'CATEGORY_ENERGY_TEXT'
+		translate: 'CATEGORY_ENERGY',			// POST.CATEGORY.ENERGY.LABEL
+		translateText: 'CATEGORY_ENERGY_TEXT'	// POST.CATEGORY.ENERGY.TEXT
 	}, {
 		name: 'mass',
-		translate: 'CATEGORY_MASS',
-		translateText: 'CATEGORY_MASS_TEXT'
+		translate: 'CATEGORY_MASS',				// POST.CATEGORY.MASS.LABEL
+		translateText: 'CATEGORY_MASS_TEXT'		// POST.CATEGORY.MASS.TEXT
 	}, {
 		name: 'information',
-		translate: 'CATEGORY_INFORMATION',
-		translateText: 'CATEGORY_INFORMATION_TEXT'
+		translate: 'CATEGORY_INFORMATION',		// POST.CATEGORY.INFORMATION.LABEL
+		translateText: 'CATEGORY_INFORMATION_TEXT'	// POST.CATEGORY.INFORMATION.TEXT
 	}],
 	//
 	// referrerCookieName:
@@ -114,16 +114,19 @@ window['$$config'] = {
 	// url search attr used for sending referral tokens to API
 	referrerCookieName: 'referrals',
 	replyLabels: {
-		offer: 'WISH_GIFT',
-		need: 'OFFER_GIFT'
+		offer: 'POST.ACTION_ASK_FOR_GIFT',
+		need: 'POST.ACTION_OFFER_GIFT'
 	},
 	replyCountTexts: {
-		offer: 'PEOPLE_COUNT_WISH_PL',
-		need: 'PEOPLE_COUNT_OFFER_PL'
+		offer: 'PEOPLE_COUNT_WISH_PL', 			// POST.X_PEOPLE_WISHED
+		need: 'PEOPLE_COUNT_OFFER_PL'			// POST.X_PEOPLE_OFFERED
 	},
 	filterOptions: {
 		default: ['market', 'keywords', 'character', 'postType', 'postTime', 'author', 'location', 'postLanguage', 'saveFilter'],
 		search: ['fulltext', 'location', 'entityType']
+	},
+	usersNameList: {
+		initNameLimit: 4
 	}
 };
 

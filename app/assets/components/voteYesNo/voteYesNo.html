@@ -1,13 +1,13 @@
 <div class="">
   <h4>{{title}}</h4>
   <div ng-if="!votingInProgress && !isVoted">
-    <button class="button" ng-click="voteWithResult('YES')">{{'YES' | translate}}</button>
-    <button class="button secondary" ng-click="voteWithResult('NO')">{{'NO' | translate}}</button>
+    <button class="button" ng-click="voteWithResult('YES')" translate="COMMON.YES"></button>
+    <button class="button secondary" ng-click="voteWithResult('NO')" translate="COMMON.NO"></button>
   </div>
   <div ng-if="votingInProgress && !isVoted" class="fa fa-spinner fa-spin"></div>
   <div ng-if="isVoted">
-    <span translate="POSTS_RELATED_VOTED" translate-compile
-          translate-values="{'attrs': '{{result | translate}}'}">
+    <span translate="COMMON.YOU_VOTED" translate-compile
+          translate-values="{'attrs':  '{{ 'COMMON.' + result | translate }}' }">
     </span>
   </div>
 </div>

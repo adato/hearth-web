@@ -2,17 +2,17 @@
 	<ul ng-if="mine">
 		<li>
 			<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{selected: pageSegment =='posts'}">
-				<span class="mine">{{:: 'MY_POSTS' | translate}}</span>
+				<span class="mine" translate="PROFILE.POSTS.MY_POSTS"></span>
 			</a>
 		</li>
 		<li>
 			<a dont-jump-top href="{{:: profileLink }}/bookmarks" ng-class="{selected: pageSegment =='bookmarks'}">
-				<span>{{:: 'MY_BOOKMARKS' | translate }}</span>
+				<span translate="PROFILE.POSTS.MY_BOOKMARKS"></span>
 			</a>
 		</li>
 		<li>
 			<a dont-jump-top href="{{:: profileLink }}/replies" ng-class="{selected: pageSegment =='replies'}">
-				<span>{{:: 'MY_POST_REPLIES' | translate }}</span>
+				<span translate="PROFILE.REPLIES.MY_REPLIES"></span>
 			</a>
 		</li>
 	</ul>

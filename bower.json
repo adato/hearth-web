@@ -60,7 +60,6 @@
     "overlapping-marker-spiderfier": "*",
     "angular-actioncable": "^1.0.1",
     "international-phone-number": "^0.0.16",
-    "angular-select2": "^1.5.2",
     "angular-mocks": "~1.6.x"
   },
   "resolutions": {

@@ -15,41 +15,41 @@ module.exports = {
 		local: {
 			baseUrl: 'http://0.0.0.0:9000/app',
 			appPath: '/',
-      name: 'Hearth',
-      surname: '' ,
-			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-			loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
+  	    	name: 'Hearth',
+    	  	surname: '' ,
+			loginName: 'jenkins.uzivatel@mailinator.com', //hearth-e2e-tester@mailinator.com', // test user email
+			loginPassword: 'jenkins.uzivatel@mailinator.com', //hearth-e2e-tester@mailinator.com', 			// test user password
 			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		jenkins: {
 			baseUrl: 'http://jenkins:9000/app',
 			appPath: '/',
-      name: 'Jenkins',
-      surname: '' ,
-      loginName: 'jenkins.uzivatel@mailinator.com', // test user email
-      loginPassword: 'jenkins.uzivatel@mailinator.com', 			// test user password
-      loginFullName: '',
+			name: 'Jenkins',
+			surname: '' ,
+			loginName: 'jenkins.uzivatel@mailinator.com', // test user email
+			loginPassword: 'jenkins.uzivatel@mailinator.com', 			// test user password
+			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		dev: {
 			baseUrl: 'http://dev.hearth.net/app',
 			appPath: '/',
-      name: 'Hearth',
-      surname: '' ,
-      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-      loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
-      loginFullName: '',
+			name: 'Hearth',
+			surname: '' ,
+			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+			loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
+			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		},
 		stage: {
 			baseUrl: 'http://stage.hearth.net/app',
 			appPath: '/',
-      name: 'Hearth',
-      surname: '' ,
-      loginName: 'hearth-e2e-tester@mailinator.com', // test user email
-      loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
-      loginFullName: '',
+			name: 'Hearth',
+			surname: '' ,
+			loginName: 'hearth-e2e-tester@mailinator.com', // test user email
+			loginPassword: 'hearth-e2e-tester@mailinator.com', 			// test user password
+			loginFullName: '',
 			loginTrimmedName: 'E2E teste…'
 		}
 	},
@@ -61,9 +61,7 @@ module.exports = {
 		this.navigateTo('login');
 		element(by.model('data.username')).sendKeys(this.config().loginName);
 		element(by.model('data.password')).sendKeys(this.config().loginPassword);
-		// element(by.css('button.button-send')).click();
-    beacon('login-button').click();
-		// browser.driver.sleep(2000);
+	    beacon('login-button').click();
 	},
 	logout: function () {
 		this.navigateTo('');

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.directives').directive('ago', [
-	'$interval', '$translate', 'timeAgoService', '$rootScope',
-	function($interval, $translate, timeAgoService, $rootScope) {
+	'$interval', 'timeAgoService', '$rootScope',
+	function($interval, timeAgoService, $rootScope) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -23,7 +23,7 @@ angular.module('hearth.directives').directive('ago', [
 					scope.timeAgo = timeAgoService.inWords(timeAgoService.nowTime - Date.parse(scope.ago));
 				}
 
-				scope.$watch('ago', ago); // translate time on init
+				scope.$watch('ago', ago);
 				eventListener = $rootScope.$on("hearthbeat", ago); // periodically refresh
 
 				scope.$on('$destroy', function() {

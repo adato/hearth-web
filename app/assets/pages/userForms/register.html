@@ -35,7 +35,7 @@
 			<div class="text-in-input block">
 				<label for="email">
 					<span translate="AUTH.EMAIL_PLACEHOLDER"></span>
-					<input id="email" type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" email-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
+					<input id="email" type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" required class="form-control text-input top" email-exists-validator mailgun-validator ng-model-options="{ updateOn: 'blur' }">
 					<i ng-show="registerForm.$pending.mailgun || registerForm.$pending.used" class="fa fa-spin fa-spinner" style="top:2.2rem;"></i>
 					<div class="form-error" ng-show="showError.email">
 						<span ng-show="registerForm.email.$error.required" translate="AUTH.NOTIFY.ERROR_NOT_FILLED_EMAIL"></span>

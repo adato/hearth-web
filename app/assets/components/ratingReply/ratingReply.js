@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 			restrict: 'E',
 			replace: true,
 			scope: {
-				rating: "="
+				ratingItem: "="
 			},
 			templateUrl: 'assets/components/ratingReply/ratingReply.html',
 			link: function(scope, el, attrs) {
@@ -22,9 +22,9 @@ angular.module('hearth.directives').directive('ratingReply', [
 				scope.showError = false;
 				scope.getProfileLink = $rootScope.getProfileLink;
 
-				scope.closeReply = function(rating) {
+				scope.closeReply = function() {
 					scope.reply = '';
-					scope.rating.formOpened = false;
+					scope.ratingItem.formOpened = false;
 				};
 
 				scope.sendReply = function(text) {
@@ -43,11 +43,11 @@ angular.module('hearth.directives').directive('ratingReply', [
 						comment: {
 							text: text
 						},
-						_id: scope.rating._id
+						_id: scope.ratingItem._id
 					}, function(res) {
-						scope.rating.comment = res;
+						scope.ratingItem.comment = res;
 						scope.closeReply();
-						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
+						Notify.addSingleTranslate('PROFILE.RATING.NOTIFY.SUCCESS_RATING_REPLY', Notify.T_SUCCESS);
 					});
 				};
 			}

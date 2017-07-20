@@ -2,7 +2,7 @@
 <div ng-if="subPageLoaded" class="reply-list" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="!data.length">
 		<div class="item">
-			<p>{{:: 'PROFILE.REPLIES.NO_REPLIES' | translate }}</p>
+			<p translate="PROFILE.REPLIES.NO_REPLIES"></p>
 		</div>
 	</div>
 	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}" ng-if="item.post">
@@ -25,13 +25,13 @@
 					{{:: item.text | ellipsis}}
 				</p>
 				<span class="ad-date">
-					{{item.created_at | ago}} {{:: 'REPLY_TO_POST' | translate }}
+					{{item.created_at | ago}} <span translate="PROFILE.REPLIES.ON_POST"></span>
 					<a ng-href="{{getProfileLink('Post', item.post._id)}}">
 						{{:: postTypes[item.post.author_type][item.post.type] | translate }} {{:: item.post.title | ellipsis:60 }}
 					</a>
 				</span>
 				<a ng-href="{{getProfileLink('Conversation', item.conversation_id)}}" class="right">
-					{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
+					<span translate="MESSAGING.ACTION_GO_TO_CONVERSATION"></span>
 					<i class="fa fa-comments-o"></i>
 				</a>
 				<div class="clear"></div>

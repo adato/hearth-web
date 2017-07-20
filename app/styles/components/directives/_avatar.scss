@@ -26,11 +26,29 @@ $large-avatar-size: 295px;
 	}
 
 	/** == Default avatars == */
-	&.avatar-user{
+	&.avatar-user {
 		background-image: url('../img/no-avatar.jpg');
 	}
-	&.avatar-community{
+	&.avatar-community {
 		background-image: url('../img/no-cm-avatar.jpg');
+	}
+
+	&.faux-avatar {
+		background: $medium-gray;
+
+		& > .avatar-image::after {
+			content: attr(avatar-text);
+			position: absolute;
+			width: 100%;
+			top: 0; left: 0;
+			display: block;
+			text-align: center;
+			font-size: $small-font-size;
+			font-weight: bold;
+
+			// NOTE: here we expect that it will be used with avatar small
+			line-height: $small-avatar-size;
+		}
 	}
 
 
@@ -42,17 +60,17 @@ $large-avatar-size: 295px;
 			top: 6px;
 		}
 	}
-	&.avatar-small{
-    min-width: 40px;
+	&.avatar-small {
+    	min-width: 40px;
 		width: $small-avatar-size;
 	}
-	&.avatar-normal{
+	&.avatar-normal {
 		width: $normal-avatar-size;
 	}
-	&.avatar-medium{
+	&.avatar-medium {
 		width: $medium-avatar-size;
 	}
-	&.avatar-large{
+	&.avatar-large {
 		width: $large-avatar-size;
 	}
 

@@ -10,3 +10,14 @@
 #{$h6} {
     font-weight: bold;
 }
+
+.text-normal,
+.text-small {
+    font-weight: normal;
+}
+.text-small {
+    font-size: $small-font-size;
+}
+.text-normal {
+    font-size: $global-font-size;
+}

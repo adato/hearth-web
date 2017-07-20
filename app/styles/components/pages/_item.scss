@@ -64,7 +64,8 @@ a.user {
 	}
 }
 
-.item-option-bg-type {
+.item-option-bg-type,
+.box-lead-icon {
 	position: relative;
 
 	display: -ms-flexbox;
@@ -74,20 +75,26 @@ a.user {
 
 	width: 20px;
 	height: 20px;
-	color: $colorDarkGray;
-	border-top-left-radius: 50%;
-	border-bottom-right-radius: 50%;
-	transform: rotate(45deg);
-	z-index: 5;
 
+	z-index: 5;
+	transform: rotate(45deg);
+
+	&.round {
+		border-radius: 50%;
+	}
 	&.non-responsive {
 		width: 32px;
 		height: 32px;
 
 		& > i {
+			font-size: 17px;
 			width: 17px; height: 17px;
 			background-size: 17px 17px;
 		}
+	}
+	& > i {
+		color: $white;
+		transform: rotate(-45deg);
 	}
 
 	// when the icon is not moved to the border (see below) it should
@@ -107,12 +114,17 @@ a.user {
 		}
 	}
 }
+.item-option-bg-type {
+	color: $colorDarkGray;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
 .item-option-bg-offer,
 .item-option-bg-lend {
 	background-color: $tertiary-color;
 	border-bottom-left-radius: 50%;
 }
-.item-option-bg-type > i{
+.item-option-bg-type > i {
 	display: block;
 	width: 12px; height: 12px;
 	background-size: 12px 12px;
@@ -120,19 +132,19 @@ a.user {
 	background-repeat: no-repeat;
 }
 .item-option-bg-offer > i,
-.item-option-bg-need > i{
+.item-option-bg-need > i {
 	background-image: url('/app/assets/img/icons/heart.svg');
 }
 button.active .item-option-bg-offer > i,
-button.active .item-option-bg-need > i{
+button.active .item-option-bg-need > i {
 	background-image: url('/app/assets/img/icons/heart-clr.svg');
 }
 .item-option-bg-borrow > i,
-.item-option-bg-lend > i{
+.item-option-bg-lend > i {
 	background-image: url('/app/assets/img/icons/clock.svg');
 }
 button.active .item-option-bg-borrow > i,
-button.active .item-option-bg-lend > i{
+button.active .item-option-bg-lend > i {
 	background-image: url('/app/assets/img/icons/clock-clr.svg');
 }
 .item-option-bg-need,
@@ -141,9 +153,7 @@ button.active .item-option-bg-lend > i{
 	border-top-right-radius: 50%;
 }
 .item-option-bg-type > i {
-	color: #fff;
 	font-size: 10px;
-	transform: rotate(-45deg);
 }
 button.active .item-option-bg-type {
 	background-color: #fff;

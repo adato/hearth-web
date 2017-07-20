@@ -54,7 +54,6 @@ angular.module('hearth.controllers').controller('ItemReport', [
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 				$scope.showFinished();
-				// Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
 			}, function(err) {
 
 				$scope.sending = false;

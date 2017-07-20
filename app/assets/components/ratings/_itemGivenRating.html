@@ -23,11 +23,11 @@
 			</div>
 			<div class="left">
 				<b ng-if="item.score == -1">
-					<i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
+					<i class="score-icon fa icon-rating-negative"></i><span translate="PROFILE.RATING.NEGATIVE"></span></b>
 				<b ng-if="item.score == 1">
-					<i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
+					<i class="score-icon bold fa icon-rating-positive"></i><span translate="PROFILE.RATING.POSITIVE"></span></b>
 				<small ng-if="item.post_id">
-					&nbsp;{{:: 'RATING_TO_POST' | translate }}
+					&nbsp;<span translate="PROFILE.RATING.ON_POST"></span>
 					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title }}">
             {{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title | ellipsis:40}}</a>.
 				</small>
@@ -36,7 +36,7 @@
 			<div class="text-container clear clearfix">
 				<p ng-if="!item.hidden" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 				<p ng-if="item.hidden">
-					<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<i translate="PROFILE.RATING.REMOVED"></i>
 				</p>
 			</div>
 			<div class="rating-reply" ng-if="item.comment">
@@ -49,7 +49,7 @@
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
 					<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
-					<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<i ng-if="item.comment.hidden" translate="PROFILE.RATING.REMOVED"></i>
 				</div>
 				<div class="clear"></div>
 			</div>

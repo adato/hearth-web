@@ -1,22 +1,22 @@
 <div class="ngdialog ngdialog-theme-default notifyOverlay" id="maitenancePage">
 	<div class="ngdialog-overlay"></div>
 	<div class="ngdialog-content" ng-cloak>
-		<h2 ng-if="isMaintenanceMode" translate-cloak translate="SERVER_MAITENANCE_MESSAGE"></h2>
+		<h2 ng-if="isMaintenanceMode" translate-cloak translate="COMMON.NOTIFY.SERVER_MAITENANCE"></h2>
 	</div>
 </div>
 
 <div class="ngdialog ngdialog-theme-default notifyOverlay" id="criticalError">
 	<div class="ngdialog-overlay"></div>
 	<div class="ngdialog-content" ng-cloak>
-		<h2 translate-cloak translate="APP_CRITICAL_ERROR"></h2>
+		<h2 translate-cloak translate="COMMON.NOTIFY.CRITICAL_APP_ERROR"></h2>
 	</div>
 </div>
 
 <div class="offline-dialog" id="offlineNotify" ng-class="{display: isOfflineMode}" ng-cloak>
 	<div class="content flex flex-center flex-divided-large" ng-cloak>
-		<div class="remove-p-margins" translate="YOU_ARE_OFFLINE"></div>
+		<div class="remove-p-margins" translate="COMMON.NOTIFY.YOU_ARE_OFFLINE"></div>
 		<button class="button dont-disable" ng-click="checkOnlineState()">
-			<span translate="RELOAD_PAGE"></span>
+			<span translate="COMMON.ACTION_RELOAD"></span>
 			<i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i>
 		</button>
 	</div>
@@ -59,7 +59,7 @@
 			<div id="notify-offset-container"></div>
 			<div class="all-visible max-width">
 				<div ui-view class="main-container" ng-class="{ 'with-search-bar': isSearchBarShown() }"></div>
-				<div ng-click="top(); mixpanelTrackMoveToTop()" class="move2top show-for-scrolled show-for-large" title="{{:: 'move-to-top' | translate}}">
+				<div ng-click="top(); mixpanelTrackMoveToTop()" class="move2top show-for-scrolled show-for-large">
 					<span ng-bind-html="topArrowText.top"></span>
 					<span class="fa fa-caret-square-o-up"></span>
 					<span ng-bind-html=":: topArrowText.bottom"></span>

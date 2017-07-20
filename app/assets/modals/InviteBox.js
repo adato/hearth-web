@@ -110,9 +110,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		//var STATUS_NOT_SENT = 'not_sent'; //assigned if API did not succeed to send email to that email | currently not used
 
 		var itemStatusTextVocabulary = {};
-		itemStatusTextVocabulary[STATUS_INVITE_SUCCESS] = 'INVITATION_STATUS.INVITATION_SENT';
-		itemStatusTextVocabulary[STATUS_ALREADY_INVITED] = 'INVITATION_STATUS.USER_ALREADY_INVITED';
-		itemStatusTextVocabulary[STATUS_ALREADY_EXISTING] = 'INVITATION_STATUS.USER_ALREADY_EXIST';
+		itemStatusTextVocabulary[STATUS_INVITE_SUCCESS] = 'HEARTH.INVITE.NOTIFY.SUCCESS_INVITATION_SENT';
+		itemStatusTextVocabulary[STATUS_ALREADY_INVITED] = 'HEARTH.INVITE.NOTIFY.ERROR_USER_ALREADY_INVITED';
+		itemStatusTextVocabulary[STATUS_ALREADY_EXISTING] = 'HEARTH.INVITE.NOTIFY.ERROR_USER_ALREADY_EXISTS';
 		//itemStatusTextVocabulary[STATUS_NOT_SENT] = 'INVITATION_STATUS.INVITATION_NOT_SENT'; // currently not used
 
 		var itemStatusTemperVocabulary = {};
