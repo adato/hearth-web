@@ -86,6 +86,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       prepareElementData($scope.inputs, getInputsData())
       compileData(getAvatarData())
       compileData(getFormData())
+      compileData(getInfoBubbleData())
     }
 
     function getFormData() {
@@ -224,6 +225,26 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 </form>`,
         selector: '[form-data]',
         scopeId: 'formData',
+      }
+    }
+
+    function getInfoBubbleData() {
+      $scope.infoBubble
+      $scope.infoBubbleModels = [
+        {
+          fullName: 'Luke Skywalker'
+        }, {
+          location: 'Beggar\'s Canyon, Tatooine'
+        }
+      ]
+
+      return {
+          code: `<div class="flex flex-space-between">
+  <div class="padding-medium" style="background: pink" info-bubble="infoBubbleModels[0]" info-bubble-type="user">Hover me! I'm a user</div>
+  <div class="padding-medium" style="background: tomato" info-bubble="infoBubbleModels[1]" info-bubble-type="location">Hover me! I'm a location</div>
+</div>`,
+          selector: '[info-bubble-data]',
+          scopeId: 'infoBubble'
       }
     }
 

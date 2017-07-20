@@ -72,7 +72,7 @@
 								</a>
 							</h1>
 							<span class="nowrap" ng-if=":: isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
-							<div ng-if=":: item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
+							<div ng-if=":: item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 							<span class="fa fa-lock" ng-if=":: item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 						</div>
 
@@ -146,9 +146,7 @@
 										<a class="text-decoration-underline" ng-href="{{getProfileLink('Post', item._id) }}#replies" ng-bind-html="item.replied_by_string"></a>
 									</div>
 									<div ng-if="item.reply_count && !mine" ng-bind-html="item.replied_by_string"></div>
-									<div ng-if="!item.reply_count" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY
-">
-</div>
+									<div ng-if="!item.reply_count" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY"></div>
 								</div>
 							</div>
 						</div>
