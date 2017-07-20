@@ -30,7 +30,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 			MAX_MOTTO_LENGTH
 		},
 		getUploadOpts,
-		followUser
 	}
 
 	return factory

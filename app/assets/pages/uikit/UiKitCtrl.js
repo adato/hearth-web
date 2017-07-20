@@ -233,7 +233,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       $scope.infoBubbleModels = [
         {
           // available immediately
-          "_id":"the.force.is.strong",
+          "_id":"58721035e4fbd8000aaf675d",
           "_type":"User",
           "name":"Luke Skywalker",
           "first_name":"Luke",
@@ -288,7 +288,8 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
           "phone":null,
           "present_password":true,
           "about_shortened":"Jsem osůbka,která toho štěstíčka v životě moc nedostává..Nebýt lidí..."
-        }, {
+        },
+        {
           "center":[14.4378005,50.0755381],
           "location":{
             "type":"envelope",

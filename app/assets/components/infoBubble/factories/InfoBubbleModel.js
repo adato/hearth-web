@@ -7,6 +7,11 @@ angular.module('hearth.directives').factory('InfoBubbleModel', ['ProfileUtils', 
       top: null,
       left: null
     },
+
+    // fn: {
+    //   followUser: ProfileUtils.followUser,
+    //   followUserLoading: false
+    // },
     model: {}
   }
 

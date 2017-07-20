@@ -136,7 +136,7 @@ angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$
     bubbleScope = $rootScope.$new(true)
     bubbleScope.bubble = InfoBubbleModel
     bubbleScope.type = validTypes[type]
-    angular.element($document[0].body).append($compile($templateCache.get(`assets/components/infoBubble/infoBubbleWrapper.html`))(bubbleScope))
+    angular.element($document[0].body).append($compile($templateCache.get(`assets/components/infoBubble/templates/infoBubbleWrapper.html`))(bubbleScope))
 
     bubbleElement = $document[0].querySelector(INFO_BUBBLE_SELECTOR)
 

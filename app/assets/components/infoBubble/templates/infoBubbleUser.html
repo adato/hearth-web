@@ -1,0 +1,29 @@
+<div>
+  <div class="flex-grid info-bubble-content">
+    <avatar type="vm.model._type" src="vm.avatar.large"></avatar>
+    <div>
+      <div class="block">
+        <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
+        <div class="text-muted text-small">
+          <span translate="RATING.COUNT" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span>
+          <span>&bull;</span>
+          <span ng-show="vm.model.locations.length" ng-bind="vm.model.locations[0].formatted_address"></span>
+        </div>
+      </div>
+      <div>
+        <small ng-bind="vm.model.about_shortened"></small>
+      </div>
+    </div>
+  </div>
+  <hr class="margin-none" />
+  <div class="flex flex-space-between info-bubble-content">
+    <a ui-sref="profile.subview({id: vm.model._id, page: 'posts'})" class="button tertiary" translate="GIFT.NEW_GIFTS_COUNT" translate-values="{count: vm.model.gift_count}"></a>
+    <div>
+      <span ng-if="vm.model.is_followee" translate="PROFILE.YOU_ARE_FOLLOWEE"></span>
+      <a href="" ng-if="!vm.model.is_followee" translate="PROFILE.ACTION_FOLLOW" ng-click="vm.toggleFollowUser({userId: vm.model._id, follow: true})"></a>
+      <i ng-if="vm.sendingFollowRequest" class="fa fa-spin fa-spinner"></i>
+      <span>&bull;</span>
+      <a ui-sref="profile.default({id: vm.model._id})" translate="PROFILE.PROFILE"></a>
+    </div>
+  </div>
+</div>
