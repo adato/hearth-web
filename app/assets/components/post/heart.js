@@ -13,11 +13,11 @@ angular.module('hearth.directives').directive('heart', [function() {
     scope: {
       item: '='
     },
-    controller: ['$scope', 'ItemAux', '$rootScope', function($scope, ItemAux, $rootScope) {
-      $scope.loggedUser = $rootScope.loggedUser;
-      $scope.ItemAux = ItemAux;
+    controller: ['$scope', 'PostAux', '$rootScope', function($scope, PostAux, $rootScope) {
+      $scope.loggedUser = $rootScope.loggedUser
+      $scope.PostAux = PostAux
     }],
-    templateUrl: 'assets/components/item/heart.html'
-  };
+    templateUrl: 'assets/components/post/heart.html'
+  }
 
-}]);
+}])

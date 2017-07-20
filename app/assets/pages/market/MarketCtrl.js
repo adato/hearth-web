@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'ItemAux', 'Rights',
-	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, ItemAux, Rights) {
+	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'PostAux', 'Rights',
+	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, PostAux, Rights) {
 
 		var marketplaceInited = false;
 
@@ -41,7 +41,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
 		var itemTypes = ['post', 'blogposts']; //, 'banner', 'community', 'user', 'conversation']; no more types needed for now
-		var templateDir = 'assets/components/item/items/';
+		var templateDir = 'assets/components/post/posts/';
 
 		$rootScope.searchQuery.query = $state.params.query || null;
 		$rootScope.searchQuery.type = $state.params.type || 'post';
@@ -97,7 +97,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// Add exemplary posts
 					// only for unlogged users who are not filtering though
 					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
-            $scope.epOpts = new ItemAux.getExemplaryPostsOpts(exemplaryPosts)
+            $scope.epOpts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
             exemplaryPostsInserted = true
 						exemplaryPosts = false
 					}
@@ -178,7 +178,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			const qParams = {
 				posts: Post.query(paramObject).$promise
 			}
-			qParams.exemplaryPosts = ItemAux.getExemplaryPosts()
+			qParams.exemplaryPosts = PostAux.getExemplaryPosts()
 			$q.all(qParams).then(({ posts: data, exemplaryPosts }) => {
 			  if (data.total) Filter.isSet() ? setMarketTitle("MARKETPLACE.FILTER_RESULTS"):setMarketTitle("MARKETPLACE.NEWEST_POSTS")
 				$scope.loaded = true;

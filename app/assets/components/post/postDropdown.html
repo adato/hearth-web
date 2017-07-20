@@ -1,16 +1,16 @@
-<div class="dropdown-wrapper nowrap" item-dropdown-scope>
+<div class="dropdown-wrapper nowrap" post-dropdown-scope>
   <div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if=":: !ctrl.mine">
     <div bubble-placeholder="bookmark-reminder"></div>
     <div bubble-placeholder="hide-post"></div>
-    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POST.ACTION_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[item-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
+    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POST.ACTION_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[post-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
       <i class="fa fa-fw fa-chevron-down"></i>
     </span>
   </div>
   <ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
     <li>
       <!-- bookmark post -->
-      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.ItemAux.removeItemFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="POST.ACTION_UNBOOKMARK"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.ItemAux.addItemToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="POST.ACTION_BOOKMARK"></a>
+      <a ng-if="! ctrl.mine && ctrl.item.is_bookmarked" ng-click="ctrl.PostAux.removePostFromBookmarks(item); ctrl.analytics('Unbookmark clicked');" test-beacon="marketplace-item-remove-bookmark" translate="POST.ACTION_UNBOOKMARK"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.is_bookmarked " ng-click="ctrl.PostAux.addPostToBookmarks(item); ctrl.analytics('Bookmark clicked');" test-beacon="marketplace-item-add-bookmark" translate="POST.ACTION_BOOKMARK"></a>
       <!-- /bookmark post -->
     </li>
     <li>
@@ -21,11 +21,11 @@
     </li>
     <li>
       <!-- hide post -->
-      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'POST.HIDE.TITLE'}" ng-click="ctrl.confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ctrl.ItemAux.hideItem, params: ctrl.item, callbackScope: this, policy: 'SIGNED_IN'})" translate="POST.ACTION_HIDE"></a>
+      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'POST.HIDE.TITLE'}" ng-click="ctrl.confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ctrl.PostAux.hideItem, params: ctrl.item, callbackScope: this, policy: 'SIGNED_IN'})" translate="POST.ACTION_HIDE"></a>
       <!-- /hide post -->
     </li>
     <li>
-      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'POST.ACTION_REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.removeItemFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
+      <a ng-if=":: ! ctrl.mine && ctrl.item.admin_communities.length" translate-attr="{title: 'POST.ACTION_REMOVE_FROM_COMMUNITY'}" ng-click="ctrl.postRemoveFromCommunity(item)" translate="MARKETPLACE.POST.REMOVE_FROM_COMMUNITY"></a>
     </li>
 
     <!-- admin only -->
@@ -33,7 +33,7 @@
       <hr />
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && (ctrl.item.state === 'active'  || (ctrl.item.state !== 'active' && !ctrl.item.edited_by_admin))">
-      <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.ACTION_SUSPEND"></a>
+      <a href="" class="elevated-authority-function" ng-click="ctrl.PostAux.confirmSuspend(ctrl.item, this)" translate="POST.ACTION_SUSPEND"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend') && !ctrl.isActive">
       <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.ACTION_RESUME"></a>

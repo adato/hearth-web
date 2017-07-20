@@ -43,10 +43,12 @@
 		<label class="block">
 			<span translate="PROFILE.RATING.WRITE_RATING"></span>
 			<textarea autosize-textarea rows="4" style="height: 120px;" name="text" ng-attr-placeholder="{{:: 'PROFILE.RATING.WRITE_RATING_COMMUNITY_PLACEHOLDER' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" required class="text-input" ng-minlength="3"></textarea>
-			<max-len-counter class="fright" max-len="300" value="rating.text"></max-len-counter>
-			<div class="form-error" ng-show="showError.text">
-				<span ng-show="ratingForm.text.$error.required" translate="PROFILE.RATING.NOTIFY.ERROR_NO_FILLED_RATING"></span>
-				<span ng-show="ratingForm.text.$error.minlength" translate="PROFILE.RATING.NOTIFY.ERROR_RATING_TOO_SHORT"></span>
+			<div class="flex flex-space-between flex-wrap flex-reverse">
+				<max-len-counter max-len="300" value="rating.text"></max-len-counter>
+				<div class="form-error" ng-show="showError.text">
+					<span ng-show="ratingForm.text.$error.required" translate="PROFILE.RATING.NOTIFY.ERROR_NO_FILLED_RATING"></span>
+					<span ng-show="ratingForm.text.$error.minlength" translate="PROFILE.RATING.NOTIFY.ERROR_RATING_TOO_SHORT"></span>
+				</div>
 			</div>
 		</label>
 
