@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('exemplaryPosts', [
 			scope: {
 				opts: '=',
 			},
-			templateUrl: 'assets/components/item/items/exemplaryPosts.html',
+			templateUrl: 'assets/components/post/posts/exemplaryPosts.html',
 			link: function(scope, element) {
 			}
 		};

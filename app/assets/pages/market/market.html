@@ -44,8 +44,8 @@
       <exemplary-posts opts="epOpts" ng-if="!filterIsOn && loaded"></exemplary-posts>
       <div class="row" ng-if="items.length">
         <div class="column medium-10 medium-push-2 text-center">
-          <h3 translate="{{marketTitle}}"></h3>
-          <h5 ng-if="filterIsOn"><a translate="MARKETPLACE.SHOW_ALL" ng-click="resetFilter()"></a></h5>
+          <h1 class="header-3" translate="{{marketTitle}}"></h1>
+          <h2 class="header-6" ng-if="filterIsOn"><a translate="MARKETPLACE.SHOW_ALL" ng-click="resetFilter()"></a></h2>
         </div>
       </div>
       <div id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">

@@ -28,12 +28,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
     $scope.showLimitedPostsMessageUnauth = false;
     $scope.dataFetchError
     $scope.marketTitle
+    // exemplary posts options
     $scope.epOpts
 
 		// variable controlling that exemplary posts are only inserted once
 		var exemplaryPostsInserted = false
-		// auxiliary variable to be destroyed on marketplace scope destruction
-    var epScope
     var securityCleanupDone
 
 		var userLanguages = undefined;
@@ -329,7 +328,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.debug && $log.debug('Destroy marketCtrl finished')
 			// we do not want infinit scroll running on other pages than marketplace
 			InfiniteScrollPagination.unbindScroll()
-      if (epScope) epScope.$destroy && epScope.$destroy()
 		});
 
     let setMarketTitle = (titleCode) => {
