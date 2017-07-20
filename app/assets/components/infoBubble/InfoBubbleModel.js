@@ -1,4 +1,4 @@
-angular.module('hearth.directives').factory('InfoBubbleModel', [function() {
+angular.module('hearth.directives').factory('InfoBubbleModel', ['ProfileUtils', function(ProfileUtils) {
 
   const factory = {
     shown: false,
