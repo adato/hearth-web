@@ -33,7 +33,7 @@
       <hr />
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend_any') && (ctrl.item.state === 'active'  || (ctrl.item.state !== 'active' && !ctrl.item.edited_by_admin))">
-      <a href="" class="elevated-authority-function" ng-click="ctrl.ItemAux.confirmSuspend(ctrl.item, this)" translate="POST.ACTION_SUSPEND"></a>
+      <a href="" class="elevated-authority-function" ng-click="ctrl.PostAux.confirmSuspend(ctrl.item, this)" translate="POST.ACTION_SUSPEND"></a>
     </li>
     <li ng-if=":: ctrl.userHasRight('post.suspend_any') && !ctrl.isActive">
       <a href="" class="elevated-authority-function" ng-click="ctrl.pauseToggle(ctrl.item, 'confirm-pause-' + ctrl.item._id)" translate="POST.ACTION_RESUME"></a>

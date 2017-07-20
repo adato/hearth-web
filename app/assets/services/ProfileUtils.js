@@ -26,11 +26,11 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		},
 		getPosts,
 		params: {
-			PROFILE_TYPES: PROFILE_TYPES,
-			MAX_MOTTO_LENGTH: MAX_MOTTO_LENGTH
+			PROFILE_TYPES,
+			MAX_MOTTO_LENGTH
 		},
-		etUploadOpts,
-		
+		getUploadOpts,
+		followUser
 	}
 
 	return factory
