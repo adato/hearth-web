@@ -4,7 +4,7 @@
     <div>
       <div class="block">
         <h1 class="header-6" ng-bind="bubble.model.name"></h1>
-        <div class="text-muted">
+        <div class="text-muted text-small">
           <span translate="RATING.COUNT" translate-values="{count: (bubble.model.down_votes + bubble.model.up_votes)}"></span>
           <span>&bull;</span>
           <span ng-show="bubble.model.locations.length" ng-bind="bubble.model.locations[0].formatted_address"></span>
