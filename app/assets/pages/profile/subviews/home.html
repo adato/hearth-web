@@ -3,7 +3,7 @@
 		<div class="box ratings home-ratings" ng-if="receivedRatings.length">
 			<h3 class="mine" translate="PROFILE.RATINGS.YOUR_RATINGS"></h3>
 			<h3 class="others" translate="PROFILE.RATINGS.USER_RATINGS"></h3>
-			<div ng-include="'assets/components/ratings/_itemReceivedHomeRatings.html'"></div>
+			<div ng-include="'assets/components/ratings/_postReceivedHomeRatings.html'"></div>
 			<p class="mine" ng-if="! receivedRatings.length" translate="PROFILE.RATING.YOU_HAVE_NO_RATINGS"></p>
 			<p class="others" ng-if="loaded && ! receivedRatings.length">
 				<span translate="PROFILE.RATING.USER_HAS_NO_RATINGS"></span>
@@ -32,7 +32,7 @@
 			</h3>
 			<h3 class="others" translate="PROFILE.POSTS.USER_POSTS"></h3>
 
-			<div ng-include="'assets/components/item/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index"></div>
+			<div ng-include="'assets/components/post/postSmall.html'" ng-repeat="(id, item) in posts.data track by $index"></div>
 			<!-- === No posts active & inactive === -->
 			<p class="mine" ng-if="! posts.data.length && !info.post_total">
 				<span translate="PROFILE.POSTS.NO_POSTS_ME"></span>
@@ -44,7 +44,7 @@
 			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 &&  mine)">
 				<a ui-sref="profile.subview({page: 'posts'})">
 					<button class="button">
-						<i class="fa fa-angle-double-right"></i> 
+						<i class="fa fa-angle-double-right"></i>
 						<span translate="PROFILE.POSTS.ALL"></span>
 					</button>
 				</a>
@@ -61,7 +61,7 @@
 				<div class="descr reg-date margin-top-none">
 					<i class="fa fa-asterisk"></i>
 					<span ng-if="!mine" translate="PROFILE.USER_HAS_REGISTERED"></span>
-					<span ng-if="mine" translate="PROFILE.YOU_HAVE_REGISTERED"></span> 
+					<span ng-if="mine" translate="PROFILE.YOU_HAVE_REGISTERED"></span>
 					{{ info.confirmed_at | ago}}
 				</div>
 

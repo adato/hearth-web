@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name hearth.services.ItemServices
+ * @name hearth.services.PostServices
  * @description
  */
 
-angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter', 'Bubble', 'ItemAux',
+angular.module('hearth.services').factory('PostServices', ['$rootScope', 'Filter', 'Bubble', 'PostAux',
 
-	function($rootScope, Filter, Bubble, ItemAux) {
+	function($rootScope, Filter, Bubble, PostAux) {
 		return {
 			showMore: false,
 			expanded: false,
@@ -36,13 +36,13 @@ angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter
 			openReportBox: $rootScope.openReportBox,
 			openEmailSharingBox: $rootScope.openEmailSharingBox,
 			openLinkSharingBox: $rootScope.openLinkSharingBox,
-			removeItemFromCommunity: $rootScope.removeItemFromCommunity,
+			postRemoveFromCommunity: $rootScope.postRemoveFromCommunity,
 			followItem: $rootScope.followItem,
 			unfollowItem: $rootScope.unfollowItem,
 			removeReminder: Bubble.removeReminder,
 			scrollToElement: $rootScope.scrollToElement,
 			userHasRight: $rootScope.userHasRight,
-			ItemAux: ItemAux,
+			PostAux: PostAux,
 		};
 	}
 ]);
