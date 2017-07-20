@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'ItemAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, ItemAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = [];
@@ -387,8 +387,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.post = item;
 			ngDialog.open({
-				template: $$config.modalTemplates + 'itemReport.html',
-				controller: 'ItemReport',
+				template: $$config.modalTemplates + 'postReport.html',
+				controller: 'PostReport',
 				scope: scope,
 				closeByEscape: true,
 				showClose: false
@@ -434,8 +434,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$rootScope.openEditForm = function(scope) {
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemEdit.html',
-				controller: 'ItemEdit',
+				template: $$config.modalTemplates + 'postEdit.html',
+				controller: 'PostEdit',
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: false,
@@ -533,7 +533,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * Function will show modal window where community admin can remove post from his community
 		 */
-		$rootScope.removeItemFromCommunity = function(post) {
+		$rootScope.postRemoveFromCommunity = function(post) {
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
@@ -541,8 +541,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			scope.post = post;
 
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'removeItemFromCommunity.html',
-				controller: 'RemoveItemFromCommunity',
+				template: $$config.modalTemplates + 'postRemoveFromCommunity.html',
+				controller: 'PostRemoveFromCommunity',
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: true,
@@ -815,7 +815,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		// return false if post is inactive
-		$rootScope.isPostActive = ItemAux.isPostActive;
+		$rootScope.isPostActive = PostAux.isPostActive;
 
 		$rootScope.toggleSearchBar = value => {
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);

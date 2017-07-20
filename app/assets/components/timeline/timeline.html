@@ -2,7 +2,7 @@
   <div class="timeline" ng-repeat="(id, item) in timelineItems track by $index">
 
     <div ng-if="item.verb == 'community_new_post' || item.verb == 'new_post'">
-      <div item-small item="item.object" type="condensed" class="box"></div>
+      <div post-small item="item.object" type="condensed" class="box"></div>
     </div>
 
     <div ng-if="item.verb == 'new_rating_received' || item.verb == 'new_rating'">

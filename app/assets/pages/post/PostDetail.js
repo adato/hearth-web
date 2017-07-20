@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemDetail
+ * @name hearth.controllers.PostDetail
  * @description
  */
 
-angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', 'PostUtils', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux', 'PageTitle', 'LanguageList', '$translate', '$sce', '$q', 'PrerenderService',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, PostUtils, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux, PageTitle, LanguageList, $translate, $sce, $q, PrerenderService) {
+angular.module('hearth.controllers').controller('PostDetail', [
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'PostAux', 'PageTitle', 'LanguageList', '$translate', '$sce', '$q', 'PrerenderService',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, PostAux, PageTitle, LanguageList, $translate, $sce, $q, PrerenderService) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -17,10 +17,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isMine = false;
 		$scope.isEmpty = IsEmpty;
 		$scope.removeReminder = Bubble.removeReminder;
-		$scope.ItemAux = ItemAux;
+		$scope.PostAux = PostAux;
     $scope.relatedLoaded;
 
-		var templatePath = 'assets/components/item/items/post.html';
+		var templatePath = 'assets/components/post/posts/post.html';
 		var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 		$scope.relatedPostsOptions = {
 			disableLoading: true,
@@ -88,7 +88,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				// if there are post data, process them
 				if (data.text) {
 					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
-          $scope.postTypeCode = PostUtils.getPostTypeCode(data.author._type, data.type, data.exact_type);
+          $scope.postTypeCode = PostAux.getPostTypeCode(data.author._type, data.type, data.exact_type);
 					var postType = $filter('translate')($scope.postTypeCode);
 					var title = 'Hearth.net: ' + postType + ' ' + data.title + ' (' + data.author.name + ')';
 
@@ -147,7 +147,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 			// Post found
 			var author = ($scope.item.author ? $scope.item.author._type : 'User');
-			var title = $translate.instant(PostUtils.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
+			var title = $translate.instant(PostAux.getPostTypeCode(author, $scope.item.type, $scope.item.exact_type)) + ' ' + $scope.item.title;
 			PageTitle.setTranslate('', title);
 		};
 

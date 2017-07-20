@@ -2,15 +2,15 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.itemSmall
+ * @name hearth.directives.postSmall
  * @description small item bow with settable template
  * @restrict AE
  */
-angular.module('hearth.directives').directive('itemSmall', ['$rootScope', function ($rootScope) {
+angular.module('hearth.directives').directive('postSmall', ['$rootScope', function ($rootScope) {
 
   const templates = {
-    condensed: 'assets/components/item/itemCondensed.html',
-    default: 'assets/components/item/itemSmall.html'
+    condensed: 'assets/components/post/postCondensed.html',
+    default: 'assets/components/post/postSmall.html'
   }
 
   return {
@@ -22,7 +22,7 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
       return attrs.type && templates[attrs.type] ? templates[attrs.type] : templates.default
     },
     controllerAs: 'ctrl',
-    controller: ['$scope', '$window', 'PostUtils', 'ItemAux', 'Rights', function($scope, $window, PostUtils, ItemAux, Rights) {
+    controller: ['$scope', '$window', 'PostAux', 'Rights', function($scope, $window, PostAux, Rights) {
 
       const ctrl = this
 
@@ -30,16 +30,16 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
       extend(ctrl.item)
 
       ctrl.postTypes = $window.$$config.postTypes
-      ctrl.isPostActive = ItemAux.isPostActive
+      ctrl.isPostActive = PostAux.isPostActive
       ctrl.userHasRight = Rights.userHasRight
-      ctrl.logPostTextToggle = ItemAux.logPostTextToggle
+      ctrl.logPostTextToggle = PostAux.logPostTextToggle
       ctrl.getProfileLink = $rootScope.getProfileLink
 
       // temp workaround for links leading to posts that will not be shown
       ctrl.onlyAllowActive = (item, event) => {
-        if (ItemAux.isPostActive(item)) return
+        if (PostAux.isPostActive(item)) return
         event.preventDefault()
-        ItemAux.postInaccessibleModal()
+        PostAux.postInaccessibleModal()
       }
 
       $scope.$watch('ctrl.item', extend)
@@ -47,8 +47,8 @@ angular.module('hearth.directives').directive('itemSmall', ['$rootScope', functi
       function extend(item) {
         if (!item) return
         ctrl.item = item
-        ItemAux.extendForDisplay(item)
-        item.postTypeCode = PostUtils.getPostTypeCode(item.author._type, item.type, item.exact_type)
+        PostAux.extendForDisplay(item)
+        item.postTypeCode = PostAux.getPostTypeCode(item.author._type, item.type, item.exact_type)
       }
 
     }]

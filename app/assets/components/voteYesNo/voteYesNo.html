@@ -7,7 +7,7 @@
   <div ng-if="votingInProgress && !isVoted" class="fa fa-spinner fa-spin"></div>
   <div ng-if="isVoted">
     <span translate="COMMON.YOU_VOTED" translate-compile
-          translate-values="{'attrs': '{{result | translate}}'}">
+          translate-values="{'attrs':  '{{ 'COMMON.' + result | translate }}' }">
     </span>
   </div>
 </div>

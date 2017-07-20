@@ -58,6 +58,37 @@ describe('user profile', function() {
 		}
 	}
 
+
+	/// SELECT2 COMPONENT
+	function addTagToSelect2Input(input, value, downArrow) {
+		log("addTagToS2Input (" + input + ") = " + value);
+		var el = element(by.css('[test-beacon="profile-edit-form"] '+ input +' ul li>input')); // pls ensure that $input is in form of css selector
+		el.sendKeys(value);
+		browser.sleep(1000);
+		if (downArrow == true) {
+			return el.sendKeys(protractor.Key.ARROW_DOWN).sendKeys(protractor.Key.ENTER);
+		} else {
+			return el.sendKeys(protractor.Key.ENTER);
+		}
+	}
+
+	function clearSelect2TagInput(input) {
+		log("clearS2TagInput (" + input + ")");
+		var el = element(by.css('[test-beacon="profile-edit-form"] '+ input +' ul li>input')); // pls ensure that $input is in form of css selector
+		el.click().then(function() {
+			for (var i = 0; i < 20; i++) {
+				el.sendKeys(protractor.Key.BACK_SPACE); // send more backspaces then we need to clear old entries
+			}
+		});
+	}
+
+	function assertSelect2TagInputItemCount(input, value) {
+		log("assertS2TagInput len(" + input + ") ?= " + value);
+		var els = element.all(by.css('[test-beacon="profile-edit-form"] ' + input + ' ul.select2-choices li.ui-select-match-item')); // pls ensure that $input is in form of css selector
+		expect(els.count()).toBe(value);
+	}
+	// END OF SELECT2
+
 	function clearTagInput(input) {
 		log("clearTagInput (" + input + ")");
 		var el = element(by.css('[test-beacon="profile-edit-form"] '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
@@ -145,15 +176,15 @@ describe('user profile', function() {
 
 	it('should be able to change languages', function () {
 		// languages
-    const LANG_SELECTOR = 'language-section';
-    const LANG_INPUT = beacon(LANG_SELECTOR);
-    log(LANG_INPUT);
-		clearTagInput('[test-beacon="language-section"]');
-		addTagToInput('[test-beacon="language-section"]', 'ang'); // esperanto
+    	const LANG_SELECTOR = 'language-section';
+    	const LANG_INPUT = beacon(LANG_SELECTOR);
+
+		clearSelect2TagInput('[test-beacon="language-section"]');
+		addTagToSelect2Input('[test-beacon="language-section"]', 'ngl'); // eng
 		browser.sleep(200);
-		addTagToInput('[test-beacon="language-section"]', 'rus'); // rusky or russian
+		addTagToSelect2Input('[test-beacon="language-section"]', 'rus'); // rusky or russian
 		browser.sleep(200);
-		addTagToInput('[test-beacon="language-section"]', 'portu'); // portugalsky or portugese
+		addTagToSelect2Input('[test-beacon="language-section"]', 'portu'); // portugalsky or portugese
 		browser.sleep(200);
 
 		clickSubmitButton();
@@ -191,7 +222,6 @@ describe('user profile', function() {
 
 
 	it('all should be saved fine', function() {
-
 		assertInputField('first_name', 'Jmeno_' + randomNumber);
 		assertInputField('last_name', 'Prijmeni_' + randomNumber);
 		assertInputField('my_work', 'Job_' + randomNumber);
@@ -200,7 +230,7 @@ describe('user profile', function() {
 
 		assertTagInputItemCount('[test-beacon="location-input-wrapper"]', 2); // expect tag-input length to be 2
 		assertTagInputItemCount('[test-beacon="interests-tags-input"]', 4);
-		assertTagInputItemCount('[test-beacon="language-section"]', 3);
+		assertSelect2TagInputItemCount('[test-beacon="language-section"]', 3);
 
 
 		beacon('social-fb').getAttribute('value').then(function(gotvalue){
@@ -234,8 +264,8 @@ describe('user profile', function() {
 
 		clearTagInput('[test-beacon="interests-tags-input"]');
 		clearTagInput('[test-beacon="location-input-wrapper"]');
-		clearTagInput('[test-beacon="language-section"]');
-		addTagToInput('[test-beacon="language-section"]', 'ang'); // add one language to pass a validation
+		clearSelect2TagInput('[test-beacon="language-section"]');
+		addTagToSelect2Input('[test-beacon="language-section"]', 'ang'); // add one language to pass a validation
 		browser.sleep(200);
 
 		beacon('social-fb').clear();

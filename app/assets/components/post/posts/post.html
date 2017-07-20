@@ -54,7 +54,7 @@
 					<header class="item-section row">
 						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
 							<span class="color-dark-gray" title="{{:: item.updated_at_date }}">{{:: item.updated_at_timeago}}</span>
-							<div class="display-inline-block" item-dropdown="item"></div>
+							<div class="display-inline-block" post-dropdown="item"></div>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium">
 							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="display-inline-block position-relative">
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="padding-right-large" ng-if="(!item.is_replied && !mine) || (item.is_replied)">
-									<button ng-if="!item.is_replied && !mine" ng-click="ItemAux.replyItem(item); analytics('Reply clicked');" class="button" ng-class=":: item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
+									<button ng-if="!item.is_replied && !mine" ng-click="PostAux.replyItem(item); analytics('Reply clicked');" class="button" ng-class=":: item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied" translate="POST.NOTIFY.YOU_ALREADY_REPLIED"></span>
 								</div>
 								<div>

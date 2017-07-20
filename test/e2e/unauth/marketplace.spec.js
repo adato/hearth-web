@@ -3,7 +3,7 @@ const beacon = require('../utils.js').beacon;
 describe('hearth unauth marketplace', function () {
 
   beforeEach(function () {
-    protractor.helpers.navigateTo('');
+    protractor.helpers.navigateTo('/?lang=cs');
   });
 
   // should see marketplace with items

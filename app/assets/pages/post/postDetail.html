@@ -24,63 +24,7 @@
 							<header class="item-section row">
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
-
-									<div class="dropdown-wrapper">
-										<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!isMine">
-											<div bubble-placeholder="bookmark-reminder"></div>
-											<div bubble-placeholder="hide-post"></div>
-											<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'})" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none margin-left-medium round gray" title="{{:: 'POST.ACTION_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}" test-beacon="marketplace-item-dropdown-toggle">
-												<i class="fa fa-fw fa-chevron-down"></i>
-											</span>
-										</div>
-										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;">
-											<li>
-												<!-- bookmark post -->
-												<a ng-if="! isMine && item.is_bookmarked" ng-click="ItemAux.removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark" translate="POST.ACTION_UNBOOKMARK"></a>
-												<a ng-if="! isMine && !item.is_bookmarked" ng-click="ItemAux.addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark" translate="POST.ACTION_BOOKMARK"></a>
-												<!-- bookmark post -->
-											</li>
-											<li>
-												<!-- flag post -->
-												<a ng-if="! isMine && item.spam_reported" title="{{:: 'POST.FLAG.ALREADY_FLAGGED' | translate}}" tipsy disabled translate="POST.ACTION_FLAG"></a>
-												<a ng-if="! isMine && !item.spam_reported" title="{{:: 'POST.FLAG.TITLE' | translate}}" ng-click="openReportBox(item)" translate="POST.ACTION_FLAG"></a>
-												<!-- flag post -->
-											</li>
-											<li>
-												<!-- hide post -->
-												<a ng-if="! isMine && !item.is_hidden" title="{{:: 'POST.HIDE.TITLE' | translate}}" ng-click="confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ItemAux.hideItem, params: item, callbackScope: this})" translate="POST.ACTION_HIDE"></a>
-												<!-- /hide post -->
-											</li>
-											<li>
-												<a ng-if="! isMine && item.admin_communities.length" title="{{:: 'POST.ACTION_REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)" translate="POST.ACTION_REMOVE_FROM_COMMUNITY"></a>
-											</li>
-
-											<!-- admin only -->
-											<li ng-if="userHasRight('post.suspend') && isActive">
-												<hr />
-											</li>
-											<li ng-if="userHasRight('post.suspend') && isActive">
-												<a class="elevated-authority-function" ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{ (isActive ? ("POST.ACTION_SUSPEND" | translate) : ("POST.ACTION_RESUME" | translate)) }}</a>
-											</li>
-											<!-- TODO: in future there will be another user privilegs then post.suspend -->
-											<li ng-if='userHasRight("post.suspend")'>
-												<a ng-if="!item.is_followed" class="elevated-authority-function" ng-click="followItem(item)" translate="POST.ACTION_FOLLOW"></a>
-												<a ng-if="item.is_followed" class="elevated-authority-function" ng-click="unfollowItem(item)" translate="POST.ACTION_UNFOLLOW"></a>
-											</li>
-                      <li ng-if=':: userHasRight("post.suspend")'>
-                        <hr/>
-                        <span><span translate="POST.CHARACTER"></span>
-                           <span ng-repeat="itemEntry in item.character">
-                               <span ng-repeat="postCharEntry in postCharacter | filter : { name:itemEntry }">{{ postCharEntry.translate | translate }}</span>
-                           </span>
-                        </span>
-                      </li>
-                      <li ng-if=':: userHasRight("post.suspend")'>
-                        <span><span translate="COMMON.LANGUAGE"></span>: {{:: postLanguage}} </span>
-                      </li>
-											<!-- /admin only -->
-										</ul>
-									</div>
+									<div class="display-inline-block" post-dropdown="item"></div>
 								</div>
 
 								<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large margin-bottom-small">
@@ -169,7 +113,7 @@
 											</div>
 										</div>
 										<div class='padding-right-large'>
-											<button ng-if="!item.is_replied && !isMine" ng-click="ItemAux.replyItem(item)" class="button" ng-class=':: item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
+											<button ng-if="!item.is_replied && !isMine" ng-click="PostAux.replyItem(item)" class="button" ng-class=':: item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
 											<span ng-if="item.is_replied" translate="POST.NOTIFY.YOU_ALREADY_REPLIED"></span>
 										</div>
 										<div>
@@ -257,7 +201,7 @@
 				</div>
 				<div class="column large-3 end has-delimiter show-for-large">
 					<div class='text-center margin-bottom-medium'>
-						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2 position-relative display-block'>
+						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2 position-relative display-block' test-beacon="item-detail-avatar">
 							<avatar class='margin-top-medium ' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
 							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
 							<karma-bar for="item.author"></karma-bar>

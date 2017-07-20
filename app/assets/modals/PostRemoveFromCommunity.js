@@ -2,13 +2,14 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.RemoveItemFromCommunity
+ * @name hearth.controllers.PostRemoveFromCommunity
  * @description
  */
 
-angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
+angular.module('hearth.controllers').controller('PostRemoveFromCommunity', [
 	'$scope', '$rootScope', 'Notify', 'Post', '$timeout',
 	function($scope, $rootScope, Notify, Post, $timeout) {
+
 		var timeout = null;
 		$scope.communities = {};
 		$scope.communitiesCount = 0;
@@ -35,7 +36,7 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 
 		$scope.getCheckedCommunities = function() {
 			// if we have only one community to remove post from,
-			// return it as a default community	
+			// return it as a default community
 			if ($scope.communitiesCount == 1)
 				return [$scope.communityObj._id];
 
