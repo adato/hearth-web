@@ -7,7 +7,7 @@
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$timeout', '$window', '$document', '$compile', '$rootScope', 'InfoBubbleModel', '$templateCache', 'Throttle', function(ViewportUtils, $timeout, $window, $document, $compile, $rootScope, InfoBubbleModel, $templateCache, Throttle) {
+angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$window', '$document', '$compile', '$rootScope', 'InfoBubbleModel', '$templateCache', function($timeout, $window, $document, $compile, $rootScope, InfoBubbleModel, $templateCache) {
 
   const INFO_BUBBLE_SELECTOR = '[info-bubble-focusser]'
   const INTENT_DELAY = 300
@@ -34,12 +34,25 @@ angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$
       infoBubbleType: '@'
 		},
     controllerAs: 'vm',
-    controller: [function() {
+    controller: ['$element', function($element) {
 
       const ctrl = this
 
       ctrl.$onInit = () => {
         ctrl.bubble = InfoBubbleModel
+      }
+
+      ctrl.$onDestroy = () => {
+        InfoBubbleModel.shown = false
+
+        bubbleElement = void 0
+        hoveredElement = void 0
+
+        $timeout.cancel(intent)
+        $timeout.cancel(cancelIntent)
+
+        $element.off('mouseenter', initIntent)
+        $element.off('mouseleave', cancelIntent)
       }
 
     }],
@@ -133,7 +146,7 @@ angular.module('hearth.directives').directive('infoBubble', ['ViewportUtils', '$
     bubbleElement = $document[0].querySelector(INFO_BUBBLE_SELECTOR)
     if (bubbleElement) return bubbleScope.type = validTypes[type]
 
-    bubbleScope = $rootScope.$new(true)
+    bubbleScope = bubbleScope || $rootScope.$new(true)
     bubbleScope.bubble = InfoBubbleModel
     bubbleScope.type = validTypes[type]
     angular.element($document[0].body).append($compile($templateCache.get(`assets/components/infoBubble/templates/infoBubbleWrapper.html`))(bubbleScope))

@@ -8,7 +8,7 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
       model: '='
     },
     controllerAs: 'vm',
-    controller: ['UsersService', '$rootScope', function(UsersService, $rootScope) {
+    controller: ['UsersService', '$rootScope', '$q', function(UsersService, $rootScope, $q) {
 
       const ctrl = this
 
@@ -27,8 +27,11 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
       function init() {
 
         if (!ctrl.model.infoBubble) {
-          UsersService.get(ctrl.model._id).then(res => {
-            ctrl.model.infoBubble = res
+          $q.all({
+            userDetail: UsersService.get(ctrl.model._id)
+          })
+          .then(res => {
+            ctrl.model.infoBubble = res.userDetail
           })
         }
 
