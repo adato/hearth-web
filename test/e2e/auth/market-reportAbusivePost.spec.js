@@ -10,7 +10,7 @@ describe('hearth report abusive post', function () {
     var dropdownReportPostLink = elAll.element(by.css('[test-beacon="marketplace-item-flag"]'));
     var dropdownArrow = elAll.element(by.css('[test-beacon="marketplace-item-dropdown-toggle"]'));
     var modal = element(by.css('div[test-beacon="flag-post-modal"]'));
-    var modalCloseButton = element(by.css('div[test-beacon="flag-post-modal"] a.close'));
+    var modalCloseButton = element(by.css('div[test-beacon="flag-post-modal"] span.close'));
 
     dropdownArrow.click();
     expect(expectedDropdown.isDisplayed()).toBeTruthy();

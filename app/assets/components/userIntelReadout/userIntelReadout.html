@@ -46,7 +46,7 @@
 			<i class="fa fa-fw fa-map-marker"></i>
 		</div>
 		<div class="display-table-cell">
-			{{:: 'you-will-find-me' | translate }}
+			<span translate="PROFILE.MY_LOCATION"></span>
 			<span ng-repeat="location in entity.locations" ng-if="location.short_address" ng-bind="location.short_address + ($last ? '.' : ',\u00A0')"></span>
 		</div>
 	</div>

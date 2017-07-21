@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'ItemAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, ItemAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = [];
@@ -50,9 +50,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			window.location = document.URL;
 		};
 
-		$rootScope.checkOnlineState = function() {
-			ApiHealthChecker.checkOnlineState();
-		};
+		// expose some maintenance page functions
+		// TODO: whole maintenance should be encapsulated in some component
+		$rootScope.checkOnlineState = ApiHealthChecker.checkOnlineState
+		$rootScope.closeMaintenanceNotify = ApiHealthChecker.closeNotify
 
 		$scope.setPageTitle = function(state) {
 			// var state = $state.$current;
@@ -85,56 +86,62 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if (toState.policy) {
 				if (toState.policy === $window.$$config.policy.SIGNED_IN && !Auth.isLoggedIn()) {
-					event.preventDefault();
+					event.preventDefault()
 
 					// here we store a location to the state to which we wanted to go which will
 					// be used by login ctrl upon successful login
-					UnauthReload.setLocation($state.href(toState, toParams));
+					UnauthReload.setLocation($state.href(toState, toParams))
 
 					// we need to replace the current history entry so that we can always push the browser back button
 					// and not wind up on login again
-					return $state.go('login', {}, {location: 'replace'});
+					return $state.go('login', {}, {location: 'replace'})
 
 				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
-					event.preventDefault();
-					return $state.go('market');
+					event.preventDefault()
+					return $state.go('market')
 				}
 			}
 
 			// retain optional state params on specified route groups
 			if (toState && fromState && searchParamsRetainer[fromState.name] && searchParamsRetainer[fromState.name] === searchParamsRetainer[toState.name]) {
-				locationSearch = $location.search();
+				locationSearch = $location.search()
 			} else {
-				locationSearch = void 0;
+				locationSearch = void 0
+			}
+
+			// if a new version is available - make a reload to the target state instead of just a state change
+			if (ApiHealthChecker.shouldReload()) {
+				event.preventDefault()
+				return $window.location = $state.href(toState, toParams)
 			}
 
 			// when changed route, load conversation counters
 			//Auth.isLoggedIn() && Messenger.loadCounters();
-			ngDialog.close();
+			ngDialog.close()
 
 			//close small-resolution menu
-			$rootScope.leftSidebarShown = false;
+			$rootScope.leftSidebarShown = false
 
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
-				$rootScope.pageChangeWithScroll = true;
-				return;
+				$rootScope.pageChangeWithScroll = true
+				return
 			}
 
-			if (!$rootScope.addressNew) return $rootScope.top(0, 1);
+			if (!$rootScope.addressNew) return $rootScope.top(0, 1)
 
-			$rootScope.addressOld = $rootScope.addressNew;
-			$rootScope.addressNew = toState.originalPath;
+			$rootScope.addressOld = $rootScope.addressNew
+			$rootScope.addressNew = toState.originalPath
 
-			var r1 = $rootScope.addressOld.split($$config.basePath);
-			var r2 = $rootScope.addressNew.split($$config.basePath);
+			var r1 = $rootScope.addressOld.split($$config.basePath)
+			var r2 = $rootScope.addressNew.split($$config.basePath)
 
 			// if first element in URL of old page is not same as first element in URL of new page
 			// scroll to top - (alias scroll when we come to new URL)
 			if (r1.length < 2 || r2.length < 2 || r1[1] != r2[1]) {
-				$rootScope.top(0, 1);
+				$rootScope.top(0, 1)
 			}
-		});
+		})
 
 		$rootScope.$on("initLanguageSuccess", $scope.setPageTitle);
 
@@ -144,15 +151,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeSuccess", function(ev, current) {
 
-			if (locationSearch) $location.search(locationSearch);
+			if (locationSearch) $location.search(locationSearch)
 
-			$rootScope.pageName = $state.current.name;
-			$scope.segment = current.name;
+			$rootScope.pageName = $state.current.name
+			$scope.segment = current.name
 
-			$("#all").removeClass();
-			$("#all").addClass(current.controller);
-			$scope.setPageTitle(current);
-		});
+			// TODO: what is this even good for?
+			$("#all").removeClass()
+			$("#all").addClass(current.controller)
+
+			$scope.setPageTitle(current)
+		})
 
 
 		/**
@@ -160,61 +169,53 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * Depends on $windo.Rollbar !!
 		 */
 		$rootScope.$on("initSessionSuccess", function(event, user) {
-			if ($window.Rollbar) {
-				$window.Rollbar.configure({
-					payload: {
-						person: {
-							id: user._id,
-							username: user.name,
-							// email is not reachable in session`s user variable, so we omit it
-							email: user.email
-						}
+			if (!$window.Rollbar) return
+
+			$window.Rollbar.configure({
+				payload: {
+					person: {
+						id: user._id,
+						username: user.name,
+						// email is not reachable in session`s user variable, so we omit it
+						email: user.email
 					}
-				});
-			}
-		});
+				}
+			})
+		})
 
 		/**
 		 * When submitted fulltext search
 		 */
 		$scope.search = searchQuery => {
 			if (!searchQuery.query) {
-				$("#search").focus();
-				return false;
+				$("#search").focus()
+				return false
 			}
-			$rootScope.toggleSearchBar(false); // turn off search input
-			$rootScope.top(0, 1);
+			$rootScope.toggleSearchBar(false) // turn off search input
+			$rootScope.top(0, 1)
 			$state.go('search', {
 				query: searchQuery.query,
 				// type: searchQuery.type
-			});
-			searchQuery.query = null;
-		};
-
-		/**
-		 * Close notification of maintenance message about new version
-		 */
-		$rootScope.closeMaintenanceNotify = function() {
-			ApiHealthChecker.closeNotify();
-		};
+			})
+			searchQuery.query = null
+		}
 
 		/**
 		 * Set value of fulltext search
 		 */
 		$rootScope.setFulltextSearch = function(val) {
-			$timeout(function() {
-				$("#searchBox").val(val);
-			});
-		};
+			$timeout(() => {
+				$("#searchBox").val(val)
+			})
+		}
 
 		/**
 		 * Return profile of item based on its type (community, user, post)
 		 */
 		$rootScope.getActivityLink = function(object, target_object) {
-			if (target_object)
-				return $rootScope.getProfileLink(target_object._type, target_object._id);
-			return $rootScope.getProfileLink(object._type, object._id);
-		};
+			if (target_object) return $rootScope.getProfileLink(target_object._type, target_object._id)
+			return $rootScope.getProfileLink(object._type, object._id)
+		}
 
 		/**
 		 * Return profile of item based on its type and id
@@ -228,12 +229,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * Refresh user to given path
 		 */
 		$rootScope.refreshToPath = function(path) {
-			window.location = path || document.URL;
-		};
+			window.location = path || document.URL
+		}
 
 		$rootScope.isMine = function(author_id) {
-			return $scope.loggedUser && author_id === $scope.loggedUser._id;
-		};
+			return $scope.loggedUser && author_id === $scope.loggedUser._id
+		}
 
 		angular.element(window).bind('scroll', function() {
 			if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
@@ -386,8 +387,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.post = item;
 			ngDialog.open({
-				template: $$config.modalTemplates + 'itemReport.html',
-				controller: 'ItemReport',
+				template: $$config.modalTemplates + 'postReport.html',
+				controller: 'PostReport',
 				scope: scope,
 				closeByEscape: true,
 				showClose: false
@@ -433,8 +434,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$rootScope.openEditForm = function(scope) {
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'itemEdit.html',
-				controller: 'ItemEdit',
+				template: $$config.modalTemplates + 'postEdit.html',
+				controller: 'PostEdit',
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: false,
@@ -532,7 +533,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * Function will show modal window where community admin can remove post from his community
 		 */
-		$rootScope.removeItemFromCommunity = function(post) {
+		$rootScope.postRemoveFromCommunity = function(post) {
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
@@ -540,8 +541,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			scope.post = post;
 
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'removeItemFromCommunity.html',
-				controller: 'RemoveItemFromCommunity',
+				template: $$config.modalTemplates + 'postRemoveFromCommunity.html',
+				controller: 'PostRemoveFromCommunity',
 				scope: scope,
 				closeByDocument: false,
 				closeByEscape: true,
@@ -814,7 +815,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		// return false if post is inactive
-		$rootScope.isPostActive = ItemAux.isPostActive;
+		$rootScope.isPostActive = PostAux.isPostActive;
 
 		$rootScope.toggleSearchBar = value => {
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);

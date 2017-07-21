@@ -144,8 +144,8 @@ angular.module('hearth').config([
 			})
 			.state('post', {
 				url: '/post/:id',
-				templateUrl: 'assets/pages/item/itemDetail.html',
-				controller: 'ItemDetail'
+				templateUrl: 'assets/pages/post/postDetail.html',
+				controller: 'PostDetail'
 			})
 			.state('messages', {
 				title: 'messages.0',

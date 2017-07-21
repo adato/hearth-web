@@ -33,7 +33,7 @@ angular.module('hearth.geo').directive('locations', [
 				$scope.mapIsVisible = false;
 
 				if (!$scope.errorCode)
-					$scope.errorCode = 'LOCATIONS_ARE_EMPTY';
+					$scope.errorCode = 'COMMON.NOTIFY.ERROR_LOCATIONS_ARE_EMPTY';
 
 				var markerImage = {
 					url: $$config.imgUrl + '/pin.png',

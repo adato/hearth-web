@@ -21,13 +21,13 @@
 			</li>
 			<li>
 				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" ng-class="{active: pageName == 'market'}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
-					<i class="fa icon-marketplace"></i> 
+					<i class="fa icon-marketplace"></i>
 					<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
 				</a>
 			</li>
 			<li>
 				<a ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
-					<i class="fa icon-community"></i> 
+					<i class="fa icon-community"></i>
 					<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
 				</a>
 			</li>
@@ -84,43 +84,43 @@
 		</ul>
 		<ul class="menu vertical">
 			<li>
-				<label>{{:: 'TOP_BAR_ABOUT' | translate}} </label>
+				<label translate="HEARTH.PROJECT_NAVIGATION_ITEM"></label>
 			</li>
 			<li ng-if=":: language === 'cs'">
-				<a ui-sref="aboutUs" translate="MENU.ABOUT_US"></a>
+				<a ui-sref="aboutUs" translate="HEARTH.ABOUT_US.NAVIGATION_ITEM"></a>
 			</li>
 			<li ng-if=":: language === 'cs'">
-				<a ui-sref="ourStory" translate="MENU.OUR_STORY"></a>
+				<a ui-sref="ourStory" translate="HEARTH.STORY.NAVIGATION_ITEM"></a>
 			</li>
 			<li ng-if=":: language === 'cs'">
-				<a ui-sref="contacts" translate="MENU.CONTACTS"></a>
+				<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
 			</li>
 
 			<li>
-				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}">{{:: 'MENU.TERMS' | translate}}</a>
+				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
 			</li>
 			<li>
-				<a ui-sref="custodians" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('custodians')}">{{:: 'MENU.CUSTODIANS' | translate}}</a>
+				<a ui-sref="custodians" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('custodians')}" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
 			</li>
 			<li>
-				<a ui-sref="faq" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('faq')}">{{:: 'MENU.FAQ' | translate}}</a>
+				<a ui-sref="faq" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('faq')}" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
 			</li>
 			<li>
-				<a ui-sref="support-us" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('support-us')}">{{:: 'MENU.SUPPORT_US' | translate}}</a>
+				<a ui-sref="support-us" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('support-us')}" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
 			</li>
 			<li>
-				<a ui-sref="feedback" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('feedback')}">{{:: 'WRITE_US' | translate}}</a>
+				<a ui-sref="feedback" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('feedback')}" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
 			</li>
 			<li>
-				<a href="http://blog.hearth.net" target="_blank">{{:: 'BLOG' | translate}}</a>
+				<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
 			</li>
 			<li ng-if="language == 'cs'">
-				<a ui-sref="taxes" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('taxes')}">{{:: 'MENU.TAXES' | translate}}</a>
+				<a ui-sref="taxes" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('taxes')}" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
 			</li>
 		</ul>
 		<ul class="menu vertical socials">
 			<li>
-				<label>{{:: 'SOCIAL_NETWORKS' | translate}} </label>
+				<label translate="HEARTH.ABOUT_US.WE_ARE_ALSO_ON"></label>
 			</li>
 			<li>
 				<a href="https://twitter.com/hearth_net" target="_blank">
@@ -146,9 +146,10 @@
 		<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
 			<div>
 				<p>
-					<i class="fa fa-exclamation-circle"></i> {{:: 'NEW_VERSION_NOTIFICATION' | translate }}
+					<i class="fa fa-exclamation-circle"></i> 
+					<p translate="HEARTH.NEW_VERSION_NOTIFICATION"></p>
 				</p>
-				<span ng-click="refreshToPath()" class="left">{{:: 'RELOAD' | translate }}</span>
+				<span ng-click="refreshToPath()" class="left" translate="COMMON.ACTION_REFRESH"></span>
 				<span ng-click="closeMaintenanceNotify();" class="right" translate="COMMON.ACTION_CLOSE"></span>
 				<div class="clear"></div>
 			</div>
@@ -172,7 +173,7 @@
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block">
-					<i class="fa fa-fw fa-plus-circle" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+					<i class="fa fa-fw fa-plus-circle" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
 					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
@@ -184,9 +185,9 @@
 		<div id="searchContainer" class="mobile-top-search-bar-container hide-for-large column" test-beacon="search-bar-mobile-container">
 			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
 				<form ng-submit="search(searchQuery)" class="input-group margin-bottom-none">
-					<input class="input-group-field" type="text" id="search" ng-model="searchQuery.query" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
+					<input class="input-group-field" type="text" id="search" ng-model="searchQuery.query" name="search" ng-attr-placeholder="{{::'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" />
 					<span class="input-group-button">
-						<a class="button" ng-click="search(searchQuery)">{{:: 'SEARCH' | translate }}</a>
+						<a class="button" ng-click="search(searchQuery)" translate="COMMON.ACTION_SEARCH"></a>
 					</span>
 				</form>
 		</div>
@@ -202,7 +203,7 @@
 			</section>
 
 			<section class="bar-columns searchbox-column">
-				<input type="text" id="searchBox" placeholder="{{:: 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
+				<input type="text" id="searchBox" placeholder="{{:: 'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
@@ -315,48 +316,44 @@
 				</a>
 
 				<div class="dropdown-container">
-					<a title="{{::'TOP_BAR_ABOUT' | translate }}" class='icon-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback', 'support-us'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+					<a title="{{::'HEARTH.PROJECT_NAVIGATION_ITEM' | translate }}" class='icon-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback', 'support-us'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
 						<div class="inner-icon">
 							<span class="fa fa-question-circle"></span>
-							{{::'TOP_BAR_ABOUT' | translate}}
+							<span translate="HEARTH.PROJECT_NAVIGATION_ITEM"></span>
 						</div>
 					</a>
 					<!-- CS ONLY MENU -->
 					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop" ng-if=":: language === 'cs'">
 						<li>
-							<a ui-sref="aboutUs" translate="MENU.ABOUT_US"></a>
+							<a ui-sref="aboutUs" translate="HEARTH.ABOUT_US.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="ourStory" translate="MENU.OUR_STORY"></a>
+							<a ui-sref="ourStory" translate="HEARTH.STORY.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a href="http://blog.hearth.net" target="_blank" translate="BLOG"></a>
+							<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="contacts" translate="MENU.CONTACTS"></a>
+							<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a ui-sref="faq" translate="MENU.FAQ"></a>
+							<a ui-sref="faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="custodians" translate="MENU.CUSTODIANS"></a>
-						</li>
-						<li>
-							<a ui-sref="terms" translate="MENU.TERMS"></a>
 						</li>
 						<li ng-if=":: language === 'cs'">
-							<a ui-sref="taxes" translate="MENU.TAXES"></a>
+							<a ui-sref="taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="feedback" translate="WRITE_US"></a>
+							<a ui-sref="feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="support-us" translate="MENU.SUPPORT_US"></a>
+							<a ui-sref="support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
 						</li>
 						<li class="divider"></li>
 						<li class="no-hover">
-							<span translate="SOCIAL_NETWORKS"></span>
+							<span translate="HEARTH.ABOUT_US.WE_ARE_ALSO_ON"></span>
 						</li>
 						<li class="no-hover">
 							<ul class="social-menu" style="display: block">
@@ -385,30 +382,30 @@
 					</ul>
 					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop" ng-if=":: language !== 'cs'">
 						<li>
-							<a ng-href="{{:: basePath }}terms">{{:: 'MENU.TERMS' | translate}}</a>
+							<a ng-href="{{:: basePath }}terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="custodians">{{:: 'MENU.CUSTODIANS' | translate}}</a>
+							<a ui-sref="custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ng-href="{{:: basePath }}faq">{{:: 'MENU.FAQ' | translate}}</a>
+							<a ng-href="{{:: basePath }}faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ng-href="{{:: basePath }}support-us">{{:: 'MENU.SUPPORT_US' | translate}}</a>
+							<a ng-href="{{:: basePath }}support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ng-href="{{:: basePath }}feedback">{{:: 'WRITE_US' | translate}}</a>
+							<a ng-href="{{:: basePath }}feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="http://blog.hearth.net" target="_blank">{{:: 'BLOG' | translate}}</a>
+							<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
 						</li>
 						<li ng-if=":: language == 'cs'">
-							<a ng-href="{{:: basePath }}taxes">{{:: 'MENU.TAXES' | translate}}</a>
+							<a ng-href="{{:: basePath }}taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
 						</li>
 						<li class="divider"></li>
 						<li class="no-hover">
-							<span>{{:: 'SOCIAL_NETWORKS' | translate}}</span>
+							<span translate="HEARTH.ABOUT_US.WE_ARE_ALSO_ON"></span>
 						</li>
 						<li class="no-hover">
 							<ul class="social-menu" style="display: block">
@@ -435,7 +432,6 @@
 							</ul>
 						</li>
 					</ul>
-					<!--------------->
 				</div>
 			</section>
 			<div class="clear"></div>

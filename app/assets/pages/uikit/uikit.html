@@ -8,6 +8,7 @@
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'typography'}" ng-click="activeTab = 'typography'"><a href="">Typography</a></li>
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'inputs'}" ng-click="activeTab = 'inputs'"><a href="">Inputs</a></li>
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'form'}" ng-click="activeTab = 'form'"><a href="">Form example</a></li>
+      <li class="tabs-title" ng-class="{'is-active': activeTab === 'avatar'}" ng-click="activeTab = 'avatar'"><a href="">Avatars</a></li>
     </ul>
   </div>
 
@@ -29,13 +30,23 @@
       <div class="" ng-show="activeTab === 'typography'">
 
         <h2>Typography</h2>
+        <p class="subheader">
+          Headers may be used without class and they will look their default.<br />
+          Or they may be used with one of the header classes which will overload their design.<br />
+          With that said, header level should be driven by document semantics and its design should be driven by class.
+        </p>
+        <p class="subheader">
+          More information on the matter may be found e.g. <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines#Defining_sections" target="_blank">on MDN</a>.
+        </p>
         <div ng-repeat="item in typographies">
           <div class="block">
-            <div ng-bind="item.name"></div>
-            <div ng-bind-html="item.code"></div>
-            <div class="box background-light-gray padding-tiny" ng-bind="item.description"></div>
+            <h3 ng-bind="item.name"></h3>
+            <div class="flex flex-align-end flex-space-between">
+              <div id="typography-block-{{:: $index }}" ng-bind-html="item.code"></div>
+              <div class="color-dark-gray margin-left-medium" style-getter="#typography-block-{{:: $index }} > *" style-to-get="font-size"></div>
+            </div>
+            <small class="box background-light-gray padding-tiny" ng-bind="item.description"></small>
           </div>
-          <br/>
         </div>
 
       </div>
@@ -58,6 +69,15 @@
         <div class="block" form-data></div>
         <div class="box background-light-gray">
           <pre ng-bind="formData"></pre>
+        </div>
+
+      </div>
+      <div class="" ng-show="activeTab === 'avatar'">
+
+        <h2>Avatars</h2>
+        <div class="block" avatars></div>
+        <div class="box background-light-gray">
+          <pre ng-bind="avatars"></pre>
         </div>
 
       </div>
