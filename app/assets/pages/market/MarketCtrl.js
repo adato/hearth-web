@@ -93,7 +93,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					// Add exemplary posts
 					// only for unlogged users who are not filtering though
-					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
+					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('temp.show_suggested_posts'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
 					  const opts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
             epScope = $rootScope.$new()
             $compile(opts.template)(angular.merge(epScope, {

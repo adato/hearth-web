@@ -122,7 +122,7 @@ angular.module('hearth.directives').directive('infoBox', [
 							scope.show = true;
 							scope.error = false;
 
-							console.log('scope', scope);
+							// console.log('scope', scope);
 							if ($rootScope.loggedUser._id != scope.infoBox._id) {
 								if (typeof scope.infoBox._type != 'undefined' && scope.infoBox._type == 'Community') {
 									fetchCommunityFollowees();
