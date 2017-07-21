@@ -14,7 +14,7 @@
 			</label>
 			<div class="error" ng-show="showError.recipients_ids" translate="MESSAGING.CREATE.NOTIFY.ERROR_NO_RECIPIENT"></div>
 		</div>
-		<div class="form-section" ng-if="userHasRight('post.suspend')">
+		<div class="form-section" ng-if="userHasRight('messaging.send_custodian_message')">
 			<checkbox class="display-inline-block" model="message.from_admin" disabled="recipient.only_replies">
 				<span translate="MESSAGING.CREATE.SEND_AS_ADMIN"></span>
 			</checkbox>

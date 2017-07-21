@@ -117,13 +117,14 @@
 .flex-center{
 	justify-content: center;
 }
-.flex.align-start,
 .flex-align-start{
 	align-items: flex-start;
 }
-.flex.align-center,
 .flex-align-center{
 	align-items: center !important;
+}
+.flex-align-end {
+	align-items: flex-end;
 }
 .flex-reverse{
 	flex-direction: row-reverse;
