@@ -7,17 +7,14 @@
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$window', '$document', '$compile', '$rootScope', 'InfoBubbleModel', '$templateCache', function($timeout, $window, $document, $compile, $rootScope, InfoBubbleModel, $templateCache) {
+angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$window', '$document', '$compile', '$rootScope', 'InfoBubbleModel', 'InfoBubbleSetup', '$templateCache', function($timeout, $window, $document, $compile, $rootScope, InfoBubbleModel, InfoBubbleSetup, $templateCache) {
 
   const INFO_BUBBLE_SELECTOR = '[info-bubble-focusser]'
   const INTENT_DELAY = 300
   const INTENT_HIDE_DELAY = 300 // must be smaller or equal to INTENT_DELAY
   const BUBBLE_MARGIN = 10
 
-  const validTypes = {
-    user: 'User',
-    location: 'Location'
-  }
+  const validTypes = InfoBubbleSetup.typeMap
 
   var intent
   var hideIntent
@@ -149,6 +146,7 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
     bubbleScope = bubbleScope || $rootScope.$new(true)
     bubbleScope.bubble = InfoBubbleModel
     bubbleScope.type = validTypes[type]
+    bubbleScope.templateGet = InfoBubbleSetup.templateGet
     angular.element($document[0].body).append($compile($templateCache.get(`assets/components/infoBubble/templates/infoBubbleWrapper.html`))(bubbleScope))
 
     bubbleElement = $document[0].querySelector(INFO_BUBBLE_SELECTOR)

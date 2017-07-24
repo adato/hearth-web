@@ -231,6 +231,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     function getInfoBubbleData() {
       $scope.infoBubble
       $scope.infoBubbleModels = [
+        // user
         {
           // available immediately
           "_id":"58721035e4fbd8000aaf675d",
@@ -289,6 +290,24 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
           "present_password":true,
           "about_shortened":"Jsem osůbka,která toho štěstíčka v životě moc nedostává..Nebýt lidí..."
         },
+        // community
+        {
+          // available immediately
+          "_id":"59759aa42097e200149d04b2",
+          "_type":"Community",
+          "name":"Plutonium pro vsechny",
+          "admin":"56980f53e09e1900070006d1",
+          "avatar":{
+            "normal":"https://hearth-net-topmonks-dev-ugc.s3-eu-west-1.amazonaws.com/tmp_uploads%2F99f2bc64-6b48-49b7-955f-1debb809cb8a%2FPlutonium_ring.jpg",
+            "large":"https://hearth-net-topmonks-dev-ugc.s3-eu-west-1.amazonaws.com/tmp_uploads%2F99f2bc64-6b48-49b7-955f-1debb809cb8a%2FPlutonium_ring.jpg",
+            "size":null
+          },
+          "down_votes":0,
+          "up_votes":0,
+          "short_description":"bullseye",
+          "motto":"Kazdy si zaslouzi svych pet kilogramu obohaceneho plutonia"
+        },
+        // location
         {
           "center":[14.4378005,50.0755381],
           "location":{
@@ -303,7 +322,8 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
       return {
           code: `<div class="flex flex-space-between">
   <div class="padding-medium" style="background: pink" info-bubble="infoBubbleModels[0]" info-bubble-type="user">Hover me! I'm a user</div>
-  <div class="padding-medium" style="background: tomato" info-bubble="infoBubbleModels[1]" info-bubble-type="location">Hover me! I'm a location</div>
+  <div class="padding-medium" style="background: yellow" info-bubble="infoBubbleModels[1]" info-bubble-type="community">Hover me! I'm a community¤</div>
+  <div class="padding-medium" style="background: tomato" info-bubble="infoBubbleModels[2]" info-bubble-type="location">Hover me! I'm a location</div>
 </div>`,
           selector: '[info-bubble-data]',
           scopeId: 'infoBubble'
