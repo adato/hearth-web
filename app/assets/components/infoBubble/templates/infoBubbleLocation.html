@@ -1,4 +1,14 @@
-<div class="info-bubble-content">
-  <h1 class="header-6">Location</h1>
-  <div ng-bind="bubble.model.location"></div>
+<div>
+  <div class="flex-grid info-bubble-content">
+    <!-- <avatar type="vm.model._type" src="vm.avatar.large"></avatar> -->
+    <i class="fa fa-3x fa-map-marker error"></i>
+    <div>
+      <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.short_address"></h1>
+      <span class="text-muted" ng-bind="vm.model.country"></span>
+    </div>
+  </div>
+  <hr class="margin-none" />
+  <div class="flex flex-space-between info-bubble-content">
+    <a ui-sref="search({location: vm.model.short_address})" class="button tertiary" translate="GIFT.NEW_GIFTS_COUNT" translate-values="{count: vm.model.gift_count}"></a>
+  </div>
 </div>

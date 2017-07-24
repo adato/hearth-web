@@ -242,7 +242,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         // user
         {
           // available immediately
-          "_id":"the.force.is.strong",
+          "_id":"58721035e4fbd8000aaf675d",
           "_type":"User",
           "name":"Luke Skywalker",
           "first_name":"Luke",
