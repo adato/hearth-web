@@ -8,12 +8,14 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
       model: '='
     },
     controllerAs: 'vm',
-    controller: ['UsersService', '$rootScope', '$q', function(UsersService, $rootScope, $q) {
+    controller: ['UsersService', '$rootScope', '$q', '$locale', function(UsersService, $rootScope, $q, $locale) {
 
       const ctrl = this
 
 
       ctrl.$onInit = () => {
+
+        ctrl.pluralCat = $locale.pluralCat
 
         ctrl.sendingFollowRequest
         ctrl.toggleFollowUser = toggleFollowUser

@@ -8,12 +8,14 @@ angular.module('hearth.directives').directive('infoBubbleCommunity', [function()
       model: '='
     },
     controllerAs: 'vm',
-    controller: ['Community', 'CommunityApplicants', '$q', function(Community, CommunityApplicants, $q) {
+    controller: ['Community', 'CommunityApplicants', '$q', '$locale', function(Community, CommunityApplicants, $q, $locale) {
 
       const ctrl = this
 
 
       ctrl.$onInit = () => {
+
+        ctrl.pluralCat = $locale.pluralCat
 
         ctrl.sendingJionRequest
         ctrl.join = join

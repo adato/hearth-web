@@ -5,7 +5,7 @@
       <div class="block">
         <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
         <div class="text-muted text-small">
-          <span translate="PROFILE.RATING.COUNT.{{ pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span>
+          <span translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span>
           <span>&bull;</span>
           <span ng-show="vm.model.locations.length" ng-bind="vm.model.locations[0].formatted_address"></span>
         </div>
