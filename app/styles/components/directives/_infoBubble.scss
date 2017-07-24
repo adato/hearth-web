@@ -1,0 +1,12 @@
+.info-bubble {
+    position: absolute;
+    display: none;
+    width: 300px;
+    max-width: 300px;
+    padding: $size-small;
+    background: $white;
+    border-radius: $global-radius;
+    box-shadow: $ui-box-shadow;
+    transition: opacity .1s;
+    z-index: 100000000; // way over NINE THOUSAAAAAAAAND
+}

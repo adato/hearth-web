@@ -9,6 +9,7 @@
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'inputs'}" ng-click="activeTab = 'inputs'"><a href="">Inputs</a></li>
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'form'}" ng-click="activeTab = 'form'"><a href="">Form example</a></li>
       <li class="tabs-title" ng-class="{'is-active': activeTab === 'avatar'}" ng-click="activeTab = 'avatar'"><a href="">Avatars</a></li>
+      <li class="tabs-title" ng-class="{'is-active': activeTab === 'info-bubble'}" ng-click="activeTab = 'info-bubble'"><a href="">Info bubble</a></li>
     </ul>
   </div>
 
@@ -78,6 +79,15 @@
         <div class="block" avatars></div>
         <div class="box background-light-gray">
           <pre ng-bind="avatars"></pre>
+        </div>
+
+    </div>
+      <div class="" ng-show="activeTab === 'info-bubble'">
+
+        <h2>Info bubble</h2>
+        <div class="block" info-bubble-data></div>
+        <div class="box background-light-gray padding-tiny">
+          <pre ng-bind="infoBubble"></pre>
         </div>
 
       </div>
