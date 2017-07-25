@@ -7,7 +7,7 @@
         <div class="text-muted text-small">
           <span translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span>
           <span>&bull;</span>
-          <span ng-show="vm.model.locations.length" ng-bind="vm.model.locations[0].formatted_address"></span>
+          <span ng-show="vm.model.locations.length" ng-bind="vm.model.locations[0].short_address"></span>
         </div>
       </div>
       <div>
@@ -16,14 +16,18 @@
     </div>
   </div>
   <hr class="margin-none" />
-  <div class="flex flex-space-between info-bubble-content">
-    <a ng-if="(vm.model.post_count.offers + vm.model.post_count.needs)" ui-sref="profile.subview({id: vm.model._id, page: 'posts'})" class="button tertiary" translate="POST.GIFT_WISH_COUNT.one" translate-values="{count: (vm.model.post_count.offers + vm.model.post_count.needs)}"></a>
-    <div>
-      <span ng-if="vm.model.is_followee" translate="PROFILE.YOU_ARE_FOLLOWEE"></span>
-      <a href="" ng-if="!vm.model.is_followee" translate="PROFILE.ACTION_FOLLOW" ng-click="vm.toggleFollowUser({userId: vm.model._id, follow: true})"></a>
-      <i ng-if="vm.sendingFollowRequest" class="fa fa-spin fa-spinner"></i>
-      <span>&bull;</span>
-      <a ui-sref="profile.default({id: vm.model._id})" translate="PROFILE.ACTION_PROFILE"></a>
+  <div class="info-bubble-content">
+    <div class="flex flex-space-between">
+      <div>
+        <a ng-if="(vm.model.post_count.offers + vm.model.post_count.needs)" ui-sref="profile.subview({id: vm.model._id, page: 'posts'})" class="button tertiary" translate="POST.GIFT_WISH_COUNT.{{ vm.pluralCat(vm.model.post_count.offers + vm.model.post_count.needs) }}" translate-values="{count: (vm.model.post_count.offers + vm.model.post_count.needs)}"></a>
+      </div>
+      <div>
+        <span ng-if="vm.model.is_followee" translate="PROFILE.YOU_ARE_FOLLOWEE"></span>
+        <a href="" ng-if="!vm.model.is_followee" translate="PROFILE.ACTION_FOLLOW" ng-click="vm.toggleFollowUser({userId: vm.model._id, follow: true})"></a>
+        <i ng-if="vm.sendingFollowRequest" class="fa fa-spin fa-spinner"></i>
+        <span>&bull;</span>
+        <a ui-sref="profile.default({id: vm.model._id})" translate="PROFILE.ACTION_PROFILE"></a>
+      </div>
     </div>
   </div>
 </div>

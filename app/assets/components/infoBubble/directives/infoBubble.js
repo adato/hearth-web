@@ -136,6 +136,10 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
    * Creates the html element of a bubble, if it has not been created yet
    */
   function getBubble(type) {
+
+    // standardize
+    type = type.toLowerCase()
+
     if (!validTypes[type]) throw new TypeError(`Invalid info bubble type: ${type}`)
 
     if (bubbleElement) return bubbleScope.type = validTypes[type]
@@ -145,7 +149,7 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
 
     bubbleScope = bubbleScope || $rootScope.$new(true)
     bubbleScope.bubble = InfoBubbleModel
-    bubbleScope.type = validTypes[type]
+    bubbleScope.type = validTypes[type.toLowerCase()]
     bubbleScope.templateGet = InfoBubbleSetup.templateGet
     angular.element($document[0].body).append($compile($templateCache.get(`assets/components/infoBubble/templates/infoBubbleWrapper.html`))(bubbleScope))
 

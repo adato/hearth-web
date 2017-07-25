@@ -10,7 +10,16 @@
 
 angular.module('hearth.constants').constant('InfoBubbleSetup', {
 
+  /**
+   *  will be called with typeMap.key as a first argument
+   */
   templateGet: angular.identity,
+
+  /**
+   *  Glue between type and bubble template.
+   *  Works in the following fashion:
+   *  info-bubble-type="key" -> templateGet(typeMap[key.toLowerCase()])
+   */
   typeMap: {}
 
 })
