@@ -30,13 +30,27 @@ angular.module('hearth.directives').directive('infoBubbleCommunity', [function()
 
         if (!ctrl.model.infoBubble) {
           $q.all({
-            communityDetail: Community.get({_id: ctrl.model._id})
+            communityDetail: Community.get({_id: ctrl.model._id}).$promise
           })
           .then(res => {
             ctrl.model.infoBubble = res.communityDetail
+            initDone()
+          }).catch(err => {
+            console.log('error loading community detail', err);
+          }).finally(() => {
+            ctrl.detailLoaded = true
           })
+        } else {
+          initDone()
         }
 
+      }
+
+      function initDone() {
+        if (ctrl.model.infoBubble.recent_images.length || ctrl.model.infoBubble.post_count.offers || ctrl.model.infoBubble.post_count.needs) {
+          ctrl.moreAvailable = true
+        }
+        ctrl.detailLoaded = true
       }
 
       function join({ communityId }) {

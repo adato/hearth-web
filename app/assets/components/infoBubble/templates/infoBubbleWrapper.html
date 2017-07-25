@@ -1,4 +1,4 @@
 <aside class="info-bubble" info-bubble-focusser ng-class="{'display-block': bubble.shown}" ng-style="{top: bubble.position.top, left: bubble.position.left, opacity: bubble.opacity}">
   <!-- <ng-include src="'assets/components/infoBubble/templates/infoBubble' + type + 'Wrapper.html'"></ng-include> -->
-  <ng-include src="templateGet(type)"></ng-include>
+  <ng-include ng-if="bubble.shown" src="templateGet(type)"></ng-include>
 </aside>

@@ -28,7 +28,7 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
 		scope: {},
     bindToController: {
 			infoBubble: '=',
-      infoBubbleType: '@'
+      infoBubbleType: '='
 		},
     controllerAs: 'vm',
     controller: ['$element', function($element) {
@@ -55,7 +55,7 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
     }],
 		link: function(scope, element, attrs, ctrl) {
 
-      element.on('mouseenter', initIntent.bind(null, { ctrl, type: attrs.infoBubbleType, element }))
+      element.on('mouseenter', initIntent.bind(null, { ctrl, type: ctrl.infoBubbleType, element }))
       element.on('mouseleave', cancelIntent.bind(null, { ctrl }))
 
     }
@@ -142,10 +142,10 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
 
     if (!validTypes[type]) throw new TypeError(`Invalid info bubble type: ${type}`)
 
-    if (bubbleElement) return bubbleScope.type = validTypes[type]
+    if (bubbleElement) return reinit({scope: bubbleScope, type: validTypes[type]})
 
     bubbleElement = $document[0].querySelector(INFO_BUBBLE_SELECTOR)
-    if (bubbleElement) return bubbleScope.type = validTypes[type]
+    if (bubbleElement) return reinit({scope: bubbleScope, type: validTypes[type]})
 
     bubbleScope = bubbleScope || $rootScope.$new(true)
     bubbleScope.bubble = InfoBubbleModel
@@ -157,6 +157,11 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
 
     bindEvents($document[0].querySelector(INFO_BUBBLE_SELECTOR))
   }
+
+  function reinit({scope, type}) {
+    scope.type = type
+  }
+
 
   function bindEvents(bubble) {
     if (!bubble) throw new TypeError('Bubble has to be a DOM Node. Got:', bubble)

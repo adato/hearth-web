@@ -27,16 +27,29 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
       /////////////////
 
       function init() {
-
         if (!ctrl.model.infoBubble) {
           $q.all({
             userDetail: UsersService.get(ctrl.model._id)
           })
           .then(res => {
             ctrl.model.infoBubble = res.userDetail
+            initDone()
+          }).catch(err => {
+            console.log('error loading user detail', err);
+          }).finally(() => {
+            ctrl.detailLoaded = true
           })
+        } else {
+          initDone()
         }
 
+      }
+
+      function initDone() {
+        if (ctrl.model.infoBubble.recent_images.length || ctrl.model.infoBubble.post_count.offers || ctrl.model.infoBubble.post_count.needs) {
+          ctrl.moreAvailable = true
+        }
+        ctrl.detailLoaded = true
       }
 
       function toggleFollowUser({ userId, follow }) {
