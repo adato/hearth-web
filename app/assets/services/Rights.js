@@ -18,17 +18,7 @@ angular.module('hearth.services').factory('Rights', ['$rootScope', function($roo
 
 	function userHasRight(rightString) {
 		if (!rightString) return true
-		const rights = rightString.split('.')
-		var prog = $rootScope.loggedUser && $rootScope.loggedUser.abilities
-		if (prog && rights) {
-			while (rights.length) {
-				prog = prog[rights.shift()]
-				if (!prog) return false
-			}
-			return true
-		}
-		return false
+		return $rootScope.loggedUser && $rootScope.loggedUser.permissions && ($rootScope.loggedUser.permissions.indexOf(rightString) > -1)
 	}
-
 
 }])

@@ -41,7 +41,7 @@
 								<i class="fa fa-clock-o"></i> {{item.updated_at | ago}}
 							</div>
 						</div>
-						<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !item.isActive" class="error margin-top-small margin-bottom-small" translate="POST.SUSPENDED_BY_ADMIN"></div>
+						<div ng-if="item.edited_by_admin && userHasRight('post.suspend_any') && !item.isActive" class="error margin-top-small margin-bottom-small" translate="POST.SUSPENDED_BY_ADMIN"></div>
 
 						<div class="info">
 							<div class="location">

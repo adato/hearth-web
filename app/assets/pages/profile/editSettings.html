@@ -35,7 +35,7 @@
 			<div class="flex-1">
 				<h2 translate="SETTINGS.NOTIFICATIONS.TITLE"></h2>
 				<form ng-submit="saveNotificationSettings(notify)" name="notificationSettingsForm" id="notificationSettingsForm">
-          <label class="block" ng-if="userHasRight('post.suspend')">
+          <label class="block" ng-if="userHasRight('temp.setup_notification_frequency')">
             <h5 translate="SETTINGS.NOTIFICATIONS.FREQUENCY.HOW_OFTEN"></h5>
             <select ng-model="notify.send_emails.frequency" ng-options="item.value as item.title for item in selectFrequencies"></select>
           </label>
