@@ -50,6 +50,10 @@ tags-input input {
 textarea{
 	max-height: 200px;
 }
+.textarea-one-line {
+	min-height: inherit;
+	height: 24px;
+}
 
 // temp from profile edit
 textarea,

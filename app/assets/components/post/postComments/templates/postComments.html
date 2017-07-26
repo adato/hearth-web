@@ -1,0 +1,21 @@
+<div>
+  <div ng-repeat="item in vm.model" class="footer-item footer-item-bordered">
+    <div class="flex flex-divided-medium margin-bottom-tiny">
+      <avatar src="item.user.avatar" size="mini"></avatar>
+      <div class="header-6 margin-none" ng-bind="item.user.name"></div>
+    </div>
+    <div ng-bind="item.text"></div>
+  </div>
+  <form ng-submit="vm.submit(vm.message)" class="footer-item footer-item-bordered">
+    <div class="block margin-bottom-small flex-grid">
+      <avatar src="loggedUser.author.avatar" size="mini" class="margin-top-tiny"></avatar>
+      <textarea autosize-textarea ctrl-enter-submit class="textarea-one-line" ng-focus="vm.submitShown = true" ng-model="vm.message" translate-attr=":: {placeholder: item.user._id === loggedUser._id ? 'POST.COMMENT.YOUR_ANSWER' : 'POST.COMMENT.YOUR_COMMENT'}"></textarea>
+    </div>
+    <div class="text-right">
+      <button type="submit" class="button">
+        <span translate="COMMON.ACTION_SUBMIT"></span>
+        <i class="fa fa-fw margin-left-tiny" ng-class="{'fa-spinner fa-spin': vm.sending, 'fa-check': vm.success, 'fa-times': vm.error, 'fa-send': !(vm.sending || vm.success || vm.error)}"></i>
+      </button>
+    </div>
+  </div>
+</div>

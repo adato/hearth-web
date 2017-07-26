@@ -4,7 +4,7 @@
  * @ngdoc directive
  * @name hearth.directives.heart
  * @description
- * @restrict E
+ * @restrict AE
  */
 angular.module('hearth.directives').directive('heart', [function() {
 
