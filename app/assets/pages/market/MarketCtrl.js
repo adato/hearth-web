@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'ItemAux', 'Rights',
-	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, ItemAux, Rights) {
+	'$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'PostAux', 'Rights',
+	function($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, PostAux, Rights) {
 
 		var marketplaceInited = false;
 
@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
 		var itemTypes = ['post', 'blogposts']; //, 'banner', 'community', 'user', 'conversation']; no more types needed for now
-		var templateDir = 'assets/components/item/items/';
+		var templateDir = 'assets/components/post/posts/';
 
 		$rootScope.searchQuery.query = $state.params.query || null;
 		$rootScope.searchQuery.type = $state.params.type || 'post';
@@ -93,12 +93,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					// Add exemplary posts
 					// only for unlogged users who are not filtering though
-					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('post.suspend'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
-					  const opts = new ItemAux.getExemplaryPostsOpts(exemplaryPosts)
+					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('temp.show_suggested_posts'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
+					  const opts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
             epScope = $rootScope.$new()
             $compile(opts.template)(angular.merge(epScope, {
 							opts: opts,
-							logPostTextToggle: ItemAux.logPostTextToggle
+							logPostTextToggle: PostAux.logPostTextToggle
 						})).insertBefore(clone)
 
             exemplaryPostsInserted = true
@@ -181,7 +181,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			const qParams = {
 				posts: Post.query(paramObject).$promise
 			}
-			if (1) qParams.exemplaryPosts = ItemAux.getExemplaryPosts()
+			if (1) qParams.exemplaryPosts = PostAux.getExemplaryPosts()
 			$q.all(qParams).then(({ posts: data, exemplaryPosts }) => {
 
 				$scope.loaded = true;

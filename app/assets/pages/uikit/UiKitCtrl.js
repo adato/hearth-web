@@ -30,14 +30,20 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     const getTypographiesData = () => {
       return [
-        {code: '<h1>Pro lidi s otevřeným srdcem</h1>', name: 'Header 1'},
-        {code: '<h2>Sdílejte dary a přání</h2>', name: 'Header 2'},
-        {code: '<h3>Prostor pro lidi s otevřeným srdcem</h3>', name: 'Header 3'},
+        {name: 'Header 1', code: '<h1 class="header-1">Pro lidi s otevřeným srdcem</h1>'},
+        {name: 'Header 2', code: '<h2 class="header-2">Sdílejte dary a přání</h2>'},
+        {name: 'Header 3', code: '<h3 class="header-3">Prostor pro lidi s otevřeným srdcem</h3>'},
+        {name: 'Header 4', code: '<h4 class="header-4">Prostor pro lidi s otevřeným srdcem</h4>'},
+        {name: 'Header 5', code: '<h5 class="header-5">Prostor pro lidi s otevřeným srdcem</h5>'},
+        {name: 'Header 6', code: '<h6 class="header-6">Prostor pro lidi s otevřeným srdcem</h6>'},
         {
-          code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>',
-          name: 'Paragraph'
+          name: 'Paragraph',
+          code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>'
         },
-        {code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>', name: 'Label'}
+        {
+          name: 'Label',
+          code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>'
+        }
 
       ];
     };
@@ -67,7 +73,9 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     function getAvatarData() {
       return {
-        code: `<div class="avatar-stack">
+        code: `<avatar class="block" size="normal" src="loggedUser.avatar.normal" type="\'User\'"></avatar>
+
+<div class="avatar-stack">
   <avatar size="small" src="loggedUser.avatar.normal" type="\'User\'"></avatar>
   <avatar size="small"></avatar>
 </div>`,

@@ -2,20 +2,20 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.itemDropdown
+ * @name hearth.directives.postDropdown
  * @description action dropdown for posts
  * @restrict AE
  */
-angular.module('hearth.directives').directive('itemDropdown', ['$rootScope', function ($rootScope) {
+angular.module('hearth.directives').directive('postDropdown', ['$rootScope', function ($rootScope) {
 
   return {
     restrict: 'AE',
     scope: {
-      item: '=itemDropdown'
+      item: '=postDropdown'
     },
-    templateUrl: 'assets/components/item/itemDropdown.html',
+    templateUrl: 'assets/components/post/postDropdown.html',
     controllerAs: 'ctrl',
-    controller: ['$scope', '$window', 'PostUtils', 'ItemAux', 'Rights', 'Bubble', 'LanguageList', function($scope, $window, PostUtils, ItemAux, Rights, Bubble, LanguageList) {
+    controller: ['$scope', '$window', 'PostAux', 'Rights', 'Bubble', 'LanguageList', function($scope, $window, PostAux, Rights, Bubble, LanguageList) {
 
       const ctrl = this
 
@@ -23,7 +23,7 @@ angular.module('hearth.directives').directive('itemDropdown', ['$rootScope', fun
 
       ctrl.postCharacter = $window.$$config.postCharacter
 
-      ctrl.ItemAux = ItemAux
+      ctrl.PostAux = PostAux
       ctrl.removeReminder = Bubble.removeReminder
       ctrl.userHasRight = Rights.userHasRight
 
@@ -32,16 +32,16 @@ angular.module('hearth.directives').directive('itemDropdown', ['$rootScope', fun
       ctrl.followItem = $rootScope.followItem
       ctrl.unfollowItem = $rootScope.unfollowItem
       ctrl.pauseToggle = $rootScope.pauseToggle
-      ctrl.removeItemFromCommunity = $rootScope.removeItemFromCommunity
+      ctrl.postRemoveFromCommunity = $rootScope.postRemoveFromCommunity
       ctrl.openReportBox = $rootScope.openReportBox
 
       const runOnce = $scope.$watch('item', newItem => {
         ctrl.item = newItem
 
-        ctrl.mine = ItemAux.isMyPost(ctrl.item)
-        ctrl.isActive = ItemAux.isPostActive(ctrl.item)
+        ctrl.mine = PostAux.isMyPost(ctrl.item)
+        ctrl.isActive = PostAux.isPostActive(ctrl.item)
         ctrl.postLanguage = LanguageList.translate(ctrl.item.language)
-        ctrl.analytics = ev => ItemAux.logPostAction(ev, {mine: ctrl.mine, item: ctrl.item})
+        ctrl.analytics = ev => PostAux.logPostAction(ev, {mine: ctrl.mine, item: ctrl.item})
 
         runOnce()
       })

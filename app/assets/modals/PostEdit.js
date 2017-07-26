@@ -2,16 +2,18 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemEdit
+ * @name hearth.controllers.PostEdit
  * @description
  */
 
-angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http', '$q', 'ItemAux',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http, $q, ItemAux) {
-		var POST_LANGUAGE = 'postLanguage';
-		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
-		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
+angular.module('hearth.controllers').controller('PostEdit', [
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList', '$http', '$q', 'PostAux',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList, $http, $q, PostAux) {
+
+		const POST_LANGUAGE = 'postLanguage';
+
+		// var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
+
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 
 		$scope.imagesCount = 0;
@@ -509,7 +511,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.post.is_private;
 		};
 
-		$scope.logCharInfoShown = () => {ItemAux.logCharInfoShown('Item edit form. Post ID (' + $scope.post._id + ')')};
+		$scope.logCharInfoShown = () => {PostAux.logCharInfoShown('Item edit form. Post ID (' + $scope.post._id + ')')};
 
 		$scope.init();
 
