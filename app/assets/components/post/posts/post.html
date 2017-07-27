@@ -153,10 +153,12 @@
 						</div>
 						<div class="display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
 							<div class="flex flex-divided-medium">
-								<a ng-if="userHasRight('')" href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown">
-									<i class="fa fa-fw fa-comment-o"></i>
-									<span ng-bind="item.comments.length || ''"></span>
-								</a>
+								<div class="flex">
+									<a ng-if="userHasRight('')" href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
+										<i class="fa fa-fw fa-comment-o"></i>
+									</a>
+									<span ng-show="item.comments.length" ng-bind="item.comments.length"></span>
+								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
 								</a>
@@ -166,7 +168,7 @@
 					</div>
 
 					<div ng-if="item.commentsShown">
-						<post-comments model="item.commments" post-id="item._id"></post-comments>
+						<post-comments model="item.comments" post-id="item._id"></post-comments>
 					</div>
 
 				</footer>

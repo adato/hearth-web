@@ -1,8 +1,11 @@
 <div>
   <div ng-repeat="item in vm.model" class="footer-item footer-item-bordered">
-    <div class="flex flex-divided-medium margin-bottom-tiny">
-      <avatar src="item.user.avatar" size="mini"></avatar>
-      <div class="header-6 margin-none" ng-bind="item.user.name"></div>
+    <div class="flex flex-space-between">
+      <div class="flex flex-divided-large margin-bottom-tiny">
+        <avatar src="item.user.avatar" size="mini"></avatar>
+        <div class="header-6 margin-none" ng-bind="item.user.name"></div>
+      </div>
+      <div class="color-dark-gray" ng-bind="item.created_at_timeago"></div>
     </div>
     <div ng-bind="item.text"></div>
   </div>

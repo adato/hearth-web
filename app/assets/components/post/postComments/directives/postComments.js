@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
       postId: '='
     },
     controllerAs: 'vm',
-    controller: ['Post', '$rootScope', '$timeout', function(Post, $rootScope, $timeout) {
+    controller: ['Post', '$rootScope', '$timeout', '$filter', function(Post, $rootScope, $timeout, $filter) {
 
       const ctrl = this
 
@@ -44,7 +44,10 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.model = ctrl.model || []
         Post.queryComments({postId: ctrl.postId}).$promise
         .then(res => {
-          res && res.length && ctrl.model.push(...res)
+          res && res.length && (ctrl.model = res.map(comment => {
+						comment.created_at_timeago = $filter('ago')(comment.created_at)
+						return comment
+					}))
         })
         .catch(err => {
           console.log('failed to query comments', err)
@@ -58,6 +61,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
         Post.createComment({postId: ctrl.postId}, {comment: {text: message}}).$promise
         .then(res => {
           ctrl.message = ''
+
+					res.created_at_timeago = $filter('ago')(res.created_at)
           ctrl.model.push(res)
 
           ctrl.success = true
