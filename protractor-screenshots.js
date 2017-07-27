@@ -18,6 +18,7 @@ exports.config = {
   directConnect: true,
 	specs: [
 		testFolder + 'unauth/marketplace.spec.js',
+    	testFolder + 'unauth/feedback-form.spec.js',		
 		// testFolder + 'auth/register.spec.js',
 		testFolder + 'auth/login.spec.js',
 		testFolder + 'auth/profile.spec.js',

@@ -2,7 +2,7 @@
 
 <div class="box">
 
-	<form name="feedbackForm" ng-submit="submit($event)" ng-show="!sent" with-errors novalidate>
+	<form name="feedbackForm" ng-submit="submit($event)" ng-show="!sent" with-errors novalidate test-beacon="hearth-feedback-form">
 		<div ng-show="fromAccountDelete" class="clearfix padding-2 successfully-sent" translate="AUTH.NOTIFY.SUCCESS_ACCOUNT_HAS_BEEN_DELETED"></div>
 		<p translate="HEARTH.FEEDBACK.TEXT"></p>
 		<h5 ng-show="fromAccountDelete" style="margin:0;" translate="HEARTH.FEEDBACK.REMOVING_ACCOUNT_FEEDBACK"></h5>
@@ -32,11 +32,11 @@
 		</div>
 	</form>
 
-	<div ng-show="sent">
+	<div ng-show="sent" test-beacon="hearth-feedback-success">
 		<div class="clearfix text-center successfully-sent" translate="HEARTH.FEEDBACK.NOTIFY.SUCCESS_SEND_FEEDBACK"></div>
 		<br />
 		<div style="text-align:center;">
-			<a href="" ng-click="init()" analytics-custom analytics-event="feedback form sent" analytics-category="Feedback" analytics-value="4" translate="HEARTH.FEEDBACK.ACTION_SEND_ANOTHER"></a>
+			<a ng-click="init()" analytics-custom analytics-event="feedback form sent" analytics-category="Feedback" analytics-value="4" translate="HEARTH.FEEDBACK.ACTION_SEND_ANOTHER"></a>
 		</div>
 	</div>
 

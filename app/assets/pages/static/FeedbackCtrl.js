@@ -49,10 +49,12 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 			var uploadUrl = $$config.apiPath + '/feedback';
 			$scope.sending = true;
 
-			MultipartForm.post(uploadUrl, $scope.feedback, $scope.file).success(function() {
+			MultipartForm.post(uploadUrl, $scope.feedback, $scope.file).then(function() {
+				// successfully send
 				$scope.sent = true;
 				$scope.sending = false;
-			}).error(function() {
+			}, function() {
+				// error sending
 				$scope.sending = false;
 				return $scope.init();
 			});
