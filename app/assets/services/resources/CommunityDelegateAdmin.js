@@ -16,7 +16,7 @@ angular.module('hearth.services').factory('CommunityDelegateAdmin', [
 			delegate: {
 				method: 'PUT', // parametr new_admin_id = userId
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_DELEGATE_ADMIN'
 				}
 			}
 		});

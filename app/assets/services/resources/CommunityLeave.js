@@ -16,7 +16,7 @@ angular.module('hearth.services').factory('CommunityLeave', [
 			leave: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_LEAVE_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_LEAVE'
 				}
 			}
 		});

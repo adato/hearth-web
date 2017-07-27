@@ -81,7 +81,7 @@ angular.module('hearth.services').service('UsersService', [
 					label: 'add follower'
 				});
 
-				Notify.addSingleTranslate('NOTIFY.ADD_FOLLOWER_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('PROFILE.FOLLOWERS.SUCCESS_ADD_FOLLOWER', Notify.T_SUCCESS);
 				return deferred.resolve(data);
 			}, function(err) {
 				return deferred.reject(err);
@@ -101,7 +101,7 @@ angular.module('hearth.services').service('UsersService', [
 					label: 'remove follower'
 				});
 
-				Notify.addSingleTranslate('NOTIFY.REMOVE_FOLLOWER_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('PROFILE.FOLLOWERS.SUCCESS_REMOVE_FOLLOWER', Notify.T_SUCCESS);
 				return deferred.resolve(data);
 			}, function(err) {
 				return deferred.reject(err);
