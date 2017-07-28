@@ -12,10 +12,12 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
 
       const ctrl = this
 
+      const USER_FOLLOWED_EMIT_ID = 'user-followed'
 
       ctrl.$onInit = () => {
 
         ctrl.pluralCat = $locale.pluralCat
+        ctrl.loggedUser = $rootScope.loggedUser
 
         ctrl.sendingFollowRequest
         ctrl.toggleFollowUser = toggleFollowUser
@@ -30,8 +32,7 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
         if (!ctrl.model.infoBubble) {
           $q.all({
             userDetail: UsersService.get(ctrl.model._id)
-          })
-          .then(res => {
+          }).then(res => {
             ctrl.model.infoBubble = res.userDetail
             initDone()
           }).catch(err => {
@@ -50,6 +51,7 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
           ctrl.moreAvailable = true
         }
         ctrl.detailLoaded = true
+        $rootScope.$on(USER_FOLLOWED_EMIT_ID, setFollowStatus)
       }
 
       function toggleFollowUser({ userId, follow }) {
@@ -57,16 +59,20 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
         ctrl.sendingFollowRequest = true
 
         UsersService[follow ? 'addFollower' : 'removeFollower'](userId, $rootScope.loggedUser._id).then(res => {
-          if (follow) {
-            ctrl.model.is_followee = true
-          } else {
-            ctrl.model.is_followee = false
-          }
+          ctrl.model.infoBubble = ctrl.model.infoBubble || {}
+          ctrl.model.infoBubble.is_followed = !!follow
+
+          $rootScope.$emit(USER_FOLLOWED_EMIT_ID, {id: ctrl.model._id, status: !!follow})
         }).catch(err => {
           console.log('error adding user to follow list')
         }).finally(() => {
           ctrl.sendingFollowRequest = false
         })
+      }
+
+      function setFollowStatus(event, {id, status} = {}) {
+        if (!(ctrl.model._id === id && ctrl.model.infoBubble && status !== void 0)) return
+        ctrl.model.infoBubble.is_followed = status
       }
 
     }]
