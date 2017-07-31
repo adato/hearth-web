@@ -85,6 +85,9 @@ angular.module('hearth.services').factory('Post', [
 				transformRequest: [LocationJsonDataTransform.insertLocationJson],
 				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
+			patch: {
+				method: 'PUT'
+			},
 			remove: {
 				method: 'DELETE',
 				errorNotify: {

@@ -53,7 +53,7 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
     this.disableLoading = false
     this.getParams = {}
     this.getData = params => $q(r => r(ctrl.data))
-    this.templateUrl = 'assets/components/post/posts/post.html'
+    // this.templateUrl = 'assets/components/post/posts/post.html'
     this.templateUrl = 'assets/pages/admin/templates/giftCatPost.html'
     this.bindToScope = {
       loadCategories: query => {
@@ -65,8 +65,15 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
           ])
         })
       },
+      saveStatus: null,
       saveCategories: ({ post, categories }) => {
-        console.log('saving categories of id:', post._id, 'categories:', categories);
+        // console.log('saving categories of id:', post._id, 'categories:', categories);
+        Post.patch({postId: post._id}, { _id: post._id, categories: categories.map(c => c.title) }).$promise.then(res => {
+          console.log('ok')
+        }).catch(err => {
+          console.log('caught', err)
+        })
+
       }
     } // object that will be merged to post scope
     this.cb = console.info
