@@ -68,7 +68,7 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
       saveStatus: null,
       saveCategories: ({ post, categories }) => {
         // console.log('saving categories of id:', post._id, 'categories:', categories);
-        Post.patch({postId: post._id}, { _id: post._id, categories: categories.map(c => c.title) }).$promise.then(res => {
+        Post.updateCategories({postId: post._id}, { categories: categories.map(c => c.title) }).$promise.then(res => {
           console.log('ok')
         }).catch(err => {
           console.log('caught', err)
