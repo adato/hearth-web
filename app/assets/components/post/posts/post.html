@@ -154,10 +154,10 @@
 						<div class="display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
 							<div class="flex flex-divided-medium">
 								<div class="flex">
-									<a ng-if="userHasRight('')" href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
+									<a ng-if="userHasRight('temp.post_comments')" href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
 										<i class="fa fa-fw fa-comment-o"></i>
 									</a>
-									<span ng-show="item.comments.length" ng-bind="item.comments.length"></span>
+									<span ng-show="item.comments_count > 0 || item.comments.length" ng-bind="item.comments.length || item.comments_count"></span>
 								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
