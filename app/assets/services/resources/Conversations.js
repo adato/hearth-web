@@ -37,7 +37,7 @@ angular.module('hearth.services').factory('Conversations', [
 					return fd;
 				},
 				errorNotify: {
-					code: 'NOTIFY.MESSAGE_SEND_FAILED',
+					code: 'MESSAGING.NOTIFY.ERROR_SEND_MESSAGE',
 					container: '.notify-new-message-container',
 				}
 			},
@@ -49,20 +49,20 @@ angular.module('hearth.services').factory('Conversations', [
 				url: $$config.apiPath + '/conversations/:id/leave',
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.CONVERSATION_LEAVE_FAILED'
+					code: 'MESSAGING.NOTIFY.ERROR_CONVERSATION_LEAVE'
 				}
 			},
 			archive: {
 				url: $$config.apiPath + '/conversations/:id/archive',
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.CONVERSATION_ARCHIVE_FAILED'
+					code: 'MESSAGING.NOTIFY.ERROR_CONVERSATION_ARCHIVE'
 				}
 			},
 			delete: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.CONVERSATION_DELETE_FAILED'
+					code: 'MESSAGING.NOTIFY.ERROR_CONVERSATION_DELETE'
 				}
 			},
 			getCounters: {
@@ -107,7 +107,7 @@ angular.module('hearth.services').factory('Conversations', [
 					return fd;
 				},
 				errorNotify: {
-					code: 'NOTIFY.MESSAGE_REPLY_FAILED'
+					code: 'MESSAGING.NOTIFY.ERROR_REPLY_MESSAGE'
 				}
 			},
 			unreaded: {

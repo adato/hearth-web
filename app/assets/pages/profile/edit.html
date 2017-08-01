@@ -84,7 +84,7 @@
 				<label class="ui-select-scope-wrapper">
 					<ui-select multiple id="userLanguage" ng-model="$parent.userLanguage" theme="select2" ng-required>
 						<ui-select-match placeholder="{{:: 'PROFILE.EDIT.ADD_OTHER_LANG' | translate }}">{{$item.name}}</ui-select-match>
-						<ui-select-choices group-by="'group'" group-filter="[('LANGUAGE.LIST.LABEL_CHOSEN' | translate), ('LANGUAGE.LIST.LABEL_OTHER' | translate)]" repeat="item as item in languageList | filter: {name: $select.search} track by item.code">
+						<ui-select-choices group-by="'group'" group-filter="[('COMMON.LANGUAGES.MAIN' | translate), ('COMMON.LANGUAGES.OTHER' | translate)]" repeat="item as item in languageList | filter: {name: $select.search} track by item.code">
 							<div ng-bind-html="item.name | highlight: $select.search"></div>
 						</ui-select-choices>
 					</ui-select>

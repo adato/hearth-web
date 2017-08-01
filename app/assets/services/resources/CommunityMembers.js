@@ -17,7 +17,7 @@ angular.module('hearth.services').factory('CommunityMembers', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_APPROVE_APPLICATION'
 				}
 			},
 			show: {
@@ -26,7 +26,7 @@ angular.module('hearth.services').factory('CommunityMembers', [
 			remove: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_KICK_USER'
 				}
 			},
 			query: {

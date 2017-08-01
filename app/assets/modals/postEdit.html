@@ -136,7 +136,7 @@
 					<span translate='POST.CREATE.LANGUAGE_LABEL'></span>:
 					<ui-select id="post-language" ng-model="post.language" theme="select2">
 						<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
-						<ui-select-choices group-by="'group'" group-filter="[('POST.CREATE.LANGUAGES_MAIN' | translate), ('POST.CREATE.LANGUAGES_OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
+						<ui-select-choices group-by="'group'" group-filter="[('COMMON.LANGUAGES.MAIN' | translate), ('COMMON.LANGUAGES.OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
 				      <div ng-bind-html="item.name | highlight: $select.search"></div>
 				    </ui-select-choices>
 					</ui-select>
