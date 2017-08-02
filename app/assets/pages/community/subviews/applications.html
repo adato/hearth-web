@@ -6,7 +6,7 @@
 	<div ng-repeat="(id, item) in data track by item._id" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 		<div class="application small-12 medium-12 large-6 columns" ng-class="{'end': $last, 'large-12': data.length === 1}">
 			<div class="position-relative">
-				<div info-box="item" infobox-index="$index" infobox-class="'on-profile'">
+				<div info-bubble=":: item" info-bubble-type="'User'">
 					<avatar class="left block" href="getProfileLink(item._type,item._id)" src="item.avatar.normal" type="item._type"></avatar>
 				</div>
 				<div class="applications-text">

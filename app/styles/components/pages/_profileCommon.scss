@@ -6,10 +6,10 @@
 		margin-left: 0;
 		margin-right: 0;
 	}
-  .button-group,
-  .button-group .button {
-    margin-bottom: 0;
-  }
+	.button-group,
+	.button-group .button {
+    	margin-bottom: 0;
+	}
 	header {
 		.user-basic {
 			padding: 0 0 1rem 0;
@@ -247,9 +247,6 @@
 	.gift-give {
 		font-size: 170%;
 		color: $tertiary-color;
-	}
-	a {
-		color: $primary-color;
 	}
 	.rating-reply,
 	.ratingReply {
@@ -762,15 +759,17 @@
 			padding-left: 15px;
 			padding-right: 15px;
 		}
-		.avatar {
+		// @kamil TODO: markup refactor would be better, but atm this is used on four places, so
+		// 		I'm just making the selector more specific
+		.info-avatar > .avatar {
 			margin-top: 20px;
 		}
-		a {
-			color: darken($quaternary-color, 20%);
-			&:hover {
-				color: $primary-color;
-			}
-		}
+		// a {
+		// 	color: darken($quaternary-color, 20%);
+		// 	&:hover {
+		// 		color: $primary-color;
+		// 	}
+		// }
 		.name {
 			margin-left: 110px;
 		}

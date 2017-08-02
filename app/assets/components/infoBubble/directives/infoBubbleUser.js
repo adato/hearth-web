@@ -47,9 +47,9 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
       }
 
       function initDone() {
-        if (ctrl.model.infoBubble.recent_images.length || ctrl.model.infoBubble.post_count.offers || ctrl.model.infoBubble.post_count.needs) {
+        // if (ctrl.model.infoBubble.recent_images.length || ctrl.model.infoBubble.post_count.offers || ctrl.model.infoBubble.post_count.needs) {
           ctrl.moreAvailable = true
-        }
+        // }
         ctrl.detailLoaded = true
         $rootScope.$on(USER_FOLLOWED_EMIT_ID, setFollowStatus)
       }

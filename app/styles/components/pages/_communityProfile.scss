@@ -24,9 +24,6 @@
 		font-size: 170%;
 		color: $tertiary-color;
 	}
-	a {
-		color: $primary-color;
-	}
 	.community-listings {
 		.applications {
 			@extend .community-applications-list;

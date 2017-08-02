@@ -3,7 +3,7 @@
 	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 		<div class="application">
 			<div class="position-relative">
-				<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
+				<div class="info-avatar" info-bubble=":: item" info-bubble-type=":: item._type">
 					<avatar class="left block" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
 				</div>
 				<div class="applications-text">

@@ -12,7 +12,7 @@
 		<section id="fulltextSearchResults">
 			<article ng-repeat="item in items" class="row search-item" ng-class="{'inactive': item._type == 'Post' && !item.isActive}" ng-switch="item._type">
 				<section class="column small-3 medium-2 text-center">
-					<div info-box="item.author || item">
+					<div info-bubble="item.author || item" info-bubble-type="item.author._type || item._type">
 						<avatar src="item.avatar.normal" href="getProfileLink(item.author._type || item._type, item.author._id || item._id)" type="item.item_type"></avatar>
 					</div>
 				</section>

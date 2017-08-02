@@ -9,6 +9,7 @@ $info-bubble-width: (5 * ($info-bubble-image-width + $size-small)) - $size-small
     // max-width: 300px;
     width: $info-bubble-width;
     max-width: $info-bubble-width;
+    text-align: left;
     background: $white;
     border-radius: $global-radius;
     box-shadow: $ui-box-shadow;

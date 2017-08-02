@@ -7,7 +7,7 @@
       <div>
         <div class="flex flex-divided-medium flex-align-start flex-wrap">
           <div ng-repeat="user in vm.usersList | limitTo:(vm.usersList.length > vm.avatarLimit ? (vm.avatarLimit - 1) : vm.avatarLimit) track by $index">
-            <div info-box="user.object" infobox-class="'on-profile'">
+            <div info-bubble=":: user.object" info-bubble-type="'User'">
               <avatar type=":: 'User'" src=":: user.object.avatar.normal" size="small" href="vm.getProfileLink(user.object._type, user.object._id)"></avatar>
             </div>
           </div>

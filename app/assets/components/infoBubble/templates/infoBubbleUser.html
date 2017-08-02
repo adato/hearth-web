@@ -24,7 +24,7 @@
   <div ng-if="vm.moreAvailable">
     <hr class="margin-none" />
     <div class="info-bubble-content">
-      <div class="flex flex-space-between">
+      <div class="flex flex-space-between flex-divided-medium">
         <div>
           <a ng-if="vm.model.infoBubble.post_count.offers || vm.model.infoBubble.post_count.needs" ui-sref="profile.subview({id: vm.model._id, page: 'posts'})" class="button tertiary" translate="POST.GIFT_WISH_COUNT.{{ vm.pluralCat(vm.model.infoBubble.post_count.offers + vm.model.infoBubble.post_count.needs) }}" translate-values="{count: (vm.model.infoBubble.post_count.offers + vm.model.infoBubble.post_count.needs)}"></a>
         </div>
