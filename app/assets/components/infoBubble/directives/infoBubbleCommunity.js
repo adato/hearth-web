@@ -59,6 +59,8 @@ angular.module('hearth.directives').directive('infoBubbleCommunity', [function()
 
         CommunityApplicants.add({ communityId }).$promise.then(res => {
           console.log('application sent', res);
+          ctrl.model.infoBubble = ctrl.model.infoBubble || {}
+          ctrl.model.infoBubble.is_applicant = true
           // what now?
         }).catch(err => {
           console.log('error sending community join request')
