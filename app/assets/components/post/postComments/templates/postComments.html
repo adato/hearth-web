@@ -12,7 +12,7 @@
   <form ng-submit="vm.submit(vm.message)" class="footer-item footer-item-bordered">
     <div class="block margin-bottom-small flex-grid">
       <avatar src="vm.loggedUser.avatar.normal" size="mini" class="margin-top-tiny"></avatar>
-      <textarea autosize-textarea ctrl-enter-submit class="textarea-one-line" ng-focus="vm.submitShown = true" ng-model="vm.message" translate-attr=":: {placeholder: item.user._id === loggedUser._id ? 'POST.COMMENT.YOUR_ANSWER' : 'POST.COMMENT.YOUR_COMMENT'}"></textarea>
+      <textarea comments-focusser autosize-textarea ctrl-enter-submit class="textarea-one-line" ng-focus="vm.submitShown = true" ng-model="vm.message" translate-attr=":: {placeholder: item.user._id === vm.loggedUser._id ? 'POST.COMMENT.YOUR_ANSWER' : 'POST.COMMENT.YOUR_COMMENT'}"></textarea>
     </div>
     <div class="text-right">
       <button type="submit" class="button">

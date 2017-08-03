@@ -153,8 +153,8 @@
 						</div>
 						<div class="display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
 							<div class="flex flex-divided-medium">
-								<div class="flex">
-									<a ng-if="userHasRight('temp.post_comments')" href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
+								<div class="flex" ng-if="userHasRight('temp.post_comments')">
+									<a href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
 										<i class="fa fa-fw fa-comment-o"></i>
 									</a>
 									<span ng-show="item.comments_count > 0 || item.comments.length" ng-bind="item.comments.length || item.comments_count"></span>
