@@ -95,7 +95,9 @@
 			<li ng-if=":: language === 'cs'">
 				<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
 			</li>
-
+			<li>
+				<a ui-sref="support-us" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('support-us')}" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
+			</li>
 			<li>
 				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
 			</li>
@@ -104,9 +106,6 @@
 			</li>
 			<li>
 				<a ui-sref="faq" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('faq')}" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a ui-sref="support-us" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('support-us')}" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
 			</li>
 			<li>
 				<a ui-sref="feedback" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('feedback')}" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
@@ -331,33 +330,30 @@
 							<a ui-sref="ourStory" translate="HEARTH.STORY.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
+							<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
+							<a ui-sref="feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a ui-sref="faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
+							<a ui-sref="support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM" class="bold color-need"></a>
 						</li>
  						<li>
 							<a ui-sref="custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
-  						</li>
-						<li ng-if=":: language === 'cs'">
+							<a ui-sref="faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
+						</li>
+						<li>
 							<a ui-sref="taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
-						</li>
-						<li>
-							<a ui-sref="support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
-						</li>
+							<a ui-sref="terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
+  						</li>
 						<li class="divider"></li>
-						<li class="no-hover">
-							<span translate="HEARTH.ABOUT_US.WE_ARE_ALSO_ON"></span>
+						<li>
+							<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
 						</li>
 						<li class="no-hover">
 							<ul class="social-menu" style="display: block">
@@ -385,31 +381,25 @@
 						</li>
 					</ul>
 					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop" ng-if=":: language !== 'cs'">
+						<!-- NON CS menu (EN, SK,...) -->
 						<li>
 							<a ng-href="{{:: basePath }}terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ui-sref="custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
+							<a ng-href="{{:: basePath }}support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM" class="bold color-need"></a>
+						</li>
+						<li>
+							<a ng-href="{{:: basePath }}feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
 						</li>
 						<li>
 							<a ng-href="{{:: basePath }}faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
 						</li>
 						<li>
-							<a ng-href="{{:: basePath }}support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ng-href="{{:: basePath }}feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
+							<a ui-sref="custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
 						</li>
 						<li class="divider"></li>
 						<li>
 							<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ng-href="{{:: basePath }}taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
-						</li>
-						<li class="divider"></li>
-						<li class="no-hover">
-							<span translate="HEARTH.ABOUT_US.WE_ARE_ALSO_ON"></span>
 						</li>
 						<li class="no-hover">
 							<ul class="social-menu" style="display: block">
