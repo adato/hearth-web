@@ -57,6 +57,10 @@ angular.module('hearth.services').factory('PostScope', [
 
 			scope.$on('$destroy', () => clearTimeout(timeout))
 
+			$rootScope.$on('post-comment-new', (event, { postId, newComment, commentList }) => {
+				if (post._id === postId) post.comments = commentList
+			})
+
 			// post address for social links
 			scope.postAddress = $rootScope.appUrl + 'post/' + post._id
 			scope.isActive = $rootScope.isPostActive(post)

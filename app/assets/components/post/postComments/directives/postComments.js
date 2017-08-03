@@ -22,6 +22,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
       const ctrl = this
 
       const STATUS_TIMEOUT = 2000
+			const POST_COMMENT_NEW = 'post-comment-new'
 
       ctrl.$onInit = () => {
 
@@ -67,6 +68,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
 
           ctrl.success = true
           $timeout(() => ctrl.success = false, STATUS_TIMEOUT)
+
+					$rootScope.$emit(POST_COMMENT_NEW, {postId: ctrl.postId, newComment: res, commentList: angular.copy(ctrl.model)})
         })
         .catch(err => {
           console.log('failed to create a post comment', err)
@@ -78,6 +81,13 @@ angular.module('hearth.directives').directive('postComments', [function() {
           ctrl.sending = false
         })
       }
+
+			function commentContained({arr, comment}) {
+				for (var i = arr.length;i--;) {
+					if (arr[i]._id === comment._id) return true
+				}
+				return false
+			}
 
     }]
   }
