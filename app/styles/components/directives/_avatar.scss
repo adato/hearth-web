@@ -54,6 +54,7 @@ $large-avatar-size: 295px;
 
 	/** == Size definitions == */
 	&.avatar-mini {
+		min-width: $mini-avatar-size;
 		width: $mini-avatar-size;
 
 		&.move-bot {
@@ -61,21 +62,26 @@ $large-avatar-size: 295px;
 		}
 	}
 	&.avatar-small {
-    	min-width: 40px;
+    	// min-width: 40px;
+		min-width: $small-avatar-size;
 		width: $small-avatar-size;
 	}
 	&.avatar-normal {
+		min-width: $normal-avatar-size;
 		width: $normal-avatar-size;
 	}
 	&.avatar-medium {
+		min-width: $medium-avatar-size;
 		width: $medium-avatar-size;
 	}
 	&.avatar-large {
+		min-width: $large-avatar-size;
 		width: $large-avatar-size;
 	}
 
 	@include breakpoint(small down) {
 		&.small-avatar-small{
+			min-width: $small-avatar-size !important;
 			width: $small-avatar-size !important;
 		}
 	}
