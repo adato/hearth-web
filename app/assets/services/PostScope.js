@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('PostScope', [
-	'$rootScope', 'PostServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'PostAux', '$state',
-	function($rootScope, PostServices, $filter, Filter, $locale, $analytics, LanguageList, PostAux, $state) {
+	'$rootScope', 'PostServices', '$filter', 'Filter', '$locale', '$analytics', 'LanguageList', 'PostAux', '$state', '$timeout',
+	function($rootScope, PostServices, $filter, Filter, $locale, $analytics, LanguageList, PostAux, $state, $timeout) {
 
 		const factory = {
 			getPostScope
@@ -57,6 +57,10 @@ angular.module('hearth.services').factory('PostScope', [
 
 			scope.$on('$destroy', () => clearTimeout(timeout))
 
+			$rootScope.$on('post-comment-new', (event, { postId, newComment, commentList }) => {
+				if (post._id === postId) post.comments = commentList
+			})
+
 			// post address for social links
 			scope.postAddress = $rootScope.appUrl + 'post/' + post._id
 			scope.isActive = $rootScope.isPostActive(post)
@@ -69,6 +73,13 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.logPostTextToggle = PostAux.logPostTextToggle
 
 			scope.analytics = ev => PostAux.logPostAction(ev, scope)
+
+			// used by post comments to focus the comment input on comments section show
+			scope.focus = selector => {
+				$timeout(() => {
+					$(selector).focus()
+				})
+			}
 
 			return scope
 		}

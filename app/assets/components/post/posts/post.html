@@ -118,8 +118,9 @@
 					</div>
 				</div>
 				<footer>
-					<div class="display-table nowrap">
-						<div class="display-table-cell vertical-align-middle">
+
+					<div class="medium-flex flex-space-between background-light-gray footer-item">
+						<div class="a-display-table-cell vertical-align-middle">
 							<div class="display-flex flex-wrap">
 								<div class="padding-right-large" ng-if=":: mine">
 									<div class="touchable-wrapper">
@@ -146,21 +147,30 @@
 										<a class="text-decoration-underline" ng-href="{{getProfileLink('Post', item._id) }}#replies" ng-bind-html="item.replied_by_string"></a>
 									</div>
 									<div ng-if="item.reply_count && !mine" ng-bind-html="item.replied_by_string"></div>
-									<div ng-if="!item.reply_count" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY
-">
-</div>
+									<div ng-if="!item.reply_count" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY"></div>
 								</div>
 							</div>
 						</div>
-						<div class="display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
-							<div class="display-flex flex-divide-medium">
+						<div class="a-display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
+							<div class="flex flex-divided-medium">
+								<div class="flex" ng-if="userHasRight('temp.post_comments')">
+									<a href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
+										<i class="icon-comment"></i>
+									</a>
+									<span ng-show="item.comments_count > 0 || item.comments.length" ng-bind="item.comments.length || item.comments_count"></span>
+								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
 								</a>
-								<div heart item="item" class="margin-left-small"></div>
+								<div heart item="item"></div>
 							</div>
 						</div>
 					</div>
+
+					<div ng-if="item.commentsShown">
+						<post-comments model="item.comments" post-id="item._id"></post-comments>
+					</div>
+
 				</footer>
 			</section>
 		</div>
