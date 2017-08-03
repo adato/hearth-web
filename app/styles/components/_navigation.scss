@@ -327,10 +327,10 @@ nav {
 		& a {
 			display: block;
 			text-align: left;
-			color: #7c766a;
+			color: $quaternary-color;
 		}
 		& a:hover {
-			color: #fff;
+			color: $white !important;
 		}
 
 		.social-menu {

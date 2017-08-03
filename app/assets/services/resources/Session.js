@@ -20,7 +20,7 @@ angular.module('hearth.services').factory('Session', [
 			updateLanguage: {
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.CHANGE_LANGUAGE_FAILED'
+					code: 'SETTINGS.NOTIFY.ERROR_CHANGE_LANGUAGE'
 				}
 			}
 		});

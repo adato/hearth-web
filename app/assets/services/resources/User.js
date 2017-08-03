@@ -15,7 +15,7 @@ angular.module('hearth.services').factory('User', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.SIGNUP_PROCESS_ERROR',
+					code: 'AUTH.NOTIFY.ERROR_REGISTER',
 					container: '.register-notify-area'
 				}
 			},
@@ -47,7 +47,7 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/users/confirm_registration',
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.ACCOUNT_ACTIVATE_FAILED'
+					code: 'AUTH.NOTIFY.ERROR_ACTIVATE_ACCOUNT'
 				}
 			},
 			edit: {
@@ -81,7 +81,7 @@ angular.module('hearth.services').factory('User', [
 			editSettings: {
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.EMAIL_NOTIFY_CONFIG_FAILED'
+					code: 'SETTINGS.NOTIFY.ERROR_EMAIL_NOTIFY_CONFIG'
 				}
 			},
 			remove: {
@@ -101,7 +101,7 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/reset_password',
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.RESET_PASSWORD_FAILED',
+					code: 'AUTH.NOTIFY.ERROR_RESET_PASSWORD',
 					container: '.forgot-pass-notify-container'
 				}
 			},
@@ -115,7 +115,7 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/reset_password',
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.NEW_PASS_FAILED',
+					code: 'AUTH.NOTIFY.ERROR_RESET_PASSWORD',
 					container: '.reset-pass-notify-container'
 				}
 			},
@@ -123,7 +123,7 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/users/resend_confirmation',
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.REACTIVATING_EMAIL_FAILED'
+					code: 'AUTH.NOTIFY.ERROR_RESEND_EMAIL'
 				}
 			},
 			login: {
@@ -135,14 +135,14 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/users/email_for_token',
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.COMPLETE_TWITTER_REGISTRATION_FAILED',
+					code: 'AUTH.NOTIFY.ERROR_TWITTER_REGISTRATION',
 					container: '.fill-email-notify-container'
 				}
 			},
 			updateFilter: {
 				method: 'PATCH',
 				errorNotify: {
-					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
+					code: 'PROFILE.EDIT.NOTIFY.ERROR_SAVE_PROFILE'
 				}
 			},
 			logout: {

@@ -17,7 +17,7 @@ angular.module('hearth.services').factory('Followers', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.ADD_FOLLOWER_FAILED'
+					code: 'PROFILE.FOLLOWERS.ERROR_ADD_FOLLOWER'
 				}
 			},
 			show: {
@@ -26,7 +26,7 @@ angular.module('hearth.services').factory('Followers', [
 			remove: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.REMOVE_FOLLOWER_FAILED'
+					code: 'PROFILE.FOLLOWERS.ERROR_REMOVE_FOLLOWER'
 				}
 			},
 			query: {
