@@ -522,8 +522,15 @@ button.active[disabled] .item-option-bg-type {
 		}
 	}
 	footer{
-		padding: $size-small $size-large;
-		background: $colorLightGray;
+		// padding: $size-small $size-large;
+		// background: $colorLightGray;
+
+		& .footer-item {
+			padding: $size-small $size-large;
+		}
+		& .footer-item-bordered {
+			border-top: 1px solid $medium-gray;
+		}
 
 		.touchable {
 			color: $colorDarkGray;
