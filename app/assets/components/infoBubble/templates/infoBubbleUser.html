@@ -6,9 +6,9 @@
         <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
         <div class="text-muted text-small">
           <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></a>
-          <span ng-show="vm.model.locations.length">
+          <span ng-show="vm.model.infoBubble.locations.length">
             <span>&bull;</span>
-            <span ng-bind="vm.model.locations[0].short_address"></span>
+            <span ng-bind="vm.model.infoBubble.locations[0].short_address"></span>
           </span>
         </div>
       </div>
