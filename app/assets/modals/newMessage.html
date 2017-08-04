@@ -1,8 +1,6 @@
 <div class="new-message itemEdit formStyle modal">
 	<div class="head">
-		<h2>
-			{{ (params.for_all_members ? 'COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS' : (user._type === "Community" ? 'COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN' : 'MESSAGING.ACTION_CREATE_MESSAGE')) | translate}}
-		</h2>
+		<h2 ng-bind-html="(params.for_all_members ? 'COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS' : (user._type === 'Community' ? 'COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN' : 'MESSAGING.ACTION_CREATE_MESSAGE')) | translate"></h2>
 		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
 	</div>

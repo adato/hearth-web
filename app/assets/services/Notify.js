@@ -206,7 +206,7 @@ angular.module('hearth.services').service('Notify', ['$translate', '$log',
 			if (config.container && !$(config.container).is(':visible'))
 				config.container = null;
 
-			self.addSingleTranslate(config.code || 'NOTIFY.API_ERROR', config.type || self.T_ERROR, config.container || null);
+			self.addSingleTranslate(config.code || 'COMMON.NOTIFY.API_ERROR', config.type || self.T_ERROR, config.container || null);
 		};
 
 		return this;

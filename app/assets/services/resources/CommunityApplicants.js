@@ -17,7 +17,7 @@ angular.module('hearth.services').factory('CommunityApplicants', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_APPLY_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_APPLY'
 				}
 			},
 			show: {
@@ -26,7 +26,7 @@ angular.module('hearth.services').factory('CommunityApplicants', [
 			remove: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.COMMUNITY_REJECT_FAILED'
+					code: 'COMMUNITY.NOTIFY.ERROR_REJECT'
 				}
 			},
 			query: {

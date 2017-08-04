@@ -93,7 +93,8 @@
 							</div>
 						</div>
 						<footer>
-							<div class='display-flex flex-wrap flex-space-between'>
+
+							<div class="display-flex flex-wrap flex-space-between background-light-gray footer-item">
 								<div class=''>
 									<div class='display-flex flex-wrap'>
 										<div class='padding-right-small' ng-if="isMine">
@@ -158,6 +159,9 @@
 									<div heart item="item" class="margin-left-medium"></div>
 								</div>
 							</div>
+
+							<post-comments model="item.comments" post-id="item._id"></post-comments>
+
 						</footer>
 					</section>
 					<section class="box sectioned-box" ng-if="isMine" scroll-to-view-on-hash="replies">

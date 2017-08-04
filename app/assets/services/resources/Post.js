@@ -25,7 +25,7 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/email_share',
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.EMAIL_SHARING_FAILED',
+					code: 'POST.SHARE.BY_EMAIL.NOTIFY.ERROR_SHARE',
 					container: '.notify-report-container'
 				}
 			},
@@ -70,7 +70,7 @@ angular.module('hearth.services').factory('Post', [
 				method: 'PUT',
 				url: $$config.apiPath + '/posts/:postId/finish',
 				errorNotify: {
-					code: 'NOTIFY.POST_EDIT_FAILED',
+					code: 'POST.NOTIFY.ERROR_UPDATE',
 					container: '.edit-post-notify-container'
 				},
 				transformRequest: [LocationJsonDataTransform.insertLocationJson],
@@ -79,7 +79,7 @@ angular.module('hearth.services').factory('Post', [
 			update: {
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.POST_EDIT_FAILED',
+					code: 'POST.NOTIFY.ERROR_UPDATE',
 					container: '.edit-post-notify-container'
 				},
 				transformRequest: [LocationJsonDataTransform.insertLocationJson],
@@ -88,14 +88,14 @@ angular.module('hearth.services').factory('Post', [
 			remove: {
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.POST_DELETED_FAILED',
+					code: 'POST.NOTIFY.ERROR_DELETE',
 				}
 			},
 			communityRemove: {
 				url: $$config.apiPath + '/posts/:postId/communities/remove',
 				method: 'DELETE',
 				errorNotify: {
-					code: 'NOTIFY.POST_REMOVE_FROM_COMMUNITY_FAILED',
+					code: 'POST.REMOVE_FROM_COMMUNITY.ERROR_REMOVE',
 					container: '.notify-report-container'
 				}
 			},
@@ -111,7 +111,7 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/hide',
 				method: 'PUT',
 				errorNotify: {
-					code: 'NOTIFY.POST_HIDE_REPORT_FAILED',
+					code: 'POST.NOTIFY.ERROR_UPDATE',
 					container: '.notify-report-container'
 				}
 			},
@@ -127,6 +127,7 @@ angular.module('hearth.services').factory('Post', [
         url: $$config.apiPath + '/posts/:postId/related/vote',
         method: 'POST'
       },
+
 			heart: {
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'POST'
@@ -135,10 +136,22 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'DELETE'
 			},
+
 			exemplaryPosts: {
 				merthod: 'GET',
 				url: $$config.apiPath + '/posts/exemplary'
+			},
+
+			createComment: {
+				method: 'POST',
+				url: $$config.apiPath + '/posts/:postId/comments'
+			},
+			queryComments: {
+				method: 'GET',
+				isArray: true,
+				url: $$config.apiPath + '/posts/:postId/comments'
 			}
+
 		});
 	}
 ]);

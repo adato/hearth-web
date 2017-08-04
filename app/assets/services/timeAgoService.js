@@ -14,17 +14,17 @@ angular.module('hearth.services').service('timeAgoService', [
 		return {
 			getStrings: function() {
 				return {
-					seconds: $translate.instant('LESS_THAN_MINUTE_AGO'),
-					minute: $translate.instant('MINUTE_AGO'),
-					minutes: $translate.instant('MINUTES_AGO'),
-					hour: $translate.instant('HOUR_AGO'),
-					hours: $translate.instant('HOURS_AGO'),
-					day: $translate.instant('DAY_AGO'),
-					days: $translate.instant('DAYS_AGO'),
-					month: $translate.instant('MONTH_AGO'),
-					months: $translate.instant('MONTHS_AGO'),
-					year: $translate.instant('YEAR_AGO'),
-					years: $translate.instant('YEARS_AGO'),
+					seconds: $translate.instant('COMMON.AGO.LESS_THAN_MINUTE'),
+					minute: $translate.instant('COMMON.AGO.MINUTE'),
+					minutes: $translate.instant('COMMON.AGO.MINUTES'),
+					hour: $translate.instant('COMMON.AGO.HOUR'),
+					hours: $translate.instant('COMMON.AGO.HOURS'),
+					day: $translate.instant('COMMON.AGO.DAY'),
+					days: $translate.instant('COMMON.AGO.DAYS'),
+					month: $translate.instant('COMMON.AGO.MONTH'),
+					months: $translate.instant('COMMON.AGO.MONTHS'),
+					year: $translate.instant('COMMON.AGO.YEAR'),
+					years: $translate.instant('COMMON.AGO.YEARS'),
 					numbers: []
 				};
 			},

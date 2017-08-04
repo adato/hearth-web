@@ -15,7 +15,7 @@ angular.module('hearth.services').factory('PostReplies', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.REPLY_FAILED',
+					code: 'POST.REPLY.NOTIFY.ERROR_SEND_REPLY',
 					container: '.notify-reply-container'
 				}
 			}

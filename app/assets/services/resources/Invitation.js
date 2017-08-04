@@ -14,7 +14,7 @@ angular.module('hearth.services').factory('Invitation', [
 			add: {
 				method: 'POST',
 				errorNotify: {
-					code: 'NOTIFY.EMAIL_INVITATION_FAILED',
+					code: 'HEARTH.INVITE.NOTIFY.ERROR_SEND_INVITATION',
 					container: ".invite-box-notify"
 				}
 			},

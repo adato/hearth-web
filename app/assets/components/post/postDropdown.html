@@ -16,12 +16,12 @@
     <li>
       <!-- flag post -->
       <a ng-if="! ctrl.mine && ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.ALREADY_FLAGGED'}" tipsy disabled translate="POST.ACTION_FLAG"></a>
-      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'POST.FLAG.TITLE'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="POST.ACTION_FLAG"></a>
+      <a ng-if="! ctrl.mine && !ctrl.item.spam_reported" translate-attr="{title: 'POST.ACTION_FLAG'}" ng-click="ctrl.openReportBox(item)" test-beacon="marketplace-item-flag" translate="POST.ACTION_FLAG"></a>
       <!-- /flag post -->
     </li>
     <li>
       <!-- hide post -->
-      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'POST.HIDE.TITLE'}" ng-click="ctrl.confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ctrl.PostAux.hideItem, params: ctrl.item, callbackScope: this, policy: 'SIGNED_IN'})" translate="POST.ACTION_HIDE"></a>
+      <a ng-if="!ctrl.mine && !ctrl.item.is_hidden" translate-attr="{title: 'POST.HIDE.LABEL'}" ng-click="ctrl.confirmBox({title: 'POST.HIDE.LABEL', text: 'POST.HIDE.ARE_YOU_SURE', callback: ctrl.PostAux.hideItem, params: ctrl.item, callbackScope: this, policy: 'SIGNED_IN'})" translate="POST.ACTION_HIDE"></a>
       <!-- /hide post -->
     </li>
     <li>
