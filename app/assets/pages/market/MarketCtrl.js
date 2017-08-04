@@ -26,11 +26,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.disableLazyLoad = true;
 		$scope.showLimitedPostsMessageAuth = false;
     $scope.showLimitedPostsMessageUnauth = false;
+    $scope.dataFetchError
+    $scope.marketTitle
+    // exemplary posts options
+    $scope.epOpts
 
 		// variable controlling that exemplary posts are only inserted once
 		var exemplaryPostsInserted = false
-		// auxiliary variable to be destroyed on marketplace scope destruction
-		var epScope
     var securityCleanupDone
 
 		var userLanguages = undefined;
@@ -67,9 +69,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			templates[item._type.toLowerCase()](scope, done);
 		}
 
-		function addItemsToList({ container, data, index, done, exemplaryPosts }) {
+		function addItemsToList({ marketItemsContainer, data, index, done, exemplaryPosts }) {
       if (!securityCleanupDone) {
-        $('#market-item-list').html('')
+        marketItemsContainer.html('')
         securityCleanupDone = true
       }
 			var posts = data.data;
@@ -83,7 +85,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				var postScope = PostScope.getPostScope(post, $scope);
 				return compileTemplate(postScope, function(clone) {
 					clone[0].style.display = 'block';
-					container.append(clone[0]);
+          marketItemsContainer.append(clone[0]);
 
 					// Add pagination marker.
 					if (index % MarketPostCount === 0) {
@@ -94,13 +96,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// Add exemplary posts
 					// only for unlogged users who are not filtering though
 					if (!Filter.isSet() && (!Auth.isLoggedIn() || (Auth.isLoggedIn() && Rights.userHasRight('temp.show_suggested_posts'))) && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
-					  const opts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
-            epScope = $rootScope.$new()
-            $compile(opts.template)(angular.merge(epScope, {
-							opts: opts,
-							logPostTextToggle: PostAux.logPostTextToggle
-						})).insertBefore(clone)
-
+            $scope.epOpts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
             exemplaryPostsInserted = true
 						exemplaryPosts = false
 					}
@@ -114,7 +110,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
 
 					// Start next recursion cycle.
-					addItemsToList({ container, data, index: index + 1, done, exemplaryPosts });
+					addItemsToList({ marketItemsContainer, data, index: index + 1, done, exemplaryPosts });
 
 				});
 			}
@@ -181,9 +177,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			const qParams = {
 				posts: Post.query(paramObject).$promise
 			}
-			if (1) qParams.exemplaryPosts = PostAux.getExemplaryPosts()
+			qParams.exemplaryPosts = PostAux.getExemplaryPosts()
 			$q.all(qParams).then(({ posts: data, exemplaryPosts }) => {
-
+			  if (data.total) Filter.isSet() ? setMarketTitle("MARKETPLACE.FILTER_RESULTS"):setMarketTitle("MARKETPLACE.NEWEST_POSTS")
 				$scope.loaded = true;
 				$(".loading").hide();
 
@@ -198,7 +194,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.debug && console.time("Posts pushed to array and built");
 
 				// iterativly add loaded data to the list and then call finishLoading
-				addItemsToList({ container: $('#market-item-list'), data, index: 0, done: finishLoading.bind($scope), exemplaryPosts });
+				addItemsToList({ marketItemsContainer: $('#market-item-list'), data, index: 0, done: finishLoading.bind($scope), exemplaryPosts });
 
 				$rootScope.$emit('postsLoaded');
 			}, err => {
@@ -332,9 +328,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.debug && $log.debug('Destroy marketCtrl finished')
 			// we do not want infinit scroll running on other pages than marketplace
 			InfiniteScrollPagination.unbindScroll()
-      if (epScope) epScope.$destroy && epScope.$destroy()
 		});
 
+    let setMarketTitle = (titleCode) => {
+      $scope.marketTitle = titleCode
+    }
     // default languages
 		function initLanguages() {
       userLanguages = Auth.getUserLanguages();
