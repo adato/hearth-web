@@ -1,15 +1,15 @@
 <div>
   <div class="flex-grid info-bubble-content">
-    <!-- <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar> -->
+    <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
     <div>
       <div class="block">
         <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
         <div class="text-muted text-small">
           <!-- <span translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span> -->
           <a ui-sref="community.subview({id: vm.model._id, page: 'members'})" class="nowrap" ng-if="vm.model.infoBubble" translate="COMMUNITY.MEMBERS.{{ vm.pluralCat(vm.model.infoBubble.member_count) }}" translate-values="{count: vm.model.infoBubble.member_count}"></a>
-          <span ng-show="vm.model.locations.length">
+          <span ng-show="vm.model.infoBubble.locations.length">
             <span>&bull;</span>
-            <span ng-bind="vm.model.locations[0].short_address"></span>
+            <span ng-bind="vm.model.infoBubble.locations[0].short_address"></span>
           </span>
         </div>
       </div>
