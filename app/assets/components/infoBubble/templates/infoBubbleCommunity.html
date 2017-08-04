@@ -1,11 +1,12 @@
 <div>
   <div class="flex-grid info-bubble-content">
-    <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
+    <!-- <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar> -->
     <div>
       <div class="block">
         <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
         <div class="text-muted text-small">
-          <span translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span>
+          <!-- <span translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></span> -->
+          <a ui-sref="community.subview({id: vm.model._id, page: 'members'})" class="nowrap" ng-if="vm.model.infoBubble" translate="COMMUNITY.MEMBERS.{{ vm.pluralCat(vm.model.infoBubble.member_count) }}" translate-values="{count: vm.model.infoBubble.member_count}"></a>
           <span ng-show="vm.model.locations.length">
             <span>&bull;</span>
             <span ng-bind="vm.model.locations[0].short_address"></span>
@@ -13,7 +14,7 @@
         </div>
       </div>
       <div>
-        <small ng-bind="vm.model.about_shortened"></small>
+        <small ng-bind="vm.model.infoBubble.about_shortened"></small>
       </div>
     </div>
   </div>
@@ -38,6 +39,9 @@
           <a ui-sref="community.default({id: vm.model._id})" translate="PROFILE.ACTION_PROFILE"></a>
         </div>
       </div>
+      <a ng-repeat="item in vm.model.infoBubble.recent_images | limitTo:5" ng-if="item.post_id" ui-sref="post({id: item.post_id})">
+        <img class="info-bubble-img" ng-src="item.normal" />
+      </a>
     </div>
   </div>
 </div>

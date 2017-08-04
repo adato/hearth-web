@@ -12,6 +12,8 @@
     <a ng-if="(vm.model.post_count.offers + vm.model.post_count.needs)" ui-sref="search({location: vm.model.short_address})" class="button tertiary" translate="POST.GIFT_WISH_COUNT.{{ vm.pluralCat(vm.model.post_count.offers + vm.model.post_count.needs) }}" translate-values="{count: (vm.model.post_count.offers + vm.model.post_count.needs)}"></a>
   </div>
   <div class="flex flex-align-top">
-    <img class="info-bubble-img" ng-repeat="item in vm.model.recent_images | limitTo:5" ng-src="item.normal" />
+    <a ng-repeat="item in vm.model.infoBubble.recent_images | limitTo:5" ng-if="item.post_id" ui-sref="post({id: item.post_id})">
+      <img class="info-bubble-img" ng-src="item.normal" />
+    </a>
   </div>
 </div>

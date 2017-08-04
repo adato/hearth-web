@@ -8,7 +8,7 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
       model: '='
     },
     controllerAs: 'vm',
-    controller: ['UsersService', '$rootScope', '$q', '$locale', function(UsersService, $rootScope, $q, $locale) {
+    controller: ['UsersService', '$rootScope', '$q', '$locale', 'MottoLength', function(UsersService, $rootScope, $q, $locale, MottoLength) {
 
       const ctrl = this
 
@@ -33,10 +33,12 @@ angular.module('hearth.directives').directive('infoBubbleUser', [function() {
           $q.all({
             userDetail: UsersService.get(ctrl.model._id)
           }).then(res => {
+            const about = res.userDetail.about || res.userDetail.motto
+            res.userDetail.about_shortened = about ? (about.length > (MottoLength + 3) ? (about.substring(0, MottoLength) + '…') : about) : ''
             ctrl.model.infoBubble = res.userDetail
             initDone()
           }).catch(err => {
-            console.log('error loading user detail', err);
+            console.log('error loading user detail', err)
           }).finally(() => {
             ctrl.detailLoaded = true
           })
