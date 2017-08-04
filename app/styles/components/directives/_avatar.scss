@@ -69,6 +69,7 @@ $large-avatar-size: 295px;
 	&.avatar-normal {
 		min-width: $normal-avatar-size;
 		width: $normal-avatar-size;
+		min-width: $normal-avatar-size;
 	}
 	&.avatar-medium {
 		min-width: $medium-avatar-size;

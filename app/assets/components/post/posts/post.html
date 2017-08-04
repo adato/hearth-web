@@ -1,14 +1,13 @@
 <article suspendable action-when-visible="logViewActivity({item: item, meta: viewActivityMeta, state: stateName})" class="item-common item-post bubbled" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<div class="row">
 		<section ng-if=":: !hideAvatar" class="column medium-2 show-for-medium padding-top-small position-relative">
-			<div info-box=":: item.author">
-				<div class="v2 user text-center">
+				<div class="v2 user text-center" info-bubble=":: item.author" info-bubble-type=":: item.author._type">
 					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" history-param-pusher="item._id" class="display-block">
 						<avatar class="" type=":: item.author._type" src=":: item.author.avatar.large"></avatar>
 						<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}</div>
 					</a>
 				</div>
-			</div>
+			<!-- </div> -->
 			<!-- <div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + item.type">
 				<i class="fa fa-fw" ng-class="(item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
 			</div> -->

@@ -1,7 +1,7 @@
 <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
 	<div class="display-table">
 		<div class="display-table-cell addon">
-			<div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }" infobox-class="'on-profile'">
+			<div info-bubble=":: item.entity_from" info-bubble-type=":: item.entity_from._type">
 				<a href="{{ getProfileLink(item.entity_from._type, item.entity_from._id) }}">
 					<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
 					<div class="name">{{:: item.entity_from.name}}</div>

@@ -1,0 +1,33 @@
+// (5 * (image-width + image-margin) - last-image-margin + (left & right bubble padding)
+$info-bubble-image-width: 2 * $size-large + $size-small;
+$info-bubble-width: (5 * ($info-bubble-image-width + $size-small)) - $size-small + (2 * $size-small);
+
+.info-bubble {
+    position: absolute;
+    display: none;
+    // width: 330px;
+    // max-width: 300px;
+    width: $info-bubble-width;
+    max-width: $info-bubble-width;
+    text-align: left;
+    background: $white;
+    border-radius: $global-radius;
+    box-shadow: $ui-box-shadow;
+    transition: opacity .1s;
+    z-index: 100000000; // way over NINE THOUSAAAAAAAAND
+}
+.info-bubble-content {
+    padding: $size-small;
+}
+.info-bubble-img {
+    margin: $size-small $size-small 0 0;
+    width: $info-bubble-image-width; height: $info-bubble-image-width;
+
+    &::after {
+        padding-bottom: 100%;
+    }
+
+    &:last-child {
+        padding-right: 0;
+    }
+}

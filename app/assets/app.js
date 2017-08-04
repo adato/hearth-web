@@ -163,6 +163,16 @@ angular.module('hearth', [
 
 			ipnConfig.skipUtilScriptDownload = true;
 		}
+	]).config(['InfoBubbleSetup',
+		function(InfoBubbleSetup) {
+
+			InfoBubbleSetup.templateGet = type => `assets/components/infoBubble/templates/infoBubble${type}Wrapper.html`
+
+			InfoBubbleSetup.typeMap.user = 'User'
+		  InfoBubbleSetup.typeMap.location = 'Location'
+		  InfoBubbleSetup.typeMap.community = 'Community'
+
+		}
 	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window', 'Session', 'User',
 		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window, Session, User) {
 			$rootScope.appInitialized = false;

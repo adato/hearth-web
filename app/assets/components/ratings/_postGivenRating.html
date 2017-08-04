@@ -1,5 +1,5 @@
 <section class="large-2 medium-2 hide-for-small-only columns user">
-	<div info-box="{ '_id': item.entity_to._id, '_type': item.entity_to._type }">
+	<div info-bubble="item.entity_to" info-bubble-type="item.entity_to._type">
 		<div class="user">
 			<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id) }}">
 				<avatar src="item.entity_to.avatar.normal" type="item.entity_to._type"></avatar>

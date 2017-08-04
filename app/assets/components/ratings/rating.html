@@ -6,7 +6,7 @@
           <i class="fa rating-icon"
              ng-class="vm.item.object.score == 1 ? 'icon-rating-positive' : 'icon-rating-negative'"></i>
         </div>
-        <div info-box=":: vm.item.object.entity_from">
+        <div info-bubble=":: vm.item.object.entity_from" info-bubble-type=":: vm.item.object.entity_from._type">
           <avatar class="display-block small-avatar-small margin-left-small" type="vm.item.object.entity_from._type"
                   src="vm.item.object.entity_from.avatar.normal"
                   href="vm.getProfileLink(vm.item.object.entity_from._type, vm.item.object.entity_from._id)"

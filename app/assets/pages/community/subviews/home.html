@@ -78,7 +78,7 @@
 				<div class="clear"></div>
 				<div ng-repeat="(id, item) in applications track by item._id" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 					<div class="position-relative">
-						<div info-box="item" infobox-class="'on-profile'">
+						<div info-bubble=":: item" info-bubble-type=":: item._type">
 							<avatar class="left block" href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item._type"></avatar>
 						</div>
 						<div class="applications-text">
