@@ -75,13 +75,15 @@ angular.module('hearth.services').factory('LocationJsonDataTransform', ['$window
 		if (typeof entity.locations == 'undefined' || entity.locations === null || typeof entity.locations.length === 'undefined') {
 			// this is kind of an error, but it still can occur:
 			// for example when non-existing post is requested,
-			// then a result from an endpoint (empty set or error json object) 
+			// then a result from an endpoint (empty set or error json object)
 			// is passed as 'entity' (which is bad, but it needs to pass without raising an error).
-			return entity; 
+			return entity;
 		}
 
 		entity.locations.forEach(function(location, key) {
-			entity.locations[key] = (typeof location.json_data !== 'undefined' ? location.json_data : []);
+			// @kamil - this has been changed, so that when a location.json_data is not found, the location is left unchanged, instead of replaced with an empty array, which does zero sense 
+			// entity.locations[key] = (typeof location.json_data !== 'undefined' ? location.json_data : []);
+			entity.locations[key] = (typeof location.json_data !== 'undefined' ? location.json_data : location);
 		});
 		return entity;
 	}

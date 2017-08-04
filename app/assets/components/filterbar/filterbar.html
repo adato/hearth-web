@@ -97,13 +97,9 @@
 		       <i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
 		       <span translate="MARKETPLACE.FILTER.TITLE"></span>
 		      </a>
-          <a ng-class="{'show-for-small-only': configOptionsShow.market}" href="javascript:;" ng-show="filterOn" ng-click="cancelFilter()">
-            <small translate="MARKETPLACE.FILTER.CANCEL_FILTER_BAR"></small>
-          </a>
 		      <!-- Tablet and desktop-->
 		      <small ng-show="configOptionsShow.market" class="nowrap flex-grid hide-for-small-only" ng-click="toggleFilter()">
-						<a href="javascript:;" class="next-options-label" translate="MARKETPLACE.FILTER.NEXT_OPTIONS"></a>
-						<a href="javascript:;" ng-show="filterOn" class="hide-for-medium-only" ng-click="cancelFilter()" translate="MARKETPLACE.FILTER.CANCEL_FILTER_BAR"></a>
+						<a href="javascript:;" class="next-options-label" ng-class="{'filter-selected': filter.keywords.length || filter.user || filter.community || filter.my_section || filter.name || filter.post_language != 'my'}" translate="MARKETPLACE.FILTER.NEXT_OPTIONS"></a>
 		      </small>
 
 
