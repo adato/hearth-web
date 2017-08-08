@@ -99,7 +99,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				} else if (toState.policy === $window.$$config.policy.UNAUTH && Auth.isLoggedIn()) {
 					event.preventDefault()
 					return $state.go('market')
-				} else if (toState.policy === $window.$$config.policy.ADMIN && !$rootScope.loggedUser.admin) {
+				} else if (toState.policy === $window.$$config.policy.ADMIN && !Rights.userHasRight('admin.access')) {
 					event.preventDefault()
 					return $state.go('market')
 				}

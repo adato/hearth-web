@@ -69,14 +69,14 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
       saveCategories: ({ post, categories }) => {
         // console.log('saving categories of id:', post._id, 'categories:', categories);
         Post.updateCategories({postId: post._id}, { categories: categories.map(c => c.title) }).$promise.then(res => {
-          console.log('ok')
+          // console.log('ok')
         }).catch(err => {
           console.log('caught', err)
         })
 
       }
     } // object that will be merged to post scope
-    this.cb = console.info
+    // this.cb = console.info
   }
 
 }])

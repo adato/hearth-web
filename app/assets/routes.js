@@ -267,7 +267,7 @@ angular.module('hearth').config([
 				url: '/gift-categorization',
 				templateUrl: 'assets/pages/admin/templates/giftCategorization.html',
 				controller: 'GiftCategorizationController as vm',
-				// policy: ADMIN
+				policy: ADMIN
 			})
 			;
 
