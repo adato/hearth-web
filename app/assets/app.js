@@ -166,6 +166,8 @@ angular.module('hearth', [
 	]).config(['InfoBubbleSetup',
 		function(InfoBubbleSetup) {
 
+			InfoBubbleSetup.enabled = false
+
 			InfoBubbleSetup.templateGet = type => `assets/components/infoBubble/templates/infoBubble${type}Wrapper.html`
 
 			InfoBubbleSetup.typeMap.user = 'User'
