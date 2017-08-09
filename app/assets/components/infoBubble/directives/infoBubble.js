@@ -33,6 +33,8 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
     controllerAs: 'vm',
     controller: ['$element', function($element) {
 
+      if (!InfoBubbleSetup.enabled) return false
+
       const ctrl = this
 
       ctrl.$onInit = () => {
@@ -54,6 +56,8 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
 
     }],
 		link: function(scope, element, attrs, ctrl) {
+
+      if (!InfoBubbleSetup.enabled) return false
 
       element.on('mouseenter', initIntent.bind(null, { ctrl, type: ctrl.infoBubbleType, element }))
       element.on('mouseleave', cancelIntent.bind(null, { ctrl }))

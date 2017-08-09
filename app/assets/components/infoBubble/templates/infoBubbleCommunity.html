@@ -40,7 +40,7 @@
         </div>
       </div>
       <a ng-repeat="item in vm.model.infoBubble.recent_images | limitTo:5" ng-if="item.post_id" ui-sref="post({id: item.post_id})">
-        <img class="info-bubble-img" ng-src="item.normal" />
+        <img class="info-bubble-img" ng-src="{{:: item.normal }}" onerror="this.style.display='none'" />
       </a>
     </div>
   </div>
