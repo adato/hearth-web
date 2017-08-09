@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window', 'ConversationAux',
-	function($http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window, ConversationAux) {
+	'$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window', 'ConversationAux', 'InfoBubbleSetup',
+	function($http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window, ConversationAux, InfoBubbleSetup) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -26,6 +26,7 @@ angular.module('hearth.services').factory('Auth', [
 
 						// start services that should only run for logged in users
 						ConversationAux.init();
+						InfoBubbleSetup.enabled = true
 
 						if (session.get_logged_in_user && session.get_logged_in_user.location) {
 							var loc = session.get_logged_in_user.location;
