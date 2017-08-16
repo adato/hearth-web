@@ -55,7 +55,8 @@ window['$$config'] = {
 	},
 	policy: {
 		SIGNED_IN: 'SIGNED_IN',
-		UNAUTH: 'UNAUTH'
+		UNAUTH: 'UNAUTH',
+		ADMIN: 'ADMIN'
 	},
 	postTypes: {
 		User: {
