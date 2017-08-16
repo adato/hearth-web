@@ -43,23 +43,23 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/community/communities.html',
 				controller: 'CommunitiesCtrl'
 			})
-      .state('communities.my', {
-        url: '',
-        templateUrl: 'assets/pages/community/communityList.html',
-        controller: 'CommunityListCtrl',
-        controllerAs: 'vm'
-      })
+			.state('communities.my', {
+				url: '',
+				templateUrl: 'assets/pages/community/communityList.html',
+				controller: 'CommunityListCtrl',
+				controllerAs: 'vm'
+			})
 			.state('communities.suggested', {
 				url: '/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
-        controllerAs: 'vm'
+        		controllerAs: 'vm'
 			})
 			.state('communities.all', {
 				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
-        controllerAs: 'vm'
+        		controllerAs: 'vm'
 			})
 			.state('reset-pass', {
 				url: '/reset-password',
@@ -240,14 +240,52 @@ angular.module('hearth').config([
 				},
 				policy: SIGNED_IN
 			})
-      .state('uikit', {
-        url: '/uikit',
-        templateUrl: 'assets/pages/uikit/uikit.html',
-        controller: 'UiKitCtrl',
-      })
+			.state('uikit', {
+				url: '/uikit',
+				templateUrl: 'assets/pages/uikit/uikit.html',
+				controller: 'UiKitCtrl',
+			})
 			.state('aboutUs', {
 				url: '/about-us',
 				templateUrl: 'assets/pages/static/AboutUs.html'
+			})
+			// about page
+			.state('about', {
+				url: '/about',
+				templateUrl: 'assets/pages/about/about.html',
+				controller: 'AboutCtrl',
+			})
+			// ambassadors page
+			.state('ambassadors', {
+				url: '/ambassadors',
+				templateUrl: 'assets/pages/about/ambassadors.html',
+				selectedTab: 'ambassadors',
+				controller: 'AboutCtrl',
+				controllerAs: 'ctrl'
+			})
+			// ambassadors page
+			.state('ambassadors-list', {
+				url: '/ambassadors-list',
+				templateUrl: 'assets/pages/about/ambassadors.html',
+				selectedTab: 'ambassadorsList',
+				controller: 'AboutCtrl',
+				controllerAs: 'ctrl'
+			})
+			// napadnice
+			.state('napadnice', {
+				url: '/napadnice',
+				templateUrl: 'assets/pages/about/ambassadors.html',
+				selectedTab: 'idealist',
+				controller: 'AboutCtrl',
+				controllerAs: 'ctrl'
+			})
+			// udernice
+			.state('udernice', {
+				url: '/udernice',
+				templateUrl: 'assets/pages/about/ambassadors.html',
+				selectedTab: 'todoist',
+				controller: 'AboutCtrl',
+				controllerAs: 'ctrl'
 			})
 			.state('ourStory', {
 				url: '/our-story',

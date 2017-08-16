@@ -1,0 +1,17 @@
+.about-page {
+	.list-item-panel {
+		margin:0;
+		&>li { 
+			list-style-type: none; 
+			display:inline-block;
+			@extend .small-12;
+			@extend .large-12;
+			background: $light-gray;
+			border-radius:$global-radius;
+			padding:$size-medium;
+			margin:$size-tiny;
+
+		}
+
+	}
+}

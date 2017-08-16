@@ -1,0 +1,27 @@
+<div class="about-page about-page--ambassadors">
+	<h2>Kdo jsou ambasadoři Hearth.net</h2>
+	<p>
+		Chceš zde být i Ty? <a href="/app/feedback">Napiš nám...</a>
+	</p>
+
+
+
+	<div class="clearfix">
+		<ul class="list-item-panel">
+			<li class="large-12 small-12" ng-repeat="person in ambassadorsList">
+				<div class="">
+					<div class="clearfix" info-bubble="person" info-bubble-type="'user'" >
+						<avatar src="person.avatar.normal" size="normal"  type="'User'" class="pull-left"></avatar>
+						<h4 class="pull-left margin-left-medium margin-top-large"><a ng-href="/app/profile/{{ person.id }}">{{ person.realName }}</a></h4>
+					</div>
+					<div class="margin-top-medium">
+						<h6 class="margin-bottom-tiny bold">Proč jsem se stal/a ambasadorem?</h6>
+						<p>{{ person.reason }}</p>
+						<h6 class="margin-bottom-tiny bold" ng-if="person.story">Jaký příběh jsen už na Hearth.net zažil/a?</h6>
+						<p ng-if="person.story">{{ person.story }}</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

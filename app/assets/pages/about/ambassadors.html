@@ -1,0 +1,33 @@
+<div class="row tabs-wrapper round">
+
+	<div class="column medium-2 padding-none tabs-titles-wrapper">
+		<ul class="tabs vertical">
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadors'}"><a href="/app/ambassadors">Ambasadoři</a></li>
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadorsList'}"><a href="/app/ambassadors-list">- Seznam ambasadorů</a></li>
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'idealist'}"><a href="/app/napadnice">- Nápadnice</a></li>
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'todoist'}"><a href="/app/udernice">- Údernice</a></li>
+		</ul>
+	</div>
+
+	<div class="column medium-10 padding-none tabs-content-wrapper">
+
+		<div class="tabs-content padding-large">
+			<div class="" ng-if="activeTab === 'ambassadors'">
+				<ng-include src="'assets/pages/about/cs/ambassadors.html'"></ng-include>
+			</div>
+
+			<div class="" ng-if="activeTab === 'ambassadorsList'">
+				<ng-include src="'assets/pages/about/cs/ambassadors-list.html'"></ng-include>
+			</div>
+
+			<div class="" ng-if="activeTab === 'idealist'">
+				<ng-include src="'assets/pages/about/cs/napadnice.html'"></ng-include>
+			</div>
+
+			<div class="" ng-if="activeTab === 'todoist'">
+				<ng-include src="'assets/pages/about/cs/udernice.html'"></ng-include>
+			</div>
+		</div>
+
+	</div>
+</div>
