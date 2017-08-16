@@ -1,0 +1,12 @@
+<div ng-if="vm.loaded">
+  <div>
+    <input type="search" ng-model="vm.query" ng-change="vm.search({query: vm.query})" ng-model-options="{debounce: 500}" placeholder="search" />
+  </div>
+  <hr />
+  <div ng-if="!vm.searching">
+    <item-list options="vm.listOptions"></item-list>
+  </div>
+</div>
+<div ng-if="!vm.loaded || vm.searching" class="text-center padding-large">
+  <i class="fa fa-spin fa-spinner fa-2x"></i>
+</div>
