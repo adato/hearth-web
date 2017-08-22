@@ -22,6 +22,13 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			story: 'Obohacujícím je pro mě na Hearthu především setkávání s lidmi, které jsem poznala buď skrze dary nebo díky ambasadorství. Obzvláště inspirující pro mě bylo setkání s rodinou, která toho nemá nijak mnoho, ale s o to větším nadšením daruje.',
 		},
 		{ 
+			realName: 'Dominik Bureš',
+			id: '52166e5d9685ed0200000003',
+			area: 'Praha, Slapy-Měřín',
+			reason: 'Libí se mi inspirovat ostatní lidi, aby začali fungovat jako lidi a dělali, co je baví.',
+			story: 'Inspirovaly mne principy buddhismu, vlastně jsem se o projektu dozvěděl náhodou při brouzdání internetem, hledal jsem kde a jak u nás působí scéna alternativců-kreativců. No a shodou okolnosti jsem někde zahlédl logo Jobs.cz a LMC a že zakladatel těchto portálů má dost podobný pohled na svět jako já. Tak jsem šel na oficiální tiskovku s kamarádkou.',
+		},
+		{ 
 			realName: 'Eduard Černáč',
 			id: '572dd1b83ed44b000b000324',
 			area: 'Praha',
