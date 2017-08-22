@@ -1,0 +1,48 @@
+<div>
+  <div class="flex-grid info-bubble-content">
+    <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
+    <div>
+      <div class="block">
+        <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
+        <div class="text-muted text-small">
+          <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></a>
+          <span ng-show="vm.model.infoBubble.locations.length">
+            <span>&bull;</span>
+            <span ng-bind="vm.model.infoBubble.locations[0].short_address"></span>
+          </span>
+        </div>
+      </div>
+      <div>
+        <small ng-bind="vm.model.infoBubble.about_shortened"></small>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="!vm.detailLoaded" class="info-bubble-content text-center">
+    <i class="text-muted fa fa-spin fa-spinner"></i>
+  </div>
+  <div ng-if="vm.moreAvailable">
+    <hr class="margin-none" />
+    <div class="info-bubble-content">
+      <div class="flex flex-space-between flex-divided-medium">
+        <div>
+          <a ng-if="vm.model.infoBubble.post_count.offers || vm.model.infoBubble.post_count.needs" ui-sref="profile.subview({id: vm.model._id, page: 'posts'})" class="button tertiary" translate="POST.GIFT_WISH_COUNT.{{ vm.pluralCat(vm.model.infoBubble.post_count.offers + vm.model.infoBubble.post_count.needs) }}" translate-values="{count: (vm.model.infoBubble.post_count.offers + vm.model.infoBubble.post_count.needs)}"></a>
+        </div>
+        <div>
+          <span ng-if="vm.model._id !== vm.loggedUser._id">
+            <span ng-if="vm.model.infoBubble.is_followed" translate="PROFILE.YOU_ARE_FOLLOWEE"></span>
+            <a href="" ng-if="!vm.model.infoBubble.is_followed" translate="PROFILE.ACTION_FOLLOW" ng-click="vm.toggleFollowUser({userId: vm.model._id, follow: true})"></a>
+            <i ng-if="vm.sendingFollowRequest" class="fa fa-spin fa-spinner"></i>
+            <span>&bull;</span>
+          </span>
+          <a ui-sref="profile.default({id: vm.model._id})" translate="PROFILE.ACTION_PROFILE"></a>
+        </div>
+      </div>
+      <div class="flex flex-align-top">
+        <a ng-repeat="item in vm.model.infoBubble.recent_images | limitTo:5" ng-if="item.post_id" ui-sref="post({id: item.post_id})">
+          <img class="info-bubble-img" ng-src="{{:: item.normal }}" onerror="this.style.display='none'" />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

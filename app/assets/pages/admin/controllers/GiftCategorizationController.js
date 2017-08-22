@@ -74,6 +74,7 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
           //   {title: 'je jenom'},
           //   {title: 'muj mock'},
           // ])
+
         })
       },
       saveStatus: null,
@@ -91,3 +92,4 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
   }
 
 }])
+

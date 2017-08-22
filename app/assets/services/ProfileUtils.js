@@ -8,31 +8,31 @@
 
 angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', '$window', '$q', '$rootScope', function(Karma, MottoLength, $window, $q, $rootScope) {
 
-	var PROFILE_TYPES = {
+	const PROFILE_TYPES = {
 		USER: 'user',
 		COMMUNITY: 'community'
-	};
+	}
 
-	var MAX_MOTTO_LENGTH = MottoLength;
+	const MAX_MOTTO_LENGTH = MottoLength
 
-	var factory = {
-		transformDataForUsage: transformDataForUsage,
-		transformDataForSaving: transformDataForSaving,
+	const factory = {
+		transformDataForUsage,
+		transformDataForSaving,
 		single: {
-			copyMottoIfNecessary: copyMottoIfNecessary,
-			fillWebs: fillWebs,
-			joinInterests: joinInterests,
-			splitInterests: splitInterests
+			copyMottoIfNecessary,
+			fillWebs,
+			joinInterests,
+			splitInterests
 		},
-		getPosts: getPosts,
+		getPosts,
 		params: {
-			PROFILE_TYPES: PROFILE_TYPES,
-			MAX_MOTTO_LENGTH: MAX_MOTTO_LENGTH
+			PROFILE_TYPES,
+			MAX_MOTTO_LENGTH
 		},
-		getUploadOpts: getUploadOpts
-	};
+		getUploadOpts,
+	}
 
-	return factory;
+	return factory
 
 	/////////////////
 

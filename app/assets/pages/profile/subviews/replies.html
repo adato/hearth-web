@@ -7,7 +7,7 @@
 	</div>
 	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}" ng-if="item.post">
 		<section class="large-2 hide-for-small medium-2 columns">
-			<div info-box="item.post.author">
+			<div info-bubble=":: item.post.author" info-bubble-type=":: item.post.author._type">
 				<div class="user">
 					<a ng-href="{{getProfileLink(item.post.author_type, item.post.author._id)}}">
 						<avatar type="item.post.author_type" src="item.post.author.avatar.normal"></avatar>

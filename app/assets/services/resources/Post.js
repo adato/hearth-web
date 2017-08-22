@@ -136,6 +136,7 @@ angular.module('hearth.services').factory('Post', [
         url: $$config.apiPath + '/posts/:postId/related/vote',
         method: 'POST'
       },
+
 			heart: {
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'POST'
@@ -144,10 +145,22 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'DELETE'
 			},
+
 			exemplaryPosts: {
 				merthod: 'GET',
 				url: $$config.apiPath + '/posts/exemplary'
+			},
+
+			createComment: {
+				method: 'POST',
+				url: $$config.apiPath + '/posts/:postId/comments'
+			},
+			queryComments: {
+				method: 'GET',
+				isArray: true,
+				url: $$config.apiPath + '/posts/:postId/comments'
 			}
+
 		});
 	}
 ]);
