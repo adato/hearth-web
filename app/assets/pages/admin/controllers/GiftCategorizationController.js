@@ -58,11 +58,23 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
     this.bindToScope = {
       loadCategories: query => {
         return $q((resolve, reject) => {
-          return resolve([
-            {title: 'Tohle'},
-            {title: 'je jenom'},
-            {title: 'mock'},
-          ])
+          var data = [];
+          Post.loadCategories({ q: query}).$promise.then (res => {
+            // console.log(res.data)
+            data = res.data.map(item => ({title: item}))
+            //console.log ('before resolve:', data)
+            data = resolve(data)
+            //console.log ('resolved:', data)
+          }).catch(err => {
+            console.log('caught', err)
+          })
+          return data
+          // return resolve([
+          //   {title: 'Tohle'},
+          //   {title: 'je jenom'},
+          //   {title: 'muj mock'},
+          // ])
+
         })
       },
       saveStatus: null,
@@ -80,3 +92,4 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
   }
 
 }])
+
