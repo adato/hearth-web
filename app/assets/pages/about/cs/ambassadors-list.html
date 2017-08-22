@@ -1,18 +1,31 @@
 <div class="about-page about-page--ambassadors">
 	<h2>Kdo jsou ambasadoři Hearth.net</h2>
-	<p>
-		Chceš zde být i Ty? <a href="/app/feedback">Napiš nám...</a>
-	</p>
 
+	<!-- spinner loader -->
+	<div class="clearfix" ng-if="!ambassadorsListLoaded">
+		<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
+	</div>
 
+	<!-- list of ambassadors -->
+	<div class="clearfix" ng-if="ambassadorsListLoaded">
+		<ul class="list-item-panel clearfix">
 
-	<div class="clearfix">
-		<ul class="list-item-panel">
+			<!-- inital info -->
+			<li class="large-12 small-12 margin-bottom-large panel-info">
+				<div class="">
+					Všechny nás najdeš v komunitě <a href="/app/community/57fa6266b7c3ff000a20228c">Ambasadoři Hearth.net</a>. Tam nám také můžeš napsat, nebo se na cokoliv zeptat.
+				</div>
+			</li>
+
+			<!-- ambassador detail -->
 			<li class="large-12 small-12" ng-repeat="person in ambassadorsList">
 				<div class="">
-					<div class="clearfix" info-bubble="person" info-bubble-type="'user'" >
-						<avatar src="person.avatar.normal" size="normal"  type="'User'" class="pull-left"></avatar>
-						<h4 class="pull-left margin-left-medium margin-top-large"><a ng-href="/app/profile/{{ person.id }}">{{ person.realName }}</a></h4>
+					<div class="clearfix display-flex">
+						<avatar src="person.avatar.normal" size="small"  type="'User'" class="flex-left"></avatar>
+						<div class="flex-right margin-left-medium">
+							<a ng-href="/app/profile/{{ person.id }}"><h4 class="margin-top-none margin-bottom-none">{{ person.realName }}</h4></a>
+							<div class="text-small"><i class="fa fa-map-marker margin-right-tiny"></i>{{ person.area }}</div>
+						</div>
 					</div>
 					<div class="margin-top-medium">
 						<h6 class="margin-bottom-tiny bold">Proč jsem se stal/a ambasadorem?</h6>

@@ -5,12 +5,26 @@
  * @name hearth.controllers.StaticPageCtrl
  * @description
  */
-
+ 
 angular.module('hearth.controllers').controller('AboutCtrl', [
-	'$state', '$scope', 'AmbassadorsListService', 
-	function($state, $scope, AmbassadorsListService) {
+	'$state', '$scope', 'AmbassadorsListService', 'Community', 
+	function($state, $scope, AmbassadorsListService, Community) {
 
 		$scope.activeTab = null;
+		$scope.ambassadorsList = [];
+		$scope.ambassadorsListLoaded = false;
+
+		$scope.communities = { 
+			custodians: {
+				_id: '56b8b77fb433b4000700007a',
+				data: null,
+			},
+			admins: {
+				_id: '52cd60cd37b1210200000099',
+				data: null,
+			}
+		};
+
 
 		// obtains actual route values from ui-router via $state.current
 		var getActiveTabFromState = function () {
@@ -21,10 +35,23 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 
 		// fetches list of ambassadors (from service, or external resource)
 		// requires AmbassadorsListService
-		// returns array of objects
-		var fetchAmbassadorsList = function () {
+		$scope.fetchAmbassadorsList = function () {
+			$scope.ambassadorsListLoaded = false;
 			return AmbassadorsListService.getList(function(getList) {
 				$scope.ambassadorsList = getList;
+				$scope.ambassadorsListLoaded = true;
+			});
+		}
+
+
+		// fetches information about two predefined communities (mainly for avatars) 
+		// does not cache data
+		$scope.scopeFetchCommunityInfo = function () {
+			Community.get($scope.communities['custodians']).$promise.then(function (data) {
+				$scope.communities.custodians.data = data;
+				return Community.get($scope.communities['admins']).$promise;
+			}).then(function (data) {
+				$scope.communities.admins.data = data;
 			});
 		}
 
@@ -32,7 +59,11 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 			$scope.activeTab = getActiveTabFromState();
 
 			if ($scope.activeTab == 'ambassadors' || $scope.activeTab == 'ambassadorsList') {
-				fetchAmbassadorsList();
+				$scope.fetchAmbassadorsList();
+			}
+
+			if ($scope.activeTab == 'custodians') {
+				$scope.scopeFetchCommunityInfo();
 			}
 		};
 

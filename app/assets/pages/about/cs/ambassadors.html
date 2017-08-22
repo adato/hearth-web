@@ -9,11 +9,18 @@
 		Jsme společenství lidí, kteří mají společný cíl: <b>pomáhat Hearth.net s komunikací a šířením společného <abbr title="Paradigma je obecně přijímané schéma, vzorec myšlení, či model.">paradigma</abbr> štědrosti, laskavosti a vzájemné pomoci</b>. Laskavost je prodchnuta naším životem, rádi děláme radost druhým a zastáváme zdravé morální hodnoty. Cítíme, že činnost Hearth.net s námi ladí a chceme podpořit jeho šíření mezi další a další lidi.
 	</p>
 
-<h4>Kolik už nás je?</h4>
-<a class="avatar-stack clearfix" href="/app/ambassadors-list">
-	<avatar src="person.avatar.normal" size="small"  type="'User'" ng-repeat="person in ambassadorsList"></avatar>
-</a>
-<p class="text-small">klikni na někoho pro více informací...</p>
+<h4>Kolik nás už je?</h4>
+<div class="clearfix" ng-if="!ambassadorsListLoaded">
+	<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
+</div>
+<div ng-if="ambassadorsListLoaded">
+	<a class="clearfix" href="/app/about/ambassadors/list">
+		<div class="avatar-stack">
+			<avatar src="person.avatar.normal" size="small" type="'User'" ng-repeat="person in ambassadorsList track by person._id"></avatar>
+		</div>
+	</a>
+	<p class="text-small">klikni na někoho pro více informací...</p>
+</div>
 
 <h4 class="margin-top-medium">Co nás spojuje?</h4>
 <p>
@@ -24,26 +31,29 @@ Každý z nás má různé talenty, schopnosti, je v něčem jedinečný. Kaž
 
 <h4>Jak pomáháme Hearth.net?</h4>
 <p>
-Někdo z nás má rád jasno a čisto, a proto pomáhá se správou Hearth.net jako <a href="/app/custodians">Správce obsahu</a>. Jiný se pohybuje mezi lidmi a rád chodí na zajímavé akce, tak jej napadne na některé Hearth.net představit. Seznam takových akcí najdeš zde. A někdo jiný rozdává dárky se vzkazy na lavičky v parku a těší se z toho, že někomu neznámému rozzáří den a dá naději, že dobří lidé ještě existují. Psali jsme o tom na našem blogu.
+Někdo z nás má rád jasno a čisto, a proto pomáhá jako <a href="/app/custodians">Správce obsahu</a>. Jiný se pohybuje mezi lidmi a rád chodí na zajímavé akce, tak jej napadne na některé Hearth.net představit. Seznam takových akcí najdeš zde. A někdo jiný rozdává dárky se vzkazy na lavičky v parku a těší se z toho, že někomu neznámému rozzáří den a dá naději, že dobří lidé ještě existují. Psali jsme o tom na našem blogu.
 </p>
 
-<h4>Jak se můžeš stát ambasadorem?</h4>
+<h4>Jak se stát ambasadorem?</h4>
 <p>
-Jestli chceš o ambasadorství pro Hearth.net zjistit více a připojit se, nebo poslat svou inspiraci, napiš Pavle na pavla.kohoutova@hearth.net. Díky!
+Jestli chceš o ambasadorství pro Hearth.net zjistit více, připojit se, nebo poslat svou inspiraci, napiš <a href="/app/profile/526513019044a7020000001e">Pavle</a> (na pavla.kohoutova@hearth.net). Díky!
 </p>
+<ul class="list-item-panel">
+	<li class="panel-info">
+		<div class="pull-left margin-top-tiny">Hearth.net můžeš podpořit i jinak. Podívej se jak na to.</div>
+		<a class="button pull-right" href="/app/support-us">Chci podpořit Hearth.net</a>
+	</li>
+</ul>
+<h4 class="margin-top-small">Psst, ještě něco...</h4>
 <p>
-Hearth.net můžeš <a href="/app/support-us">podpořit</a> i jinak.
+Na prvním setkání ambasadorů v říjnu roku 2016 jsme sepsali <a href="/app/about/napadnice">Nápadnici – seznam nápadů, jak šířit laskavost a štědrost</a>. Podívej se tam, třeba můžeš něco udělat hned teď. <!-- Není tam tvůj nápad? Dej nám vědět, rádi doplníme další, co funguje. --></p>
+<p>
+	Také máme <a href="/app/about/udernice">Údernici</a> - je to seznam nápadů a myšlenek, které lidem komunikujeme a inspirujeme je, jak být vědomě užiteční a šťastní.
 </p>
-<h4>Psst, ještě něco...</h4>
-<p>
-Na prvním setkání ambasadorů v říjnu roku 2016 jsme sepsali <a href="/app/napadnice">Nápadnici – seznam nápadů, jak šířit laskavost a štědrost</a>. Není tam tvůj nápad? Dej nám vědět, rádi doplníme další, co funguje.</p>
-<p>
-	Také máme <a href="/app/udernice">Údernici</a> - je to seznam nápadů a myšlenek, které lidem komunikujeme a inspirujeme je, jak být vědomě užiteční a šťastní.
-</p>
-<p>
+<!-- <p>
 Naše ambasadory v jejich činnosti podporujeme jako tým Hearth.net a také jako komunita sebe navzájem. Inspirujeme se a když můžeme, přijedeme na společnou akci, kterou jeden z nás pořádá. Scházíme se také na setkáních pro ambasadory a probíráme další možnosti naší činnosti, dostávají informace z interního týmu o všech novinkách, které se chystají, o našem nasměrování a diskutujeme s nimi o tom. 
 
 Možná tě bude také zajímat oddíl Děláme to podobně, kde najdeš podobné projekty jako Hearth.net, kde lidé mezi sebou sdílí, projevují si laskavost, vzájemnost, i když je pravda, že s různými motivacemi – nahlédni a objev další prostor.
 </p>
-
+ -->
 </div>

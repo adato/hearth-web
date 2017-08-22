@@ -1,31 +1,59 @@
 <div class="row tabs-wrapper round">
 
-	<div class="column medium-2 padding-none tabs-titles-wrapper">
+	<div class="column medium-2 padding-none tabs-titles-wrapper" ng-init="activeTabGroup = (activeTab === 'ambassadors' || activeTab === 'ambassadorsList' || activeTab === 'idealist' || activeTab === 'todoist' ? 'ambassadors' : activeTab)">
 		<ul class="tabs vertical">
-			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadors'}"><a href="/app/ambassadors">Ambasadoři</a></li>
-			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadorsList'}"><a href="/app/ambassadors-list">- Seznam ambasadorů</a></li>
-			<li class="tabs-title" ng-class="{'is-active': activeTab === 'idealist'}"><a href="/app/napadnice">- Nápadnice</a></li>
-			<li class="tabs-title" ng-class="{'is-active': activeTab === 'todoist'}"><a href="/app/udernice">- Údernice</a></li>
+			
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadors'}">
+				<a href="/app/about/ambassadors"><i class="fa" ng-class="{ 'fa-minus-square-o': activeTabGroup === 'ambassadors', 'fa-plus-square-o': activeTabGroup !== 'ambassadors'}"></i> Ambasadoři</a>
+			</li>
+			
+			<li class="tabs-title tabs-subtab" ng-class="{'is-active': activeTab === 'ambassadorsList'}" ng-if="activeTabGroup === 'ambassadors'">
+				<a href="/app/about/ambassadors/list">Seznam ambasadorů</a>
+			</li>
+			
+			<li class="tabs-title tabs-subtab" ng-class="{'is-active': activeTab === 'idealist'}" ng-if="activeTabGroup === 'ambassadors'">
+				<a href="/app/about/napadnice">Nápadnice</a>
+			</li>
+			
+			<li class="tabs-title tabs-subtab" ng-class="{'is-active': activeTab === 'todoist'}" ng-if="activeTabGroup === 'ambassadors'">
+				<a href="/app/about/udernice">Údernice</a>
+			</li>
+			
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'custodians'}">
+				<a href="/app/about/custodians"><span translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></span></a>
+			</li>
+			
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'similarProjects'}">
+				<a href="/app/about/similar-projects">Spřízněné projekty</a>
+			</li>
 		</ul>
 	</div>
 
 	<div class="column medium-10 padding-none tabs-content-wrapper">
 
 		<div class="tabs-content padding-large">
+			<div class="" ng-if="activeTab === 'custodians'">
+				<ng-include src="'assets/pages/about/cs/custodians.html'" autorscroll></ng-include>
+			</div>
+
 			<div class="" ng-if="activeTab === 'ambassadors'">
-				<ng-include src="'assets/pages/about/cs/ambassadors.html'"></ng-include>
+				<ng-include src="'assets/pages/about/cs/ambassadors.html'" autorscroll></ng-include>
 			</div>
 
 			<div class="" ng-if="activeTab === 'ambassadorsList'">
-				<ng-include src="'assets/pages/about/cs/ambassadors-list.html'"></ng-include>
+				<ng-include src="'assets/pages/about/cs/ambassadors-list.html'" autorscroll></ng-include>
 			</div>
 
 			<div class="" ng-if="activeTab === 'idealist'">
-				<ng-include src="'assets/pages/about/cs/napadnice.html'"></ng-include>
+				<ng-include src="'assets/pages/about/cs/napadnice.html'" autorscroll></ng-include>
 			</div>
 
 			<div class="" ng-if="activeTab === 'todoist'">
-				<ng-include src="'assets/pages/about/cs/udernice.html'"></ng-include>
+				<ng-include src="'assets/pages/about/cs/udernice.html'" autorscroll></ng-include>
+			</div>
+
+			<div class="" ng-if="activeTab === 'similarProjects'">
+				<ng-include src="'assets/pages/about/cs/similar-projects.html'" autorscroll></ng-include>
 			</div>
 		</div>
 

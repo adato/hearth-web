@@ -132,11 +132,6 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/static/localizationPage.html',
 				controller: 'StaticPageCtrl'
 			})
-			.state('custodians', {
-				url: '/custodians',
-				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
-			})
 			.state('components', {
 				url: '/components',
 				templateUrl: 'assets/pages/static/components.html',
@@ -255,38 +250,60 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/about/about.html',
 				controller: 'AboutCtrl',
 			})
-			// ambassadors page
-			.state('ambassadors', {
-				url: '/ambassadors',
-				templateUrl: 'assets/pages/about/ambassadors.html',
-				selectedTab: 'ambassadors',
-				controller: 'AboutCtrl',
-				controllerAs: 'ctrl'
-			})
-			// ambassadors page
-			.state('ambassadors-list', {
-				url: '/ambassadors-list',
-				templateUrl: 'assets/pages/about/ambassadors.html',
-				selectedTab: 'ambassadorsList',
-				controller: 'AboutCtrl',
-				controllerAs: 'ctrl'
-			})
-			// napadnice
-			.state('napadnice', {
-				url: '/napadnice',
-				templateUrl: 'assets/pages/about/ambassadors.html',
-				selectedTab: 'idealist',
-				controller: 'AboutCtrl',
-				controllerAs: 'ctrl'
-			})
-			// udernice
-			.state('udernice', {
-				url: '/udernice',
-				templateUrl: 'assets/pages/about/ambassadors.html',
-				selectedTab: 'todoist',
-				controller: 'AboutCtrl',
-				controllerAs: 'ctrl'
-			})
+				// ambassadors page
+				.state('ambassadors', {
+					url: '/about/ambassadors',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'ambassadors',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
+				// ambassadors page
+				.state('ambassadors-list', {
+					url: '/about/ambassadors/list',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'ambassadorsList',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
+				// napadnice
+				.state('napadnice', {
+					url: '/about/napadnice',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'idealist',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
+				// udernice
+				.state('udernice', {
+					url: '/about/udernice',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'todoist',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
+				// udernice
+				.state('similar-projects', {
+					url: '/about/similar-projects',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'similarProjects',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
+				.state('about-custodians', {
+					url: '/about/custodians',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'custodians',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
+				.state('custodians', {
+					url: '/custodians',
+					templateUrl: 'assets/pages/about/ambassadors.html',
+					selectedTab: 'custodians',
+					controller: 'AboutCtrl',
+					controllerAs: 'ctrl'
+				})
 			.state('ourStory', {
 				url: '/our-story',
 				templateUrl: 'assets/pages/static/OurStory.html'

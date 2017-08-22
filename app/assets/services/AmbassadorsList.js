@@ -1,12 +1,17 @@
 'use strict';
 
+angular.module('hearth').factory('AmbassadorsCache', ['$cacheFactory', function($cacheFactory) {
+	return $cacheFactory('ambassadors');
+}]);
+
+
 /**
  * @ngdoc service
  * @name hearth.services.AmbassadorsList
- * @description Depends on CommunityMembers
+ * @description Depends on CommunityMembers and does caching results via $cacheFactory
  */
 
-angular.module('hearth.services').service('AmbassadorsListService', ['CommunityMembers', function(CommunityMembers) {
+angular.module('hearth.services').service('AmbassadorsListService', ['CommunityMembers', 'AmbassadorsCache', function(CommunityMembers, AmbassadorsCache) {
 
 	const ambassadorsList = [
 		{ 
@@ -164,6 +169,10 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 
 
 	function getList(callback) {
+		var cachedResult = null;
+		if (typeof (cachedResult = AmbassadorsCache.get('ambassadorsList')) != 'undefined') {
+			return callback(cachedResult);
+		}
 		return fetchAmbassadorsCommunity().then(function (result) {
 			var res = [];
 			for (var i in result) {
@@ -175,6 +184,7 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 					}
 				};
 			};
+			AmbassadorsCache.put('ambassadorsList', res);
 			return callback(res);
 		})
 	}
