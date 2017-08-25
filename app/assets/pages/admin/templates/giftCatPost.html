@@ -1,0 +1,20 @@
+<div class="box margin-bottom-small padding-small">
+  <div class="flex-grid margin-bottom-tiny">
+    <div>
+      <avatar src="item.author.avatar.normal" size="small"></avatar>
+    </div>
+    <div>
+      <h2 class="header-5 text-emphasize margin-bottom-none">
+        <span ng-class=":: 'color-' + item.type" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
+        <span ng-bind="item.title"></span>
+      </h2>
+      <div ng-bind="item.text"></div>
+    </div>
+  </div>
+  <div>
+    <tags-input ng-model="item.categories" name="cats" display-property="title" placeholder="Categories" replace-spaces-with-dashes="false" on-tag-added="saveCategories({post: item, categories: item.categories})" on-tag-removed="saveCategories({post: item, categories: item.categories})">
+      <auto-complete source="loadCategories($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
+    </tags-input>
+  </div>
+</div>
+

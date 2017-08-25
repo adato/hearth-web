@@ -12,7 +12,7 @@ angular.module('hearth').config([
 			return false;
 		});
 
-		const { SIGNED_IN, UNAUTH } = window.$$config.policy;
+		const { SIGNED_IN, UNAUTH, ADMIN } = window.$$config.policy;
 
 		$stateProvider
 			.state('market', {
@@ -260,7 +260,16 @@ angular.module('hearth').config([
 			.state('error404', {
 				templateUrl: 'assets/pages/static/error404.html',
 				controller: 'Error404Ctrl'
-			});
+			})
+
+			// temp admin only
+			.state('gift-categorization', {
+				url: '/gift-categorization',
+				templateUrl: 'assets/pages/admin/templates/giftCategorization.html',
+				controller: 'GiftCategorizationController as vm',
+				policy: ADMIN
+			})
+			;
 
 		$urlRouterProvider.otherwise(function($injector, $location) {
 			var state = $injector.get('$state');

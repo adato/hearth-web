@@ -85,6 +85,15 @@ angular.module('hearth.services').factory('Post', [
 				transformRequest: [LocationJsonDataTransform.insertLocationJson],
 				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
+			updateCategories: {
+				method: 'PATCH',
+				url: $$config.apiPath + '/posts/:postId/categories'
+			},
+      loadCategories: {
+        method: 'GET',
+        url: $$config.apiPath + '/posts/categories',
+        nointercept: true
+      },
 			remove: {
 				method: 'DELETE',
 				errorNotify: {
