@@ -115,6 +115,12 @@
 							<li ng-click="toggleTag(tag)" ng-class=":: {active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in :: item.keywords track by $index" ng-bind=":: tag" test-beacon="marketplace-keywords"></li>
 						</ul>
 					</div>
+
+					<div class="item-section tags" ng-if=":: item.categories.length > 0 && userHasRight('post.suspend_any')">
+						<ul class="tagList color-dark-gray">
+							<li ng-repeat="category in :: item.categories track by $index" ng-bind=":: category"></li>
+						</ul>
+					</div>
 				</div>
 				<footer>
 

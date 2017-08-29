@@ -18,6 +18,11 @@ $info-bubble-width: (5 * ($info-bubble-image-width + $size-small)) - $size-small
 }
 .info-bubble-content {
     padding: $size-small;
+
+  div > a:last-child img {
+    margin-right: 0;
+  }
+
 }
 .info-bubble-img {
     margin: $size-small $size-small 0 0;
@@ -30,4 +35,6 @@ $info-bubble-width: (5 * ($info-bubble-image-width + $size-small)) - $size-small
     &:last-child {
         padding-right: 0;
     }
+
+
 }
