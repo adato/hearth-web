@@ -14,18 +14,18 @@
 	<p>
 		Laskavost je prodchnuta naším životem, rádi děláme radost druhým a zastáváme zdravé morální hodnoty. Cítíme, že činnost Hearth.net s námi ladí a chceme podpořit jeho šíření mezi další a další lidi.
 	</p>
-<div class="xpanel panel-info xmargin-top-medium margin-bottom-medium">
-<!-- <h4>Poznej ambasadory Hearth.net</h4> -->
-<div class="clearfix" ng-if="!ambassadorsListLoaded">
-	<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
-</div>
-<div ng-if="ambassadorsListLoaded">
-	<a class="clearfix" href="/app/about/ambassadors/list">
-		<div class="avatar-stack">
-			<avatar src="person.avatar.normal" size="small" type="'User'" ng-repeat="person in ambassadorsList track by person._id"></avatar>
-		</div>
-	</a>
-</div>
+<div class="margin-bottom-large">
+	<!-- <h4>Poznej ambasadory Hearth.net</h4> -->
+	<div class="clearfix" ng-if="!ambassadorsListLoaded">
+		<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
+	</div>
+	<div ng-if="ambassadorsListLoaded">
+		<a class="clearfix" href="/app/about/ambassadors/list">
+			<div class="avatar-stack">
+				<avatar src="person.avatar.normal" size="small" type="'User'" ng-repeat="person in ambassadorsList track by person._id"></avatar>
+			</div>
+		</a>
+	</div>
 </div>
 
 <h3>Jak pomáháme Hearth.net?</h3>
