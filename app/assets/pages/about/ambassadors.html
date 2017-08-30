@@ -1,6 +1,6 @@
 <div class="row tabs-wrapper round">
 
-	<div class="column medium-2 padding-none tabs-titles-wrapper" ng-init="activeTabGroup = (activeTab === 'ambassadors' || activeTab === 'ambassadorsList' || activeTab === 'idealist' || activeTab === 'todoist' ? 'ambassadors' : activeTab)">
+	<div class="column medium-2 padding-none tabs-titles-wrapper" ng-init="activeTabGroup = (activeTab === 'ambassadors' || activeTab === 'ambassadorsList' ? 'ambassadors' : activeTab)">
 		<ul class="tabs vertical">
 			
 			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadors'}">
@@ -11,12 +11,12 @@
 				<a href="/app/about/ambassadors/list">Seznam ambasadorů</a>
 			</li>
 			
-			<li class="tabs-title tabs-subtab" ng-class="{'is-active': activeTab === 'idealist'}" ng-if="activeTabGroup === 'ambassadors'">
-				<a href="/app/about/napadnice">Nápadnice</a>
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'idealist'}">
+				<a href="/app/about/napadnice">Nápady k šíření</a>
 			</li>
 			
-			<li class="tabs-title tabs-subtab" ng-class="{'is-active': activeTab === 'todoist'}" ng-if="activeTabGroup === 'ambassadors'">
-				<a href="/app/about/udernice">Údernice</a>
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'todoist'}">
+				<a href="/app/about/udernice">Jak komunikovat</a>
 			</li>
 			
 			<li class="tabs-title" ng-class="{'is-active': activeTab === 'custodians'}">
@@ -37,6 +37,7 @@
 			</div>
 
 			<div class="" ng-if="activeTab === 'ambassadors'">
+				<ng-include src="'assets/pages/about/cs/ambassadors-modal.html'" autorscroll></ng-include>
 				<ng-include src="'assets/pages/about/cs/ambassadors.html'" autorscroll></ng-include>
 			</div>
 

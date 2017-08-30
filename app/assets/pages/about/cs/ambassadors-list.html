@@ -18,12 +18,12 @@
 			</li>
 
 			<!-- ambassador detail -->
-			<li class="large-12 small-12" ng-repeat="person in ambassadorsList">
+			<li class="large-12 small-12" ng-repeat="person in ambassadorsList | orderBy: 'realName'">
 				<div class="">
 					<div class="clearfix display-flex">
 						<avatar src="person.avatar.normal" size="small"  type="'User'" class="flex-left"></avatar>
 						<div class="flex-right margin-left-medium">
-							<a ng-href="/app/profile/{{ person.id }}"><h4 class="margin-top-none margin-bottom-none">{{ person.realName }}</h4></a>
+							<a ng-href="/app/profile/{{ person.id }}"><h4 class="margin-top-none margin-bottom-none">{{ person.name }}</h4></a>
 							<div class="text-small"><i class="fa fa-map-marker margin-right-tiny"></i>{{ person.area }}</div>
 						</div>
 					</div>

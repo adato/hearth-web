@@ -1,15 +1,21 @@
 <div class="about-page about-page--ambassadors">
 	<h2>Ambasadoři Hearth.net</h2>
 	<p><em>
-		...neboli podporovatelé, šiřitelé, velvyslanci Hearth.net
+		...aneb podporovatelé, šiřitelé, velvyslanci Hearth.net
 	</em></p>
 
-	<h4>Kdo jsme?</h4>
+	<h3>Kdo jsme?</h3>
 	<p>
-		Jsme společenství lidí, kteří mají společný cíl: <b>pomáhat Hearth.net s komunikací a šířením společného <abbr title="Paradigma je obecně přijímané schéma, vzorec myšlení, či model.">paradigma</abbr> štědrosti, laskavosti a vzájemné pomoci</b>. Laskavost je prodchnuta naším životem, rádi děláme radost druhým a zastáváme zdravé morální hodnoty. Cítíme, že činnost Hearth.net s námi ladí a chceme podpořit jeho šíření mezi další a další lidi.
+		Jsme společenství lidí, kteří věří, že laskavost, štědrost, otevřenost a respekt patří ke šťastnému a dobrému životu. Máme proto společný cíl:
 	</p>
-
-<h4>Kolik nás už je?</h4>
+	<p>
+		<b>Pomáhat šířit Hearth.net a naše společné <abbr title="Paradigma je obecně přijímané schéma, vzorec myšlení, či model.">paradigma</abbr> štědrosti, laskavosti a vzájemné pomoci</b>.
+	</p>
+	<p>
+		Laskavost je prodchnuta naším životem, rádi děláme radost druhým a zastáváme zdravé morální hodnoty. Cítíme, že činnost Hearth.net s námi ladí a chceme podpořit jeho šíření mezi další a další lidi.
+	</p>
+<div class="xpanel panel-info xmargin-top-medium margin-bottom-medium">
+<!-- <h4>Poznej ambasadory Hearth.net</h4> -->
 <div class="clearfix" ng-if="!ambassadorsListLoaded">
 	<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
 </div>
@@ -19,41 +25,43 @@
 			<avatar src="person.avatar.normal" size="small" type="'User'" ng-repeat="person in ambassadorsList track by person._id"></avatar>
 		</div>
 	</a>
-	<p class="text-small">klikni na někoho pro více informací...</p>
+</div>
 </div>
 
-<h4 class="margin-top-medium">Co nás spojuje?</h4>
-<p>
-Každý z nás má různé talenty, schopnosti, je v něčem jedinečný. Každého z nás baví něco jiného a něco jiného nám jde. A když děláme cokoliv protože chceme a ne protože musíme, jde nám to snadno a na výsledku je to znát. Těší to nás i druhé. 
+<h3>Jak pomáháme Hearth.net?</h3>
+<ul>
+	<li>Šíříme povědomí o Hearth.net mezi přátele a známé.</li>
+	<li>Pomáháme se správou sítě Hearth.net jako <a href="/app/custodians">Správci obsahu</a>.</li>
+	<li>Vítáme nové uživatele Hearth.net zprávou.</li>
+	<li>Pomáháme při představování Hearth.net <a href="http://blog.hearth.net/akce-hearth-net/" target="_blank">na různých akcích</a>.</li>
+	<li>Někteří z nás sami pořádají v jejich městě <a href="http://blog.hearth.net/dariste/">Dařiště - tržiště darů</a>, přednášky nebo besedy.</li>
+	<li>Podporujeme Hearth.net i jinak - např. Dominik věnoval Hearth.net připojení kanceláře k internetu.</li>
+</ul>
 
-<!-- Proto jsou různé formy podpory, různé možnosti zapojení se mezi ambasadory Hearth.net.  -->
+<h3 class="margin-top-large">Jak se stát ambasadorem?</h3>
+<p>
+	Chceš se o ambasadorství dozvědět víc nebo už víš, že se jím chceš stát? Máme radost!
 </p>
 
-<h4>Jak pomáháme Hearth.net?</h4>
+<div class="panel small-12">
+	<div class="pull-left margin-top-tiny">Přidej se k nám a pomoz šířit Hearth.net do světa!</div>
+	<a class="button pull-right" href="" ng-click="openModal('ambassadors-modal-join-us');">Chci se stát ambasadorem</a>
+</div>
+
+
+<h3 class="">Psst, ještě něco...</h3>
 <p>
-Někdo z nás má rád jasno a čisto, a proto pomáhá jako <a href="/app/custodians">Správce obsahu</a>. Jiný se pohybuje mezi lidmi a rád chodí na zajímavé akce, tak jej napadne na některé Hearth.net představit. Seznam takových akcí najdeš zde. A někdo jiný rozdává dárky se vzkazy na lavičky v parku a těší se z toho, že někomu neznámému rozzáří den a dá naději, že dobří lidé ještě existují. Psali jsme o tom na našem blogu.
+	Na prvním setkání ambasadorů v říjnu roku 2016 jsme sepsali <a href="/app/about/napadnice">Nápady k šíření radosti a štědrosti</a> a <a href="/app/about/udernice">Jak komunikovat myšlenky Hearth.net</a>. Podívej se tam, třeba můžeš něco udělat hned teď. <!-- Není tam tvůj nápad? Dej nám vědět, rádi doplníme další, co funguje. -->
+</p>
+<p>
+	Možná tě budou zajímat <a href="/app/about/similar-projects">Spřízněné projekty</a>, kde najdeš podobné projekty jako Hearth.net, kde lidé mezi sebou sdílí, projevují si laskavost, vzájemnost (i když je pravda, že s různými motivacemi).
 </p>
 
-<h4>Jak se stát ambasadorem?</h4>
-<p>
-Jestli chceš o ambasadorství pro Hearth.net zjistit více, připojit se, nebo poslat svou inspiraci, napiš <a href="/app/profile/526513019044a7020000001e">Pavle</a> (na pavla.kohoutova@hearth.net). Díky!
-</p>
-<ul class="list-item-panel">
+<ul class="list-item-panel margin-top-large">
 	<li class="panel-info">
 		<div class="pull-left margin-top-tiny">Hearth.net můžeš podpořit i jinak. Podívej se jak na to.</div>
 		<a class="button pull-right" href="/app/support-us">Chci podpořit Hearth.net</a>
 	</li>
 </ul>
-<h4 class="margin-top-small">Psst, ještě něco...</h4>
-<p>
-Na prvním setkání ambasadorů v říjnu roku 2016 jsme sepsali <a href="/app/about/napadnice">Nápadnici – seznam nápadů, jak šířit laskavost a štědrost</a>. Podívej se tam, třeba můžeš něco udělat hned teď. <!-- Není tam tvůj nápad? Dej nám vědět, rádi doplníme další, co funguje. --></p>
-<p>
-	Také máme <a href="/app/about/udernice">Údernici</a> - je to seznam nápadů a myšlenek, které lidem komunikujeme a inspirujeme je, jak být vědomě užiteční a šťastní.
-</p>
-<!-- <p>
-Naše ambasadory v jejich činnosti podporujeme jako tým Hearth.net a také jako komunita sebe navzájem. Inspirujeme se a když můžeme, přijedeme na společnou akci, kterou jeden z nás pořádá. Scházíme se také na setkáních pro ambasadory a probíráme další možnosti naší činnosti, dostávají informace z interního týmu o všech novinkách, které se chystají, o našem nasměrování a diskutujeme s nimi o tom. 
 
-Možná tě bude také zajímat oddíl Děláme to podobně, kde najdeš podobné projekty jako Hearth.net, kde lidé mezi sebou sdílí, projevují si laskavost, vzájemnost, i když je pravda, že s různými motivacemi – nahlédni a objev další prostor.
-</p>
- -->
 </div>

@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.controllers').controller('AboutCtrl', [
-	'$state', '$scope', 'AmbassadorsListService', 'Community', 
-	function($state, $scope, AmbassadorsListService, Community) {
+	'$state', '$scope', 'AmbassadorsListService', 'Community', 'SimilarProjectsService', 'ngDialog',
+	function($state, $scope, AmbassadorsListService, Community, SimilarProjectsService, ngDialog) {
 
 		$scope.activeTab = null;
 		$scope.ambassadorsList = [];
@@ -55,6 +55,30 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 			});
 		}
 
+		// fetches similar projects list from particular country
+		$scope.fetchSimilar = function (country) {
+			return SimilarProjectsService.fetch(country);
+		}
+
+
+		// opens modal
+		$scope.openModal = function(templateId, controller) {
+			var ngDialogOptions = {
+				template: templateId,
+				scope: $scope,
+				closeByEscape: true,
+				showClose: false
+			};
+			if (typeof controller !== 'undefined') {
+				ngDialogOptions.controller = controller;
+			}
+
+			ngDialog.open(ngDialogOptions);
+		};
+
+
+
+
 		$scope.init = function() {
 			$scope.activeTab = getActiveTabFromState();
 
@@ -68,6 +92,7 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 		};
 
 		$scope.init();
+
 
 	}
 ]);
