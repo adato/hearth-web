@@ -105,13 +105,13 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			reason: 'Ambasadorem Hearth.net jsem, protože se mi líbí šířit myšlenku sdílení, udržitelnosti a&nbsp;vytváření radosti. Jsem milovnice bazarů, second-handů, antiků. Člověk tam najde většinu věcí, které si chce pořídit. Ovšem za zlomek ceny. V druhé řadě pak takovýmto nákupem nevytváří další nešetrnou průmyslovou stopu. No a&nbsp;nesmíme opomenout ani na chemii, která je z takového trička z druhé ruky už několikrát opraná. a&nbsp;stejná pozitiva mají i hmotné dary na tržišti Hearth.net. Co se týká darování a&nbsp;přijímání umů a&nbsp;zkušeností, nejde pak jen o&nbsp;nově nabytou dovednost či posekání zahrady, ale i o&nbsp;potkávání inspirujících lidí, poznávání míst a&nbsp;vytváření zážitků. a&nbsp;s tím vším velice sympatizuji.',
 			story: 'Velice mě potěšila mladá paní, jenž nám darovala klávesy. Můj muž párkrát vyprávěl, jak rád by na ně hrál, a&nbsp;dcerka je poměrně muzikální, a&nbsp;tak věřím, že díky této milé dámě bude naše rodina svůj hudební talent rozvíjet, a&nbsp;jednou dceři povyprávíme, kde se vlastně u nás tehdá to piano vzalo:-)',
 		},
-		{ 
+/*		{ 
 			realName: 'Marián Klimek',
 			id: '5642693204dcb4000b0000b6',
 			area: 'Praha',
 			reason: 'Projekt se mi líbí a&nbsp;chci ho podpořit.',
 			story: 'Na Hearth.net jsem potkal řadu skvělých lidí s otevřeným srdcem a&nbsp;zajímavými životními příběhy a&nbsp;líbí se mi pomáhat Heart objevovat i dalším lidem které potkávám na své životní cestě, baví mě propojovat lidi z různých projektů a&nbsp;světů.',
-		},
+		},*/
 		{ 
 			realName: 'Michal Čagánek',
 			id: '521f5b5ab8f421d7200042e8',
