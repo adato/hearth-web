@@ -51,6 +51,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
     const getButtonsData = () => {
       return [
         {code: '<button class="button">primary</button>'},
+        {code: '<a class="button">link primary</a>'},
         {code: '<button class="button secondary">secondary</button>'},
         {code: '<button class="button offer">need</button>', desc: 'The style is set according to post character.'},
         {code: '<button class="button need">offer</button>', desc: 'The style is set according to post character.'},
@@ -58,8 +59,12 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         {code: '<button class="button"><i class="fa fa-globe"></i><span>text</span></button>'},
         {code: '<button class="button"><i class=\"fa fa-globe\"></i></button>'},
         {code: '<button class="hollow button">primary inv</button>'},
-        {code: '<button class="hollow button secondary">secondary inv</button>'},
-        {code: '<button class="button disabled">disabled</button>'}
+        {code: '<button class="hollow button dark-gray"><i class="fa fa-filter"></i> dark-gray inv</button>'},
+        {code: '<button class="hollow button offer">hollow offer</button>'},
+        {code: '<button class="hollow button need">hollow need</button>'},
+        {code: '<button class="button disabled">disabled</button>'},
+        {code: '<button class="large button offer disabled">large offer disabled</button>'},
+        {code: '<button class="small button dark-gray disabled">small dark-gray disabled</button>'},
       ];
     };
 
