@@ -207,7 +207,7 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			realName: 'Pavla Kohoutová',
 			id: '526513019044a7020000001e',
 			area: 'Praha, Pelhřimovsko',
-			reason: 'Jsem součástí interního týmu Hearth.net, koordinátorkou ambasadorů, dobrovolníků a produkční off-line prezentací Hearth.net, pečuji o uživatele.',
+			reason: 'Jsem součástí interního týmu Hearth.net, koordinátorkou ambasadorů, dobrovolníků a produkční off-line prezentací Hearth.net, pečuji o uživatele. Mám ráda komunitu, společenství lidí, kteří mají stejný směr.',
 			story: 'Když jsem Hearth.net „náhodou“ objevila, byla jsem nadšená z toho, že tohle fakt funguje! Že už existuje, co jsem vždycky cítila, že jsme všichni jedna rodina, že jsme propojení, podporujeme se, pomáháme si, zkrátka jsme „na stejné lodi“. Nadšeně jsem se zapojila a po roce přišel newsletter s poptávkou člověka do týmu, který přesně popisoval mě... a výsledek už znáte. Od té doby se zájmem pozoruji lidské příběhy štědrosti, laskavosti, někdy i smutku a naštvání, všechno, co k životu patří, a jsem ráda, že můžu Hearth.net pomáhat objevit dalším lidem.',
 		},
 	];
