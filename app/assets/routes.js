@@ -266,17 +266,17 @@ angular.module('hearth').config([
 					controller: 'AboutCtrl',
 					controllerAs: 'ctrl'
 				})
-				// napadnice
+				// napadnice (spreading)
 				.state('spreading', {
-					url: '/about/napadnice',
+					url: '/about/spreading',
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'idealist',
 					controller: 'AboutCtrl',
 					controllerAs: 'ctrl'
 				})
-				// udernice
+				// udernice (communicate)
 				.state('communicate', {
-					url: '/about/udernice',
+					url: '/about/communicate',
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'todoist',
 					controller: 'AboutCtrl',
