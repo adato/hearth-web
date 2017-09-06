@@ -267,7 +267,7 @@ angular.module('hearth').config([
 					controllerAs: 'ctrl'
 				})
 				// napadnice
-				.state('napadnice', {
+				.state('spreading', {
 					url: '/about/napadnice',
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'idealist',
@@ -275,7 +275,7 @@ angular.module('hearth').config([
 					controllerAs: 'ctrl'
 				})
 				// udernice
-				.state('udernice', {
+				.state('communicate', {
 					url: '/about/udernice',
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'todoist',
