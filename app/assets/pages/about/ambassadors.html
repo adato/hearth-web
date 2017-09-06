@@ -1,13 +1,13 @@
 <div class="row tabs-wrapper round">
 
-	<div class="column medium-2 padding-none tabs-titles-wrapper" ng-init="activeTabGroup = (activeTab === 'ambassadors' || activeTab === 'ambassadorsList' ? 'ambassadors' : activeTab)">
+	<div class="column medium-2 padding-none tabs-titles-wrapper">
 		<ul class="tabs vertical">
 			
 			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadors'}">
-				<a href="/app/about/ambassadors"><i class="fa" ng-class="{ 'fa-minus-square-o': activeTabGroup === 'ambassadors', 'fa-plus-square-o': activeTabGroup !== 'ambassadors'}"></i> Ambasadoři</a>
+				<a href="/app/about/ambassadors">Ambasadoři</a>
 			</li>
 			
-			<li class="tabs-title tabs-subtab" ng-class="{'is-active': activeTab === 'ambassadorsList'}" ng-if="activeTabGroup === 'ambassadors'">
+			<li class="tabs-title" ng-class="{'is-active': activeTab === 'ambassadorsList'}">
 				<a href="/app/about/ambassadors/list">Seznam ambasadorů</a>
 			</li>
 			

@@ -38,12 +38,6 @@ angular.module('hearth.services').service('SimilarProjectsService', ['$filter', 
 			country: 'cs',
 		},
 		{
-			url: 'http://rerere.cz/',
-			name: 'ReReRe',
-			description: 'ReReRe (Reduce, Reuse, Recycle) znamená snižuj spotřebu, opětovně používej, recykluj. Věříme, že těmito zásadami prodloužíme funkčním věcem život, těm nepotřebným nalezneme nové vděčné majitele a zároveň odlehčíme životnímu prostředí jednak snížením odpadu, který by jinak skončil na skládkách, a také ochranou přírodních zdrojů.',
-			country: 'cs',
-		},
-		{
 			url: 'https://www.nevyhazujto.cz/',
 			name: 'Nevyhazuj to',
 			description: '„Nepotřebné věci novému majiteli. Za odvoz.“',
