@@ -1,0 +1,57 @@
+<div class="about-page about-page--udernice">
+	<h2>Spřízněné projekty</h2>
+<p><em>...aneb děláme to podobně</em></p>
+
+<p class="panel panel-info small-12 large-12">
+	<i class="fa fa-heart color-primary margin-right-small"></i> Takto zvýrazněné jsou projekty se stejným záměrem jako Hearth.net
+</p>
+
+
+
+<h3 class="margin-top-large text-center">České</h3>
+<ul class="list-item-panel clearfix">
+	<li ng-repeat="project in fetchSimilar('cs') track by $index">
+		<h4>
+			<a target="_blank" ng-if="project.url" ng-href="{{ project.url }}">
+				<i class="fa fa-heart color-primary margin-right-small" ng-if="project.starred === true"></i>
+				{{ project.name }}
+			</a>
+			<span ng-if="!project.url">{{ project.name }}</span>
+		</h4>
+		<p ng-if="project.description" ng-bind-html="project.description">
+		</p>
+	</li>
+</ul>
+
+<h3 class="margin-top-large text-center">Slovenské</h3>
+<ul class="list-item-panel clearfix">
+	<li ng-repeat="project in fetchSimilar('sk') track by $index">
+		<h4>
+			<a target="_blank" ng-if="project.url" ng-href="{{ project.url }}">
+				<i class="fa fa-heart color-primary margin-right-small" ng-if="project.starred === true"></i>
+				{{ project.name }}
+			</a>
+			<span ng-if="!project.url">{{ project.name }}</span>
+		</h4>
+		<p ng-if="project.description">
+			{{ project.description }}
+		</p>
+	</li>
+</ul>
+
+<h3 class="margin-top-large text-center">Mezinárodní</h3>
+<ul class="list-item-panel clearfix">
+	<li ng-repeat="project in fetchSimilar('intl') track by $index">
+		<h4>
+			<a target="_blank" ng-if="project.url" ng-href="{{ project.url }}">
+				<i class="fa fa-heart color-primary margin-right-small" ng-if="project.starred === true"></i>
+				{{ project.name }}
+			</a>
+			<span ng-if="!project.url">{{ project.name }}</span>
+		</h4>
+		<p ng-if="project.description">
+			{{ project.description }}
+		</p>
+	</li>
+</ul>
+</div>
