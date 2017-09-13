@@ -28,6 +28,12 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			email: ''
 		};
 
+		$scope.ambassadorData = {
+			text: '',
+			email: '',
+			userId: ''
+		};
+
 		$scope.postalAddressData = {
 			email: '',
 			badges: false,
@@ -96,6 +102,20 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			});
 		};
 
+		$scope.submitEmailWithAmbassadorData = function () {
+			$scope.feedbackData = {
+				text: "Chci se stát ambasadorem Hearth.net:\n\n" +
+					$scope.ambassadorData.text + "\n\n" +
+					"Kontakt na mne: " + $scope.ambassadorData.email + "\n\n" +
+					"Můj profil: https://www.hearth.net" + $rootScope.getProfileLink('User', $scope.ambassadorData.userId)  + "\n\n" +
+					"(Odesláno z formuláře v sekci Podpořte nás)",
+				email: $scope.ambassadorData.email
+			};
+			sendFeedback(function() {
+				$scope.ambassadorDataEmailSent = true;
+			});
+		}
+
 		var sendFeedback = function(done) {
 			Feedback.add($scope.feedbackData, function() {
 				done();
@@ -107,8 +127,13 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 		var prefillEmail = function() {
 			Auth.refreshUserInfo();
 			var email = $rootScope.loggedUser.email;
+			var userId = $rootScope.loggedUser._id;
+
+			// set email
 			$scope.contactData.email = email;
 			$scope.postalAddressData.email = email;
+			$scope.ambassadorData.email = email;
+			$scope.ambassadorData.userId = userId; // and userId
 		};
 
 		$scope.modalInit = function(modalId) {

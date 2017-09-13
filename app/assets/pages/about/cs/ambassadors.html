@@ -1,0 +1,71 @@
+<div class="about-page about-page--ambassadors">
+	<h2>Ambasadoři Hearth.net</h2>
+	<p><em>
+		...aneb podporovatelé, šiřitelé, velvyslanci Hearth.net
+	</em></p>
+
+	<h3>Kdo jsme?</h3>
+	<p>
+		Jsme společenství lidí, kteří věří, že laskavost, štědrost, otevřenost a respekt patří ke šťastnému a dobrému životu. Máme proto společný cíl:
+	</p>
+	<p>
+		<b>Pomáhat šířit Hearth.net a naše společné <abbr title="Paradigma je obecně přijímané schéma, vzorec myšlení, či model.">paradigma</abbr> štědrosti, laskavosti a vzájemné pomoci</b>.
+	</p>
+	<p>
+		Laskavost je prodchnuta naším životem, rádi děláme radost druhým a zastáváme zdravé morální hodnoty. Cítíme, že činnost Hearth.net s námi ladí a chceme podpořit jeho šíření mezi další a další lidi.
+	</p>
+<div class="margin-bottom-large">
+	<!-- <h4>Poznej ambasadory Hearth.net</h4> -->
+	<div class="clearfix" ng-if="!ambassadorsListLoaded">
+		<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
+	</div>
+	<div ng-if="ambassadorsListLoaded">
+		<a class="clearfix" href="/app/about/ambassadors/list">
+			<div class="avatar-stack">
+				<avatar src="person.avatar.normal" size="small" type="'User'" ng-repeat="person in ambassadorsList track by person._id"></avatar>
+			</div>
+		</a>
+	</div>
+</div>
+
+<h3>Jak pomáháme Hearth.net?</h3>
+<ul>
+	<li>Šíříme povědomí o Hearth.net mezi přátele a známé.</li>
+	<li>Pomáháme se správou sítě Hearth.net jako <a href="/app/custodians">Správci obsahu</a>.</li>
+	<li>Vítáme nové uživatele Hearth.net zprávou.</li>
+	<li>Pomáháme při představování Hearth.net <a href="http://blog.hearth.net/akce-hearth-net/" target="_blank">na různých akcích</a>.</li>
+	<li>Někteří z nás sami pořádají v jejich městě <a href="http://blog.hearth.net/dariste/">Dařiště - tržiště darů</a>, přednášky nebo besedy.</li>
+	<li>Podporujeme Hearth.net i jinak - např. Dominik věnoval Hearth.net připojení kanceláře k internetu.</li>
+</ul>
+
+<h3 class="margin-top-large">Jak se stát ambasadorem?</h3>
+<p>
+	Chceš se o ambasadorství dozvědět víc nebo už víš, že se jím chceš stát? Máme radost!
+</p>
+
+<div class="panel small-12">
+	<div class="pull-left margin-top-tiny">Přidej se k nám a pomoz šířit Hearth.net do světa!</div>
+	<a class="button pull-right" href="" ng-click="openModal('ambassadors-modal-join-us');">Chci se stát ambasadorem</a>
+</div>
+
+
+<h3 class="">Přečti si více</h3>
+<ul>
+<li>
+	Na prvním setkání ambasadorů v říjnu roku 2016 jsme sepsali <a href="/app/about/spreading">Nápady k šíření radosti a štědrosti</a>. Podívej se tam, třeba můžeš něco udělat hned teď. <!-- Není tam tvůj nápad? Dej nám vědět, rádi doplníme další, co funguje. -->
+</li>
+<li>
+	Také jsme připravili <a href="/app/about/communicate">seznam nápadů a myšlenek</a>, které lidem komunikujeme a inspirujeme je, jak být vědomě užiteční a šťastní. 
+</li>
+<li>
+	Možná tě také budou zajímat <a href="/app/about/similar-projects">Spřízněné projekty</a> - tam najdeš podobné projekty jako Hearth.net, kde lidé mezi sebou sdílí, projevují si laskavost, vzájemnost (i když je pravda, že s různými motivacemi).
+</li>
+</ul>
+<ul class="list-item-panel margin-top-large">
+	<li class="panel-info">
+		<div class="pull-left margin-top-tiny">Hearth.net můžeš podpořit i jinak. Podívej se jak na to.</div>
+		<a class="button pull-right" href="/app/support-us">Chci podpořit Hearth.net</a>
+	</li>
+</ul>
+
+</div>

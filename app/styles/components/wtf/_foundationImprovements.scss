@@ -24,6 +24,10 @@
 		background: $tab-background-active;
 	}
 }
+.tabs-subtab {
+	border-left: 5px solid $primary-color;
+}
+
 @include breakpoint(medium up) {
 	.tabs-titles-wrapper {
 		// border-right: 1px solid $tab-background-active;
