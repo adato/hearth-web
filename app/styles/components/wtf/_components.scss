@@ -314,10 +314,21 @@
 .color-dark-gray{color: $colorDarkGray !important}
 .color-light-gray{color: $colorLightGray !important}
 
-.text-danger{color: $alert-color !important}
-.text-warning{color: $warning-color !important}
-.text-muted{color: $dark-gray !important}
-.text-success{color: $success-color !important}
+.text-danger{color: $alert-color !important;  border-color: $alert-color;}
+.text-warning{color: $warning-color !important;  border-color: $warning-color;}
+.text-muted{color: $dark-gray !important;  border-color: $dark-gray;}
+.text-success{color: $success-color !important; border-color: $success-color; }
+
+.text-danger a,
+.text-warning a, 
+.text-success a, 
+.text-muted a {
+	border-bottom: 1px solid;
+	color: inherit !important; 
+	&:hover {
+		border-color: $primary-color;
+	}
+}
 
 .background-primary{background-color: $primary-color !important}
 .background-secondary{background-color: $secondary-color !important}
