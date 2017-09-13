@@ -169,20 +169,6 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			story: 'Pomáhám Hearth.net jako dobrovolník na akcích, připravil jsem také workshop řezání lupénkovou pilkou na letní setkání se sdílením u Vltavy. Sdílet a propojovat lidi, tvořit soulad bych chtěl i dále. Máš akustický hudební nástroj či zpěv jako koníčka? Ozvi se a pojď s námi tvořit přátelskou atmosféru, chystám totiž v Praze na řadu malých hudebních událostí - muzicírování v parku pro radost. Ve změti darů a přání mne, je to už pár let zpět, zaujala Ingrid, kterou jsem tehdy osobně neznal. Její inzeráty s věnováním modlitby, čtyřlístků pro štěstí, sdílení se mlčky i slovem mne podnítily k tomu, že jsem jí pozval do čajovny. Bylo to milé setkání se skromnou a dobrosrdečnou osůbkou, která mne i přes to, že jí život uštědřil nejednu ránu, udivuje svou vůlí k životu.',
 		},
 		{ 
-			realName: 'Eduard Černáč',
-			id: '572dd1b83ed44b000b000324',
-			area: 'Praha',
-			reason: 'Mám za to, že pomáhat si a&nbsp;projevovat laskavost a&nbsp;přímost je přirozený způsob života.',
-			story: 'O Hearthu jsem se dozvěděl ústně v době, kdy se podařilo přesun do Prahy jedné kamarádce, ženě s pěti dětmi, které jsme společně s dalšími pomáhali již několik let. Ty první úspěšně předané dary třeba tiskárna pro Nízkoprahový D-klub; Nebo kytičky pro seniory, to bylo povícero afrických fialek v květináčích i s miskami, vezl jsem je tuším ve dvou krabicích busem, pak vlakem a&nbsp;nakonec předával na hlavním nádraží. Přijatý dar koučování od Nastěnky. a&nbsp;přivítání od Honzy Dolínka.',
-		},
-		{ 
-			realName: 'Hana Holá',
-			id: '569620a966a6f10007001192',
-			area: 'Praha',
-			reason: 'Ambasadorství ke mně přišlo tak nějak samo. :-) Hearth.net se mi líbí již delší dobu a již delší dobu jsem měla pocit, že bych mohla Hearth.net podpořit i jinak než jako běžný uživatel. Celé to začalo, když jsem potkala Lenku (v tu dobu novou ředitelku Adato Paradigma) a&nbsp;tak nějak jsme si hned sedly.',
-			story: 'Zažila jsem si, že splněná přání přichází se správným nastavením mysli.  Jsem šťastná, protože cítím, že jsem na cestě, která mi dává smysl a&nbsp;baví mě. Současně mě naplňuje, že já sama mohu pomáhat jiným, aby svou cestu našli, ať už je to díky koučování, běžnému rozhovoru či „jen“ úsměvu. :-) Mám radost, když vidím u druhých radost po tom, co jim předám svůj dar, nebo se zúčastní mého kurzu. Díky Hearth.net jsem si uvědomila, že umím spíš dávat, než žádat, a&nbsp;díky Hearth.net se to učím – i když zatím velice pomalu. :-D',
-		},
-		{ 
 			realName: 'Petr Noščák',
 			id: '53f5cc1e6232300002080000',
 			area: 'Liberec, Liberecký kraj',
