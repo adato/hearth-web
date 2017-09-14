@@ -30,21 +30,45 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     const getTypographiesData = () => {
       return [
-        {name: 'Header 1', code: '<h1 class="header-1">Pro lidi s otevřeným srdcem</h1>'},
-        {name: 'Header 2', code: '<h2 class="header-2">Sdílejte dary a přání</h2>'},
-        {name: 'Header 3', code: '<h3 class="header-3">Prostor pro lidi s otevřeným srdcem</h3>'},
-        {name: 'Header 4', code: '<h4 class="header-4">Prostor pro lidi s otevřeným srdcem</h4>'},
-        {name: 'Header 5', code: '<h5 class="header-5">Prostor pro lidi s otevřeným srdcem</h5>'},
-        {name: 'Header 6', code: '<h6 class="header-6">Prostor pro lidi s otevřeným srdcem</h6>'},
+        {name: '', code: '<h1 class="header-1">Header 1 - Pro lidi s otevřeným srdcem</h1>'},
+        {name: '', code: '<h2 class="header-2">Header 2 - Pro lidi s otevřeným srdcem</h2>'},
+        {name: '', code: '<h3 class="header-3">Header 3 - Pro lidi s otevřeným srdcem</h3>'},
+        {name: '', code: '<h4 class="header-4">Header 4 - Pro lidi s otevřeným srdcem</h4>'},
+        {name: '', code: '<h5 class="header-5">Header 5 - Pro lidi s otevřeným srdcem</h5>'},
+        {name: '', code: '<h6 class="header-6">Header 6 - Pro lidi s otevřeným srdcem</h6>'},
         {
           name: 'Paragraph',
-          code: '<p>Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>'
+          code: '<p>Co nás baví a naplňuje, <a href="#">posíláme dál</a>. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>'
         },
+        {
+          name: 'Muted and text emphasis',
+          code: '<p class="text-muted">Co nás baví a naplňuje, <a href="#">posíláme dál</a>. Co sami potřebujeme, dostáváme od druhých. Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)</p>'
+        },
+        {
+          name: '',
+          code: '<p class="text-danger">Je nám líto, tuto akci <a href="#">nelze provést</a>.</p>'
+        },
+        {
+          name: '',
+          code: '<p class="text-warning">Opravdu chcete smazat <a href="#">svůj profil</a>?</p>'
+        },
+        {
+          name: '',
+          code: '<p class="text-success">Skvělé, vítejte na palubě. <a href="#">Připoutejte se, prosím</a>!</p>'
+        },
+        { name: 'Links', code: '<a href="#">This is a link</a>' },
         {
           name: 'Label',
           code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>'
-        }
-
+        },
+        {
+          name: 'Tags',
+          code: '<div class="tags tagsActive"><ul class="tagList"><li>Kniha</li><li>Zahrádkaření</li><li>Plevely</li></ul></div>'
+        },        
+        { name: 'Alert', code: '<div class="alert-box alert error"><i class="fa fa-warning"></i> This a serious problem</div>' },
+        { name: 'Warning', code: '<div class="alert-box warning">This is a warning about some dangerous action</div>' },
+        { name: 'Success', code: '<div class="alert-box success">This is a notification of success</div>' },
+        { name: 'Info', code: '<div class="alert-box info">This is an information or confirmation</div>' },
       ];
     };
 
