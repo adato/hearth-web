@@ -20,7 +20,8 @@
 
         <h2>Buttons</h2>
         <div ng-repeat="item in buttons">
-          <div class="flex flex-space-between">
+          <h3 ng-if="item.name" ng-bind="item.name"></h3>
+          <div class="flex flex-space-between" ng-if="item.code">
             <div ng-bind-html="item.code"></div>
             <div ng-bind="item.description"></div>
           </div>

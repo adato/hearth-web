@@ -59,7 +59,7 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         { name: 'Links', code: '<a href="#">This is a link</a>' },
         {
           name: 'Label',
-          code: '<div class="label">R2D2</div><div class="label warning hollow">C3PO</div><div class="label alert">These aren\'t the labels you\'re looking for</div>'
+          code: '<div class="label">R2D2</div> <div class="label warning hollow">C3PO</div> <div class="label alert">These aren\'t the labels you\'re looking for</div>'
         },
         {
           name: 'Tags',
@@ -74,16 +74,32 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
 
     const getButtonsData = () => {
       return [
-        {code: '<button class="button">primary</button>'},
-        {code: '<button class="button secondary">secondary</button>'},
-        {code: '<button class="button offer">need</button>', desc: 'The style is set according to post character.'},
-        {code: '<button class="button need">offer</button>', desc: 'The style is set according to post character.'},
+        { name: 'Button and link elements'},
+        { code: '<a>link</a>' },
+        { code: '<a class="button">link button</a>' },
+        { code: '<button class="button">button</button>' },
+        { name: 'Button sizes' },
+        { code: '<button class="button small">small button</button>' },
+        { code: '<button class="button">default button</button>' },
+        { code: '<button class="button large">large button</button>' },
+        { name: 'Button types' },
+        { code: '<button class="button">primary button</button>' },
+        { code: '<button class="button secondary">secondary button</button>' },
+        { code: '<button class="button offer">need</button>', desc: 'The style is set according to post character.' },
+        { code: '<button class="button need">offer</button>', desc: 'The style is set according to post character.' },
         {code: '<button class="button dark-gray">dark-gray</button>'},
+        { name: 'Icon buttons' },
         {code: '<button class="button"><i class="fa fa-globe"></i><span>text</span></button>'},
         {code: '<button class="button"><i class=\"fa fa-globe\"></i></button>'},
+        { name: 'Hollow buttons' },
         {code: '<button class="hollow button">primary inv</button>'},
-        {code: '<button class="hollow button secondary">secondary inv</button>'},
-        {code: '<button class="button disabled">disabled</button>'}
+        {code: '<button class="hollow button large dark-gray"><i class="fa fa-filter"></i> dark-gray inv</button>'},
+        {code: '<button class="hollow button offer">hollow offer</button>'},
+        {code: '<button class="hollow button need">hollow need</button>'},
+        { name: 'Disabled buttons' },
+        {code: '<button class="button disabled">disabled</button>'},
+        {code: '<button class="large button offer disabled">large offer disabled</button>'},
+        {code: '<button class="small button dark-gray disabled">small dark-gray disabled</button>'},
       ];
     };
 
