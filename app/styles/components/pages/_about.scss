@@ -1,0 +1,48 @@
+$list-item-panel-color: $medium-gray;
+
+// prototypes, dont use directly
+.about-page-panel {
+	display:inline-block;
+	border-radius:$global-radius;
+	padding:$size-small;
+	margin-bottom:$size-small;
+
+	border:1px solid rgba($list-item-panel-color, .4);
+	background: rgba($list-item-panel-color, .1);
+}
+
+.about-page-panel--info {
+	border:1px solid rgba($primary-color, .2);
+	background: rgba($primary-color, .03);
+}
+
+////////////////////////////////////////
+
+
+.about-page {
+	.list-item-panel {
+		margin:0;
+		&>li { 
+			list-style-type: none; 			
+			@extend .small-12;
+			@extend .large-12;
+			@extend .about-page-panel;
+
+
+			&.panel-info {
+				@extend .about-page-panel--info;
+			}
+		}
+
+	}
+	.panel {
+		@extend .about-page-panel;
+		&.panel-info {
+			@extend .about-page-panel--info;
+		}
+	}
+
+	.avatar-stack > .avatar {
+		z-index:1;
+	}
+}

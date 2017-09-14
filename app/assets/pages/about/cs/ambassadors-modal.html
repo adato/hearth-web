@@ -1,0 +1,45 @@
+<script type="text/ng-template" id="ambassadors-modal-join-us">
+	<div class="support-us-modal formStyle itemEdit modal" ng-controller="StaticPageCtrl">
+		<div class="head">
+			<h2>{{:: 'Staň se ambasadorem Hearth.net' | translate }}</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div ng-show="!ambassadorDataEmailSent">
+			<form ng-submit="submitEmailWithAmbassadorData()" id="" name="sendEmailWithAmbassadorData" class="invite-form" novalidate autofocus>
+				<p>Napiš prosím v pár větách, proč se chceš stát ambasadorem Hearth.net.</p>
+				<div class="row">
+					<div class="small-12 large-2 columns">
+						<label for="message-text">{{'Proč chci být ambasadorem:' | translate}}</label>
+					</div>
+					<div class="small-12 large-10 columns block">
+						<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="ambassadorData.text"/>
+					</div>
+				</div>
+
+				<div class="row clearfix">
+					<div class="small-12 large-2 columns">
+						<label for="email">{{'Můj e-mail:' | translate}}</label>
+					</div>
+					<div class="small-12 large-10 columns block">
+						<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="ambassadorData.email" ng-pattern="emailPattern"/>
+						<input type="hidden" name="userId" ng-model="ambassadorData.userId"/>
+					</div>
+				</div>
+
+				<div class="display-flex flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithAmbassadorData.$invalid" translate="COMMON.ACTION_SEND"></button>
+				</div>
+			</form>
+		</div>
+		<div ng-show="ambassadorDataEmailSent">
+			<p class="success">Díky za zájem, brzy se Ti ozveme na uvedený e-mail.</p>
+			<div class="display-flex flex-space-between margin-top-medium">
+				<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>

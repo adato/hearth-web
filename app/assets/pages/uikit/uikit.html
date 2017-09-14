@@ -41,13 +41,13 @@
           More information on the matter may be found e.g. <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines#Defining_sections" target="_blank">on MDN</a>.
         </p>
         <div ng-repeat="item in typographies">
-          <div class="block">
+          <div class="block margin-bottom-large">
             <h3 ng-bind="item.name"></h3>
             <div class="flex flex-align-end flex-space-between">
               <div id="typography-block-{{:: $index }}" ng-bind-html="item.code"></div>
               <div class="color-dark-gray margin-left-medium" style-getter="#typography-block-{{:: $index }} > *" style-to-get="font-size"></div>
             </div>
-            <small class="box background-light-gray padding-tiny" ng-bind="item.description"></small>
+            <small class="box background-light-gray padding-tiny margin-top-tiny" ng-bind="item.description"></small>
           </div>
         </div>
 
