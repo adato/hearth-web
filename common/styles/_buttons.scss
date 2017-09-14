@@ -1,6 +1,3 @@
-a.button {
-    text-decoration: none;
-}
 .button {
   margin: 0;
   font-weight: bold;
@@ -13,52 +10,62 @@ a.button {
     padding-bottom: 14px;
   }
 
-  // primary
-  &:hover {
-    background-color: scale-color($primary-color, $lightness: 10%);
-  }
-  &:focus,
-  &:active {
-    background-color: scale-color($primary-color, $lightness: -10%);
+  // PRIMARY BUTTON (BLUE)
+  &, &.button.primary {
+    @include button-style($primary-color, scale-color($primary-color, $lightness: 20%), $white);
   }
 
-  &.secondary {
-    color: $white;
-    &:hover {
-      color: $white;
-      background-color: scale-color($secondary-color, $lightness: 10%);
+  // SECONDARY BUTTON (GREEN)
+  &.secondary, &.need {
+    @include button-style($secondary-color, scale-color($secondary-color, $lightness: 20%), $white);
+    &.hollow {
+      @include button-style($white, $white, $secondary-color);
+      border-color: $secondary-color;
+      &:focus,
+      &:active,
+      &:hover {
+        border-color: scale-color($secondary-color, $lightness: -20%);
+        color: scale-color($secondary-color, $lightness: -20%);
+      }
     }
-    &:focus,
-    &:active {
-      color: $white;
-      background-color: scale-color($secondary-color, $lightness: -10%);
-    }
-  }
-
-  &.need {
-    @extend .secondary;
-  }
-
-  &.offer {
-    background-color: $tertiary-color;
-
-    &:focus,
-    &:active {
-      background-color: scale-color($tertiary-color, $lightness: -10%) !important;
-    }
-    &:hover {
-      background-color: scale-color($tertiary-color, $lightness: 10%);
+    &.disabled {
+      @include button-style(scale-color($secondary-color, $lightness: 40%), scale-color($secondary-color, $lightness: 40%), $white);
     }
   }
 
+  // TERTIARY BUTTON (ORANGE)
+  &.tertiary, &.offer {
+    @include button-style($tertiary-color, scale-color($tertiary-color, $lightness: 10%), $white);
+    &.hollow {
+      @include button-style($white, $white, $tertiary-color);
+      border-color: $tertiary-color;
+      &:focus,
+      &:active,
+      &:hover {
+        border-color: scale-color($tertiary-color, $lightness: -20%);
+        color: scale-color($tertiary-color, $lightness: -20%);
+      }
+    }
+    &.disabled {
+      @include button-style(scale-color($tertiary-color, $lightness: 40%), scale-color($tertiary-color, $lightness: 40%), $white);
+    }
+  }
+
+  // DARK GRAY BUTTON
   &.dark-gray {
-    background-color: $quaternary-color;
-    &:focus,
-    &:active {
-      background-color: scale-color($quaternary-color, $lightness: -10%) !important;
+    @include button-style($dark-gray, scale-color($dark-gray, $lightness: 10%), $white);
+    &.hollow {
+      @include button-style($white, $white, $dark-gray);
+      border-color: $dark-gray;
+      &:focus,
+      &:active,
+      &:hover {
+        border-color: scale-color($dark-gray, $lightness: -20%);
+        color: scale-color($dark-gray, $lightness: -20%);
+      }
     }
-    &:hover {
-      background-color: scale-color($quaternary-color, $lightness: 10%);
+    &.disabled {
+      @include button-style(scale-color($dark-gray, $lightness: 40%), scale-color($dark-gray, $lightness: 40%), $white);
     }
   }
 
@@ -69,13 +76,6 @@ a.button {
   .button-group.large &,
   &.large {
     padding: 1.5em 1em;
-  }
-
-  &.hollow,
-  &.hollow:hover,
-  &.hollow:focus,
-  &.hollow:active {
-    background-color: white;
   }
 
   &.button-white {
@@ -112,151 +112,9 @@ a.button {
   > i:first-child:not(:last-child) {
     margin-right: $size-small;
   }
-  //	min-width: 30 * $ui-small-grid-size;
-    //	padding: 0px $ui-grid-size;
-    //	margin: 0;
-    //	font-weight: 600;
-    //	height: $ui-button-height;
-    //	line-height: $ui-button-height;
-    //	text-align: center;
-    //	font-size: $ui-text-font-size;
-    //	border: none;
-    //	border-radius: $global-radius;
-    //	background: $primary-color;
-    //	transition: all .3s;
-    //	cursor: pointer;
-    //	outline: none;
-    //  &:hover {
-    //    background-color: lighten($primary-color, abs($button-function-factor));
-    //  }
-    //	&:focus,
-    //	&:active {
-    //		background-color: darken($primary-color, abs($button-function-factor));
-    //	}
-    //
-    //	@include breakpoint(large up) {
-    //		height: $ui-input-height;
-    //		line-height: $ui-input-height;
-    //  }
-  }
+} 
 
-//
-//.button2 {
-//	border-radius: $global-radius;
-//	border-color: $primary-color;
-//	transition: border-color .3s, background-color .3s;
-//	background-color: $primary-color;
-//	border: 2px solid $primary-color;
-//	cursor: pointer;
-//	color: white;
-//	padding: 1em 1.5em;
-//	&:hover {
-//		background-color: darken($primary-color, abs($button-function-factor));
-//		border-color: darken($primary-color, abs($button-function-factor));
-//		color: white;
-//	}
-//}
-//
-//.button-icon {
-//	background-color: transparent;
-//	color: $primary-color;
-//	border-width: 0px;
-//	margin-bottom: 0px;
-//	padding: 0px;
-//	&:hover,
-//	&:focus,
-//	{
-//		background-color: transparent;
-//		color: $primary-color;
-//	}
-//}
-//
-//.button-send {
-//	display: inline-block;
-//	min-width: initial !important;
-//	color: white;
-//	border: none;
-//	border-radius: $global-radius;
-//	font-weight: bold;
-//	/*font-size: 1.2rem;*/
-//	/*margin: 0 0 1.25rem;*/
-//	/*padding: 0.5rem 2rem;*/
-//	background-color: $primary-color;
-//	transition: background-color 300ms ease-out 0s;
-//	cursor: pointer;
-//	opacity: 1;
-//	&:hover,
-//	&:focus {
-//		background-color: darken($primary-color, abs($button-function-factor));
-//	}
-//	@extend .button;
-//}
-//
-//a.button-send {
-//	&:hover,
-//	&:focus {
-//		color: white;
-//		background-color: darken($primary-color, abs($button-function-factor));
-//	}
-//}
-//
-//button.no-vertical-padding {
-//	padding-top: 0px !important;
-//	padding-bottom: 0px !important;
-//}
-//
-///* temp */
-//.button-need{background-color: $colorNeed;}
-//.button-need,
-///* /temp */
-//.button.background-need {
-//	&:hover {
-//		background-color: lighten($colorNeed, abs($button-function-factor));
-//	}
-//	&:focus,
-//	&:active {
-//		background-color: darken($colorNeed, abs($button-function-factor));
-//	}
-//}
-//
-//.button.background-offer {
-//	background-color: $tertiary-color;
-//	&:hover {
-//		background-color: lighten($colorOffer, abs($button-function-factor));
-//	}
-//	&:focus,
-//	&:active {
-//		background-color: darken($colorOffer, abs($button-function-factor));
-//	}
-//}
-//
-//.button-white {
-//	height: inherit;
-//	min-width: inherit;
-//	color: #666;
-//	background-color: #fff;
-//	border: 2px solid $colorLightGray;
-//	&:hover {
-//		color: #333;
-//		background-color: $colorLightGray;
-//	}
-//	&:focus {
-//		color: #333;
-//		background-color: darken($colorLightGray, 10%);
-//	}
-//}
-//.button-white.active {
-//	background: $primary-color;
-//	color:#fff;
-//	font-weight: bold;
-//
-//	&:focus {
-//		background: darken($primary-color, 10%);
-//	}
-//}
-//.button-white[disabled],
-//.button-white[disabled]:hover {
-//	color: $colorDarkGray;
-//	background: $colorLightGray;
-//	border: $colorDarkGray;
-//}
+// RESET underline of <a>
+a.button {
+  text-decoration: none;
+}
