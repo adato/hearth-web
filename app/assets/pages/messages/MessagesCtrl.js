@@ -212,6 +212,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Conversations.markAsRead({
 				id: conversation._id
 			});
+			// local update as read (the previous call cange the conversation as read only on the server.
+			conversation.read = true;
 		};
 
 		UnauthReload.check();

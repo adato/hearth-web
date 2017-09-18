@@ -278,7 +278,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
 					ConversationAux.loadConversation(conversationId).then(conversation => {
 						$scope.info = conversation;
-						if ($state.params['mark-as-read']) markConversationAsRead(conversation);
+						if ($state.params['mark-as-read']) {
+						  markConversationAsRead(conversation);
+						  conversation.read = true;
+            }
 						setTitle();
 						$scope.loaded = true;
 
