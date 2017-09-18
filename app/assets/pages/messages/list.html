@@ -15,17 +15,26 @@
 		<a class="button display-block nowrap margin-bottom-small flex-div" ui-sref="messages.new" translate="MESSAGING.ACTION_CREATE_MESSAGE"></a>
 	</div>
 	<div loading show="reloading"></div>
-	<div class="messages-container display-flex flex-align-start" ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}" ng-if="!reloading" dynamic-height offset="0" container=".messages" min-height="340">
+	<div class="messages-container display-flex flex-align-start"
+       ng-class="{'detail-shown': ($state.params.id || $state.is('messages.new'))}"
+       ng-if="!reloading" dynamic-height offset="0" container=".messages" min-height="340">
 		<div id="about" class="conversations" ng-if="conversations.length" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
 			<div class="nano" custom-scrollbar>
 				<div class="nano-content" inner-scrolling="true">
 					<div class="nano-content-inner">
 						<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == $state.params.id}"></div>
 						<div class="text-center no-result" ng-if="!conversations.length" translate="MESSAGING.CONVERSATIONS.NO_RESULT"></div>
-						<a ui-sref="messages.detail({id: item._id})" ng-click="markAsRead(item)" class="conversation" ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}" ng-repeat="item in conversations" last-item-shown="loadBottom()">
+						<a ui-sref="messages.detail({id: item._id})"
+               ng-click="markAsRead(item)" class="conversation"
+               ng-class="{unreaded: !item.read, active: $state.params.id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == $state.params.id}"
+               ng-repeat="item in conversations" last-item-shown="loadBottom()">
 							<div class=" avatars ">
-								<avatar ng-if="item.participants.length==1 " src="person.avatar.normal " size="normal " type="person._type " ng-repeat="person in item.participants "></avatar>
-								<avatar ng-if="item.participants.length> 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
+								<avatar ng-if="item.participants.length==1 "
+                        src="person.avatar.normal " size="normal "
+                        type="person._type " ng-repeat="person in item.participants "></avatar>
+								<avatar ng-if="item.participants.length> 1"
+                        src="person.avatar.normal" size="small" type="person._type"
+                        ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
 								<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
 								<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
 							</div>
@@ -51,7 +60,9 @@
 									<span ng-if="item.last_message.owner._id == loggedUser._id" ng-bind=":: 'COMMON.YOU' | translate"></span>
 									<span ng-if="item.last_message.owner._id != loggedUser._id" ng-bind="item.last_message.owner.name"></span>: {{ item.last_message.text | ellipsis:60 }}
 								</p>
-								<i class="fright" ng-if="item.last_message.created_at" title="{{:: item.last_message.created_at | date:DATETIME_FORMATS.medium }}" ago="item.last_message.created_at"></i>
+								<i class="fright" ng-if="item.last_message.created_at"
+                   title="{{:: item.last_message.created_at | date:DATETIME_FORMATS.medium }}"
+                   ago="item.last_message.created_at"></i>
 							</div>
 							<div class="clear"></div>
 						</a>
