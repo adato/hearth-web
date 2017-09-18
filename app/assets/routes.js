@@ -155,9 +155,10 @@ angular.module('hearth').config([
 				template: '<conversation-add></conversation-add>',
 				policy: SIGNED_IN
 			})
+      // keep all current filter options, when you hit the detail of conversation.
 			.state('messages.detail', {
 				titleIgnore: true,
-				url: '/:id',
+				url: '/:id?archived&from_admin&as_replies&community_id&post_id',
 				template: '<conversation-detail></conversation-detail>',
 				policy: SIGNED_IN
 			})
