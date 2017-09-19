@@ -16,6 +16,15 @@ $list-item-panel-color: $medium-gray;
 	background: rgba($primary-color, .03);
 }
 
+.about-page--ambassadors {
+	.anchor {
+		display: block;
+		position: relative;
+		top: -100px;
+		visibility: hidden;
+	}
+}
+
 ////////////////////////////////////////
 
 
