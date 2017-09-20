@@ -14,6 +14,7 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 		$scope.ambassadorsList = [];
 		$scope.ambassadorsListLoaded = false;
 
+		// these are the communities which should be listed on custodians page
 		$scope.communities = { 
 			custodians: {
 				_id: '56b8b77fb433b4000700007a',
@@ -43,6 +44,14 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 			});
 		}
 
+		// fetches localities of ambassadors for map display
+		$scope.fetchAmbassadorsLocalities = function () {
+			$scope.ambassadorsLocalitiesLoaded = false;
+			AmbassadorsListService.getLocalities(function(localities) {
+				$scope.ambassadorsLocalities = localities;
+				$scope.ambassadorsLocalitiesLoaded = true;
+			});
+		}
 
 		// fetches information about two predefined communities (mainly for avatars) 
 		// does not cache data
@@ -60,7 +69,6 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 			return SimilarProjectsService.fetch(country);
 		}
 
-
 		// opens modal
 		$scope.openModal = function(templateId, controller) {
 			var ngDialogOptions = {
@@ -77,13 +85,12 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 		};
 
 
-
-
 		$scope.init = function() {
 			$scope.activeTab = getActiveTabFromState();
 
 			if ($scope.activeTab == 'ambassadors' || $scope.activeTab == 'ambassadorsList') {
 				$scope.fetchAmbassadorsList();
+				$scope.fetchAmbassadorsLocalities();
 			}
 
 			if ($scope.activeTab == 'custodians') {

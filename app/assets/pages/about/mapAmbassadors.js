@@ -21,7 +21,6 @@ angular.module('hearth.directives').directive('mapAmbassadors', [
 			link: function($scope, baseElement, attrs) {
 				var map, markers = [];
 				var options = {};
-				options.scrollwheel = ($scope.zoomOnScroll !== undefined ? $scope.zoomOnScroll : false);
 				var oms;
 
 				/**
@@ -39,7 +38,7 @@ angular.module('hearth.directives').directive('mapAmbassadors', [
 						return false;
 					map = geo.createMap($(".map-container")[0], options);
 					map.setOptions({
-						scrollwheel: false
+						scrollwheel: true
 					});
 
 					oms = new OverlappingMarkerSpiderfier(map, {
@@ -74,6 +73,7 @@ angular.module('hearth.directives').directive('mapAmbassadors', [
 
 					// fit markers to bound
 					map.fitBounds(bounds);
+					map.setZoom(7);
 
 					// don't zoom so close when in map is only one marker
 					var listener = google.maps.event.addListener(map, "idle", function() {
@@ -100,16 +100,16 @@ angular.module('hearth.directives').directive('mapAmbassadors', [
 
 					// add location markers into the map
 					$scope.items.forEach(function(item) {
-						var lat = item.geo[1];
-						var lng = item.geo[0];
+						var lat = item.locality[1];
+						var lng = item.locality[0];
 						var latLng = new google.maps.LatLng(lat, lng);
 						var marker = new google.maps.Marker({
 							map: map,
 							draggable: false,
 							position: latLng,
 							icon: {
-								url: $$config.imgUrl + '/pin.png',
-								size: new google.maps.Size(49, 49),
+								url: $$config.imgUrl + '/need.png',
+								size: new google.maps.Size(29, 53),
 								origin: new google.maps.Point(0, 0),
 								anchor: new google.maps.Point(14, 34)
 							}
