@@ -1,11 +1,6 @@
 <div class="about-page about-page--ambassadors">
 	<h2>Kdo jsou ambasadoři Hearth.net</h2>
 
-	<!-- spinner loader -->
-	<div class="clearfix" ng-if="!ambassadorsListLoaded">
-		<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
-	</div>
-
 	<!-- inital info -->
 	<div class="large-12 small-12 margin-bottom-small panel panel-info">
 		<div class="">
@@ -16,6 +11,12 @@
 	<div class="clearfix margin-top-small margin-bottom-medium">
 		<map-ambassadors class="map" style="height:350px;" items="ambassadorsLocalities" zoom-on-scroll="false"></map-ambassadors>
 	</div>
+
+	<!-- spinner loader -->
+	<div class="clearfix margin-top-medium margin-bottom-medium" ng-if="!ambassadorsListLoaded">
+		<i class="fa fa-spin fa-spinner"></i> <span translate="COMMON.LOADING"></span>
+	</div>
+
 	<!-- list of ambassadors -->
 	<div class="clearfix" ng-if="ambassadorsListLoaded">
 		<ul class="list-item-panel clearfix">
