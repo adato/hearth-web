@@ -73,7 +73,7 @@ angular.module('hearth.directives').directive('mapAmbassadors', [
 
 					// fit markers to bound
 					map.fitBounds(bounds);
-					map.setZoom(7);
+					//map.setZoom(6);
 
 					// don't zoom so close when in map is only one marker
 					var listener = google.maps.event.addListener(map, "idle", function() {
@@ -90,7 +90,7 @@ angular.module('hearth.directives').directive('mapAmbassadors', [
 					$scope.clearMap();
 
 					// if there are no locations, dont continue
-					if (!$scope.items.length) {
+					if (!$scope.items || !$scope.items.length) {
 						return false;
 					}
 					var infowindow = null;

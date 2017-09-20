@@ -172,7 +172,7 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			area: 'Praha',
 			geo: [[14.4378, 50.075538]],
 			reason: 'Projekt Hearth.net se mi osvědčil jako dobrá cesta při socializování se a poznávání lidí, kteří mne mohou posunout dál, ale i k lidem, které mohu inspirovat já a dělám to ze srdce rád. V takovém konceptu dobrosrdečného, komunitního prostředí, bez tržních principů se jako člověk tišší a plašší povahy cítím lépe. ',
-			story: 'Pomáhám Hearth.net jako dobrovolník na akcích, připravil jsem také workshop řezání lupénkovou pilkou na letní setkání se sdílením u Vltavy. Sdílet a propojovat lidi, tvořit soulad bych chtěl i dále. Máš akustický hudební nástroj či zpěv jako koníčka? Ozvi se a pojď s námi tvořit přátelskou atmosféru, chystám totiž v Praze na řadu malých hudebních událostí - muzicírování v parku pro radost. Ve změti darů a přání mne, je to už pár let zpět, zaujala Ingrid, kterou jsem tehdy osobně neznal. Její inzeráty s věnováním modlitby, čtyřlístků pro štěstí, sdílení se mlčky i slovem mne podnítily k tomu, že jsem jí pozval do čajovny. Bylo to milé setkání se skromnou a dobrosrdečnou osůbkou, která mne i přes to, že jí život uštědřil nejednu ránu, udivuje svou vůlí k životu.',
+			story: 'Pomáhám Hearth.net jako dobrovolník na akcích, připravil jsem také workshop řezání lupénkovou pilkou na letní setkání se sdílením u Vltavy. Chci soulad podporovat dál tak jak to umím nejlépe - sdílením mé tvorby a muzicírováním. Ve změti darů a přání mne, je to už pár let zpět, zaujala Ingrid, kterou jsem tehdy osobně neznal. Její inzeráty s věnováním modlitby, čtyřlístků pro štěstí, sdílení se mlčky i slovem mne podnítily k tomu, že jsem jí pozval do čajovny. Bylo to milé setkání se skromnou a dobrosrdečnou osůbkou, která mne i přes to, že jí život uštědřil nejednu ránu, udivuje svou vůlí k životu.',
 		},
 		{ 
 			realName: 'Petr Noščák',
@@ -196,7 +196,7 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			area: 'Praha, středočeský kraj, Zlínsko',
 			geo: [[14.4378, 50.075538],[17.662763, 49.224437]],
 			reason: 'Líbí se mi nová perspektiva, kterou mi Hearth.net vnesl do každodenního života – totiž více pospolitosti a&nbsp;vzájemného obohacování se díky sdílení. Vědomí, že jsme obklopeni spoustou skvělých lidí, o&nbsp;které se můžeme kdykoliv opřít, současně sami být oporou či inspirací potřebným – stačí se jen nebát důvěřovat a&nbsp;otevřít srdce, rozšířit okruh blízkých mimo zdi domova.',
-			story: 'Skrze drobné dary jsem poznala spoustu skvělých lidí, což mě posouvá dál. Co se materiálního daru týče, nej dárek byla žehlička, o&nbsp;kterou jsem zažádala a&nbsp;do 5 minut jsem ji už měla od kamarádky bydlící v naší ulici. Také spousta nehmotných darů a&nbsp;informací zde mě obohatila. Velmi si například cením možnosti pobývat na domečku v přírodě, který nám majitel propůjčil na dobu své nepřítomnosti. Mile mě hřeje u srdce, když si dá někdo na předání daru pro „cizího“ člověka záležet – s láskou a&nbsp;pozorností připravený balíček, který jsem nejednou dostala, dává znát, že žijeme v přátelském světě s velkými možnostmi a&nbsp;začínáme si to připouštět. Sama jsem pak snad vnesla trošku naděje do srdce paní, která můj nepoužívaný pareo šátek využila na terapie po úmrtí syna. Dlouho jsme si povídaly na ulici, dala mi nahlédnout do duše a&nbsp;jsem jí za to vděčná.',
+			story: 'Největším darem je Michal, se kterým jsem se skrze Hearth seznámila (a současně jsem Hearth poznala díky němu). Skrze drobné dary jsem také poznala spoustu skvělých lidí, což mě posouvá dál. Co se materiálního daru týče, nej dárek byla žehlička, o&nbsp;kterou jsem zažádala a&nbsp;do 5 minut jsem ji už měla od kamarádky bydlící v naší ulici. Také spousta nehmotných darů a&nbsp;informací zde mě obohatila. Velmi si například cením možnosti pobývat na domečku v přírodě, který nám majitel propůjčil na dobu své nepřítomnosti. Mile mě hřeje u srdce, když si dá někdo na předání daru pro „cizího“ člověka záležet – s láskou a&nbsp;pozorností připravený balíček, který jsem nejednou dostala, dává znát, že žijeme v přátelském světě s velkými možnostmi a&nbsp;začínáme si to připouštět. Sama jsem pak snad vnesla trošku naděje do srdce paní, která můj nepoužívaný pareo šátek využila na terapie po úmrtí syna. Dlouho jsme si povídaly na ulici, dala mi nahlédnout do duše a&nbsp;jsem jí za to vděčná.',
 		},
 		{ 
 			realName: 'Pavla Kohoutová',
@@ -205,6 +205,38 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			geo: [[14.4378, 50.075538], [15.222983, 49.430621]],
 			reason: 'Jsem součástí interního týmu Hearth.net, koordinátorkou ambasadorů, dobrovolníků a produkční off-line prezentací Hearth.net, pečuji o uživatele. Mám ráda komunitu, společenství lidí, kteří mají stejný směr.',
 			story: 'Když jsem Hearth.net „náhodou“ objevila, byla jsem nadšená z toho, že tohle fakt funguje! Že už existuje, co jsem vždycky cítila, že jsme všichni jedna rodina, že jsme propojení, podporujeme se, pomáháme si, zkrátka jsme „na stejné lodi“. Nadšeně jsem se zapojila a po roce přišel newsletter s poptávkou člověka do týmu, který přesně popisoval mě... a výsledek už znáte. Od té doby se zájmem pozoruji lidské příběhy štědrosti, laskavosti, někdy i smutku a naštvání, všechno, co k životu patří, a jsem ráda, že můžu Hearth.net pomáhat objevit dalším lidem.',
+		},
+		{ 
+			realName: 'Juraj Karlík',
+			id: '521f5d01b8f421d72000488c',
+			area: 'Košice, Slovensko',
+			geo: [[21.261075, 48.716386], [19.699024, 48.669026]],
+			reason: 'Oficiální ambasadorství je pro mě vlastně novinka. Přesto mám s Hearth.net několikaletou společnou historii. Rozhodně v tom důležitou roli sehrál můj vztah s Liborem Malým, který začal někdy v roce 2002, kdy nás kromě společné pracovní oblasti spojoval i stejný duchovní směr. Od doby, kdy Libor odešel ze světa byznysu, sleduji jeho záměr, který se mnou intenzivně rezonuje a jsem rád, že se můžu na jeho rozvoji podílet. Třeba i šířením nového paradigma na Slovensku a provozováním první „Setkávárny” – HalmiSpace v Košicích.',
+			story: 'Příběhů by bylo asi víc. Co mě ale těší je, že neustále potkávám spoustu lidí, kteří v podstatě Hearth žijí (většinou offline) a jsou velice překvapení a nadšení, že něco takového je vymyšlené a funkční i na internetu.',
+		},
+		{ 
+			realName: 'Stáňa Altmanová',
+			id: '5666e4a3f0570e00070000b5',
+			area: 'Praha',
+			geo: [[14.4378, 50.075538]],
+			reason: 'Protože chci pomáhat šířit povědomí o štědré sociální síti Hearth.net. Protože čím hustší bude síť uživatelů, tím snadněji se dá převést teorie do praxe. Čím více bude uživatelů, tím více bude darů a splněných přání :-) ',
+			story: 'Na Hearth.net vítám nováčky a pomáhám s představováním Hearth.net na festivalech a dalších akcích. Děti nejvíce ocenily náš, zatím poslední, přijatý dar - nalezené kotě, kterému jsme poskytli nový domov. Já za největší dar považuji setkání a setkávání se s fajn lidmi, ať jsou to ostatní ambasadoři, dárci nebo příjemci darů nebo lidé na různých akcích.',
+		},
+		{ 
+			realName: 'Jiří Veselý',
+			id: '56ee12c07a44ff0007000c32',
+			area: 'Brno',
+			geo: [[16.606837, 49.195060]],
+			reason: '„Nic není náhoda“, byl jsem osloven Hearthem',
+			story: 'Zde můj příběh: <a href="http://blog.hearth.net/hearth-jde-k-podstate-smyslu-byti-nahody-neexistuji/" target="_blank">http://blog.hearth.net/hearth-jde-k-podstate-smyslu-byti-nahody-neexistuji/</a>',
+		},
+		{ 
+			realName: 'Karolína Zíková',
+			id: '56ee12c07a44ff0007000c32',
+			area: 'Praha',
+			geo: [[14.4378, 50.075538]],
+			reason: 'Po tom, co jsem zůstala sama s pěti dětmi jsem hledala různé cesty, jak zachovat rodinu pohromadě a přežít vážnou nemoc díky radosti. Hearth.net je pokračovatelem toho, co jsem objevila - že s každou zkouškou přichází pomocník, stačí jen požádat. Po letech, kdy jsem pracovala v charitní oblasti a velmi dávala, se nyní učím dlouhodobě přijímat, což vnímám jako terapii sebelásky. Pokud máme otevřené srdce, dějí se zázraky',
+			story: 'Již několikrát se mi v životě stalo, že jsem měla tu čest oživit smutná místa, jak fyzicky úklidem, tak setkáváním lidí, kteří na místo vnesli radost. Když jsem se přistěhovala do Prahy, přišla jsem do velmi zničeného velkého bytu. V tom bytě bydlel asi deset let velmi nemocný a nešťastný politik a pak tam i zemřel. Místo sálalo smutkem, bylo doslova zčernalé tak, že jsme museli omývat zdi. Trvalo dva roky, než jsme část bytu zútulnili natolik, aby se v něm mohl scházet Reset. To je spolek Ramona z Hearth, který mi o něm pověděl. To byla první radost, která se v bytě udála a pokračovala dál skrze setkávání komunity Hearth. Scházeli jsme se v dosud nezrekonstruované místnosti, kterou jsem vyzdobila a svou mateřskou péčí dokázala zútulnit. Salvy porozumění, lásky a radosti jistě velmi přispěly k uzdravení toho místa. Ona velká místnost je nyní již úplně opravená a já mám naději se konečně věnovat původnímu plánu - léčivému masírování. Vím, že některé věci nejde obejít a radím všem, aby se nevzdávali, i když to hned nejde tak, jak by si představovali.',
 		},
 	];
 
