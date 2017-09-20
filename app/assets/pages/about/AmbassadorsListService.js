@@ -232,7 +232,7 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 		},
 		{ 
 			realName: 'Karolína Zíková',
-			id: '56ee12c07a44ff0007000c32',
+			id: '55547c58663761000b4d0000',
 			area: 'Praha',
 			geo: [[14.4378, 50.075538]],
 			reason: 'Po tom, co jsem zůstala sama s pěti dětmi jsem hledala různé cesty, jak zachovat rodinu pohromadě a přežít vážnou nemoc díky radosti. Hearth.net je pokračovatelem toho, co jsem objevila - že s každou zkouškou přichází pomocník, stačí jen požádat. Po letech, kdy jsem pracovala v charitní oblasti a velmi dávala, se nyní učím dlouhodobě přijímat, což vnímám jako terapii sebelásky. Pokud máme otevřené srdce, dějí se zázraky',
