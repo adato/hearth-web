@@ -210,7 +210,7 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			realName: 'Juraj Karlík',
 			id: '521f5d01b8f421d72000488c',
 			area: 'Košice, Slovensko',
-			geo: [[21.261075, 48.716386], [19.699024, 48.669026]],
+			geo: [[21.261075, 48.716386]],
 			reason: 'Oficiální ambasadorství je pro mě vlastně novinka. Přesto mám s Hearth.net několikaletou společnou historii. Rozhodně v tom důležitou roli sehrál můj vztah s Liborem Malým, který začal někdy v roce 2002, kdy nás kromě společné pracovní oblasti spojoval i stejný duchovní směr. Od doby, kdy Libor odešel ze světa byznysu, sleduji jeho záměr, který se mnou intenzivně rezonuje a jsem rád, že se můžu na jeho rozvoji podílet. Třeba i šířením nového paradigma na Slovensku a provozováním první „Setkávárny” – HalmiSpace v Košicích.',
 			story: 'Příběhů by bylo asi víc. Co mě ale těší je, že neustále potkávám spoustu lidí, kteří v podstatě Hearth žijí (většinou offline) a jsou velice překvapení a nadšení, že něco takového je vymyšlené a funkční i na internetu.',
 		},
