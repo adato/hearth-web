@@ -238,6 +238,14 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			reason: 'Po tom, co jsem zůstala sama s pěti dětmi jsem hledala různé cesty, jak zachovat rodinu pohromadě a přežít vážnou nemoc díky radosti. Hearth.net je pokračovatelem toho, co jsem objevila - že s každou zkouškou přichází pomocník, stačí jen požádat. Po letech, kdy jsem pracovala v charitní oblasti a velmi dávala, se nyní učím dlouhodobě přijímat, což vnímám jako terapii sebelásky. Pokud máme otevřené srdce, dějí se zázraky',
 			story: 'Již několikrát se mi v životě stalo, že jsem měla tu čest oživit smutná místa, jak fyzicky úklidem, tak setkáváním lidí, kteří na místo vnesli radost. Když jsem se přistěhovala do Prahy, přišla jsem do velmi zničeného velkého bytu. V tom bytě bydlel asi deset let velmi nemocný a nešťastný politik a pak tam i zemřel. Místo sálalo smutkem, bylo doslova zčernalé tak, že jsme museli omývat zdi. Trvalo dva roky, než jsme část bytu zútulnili natolik, aby se v něm mohl scházet Reset. To je spolek Ramona z Hearth, který mi o něm pověděl. To byla první radost, která se v bytě udála a pokračovala dál skrze setkávání komunity Hearth. Scházeli jsme se v dosud nezrekonstruované místnosti, kterou jsem vyzdobila a svou mateřskou péčí dokázala zútulnit. Salvy porozumění, lásky a radosti jistě velmi přispěly k uzdravení toho místa. Ona velká místnost je nyní již úplně opravená a já mám naději se konečně věnovat původnímu plánu - léčivému masírování. Vím, že některé věci nejde obejít a radím všem, aby se nevzdávali, i když to hned nejde tak, jak by si představovali.',
 		},
+		{ 
+			realName: 'Jana Raisová',
+			id: '552c001e65646600070a0000',
+			area: 'Liberec',
+			geo: [[15.054339, 50.766280]],
+			reason: 'Sdílím principy Hearth.net a vím, že má velký smysl je šířit mezi další lidi. Ráda cítím, že jsem na stejné vlně s dalšími podobně smýšlejícími bytostmi a vše je o RADOSTI.',
+			story: 'Vždy mě dostane, když někomu něco nabízím zdarma, jen tak. Lidi v sobě mají vzorec, že se musí ihned revanšovat. Když slyší, že dobrý čin nebo slovo mohou poslat dál až později, vždycky si zamyslí . . ., tak tyhle okamžiky mám moc ráda. Něco se MĚNÍ :). Jsem přesvědčena, že šířením myšlenky darů a konkrétními akcemi krásně „nabouráváme“ konzum, jež je nám vnucován ze všech stran a ještě se přitom dobře poznáme a pobavíme.',
+		}
 	];
 
 	function fetchAmbassadorsCommunity() {
