@@ -111,3 +111,14 @@ $large-avatar-size: 295px;
 		}
 	}
 }
+
+.avatar-stack-wrapped {
+	display:block;
+	margin-left:$small-avatar-size / 3;
+	& > .avatar {
+		&.avatar-small:first-child {
+			margin-left: -$small-avatar-size / 3;
+		}
+
+	}
+}
