@@ -12,6 +12,7 @@ angular.module('hearth.services').service('SimilarProjectsService', ['$filter', 
 			name: 'Freeshop Zdrojovny',
 			description: 'na klinice na Praze 3, Žižkově – 2 večery v týdnu, přijímají jen věci do domácnosti pro další využití – kdokoli si je může odnést. Motivy: „ekologie – znovuvyužití věcí, místo vyhazování solidarita – s těmi, co mají méně“.',
 			country: 'cs',
+			starred: true,
 		},
 		{
 			url: 'http://www.knihobudka.cz',
@@ -303,6 +304,13 @@ angular.module('hearth.services').service('SimilarProjectsService', ['$filter', 
 			name: 'Tamjdem',
 			description: 'nevládní neziskovka, působící v oblasti českého i mezinárodního dobrovolnictví. Organizují víkendovky na pomoc neziskovkám, workcampy a další dobrovolnické aktivity.',
 			country: 'cs',
+		},
+		{
+			url: 'https://www.facebook.com/pg/freeshopUP/about/',
+			name: 'Free Shop Udržitelný Palacký na Palackého univerzitě v Olomouci ',
+			description: 'Freeshop je místo, kam můžeš odložit nepotřebné věci a ostatní si je odtud můžou odnést. A to vše zdarma!',
+			country: 'cs',
+			starred: true,
 		},
 	];
 
