@@ -109,18 +109,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				}
 
 				// use sendActionRequest to delete conversation
-				$scope.deleteConversation = function(id) {
-					sendActionRequest(id, 'DELETE', Conversations.delete);
+				$scope.deleteConversation = function(conversation) {
+          markConversationAsRead(conversation, null);
+					sendActionRequest(conversation._id, 'DELETE', Conversations.delete);
 				};
 
 				// use sendActionRequest to archive conversation
-				$scope.archiveConversation = function(id) {
-					sendActionRequest(id, 'ARCHIVE', Conversations.archive);
+				$scope.archiveConversation = function(conversation) {
+				  markConversationAsRead(conversation, null);
+					sendActionRequest(conversation._id, 'ARCHIVE', Conversations.archive);
 				};
 
 				// use sendActionRequest to leave conversation
-				$scope.leaveConversation = function(id) {
-					sendActionRequest(id, 'LEAVE', Conversations.leave);
+				$scope.leaveConversation = function(conversation) {
+          markConversationAsRead(conversation, null);
+					sendActionRequest(conversation._id, 'LEAVE', Conversations.leave);
 				};
 
 				/**
