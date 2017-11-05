@@ -10,6 +10,7 @@ Dependencies:
  
 How to run server. From the project root run:
 ```shell
+./build.sh development
 npm start
 ```
 UI kit
@@ -55,7 +56,7 @@ For end2end testing we use Protractor tool which is build on top of selenium.
 Use npm to install all dependencies together with protractor and webdriver-manager tools which are needed for end2end testing.
 ```
 cd web/app
-npm install
+./build.sh development
 ./node_modules/.bin/webdriver-manager update
 ```
 
