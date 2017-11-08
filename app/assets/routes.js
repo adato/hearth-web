@@ -305,6 +305,10 @@ angular.module('hearth').config([
 					controller: 'AboutCtrl',
 					controllerAs: 'ctrl'
 				})
+				.state('principles-of-giving', {
+					url: '/about/principles',
+					templateUrl: 'assets/pages/about/en/principles.html',
+				})
 			.state('ourStory', {
 				url: '/our-story',
 				templateUrl: 'assets/pages/static/OurStory.html'
