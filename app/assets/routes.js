@@ -307,7 +307,7 @@ angular.module('hearth').config([
 				})
 				.state('principles-of-giving', {
 					url: '/about/principles',
-					templateUrl: 'assets/pages/about/en/principles.html',
+					templateUrl: 'assets/pages/about/principles.html',
 				})
 			.state('ourStory', {
 				url: '/our-story',
