@@ -107,6 +107,7 @@ Hearth is owned by the [Adato Paradigma, o.s.](http://www.adato.cz), a
 not-for-profit organization registered in the Czech Republic. Parts
 of Hearth will be released under the [Affero General Public
 License](http://www.gnu.org/licenses/agpl-3.0.html).
-Currently, Heart is developed by Czech IT company
-[TopMonks](http://www.topmonks.cz).
+Heart was co-developed by Czech IT company
+[TopMonks](http://www.topmonks.cz) and internal team of programmers. 
+Currently the source code was made public to motivate all interested programmers to share their time and co-create Hearth.net with the internal team.
 
