@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.controllers').controller('AboutCtrl', [
-	'$state', '$scope', 'AmbassadorsListService', 'Community', 'SimilarProjectsService', 'ngDialog',
-	function($state, $scope, AmbassadorsListService, Community, SimilarProjectsService, ngDialog) {
+	'$state', '$scope', 'AmbassadorsListService', 'Community', 'SimilarProjectsService', 'ngDialog', 'OpenGraph', '$translate', 'PageTitle',
+	function($state, $scope, AmbassadorsListService, Community, SimilarProjectsService, ngDialog, OpenGraph, $translate, PageTitle) {
 
 		$scope.activeTab = null;
 		$scope.ambassadorsList = [];
@@ -95,6 +95,13 @@ angular.module('hearth.controllers').controller('AboutCtrl', [
 
 			if ($scope.activeTab == 'custodians') {
 				$scope.scopeFetchCommunityInfo();
+			}
+
+			if ($scope.activeTab == 'principles') {
+				var title = $translate.instant('HEARTH.PRINCIPLES.NAVIGATION_ITEM');
+				var description = $translate.instant('HEARTH.PRINCIPLES.DESCRIPTION');
+				PageTitle.set(title);
+				OpenGraph.set(title, description);
 			}
 		};
 
