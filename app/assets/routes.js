@@ -308,6 +308,8 @@ angular.module('hearth').config([
 				.state('principles-of-giving', {
 					url: '/about/principles',
 					templateUrl: 'assets/pages/about/principles.html',
+					selectedTab: 'principles',
+					controller: 'AboutCtrl',
 				})
 			.state('ourStory', {
 				url: '/our-story',
