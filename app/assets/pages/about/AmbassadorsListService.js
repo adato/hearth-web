@@ -245,6 +245,38 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			geo: [[15.054339, 50.766280]],
 			reason: 'Sdílím principy Hearth.net a vím, že má velký smysl je šířit mezi další lidi. Ráda cítím, že jsem na stejné vlně s dalšími podobně smýšlejícími bytostmi a vše je o RADOSTI.',
 			story: 'Vždy mě dostane, když někomu něco nabízím zdarma, jen tak. Lidi v sobě mají vzorec, že se musí ihned revanšovat. Když slyší, že dobrý čin nebo slovo mohou poslat dál až později, vždycky si zamyslí . . ., tak tyhle okamžiky mám moc ráda. Něco se MĚNÍ :). Jsem přesvědčena, že šířením myšlenky darů a konkrétními akcemi krásně „nabouráváme“ konzum, jež je nám vnucován ze všech stran a ještě se přitom dobře poznáme a pobavíme.',
+		},
+		{ 
+			realName: 'Tomáš Sedláček',
+			id: '59cac1754c36700006e5e7a7',
+			area: 'Liberec, Rožnov pod Radhoštěm',
+			geo: [[15.054339, 50.766280], [18.143031,49.458526]],
+			reason: 'Protože velmi rád pracuji s lidmi. A ještě radši jim předávám něco, co má smysl. Něco dobrého, co může pomoci, nebo alespoň vykouzlit úsměv na tváři ať už tím, že něco přijmou nebo darují. Rád šířím povědomí o činnosti, do které se sami mohou lidé jednoduše zapojit. Také to dělám pro své potěšení, protože se zde kloubí dvě věci a to potkávat a prožívat nové.',
+			story: 'Mám to štěstí, že mám v okolí přátelé, kteří se Hearthu aktivně věnují. Díky kterým jsem mohl prezentovat Hearth na vlastní kůži. Obohatilo mě už jen to, že při vysvětlení, co ve skutečnosti Hearth je, se každému rozzářily oči. ',
+		},
+		{ 
+			realName: 'Václav Bubeníček',
+			id: '54a93d2c633564000d990000',
+			area: 'Praha, Beroun',
+			geo: [[14.4378, 50.075538],[14.086284, 49.967205]],
+			reason: 'V rámci smysluplného využití času, ve kterém žiji, mne kromě mé rodiny, přátel a práce fascinují projekty se společenským přesahem, které mají ambici měnit svět k lepšímu. Hearth,net je jedním z nich. Proto chci svými zkušenostmi přispět k rozšíření myšlenky daru, jako přirozené součásti našeho bytí. ',
+			story: 'Několik málo darů, které jsem prostřednictvím Hearth.net poskytl  mne naplnilo silným pocitem radosti. ',
+		},
+		{ 
+			realName: 'Veronika Borseková',
+			id: '59c6bdcc523cee00063a66c4',
+			area: 'Rakovník',
+			geo: [[13.739662, 50.106123]],
+			reason: 'Věřím v čistotu a dobrotu lidských srdci. Vím, že to, co lidem nedovoluje se otevřít, je jen pouhý strach. Hearth mi přijde jako skvělý „nastroj" na pomoc lidem nebát se byt „lidštější" a vzpomenout si na to, kdo uvnitř jsme. Nevidím v Hearth jen dávání a přijímání hmotných darů. Je to jak o dávání toho nejlepšího ze sebe, své přirozenosti, tak o odvaze přijímání toho nejlepšího od druhých. A ve finále o zrcadlení krásy. Jak by byl život jednoduchý, kdybychom nakonec v laskavosti a štědrosti druhých našli i to krásné v sobě samých...',
+			story: 'Je velice těžké vybrat ve stručnosti osobu, která mne na Hearth obohatila. Většina lidí, se kterými jsem přes Hearth komunikovala, nebo se osobně setkala, byli výjimeční lidé. Třeba paní Libuška… Je velice nemocná, finančně ji zajišťuje její manžel. Ona i přesto neúnavně hledá dary pro domov týraných žen a dětí. Pomáhá i z toho mála, co má. Je velkým příkladem, že i píle v hledání dárců je nakonec velkým darem.',
+		},
+		{ 
+			realName: 'Lenka Melicharová',
+			id: '534654db9303570200004288',
+			area: 'Praha',
+			geo: [[14.4378, 50.075538]],
+			reason: 'Protože tento projekt jde k esenciální přirozenosti mezilidských vztahů a také vztahu k sobě i k planetě. A taky protože pro Adato od ledna 2017 pracuji a tvořím projekt i tzv. „zevnitř" a ambasadorská komunita je vlajková loď projektu Hearthu.net.',
+			story: 'Hearth.net jsem objevila již před několika lety. Přijala jsem tehdy dar Adata v podobě dvou vstupenek na setkání s Dalajlámou, šla jsem se svou maminkou. Od té doby probíhají skrze Hearth.net samá krásná setkání. Jsou jich již desítky a za všechna jsem moc vděčná. Ráda bych kdyby se nám všem podařilo společně tvořit obsah Hearthu, který bude více o štědrosti v podobě sdílení našeho času, možností a hřejivé lidské pozornosti a vzájemné pomoci.',
 		}
 	];
 
