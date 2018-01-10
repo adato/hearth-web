@@ -19,7 +19,7 @@ To do so, you have to install
 [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). Also you
 will need to get 
 [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm) to build and
-run the Hearth.net server itself. Make supre you have both installed:
+run the Hearth.net server itself. Make sure you have both installed:
 
 ```bash
 $ git --version
@@ -55,16 +55,14 @@ server on [http://localhost:9000](http://localhost:9000)
 
 ### Contributing to the code
 If you are interested to get on board and help us make the Hearth.net better 
-then you should check [CONTRIBUTION.md](CONTRIBUTION.md). We are looking 
+then you should check [CONTRIBUTION.md](./CONTRIBUTION.md). We are looking 
 forward to hear from you. Any kind of help is welcomed. 
 
 ### UI kit
 Page with sample components used in Hearth.net project.
 
-Check the UI kit page here:
-```
-https://www.hearth.net/app/uikit
-```
+Check the UI kit page here: https://www.hearth.net/app/uikit
+
 
 ### Testing with Protractor
 For end2end testing we use Protractor tool which is build on top of selenium. 
