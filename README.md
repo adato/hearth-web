@@ -55,7 +55,7 @@ server on [http://localhost:9000](http://localhost:9000)
 
 ### Contributing to the code
 If you are interested to get on board and help us make the Hearth.net better 
-then you should check [CONTRIBUTION.md](./CONTRIBUTION.md). We are looking 
+then you should check [CONTRIBUTING.md](CONTRIBUTING.md). We are looking 
 forward to hear from you. Any kind of help is welcomed. 
 
 ### UI kit
