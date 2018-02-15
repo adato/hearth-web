@@ -3,13 +3,12 @@
 ## What is Hearth.net
 [Hearth.net](https://hearth.net) is a social network based on generosity. Users 
 are motivated to try the process of giving and accepting just for inner feeling
-of happiness. Throw generosity they may find inner freedom and peace.
+of happiness. Through generosity they may find inner freedom and peace.
 
 ## Why is Hearth.net a useful project 
 Hearth.net is a playground for all people from all around the world, who 
 understand the need of shifting the current paradigm.
 
-//TODO finish up this intro
 
 ## How to get started in few steps
 To run your very own web server to try Hearth.net for yourself, whether to help 

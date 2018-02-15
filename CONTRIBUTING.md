@@ -1,4 +1,4 @@
-#Contributing to Hearth.net web project
+# Contributing to Hearth.net web project
 
 This article is the main entrypoint for developers, who want to contribute to the open source project. This very first 
 version of this file covers the basics of how the code is maintained, development cycle and how to get involved. Please 
@@ -6,13 +6,13 @@ do not hesitate to contribute changes even to this file. It is going to be const
 could be. Any uncertain points will be polished and cleared in future versions of this file. Thank you for understanding 
 and for your updates. It is greatly appreciated. 
 
-##Branching of Hearth.net Web
+## Branching of Hearth.net Web
 
 There are three main branches in the project, Each has it's own purpose
 
 * Production branch (branch named `master`) stores code, that is actually running on our [servers](https://www.hearth.net). 
 It is locked for pushes and merges. Only pull requests can be merged by maintainers or administrators of the project.  
-* Staging branch (branch name `stage`) stores approved changes to the production - see deployment cycle for details, how
+* Staging branch (branch name `staging`) stores approved changes to the production - see deployment cycle for details, how
 it is distributed to master branch. When contributing any code, this is the branch that serves as source of new branches
 with contributions. [Here](https://stage.hearth.net) you can see the staging version of Hearth.net Web. the API that is
 responsible to fetch data for staging Hearth.net is running at https://api.stage.hearth.net and the data there do not 
@@ -21,23 +21,23 @@ administrators of the project.
 * Developing branch (branch name `develop`) mainly used for inhouse developers of Adato Paradigma. This branch is a mess
 and it will be sooner or later deleted :-) 
 
-##Deployment cycle
+## Deployment cycle
 
 Each issue that is implemented into Hearth.net web goes through the same lifecycle. The life cycle is described below
 
-* developer updates the git repository's branch `stage` on his/her box.
+* developer updates the git repository's branch `staging` on his/her box.
 ```bash
 #if stage has never been pulled:
-git checkout -b stage origin/stage
+git checkout -b staging origin/staging
 
 #otherwise
-git checkout stage
-git merge origin/stage
+git checkout staging
+git merge origin/staging
 ```
 * developer takes the responsibility for the issue and creates new branch. Please refer to branch naming convention to 
 properly name the branch  
 ```bash
-git checkout -b name_of_new_branch stage
+git checkout -b name_of_new_branch staging
 ```
 This may also be done be forking the stage branch and work on his/her own repository. But please maintain the naming 
 convention, as well. 
