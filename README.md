@@ -58,6 +58,9 @@ If you are interested to get on board and help us make the Hearth.net better
 then you should check [CONTRIBUTING.md](CONTRIBUTING.md). We are looking 
 forward to hear from you. Any kind of help is welcomed. 
 
+While communicating with other developers and maintainers we've agreed to use follow the
+[code of conduct](CODE-OF-CONDUCT.md)
+
 ### UI kit
 Page with sample components used in Hearth.net project.
 
