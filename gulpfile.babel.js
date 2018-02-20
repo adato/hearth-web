@@ -187,7 +187,8 @@ function templates() {
     .pipe($.angularTemplatecache({
       module: 'hearth.templates',
       transformUrl: (name) => {
-        return 'assets/' + name;
+        if (name && name[0] !== '/') { name = '/' + name; } // fix trailing slashes on path
+        return 'assets' + name;
       },
       standalone: true
     }))
