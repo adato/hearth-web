@@ -127,7 +127,7 @@ Hearth.net is owned by the
 organization registered in the Czech Republic. Parts of Hearth.net are 
 released under the 
 [Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.html).
-Heart.net was co-developed by Czech IT company 
+Hearth.net was co-developed by Czech IT company 
 [TopMonks](http://www.topmonks.cz) and internal team of programmers. 
 Currently the source code was made public to motivate all interested 
 programmers to share their time and co-create Hearth.net with the 
