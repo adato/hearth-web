@@ -63,7 +63,7 @@ ends.
 
 ## Issue tracker 
 
-TO BE DECIDED ON MONDAY 19th of Feb 2018
+Public Jira will be created in very short time. This document will be updated when it happens with more details.
 
 ## How can you contribute
 
