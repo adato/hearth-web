@@ -6,6 +6,8 @@ do not hesitate to contribute changes even to this file. It is going to be const
 could be. Any uncertain points will be polished and cleared in future versions of this file. Thank you for understanding 
 and for your updates. It is greatly appreciated. 
 
+To reach the administrator of this repository in person, write me an email: premek.maly (at) hearth.net
+
 ## Branching of Hearth.net Web
 
 There are three main branches in the project, Each has it's own purpose
