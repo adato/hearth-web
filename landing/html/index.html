@@ -124,6 +124,12 @@
 			var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split('/').slice(0, 1).toString();
 			if (langsAvailable.indexOf(langUrl) == -1) langUrl = defaultLanguage;
 
+			//console.log("langBrowser: ", langBrowser);
+			//console.log("langUrl: ", langUrl);
+
+			if (typeof langBrowser === 'undefined') langBrowser = defaultLanguage;
+			if (typeof langUrl === 'undefined') langUrl = defaultLanguage;
+
 			// ASSIGN LANG ATTRIBUTE TO HTML TAG
 			document.querySelector('html').setAttribute('lang', langUrl);
 
