@@ -111,9 +111,6 @@ angular.module('hearth.controllers').controller('PostEdit', [
 
 		$scope.sending = false;
 		$scope.pauseSending = false;
-		$scope.twoStepForm = {
-			step2: false
-		}
 
 		$rootScope.$on('removeAd', function(info, id) {
 			if (id == $scope.post._id) {
@@ -212,6 +209,12 @@ angular.module('hearth.controllers').controller('PostEdit', [
 		$scope.transformDataIn = function(post) {
 			if (post) {
 				post.text = $.trim(post.text);
+
+				if (!post.exact_type || !post.type) {
+					post.type = OFFER;
+					post.exact_type = GIFT;
+				}
+
 				post.dateOrig = post.valid_until;
 				post.valid_until_unlimited = (post.valid_until == 'unlimited');
 
