@@ -19,7 +19,11 @@
 
 		<div class="block">
 			<label>
-				<textarea ctrl-enter-submit required autofocus ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'POST.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message" class="reply-ad-textarea text-input middle"></textarea>
+				<textarea ctrl-enter-submit required autofocus 
+					ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" 
+					ng-attr-placeholder="{{:: 'POST.REPLY.TEXT_PLACEHOLDER_' + post.type.toUpperCase() | translate }}" 
+					ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" 
+					name="message" class="reply-ad-textarea text-input middle"></textarea>
 				<div class="form-error" ng-show="showErrors.message && replyForm.$dirty">
 					<span ng-show="replyForm.message.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
 					<span ng-show="replyForm.message.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>

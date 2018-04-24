@@ -117,10 +117,6 @@
 											<button ng-if="!item.is_replied && !isMine" ng-click="PostAux.replyItem(item)" class="button" ng-class=':: item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
 											<span ng-if="item.is_replied" translate="POST.NOTIFY.YOU_ALREADY_REPLIED"></span>
 										</div>
-										<div>
-											<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-											<div ng-if="!item.reply_count" translate="POST.DETAIL.NO_REPLY"></div>
-										</div>
 									</div>
 								</div>
 								<div class='display-flex'>
