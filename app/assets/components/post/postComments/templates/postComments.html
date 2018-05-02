@@ -7,18 +7,29 @@
       </div>
       <div class="color-dark-gray margin-bottom-tiny text-small" ng-bind="item.created_at_timeago"></div>
     </div>
-    <div ng-bind="item.text"></div>
+    <div ng-bind-html="item.text | linky:'_blank' | nl2br"></div>
   </div>
-  <form ng-submit="vm.submit(vm.message)" class="footer-item footer-item-bordered">
+  <form name="postCommentForm" ng-submit="vm.submit(vm.message)" class="footer-item footer-item-bordered">
     <div class="block margin-bottom-small flex flex-divided-medium flex-align-start">
       <avatar src="vm.loggedUser.avatar.normal" size="mini" class="margin-top-tiny"></avatar>
-      <textarea comments-focusser autosize-textarea ctrl-enter-submit class="textarea-one-line" ng-focus="vm.submitShown = true" ng-model="vm.message" translate-attr=":: {placeholder: item.user._id === vm.loggedUser._id ? 'POST.COMMENT.YOUR_ANSWER' : 'POST.COMMENT.YOUR_COMMENT'}"></textarea>
+      <textarea class="textarea-one-line" 
+        comments-focusser autosize-textarea ctrl-enter-submit 
+        ng-focus="vm.submitShown = true; vm.showError = false" 
+        ng-blur="vm.showError = true" 
+        ng-model="vm.message" 
+        ng-maxlength="500" ng-minlength="2"
+        translate-attr=":: {placeholder: item.user._id === vm.loggedUser._id ? 'POST.COMMENT.YOUR_ANSWER' : 'POST.COMMENT.YOUR_COMMENT'}">s
+      </textarea>
     </div>
-    <div class="text-right">
+    <div class="pull-left error" ng-show="postCommentForm.$invalid && vm.showError">
+        <span ng-show="postCommentForm.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
+      </div>
+    <div class="pull-right">
       <button type="submit" class="button">
         <span translate="COMMON.ACTION_SUBMIT"></span>
         <i class="fa fa-fw margin-left-tiny" ng-class="{'fa-spinner fa-spin': vm.sending, 'fa-check': vm.success, 'fa-times': vm.error, 'fa-send': !(vm.sending || vm.success || vm.error)}"></i>
       </button>
     </div>
+    <div class="clearfix"></div>
   </div>
 </div>

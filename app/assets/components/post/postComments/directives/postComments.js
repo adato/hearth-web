@@ -33,6 +33,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.success
         ctrl.error
 
+        ctrl.showError = false; // default state of error message
         ctrl.submit = submitMessage
 
         init()
