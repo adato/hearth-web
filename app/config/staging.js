@@ -17,7 +17,7 @@ $$localConfig = {
 	map: {
 		apiKey: 'AIzaSyCyNFqXADqUeQkYu9ed3FVsprK0vjR6SFo'
 	},
-	apiPath: 'http://api.stage.hearth.net',
+	apiPath: 'https://api.stage.hearth.net',
 	rollbar: '98de3a45eb1c44f59f35cfbfbe24bc35',
 	websocket: {
 		url: 'wss://api.stage.hearth.net/cable',
