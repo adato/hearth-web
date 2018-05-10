@@ -1,7 +1,7 @@
 <div>
 	<div loading show="!info.messages.length"></div>
 	<div class="conversation-detail" ng-if="info.messages.length">
-		<div class="conversation-detail-top">
+		<div class="conversation-detail-top" ng-if="info.last_message.owner._id != $root.config.notificationUserId">
 			<span class="fleft conversation-title" ng-if="info">
 				<span class="left" ng-if="info.titleDetail && !info.titleCustom">
 					<span ng-if="!info.post">{{:: info.titleDetail| ellipsis:120 }}</span>
@@ -74,7 +74,7 @@
 									</a>
 									<span class="color-dark-gray" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
 								</div>
-								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+								<p ng-bind-html="item.text | linky | nl2br"></p>
 								<file-viewer ng-if="item.file_attachments.length" message="item"></file-viewer>
 							</div>
 							<div ng-if="!item.author && item.system_data.target._id != loggedUser._id" class="system-message" ng-bind-html="'MESSAGING.MESSAGE.SYSTEM.'+item.system_data.target._type+'.'+item.verb | translate: item.system_data"></div>
@@ -84,6 +84,6 @@
 				</div>
 			</div>
 		</div>
-		<conversation-reply class="messages-reply" conversation="info"></conversation-reply>
+		<conversation-reply class="messages-reply" conversation="info" ng-if="info.last_message.owner._id != $root.config.notificationUserId"></conversation-reply>
 	</div>
 </div>
