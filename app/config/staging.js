@@ -17,7 +17,7 @@ $$localConfig = {
 	map: {
 		apiKey: 'AIzaSyCyNFqXADqUeQkYu9ed3FVsprK0vjR6SFo'
 	},
-	apiPath: 'https://api.stage.hearth.net',
+	apiPath: 'http://api.stage.hearth.net',
 	rollbar: '98de3a45eb1c44f59f35cfbfbe24bc35',
 	websocket: {
 		url: 'wss://api.stage.hearth.net/cable',
@@ -31,5 +31,6 @@ $$localConfig = {
 		licenseKey: "ab68fb44af",
 		applicationID: "7058262",
 		agent: "js-agent.newrelic.com/nr-515.min.js"
-	}
+	},
+	notificationUserId: '5aeafc9e9a8ab50006865e9d',
 };

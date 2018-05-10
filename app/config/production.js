@@ -30,5 +30,6 @@ $$localConfig = {
 		licenseKey: "b7ed760467",
 		applicationID: "5107330",
 		agent: "js-agent.newrelic.com/nr-632.min.js"
-	}
+	},
+	notificationUserId: '5af2d6ca4c5eaa00068c221f',
 };

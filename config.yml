@@ -17,8 +17,8 @@ UNCSS_OPTIONS:
 
 LOCALE:
   getPath:
-    app: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ"
-    landing: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=landing&fallback=cs_CZ"
+    app: "https://localise.biz/api/export/locale/{langVal}.json?key=aGCT6oA9JxFYF3qhF_EyPTk-Wx8JAvbE&filter=frontend&fallback=cs_CZ"
+    landing: "https://localise.biz/api/export/locale/{langVal}.json?key=aGCT6oA9JxFYF3qhF_EyPTk-Wx8JAvbE&filter=landing&fallback=cs_CZ"
   languages:
     cs: "cs_CZ"
     sk: "sk_SK"
