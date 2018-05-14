@@ -1,5 +1,5 @@
 <div>
-  <div ng-repeat="item in vm.model" class="footer-item footer-item-bordered">
+  <div ng-repeat="item in vm.model" class="footer-item footer-item-bordered" id="comment-{{ item._id }}">
     <div class="medium-flex flex-space-between">
       <div class="flex flex-divided-medium margin-bottom-tiny">
         <avatar src="item.user.avatar.normal" size="mini"></avatar>
