@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
       postId: '='
     },
     controllerAs: 'vm',
-    controller: ['Post', '$rootScope', '$timeout', '$filter', '$anchorScroll', function(Post, $rootScope, $timeout, $filter, $anchorScroll) {
+    controller: ['Post', '$rootScope', '$timeout', '$filter', '$anchorScroll', '$location', function(Post, $rootScope, $timeout, $filter, $anchorScroll, $location) {
 
       const ctrl = this
 
@@ -38,10 +38,6 @@ angular.module('hearth.directives').directive('postComments', [function() {
 
         init()
 
-        setTimeout(function () {  // scroll to comment-{id} when specified
-          $anchorScroll();
-        }, 100);
-
       }
 
       /////////////////
@@ -53,7 +49,13 @@ angular.module('hearth.directives').directive('postComments', [function() {
           res && res.length && (ctrl.model = res.map(comment => {
 						comment.created_at_timeago = $filter('ago')(comment.created_at)
 						return comment
-					}))
+          }))
+          // scroll to comments if hash is specified
+          if (res.length && $location.hash()) {
+            setTimeout(function () {  // scroll to comment-{id} when specified
+              $anchorScroll();
+            }, 100);
+          }
         })
         .catch(err => {
           console.log('failed to query comments', err)
