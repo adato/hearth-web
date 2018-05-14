@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
       postId: '='
     },
     controllerAs: 'vm',
-    controller: ['Post', '$rootScope', '$timeout', '$filter', function(Post, $rootScope, $timeout, $filter) {
+    controller: ['Post', '$rootScope', '$timeout', '$filter', '$anchorScroll', function(Post, $rootScope, $timeout, $filter, $anchorScroll) {
 
       const ctrl = this
 
@@ -37,6 +37,10 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.submit = submitMessage
 
         init()
+
+        setTimeout(function () {  // scroll to comment-{id} when specified
+          $anchorScroll();
+        }, 100);
 
       }
 
