@@ -29,20 +29,19 @@
 					<div ng-if="item.hidden" class="rating-text">
 						<i translate="PROFILE.RATING.REMOVED"></i>
 					</div>
-					<div class="rating-reply" ng-if="item.comment">
+					<div class="rating-reply flex flex-divided-small flex-align-start" ng-if="item.comment">
 						<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
 							<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
 						</a>
-						<div>
+						<div class="margin-left-none">
 							<div class="reply-top">
-								{{:: item.entity_to.name | ellipsis:30}}
+								<span class="text-emphasize">{{:: item.entity_to.name | ellipsis:30}}</span>
 								<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 							</div>
 							<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
 							<i ng-if="item.comment.hidden" translate="PROFILE.RATING.REMOVED"></i>
 						</div>
 					</div>
-					<div class="clear"></div>
 				</div>
 				<div ng-if="!item.comment && mine">
 					<a class="right reply-form-link" href="{{ getProfileLink( info._type, info._id)}}/received-ratings?reply={{item._id}}" translate="PROFILE.RATING.ACTION_ADD_COMMENT"></a>
