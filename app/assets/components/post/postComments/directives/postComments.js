@@ -36,6 +36,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
 
         ctrl.showError = false; // default state of error message
         ctrl.showMoreCommentsLink = false; // default not show link
+        ctrl.expanded = false;
         ctrl.submit = submitMessage
 
         init()
@@ -47,18 +48,15 @@ angular.module('hearth.directives').directive('postComments', [function() {
       function init() {
         ctrl.model = ctrl.model || []
         Post.queryComments({postId: ctrl.postId}).$promise
-        .then(res => {
-          res && res.length && (ctrl.model = res.map(comment => {
-						comment.created_at_timeago = $filter('ago')(comment.created_at)
-						return comment
+        .then((res) => {
+          res && res.length && (ctrl.model = res.map((comment) => {
+						return prerenderValues(comment);
           }))
 
-          console.log("xLIMIT", ctrl.limitComments)
           // limit comments to X and set flag to show link to post detail
-          if (ctrl.limitComments && Number.isInteger(ctrl.limitComments) && res.length > ctrl.limitComments) {
+          if (ctrl.limitComments && Number.isInteger(ctrl.limitComments) && res && res.length > ctrl.limitComments) {
             ctrl.model = ctrl.model.slice(Math.max(ctrl.model.length - ctrl.limitComments, 1))
             ctrl.showMoreCommentsLink = true;
-            console.log("LIMIT", ctrl.limitComments)
           }
 
           // scroll to comments if hash is specified
@@ -81,8 +79,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
         .then(res => {
           ctrl.message = ''
 
-					res.created_at_timeago = $filter('ago')(res.created_at)
-          ctrl.model.push(res)
+					//res.created_at_timeago = $filter('ago')(res.created_at)
+          ctrl.model.push(prerenderValues(res));
 
           ctrl.success = true
           $timeout(() => ctrl.success = false, STATUS_TIMEOUT)
@@ -105,7 +103,15 @@ angular.module('hearth.directives').directive('postComments', [function() {
 					if (arr[i]._id === comment._id) return true
 				}
 				return false
-			}
+      }
+      
+      function prerenderValues(comment) {
+        comment.created_at_timeago = $filter('ago')(comment.created_at);
+        comment.text_parsed = $filter('nl2br')($filter('linky')(comment.text, '_blank'));
+        comment.text_short = $filter('ellipsis')(comment.text, 270, true);
+        comment.text_short_parsed = $filter('linky')(comment.text_short, '_blank')
+        return comment;
+      }
 
     }]
   }

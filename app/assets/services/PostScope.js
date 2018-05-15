@@ -81,6 +81,12 @@ angular.module('hearth.services').factory('PostScope', [
 				})
 			}
 
+			scope.max = (num1, num2) => {
+				if ((typeof num1 == 'undefined' || num1 === null) && num2) return num2;
+				if ((typeof num2 == 'undefined' || num2 === null) && num1) return num1;
+				return Math.max(num1, num2);
+			}
+
 			return scope
 		}
 

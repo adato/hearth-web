@@ -1,6 +1,6 @@
 <div class="footer-item-bordered" id="comments">
   <div ng-if="vm.showMoreCommentsLink" class="footer-item background-light-gray">
-    <a ng-href="{{:: $root.getProfileLink('Post', vm.postId) + '#comments' }}" translate="POST.COMMENTS.ACTION_VIEW_ALL"></a>
+    <a ng-href="{{:: $root.getProfileLink('Post', vm.postId) + '#comments' }}" translate="POST.COMMENTS.ACTION_VIEW_ALL" class="color-primary"></a>
   </div>
   <div ng-repeat="item in vm.model" class="footer-item background-light-gray" id="comment-{{ item._id }}">
     <div class="medium-flex flex-space-between">
@@ -11,7 +11,15 @@
             <span class="text-emphasize" ng-bind="item.user.name"></span> · 
             <span class="color-dark-gray text-small" ng-bind="item.created_at_timeago"></span>
           </div>
-          <div class="margin-left-none" ng-bind-html="item.text | linky:'_blank' | nl2br"></div>
+          
+          <div class="text-container word-wrap margin-left-none">
+              <p class="margin-none" ng-if="item.text.length < 270 || vm.expanded == true" ng-bind-html=":: item.text_parsed"></p>
+              <a href="" ng-click="vm.expanded = false;" ng-if="item.text.length >= 270 && vm.expanded" class="color-primary" translate="POST.ACTION_SHOW_LESS"></a>
+              <p class="margin-none" ng-if="item.text.length >= 270 && !vm.expanded">
+                <span ng-bind-html=":: item.text_short_parsed"></span>
+                <a ng-click="vm.expanded = true;" class="color-primary" translate="POST.ACTION_SHOW_MORE"></a>
+              </p>
+            </div>
         </div>
       </div>
     </div>

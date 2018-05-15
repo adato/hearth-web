@@ -157,10 +157,10 @@
 						<div class="a-display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
 							<div class="flex flex-divided-medium">
 								<div class="flex">
-									<a href="" class="touchable" ng-class="{'touchable-blue': item.comments_count > 0}" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
+									<a href="" class="touchable" ng-class="{'touchable-blue': max(item.comments.length, item.comments_count) > 0 }" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
 										<i class="icon-comment"></i>
 									</a>
-									<span ng-class="{'touchable-blue bold': item.comments_count > 0}" ng-show="item.comments_count > 0" ng-bind="item.comments_count"></span>
+									<span ng-class="{'touchable-blue bold': max(item.comments.length, item.comments_count) > 0}" ng-show="max(item.comments.length, item.comments_count) > 0" ng-bind="item.comments_count"></span>
 								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
