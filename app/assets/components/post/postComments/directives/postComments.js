@@ -14,7 +14,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
     scope: {},
     bindToController: {
       model: '=',
-      postId: '='
+      postId: '=',
+      limitComments: '=',
     },
     controllerAs: 'vm',
     controller: ['Post', '$rootScope', '$timeout', '$filter', '$anchorScroll', '$location', function(Post, $rootScope, $timeout, $filter, $anchorScroll, $location) {
@@ -34,6 +35,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.error
 
         ctrl.showError = false; // default state of error message
+        ctrl.showMoreCommentsLink = false; // default not show link
         ctrl.submit = submitMessage
 
         init()
@@ -50,6 +52,15 @@ angular.module('hearth.directives').directive('postComments', [function() {
 						comment.created_at_timeago = $filter('ago')(comment.created_at)
 						return comment
           }))
+
+          console.log("xLIMIT", ctrl.limitComments)
+          // limit comments to X and set flag to show link to post detail
+          if (ctrl.limitComments && Number.isInteger(ctrl.limitComments) && res.length > ctrl.limitComments) {
+            ctrl.model = ctrl.model.slice(Math.max(ctrl.model.length - ctrl.limitComments, 1))
+            ctrl.showMoreCommentsLink = true;
+            console.log("LIMIT", ctrl.limitComments)
+          }
+
           // scroll to comments if hash is specified
           if (res.length && $location.hash()) {
             setTimeout(function () {  // scroll to comment-{id} when specified
