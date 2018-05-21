@@ -8,13 +8,13 @@
 		<div class="headMessage error"></div>
 		<form ng-cloak ng-submit="register(user, registerForm)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
 			<div class="register-notify-area"></div>
-      <div class='alert-box alert' ng-show="showError.blockedUserByEmail">
-        <i class="fa fa-exclamation-triangle"></i>
-        <span translate="AUTH.NOTIFY.ERROR_REGISTRATION_BLOCKED" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
-	    </span>
-      </div>
-      <p class="text-center" ng-if="!params.facebook"><span translate="AUTH.REGISTER.TEXT"></span></p>
-      <p class="text-center" translate="AUTH.REGISTER.TEXT_FACEBOOK" ng-if="params.facebook"></p>
+		    <div class='alert-box alert' ng-show="showError.blockedUserByEmail">
+				<i class="fa fa-exclamation-triangle"></i>
+				<span translate="AUTH.NOTIFY.ERROR_REGISTRATION_BLOCKED" translate-compile translate-values="{'attrs': 'ng-href=\'feedback\''}">
+				</span>
+      		</div>
+			<p class="text-center" ng-if="!params.facebook"><span translate="AUTH.REGISTER.TEXT"></span></p>
+			<p class="text-center" translate="AUTH.REGISTER.TEXT_FACEBOOK" ng-if="params.facebook"></p>
 
 			<div class="row block">
 				<div class="small-12 medium-6 large-6 columns">
@@ -62,18 +62,26 @@
 				</label>
 			</div>
 
-      <div class="block">
+			<div class="block">
 				<label>
-			    <checkbox model="user.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': registerForm.eula.$invalid && (registerForm.$submitted || registerForm.eula.$dirty)}">
-					<div translate="AUTH.REGISTER.EULA.ACCEPTATION_TEXT" translate-values="{attrs: 'ng-click=\'showTerms()\''}" translate-compile></div>
-			    </checkbox>
-			    <div ng-messages="registerForm.eula.$error" ng-show="registerForm.$submitted || registerForm.eula.$dirty">
-			      <div ng-message="required" translate="AUTH.NOTIFY.ERROR_EULA_REQUIRED"></div>
-			    </div>
-			  </label>
-      </div>
+					<checkbox model="user.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': registerForm.eula.$invalid && (registerForm.$submitted || registerForm.eula.$dirty)}">
+						<div translate="AUTH.REGISTER.EULA.ACCEPTATION_TEXT" translate-values="{attrs: 'ng-click=\'showTerms()\''}" translate-compile></div>
+					</checkbox>
+					<div ng-messages="registerForm.eula.$error" ng-show="registerForm.$submitted || registerForm.eula.$dirty">
+						<div ng-message="required" translate="AUTH.NOTIFY.ERROR_EULA_REQUIRED"></div>
+					</div>
+				</label>
+			</div>
 
-      <div class="block text-center">
+			<div class="block">
+				<label>
+					<checkbox model="user.send_emails.newsletter" required name="newsletter" class="box box--checkbox">
+						<div translate="AUTH.REGISTER.NEWSLETTER.ACCEPTATION_TEXT"></div>
+					</checkbox>
+				</label>
+			</div>
+
+      		<div class="block text-center">
 				<button class="button" type="submit" test-beacon="register-button" ng-disabled="sending">
 					<i class="fa fa-user"></i>
 					<span translate="AUTH.ACTION_REGISTER"></span>

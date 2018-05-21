@@ -15,7 +15,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			first_name: '',
 			last_name: '',
 			password: '',
-			eula: false
+			eula: false,
+			send_emails: { 
+				newsletter: false,
+			}
 		};
 		$scope.sent = false; // show result msg
 		$scope.sending = false; // lock - send user only once
