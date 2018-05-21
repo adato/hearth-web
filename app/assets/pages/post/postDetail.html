@@ -156,7 +156,7 @@
 								</div>
 							</div>
 
-							<post-comments model="item.comments" post-id="item._id"></post-comments>
+							<post-comments ng-if="userHasRight('temp.post_comments')" model="item.comments" post-id="item._id"></post-comments>
 
 						</footer>
 					</section>
