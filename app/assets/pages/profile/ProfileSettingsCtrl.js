@@ -31,19 +31,19 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 		$scope.d = new Date();
 
-		$scope.selectFrequencies = [{
-			title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.IMMEDIATELY'),
-			value: 'immediately'
-		}, {
-			title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.ONCE_DAY'),
-			value: 'once_day'
-		}, {
-			title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.ALL_ONCE_DAY'),
-			value: 'all_once_day'
-		}, {
-			title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.OFF'),
-			value: 'off'
-		}];
+    $scope.selectFrequencies = [{
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.IMMEDIATELY'),
+      value: 'immediately'
+    }, {
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.ONCE_DAY'),
+      value: 'once_day'
+    }, {
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.ALL_ONCE_DAY'),
+      value: 'all_once_day'
+    }, {
+      title: $translate.instant('SETTINGS.NOTIFICATIONS.FREQUENCY.OFF'),
+      value: 'off'
+    }];
 
 		/**
 		 * Validate delete account form
