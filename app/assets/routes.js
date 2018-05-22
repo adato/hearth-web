@@ -127,6 +127,11 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/static/localizationPage.html',
 				controller: 'StaticPageCtrl'
 			})
+			.state('privacy-policy', {
+				url: '/privacy-policy',
+				templateUrl: 'assets/pages/static/localizationPage.html',
+				controller: 'StaticPageCtrl'
+			})
 			.state('support-us', {
 				url: '/support-us',
 				templateUrl: 'assets/pages/static/localizationPage.html',

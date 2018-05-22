@@ -408,3 +408,27 @@
 		}
 	}
 }
+
+.static-page-container .privacy-policy {
+	h3,h4 {
+		text-align:left;
+	}	
+	.level {
+		margin: $ui-small-grid-size;
+		margin-top: 4*$ui-small-grid-size;
+		margin-bottom: 2*$ui-small-grid-size;
+		&.level--1 {
+			margin-left:4 * $ui-small-grid-size;
+		}
+		&.level--2 {
+			margin-left:6 * $ui-small-grid-size;
+		}
+		p {
+			margin-top:2*$ui-small-grid-size;
+			margin-bottom:$ui-small-grid-size;
+		}
+		ul>li,ol>li {
+			margin-left:2*$ui-small-grid-size;
+		}
+	}
+}
