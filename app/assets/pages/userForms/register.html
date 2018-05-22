@@ -65,7 +65,7 @@
       <div class="block">
 				<label>
 			    <checkbox model="user.eula" required name="eula" class="box box--checkbox" ng-class="{'invalid': registerForm.eula.$invalid && (registerForm.$submitted || registerForm.eula.$dirty)}">
-					<div translate="AUTH.REGISTER.EULA.ACCEPTATION_TEXT" translate-values="{attrs: 'ng-click=\'showTerms()\''}" translate-compile></div>
+					<div translate="AUTH.REGISTER.EULA.ACCEPTATION_TEXT" translate-values="{terms: 'ng-click=\'showTerms()\'', privacy: 'ng-click=\'showPrivacyPolicy()\''}" translate-compile></div>
 			    </checkbox>
 			    <div ng-messages="registerForm.eula.$error" ng-show="registerForm.$submitted || registerForm.eula.$dirty">
 			      <div ng-message="required" translate="AUTH.NOTIFY.ERROR_EULA_REQUIRED"></div>
