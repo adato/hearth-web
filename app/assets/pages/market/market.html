@@ -11,8 +11,8 @@
 	</div>
 
 	<filterbar></filterbar>
-
-	<!-- <marketplace-banner class="leader-banner show-for-large" target="_blank" image="borrow-lend" code="leader-banner" language="{{language}}" title="" href="" click="editItem(null)"></marketplace-banner> -->
+	
+	<marketplace-banner ng-if="loaded" class="" target="" image="podminky" code="podminky" language="{{language}}" title="" href="/app/terms"></marketplace-banner>
 
 	<div>
 		<div class="callout alert" ng-if="firstPageNotShown()" translate="MARKETPLACE.NOT_ON_FIRST_PAGE" translate-values="{sref: 'market({page: 1})'}" translate-compile></div>
