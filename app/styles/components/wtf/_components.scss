@@ -357,6 +357,8 @@ a.link-secondary{
 
 /* CALLOUT */
 .callout{
+	clear:both;
+	display:block;
 	padding: $size-small $size-medium;
 }
 .callout.alert{
