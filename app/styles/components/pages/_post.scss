@@ -4,6 +4,9 @@ $arrowTop: 25px;
 $imageSize: 80px;
 $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 
+$ui-color-comment-icon: #21B2E3;
+$ui-color-like-icon: #FF68B0;
+
 .user {
 	position: relative;
 	text-align: center;
@@ -529,7 +532,7 @@ button.active[disabled] .item-option-bg-type {
 			padding: $size-small $size-large;
 		}
 		& .footer-item-bordered {
-			border-top: 1px solid $medium-gray;
+			border-top: 1px solid lighten($medium-gray, 10%);
 		}
 
 		.touchable {
@@ -542,6 +545,15 @@ button.active[disabled] .item-option-bg-type {
 		.touchable:active {
 			color: darken($colorDarkGray, 20%);
 		}
+		.touchable-blue { color:$ui-color-comment-icon; }
+		.touchable-blue:hover { color:lighten($ui-color-comment-icon, 20%); }
+		.touchable-blue:focus,
+		.touchable-blue:active { color:darken($ui-color-comment-icon, 20%); }
+		.touchable-pink { color:$ui-color-like-icon; }
+		.touchable-pink:hover { color:lighten($ui-color-like-icon, 20%); }
+		.touchable-pink:focus,
+		.touchable-pink:active { color:darken($ui-color-like-icon, 20%); }
+
 		.fa-inverse{
 			color: $colorLightGray;
 		}

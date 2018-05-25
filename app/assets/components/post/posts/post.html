@@ -94,8 +94,8 @@
 					<div class="item-section text-container word-wrap">
 						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html=":: item.text_parsed" test-beacon="marketplace-item-text"></p>
 						<a href="" ng-click="marketplace.expanded = false; logPostTextToggle({action: 'collapsed', post: item})" ng-if="item.text.length >= 270 && marketplace.expanded">
-			        	<strong ng-class=":: 'color-' + item.type" translate="POST.ACTION_SHOW_LESS"></strong>
-			      </a>
+			        		<strong ng-class=":: 'color-' + item.type" translate="POST.ACTION_SHOW_LESS"></strong>
+			     		</a>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html=":: item.text_short_parsed"></span>
 							<a ng-click="marketplace.expanded = true; logPostTextToggle({action: 'expanded', post: item})">
@@ -110,7 +110,7 @@
 							</a>
 						</li>
 					</ul>
-          <div class="item-section tags" ng-class="{'tagsActive': !inactivateTags}" ng-if=":: item.keywords.length">
+        			<div class="item-section tags" ng-class="{'tagsActive': !inactivateTags}" ng-if=":: item.keywords.length">
 						<ul class="tagList">
 							<li ng-click="toggleTag(tag)" ng-class=":: {active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in :: item.keywords track by $index" ng-bind=":: tag" test-beacon="marketplace-keywords"></li>
 						</ul>
@@ -123,8 +123,7 @@
 					</div>
 				</div>
 				<footer>
-
-					<div class="medium-flex flex-space-between background-light-gray footer-item">
+					<div class="medium-flex flex-space-between footer-item footer-item-bordered">
 						<div class="a-display-table-cell vertical-align-middle">
 							<div class="display-flex flex-wrap">
 								<div class="padding-right-large" ng-if=":: mine">
@@ -158,10 +157,10 @@
 						<div class="a-display-table-cell addon vertical-align-top text-align-right" id="open-sharing-options">
 							<div class="flex flex-divided-medium">
 								<div class="flex" ng-if="userHasRight('temp.post_comments')">
-									<a href="" class="touchable" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
+									<a href="" class="touchable" ng-class="{'touchable-blue': max(item.comments.length, item.comments_count) > 0 }" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
 										<i class="icon-comment"></i>
 									</a>
-									<span ng-show="item.comments_count > 0 || item.comments.length" ng-bind="item.comments.length || item.comments_count"></span>
+									<span ng-class="{'touchable-blue bold': max(item.comments.length, item.comments_count) > 0}" ng-show="max(item.comments.length, item.comments_count) > 0" ng-bind="item.comments_count"></span>
 								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
@@ -172,7 +171,7 @@
 					</div>
 
 					<div ng-if="item.commentsShown">
-						<post-comments model="item.comments" post-id="item._id"></post-comments>
+						<post-comments model="item.comments" post-id="item._id" limit-comments="5"></post-comments>
 					</div>
 
 				</footer>

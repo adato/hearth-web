@@ -23,7 +23,7 @@ section.banner {
 		margin-top:-5px;
 		margin-bottom:15px;
 		overflow:hidden;
-		padding-left:15px;
+		padding-left:0px;
 	}
 }
 
@@ -103,4 +103,8 @@ section.banner {
 	background-position: center center;
 	border-top-left-radius: $global-radius;
 	border-top-right-radius: $global-radius;
+}
+
+a.marketplace-banner.podminky {
+	background:#1f211c;	
 }

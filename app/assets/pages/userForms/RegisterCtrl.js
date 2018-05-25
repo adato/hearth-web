@@ -43,7 +43,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 					callbackScope: $scope,
 					confirmText: 'AUTH.REGISTER.EULA.ACTION_AGREE',
 					cancelText: 'AUTH.REGISTER.EULA.ACTION_DISAGREE',
-					translationValues: '{attrs: "ng-click=showTerms()"}'
+					translationValues: '{terms: "ng-click=showTerms()", privacy: "ng-click=showPrivacyPolicy()" }'
 				})
 			}
 

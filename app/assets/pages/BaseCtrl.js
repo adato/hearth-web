@@ -533,6 +533,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.openModalContainer('assets/locales/' + $rootScope.language + '/terms.html', 'HEARTH.TERMS.NAVIGATION_ITEM')
 		}
 
+		$rootScope.showPrivacyPolicy = function() {
+			$rootScope.openModalContainer('assets/locales/' + $rootScope.language + '/privacy-policy.html', 'HEARTH.PRIVACY-POLICY.NAVIGATION_ITEM')
+		}
+
 		/**
 		 * Function will show modal window where community admin can remove post from his community
 		 */

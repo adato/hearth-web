@@ -14,10 +14,11 @@ angular.module('hearth.directives').directive('postComments', [function() {
     scope: {},
     bindToController: {
       model: '=',
-      postId: '='
+      postId: '=',
+      limitComments: '=',
     },
     controllerAs: 'vm',
-    controller: ['Post', '$rootScope', '$timeout', '$filter', function(Post, $rootScope, $timeout, $filter) {
+    controller: ['Post', '$rootScope', '$timeout', '$filter', '$anchorScroll', '$location', function(Post, $rootScope, $timeout, $filter, $anchorScroll, $location) {
 
       const ctrl = this
 
@@ -33,6 +34,9 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.success
         ctrl.error
 
+        ctrl.showError = false; // default state of error message
+        ctrl.showMoreCommentsLink = false; // default not show link
+        ctrl.expanded = false;
         ctrl.submit = submitMessage
 
         init()
@@ -44,11 +48,23 @@ angular.module('hearth.directives').directive('postComments', [function() {
       function init() {
         ctrl.model = ctrl.model || []
         Post.queryComments({postId: ctrl.postId}).$promise
-        .then(res => {
-          res && res.length && (ctrl.model = res.map(comment => {
-						comment.created_at_timeago = $filter('ago')(comment.created_at)
-						return comment
-					}))
+        .then((res) => {
+          res && res.length && (ctrl.model = res.map((comment) => {
+						return prerenderValues(comment);
+          }))
+
+          // limit comments to X and set flag to show link to post detail
+          if (ctrl.limitComments && Number.isInteger(ctrl.limitComments) && res && res.length > ctrl.limitComments) {
+            ctrl.model = ctrl.model.slice(Math.max(ctrl.model.length - ctrl.limitComments, 1))
+            ctrl.showMoreCommentsLink = true;
+          }
+
+          // scroll to comments if hash is specified
+          if (res.length && $location.hash()) {
+            setTimeout(function () {  // scroll to comment-{id} when specified
+              $anchorScroll();
+            }, 100);
+          }
         })
         .catch(err => {
           console.log('failed to query comments', err)
@@ -63,8 +79,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
         .then(res => {
           ctrl.message = ''
 
-					res.created_at_timeago = $filter('ago')(res.created_at)
-          ctrl.model.push(res)
+					//res.created_at_timeago = $filter('ago')(res.created_at)
+          ctrl.model.push(prerenderValues(res));
 
           ctrl.success = true
           $timeout(() => ctrl.success = false, STATUS_TIMEOUT)
@@ -87,7 +103,15 @@ angular.module('hearth.directives').directive('postComments', [function() {
 					if (arr[i]._id === comment._id) return true
 				}
 				return false
-			}
+      }
+      
+      function prerenderValues(comment) {
+        comment.created_at_timeago = $filter('ago')(comment.created_at);
+        comment.text_parsed = $filter('nl2br')($filter('linky')(comment.text, '_blank'));
+        comment.text_short = $filter('ellipsis')(comment.text, 270, true);
+        comment.text_short_parsed = $filter('linky')(comment.text_short, '_blank')
+        return comment;
+      }
 
     }]
   }

@@ -262,7 +262,8 @@
 	}
 	.rating-reply {
 		.reply-top {
-			margin-bottom: 5px;
+			margin-bottom: $ui-small-grid-size;
+			margin-top: $ui-small-grid-size;
 			small {
 				color: #999999;
 			}
