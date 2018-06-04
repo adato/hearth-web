@@ -14,7 +14,6 @@
           
           <div class="text-container word-wrap margin-left-none">
               <p class="margin-none" ng-if="item.text.length < 270 || vm.expanded == true" ng-bind-html=":: item.text_parsed"></p>
-              <a href="" ng-click="vm.expanded = false;" ng-if="item.text.length >= 270 && vm.expanded" class="color-primary" translate="POST.ACTION_SHOW_LESS"></a>
               <p class="margin-none" ng-if="item.text.length >= 270 && !vm.expanded">
                 <span ng-bind-html=":: item.text_short_parsed"></span>
                 <a ng-click="vm.expanded = true;" class="color-primary" translate="POST.ACTION_SHOW_MORE"></a>
