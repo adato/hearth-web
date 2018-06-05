@@ -62,7 +62,7 @@
 			.bubble {
 				position: relative;
 				display: table;
-				margin: 5px;
+				//margin: 5px;
 				padding: 10px 20px;
 				line-height: 1;
 				border: none;
@@ -82,14 +82,15 @@
 					vertical-align: middle;
 				}
 				b,
-				strong {
+				{
 					font-size: 26px;
 					font-weight: bold;
 					display: inline-block;
+					margin-top:-5px;
 					margin-bottom: 5px;
 				}
 				hr {
-					// margin: 10px;
+					margin: 10px auto;
 					&.orange {
 						border-color: lighten($secondary-color, 40);
 					}
@@ -105,14 +106,15 @@
 					}
 				}
 				&.move-down {
-					top: 60px;
+					top: 100px;
 				}
 				&.active,
 				&:hover {
 					background: mix(darken($secondary-color, 20%), darken($quaternary-color, 10%));
-					border: 10px solid lighten($secondary-color, 20%);
+					border: 8px solid lighten($secondary-color, 20%);
 					box-shadow: none;
 					padding: 10px;
+					transition:border-width 0.4s;
 				}
 				&.large {
 					width: 160px;
@@ -136,7 +138,7 @@
 				background-repeat: no-repeat;
 				display: inline-block;
 				float: left;
-				height: 240px;
+				height: 290px;
 				&.large {
 					background-image: image-url("profile_shadow_large.png");
 					background-position: center bottom 0px;

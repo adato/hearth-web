@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="highlights">
-			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type" thanks=":: info.up_votes"></avatar>
+			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type" thanks=":: info.up_votes" show-glow="true"></avatar>
 			<span class="shadow large">
 				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'bookmarks' || activePage == 'replies')}" class="bubble large">
 					<span>
@@ -47,12 +47,15 @@
 					</span>
 				</a>
 			</span>
-			<span class="shadow small">
-				<a dont-jump-top href="{{:: profileLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble small">
+			<span class="shadow large">
+				<a dont-jump-top href="{{:: profileLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble medium">
 					<span>
-						<b>{{info.down_votes + info.up_votes}}</b>
+						<b class="avatar-thanks">{{info.up_votes}}</b>
 						<br>
-						<span translate="PROFILE.X_RATINGS"></span>
+						<span translate="PROFILE.RATING.COUNT.few"></span>
+						<hr class="orange" />
+						<strong>{{info.down_votes}}</strong>×
+						<span translate="PROFILE.RATING.NEGATIVE" class="text-smaller"></span>
 					</span>
 				</a>
 			</span>

@@ -24,6 +24,7 @@ angular.module('hearth.directives').directive('avatar', [function() {
 			'href': '=',
 			'thanks': '=',
 			'showThanks': '=',
+			'showGlow': '=',
 		},
 		templateUrl: (el, attrs) => {
 			const template = attrs.dynamic !== void 0 ? 'avatar-dynamic' : 'avatar'
@@ -44,8 +45,7 @@ angular.module('hearth.directives').directive('avatar', [function() {
 			$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user')
 			$scope.style = {};
 			if ($attrs.src) $scope.style['background-image'] = 'url(' + $scope.src + ')';
-			if ($attrs.thanks) $scope.style['box-shadow'] = getBoxShadow($scope.thanks);
-			console.log($scope.style)
+			if ($attrs.thanks && $scope.showGlow === true) $scope.style['box-shadow'] = getBoxShadow($scope.thanks);
 		}
 	}
 
