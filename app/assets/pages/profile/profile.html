@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="highlights">
-			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
+			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type" thanks=":: info.up_votes"></avatar>
 			<span class="shadow large">
 				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'bookmarks' || activePage == 'replies')}" class="bubble large">
 					<span>
@@ -76,22 +76,6 @@
 					</span>
 				</a>
 			</span>
-			<a dont-jump-top href="{{:: profileLink }}/received-ratings">
-				<div ng-if='info' class='columns large-8 karma-wrapper' title="{{:: 'PROFILE.POSITIVE_FEEDBACK_COUNT' | translate }}: {{ info.up_votes }} | {{:: 'PROFILE.NEGATIVE_FEEDBACK_COUNT' | translate }}: {{ info.down_votes }}">
-					<div class='karma-alt'>
-						<div class='karma-block positive' ng-style='{width: (info.karma) + "%"}' ng-if='info.karma != null && info.karma > 0'>
-							<span ng-bind='info.karma + "%"'></span>
-							<i class='fa icon-rating-positive'></i>
-						</div>
-						<div class='karma-block negative' ng-style='{width: (100 - info.karma) + "%"}' ng-if='info.karma != null && info.karma < 100'>
-							<i class='fa icon-rating-negative'></i>
-							<span ng-bind='(100 - info.karma) + "%"'></span>
-						</div>
-						<div class='karma-block empty text-center' ng-if='info.karma == null && mine' translate='PROFILE.KARMA.NO_RATING_ME'></div>
-						<div class='karma-block empty text-center' ng-if='info.karma == null && !mine' translate='PROFILE.KARMA.NO_RATING_OTHER'></div>
-					</div>
-				</div>
-			</a>
 		</div>
 		<div class="clear"></div>
 	</header>
