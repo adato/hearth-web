@@ -558,6 +558,10 @@ button.active[disabled] .item-option-bg-type {
 			color: $colorLightGray;
 		}
 
+		.fa-comment-o, .fa-comment {
+			font-size:22px;
+		}
+
 		/* @kamil todo - uncomment text-decoration when all market ads are converted to component style markup*/
 		a {
 			color: $colorDarkGray;
@@ -605,6 +609,7 @@ button.active[disabled] .item-option-bg-type {
 .fa-hover-heart:hover > .fa:not(.fa-spinner)::before {
 	content: '\f004';
 }
+
 
 #confirm-delete,
 #confirm-report {
