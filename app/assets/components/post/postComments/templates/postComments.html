@@ -2,13 +2,15 @@
   <div ng-if="vm.showMoreCommentsLink" class="footer-item background-light-gray">
     <a ng-href="{{:: $root.getProfileLink('Post', vm.postId) + '#comments' }}" translate="POST.COMMENTS.ACTION_VIEW_ALL" class="color-primary"></a>
   </div>
-  <div ng-repeat="item in vm.model" class="footer-item background-light-gray" id="comment-{{ item._id }}">
+  <div ng-repeat="item in vm.model" class="footer-item background-light-gray position-relative" id="comment-{{ item._id }}">
     <div class="medium-flex flex-space-between">
       <div class="flex flex-divided-medium margin-right-tiny flex-align-start">
-        <avatar src="item.user.avatar.normal" size="small"></avatar>
+        <div class="v2 user text-center" info-bubble=":: item.user" info-bubble-type=":: item.user._type">
+          <a ng-href="{{:: getProfileLink(item.user._type, item.user._id)}}" class="display-block"><avatar src="item.user.avatar.normal" size="small"></avatar></a>
+        </div>
         <div class="flex-grid flex-column">
           <div class="margin-bottom-tiny margin-left-none">
-            <span class="text-emphasize" ng-bind="item.user.name"></span> · 
+            <a ng-href="{{:: $root.getProfileLink(item.user._type, item.user._id) }}"><span class="text-emphasize" ng-bind="item.user.name"></span></a> · 
             <span class="color-dark-gray text-small" ng-bind="item.created_at_timeago"></span>
           </div>
           

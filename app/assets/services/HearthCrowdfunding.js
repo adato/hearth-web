@@ -60,10 +60,10 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 			var deviceHeader = $http.defaults.headers.common['X-DEVICE'];
 			delete $http.defaults.headers.common['X-DEVICE'];
 
-			$http.get('https://blog.hearth.net/category/sdilime/feed/', {
+			$http.get('https://blog.hearth.net/category/sdilime/feed/json', {
 				withCredentials: false,
 				headers: {
-					'Content-Type': undefined
+					'Content-Type': undefined //'application/javascript'
 				}
 			}).then(res => {
 				if (res.status === 200) {
@@ -81,13 +81,9 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 		}
 
 		function processBlogposts(data) {
-			const parser = new DOMParser();
-			const postsFragment = parser.parseFromString(data, 'text/xml');
-			var posts = postsFragment.querySelectorAll('item');
+			var posts = data.items || [];
 			const limit = posts.length < BLOG_POST_COUNT ? posts.length : BLOG_POST_COUNT;
-
-			// rutn nodelist into array
-			posts = Array.prototype.slice.call(posts);
+			if (!posts.length) return;
 
 			// shuffle the posts
 			ArrayHelper.shuffle(posts);
@@ -97,39 +93,29 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 			}
 		}
 
-		function getBlogPostObject(post) {
-			var title = getElInnerHtmlAsText(post.querySelector('title'), {strip: 'title'});
-			var link = getElInnerHtmlAsText(post.querySelector('link'), {strip: 'link'});
-			var text = getElInnerHtmlAsText(post.querySelector('description'), {strip: 'description'});
-			var textHTML = ''; // variable for transfrerring xml into html
-			var pubDate = getElInnerHtmlAsText(post.querySelector('pubDate'), {strip: 'pubDate'});
+		function getBlogPostObject(post) { 
+			var title = post.title;
+			var link = post.url;
+			var text = post.content_html;
+			var pubDate = post.date_published;
 
-			// strip text of CDATA
-			if (text) textHTML = text.replace('<![CDATA[', '').replace(']]>', '');
-
-			// try to get image from the text html (this must happen after stripping CDATA)
-			var image = document.createElement('div');
-			image.innerHTML = textHTML;
-			image = image.querySelector('[data-blogpost-thumbnail] img');
+			var description = document.createElement('div');
+			description.innerHTML = text;
+			var imgSrc = description.querySelector("img").getAttribute("src");
+			text = description.innerText;
+			
+			var image = document.createElement('img');
+			image.src = imgSrc;
 
 			const obj = {
 				title,
 				link,
-				text: textHTML,
+				text: text,
 				image,
 				date: new Date(pubDate)
 			};
 
 			return obj;
 		}
-
-		function getElInnerHtmlAsText(el, opts) {
-			opts = opts || {};
-			var s = new XMLSerializer();
-			var str = s.serializeToString(el);
-			if (opts.strip) str = str.substring(opts.strip.length + 2, str.length - (opts.strip.length + 3));
-			return str;
-		}
-
 	}
 ]);
