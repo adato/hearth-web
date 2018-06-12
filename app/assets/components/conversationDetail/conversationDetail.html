@@ -63,7 +63,9 @@
 						<article class="message" ng-repeat="item in info.messages track by item._id">
 							<div ng-if="item.author">
 								<div class="message-head display-flex flex-space-between flex-wrap" ng-class="{'owner-name': item.author._type == 'Community'}">
-									<a class="display-flex" ng-href="{{ item.author._id != $root.config.notificationUserId ? getProfileLink(item.author._type, item.author._id) : '' }}">
+									<a 	class="display-flex" 
+										info-bubble=":: item.author" info-bubble-type=":: item.author._type"
+										ng-href="{{ item.author._id != $root.config.notificationUserId ? getProfileLink(item.author._type, item.author._id) : '' }}">
 										<avatar class="" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
 										<h5 class="text-emphasize margin-none">
 											{{item.author.name | ellipsis:50}}
