@@ -32,6 +32,8 @@ angular.module('hearth.directives').directive('avatar', [function() {
 		},
 		link: function($scope, $element, $attrs) {
 
+			// compute box shadow (spread and blur)
+			// based on number of upvotes
 			function getBoxShadow(upvotes) {
 				var spread = 0;
 				if (upvotes > 0 && 5 / upvotes >= 1) spread = 5;
@@ -39,7 +41,7 @@ angular.module('hearth.directives').directive('avatar', [function() {
 				if (upvotes > 20 && upvotes <= 50) spread = 15;
 				if (upvotes > 50) spread = 20 + (Math.floor((upvotes - 50) / 50) * 5);
 				
-				return '0 0 40px ' + spread + 'px #FFF09C';
+				return '0 0 ' + (upvotes > 0 ? '40px' : '0') + ' ' + spread + 'px #FFF09C';
 			}
 
 			$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user')

@@ -25,16 +25,6 @@ $large-avatar-size: 295px;
 		box-shadow: -3px 3px 6px rgba(0,0,0,.5) inset;
 	}
 
-	.avatar-thanks {
-		position:absolute;
-		font-size:$small-font-size;
-		right:0;
-		bottom:5px;	
-		display:block;
-		line-height:16px;
-		border-radius:8px;
-		padding: 1px 3px;
-	}
 	&.avatar-medium .avatar-thanks,
 	&.avatar-large .avatar-thanks {
 		right:11%;
@@ -140,7 +130,7 @@ $large-avatar-size: 295px;
 
 .avatar-thanks {
 	text-shadow: none;
-	border-radius:15px;
+	border-radius:18px;
 	line-height:30px;
 	background:#FFF09C;
 	border: 1px solid #D2C67E;
@@ -150,4 +140,24 @@ $large-avatar-size: 295px;
 	font-size:25px;
 	margin:auto;
 	width:fit-content;
+	min-width: 36px;
+	min-height: 36px;
+}
+
+.info-bubble-content .avatar-thanks,
+.avatar .avatar-thanks {
+	font-size:$small-font-size;
+	right:0;
+	bottom:5px;	
+	display:block;
+	line-height:16px;
+	border-radius:10px;
+	padding: 1px 3px;
+	min-width:20px;
+	min-height:20px;
+	text-align:center;
+}
+
+.avatar .avatar-thanks {
+	position:absolute;
 }
