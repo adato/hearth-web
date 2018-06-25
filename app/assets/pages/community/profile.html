@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		<div class="highlights">
-			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href="basePath+'community/'+info._id" type="info._type"></avatar>
+			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href=":: basePath+'community/'+info._id" type="info._type"  thanks=":: info.up_votes" show-glow="true"></avatar>
 			<span class="shadow large">
 				<a dont-jump-top href="{{:: communityLink }}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
 					<span>
@@ -61,12 +61,15 @@
 					<span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
 				</a>
 			</span>
-			<span class="shadow small">
-				<a dont-jump-top href="{{:: communityLink }}/received-ratings" class="bubble small" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}">
+			<span class="shadow large">
+				<a dont-jump-top href="{{:: communityLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="bubble medium">
 					<span>
-						<b>{{ info.received_ratings_count }}</b>
-						<br />
-						<span translate="PROFILE.X_RATINGS"></span>
+						<b class="avatar-thanks">{{info.up_votes}}</b>
+						<br>
+						<span translate="PROFILE.RATING.COUNT.few"></span>
+						<hr class="orange" />
+						<strong>{{info.down_votes}}</strong>×
+						<span translate="PROFILE.RATING.NEGATIVE" class="text-smaller"></span>
 					</span>
 				</a>
 			</span>
@@ -79,22 +82,6 @@
 					</span>
 				</a>
 			</span>
-			<a dont-jump-top href="{{:: communityLink }}/received-ratings">
-				<div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'PROFILE.POSITIVE_FEEDBACK_COUNT' | translate }}: {{ info.up_votes }} | {{ 'PROFILE.NEGATIVE_FEEDBACK_COUNT' | translate }}: {{ info.down_votes }}">
-					<span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
-						<span>{{ info.karma }}%
-							<i class="fa icon-rating-positive"></i>
-						</span>
-					</span>
-					<span class="negative bar" ng-style="{width: (100 - info.karma)+'%'}" ng-class="{full: info.karma == 0}" ng-if="info.karma != null && info.karma < 100">
-						<span>
-							<i class="fa icon-rating-negative"></i> {{100 - info.karma}}%
-						</span>
-					</span>
-					<span class="empty" ng-if="info.karma == null && mine" translate="COMMUNITY.PROFILE.NO_RATING_ME"></span>
-					<span class="empty" ng-if="info.karma == null && !mine" translate="COMMUNITY.PROFILE.NO_RATING_OTHER"></span>
-				</div>
-			</a>
 		</div>
 		<div class="clear"></div>
 	</header>

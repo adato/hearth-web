@@ -1,13 +1,17 @@
 <div>
   <div class="flex-grid info-bubble-content">
-    <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
+    <div>
+      <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
+      <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" ng-if="vm.model.up_votes > 0" class="text-center display-block margin-right-small">
+        <span class="avatar-thanks" ng-bind="vm.model.up_votes"></span>
+        <span translate="PROFILE.RATING.COUNT.few" class="text-muted text-small text-center"></span>
+      </a>
+    </div>
     <div>
       <div class="block">
         <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
         <div class="text-muted text-small">
-          <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" translate="PROFILE.RATING.COUNT.{{ vm.pluralCat(vm.model.down_votes + vm.model.up_votes) }}" translate-values="{count: (vm.model.down_votes + vm.model.up_votes)}"></a>
           <span ng-show="vm.model.infoBubble.locations.length">
-            <span>&bull;</span>
             <span ng-bind="vm.model.infoBubble.locations[0].short_address"></span>
           </span>
         </div>

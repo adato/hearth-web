@@ -582,29 +582,6 @@ button.active[disabled] .item-option-bg-type {
 	}
 }
 
-.karma {
-	height: 5px;
-	width: $imageSize + 30px;
-	margin: {
-		top: $fontSize / 4;
-		bottom: $fontSize / 2;
-		left: auto;
-		right: auto;
-	}
-	background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%),
-	linear-gradient(to right, darken($primary-color, 30%) 0%, darken($primary-color, 30%) 80%, $primary-color 100%);
-	&.empty {
-		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten($quaternary-color, 20%);
-		.positive {
-			display: none;
-		}
-	}
-	.positive {
-		height: 5px;
-		background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken($tertiary-color, 10%) 0%, $tertiary-color 80%, lighten($tertiary-color, 5%) 100%);
-	}
-}
-
 // show full heart on hover, but only when there is no loading
 .fa-hover-heart:hover > .fa:not(.fa-spinner)::before {
 	content: '\f004';

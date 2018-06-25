@@ -1,4 +1,5 @@
 <div class="avatar" ng-class=":: class">
-	<a class="avatar-image" ng-if=":: href" ng-href="{{:: href }}" ng-style=":: { true : {'background-image': 'url(' + src + ')'}, false:  {} }[!!src]"></a>
-	<div class="avatar-image" ng-if=":: !href" ng-style=":: { true : {'background-image': 'url(' + src + ')'}, false:  {} }[!!src]"></div>
+	<a class="avatar-image" ng-if=":: href" ng-href="{{:: href }}" ng-style=":: style"></a>
+	<div class="avatar-image" ng-if=":: !href" ng-style=":: style"></div>
+	<div class="avatar-thanks" ng-if="thanks > 0 && showThanks === true">{{:: thanks }}</div>
 </div>
