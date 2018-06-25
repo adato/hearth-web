@@ -20,15 +20,15 @@
  *
  */
 angular.module('hearth.directives').directive('itemList', [
-	'$rootScope', '$q', '$timeout', 'PostAux', '$compile', 'PostScope', '$templateRequest', '$document',
-	function($rootScope, $q, $timeout, PostAux, $compile, PostScope, $templateRequest, $document) {
+	'$rootScope', '$compile', 'PostScope', '$templateRequest',
+	function($rootScope, $compile, PostScope, $templateRequest) {
 		return {
 			restrict: 'E',
 			scope: {
 				options: '='
 			},
 			template: '<div loading show="loading && !options.disableLoading"></div><div content></div>',
-			link: function(scope, el, attrs) {
+			link: function(scope, el) {
 
 				scope.loading = true
 				var content = el[0].querySelector('[content]')

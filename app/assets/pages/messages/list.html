@@ -31,7 +31,7 @@
 							<div class=" avatars ">
 								<avatar ng-if="item.participants.length==1 "
                         src="person.avatar.normal " size="normal "
-                        type="person._type " ng-repeat="person in item.participants "></avatar>
+                        type="person._type " ng-repeat="person in item.participants " thanks="person.up_votes" show-glow="false" show-thanks="false"></avatar>
 								<avatar ng-if="item.participants.length> 1"
                         src="person.avatar.normal" size="small" type="person._type"
                         ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
@@ -86,7 +86,7 @@
 			<p ng-bind-html="'MESSAGING.NOTIFY.CONVERSATION_DOESNT_EXIST' | translate"></p>
 			<div class="bottom">
 				<a class="left link hide-for-large" ng-href="messages">
-					{{ 'COMMON.ACTION_CLOSE' | translate }}
+					{{:: 'COMMON.ACTION_CLOSE' | translate }}
 				</a>
 			</div>
 		</div>

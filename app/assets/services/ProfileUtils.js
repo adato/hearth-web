@@ -61,7 +61,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
       } else {
         opts.getPostsStatus.running = true;
         opts.resource(opts.params || {}, res => {
-          opts.getPostsStatus.running = false;
+					opts.getPostsStatus.running = false;
           res.data.forEach(function (item) {
             if ($rootScope.isPostActive(item)) {
               opts.postCount.active++;
@@ -70,7 +70,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
               opts.postCount.inactive++;
               opts.getPostsResult.inactive.push(item);
             }
-          });
+					});
           resolve(opts.getPostsResult[type]);
           if (opts.getPostsQ.length) {
             var r = opts.getPostsQ.splice(opts.getPostsQ.length - 1, 1)[0];

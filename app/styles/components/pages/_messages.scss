@@ -198,7 +198,7 @@
 		}
 
 		.conversation-detail {
-			a {
+			a:not(.button) {
 				color: $primary-color;
 				&:hover {
 					color: lighten($primary-color, 10);
