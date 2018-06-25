@@ -31,7 +31,7 @@
 							<div class=" avatars ">
 								<avatar ng-if="item.participants.length==1 "
                         src="person.avatar.normal " size="normal "
-                        type="person._type " ng-repeat="person in item.participants " thanks="person.up_votes" show-glow="false" show-thanks="true"></avatar>
+                        type="person._type " ng-repeat="person in item.participants " thanks="person.up_votes" show-glow="false" show-thanks="false"></avatar>
 								<avatar ng-if="item.participants.length> 1"
                         src="person.avatar.normal" size="small" type="person._type"
                         ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>

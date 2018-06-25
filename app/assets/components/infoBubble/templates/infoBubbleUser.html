@@ -2,7 +2,7 @@
   <div class="flex-grid info-bubble-content">
     <div>
       <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
-      <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" ng-if="vm.model.up_votes > 0" class="text-center display-block">
+      <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" ng-if="vm.model.up_votes > 0" class="text-center display-block margin-right-small">
         <span class="avatar-thanks" ng-bind="vm.model.up_votes"></span>
         <span translate="PROFILE.RATING.COUNT.few" class="text-muted text-small text-center"></span>
       </a>
