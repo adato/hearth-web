@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'PostServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$templateRequest', '$sce', '$compile', 'PostScope', 'MarketPostCount', '$q',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, PostServices, ProfileUtils, $log, UsersCommunitiesService, $templateRequest, $sce, $compile, PostScope, MarketPostCount, $q) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'CommunityMembers', 'CommunityApplicants', 'Post', 'Notify', '$timeout', 'UserRatings', 'CommunityRatings', 'UniqueFilter', 'Activities', 'PostServices', 'ProfileUtils', '$log', 'UsersCommunitiesService', '$sce', 'PostScope',
+	function($scope, $stateParams, $rootScope, Community, CommunityMembers, CommunityApplicants, Post, Notify, $timeout, UserRatings, CommunityRatings, UniqueFilter, Activities, PostServices, ProfileUtils, $log, UsersCommunitiesService, $sce, PostScope) {
 		angular.extend($scope, PostServices);
 		$scope.loadingData = false;
 
@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		$scope.activityLogFetchRunning;
 		var activityLogComplete;
 		// Count of all activities includes activities inside the groups
-    var activityLogOffset = 0;
+		var activityLogOffset = 0;
 
 		var ItemFilter = new UniqueFilter();
 		var selectedAuthor = false;
@@ -35,20 +35,25 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		};
 		var templatePath = 'assets/components/post/posts/post.html';
 
-    $scope.loadCommunityActivities = (done) => {
+		$scope.communityPostCount = {
+			'active': 0,
+			'inactive': 0
+		};
+
+		$scope.loadCommunityActivities = (done) => {
 			if (activityLogComplete || $scope.activityLogFetchRunning) return;
 			$scope.activityLogFetchRunning = true;
 
 			done = typeof done === 'function' ? done : angular.identity;
 
-      Community.getActivityLog({
-        communityId: $stateParams.id,
-        offset: activityLogOffset,
-        limit: ACTIVITY_LIMIT,
-        filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
-        include_full: 'Post,Rating',
-        groups: 'community_accepted_user'
-      }).$promise.then(res => {
+			Community.getActivityLog({
+				communityId: $stateParams.id,
+				offset: activityLogOffset,
+				limit: ACTIVITY_LIMIT,
+				filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
+				include_full: 'Post,Rating',
+				groups: 'community_accepted_user'
+			}).$promise.then(res => {
 				// $scope.activityLogFetchRunning = false;
 				$scope.activityShow = true;
 
@@ -59,19 +64,19 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 				$scope.activityLog.push(...res.data);
 
-        activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);
+				activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);
 				if (activityLogOffset === parseInt(res.headers('X-Pagination-Total'), 10) || res.data.length === 0) {
 					activityLogComplete = true;
 				}
 				// done();
-      }).catch(err => {
+			}).catch(err => {
 				// TODO: make better error report
 				console.error('error getting activity log')
 			}).finally(() => {
 				$scope.activityLogFetchRunning = false;
 				done()
 			});
-    };
+		};
 
 		$scope.loadBottom = function() {
 			$scope.loadingData = true;
@@ -262,15 +267,15 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 		// load posts of community
 		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
-		function loadCommunityPosts(id, doneErr) {
+		function loadCommunityPosts(id) {
 			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 
 			// counter for template
-			$scope.communityPostCount = {
-				'active': 0,
-				'inactive': 0
-			};
-			// finishLoading();
+			$scope.communityPostCount.active = 0;
+			$scope.communityPostCount.inactive = 0;
+ 
+			getPostsResult.active = [];
+			getPostsResult.inactive = [];
 
 			$scope.communityPostListActiveOptions = {
 				getData: ProfileUtils.getPosts.bind(null, {
@@ -285,6 +290,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					active: true
 				}),
 				templateUrl: templateUrl,
+				inactivateTags: true,
 				cb: finishLoading,
 			};
 
@@ -300,8 +306,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					postCount: $scope.communityPostCount
 				}),
 				disableLoading: true,
+				inactivateTags: true,
 				templateUrl: templateUrl,
 			};
+
+			$rootScope.$emit('itemList.refresh')
+
 		}
 
 
@@ -410,13 +420,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				$scope.$on('postCreated', function() {
 					$scope.loadingData = false;
 					$scope.subPageLoaded = false;
-
 					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
 				});
 				$scope.$on('postUpdated', function() {
 					$scope.loadingData = false;
 					$scope.subPageLoaded = false;
-
 					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
 				});
 
