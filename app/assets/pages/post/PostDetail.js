@@ -102,6 +102,8 @@ angular.module('hearth.controllers').controller('PostDetail', [
 					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
 
+					PostAux.extendForDisplay(data); 
+
 					$scope.isExpiringSoon = !data.valid_until == 'unlimited' && moment(data.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(data.valid_until).isAfter(new Date());
 
 
