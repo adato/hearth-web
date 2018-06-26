@@ -6,8 +6,8 @@
  * @description functions for marketplace items / posts
  */
 
-angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache', '$locale', '$filter',
-	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache, $locale, $filter) {
+angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache', '$locale', '$filter', '$sce',
+	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache, $locale, $filter, $sce) {
 
 		const postTypes = $$config.postTypes
 
@@ -29,7 +29,8 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			postHeartedByUser,
 			postInaccessibleModal,
 			removePostFromBookmarks,
-			replyItem
+			replyItem,
+			detectEmbed
 		}
 
 		return factory
@@ -56,6 +57,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			post.text_parsed = $filter('nl2br')($filter('linky')(post.text, '_blank'))
 			post.text_short = $filter('ellipsis')(post.text, 270, true)
 			post.text_short_parsed = $filter('linky')(post.text_short, '_blank')
+			post.embeds = detectEmbed(post);
 		}
 
 		function getExemplaryPosts() {
@@ -270,6 +272,34 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 				id: item._id,
 	      state
 			}))
+		}
+
+
+		/** 
+		 * Function to detect if post has any youtube embed 
+		 * @returns [] array of embed links
+		 */
+		function detectEmbed(item) {
+			let embeds = [], match;
+			if (!item || !item.text) return embeds;
+			
+			let regExp = /(http[s]?\:\/\/|www\.)*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?\s">]*)/;
+			let reg2 = /(<a[^<]+<\/a>)/g;
+			let replFn = (match, p1, p2, p3, offset, string) => {
+				match = regExp.exec(p1);
+				if (match && match[3].length == 11) {
+					// success, we have YT video link here, lets replace it
+					// with an actual embed
+					return '<iframe class="embed-youtube" width="460" height="315" src="//www.youtube.com/embed/' 
+					+ match[3] + '" frameborder="0" allowfullscreen></iframe>';
+				} else {
+					return p1;
+				}
+
+			}
+
+			item.text_short_parsed = $sce.trustAsHtml(item.text_short_parsed.replace(reg2, replFn));
+			item.text_parsed = $sce.trustAsHtml(item.text_parsed.replace(reg2, replFn));
 		}
 
 	}
