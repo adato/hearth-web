@@ -102,6 +102,8 @@ angular.module('hearth.controllers').controller('PostDetail', [
 					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
 
+					PostAux.extendForDisplay(data); 
+
 					$scope.isExpiringSoon = !data.valid_until == 'unlimited' && moment(data.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(data.valid_until).isAfter(new Date());
 
 
@@ -114,11 +116,12 @@ angular.module('hearth.controllers').controller('PostDetail', [
 					$scope.postAddress = $rootScope.appUrl + 'post/' + $scope.item._id;
 					$scope.isActive = $rootScope.isPostActive($scope.item);
 				}
-			}, function(res) {
-        PrerenderService.setStatusCode('404')
-        $scope.setTitle(res);
-				$scope.loaded = true;
-				$scope.item = false;
+			}, function(res) { // ERROR fce
+				$timeout(function () {
+					PrerenderService.setStatusCode('404')
+					$scope.loaded = true;
+					$scope.item = false;
+				});
 			});
 		};
 

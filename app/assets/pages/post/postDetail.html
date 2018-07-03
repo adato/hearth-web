@@ -23,7 +23,7 @@
 						<div class='box-content'>
 							<header class="item-section row">
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
-									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
+									<span class="color-dark-gray" title="{{item.updated_a_date }}">{{item.updated_at_timeago}}</span>
 									<div class="display-inline-block" post-dropdown="item"></div>
 								</div>
 
@@ -48,7 +48,7 @@
 								</div>
 							</header>
 							<div class="item-section text-container word-wrap">
-								<p class="margin-none" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+								<p class="margin-none" ng-bind-html=":: item.text_parsed"></p>
 							</div>
 							<ul lemmon-slider fancybox="{{:: item._id}}" ng-if="item.attachments_attributes.length" class="item-section">
 								<li ng-repeat="photo in item.attachments_attributes track by $index">

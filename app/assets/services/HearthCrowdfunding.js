@@ -101,11 +101,12 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 
 			var description = document.createElement('div');
 			description.innerHTML = text;
-			var imgSrc = description.querySelector("img").getAttribute("src");
 			text = description.innerText;
-			
+
 			var image = document.createElement('img');
-			image.src = imgSrc;
+			if (description.querySelector("img")) {
+				image.src = description.querySelector("img").getAttribute("src");
+			}		
 
 			const obj = {
 				title,

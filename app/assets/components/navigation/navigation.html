@@ -364,7 +364,7 @@
 				</a>
 
 				<div class="dropdown-container">
-				<a ui-sref="profile.default({id: loggedUser._id})"  ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="icon-item logged-user-dropdown" test-beacon="logged-user-dropdown" ng-class="{active: $state.includes('profile') && $state.params.id === loggedUser._id}" hover="true" dropdown="#profile-drop" title="{{:: loggedUser.name }}">
+				<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="icon-item logged-user-dropdown" test-beacon="logged-user-dropdown" ng-class="{active: $state.includes('profile') && $state.params.id === loggedUser._id}" hover="true" dropdown="#profile-drop" title="{{:: loggedUser.name }}">
 					<avatar class="img" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
 				</a>
 				<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">

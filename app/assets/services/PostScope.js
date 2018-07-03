@@ -36,6 +36,7 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.language = $rootScope.language
 			scope.postLanguage = LanguageList.translate(post.language)
 			scope.logViewActivity = PostAux.logViewActivity
+
 			angular.extend(scope, PostServices)
 
 			PostAux.extendForDisplay(scope.item)
@@ -54,7 +55,6 @@ angular.module('hearth.services').factory('PostScope', [
 			}
 			updateRepliedBy()
 			scope.$on('postUpdateRepliedBy', updateRepliedBy)
-
 			scope.$on('$destroy', () => clearTimeout(timeout))
 
 			$rootScope.$on('post-comment-new', (event, { postId, newComment, commentList }) => {
