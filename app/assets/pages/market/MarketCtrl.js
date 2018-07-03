@@ -321,7 +321,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('$destroy', function() {
-      $('#market-item-list').html('')
+     	 $('#market-item-list').html('')
 			$scope.topArrowText.top = ''
 			$scope.topArrowText.bottom = ''
 			$rootScope.cacheInfoBox = {}
@@ -330,16 +330,16 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			InfiniteScrollPagination.unbindScroll()
 		});
 
-    let setMarketTitle = (titleCode) => {
-      $scope.marketTitle = titleCode
-    }
-    // default languages
+		let setMarketTitle = (titleCode) => {
+			$scope.marketTitle = titleCode
+		}
+		// default languages
 		function initLanguages() {
-      userLanguages = Auth.getUserLanguages();
-      if (userLanguages.split(',').indexOf('cs') == -1 ) {
-        Auth.isLoggedIn() ? $scope.showLimitedPostsMessageAuth = true : $scope.showLimitedPostsMessageUnauth = true;
-      }
-    }
+			userLanguages = Auth.getUserLanguages();
+			if (userLanguages.split(',').indexOf('cs') == -1 ) {
+				Auth.isLoggedIn() ? $scope.showLimitedPostsMessageAuth = true : $scope.showLimitedPostsMessageUnauth = true;
+			}
+		}
 
 		function init() {
 			$scope.debug && $log.debug('Initialisation of marketCtrl started');
@@ -357,7 +357,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				if (Filter.isSaved()) Filter.applySaved();
 
 				$scope.filterIsOn = Filter.isSet();
-        marketInited.resolve();
+        		marketInited.resolve();
 				$scope.debug && $log.debug('Initialisation of marketCtrl almost finished');
 				if (err) {
 					$scope.debug && $log.error('There was an error during compilation process: ', err);
