@@ -152,7 +152,7 @@
 									<!-- experiment: if date is unlimited, show reply count -->
 									<div ng-if="item.valid_until == 'unlimited' && item.reply_count && !mine" ng-bind-html="item.replied_by_string"></div>
 									<!-- end of experiment -->
-									<div ng-if="!item.reply_count && mine" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY"></div>
+									<!-- <div ng-if="!item.reply_count && mine" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY"></div> -->
 								</div>
 							</div>
 						</div>
