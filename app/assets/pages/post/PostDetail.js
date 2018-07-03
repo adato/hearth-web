@@ -116,11 +116,12 @@ angular.module('hearth.controllers').controller('PostDetail', [
 					$scope.postAddress = $rootScope.appUrl + 'post/' + $scope.item._id;
 					$scope.isActive = $rootScope.isPostActive($scope.item);
 				}
-			}, function(res) {
-        PrerenderService.setStatusCode('404')
-        $scope.setTitle(res);
-				$scope.loaded = true;
-				$scope.item = false;
+			}, function(res) { // ERROR fce
+				$timeout(function () {
+					PrerenderService.setStatusCode('404')
+					$scope.loaded = true;
+					$scope.item = false;
+				});
 			});
 		};
 
