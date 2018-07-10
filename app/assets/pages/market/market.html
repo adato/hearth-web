@@ -64,16 +64,16 @@
     </div>
     
     <!-- BLOGPOSTS -->
-    <h3 translate="HEARTH.BLOG.GET_INSPIRED"></h3>
+    <h4 translate="HEARTH.BLOG.GET_INSPIRED" class="text-center margin-bottom-medium"></h4>
 
     <section class="padding-bottom-small">
       <div class="">
         <div class="box padding-none margin-bottom-medium" ng-repeat="post in blogposts">
-          <a ng-href="{{ post.link }}" target="_blank" class="blog-image display-block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></a>
-          <div class="padding-medium">
-            <h4>
-              <a ng-href="{{ post.link }}" target="_blank" ng-bind="post.title"></a>
-            </h4>
+          <a ng-href="{{ post.link }}" class="blog-image display-block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></a>
+          <div class="padding-small">
+            <h5>
+              <a ng-href="{{ post.link }}" ng-bind="post.title"></a>
+            </h5>
             <!-- <div class="hide-all-images block block-height-limiter" style="max-height: 14rem" ng-bind-html="post.text"></div> -->
             <!-- <a ng-href="{{ post.link }}" target="_blank" translate="HEARTH.BLOG.ACTION_READ_ON_BLOG"></a> -->
           </div>

@@ -14,7 +14,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 		// var titleBannerIsClosed = ($.cookie('crowdsourcing-banner') === 'true');
 
 		const BLOG_POST_COUNT = 3;
-		const blogposts = [];
+		var blogposts = [];
 
 
 		const factory = {
@@ -51,6 +51,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 		// returns promise, gets resolved when all data from blog have been processed
 		function initBlogposts() {
 			var def = $q.defer()
+			blogposts = [];
 			// cleanup headers for the call
 			var apiTokenHeader = $http.defaults.headers.common['X-API-TOKEN'];
 			delete $http.defaults.headers.common['X-API-TOKEN'];
