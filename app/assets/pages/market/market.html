@@ -1,6 +1,6 @@
 <div id="notify-container-market"></div>
 <div class="market">
-  <div class="medium-9 large-9 columns">
+  <div class="small-12 large-9 columns">
 
     <div ng-if="infoMessageToShow" class="row margin-horizontal-none margin-bottom-large">
       <div class="column medium-10 medium-push-2 padding-medium close-wrapper box">
@@ -57,7 +57,7 @@
     <div loading show="loading"></div>
   </div>
 
-  <div class="medium-3 large-3 hide-for-small columns">
+  <div class="large-3 hide-for-small columns">
     
     <div class="margin-bottom-large">
       <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block padding-top-medium padding-bottom-medium" test-beacon="new-post-button" translate="MARKETPLACE.ACTION_CREATE_POST"></a>
@@ -74,8 +74,6 @@
             <h5>
               <a ng-href="{{ post.link }}" ng-bind="post.title"></a>
             </h5>
-            <!-- <div class="hide-all-images block block-height-limiter" style="max-height: 14rem" ng-bind-html="post.text"></div> -->
-            <!-- <a ng-href="{{ post.link }}" target="_blank" translate="HEARTH.BLOG.ACTION_READ_ON_BLOG"></a> -->
           </div>
         </div>
       </div>

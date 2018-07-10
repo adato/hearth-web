@@ -102,15 +102,19 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 			var link = post.url;
 			var text = post.content_html;
 			var pubDate = post.date_published;
+			var thumbnail = post.thumbnail;
 
 			var description = document.createElement('div');
 			description.innerHTML = text;
 			text = description.innerText;
 
-			var image = document.createElement('img');
-			if (description.querySelector("img")) {
-				image.src = description.querySelector("img").getAttribute("src");
-			}		
+			var imgDiv = document.createElement('div');
+			imgDiv.innerHTML = thumbnail;
+
+			var image = {};
+			if (imgDiv.querySelector("img")) {
+				image.src = imgDiv.querySelector("img").getAttribute("src");
+			}
 
 			const obj = {
 				title,
