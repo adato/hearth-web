@@ -3,7 +3,7 @@
 
 		<div class="block medium-flex-grid">
 			<div class="flex-5 medium-order-last" ng-cloak>
-				<div image-preview-direct-upload class="big" result="profile.avatar" options="avatarUploadOpts">
+				<div image-preview-direct-upload class="big position-relative" result="profile.avatar" options="avatarUploadOpts">
 					<img class="preview" ng-if="profile.avatar.public_avatar_url" ng-src="{{ profile.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated/>
 					<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{ profile.avatar.large }}" resized-thumbnail-image/>
 					<div class="text">
