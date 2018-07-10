@@ -16,7 +16,6 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 		const BLOG_POST_COUNT = 3;
 		const blogposts = [];
 
-		initBlogposts();
 
 		const factory = {
 			bannerData: {
@@ -26,6 +25,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 			},
 			decorateMarketplace,
 			blogposts,
+			initBlogposts,
 		};
 
 		return factory;
@@ -48,10 +48,9 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 		}
 
 		////////////////
-
+		// returns promise, gets resolved when all data from blog have been processed
 		function initBlogposts() {
-			if (isDisplayed) return;
-
+			var def = $q.defer()
 			// cleanup headers for the call
 			var apiTokenHeader = $http.defaults.headers.common['X-API-TOKEN'];
 			delete $http.defaults.headers.common['X-API-TOKEN'];
@@ -67,20 +66,23 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 				}
 			}).then(res => {
 				if (res.status === 200) {
-					processBlogposts(res.data);
+					processBlogposts(res.data, def);
 				} else {
 					console.error('Failed to retrieve blogposts');
+					def.reject(res.status)
 				}
+			}, err => {
+				def.reject(err);
 			});
 
 			// return headers to their default values
 			$http.defaults.headers.common['X-API-TOKEN'] = apiTokenHeader;
 			$http.defaults.headers.common['X-API-VERSION'] = apiVersionHeader;
 			$http.defaults.headers.common['X-DEVICE'] = deviceHeader;
-
+			return def.promise
 		}
 
-		function processBlogposts(data) {
+		function processBlogposts(data, promise) {
 			var posts = data.items || [];
 			const limit = posts.length < BLOG_POST_COUNT ? posts.length : BLOG_POST_COUNT;
 			if (!posts.length) return;
@@ -91,6 +93,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 			for (var i = 0;i < limit;i++) {
 				blogposts.push(getBlogPostObject(posts[i]));
 			}
+			promise.resolve(blogposts);
 		}
 
 		function getBlogPostObject(post) { 

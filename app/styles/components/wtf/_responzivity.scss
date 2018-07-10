@@ -1,7 +1,7 @@
 // foundation breakpoint for large screens
 @include breakpoint(large up) {
 	.main-container {
-		max-width: 960px;
+		max-width: $global-width;
 		padding: 0 10px;
 		margin-top: 80px !important;
 	}
