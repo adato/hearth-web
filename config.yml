@@ -158,6 +158,7 @@ PATHS:
       scss:
         - "app/styles/**/*.scss"
         - "common/styles/*.scss"
+        - "app/assets/components/footer/footer.scss"
       js:
         - "app/assets/**/*.js"
       html:

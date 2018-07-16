@@ -1,0 +1,28 @@
+hearth-footer {
+    footer {
+        display:block;
+        width:100%;
+        min-height:200px;
+        background:#202020;
+        margin-top:6*$ui-small-grid-size;
+        padding-top:12*$ui-small-grid-size;
+        color:#CBCBCB;
+        h1, h2, h3, h4, h5, h6 {
+            font-weight:bold;
+            color:#fff;
+        }
+        hr {
+            color:#3A3939;
+            border: 1px solid #3a3939;
+        }
+        a {
+            color:#CBCBCB;
+            &:hover {
+                color:lighten(#CBCBCB, 30%);
+            }
+        }
+        .float-items-left div {
+            float:left;
+        }
+    }
+}
