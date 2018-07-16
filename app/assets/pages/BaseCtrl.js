@@ -45,6 +45,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.scrollToElement = ScrollService.scrollToElement;
 		$rootScope.top = ScrollService.scrollTop;
 		$rootScope.scrollToError = ScrollService.scrollToError;
+		$rootScope.toolbarShown = false; // hide mobile toolbar if not menu clicked
 
 		$rootScope.reloadPage = function() {
 			window.location = document.URL;
@@ -123,7 +124,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			ngDialog.close()
 
 			//close small-resolution menu
-			$rootScope.leftSidebarShown = false
+			$rootScope.toolbarShown = false
 
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
@@ -798,8 +799,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		}
 
 		// small-resolution menu toggle
-		$rootScope.toggleSidebar = param => {
-			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown)
+		$rootScope.toggleToolbar = param => {
+			$rootScope.toolbarShown = (param !== void 0 ? param : !$rootScope.toolbarShown)
 		}
 
 		$rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
