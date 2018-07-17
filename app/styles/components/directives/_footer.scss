@@ -48,5 +48,16 @@ hearth-footer {
             font-weight: bold;
             padding:5px 10px;
         }
+
+        .underline-links {
+            a {
+                text-decoration: underline;
+            }
+        }
+        .margin-between-links {
+            * {
+                margin: $ui-small-grid-size;
+            }
+        }
     }
 }

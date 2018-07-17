@@ -6,36 +6,40 @@
 				HEARTH.net is generosity social network with vision of better world, where people are helping eachother by natural. Because this is our nature behaviour, but time where we are living now is talking something different. So we are here to bring out old behaviour back under sun.  
 			</p>
 			<div ng-if="showNewsletterForm" class="margin-top-large">
+				<!-- newsletter signup form -->
 				<input type="email" class="footer-input">
 				<button class="footer-submit">Odebírat novinky</button>
 			</div>
 		</div>
 		<div class="large-2 large-push-1 small-6 columns">
 			<h4>Hearth.net</h4>
-			<div><a href='/app/about-us' t='LANDING_PAGE.SECTION.CONTACT.ABOUT_US'>O nás</a></div>
-			<div><a href='/app/our-story' t='LANDING_PAGE.SECTION.CONTACT.STORY'>Příběh</a></div>
-			<div><a href='/app/contacts' t='LANDING_PAGE.SECTION.CONTACT.PEOPLE_IN_ADATO'>Lidé v Adato</a></div>
+			<div><a href="/app/our-story" translate="HEARTH.STORY.NAVIGATION_ITEM"></a></div>
+			<div><a href="/app/contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a></div>
+			<div><a href="/app/about/ambassadors" translate="HEARTH.AMBASSADORS.NAVIGATION_ITEM"></a></div>
+			<div><a href="/app/about/custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a></div>
+			<div><a href="/app/support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a></div>
 		</div>
 		<div class="large-2 large-push-1 small-6 columns">
 			<h4>Zkratkou</h4>
-			<div><a href='/app/about-us'>Kalendář akcí</a></div>
-			<div><a href='/app/'>Časté dotazy</a></div>
+			<div><a href="https://blog.hearth.net/akce-hearth-net/" translate="HEARTH.CALENDAR.NAVIGATION_ITEM"></a></div>
+			<div><a href="/app/faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a></div>
 		</div>
 		<div class="large-12 small-12 columns margin-top-medium">
 			<hr size="1">
 		</div>
-
-		<div class="large-12 small-12 columns pull-left display-flex flex-space-between margin-bottom-medium">
-			<div>&copy; 2018 Adato Paradigma z.ú.</div>
-			<div>O nás</div>
-			<div>Kontakt</div>
-			<div>Podmínky použití</div>
-			<div>Darování a daně</div>
-
-			<div>facebook</div>
-			<div>instagram</div>
-			<div>twitter</div>
-			<div>youtube</div>
+		<div class="large-8 small-6 columns margin-between-links">
+			<span>&copy;&nbsp;2018&nbsp;Adato&nbsp;Paradigma&nbsp;z.ú.</span>
+			<a href="/app/about-us" translate="HEARTH.ABOUT_US.NAVIGATION_ITEM"></a>
+			<a href="/app/feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
+			<a href="/app/terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
+			<a href="/app/taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
 		</div>
+		<div class="large-4 small-6 columns pull-right text-right underline-links margin-between-links">
+			<a href="https://www.facebook.com/Hearth.network/" target="_blank">facebook</a>
+			<a href="//instagram.com/hearth.network" target="_blank">instagram</a>
+			<a href="https://twitter.com/hearth_net" target="_blank">twitter</a>
+			<a href="https://www.youtube.com/user/hearthnetcrsr" target="_blank">youtube</a>
+		</div>
+		<div class="large-12 small-12 columns">&nbsp;</div>
 	</div>
 </footer>

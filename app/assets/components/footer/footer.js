@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('hearthFooter', [
 			link: function($scope, element) {
 
 				// default
-				$scope.showNewsletterForm = true;
+				$scope.showNewsletterForm = false;
 			}
 		};
 	}
