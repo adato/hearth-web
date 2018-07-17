@@ -62,7 +62,7 @@
 				<div ng-click="top(); mixpanelTrackMoveToTop()" class="move2top show-for-scrolled show-for-large">
 					<span ng-bind-html="topArrowText.top"></span>
 					<span class="fa fa-caret-square-o-up"></span>
-					<span ng-bind-html=":: topArrowText.bottom"></span>
+					<span ng-bind-html="topArrowText.bottom" ng-if="topArrowText.top"></span>
 				</div>
 			</div>
 		</section>
