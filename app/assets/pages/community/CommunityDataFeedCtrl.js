@@ -393,7 +393,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		// only hide post .. may be used later for delete revert
 		$scope.removeItemFromList = function($event, item) {
 			$("#post_" + item._id).slideUp("slow", function() {});
-			$scope.init();
 		};
 
 		function init() {

@@ -1,6 +1,7 @@
 // Set to block because we use angular to show/hide the errors
 .form-error {
     display: block;
+    font-size:$global-font-size;
 }
 
 [ng-message] {
