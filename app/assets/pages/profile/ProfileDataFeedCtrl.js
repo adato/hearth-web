@@ -230,9 +230,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			$scope.userPostCount.active = 0;
 			$scope.userPostCount.inactive = 0;
 
-			getPostsResult.active.length = 0;
-			getPostsResult.inactive.length = 0;
-			getPostsQ.length = 0;
+			getPostsResult.active = [];
+			getPostsResult.inactive = [];
+			getPostsQ = [];
 
 			$scope.postListActiveOptions = {
 				getData: ProfileUtils.getPosts.bind(null, {
@@ -375,7 +375,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 		function removeItem($event, item) {
 			$("#post_" + item._id).slideUp('slow');
-			$rootScope.$emit('itemList.refresh');
 		}
 
 		// only hide post .. may be used later for delete revert
