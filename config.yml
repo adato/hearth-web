@@ -64,6 +64,7 @@ PATHS:
         - "bower_components/angular-translate/angular-translate.min.js"
         - "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"
         - "bower_components/angular-ui-router/release/angular-ui-router.min.js"
+        - "bower_components/angular-ui-router/release/stateEvents.min.js"
         - "bower_components/ngDialog/js/ngDialog.min.js"
         - "app/libs/lemmon-slider.js"
         - "bower_components/angular-cookie/angular-cookie.min.js"

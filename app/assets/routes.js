@@ -24,7 +24,7 @@ angular.module('hearth').config([
 				},
 				templateUrl: 'assets/pages/market/market.html',
 				controller: 'MarketCtrl',
-				reloadOnSearch: false
+				reloadOnSearch: false,
 			})
 			.state('market-refresh', {
 				url: '/market',
@@ -36,30 +36,35 @@ angular.module('hearth').config([
 				url: '/map',
 				templateUrl: 'assets/pages/map/map.html',
 				controller: 'MapCtrl',
+				policy: UNAUTH
 			})
 			.state('communities', {
 				abstract: true,
 				url: '/communities',
 				templateUrl: 'assets/pages/community/communities.html',
-				controller: 'CommunitiesCtrl'
+				controller: 'CommunitiesCtrl',
+				policy: UNAUTH
 			})
 			.state('communities.my', {
 				url: '',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				policy: UNAUTH
 			})
 			.state('communities.suggested', {
 				url: '/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
-        		controllerAs: 'vm'
+        		controllerAs: 'vm',
+				policy: UNAUTH
 			})
 			.state('communities.all', {
 				url: '/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
-        		controllerAs: 'vm'
+        		controllerAs: 'vm',
+				policy: UNAUTH
 			})
 			.state('reset-pass', {
 				url: '/reset-password',
@@ -105,47 +110,55 @@ angular.module('hearth').config([
 			.state('search', {
 				url: '/search?query',
 				templateUrl: 'assets/pages/fulltext/fulltext.html',
-				controller: 'FulltextCtrl'
+				controller: 'FulltextCtrl',
+				policy: UNAUTH
 			})
 			.state('feedback', {
 				url: '/feedback',
 				templateUrl: 'assets/pages/static/feedback.html',
-				controller: 'FeedbackCtrl'
+				controller: 'FeedbackCtrl',
+				policy: UNAUTH
 			})
 			.state('faq', {
 				url: '/faq',
 				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				controller: 'StaticPageCtrl',
+				policy: UNAUTH
 			})
 			.state('taxes', {
 				url: '/taxes',
 				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				controller: 'StaticPageCtrl',
+				policy: UNAUTH
 			})
 			.state('terms', {
 				url: '/terms',
 				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				controller: 'StaticPageCtrl',
+				policy: UNAUTH
 			})
 			.state('privacy-policy', {
 				url: '/privacy-policy',
 				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				controller: 'StaticPageCtrl',
+				policy: UNAUTH
 			})
 			.state('support-us', {
 				url: '/support-us',
 				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				controller: 'StaticPageCtrl',
+				policy: UNAUTH
 			})
 			.state('components', {
 				url: '/components',
 				templateUrl: 'assets/pages/static/components.html',
-				controller: 'ComponentsCtrl'
+				controller: 'ComponentsCtrl',
+				policy: UNAUTH
 			})
 			.state('post', {
 				url: '/post/:id',
 				templateUrl: 'assets/pages/post/postDetail.html',
-				controller: 'PostDetail'
+				controller: 'PostDetail',
 			})
 			.state('messages', {
 				title: 'messages.0',
@@ -248,13 +261,15 @@ angular.module('hearth').config([
 			})
 			.state('aboutUs', {
 				url: '/about-us',
-				templateUrl: 'assets/pages/static/AboutUs.html'
+				templateUrl: 'assets/pages/static/AboutUs.html',
+				policy: UNAUTH
 			})
 			// about page
 			.state('about', {
 				url: '/about',
 				templateUrl: 'assets/pages/about/about.html',
 				controller: 'AboutCtrl',
+				policy: UNAUTH
 			})
 				// ambassadors page
 				.state('ambassadors', {
@@ -262,7 +277,8 @@ angular.module('hearth').config([
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'ambassadors',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: SIGNED_IN
 				})
 				// ambassadors page
 				.state('ambassadors-list', {
@@ -270,7 +286,8 @@ angular.module('hearth').config([
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'ambassadorsList',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: SIGNED_IN
 				})
 				// napadnice (spreading)
 				.state('spreading', {
@@ -278,7 +295,8 @@ angular.module('hearth').config([
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'idealist',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: SIGNED_IN
 				})
 				// udernice (communicate)
 				.state('communicate', {
@@ -286,7 +304,8 @@ angular.module('hearth').config([
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'todoist',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: UNAUTH
 				})
 				// udernice
 				.state('similar-projects', {
@@ -294,39 +313,46 @@ angular.module('hearth').config([
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'similarProjects',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: UNAUTH
 				})
 				.state('about-custodians', {
 					url: '/about/custodians',
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'custodians',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: UNAUTH
 				})
 				.state('custodians', {
 					url: '/custodians',
 					templateUrl: 'assets/pages/about/ambassadors.html',
 					selectedTab: 'custodians',
 					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					controllerAs: 'ctrl',
+					policy: UNAUTH
 				})
 				.state('principles-of-giving', {
 					url: '/about/principles',
 					templateUrl: 'assets/pages/about/principles.html',
 					selectedTab: 'principles',
 					controller: 'AboutCtrl',
+					policy: UNAUTH
 				})
 			.state('ourStory', {
 				url: '/our-story',
-				templateUrl: 'assets/pages/static/OurStory.html'
+				templateUrl: 'assets/pages/static/OurStory.html',
+				policy: UNAUTH
 			})
 			.state('contacts', {
 				url: '/contacts',
-				templateUrl: 'assets/pages/static/Contacts.html'
+				templateUrl: 'assets/pages/static/Contacts.html',
+				policy: UNAUTH
 			})
 			.state('error404', {
 				templateUrl: 'assets/pages/static/error404.html',
-				controller: 'Error404Ctrl'
+				controller: 'Error404Ctrl',
+				policy: UNAUTH
 			})
 
 			// temp admin only
