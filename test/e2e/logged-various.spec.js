@@ -4,12 +4,6 @@ describe('logged user', function() {
     protractor.helpers.login();
   });
 
-  it('should see a tour modal and be able to dismiss it', function () {
-    expect(element(by.css('section.tutorial')).isDisplayed()).toBe(true);
-    element(by.css('.modal span.close')).click();
-    expect(element(by.css('section.tutorial')).isDisplayed()).toBe(true);
-  });
-
   it('should see username on top right', function () {
     expect(element(by.css('.dropdown-container a[dropdown="#profile-drop"]:nth-child(1)>label.ng-binding')).getText()).toBe(protractor.helpers.config().loginTrimmedName);
   });

@@ -17,7 +17,6 @@ angular.module('hearth', [
 		'tmh.dynamicLocale',
 		'ui.select',
 		'ui.router',
-		'angular-flexslider',
 		'pascalprecht.translate',
 		'ng-slide-down',
 		'angulartics',

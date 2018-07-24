@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = [];
@@ -263,20 +263,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-		// try to load tutorial pages - if there is any, show tutorial
-		$scope.checkTutorial = function() {
-			// check only after login
-			if ($.cookie('tutorial') === '1') {
-
-				$.removeCookie('tutorial');
-				Tutorial.get({
-					user_id: $rootScope.loggedUser._id
-				}, function(res) {
-					if (res.length) $rootScope.showTutorial(res);
-				});
-			}
-		};
-
 		$scope.initHearthbeat = function() {
 			$rootScope.pluralCat = $locale.pluralCat;
 
@@ -285,12 +271,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if ($rootScope.loggedUser._id) {
 				loadMyCommunities();
-				$scope.checkTutorial();
-			} else {
-				// set to check tutorial after next login
-				$.cookie('tutorial', 1, {
-					path: '/'
-				});
 			}
 			timeAgoService.init();
 			Notify.checkRefreshMessage();
@@ -639,28 +619,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				controller: 'InviteBox',
 				scope: $scope.$new(),
 				className: 'ngdialog-invite-box',
-				closeByDocument: false,
-				closeByEscape: true,
-				showClose: false
-			});
-
-			dialog.closePromise.then(function(data) {});
-		};
-
-		/**
-		 * Function will open modal window and show tutorial
-		 * - accepts param with array of slide items
-		 */
-		$rootScope.showTutorial = function(slides) {
-
-			var scope = $scope.$new();
-			scope.tutorials = slides || [];
-
-			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'tutorial.html',
-				controller: 'Tutorial',
-				scope: scope,
-				className: 'ngdialog-tutorial ngdialog-theme-default',
 				closeByDocument: false,
 				closeByEscape: true,
 				showClose: false
