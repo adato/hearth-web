@@ -53,7 +53,7 @@ angular.module('hearth.services').factory('ApiHealthChecker', ['$rootScope', '$t
 	 * Checkout actual app version
 	 */
 	function getAppVersion(done) {
-		$.get('/version.txt').success(done)
+		$.get('/version.txt').done(done)
 	}
 
 	/**
