@@ -12,8 +12,8 @@
 @include foundation-button;
 @include foundation-forms;
 // @include foundation-range-input;
-@include foundation-accordion;
-@include foundation-accordion-menu;
+//@include foundation-accordion;
+//@include foundation-accordion-menu;
 @include foundation-badge;
 @include foundation-breadcrumbs;
 @include foundation-button-group;
@@ -22,14 +22,14 @@
 @include foundation-close-button;
 @include foundation-menu;
 // @include foundation-menu-icon;
-@include foundation-drilldown-menu;
+//@include foundation-drilldown-menu;
 @include foundation-dropdown;
 @include foundation-dropdown-menu;
 @include foundation-responsive-embed;
 @include foundation-label;
 @include foundation-media-object;
 @include foundation-off-canvas;
-@include foundation-orbit;
+//@include foundation-orbit;
 @include foundation-pagination;
 @include foundation-progress-bar;
 // @include foundation-progress-element;
@@ -106,7 +106,6 @@
 @import "components/pages/story";
 // @import "components/wtf/removePostFromCommunity";
 @import "components/tipsy";
-@import "components/pages/tutorial";
 @import "components/wtf/responzivity";
 @import "components/forms/select2";
 @import "components/wtf/static";
