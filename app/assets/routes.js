@@ -24,7 +24,7 @@ angular.module('hearth').config([
 				},
 				templateUrl: 'assets/pages/market/market.html',
 				controller: 'MarketCtrl',
-				reloadOnSearch: false
+				reloadOnSearch: false,
 			})
 			.state('market-refresh', {
 				url: '/market',

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = [];
@@ -45,6 +45,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.scrollToElement = ScrollService.scrollToElement;
 		$rootScope.top = ScrollService.scrollTop;
 		$rootScope.scrollToError = ScrollService.scrollToError;
+		$rootScope.toolbarShown = false; // hide mobile toolbar if not menu clicked
 
 		$rootScope.reloadPage = function() {
 			window.location = document.URL;
@@ -123,7 +124,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			ngDialog.close()
 
 			//close small-resolution menu
-			$rootScope.leftSidebarShown = false
+			$rootScope.toolbarShown = false
 
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
@@ -263,20 +264,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-		// try to load tutorial pages - if there is any, show tutorial
-		$scope.checkTutorial = function() {
-			// check only after login
-			if ($.cookie('tutorial') === '1') {
-
-				$.removeCookie('tutorial');
-				Tutorial.get({
-					user_id: $rootScope.loggedUser._id
-				}, function(res) {
-					if (res.length) $rootScope.showTutorial(res);
-				});
-			}
-		};
-
 		$scope.initHearthbeat = function() {
 			$rootScope.pluralCat = $locale.pluralCat;
 
@@ -285,12 +272,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if ($rootScope.loggedUser._id) {
 				loadMyCommunities();
-				$scope.checkTutorial();
-			} else {
-				// set to check tutorial after next login
-				$.cookie('tutorial', 1, {
-					path: '/'
-				});
 			}
 			timeAgoService.init();
 			Notify.checkRefreshMessage();
@@ -648,28 +629,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		/**
-		 * Function will open modal window and show tutorial
-		 * - accepts param with array of slide items
-		 */
-		$rootScope.showTutorial = function(slides) {
-
-			var scope = $scope.$new();
-			scope.tutorials = slides || [];
-
-			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'tutorial.html',
-				controller: 'Tutorial',
-				scope: scope,
-				className: 'ngdialog-tutorial ngdialog-theme-default',
-				closeByDocument: false,
-				closeByEscape: true,
-				showClose: false
-			});
-
-			dialog.closePromise.then(function(data) {});
-		};
-
-		/**
 		 * ConfirmBox reveal function has this params:
 		 * title: $translate code for box head title
 		 * text: $translate code for box text
@@ -800,8 +759,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		}
 
 		// small-resolution menu toggle
-		$rootScope.toggleSidebar = param => {
-			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown)
+		$rootScope.toggleToolbar = param => {
+			$rootScope.toolbarShown = (param !== void 0 ? param : !$rootScope.toolbarShown)
 		}
 
 		$rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
@@ -830,7 +789,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);
 
 			if ($rootScope.searchBarDisplayed) {
-				$('#searchContainer').slideDown('slow', () => {
+				$('#searchContainer').slideDown('fast', () => {
 					$('#searchContainer').show();
 					angular.element('#search').focus();
 				});
@@ -843,7 +802,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				});
 			} else {
 				angular.element('#search').blur();
-				$('#searchContainer').slideUp('slow', () => {
+				$('#searchContainer').slideUp('fast', () => {
 					$('#searchContainer').hide();
 				});
 

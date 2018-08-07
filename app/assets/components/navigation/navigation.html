@@ -1,148 +1,4 @@
 <section id="navigation" class="navigation">
-	<!-- <aside class="off-canvas position-left" data-off-canvas data-content-overlay data-close-on-click test-beacon="off-canvas-content"> -->
-	<aside class="off-canvas position-left" test-beacon="off-canvas-content">
-		<ul class="submenu menu vertical">
-			<li ng-if=":: loggedUser._id" class="tab-bar log-info">
-				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden display-flex flex-align-center">
-					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-					<div class="display-inline-block ellipsed-username" ng-bind=":: loggedUser.name"></div>
-				</a>
-			</li>
-			<li ng-if=":: !loggedUser._id" class="tab-bar log-info">
-				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
-					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class="display-inline-block" ng-bind-html=":: 'AUTH.LOGIN_NAVIGATION_ITEM' | translate"></div>
-				</a>
-			</li>
-			<li>
-				<label class="first">
-					Menu
-				</label>
-			</li>
-			<li>
-				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" ng-class="{active: pageName == 'market'}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
-					<i class="fa icon-marketplace"></i>
-					<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
-				</a>
-			</li>
-			<li>
-				<a ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
-					<i class="fa icon-community"></i>
-					<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
-				</a>
-			</li>
-			<li>
-				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages({id: ''})" ui-sref-opts="{'mark-as-read': false}" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
-					<span class="messages-icon"></span>
-					<span translate="MESSAGING.NAVIGATION_ITEM"></span>
-					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
-				</a>
-			</li>
-			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)" translate="AUTH.LOGIN_NAVIGATION_ITEM"></a>
-			</li>
-			<li ng-show=":: !loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)" translate="AUTH.REGISTER_NAVIGATION_ITEM"></a>
-			</li>
-		</ul>
-		<ul class="menu vertical" ng-show="loggedUser._id">
-			<li>
-				<label class="title">{{:: loggedUser.name | ellipsis:15}}</label>
-			</li>
-			<li>
-				<a ui-sref="profile.default({id: loggedUser._id})" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profile.default', {id: loggedUser._id})}">
-					<i class="fa fa-user"></i>
-					<span translate="PROFILE.NAVIGATION_ITEM"></span>
-				</a>
-			</li>
-			<li>
-				<a ui-sref="profileEdit" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileEdit')}">
-					<i class="fa fa-edit"></i>
-					<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
-				</a>
-			</li>
-			<li>
-				<a ui-sref="profileSettings" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileSettings')}">
-					<i class="fa fa-cog"></i>
-					<span translate="SETTINGS.NAVIGATION_ITEM"></span>
-				</a>
-			</li>
-			<li class="divider" ng-if="myAdminCommunities.length"></li>
-			<li ng-repeat="item in myAdminCommunities track by item._id">
-				<a class="user-switch-item" ui-sref="community.default({id: item._id})" ng-class='{active: $state.includes("community", {page: item._id})}' title="{{ item.name}}" ng-click="mixpanelTrack(item, 'Mobile'); toggleSidebar(false)">
-					<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
-					<span class="name">{{:: item.name | ellipsis:12}}</span>
-				</a>
-			</li>
-			<li class="divider" ng-if="myAdminCommunities.length"></li>
-			<li>
-				<a href="" class="logout-link" ng-click="logout()">
-					<i class="fa fa-sign-out"></i>
-					<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
-				</a>
-			</li>
-		</ul>
-		<ul class="menu vertical">
-			<li>
-				<label translate="HEARTH.PROJECT_NAVIGATION_ITEM"></label>
-			</li>
-			<li ng-if=":: language === 'cs'">
-				<a ui-sref="aboutUs" translate="HEARTH.ABOUT_US.NAVIGATION_ITEM"></a>
-			</li>
-			<li ng-if=":: language === 'cs'">
-				<a ui-sref="ourStory" translate="HEARTH.STORY.NAVIGATION_ITEM"></a>
-			</li>
-			<li ng-if=":: language === 'cs'">
-				<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a ui-sref="support-us" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('support-us')}" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a ui-sref="custodians" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('ambassadors')}" translate="HEARTH.AMBASSADORS.NAVIGATION_ITEM"></a>
-			</li>			
-			<li>
-				<a ui-sref="custodians" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('custodians')}" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a ui-sref="faq" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('faq')}" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a ui-sref="feedback" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('feedback')}" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM"></a>
-			</li>
-			<li>
-				<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
-			</li>
-			<li ng-if="language == 'cs'">
-				<a ui-sref="taxes" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('taxes')}" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
-			</li>
-		</ul>
-		<ul class="menu vertical socials">
-			<li>
-				<label translate="HEARTH.ABOUT_US.WE_ARE_ALSO_ON"></label>
-			</li>
-			<li>
-				<a href="https://twitter.com/hearth_net" target="_blank">
-					<i class="fa fa-twitter"></i> Twitter</a>
-			</li>
-			<li>
-				<a href="https://www.facebook.com/Hearth.network/" target="_blank">
-					<i class="fa fa-facebook"></i> Facebook</a>
-			</li>
-			<li>
-				<a href="https://plus.google.com/105519310550753411853" target="_blank">
-					<span class="fa fa-google-plus"></span> Google+</a>
-			</li>
-			<li>
-				<a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank">
-					<span class="fa fa-youtube"></span> Youtube</a>
-			</li>
-		</ul>
-	</aside>
-
 	<div class="header">
 
 		<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
@@ -159,10 +15,10 @@
 
 		<div id="notify-top"></div>
 
-		<!-- <nav class="column tab-bar tab-bar-closed hide-for-large"> -->
 		<nav class="display-flex flex-space-between flex-align-center hide-for-large" test-beacon="nav-bar">
+			<!-- this is a mobile toolbar-->
 			<div class="display-flex flex-align-center">
-				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleSidebar(); mixpanelTrackMenu()">
+				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleToolbar(); mixpanelTrackMenu()">
 					<i class="fa fa-bars"></i>
 				</a>
 				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
@@ -171,240 +27,117 @@
 			</div>
 
 			<div class="small-icons header-right">
-				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if=":: !loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange" ng-click="languageChange.toggleLanguageSelectionDialog()">
+				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if=":: !loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange" ng-click="toggleToolbar(false); languageChange.toggleLanguageSelectionDialog()">
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block">
 					<i class="fa fa-fw fa-plus-circle" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
-					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{'active': isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
-				<!-- <div class="clear"></div> -->
 			</div>
 		</nav>
 
 		<div id="searchContainer" class="mobile-top-search-bar-container hide-for-large column" test-beacon="search-bar-mobile-container">
 			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
-				<form ng-submit="search(searchQuery)" class="input-group margin-bottom-none">
-					<input class="input-group-field" type="text" id="search" ng-model="searchQuery.query" name="search" ng-attr-placeholder="{{::'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" />
-					<span class="input-group-button">
-						<a class="button" ng-click="search(searchQuery)" translate="COMMON.ACTION_SEARCH"></a>
-					</span>
-				</form>
+			<form ng-submit="search(searchQuery)" class="input-group margin-bottom-none">
+				<input class="input-group-field" type="text" id="search" ng-model="searchQuery.query" name="search" ng-attr-placeholder="{{::'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" />
+				<span class="input-group-button">
+					<a class="button" ng-click="search(searchQuery)" translate="COMMON.ACTION_SEARCH"></a>
+				</span>
+			</form>
 		</div>
 
-		<nav class="display-flex flex-align-center top-bar show-for-large" data-topbar ng-cloak>
-
+		<nav class="display-flex flex-align-center top-bar" data-topbar ng-cloak ng-class="{ 'hide-for-small-only show-for-large': !toolbarShown }">
 			<!-- this is desktop topbar, visible all the time -->
-
-			<section class="bar-columns logo-column">
+			<section class="bar-columns logo-column hide-for-medium-down show-for-large">
 				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
 					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
 				</a>
 			</section>
 
-			<section class="bar-columns searchbox-column">
+			<section class="bar-columns searchbox-column hide-for-medium-down show-for-large">
 				<input type="text" id="searchBox" placeholder="{{:: 'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
 			<section class="bar-columns icons-column">
-			<div class="topbar-icons-wrapper pull-right">
-				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
-					<div class="inner-icon">
-						<span class="fa icon-marketplace"></span>
-						<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
-					</div>
-				</a>
-
-				<a ui-sref="communities.my" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
-					<div class="inner-icon">
-						<span class="fa icon-community"></span>
-						<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
-					</div>
-				</a>
-				
-
-
-
-				
-				<a href="https://blog.hearth.net" class="icon-item" title="{{:: 'HEARTH.BLOG.NAVIGATION_ITEM' | translate }}">
-					<div class="inner-icon">
-						<span class="fa icon-pencil"></span>
-						<span translate="HEARTH.BLOG.NAVIGATION_ITEM"></span>
-					</div>
-				</a>
-
-				
-				
-				<div class="dropdown-container">
-					<a title="{{::'HEARTH.PROJECT_NAVIGATION_ITEM' | translate }}" class='icon-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback', 'support-us'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about" test-beacon="hearth-project-dropdown">
+				<div class="topbar-icons-wrapper pull-right">
+					<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa fa-question-circle"></span>
-							<span translate="HEARTH.PROJECT_NAVIGATION_ITEM"></span>
+							<span class="fa icon-marketplace"></span>
+							<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
 						</div>
 					</a>
-					<!-- CS ONLY MENU -->
-					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop" ng-if=":: language === 'cs'">
-						<li>
-							<a ui-sref="aboutUs" translate="HEARTH.ABOUT_US.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="ourStory" translate="HEARTH.STORY.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="contacts" translate="HEARTH.CONTACTS.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a ui-sref="support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM" class="bold color-need"></a>
-						</li>
-						<li>
-							<a ui-sref="ambassadors" translate="HEARTH.AMBASSADORS.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="taxes" translate="HEARTH.TAXES.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
-						</li>
-						<li class="divider"></li>
-						<li class="no-hover">
-							<ul class="social-menu" style="display: block">
-								<li>
-									<a href="https://twitter.com/hearth_net" target="_blank">
-										<span class="fa fa-twitter"></span>
-									</a>
-								</li>
-								<li>
-									<a href="https://www.facebook.com/Hearth.network/" target="_blank">
-										<span class="fa fa-facebook"></span>
-									</a>
-								</li>
-								<li>
-									<a href="https://plus.google.com/105519310550753411853" target="_blank">
-										<span class="fa fa-google-plus"></span>
-									</a>
-								</li>
-								<li>
-									<a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank">
-										<span class="fa fa-youtube"></span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<ul class="dropdown menu vertical align-left" data-dropdown-menu id="about-drop" ng-if=":: language !== 'cs'">
-						<!-- NON CS menu (EN, SK,...) -->
-						<li>
-							<a ng-href="{{:: basePath }}terms" translate="HEARTH.TERMS.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ng-href="{{:: basePath }}support-us" translate="HEARTH.SUPPORT_US.NAVIGATION_ITEM" class="bold color-need"></a>
-						</li>
-						<li>
-							<a ng-href="{{:: basePath }}feedback" translate="HEARTH.CONTACT_US.NAVIGATION_ITEM" test-beacon="hearth-contact-us-link"></a>
-						</li>
-						<li>
-							<a ng-href="{{:: basePath }}faq" translate="HEARTH.FAQ.NAVIGATION_ITEM"></a>
-						</li>
-						<li>
-							<a ui-sref="custodians" translate="HEARTH.CUSTODIANS.NAVIGATION_ITEM"></a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="http://blog.hearth.net" target="_blank" translate="HEARTH.BLOG.NAVIGATION_ITEM"></a>
-						</li>
-						<li class="no-hover">
-							<ul class="social-menu" style="display: block">
-								<li>
-									<a href="https://twitter.com/hearth_net" target="_blank">
-										<span class="fa fa-twitter"></span>
-									</a>
-								</li>
-								<li>
-									<a href="https://www.facebook.com/Hearth.network/" target="_blank">
-										<span class="fa fa-facebook"></span>
-									</a>
-								</li>
-								<li>
-									<a href="https://plus.google.com/105519310550753411853" target="_blank">
-										<span class="fa fa-google-plus"></span>
-									</a>
-								</li>
-								<li>
-									<a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank">
-										<span class="fa fa-youtube"></span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-				<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
-					<div class="inner-icon">
-						<span class="fa messages-icon">
-							<span ng-if="messagesCounters.unread" class="unread-counter">
-								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
+
+					<a ui-sref="communities.my" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
+						<div class="inner-icon">
+							<span class="fa icon-community"></span>
+							<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
+						</div>
+					</a>
+					
+					<a href="https://blog.hearth.net" class="icon-item" title="{{:: 'HEARTH.BLOG.NAVIGATION_ITEM' | translate }}">
+						<div class="inner-icon">
+							<span class="fa icon-pencil"></span>
+							<span translate="HEARTH.BLOG.NAVIGATION_ITEM"></span>
+						</div>
+					</a>
+					
+					<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
+						<div class="inner-icon">
+							<span class="fa messages-icon">
+								<span ng-if="messagesCounters.unread" class="unread-counter">
+									{{ messagesCounters.unread | minMax:1:99:'+':1 }}
+								</span>
 							</span>
-						</span>
-						<span translate="MESSAGING.NAVIGATION_ITEM"></span>
-					</div>
-				</a>
+							<span translate="MESSAGING.NAVIGATION_ITEM"></span>
+						</div>
+					</a>
 
-				<div class="dropdown-container">
-				<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="icon-item logged-user-dropdown" test-beacon="logged-user-dropdown" ng-class="{active: $state.includes('profile') && $state.params.id === loggedUser._id}" hover="true" dropdown="#profile-drop" title="{{:: loggedUser.name }}">
-					<avatar class="img" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
-				</a>
-				<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
-					<li>
-						<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
-							<i class="fa fa-user"></i>
-							<span translate="PROFILE.NAVIGATION_ITEM"></span>
-						</a>
-					</li>
-					<li>
-						<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
-							<i class="fa fa-edit"></i>
-							<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
-						</a>
-					</li>
-					<li>
-						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
-							<i class="fa fa-cog"></i>
-							<span translate="SETTINGS.NAVIGATION_ITEM"></span>
-						</a>
-					</li>
+					<div class="dropdown-container">
+					<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="icon-item logged-user-dropdown" test-beacon="logged-user-dropdown" ng-class="{active: $state.includes('profile') && $state.params.id === loggedUser._id}" hover="true" dropdown="#profile-drop" title="{{:: loggedUser.name }}">
+						<avatar class="img" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
+					</a>
+					<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
+						<li>
+							<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
+								<i class="fa fa-user"></i>
+								<span translate="PROFILE.NAVIGATION_ITEM"></span>
+							</a>
+						</li>
+						<li>
+							<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
+								<i class="fa fa-edit"></i>
+								<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
+							</a>
+						</li>
+						<li>
+							<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
+								<i class="fa fa-cog"></i>
+								<span translate="SETTINGS.NAVIGATION_ITEM"></span>
+							</a>
+						</li>
 
-					<li class="divider" ng-if="myAdminCommunities.length"></li>
-					<li ng-repeat="item in myAdminCommunities track by item._id">
-						<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{:: item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
-							<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
-							<span class="name">{{:: item.name | ellipsis:12}}</span>
-						</a>
-					</li>
-					<li class="divider" ng-if="myAdminCommunities.length"></li>
-					<li>
-						<a href="" ng-click="logout()" test-beacon="nav-logout-link">
-							<i class="fa fa-sign-out"></i>
-							<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
-						</a>
-					</li>
-				</ul>
+						<li class="divider" ng-if="myAdminCommunities.length"></li>
+						<li ng-repeat="item in myAdminCommunities track by item._id">
+							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{:: item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
+								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+								<span class="name">{{:: item.name | ellipsis:12}}</span>
+							</a>
+						</li>
+						<li class="divider" ng-if="myAdminCommunities.length"></li>
+						<li>
+							<a href="" ng-click="logout()" test-beacon="nav-logout-link">
+								<i class="fa fa-sign-out"></i>
+								<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
+							</a>
+						</li>
+					</ul>
 				</div>
 
-				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+				<div class="dropdown-container hide-for-medium-down show-for-large" ng-if="!loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange">
 					<a hover="true" class="icon-item" dropdown="#language-drop">
 						<div class="inner-icon">
 							<span class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></span>
