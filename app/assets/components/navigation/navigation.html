@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="small-icons header-right">
-				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if=":: !loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange" ng-click="languageChange.toggleLanguageSelectionDialog()">
+				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if=":: !loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange" ng-click="toggleToolbar(false); languageChange.toggleLanguageSelectionDialog()">
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block">
@@ -137,7 +137,7 @@
 					</ul>
 				</div>
 
-				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+				<div class="dropdown-container hide-for-medium-down show-for-large" ng-if="!loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange">
 					<a hover="true" class="icon-item" dropdown="#language-drop">
 						<div class="inner-icon">
 							<span class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></span>

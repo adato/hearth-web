@@ -20,7 +20,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			return arr
 		})()
 
-		const ANIMATION_SPEED = 600 // = jQuery's slow
+		const ANIMATION_SPEED = 200 // = jQuery's fast
 
 		// init languages
 		this.init = () => {
