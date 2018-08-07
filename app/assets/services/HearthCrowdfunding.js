@@ -105,7 +105,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 
 			var image = document.createElement('img');
 			if (description.querySelector("img")) {
-				image.src = description.querySelector("img").getAttribute("src");
+				image.src = description.querySelector("img").getAttribute("src").replace("http:", "https:");
 			}		
 
 			const obj = {
