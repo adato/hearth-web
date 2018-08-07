@@ -3,10 +3,10 @@ $topBarLabelSize: $small-font-size;
 $topBarImageSize: 1.8em;
 
 nav {
-	height: 56px;
+	max-height: 56px;
 
 	@include breakpoint(medium down) {
-		height: 72px;
+		max-height:none;
 	}
 
 	.fa {
@@ -220,7 +220,7 @@ nav {
 	}
 }
 
-@include breakpoint(large up) {
+//@include breakpoint(large up) {
 	.header {
 		min-height: inherit;
 	}
@@ -255,7 +255,19 @@ nav {
 			}
 
 			&.icons-column {
-				width:55%;
+				@include breakpoint(large up) {
+					width:55%;
+				}
+				.topbar-icons-wrapper {
+					display:block;
+					width:100%;
+					@include breakpoint(large up) {
+						width:unset;
+					}
+				}
+				.dropdown-container {
+					display:inline-block;
+				}
 				a.icon-item {
 					display:inline-block;
 					min-width:70px;
@@ -316,9 +328,10 @@ nav {
 			}
 		}
 	}
-}
+//}
 #navigation {
 	& .dropdown {
+		position:absolute;
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 		// left: 6px;
 		.fa {
@@ -383,12 +396,10 @@ nav {
 
 #language-panel{
 	position: relative;
-	top: 72px;
-	padding: $size-medium;
+	top: 60px;
+	padding: $size-small;
 	background: #fff;
-	border-bottom: #ddd;
-	box-shadow: 0 .05rem .5rem 0 rgba(0,0,0,.4);
-
+	border-bottom: $secondary-color;
 	z-index: 1000;
 }
 
