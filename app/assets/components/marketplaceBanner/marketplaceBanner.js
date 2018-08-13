@@ -9,41 +9,29 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 	function($rootScope) {
 		return {
 			restrict: 'E',
-			scope: {
-				'code': '@',
-				'image': '@',
-				'title': '@?',
-				'href': '@?',
-				'clickFunction': '&click',
-				'language': '@',
-				'restrictLanguage': '=?',
-				'target': '@?'
-			},
-			templateUrl: 'assets/components/marketplaceBanner/marketplaceBanner.html',
-			link: function(scope, element, attrs) {
-				scope.config = $rootScope.config;
-				scope.closed = $.cookie(scope.code) || false;
-				scope.title = scope.title || '';
-				scope.href = scope.href || false;
-				scope.style = {
-					'background-image': scope.image
-				};
-				scope.close = function($event) {
-					scope.closed = !scope.closed;
-					$.cookie(scope.code, scope.closed, {
-						path: '/',
-						expires: 99999
-					});
-					$event.stopPropagation();
-					$event.preventDefault();
+			controller: ['$http', '$rootScope', function ($http, $rootScope) {
+				var vm = this;
+				vm.content = {};
+
+				function init() {
+					var lang = $rootScope.language;
+					try {
+						$http.get('https://cms.hearth.net/api/banner/list', { withCredentials: false }).then(function (obj) {
+							if (obj && obj.data && obj.data.response && obj.data.response.length)
+								vm.content = obj.data.response[0][lang];
+						}, function (err) { throw new Exception(err) })
+					} catch (e) {
+						console.log(e);
+					}
 				}
 
-				scope.clickCallback = function($event) {
-					if (typeof scope.clickFunction === 'function') {
-						return scope.clickFunction($event);
-					}
-					return;
-				}
+				init();
+			}],
+			controllerAs: 'vm',
+			scope: true,
+			templateUrl: 'assets/components/marketplaceBanner/marketplaceBanner.html',
+			link: function(scope, element, attrs) {
+				
 			}
 		};
 	}
