@@ -13,8 +13,6 @@
 
     <filterbar></filterbar>
     
-    <!-- <marketplace-banner ng-if="loaded" class="clearfix" target="" image="podminky" code="podminky" language="cs" title="" href="/app/terms"></marketplace-banner> -->
-
     <div>
       <div class="callout alert" ng-if="firstPageNotShown()" translate="MARKETPLACE.NOT_ON_FIRST_PAGE" translate-values="{sref: 'market({page: 1})'}" translate-compile></div>
       <div class="callout alert" ng-if="showLimitedPostsMessageAuth" translate="LIMITED_POSTS_MESSAGE_AUTH" translate-compile translate-values="{'attrs': 'ng-href=\'profile-edit\''}">logged</div>
@@ -59,12 +57,15 @@
 
   <div class="large-3 hide-for-small-only hide-for-medium-down show-for-large columns">
     
-    <div class="margin-bottom-large">
+    <div class="margin-bottom-tiny">
       <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block padding-top-medium padding-bottom-medium" test-beacon="new-post-button" translate="MARKETPLACE.ACTION_CREATE_POST"></a>
     </div>
-    
+
+    <!-- BANNER -->
+    <marketplace-banner class="clearfix"></marketplace-banner>
+
     <!-- BLOGPOSTS -->
-    <h4 translate="HEARTH.BLOG.GET_INSPIRED" class="text-center margin-bottom-medium"></h4>
+    <h4 translate="HEARTH.BLOG.GET_INSPIRED" class="text-center margin-bottom-small margin-top-large"></h4>
 
     <section class="padding-bottom-small">
       <div class="">
