@@ -21,4 +21,14 @@
 		position: relative;
 		margin-bottom:-50px;
 	}
+	
+	.banner-date {
+		position:relative;
+		left:$size-medium;
+		display:inline-block;
+		background:#fff;
+		border:1px solid #000;
+		font-size:30px;
+		padding:$size-small;
+	}
 }
