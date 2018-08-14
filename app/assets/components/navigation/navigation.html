@@ -70,11 +70,18 @@
 							<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
 						</div>
 					</a>
-
+					
 					<a ui-sref="communities.my" class="icon-item" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
 							<span class="fa icon-community"></span>
 							<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
+						</div>
+					</a>
+
+					<a ui-sref="events" class="icon-item" ng-class="{active: $state.includes('events')}" title="{{:: 'EVENTS.NAVIGATION_ITEM' | translate }}">
+						<div class="inner-icon">
+							<span class="fa fa-calendar"></span>
+							<span translate="EVENTS.NAVIGATION_ITEM"></span>
 						</div>
 					</a>
 					
