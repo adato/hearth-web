@@ -8,7 +8,7 @@ angular.module('hearth.controllers').controller('EventsCtrl', [
         
         function init() {
             vm.loading = true;
-            $http.get('http://cms.hearth.net/api/event/list', { withCredentials: false }).then(function (obj) {
+            $http.get('https://cms.hearth.net/api/event/list', { withCredentials: false }).then(function (obj) {
                 if (obj && obj.data && obj.data.response && obj.data.response.length) {
                     vm.events = obj.data.response;
                 }
