@@ -34,7 +34,7 @@
           ng-focus="vm.submitShown = true; vm.showError = false" 
           ng-blur="vm.showError = true" 
           ng-model="vm.message" 
-          ng-maxlength="500" ng-minlength="2"
+          ng-maxlength="1500" ng-minlength="2"
           translate-attr=":: {placeholder: item.user._id === vm.loggedUser._id ? 'POST.COMMENT.YOUR_ANSWER' : 'POST.COMMENT.YOUR_COMMENT'}">s
         </textarea>
         <div class="error margin-top-small margin-bottom-small" ng-show="postCommentForm.$invalid && vm.showError">
