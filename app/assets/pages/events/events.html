@@ -2,14 +2,22 @@
     <div class="flex flex-space-between">
       <h1 translate="EVENTS.TITLE"></h1>
     </div>
+
     <div class="panel" ng-if="vm.events && !vm.loading">
-        <div class="box" ng-repeat="event in vm.events">
-            <h3>{{ event.title }}</h3> - <small>{{ event.city }} / {{ event.place }}</small>
-            <p>{{ event.description }}</p>
-            <a ng-href="'{{ event.link }}'">{{ event.linkTitle }}</a>
+        <div class="box margin-bottom-small padding-none clearfix row" ng-repeat="event in vm.events">
+            <div class="small-12 columns">
+                <div class="padding-medium ">
+                    <h3>{{ event.title }}</h3><small class="text-muted">{{ event.city }} - {{ event.place }}</small>
+                    <p>{{ event.description }}</p>
+                    <a ng-href="'{{ event.link }}'">{{ event.linkTitle }}</a>      
+                </div>
+            </div>
         </div>
-    </div>  
-    <div ng-if="!vm.events.length && !vm.loading" class="alert-box warning">
+    </div>
+
+    <div ng-if="!vm.events.length && !vm.loading" class="text-danger">
         <p translate="EVENTS.NOTHING_FOUND"></p>
     </div>
+
+    
 </div>
