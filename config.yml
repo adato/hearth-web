@@ -101,7 +101,6 @@ PATHS:
         - "bower_components/angular-actioncable/dist/angular-actioncable.js"
         - "bower_components/international-phone-number/releases/international-phone-number.js"
         - "bower_components/intl-tel-input/build/js/intlTelInput.js"
-        - "bower_components/intl-tel-input/build/js/utils.js"
       css:
         - "bower_components/fancybox/source/jquery.fancybox.css"
         - "bower_components/nanoscroller/bin/css/nanoscroller.css"
