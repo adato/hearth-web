@@ -1,0 +1,28 @@
+<div class="events">
+    <div class="flex flex-space-between">
+      <h2>{{ vm.event.title }}</h2>
+    </div>
+
+    <div class="panel" ng-if="vm.event && !vm.loading">
+        <div class="small-6 large-8 columns margin-none padding-tiny">
+            <div class="banner box margin-none padding-none overflow-hidden cursor-pointer">
+                <div class="banner-image"><img ng-src="{{:: vm.event.image }}" style="width:100%"></div>
+                <div class="banner-date">
+                    {{ vm.event.eventDate | date:'d.M.' }}
+                </div>
+                <div class="padding-medium">
+                    <h3>{{ vm.event.title }}</h3>
+                    <small class="text-muted">{{ vm.event.city }} - {{ vm.event.place }}</small>
+                    <p>{{ vm.event.description }}</p>
+                    <a ng-href="{{ vm.event.link }}">{{ vm.event.linkTitle }}</a>      
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="!vm.event && !vm.loading" class="text-danger">
+        <p translate="EVENTS.NOTHING_FOUND"></p>
+    </div>
+
+    
+</div>

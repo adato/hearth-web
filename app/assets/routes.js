@@ -341,6 +341,12 @@ angular.module('hearth').config([
 				controller: 'EventsCtrl',
 				controllerAs: 'vm',
 			})
+			.state('event-detail', {
+				url: '/event/:id',
+				templateUrl: 'assets/pages/events/event.html',
+				controller: 'EventCtrl',
+				controllerAs: 'vm',
+			})
 			;
 
 		$urlRouterProvider.otherwise(function($injector, $location) {

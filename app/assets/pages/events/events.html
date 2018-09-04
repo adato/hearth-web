@@ -1,20 +1,21 @@
 <div class="events">
     <div class="flex flex-space-between">
-      <h1 translate="EVENTS.TITLE"></h1>
+      <h2 translate="EVENTS.TITLE"></h2>
     </div>
 
     <div class="panel" ng-if="vm.events && !vm.loading">
         <div class="small-6 large-3 columns margin-none padding-tiny" ng-repeat="event in vm.events">
-            <div class="banner box margin-none padding-none overflow-hidden">
-                    <div class="banner-image"><img ng-src="{{:: event.image }}" style="width:100%"></div>
-                    <div class="banner-date">
-                        {{ event.eventDate | date:'d.M.' }}
-                    </div>
-                    <div class="padding-medium">
-                        <h3>{{ event.title }}</h3><small class="text-muted">{{ event.city }} - {{ event.place }}</small>
-                        <p>{{ event.description }}</p>
-                        <a ng-href="'{{ event.link }}'">{{ event.linkTitle }}</a>      
-                    </div>
+            <div class="banner box margin-none padding-none overflow-hidden cursor-pointer event-detail">
+                <div class="banner-image" style="background-image:url({{:: event.image }})"></div>
+                <div class="banner-date">
+                    {{ event.eventDate | date:'d.M.' }}
+                </div>
+                <div class="padding-medium">
+                    <h3>{{ event.title }}</h3>
+                    <small class="text-muted">{{ event.city }} - {{ event.place }}</small>
+                    <p>{{ event.description }}</p>
+                    <a ng-href="{{ event.link }}">{{ event.linkTitle }}</a>      
+                </div>
             </div>
         </div>
     </div>
