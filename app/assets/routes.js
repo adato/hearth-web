@@ -328,13 +328,24 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/static/error404.html',
 				controller: 'Error404Ctrl'
 			})
-
 			// temp admin only
 			.state('gift-categorization', {
 				url: '/gift-categorization',
 				templateUrl: 'assets/pages/admin/templates/giftCategorization.html',
 				controller: 'GiftCategorizationController as vm',
 				policy: ADMIN
+			})
+			.state('events', {
+				url: '/events',
+				templateUrl: 'assets/pages/events/events.html',
+				controller: 'EventsCtrl',
+				controllerAs: 'vm',
+			})
+			.state('event-detail', {
+				url: '/event/:id',
+				templateUrl: 'assets/pages/events/event.html',
+				controller: 'EventCtrl',
+				controllerAs: 'vm',
 			})
 			;
 

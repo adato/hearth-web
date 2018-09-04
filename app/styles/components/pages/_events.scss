@@ -1,0 +1,20 @@
+.events {
+    .columns:last-child:not(:first-child) {
+        float: left;
+    }
+
+    .event-detail {
+        min-height:350px;
+        max-height:500px;
+    }
+
+    .banner-date {
+        padding:3*$ui-small-grid-size;
+        padding-bottom:0;
+        font-size:20px;
+    }
+    .banner-image {
+        background-size:cover;
+        height:150px;
+    }
+}
