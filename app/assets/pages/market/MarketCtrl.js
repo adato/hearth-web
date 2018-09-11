@@ -386,9 +386,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
         }
 				$scope.load();
 
-				console.log("loadoing")
 				HearthCrowdfundingBanner.initBlogposts().then((blogposts) => {
-					console.log("BP",blogposts)
 					$scope.blogposts = blogposts;
 				})
       });
