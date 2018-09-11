@@ -1,20 +1,25 @@
 <div class="events">
     <div class="flex flex-space-between">
-      <h2>{{ vm.event.title }}</h2>
+      <h3>
+        <a ui-sref="events"><span translate="EVENTS.TITLE"></span></a>
+        <span ng-if="vm.event.title"> / {{ vm.event.title }}</span>
+      </h3>
     </div>
 
     <div class="panel" ng-if="vm.event && !vm.loading">
-        <div class="small-6 large-8 columns margin-none padding-tiny">
+        <div class="small-12 small-centered large-8 large-push-2 columns margin-none padding-tiny">
             <div class="banner box margin-none padding-none overflow-hidden cursor-pointer">
-                <div class="banner-image"><img ng-src="{{:: vm.event.image }}" style="width:100%"></div>
-                <div class="banner-date">
-                    {{ vm.event.eventDate | date:'d.M.' }}
+                <div class="banner-date big-font">
+                    
                 </div>
-                <div class="padding-medium">
-                    <h3>{{ vm.event.title }}</h3>
-                    <small class="text-muted">{{ vm.event.city }} - {{ vm.event.place }}</small>
+                <div class="padding-horizontal-medium">
+                    <h2><b>{{ vm.event.eventDate | date:'d.M.' }}</b> {{ vm.event.title }}</h2>
+                    <small class="text-muted padding-bottom-small display-inline-block">{{ vm.event.city }} <span ng-if="vm.event.place">- {{ vm.event.place }}</span></small>
                     <p>{{ vm.event.description }}</p>
-                    <a ng-href="{{ vm.event.link }}">{{ vm.event.linkTitle }}</a>      
+                    <p ng-if="vm.event.link"><a ng-href="{{ vm.event.link }}" class="">{{ vm.event.linkTitle }}</a></p>
+                    <div class="image" ng-if="vm.event.image"><img ng-src="{{:: vm.event.image }}" style="width:100%" class="margin-vertical-medium"></div>
+                    <p ng-bind-html="vm.event.content | nl2br"></p>
+                    <p ng-if="vm.event.content"><a ng-href="{{ vm.event.link }}" class="margin-bottom-medium">{{ vm.event.linkTitle }}</a></p>
                 </div>
             </div>
         </div>
