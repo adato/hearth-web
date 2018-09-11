@@ -78,7 +78,7 @@
 						</div>
 					</a>
 
-					<a ui-sref="events" class="icon-item" ng-class="{active: $state.includes('events')}" title="{{:: 'EVENTS.NAVIGATION_ITEM' | translate }}">
+					<a ui-sref="events" class="icon-item" ng-class="{active: $state.includes('events') || $state.includes('event-detail')}" title="{{:: 'EVENTS.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
 							<span class="fa fa-calendar"></span>
 							<span translate="EVENTS.NAVIGATION_ITEM"></span>

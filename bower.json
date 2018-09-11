@@ -60,7 +60,8 @@
     "angular-actioncable": "^1.0.1",
     "intl-tel-input": "~10.0.0",
     "international-phone-number": "^0.0.16",
-    "angular-mocks": "~1.6.x"
+    "angular-mocks": "~1.6.x",
+    "masonry-layout": "masonry#^4.2.2"
   },
   "resolutions": {
     "angular": "1.6.x",

@@ -4,18 +4,25 @@
     </div>
 
     <div class="panel" ng-if="vm.events && !vm.loading">
-        <div class="small-6 large-3 columns margin-none padding-tiny" ng-repeat="event in vm.events">
-            <div class="banner box margin-none padding-none overflow-hidden cursor-pointer event-detail">
-                <div class="banner-image" style="background-image:url({{:: event.image }})"></div>
-                <div class="banner-date">
-                    {{ event.eventDate | date:'d.M.' }}
-                </div>
-                <div class="padding-medium">
-                    <h3>{{ event.title }}</h3>
-                    <small class="text-muted">{{ event.city }} - {{ event.place }}</small>
-                    <p>{{ event.description }}</p>
-                    <a ng-href="{{ event.link }}">{{ event.linkTitle }}</a>      
-                </div>
+        <div id="masonry-container" class="small-block-grid-2 large-block-grid-4 columns margin-none padding-tiny">
+            <div ng-repeat="event in vm.events" class="single-event banner box margin-small padding-none overflow-hidden event-detail">
+                    <div class="banner-image" style="background-image:url({{:: event.image }})" ui-sref="event-detail({id: event.id })" style="cursor:pointer;"></div>
+                    <div class="fright padding-medium" ng-if="event.isAttend == 1">
+                        <img src="/app/assets/img/logo-dark.png" title="{{ 'EVENTS.HEARTH_ATTENDING' | translate }}" style="width:90px;" tipsy>
+                    </div>
+                    <div class="fright padding-small" ng-if="event.isOrganized == 1">
+                        <img src="/app/assets/img/logo-adato-small.png" title="{{ 'EVENTS.ADATO_ORGANISED' | translate }}" style="width:90px;" tipsy>
+                    </div>
+                    
+                    <div class="banner-date" ui-sref="event-detail({id: event.id })" style="cursor:pointer;">
+                        {{ event.eventDate | date:'d.M.' }}
+                    </div>
+                    <div class="padding-medium">
+                        <h3 ui-sref="event-detail({id: event.id })" style="cursor:pointer;">{{ event.title }}</h3>
+                        <small class="text-muted">{{ event.city }} <span ng-if="event.place">- {{ event.place }}</span></small>
+                        <p ng-if="event.description">{{ event.description }}</p>
+                        <p ng-if="event.link" class="margin-bottom-none"><a ng-href="{{ event.link }}">{{ event.linkTitle }}</a></p>
+                    </div>
             </div>
         </div>
     </div>

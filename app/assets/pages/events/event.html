@@ -1,20 +1,35 @@
 <div class="events">
     <div class="flex flex-space-between">
-      <h2>{{ vm.event.title }}</h2>
+        <h2>
+            <span ui-sref="events" translate="EVENTS.TITLE"></span>
+            <!-- <span ng-if="vm.event.title"> / {{ vm.event.title }}</span> -->
+        </h2>
     </div>
 
     <div class="panel" ng-if="vm.event && !vm.loading">
-        <div class="small-6 large-8 columns margin-none padding-tiny">
-            <div class="banner box margin-none padding-none overflow-hidden cursor-pointer">
-                <div class="banner-image"><img ng-src="{{:: vm.event.image }}" style="width:100%"></div>
-                <div class="banner-date">
-                    {{ vm.event.eventDate | date:'d.M.' }}
+        <div class="small-12 small-centered large-8 large-push-2 columns margin-none padding-tiny">
+            <div class="banner box margin-none padding-tiny overflow-hidden cursor-pointer">
+                <div class="small-12 large-12 columns margin-top-small">
+                    <h2><b>{{ vm.event.eventDate | date:'d.M.' }}</b> {{ vm.event.title }}</h2>
+                    <small class="text-muted padding-bottom-small display-inline-block">{{ vm.event.city }} <span ng-if="vm.event.place">- {{ vm.event.place }}</span></small>
                 </div>
-                <div class="padding-medium">
-                    <h3>{{ vm.event.title }}</h3>
-                    <small class="text-muted">{{ vm.event.city }} - {{ vm.event.place }}</small>
+                <div class="small-12 large-6 columns">
                     <p>{{ vm.event.description }}</p>
-                    <a ng-href="{{ vm.event.link }}">{{ vm.event.linkTitle }}</a>      
+                    <a ng-href="{{ vm.event.link }}" class="bold">{{ vm.event.linkTitle }}</a>
+                    <div ng-if="vm.event.isAttend == 1" class="pull-right">
+                        <img src="/app/assets/img/logo-dark.png" title="{{ 'EVENTS.HEARTH_ATTENDING' | translate }}" style="width:90px;" tipsy>
+                    </div>
+                    <div ng-if="vm.event.isOrganized == 1" class="pull-right">
+                        <img src="/app/assets/img/logo-adato-small.png" title="{{ 'EVENTS.ADATO_ORGANISED' | translate }}" style="width:90px;" tipsy>
+                    </div>
+                    <br class="clearfix">
+                </div>
+                <div class="small-12 large-6 columns">
+                    <div class="image margin-small" ng-if="vm.event.image"><img ng-src="{{:: vm.event.image }}" class=""></div>
+                </div>
+                <div class="small-12 large-12 columns">
+                    <p class="margin-top-medium" ng-bind-html="vm.event.content"></p>
+                    <p ng-if="vm.event.content"><a ng-href="{{ vm.event.link }}" class="margin-bottom-medium">{{ vm.event.linkTitle }}</a></p>
                 </div>
             </div>
         </div>

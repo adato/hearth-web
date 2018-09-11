@@ -4,8 +4,11 @@
     }
 
     .event-detail {
-        min-height:350px;
-        max-height:500px;
+        width:31%;
+        min-width:300px;
+        @include breakpoint(small only) {
+            width:300px;
+        }
     }
 
     .banner-date {

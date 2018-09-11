@@ -1,0 +1,16 @@
+<div>
+	<div ng-repeat="event in vm.content" class="banner" ng-cloak>
+		<h4 class="text-center margin-bottom-small margin-top-large" translate="HEARTH.EVENTS.RECOMMENDED"></h4>
+		<div class="box overflow-hidden padding-none margin-bottom-medium">
+			<div class="banner-imags"><img ng-src="{{:: event.image }}" ui-sref="event-detail({id: event.id })" style="cursor:pointer;"></div>
+			<div class="banner-date" ui-sref="event-detail({id: event.id })" style="cursor:pointer;">
+				<h3 class="margin-small"></h3>
+			</div>
+			<div class="padding-left-small padding-right-small">
+				<h3 ui-sref="event-detail({id: event.id })" style="cursor:pointer;"><b>{{ ::event.eventDate | date:'d.M.' }}</b> {{ event.title }}</h3>
+				<p class="" ng-bind-html="event.description"></p>
+				<div class="text-center"><a class="button margin-bottom-medium" ui-sref="event-detail({id:event.id})">Více informací</a></div>
+			</div>
+		</div>
+	</div>
+</div>
