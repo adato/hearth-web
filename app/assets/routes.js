@@ -15,22 +15,22 @@ angular.module('hearth').config([
 		const { SIGNED_IN, UNAUTH, ADMIN } = window.$$config.policy;
 
 		$stateProvider
+			.state('dashboard', {
+				url: '/',
+				templateUrl: 'assets/pages/dashboard/dashboard.html',
+				controller: 'DashboardCtrl',
+				reloadOnSearch: false,
+			})
 			.state('market', {
 				// @kamil - query and type params must remain so that they get cleaned on route change
 				// TODO even though i have no idea why that happens
-				url: '/?query&type',
+				url: '/market?query&type',
 				params: {
 					showMessage: ''
 				},
 				templateUrl: 'assets/pages/market/market.html',
 				controller: 'MarketCtrl',
 				reloadOnSearch: false,
-			})
-			.state('market-refresh', {
-				url: '/market',
-				controller: ['$location', function($location) {
-					$location.path('/'); // just for refresh purposes
-				}],
 			})
 			.state('map', {
 				url: '/map',
