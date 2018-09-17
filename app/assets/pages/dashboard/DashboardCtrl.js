@@ -19,6 +19,9 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
       PostAux.getExemplaryPosts().then(function (data) {
         $scope.loading = false;
         var epOpts = new PostAux.getExemplaryPostsOpts(data)
+        epOpts.found = {
+          posts: (data.main.length + data.additional.length)
+        }
         $scope.epOpts = epOpts;
       }, function (error) {
         console.error(error);
