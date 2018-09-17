@@ -1,0 +1,20 @@
+<div class="autocomplete-fulltext-input">
+    <input type="text" 
+           id="searchBox" 
+           placeholder="{{:: 'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" 
+           ng-keypress="offerAutocomplete($event)"
+           ng-blur="hideAutocomplete()"
+           ng-model="fulltextSearchQuery"
+           >
+    <div class="autocomplete-list" ng-show="showAutocomplete" style="position:absolute;">
+        <div ng-repeat="item in autocompleted.posts" class="list-item posts">
+            <a href="" ui-sref="post({id: item._id })"><b>{{ item.type.toUpperCase() | translate }}</b> {{ item.title }}</a>
+        </div>
+        <div ng-repeat="item in autocompleted.users" class="list-item list-item-with-avatar users">
+            <a href="" ui-sref="profile.default({id: item._id })" class="display-flex"><avatar size="small" src="item.avatar.normal" type="User" class="margin-right-small"></avatar> <span>{{ item.name }}</span></a>
+        </div>
+        <div ng-repeat="item in autocompleted.communities" class="list-item list-item-with-avatar communities">
+            <a href="" ui-sref="community.default({id: item._id })"><avatar size="small" src="item.avatar.normal" type="Community"></avatar> {{ item.name }}</a>
+        </div>
+    </div>
+</div>
