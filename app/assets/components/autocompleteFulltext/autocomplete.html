@@ -13,11 +13,11 @@
         </div>
         <h5 ng-if="autocompleted.users.length">{{ 'MARKETPLACE.FILTER.POST_TYPE.PEOPLE' | translate }}</h5>
         <div ng-repeat="item in autocompleted.users" class="list-item list-item-with-avatar list-item-users">
-            <a href="" ui-sref="profile.default({id: item._id })" class="display-flex"><avatar size="h5" src="item.avatar.normal" type="User" class="margin-right-h5"></avatar> <span>{{ item.name | ellipsis:50}}</span></a>
+            <a href="" ui-sref="profile.default({id: item._id })" class="display-flex"><avatar size="small" src="item.avatar.normal" type="User" class="margin-right-small"></avatar> <span>{{ item.name | ellipsis:50}}</span></a>
         </div>
         <h5 ng-if="autocompleted.communities.length">{{ 'MARKETPLACE.FILTER.POST_TYPE.COMMUNITY' | translate }}</h5>
         <div ng-repeat="item in autocompleted.communities" class="list-item list-item-with-avatar list-item-communities">
-            <a href="" ui-sref="community.default({id: item._id })" class="display-flex"><avatar size="h5" src="item.avatar.normal" type="Community" class="margin-right-h5"></avatar> <span>{{ item.name | ellipsis:50 }}</span></a>
+            <a href="" ui-sref="community.default({id: item._id })" class="display-flex"><avatar size="small" src="item.avatar.normal" type="Community" class="margin-right-small"></avatar> <span>{{ item.name | ellipsis:50 }}</span></a>
         </div>
     </div>
 </div>
