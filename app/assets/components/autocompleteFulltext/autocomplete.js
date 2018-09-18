@@ -8,9 +8,12 @@
 angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout', 'FulltextService',
 	function($timeout, FulltextService) {
 		return {
+            require: '^ngModel',
             restrict: 'AE',
             replace: true,
-			scope: {},
+			scope: {
+                'ngModel': '='
+            },
             templateUrl: 'assets/components/autocompleteFulltext/autocomplete.html',
 			link: function(scope, element, attrs, ngModelCtrl) {
                 scope.showAutocomplete = false;
@@ -24,20 +27,26 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                     communities: false
                 }
 
-                scope.offerAutocomplete = function (el) {
+                scope.offerAutocomplete = function ($event) {
                     $timeout(function () {
                         scope.showAutocomplete = true;
 
-                        FulltextService.query({ query: scope.fulltextSearchQuery, type: 'post', limit: 4 }).then(function (data) {
-                            scope.autocompleted.posts = data.data;
+                        FulltextService.query({ query: scope.ngModel, type: 'post', limit: 4 }).then(function (data) {
+                            if (data.data.length) {
+                                scope.autocompleted.posts = data.data; 
+                            }
                         })
 
-                        FulltextService.query({ query: scope.fulltextSearchQuery, type: 'user', limit: 4 }).then(function (data) {
-                            scope.autocompleted.users = data.data;
+                        FulltextService.query({ query: scope.ngModel, type: 'user', limit: 4 }).then(function (data) {
+                            if (data.data.length) {
+                                scope.autocompleted.users = data.data;
+                            }
                         })
 
-                        FulltextService.query({ query: scope.fulltextSearchQuery, type: 'community', limit: 4 }).then(function (data) {
-                            scope.autocompleted.communities = data.data;
+                        FulltextService.query({ query: scope.ngModel, type: 'community', limit: 4 }).then(function (data) {
+                            if (data.data.length) {    
+                                scope.autocompleted.communities = data.data;
+                            }
                         })
                     }, 100);
                     

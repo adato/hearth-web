@@ -58,10 +58,7 @@
 			</section>
 
 			<section class="bar-columns searchbox-column hide-for-medium-down show-for-large">
-				<!-- <input type="text" id="searchBox" placeholder="{{:: 'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
-				<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete> -->
-
-				<autocomplete-fulltext></autocomplete-fulltext>
+				<autocomplete-fulltext ng-model="searchQuery.query" ng-enter="search(searchQuery)"></autocomplete-fulltext>
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
