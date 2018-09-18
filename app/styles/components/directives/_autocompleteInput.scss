@@ -5,11 +5,20 @@
         padding:$size-small;
         border-radius: $global-radius;
 
+        h5 {
+            font-size:12px;
+            border-bottom:1px solid white;
+            margin-top:$size-small;
+        }
+
         .list-item {
             display:block;
             max-height:20px;
             overflow:hidden;
             a { color: white; }
+            a:hover {
+                color:$colorDarkGray;
+            }
         }
 
         .list-item-with-avatar {

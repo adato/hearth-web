@@ -28,6 +28,7 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                 }
 
                 scope.offerAutocomplete = function ($event) {
+                    if ([13,27,37,38,39,40].indexOf($event.keyCode) > -1) return; // filter unwanted key presses
                     $timeout(function () {
                         scope.showAutocomplete = true;
 
@@ -48,7 +49,7 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                                 scope.autocompleted.communities = data.data;
                             }
                         })
-                    }, 100);
+                    }, 300);
                     
                 }
 
