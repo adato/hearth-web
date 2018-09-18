@@ -1,0 +1,3 @@
+<div class="tag-cloud margin-top-large">
+    <a ng-click="toggleTag(keyword.term)" ng-repeat="keyword in keywords" class="label" style="font-size:{{ (keyword.count / 50) + 10}}px;" ng-class="{ 'checked': keyword.checked === true }">{{ keyword.term }}</a>
+</div>

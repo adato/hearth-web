@@ -1,0 +1,17 @@
+.tag-cloud {
+    .label {
+        cursor:pointer;
+        margin-right:$size-tiny;
+        margin-bottom:$size-tiny;
+        background-color:$tertiary-color;
+        &:hover {
+            color: $colorDarkGray;
+        }
+        &.checked {
+            background:$colorDarkGray;
+            &:hover {
+                color:$colorLightGray;
+            }
+        }
+    }
+}
