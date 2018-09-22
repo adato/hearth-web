@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 				scope.isEmpty = IsEmpty;
 
 				var defs = {
+					verified: 'verified',
 					motto: 'motto',
 					about: 'about',
 					about_shortened: 'about_shortened',
@@ -34,9 +35,9 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 				};
 
 				var setup = {
-					'informative': [defs.about_shortened, defs.locations, defs.languages, defs.email, defs.phone],
-					'infobox': [defs.locations, defs.languages, defs.email, defs.phone], // note that there is a motto missing which is on purpose as it is shown differently usually
-					'profile': [defs.about, defs.interests, defs.work, defs.locations, defs.languages, defs.email, defs.phone, defs.webs]
+					'informative': [defs.verified,defs.about_shortened, defs.locations, defs.languages, defs.email, defs.phone],
+					'infobox': [defs.verified, defs.locations, defs.languages, defs.email, defs.phone], // note that there is a motto missing which is on purpose as it is shown differently usually
+					'profile': [defs.verified, defs.about, defs.interests, defs.work, defs.locations, defs.languages, defs.email, defs.phone, defs.webs]
 				};
 
 				scope.selectedSetup = setup[scope.type] || setup.profile;
@@ -67,7 +68,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 					// if item should be displayed in this setup
 					if (scope.selectedSetup.indexOf(itemName) > -1) {
 						// if itemName is attribute of entity, display it
-						if (typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null && scope.entity[itemName].length > 0) {
+						if (typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null) {
 							return true;
 						}
 					}

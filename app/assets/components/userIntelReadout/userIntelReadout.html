@@ -1,4 +1,10 @@
 <div class="display-table table-with-icons">
+	<div class="display-table-row" ng-if="canShow('verified')">
+		<div class="display-table-cell addon color-offer">
+			<i class="fa fa-fw fa-check-circle "></i>
+		</div>
+		<div class="display-table-cell" ng-if="entity.verified === true">OVERENY UZIVATEL</div>
+	</div>	
 
 	<div class="display-table-row" ng-if="canShow('motto')">
 		<div class="display-table-cell addon">

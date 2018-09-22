@@ -1,7 +1,7 @@
 <div>
   <div class="flex-grid info-bubble-content">
     <div>
-      <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
+      <avatar type="vm.model._type" src="vm.model.avatar.normal" verified="vm.model.verified" show-verified="false"></avatar>
       <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" ng-if="vm.model.up_votes > 0" class="text-center display-block">
         <span class="avatar-thanks" ng-bind="vm.model.up_votes"></span>
         <span translate="PROFILE.RATING.COUNT.few" class="text-muted text-small text-center"></span>
@@ -15,6 +15,10 @@
             <span ng-bind="vm.model.infoBubble.locations[0].short_address"></span>
           </span>
         </div>
+      </div>
+      <div ng-if="vm.model.infoBubble.verified === true" class="margin-bottom-small">
+        <span class="color-offer"><i class="fa fa-fw fa-check-circle "></i></span>
+        OVERENY UZIVATEL
       </div>
       <div>
         <small ng-bind="vm.model.infoBubble.about_shortened"></small>

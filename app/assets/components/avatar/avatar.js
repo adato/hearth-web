@@ -25,6 +25,8 @@ angular.module('hearth.directives').directive('avatar', [function() {
 			'thanks': '=',
 			'showThanks': '=',
 			'showGlow': '=',
+			'verified': '=',
+			'showVerified': '=',
 		},
 		templateUrl: (el, attrs) => {
 			const template = attrs.dynamic !== void 0 ? 'avatar-dynamic' : 'avatar'
