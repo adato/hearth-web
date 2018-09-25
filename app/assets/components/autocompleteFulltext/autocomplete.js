@@ -8,11 +8,12 @@
 angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout', 'FulltextService',
 	function($timeout, FulltextService) {
 		return {
-            require: '^ngModel',
+            require: 'ngModel',
             restrict: 'AE',
             replace: true,
 			scope: {
-                'ngModel': '='
+                'ngModel': '=',
+                'onEnter': '&'
             },
             templateUrl: 'assets/components/autocompleteFulltext/autocomplete.html',
 			link: function(scope, element, attrs, ngModelCtrl) {
@@ -21,42 +22,74 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                 scope.autocompleted.users = [];
                 scope.autocompleted.communities = [];
                 scope.autocompleted.posts = [];
+                scope.autocompleted.default = [];
                 scope.loading = {
                     posts: false,
                     users: false,
-                    communities: false
+                    communities: false,
                 }
 
-                scope.offerAutocomplete = function ($event) {
-                    if ([13,27,37,38,39,40].indexOf($event.keyCode) > -1) return; // filter unwanted key presses
-                    $timeout(function () {
+                scope.showAutocompleteWithSearchPhrases = function () {
+                    scope.autocompleted.users = [];
+                    scope.autocompleted.communities = [];
+                    scope.autocompleted.posts = [];
+
+                    if (scope.ngModel) {
                         scope.showAutocomplete = true;
+                        return scope.searchAutocomplete(scope.ngModel);
+                    }
+                    FulltextService.querySearchWords().then(function (data) {
+                        scope.showAutocomplete = true;
+                        scope.autocompleted.default = data;
+                    })
+                }
 
-                        FulltextService.query({ query: scope.ngModel, type: 'post', limit: 4 }).then(function (data) {
-                            if (data.data.length) {
-                                scope.autocompleted.posts = data.data; 
-                            }
-                        })
+                scope.$watch('ngModel', function (newVal, oldVal) {
+                    if (newVal && !newVal.length) { console.log('empty');  return; } // filter null query
 
-                        FulltextService.query({ query: scope.ngModel, type: 'user', limit: 4 }).then(function (data) {
-                            if (data.data.length) {
-                                scope.autocompleted.users = data.data;
-                            }
-                        })
+                    $timeout(function () {
+                        scope.autocompleted.default = [];
+                        scope.searchAutocomplete(newVal);
 
-                        FulltextService.query({ query: scope.ngModel, type: 'community', limit: 4 }).then(function (data) {
-                            if (data.data.length) {    
-                                scope.autocompleted.communities = data.data;
-                            }
-                        })
-                    }, 300);
+                    }, 500);
                     
+                });
+
+                scope.setQuery = function (query) {
+                    ngModelCtrl.$setViewValue(query);
+                    if (scope.onEnter) {
+                        $timeout(function () {
+                            scope.onEnter();
+                        });
+                    }
+                    scope.hideAutocomplete();
                 }
 
                 scope.hideAutocomplete = function () {
                     $timeout(function () {
                         scope.showAutocomplete = false;
-                    }, 1000)
+                    }, 800)
+                }
+
+                scope.searchAutocomplete = function (query) {
+                    if (!query || !query.length) return;
+                    FulltextService.query({ query: query, type: 'post', limit: 4 }).then(function (data) {
+                        if (data.data.length) {
+                            scope.autocompleted.posts = data.data; 
+                        }
+                    })
+
+                    FulltextService.query({ query: query, type: 'user', limit: 4 }).then(function (data) {
+                        if (data.data.length) {
+                            scope.autocompleted.users = data.data;
+                        }
+                    })
+
+                    FulltextService.query({ query: query, type: 'community', limit: 4 }).then(function (data) {
+                        if (data.data.length) {
+                            scope.autocompleted.communities = data.data;
+                        }
+                    })
                 }
 			}
 		};

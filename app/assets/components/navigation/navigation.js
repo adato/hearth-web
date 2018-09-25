@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('navigation', [
 				// $scope.searchFilterDisplayed = false;
 				$scope.getFirstConversationId = ConversationAux.getFirstConversationIdIfAny;
 				$scope.searchQuery = {
-					query: $location.search().query
+					query: $location.search().query || ''
 				};
 				$scope.basePath = $$config.basePath;
 
