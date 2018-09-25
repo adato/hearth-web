@@ -64,6 +64,13 @@
 
 			<section class="bar-columns icons-column">
 				<div class="topbar-icons-wrapper pull-right">
+					<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['dashboard'].indexOf(segment) > -1}" title="{{:: 'DASHBOARD.NAVIGATION_ITEM' | translate }}">
+							<div class="inner-icon">
+								<span class="fa fa-home"></span>
+								<span translate="DASHBOARD.NAVIGATION_ITEM"></span>
+							</div>
+						</a>
+
 					<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
 							<span class="fa icon-marketplace"></span>
