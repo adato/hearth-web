@@ -144,21 +144,6 @@ $large-avatar-size: 295px;
 	min-height: 36px;
 }
 
-.avatar-verified {
-	border-radius:50%;
-	border:1px solid white;
-	background:$tertiary-color;
-	position:absolute;
-	bottom:5px;
-	&>i.fa { 
-		color:white; 
-		&:before {
-			display:block; 
-			font-size:13px;
-			padding:3px;
-		}
-	}
-}
 
 .info-bubble-content .avatar-thanks,
 .avatar .avatar-thanks {

@@ -11,7 +11,7 @@
 				</div>
 				<div class="applications-text">
 					<a href="{{:: getProfileLink('User', item._id) }}">
-						{{:: item.name | ellipsis}}
+						{{:: item.name | ellipsis}}&nbsp;<span ng-if="item.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 						<br>
 						<small translate="COMMON.SHOW_PROFILE"></small>
 					</a>
