@@ -10,7 +10,7 @@
            >
     <div class="autocomplete-list" ng-show="showAutocomplete" style="position:absolute;">
         <div ng-repeat="item in autocompleted.default" class="list-item list-item-phrases">
-            <a href="" ng-click="setQuery(item[$root.language].title)">{{ item[$root.language].title }}</a>
+            <a href="" ui-sref="search({query:item[$root.language].title})">{{ item[$root.language].title }}</a>
         </div>
         <h5 ng-if="autocompleted.posts.length">{{ 'MARKETPLACE.FILTER.POST_TYPE.POSTS' | translate }}</h5>
         <div ng-repeat="item in autocompleted.posts" class="list-item list-item-posts">

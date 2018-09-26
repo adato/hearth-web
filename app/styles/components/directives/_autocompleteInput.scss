@@ -15,9 +15,13 @@
             display:block;
             max-height:20px;
             overflow:hidden;
-            a { color: white; }
+            a { 
+                color: white;
+                text-decoration: none;
+            }
             a:hover {
-                color:$colorDarkGray;
+                color:#ffeee3;
+                text-decoration: underline;
             }
         }
 
