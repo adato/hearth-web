@@ -15,7 +15,9 @@
 				<i></i>
 			</div>
 			<div class="v2 user text-center">
-				<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}</div>
+				<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}
+					<span ng-if=":: item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+				</div>
 			</div>
 		</section>
 		<div class="column small-12 medium-10 padding-none position-relative" ng-class=":: {'medium-push-1': hideAvatar}">

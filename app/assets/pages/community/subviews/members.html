@@ -6,7 +6,7 @@
 		</div>
 		<div class="name">
 			<h4>
-				<a href="{{:: getProfileLink('User', item._id)}}">{{:: item.name | ellipsis:24}}</a>
+				<a href="{{:: getProfileLink('User', item._id)}}">{{:: item.name | ellipsis:24}}&nbsp;<span ng-if="item.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span></a>
 			</h4>
 			<a ng-if="managing && item._id != loggedUser._id" ng-click="confirmBox({title: 'COMMUNITY.REMOVE_MEMBER_MODAL.TITLE', text: 'COMMUNITY.REMOVE_MEMBER_MODAL.TEXT', callback: removeMember, params: item._id, callbackScope: this})" translate="COMMUNITY.ACTION_REMOVE_MEMBER"></a>
 			<span ng-if="(managing && item._id == loggedUser._id) || item.community_admin" translate="COMMUNITY.ADMIN"></span>

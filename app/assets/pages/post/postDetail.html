@@ -178,7 +178,8 @@
 									<div class="row">
 										<div class="column small-12 medium-display-table margin-bottom-small">
 											<div class='medium-display-table-cell'>
-												<span class="text-emphasize">{{:: item.author.name }}</span>
+												<span class="text-emphasize">{{:: item.author.name }}&nbsp;<span ng-if="item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+												</span>
 											</div>
 											<div class="medium-display-table-cell addon nowrap date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
 												<i class="fa fa-clock-o"></i>&nbsp;{{ item.created_at | ago }}
@@ -203,7 +204,8 @@
 					<div class='text-center margin-bottom-medium'>
 						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2 position-relative display-block' test-beacon="item-detail-avatar">
 							<avatar class='margin-top-medium ' type=":: item.author._type" src=":: item.author.avatar.large" size="medium" thanks=":: item.author.up_votes" show-glow="true"></avatar>
-							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
+							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}&nbsp;<span ng-if="item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+							</div>
 							<div class="avatar-thanks">{{ item.author.up_votes }}</div>
 							<span style="text-shadow:none; font-weight:normal;">{{ 'PROFILE.RATING.COUNT.few' | translate }}</span>
 							<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">

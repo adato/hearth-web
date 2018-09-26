@@ -477,3 +477,18 @@ button.neutral:focus{
 .no-scroll .exit-off-canvas{
 	background-color: rgba(0,0,0,.7) !important;
 }
+
+.verified-icon {
+	text-shadow:none;
+	box-shadow:none;
+	font-size:15px;
+	color:$colorOffer !important;
+}
+
+.profile-view .user-basic .verified-icon {
+	font-size:25px;
+}
+
+.item-post .verified-icon, .ratings-given .verified-icon, .ratings-received .verified-icon, .people-listing .verified-icon {
+	font-size:15px;
+}

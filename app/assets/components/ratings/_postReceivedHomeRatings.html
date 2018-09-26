@@ -4,7 +4,8 @@
 			<div info-bubble=":: item.entity_from" info-bubble-type=":: item.entity_from._type">
 				<a href="{{ getProfileLink(item.entity_from._type, item.entity_from._id) }}">
 					<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
-					<div class="name">{{:: item.entity_from.name}}</div>
+					<div class="name">{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+					</div>
 				</a>
 			</div>
 		</div>

@@ -14,7 +14,7 @@ $info-bubble-width: (5 * ($info-bubble-image-width + $size-small)) - $size-small
     border-radius: $global-radius;
     box-shadow: $ui-box-shadow;
     transition: opacity .1s;
-    z-index: 100000000; // way over NINE THOUSAAAAAAAAND
+    z-index: 999999; // way over NINE THOUSAAAAAAAAND
 }
 .info-bubble-content {
     padding: $size-small;

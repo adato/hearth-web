@@ -4,6 +4,7 @@
 		<ui-select-choices repeat="item in userList" refresh="search($select.search)" refresh-delay="0">
 			<avatar type="item._type" src="item.avatar.normal" size="mini"></avatar>
 			<div class="name" ng-bind-html="item.name"></div>
+			<span ng-if="item.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 			<div class="clear"></div>
 		</ui-select-choices>
 	</ui-select>
