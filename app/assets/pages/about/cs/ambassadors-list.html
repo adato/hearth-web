@@ -27,7 +27,7 @@
 					<div class="clearfix display-flex">
 						<avatar src="person.avatar.normal" size="small"  type="'User'" class="flex-left"></avatar>
 						<div class="flex-right margin-left-medium">
-							<a ng-href="/app/profile/{{ person.id }}"><h4 class="margin-top-none margin-bottom-none">{{ person.name }}</h4></a>
+							<a ng-href="/app/profile/{{ person.id }}"><h4 class="margin-top-none margin-bottom-none">{{ person.name }}&nbsp;<span ng-if="person.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span></h4></a>
 							<div class="text-small"><i class="fa fa-map-marker margin-right-tiny"></i> <span ng-bind-html="person.area"></span></div>
 						</div>
 					</div>
