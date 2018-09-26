@@ -29,11 +29,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
     $scope.dataFetchError
 		$scope.marketTitle
 		$scope.blogposts
-    // exemplary posts options
-    $scope.epOpts
-
-    // variable controlling that exemplary posts are only inserted once
-    var exemplaryPostsInserted = false
+  
     var securityCleanupDone
 
     var userLanguages = undefined;
@@ -75,7 +71,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
       data,
       index,
       done,
-      exemplaryPosts
     }) {
       if (!securityCleanupDone) {
         marketItemsContainer.html('')
@@ -101,14 +96,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
           }
 
 
-					// Add exemplary posts
-					// only for logged users who are not filtering though
-					if (!Filter.isSet() && Auth.isLoggedIn() && exemplaryPosts && exemplaryPosts.main && exemplaryPosts.main.length && index === 0 && !exemplaryPostsInserted) {
-						$scope.epOpts = new PostAux.getExemplaryPostsOpts(exemplaryPosts)
-						exemplaryPostsInserted = true
-						exemplaryPosts = false
-					}
-
           // Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
           // Timeout for the check must be set long enough for the slidedown to take its full effect.
           $timeout(function () {
@@ -123,7 +110,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
             data,
             index: index + 1,
             done,
-            exemplaryPosts
           });
 
         });
@@ -191,10 +177,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
       const qParams = {
         posts: Post.query(paramObject).$promise
       }
-      qParams.exemplaryPosts = PostAux.getExemplaryPosts()
       $q.all(qParams).then(({
         posts: data,
-        exemplaryPosts
       }) => {
         if (data.total) Filter.isSet() ? setMarketTitle("MARKETPLACE.FILTER_RESULTS") : setMarketTitle("MARKETPLACE.NEWEST_POSTS")
         $scope.loaded = true;
@@ -215,7 +199,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
           data,
           index: 0,
           done: finishLoading.bind($scope),
-          exemplaryPosts
         });
 
         $rootScope.$emit('postsLoaded');
@@ -385,10 +368,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
           $scope.debug && $log.error('There was an error during compilation process: ', err);
         }
 				$scope.load();
-
-				HearthCrowdfundingBanner.initBlogposts().then((blogposts) => {
-					$scope.blogposts = blogposts;
-				})
       });
     };
 

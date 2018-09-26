@@ -1,0 +1,58 @@
+<div id="notify-container-market"></div>
+<div class="market">
+  <div class="small-12 large-9 columns">
+
+    <div ng-if="infoMessageToShow" class="row margin-horizontal-none margin-bottom-large">
+      <div class="column medium-10 medium-push-2 padding-medium close-wrapper box">
+        <div ng-click="$parent.infoMessageToShow = ''" class="touchable close">
+          <i class="fa fa-times"></i>
+        </div>
+        <div ng-bind-html="$parent.infoMessageToShow"></div>
+      </div>
+    </div>
+
+    <div loading show="loading"></div>
+
+    <exemplary-posts opts="epOpts" ng-if="epOpts">
+    </exemplary-posts>
+
+    <div class="small-12 large-4 large-push-5" ng-if="!loading && epOpts">
+      <button class="button primary" ui-sref="market">
+        Další dary a přání...
+      </button>
+  </div>
+  </div>
+  
+
+  <div class="large-3 hide-for-small-only hide-for-medium-down show-for-large columns">
+    
+    <div class="margin-bottom-tiny">
+      <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block padding-top-medium padding-bottom-medium" test-beacon="new-post-button" translate="MARKETPLACE.ACTION_CREATE_POST"></a>
+    </div>
+
+    <!-- PROMOTED EVENT -->
+    <promoted-events class="clearfix"></promoted-events>
+
+
+    <!-- BLOGPOSTS -->
+    <h4 translate="HEARTH.BLOG.GET_INSPIRED" class="text-center margin-bottom-small margin-top-large"></h4>
+
+    <section class="padding-bottom-small">
+      <div class="">
+        <div class="box padding-none margin-bottom-medium" ng-repeat="post in blogposts">
+          <a ng-href="{{ post.link }}" class="blog-image display-block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></a>
+          <div class="padding-small">
+            <h5>
+              <a ng-href="{{ post.link }}" ng-bind="post.title"></a>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BANNER -->
+    <marketplace-banner class="clearfix"></marketplace-banner>
+
+
+  </div>
+</div>

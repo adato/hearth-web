@@ -253,11 +253,6 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
             })
         };
 
-        scope.loadKeywords = () => {
-          Filter.getCommonKeywords(function(res) {
-            scope.commonKeywords = res;
-          });
-        };
 
         scope.loadLanguages = () => {
           scope.languageList = LanguageList.localizedList;
@@ -353,7 +348,6 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
 
         scope.init = function() {
           scope.inited = true;
-          scope.loadKeywords();
           scope.loadLanguages();
           scope.filterSave = Filter.isSaved();
         };
