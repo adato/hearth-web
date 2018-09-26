@@ -192,9 +192,16 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$scope.search = searchQuery => {
 			if (!searchQuery.query) {
-				$("#search").focus()
+				$timeout(() => {
+					$("#search").focus()
+				});
 				return false
 			}
+			$timeout(() => {
+				$("#search").blur()
+				$("#searchBox").blur()
+			});
+
 			$rootScope.toggleSearchBar(false) // turn off search input
 			$rootScope.top(0, 1)
 			$state.go('search', {

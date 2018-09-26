@@ -9,7 +9,8 @@
     </div>
     <div>
       <div class="block">
-        <h1 class="header-6 margin-bottom-none" ng-bind="vm.model.name"></h1>
+        <h1 class="header-6 margin-bottom-none">{{ vm.model.name }}&nbsp;<span ng-if="vm.model.infoBubble.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+        </h1>
         <div class="text-muted text-small">
           <span ng-show="vm.model.infoBubble.locations.length">
             <span ng-bind="vm.model.infoBubble.locations[0].short_address"></span>

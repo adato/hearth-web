@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('FulltextService', [
-	'Fulltext', '$q',
-	function(Fulltext, $q) {
+	'Fulltext', '$q', '$http',
+	function(Fulltext, $q, $http) {
 		this.query = function(params) {
 			var deferred;
 			deferred = $q.defer();
@@ -19,6 +19,19 @@ angular.module('hearth.services').service('FulltextService', [
 			});
 			return deferred.promise;
 		};
+
+		// temporarily placed in this service, possible todo is to move to separate resource
+		this.querySearchWords = function(params) {
+			var deferred;
+			deferred = $q.defer();
+			$http.get('https://cms.hearth.net/api/search/list', { withCredentials: false }).then(function (data) {
+				if (data && data.data && data.data.response) return deferred.resolve(data.data.response);
+				return deferred.reject({ message: "No data returned"});
+			}, function(err) {
+				return deferred.reject(err);
+			});
+			return deferred.promise;
+		}
 		return this;
 	}
 ]);

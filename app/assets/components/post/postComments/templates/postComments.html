@@ -10,7 +10,7 @@
         </div>
         <div class="flex-grid flex-column">
           <div class="margin-bottom-tiny margin-left-none">
-            <a ng-href="{{:: $root.getProfileLink(item.user._type, item.user._id) }}"><span class="text-emphasize" ng-bind="item.user.name"></span></a> · 
+            <a ng-href="{{:: $root.getProfileLink(item.user._type, item.user._id) }}"><span class="text-emphasize" ng-bind="item.user.name"></span>&nbsp;<span ng-if="item.user.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span></a> · 
             <span class="color-dark-gray text-small" ng-bind="item.created_at_timeago"></span>
           </div>
           

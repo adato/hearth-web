@@ -76,16 +76,16 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			this.template = $templateCache.get('assets/components/post/posts/exemplaryPosts.html')
 			this.topListOptions = {
 				disableLoading: true,
-			  getData: () => {return $q((resolve, reject) => resolve(posts.main))},
-			  templateUrl: 'assets/components/post/posts/post.html',
+			  	getData: () => {return $q((resolve, reject) => resolve([...posts.main, ...posts.additional]))},
+			  	templateUrl: 'assets/components/post/posts/post.html',
 				bindToScope: {viewActivityMeta: {context: 'exemplary'}}
 			}
-      this.addListOptions = {
-        disableLoading: true,
-        getData: () => {return $q((resolve, reject) => resolve(posts.additional))},
-        isEmpty: !posts.additional.length,
-        templateUrl: 'assets/components/post/posts/post.html',
-      }
+      		// this.addListOptions = {
+			// 	disableLoading: true,
+			// 	getData: () => {return $q((resolve, reject) => resolve(posts.additional))},
+			// 	isEmpty: !posts.additional.length,
+			// 	templateUrl: 'assets/components/post/posts/post.html',
+			// }
 		}
 
 		/**
@@ -267,7 +267,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		 *	Logs the posts ID and the current url
 		 */
 		function logViewActivity({item, meta = {context: 'default'}, state}) {
-	    if (meta.context !== 'default' && state !== 'market') console.warn('invalid combo', item, meta, state)
+	    if (meta.context !== 'default' && ['market', 'dashboard'].indexOf(state) < 0) console.warn('invalid combo', item, meta, state)
 			$analytics.eventTrack('post-viewed', angular.merge({}, meta, {
 				id: item._id,
 	      state

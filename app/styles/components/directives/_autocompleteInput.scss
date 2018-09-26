@@ -1,0 +1,35 @@
+.autocomplete-fulltext-input {
+    .autocomplete-list {
+        width:100%; 
+        background:$secondary-color;
+        padding:$size-small;
+        border-radius: $global-radius;
+
+        h5 {
+            font-size:12px;
+            border-bottom:1px solid white;
+            margin-top:$size-small;
+        }
+
+        .list-item {
+            display:block;
+            max-height:20px;
+            overflow:hidden;
+            a { 
+                color: white;
+                text-decoration: none;
+            }
+            a:hover {
+                color:#ffeee3;
+                text-decoration: underline;
+            }
+        }
+
+        .list-item-with-avatar {
+            padding-top:$size-tiny;
+            display:block;
+            max-height:50px;
+            
+        }
+    }
+}
