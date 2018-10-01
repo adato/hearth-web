@@ -17,6 +17,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			extendForDisplay,
 			getExemplaryPosts,
 			getExemplaryPostsOpts,
+			getRecommendedPostsOpts,
 			getPostTypeCode,
 			hideItem,
 			heart,
@@ -86,6 +87,19 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			// 	isEmpty: !posts.additional.length,
 			// 	templateUrl: 'assets/components/post/posts/post.html',
 			// }
+		}
+
+
+		function getRecommendedPostsOpts(posts) {
+			return {
+				template: $templateCache.get('assets/components/post/posts/exemplaryPosts.html'),
+				topListOptions: {
+					disableLoading: true,
+			  		getData: () => {return $q((resolve, reject) => resolve(posts))},
+			  		templateUrl: 'assets/components/post/posts/post.html',
+					bindToScope: {viewActivityMeta: {context: 'recommended'}}
+				}
+			}
 		}
 
 		/**
