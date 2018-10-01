@@ -12,8 +12,8 @@
           <div class="margin-bottom-tiny margin-left-none">
             <a ng-href="{{:: $root.getProfileLink(item.user._type, item.user._id) }}"><span class="text-emphasize" ng-bind="item.user.name"></span>&nbsp;<span ng-if="item.user.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span></a> · 
             <span class="color-dark-gray text-small" ng-bind="item.created_at_timeago"></span>
-            <a class="text-muted text-small float-right" ng-if="!item.hidden && vm.userHasRight('post.suspend_any') && vm.showControls == item._id" ng-click="vm.hideComment(item)">{{ 'COMMENT.ACTION_HIDE' | translate }}</a>
-            <a class="text-muted text-small float-right" ng-if="item.hidden && vm.userHasRight('post.suspend_any') && vm.showControls == item._id" ng-click="vm.unhideComment(item)">{{ 'COMMENT.ACTION_RESTORE' | translate }}</a>
+            <a class="text-muted text-small float-right" ng-if="!item.hidden && vm.userHasRight('post.suspend_any') && vm.showControls == item._id" ng-click="vm.hideComment(item)">{{ 'POST.COMMENT.ACTION_HIDE' | translate }}</a>
+            <a class="text-muted text-small float-right" ng-if="item.hidden && vm.userHasRight('post.suspend_any') && vm.showControls == item._id" ng-click="vm.unhideComment(item)">{{ 'POST.COMMENT.ACTION_RESTORE' | translate }}</a>
           </div>
           
           <div class="text-container word-wrap margin-left-none" ng-if="item.hidden === false">
@@ -24,7 +24,7 @@
             </p>
           </div>
           <div class="text-container word-wrap margin-left-none" ng-if="item.hidden === true">
-              <p class="margin-none text-muted">{{ 'COMMENT.DELETED_BY_ADMIN' | translate }}
+              <p class="margin-none text-muted">{{ 'POST.COMMENT.DELETED_BY_ADMIN' | translate }}
               </p>
             </div>
         </div>
