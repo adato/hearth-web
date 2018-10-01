@@ -60,8 +60,7 @@ angular.module('hearth.controllers').controller('GiftCategorizationController', 
         return $q((resolve, reject) => {
           var data = [];
           Post.loadCategories({ q: query}).$promise.then (res => {
-            // console.log(res.data)
-            data = res.data.map(item => ({title: item}))
+            data = Object.keys(res.data.categories).map(item => ({title: item}))
             //console.log ('before resolve:', data)
             data = resolve(data)
             //console.log ('resolved:', data)
