@@ -57,7 +57,7 @@
 					<label class="flex-1">
 						<span translate="PROFILE.EDIT.MY_INTERESTS"></span>
 						<tags-input id="interests" test-beacon="interests-tags-input" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'PROFILE.EDIT.MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
-							<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
+							<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true" debounce-delay="200"></auto-complete>
 						</tags-input>
 					</label>
 				</div>
