@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
       limitComments: '=',
     },
     controllerAs: 'vm',
-    controller: ['Post', '$rootScope', '$timeout', '$filter', '$anchorScroll', '$location', function(Post, $rootScope, $timeout, $filter, $anchorScroll, $location) {
+    controller: ['Post', 'PostComment', '$rootScope', '$timeout', '$filter', '$anchorScroll', '$location', function(Post, PostComment, $rootScope, $timeout, $filter, $anchorScroll, $location) {
 
       const ctrl = this
 
@@ -28,7 +28,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
       ctrl.$onInit = () => {
 
         ctrl.loggedUser = $rootScope.loggedUser
-
+        ctrl.userHasRight = $rootScope.userHasRight;
+        ctrl.showControls = null; // controlled by template -- shows delete etc for particular comment
         ctrl.message
         ctrl.sending
         ctrl.success
@@ -38,6 +39,8 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.showMoreCommentsLink = false; // default not show link
         ctrl.expanded = false;
         ctrl.submit = submitMessage
+        ctrl.hideComment = hideComment
+        ctrl.unhideComment = unhideComment
 
         init()
 
@@ -111,6 +114,22 @@ angular.module('hearth.directives').directive('postComments', [function() {
         comment.text_short = $filter('ellipsis')(comment.text, 270, true);
         comment.text_short_parsed = $filter('linky')(comment.text_short, '_blank')
         return comment;
+      }
+
+      function hideComment(comment) {
+        PostComment.hideComment({ postId: ctrl.postId, commentId: comment._id, hide: true }).$promise.then(function (res) {
+          init();
+        }, function (err) {
+          throw new Error("cannot query comment control")
+        })
+      }
+
+      function unhideComment(comment) {
+        PostComment.unhideComment({ postId: ctrl.postId, commentId: comment._id, unhide: true }).$promise.then(function (res) {
+          init();
+        }, function (err) {
+          throw new Error("cannot query comment control")
+        })
       }
 
     }]

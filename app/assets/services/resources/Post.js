@@ -10,7 +10,8 @@ angular.module('hearth.services').factory('Post', [
 	'$resource', 'LocationJsonDataTransform',
 	function($resource, LocationJsonDataTransform) {
 		return $resource($$config.apiPath + '/posts/:postId', {
-			postId: '@id'
+			postId: '@id',
+			commentId: '@commentId'
 		}, {
 			get: {
 				nointercept: true,
@@ -132,11 +133,10 @@ angular.module('hearth.services').factory('Post', [
 					offset: 0
 				}
 			},
-      vote: {
-        url: $$config.apiPath + '/posts/:postId/related/vote',
-        method: 'POST'
-      },
-
+			vote: {
+				url: $$config.apiPath + '/posts/:postId/related/vote',
+				method: 'POST'
+			},
 			heart: {
 				url: $$config.apiPath + '/posts/:postId/hearts',
 				method: 'POST'

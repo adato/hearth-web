@@ -14,11 +14,11 @@ angular.module('hearth.services').factory('PostComment', [
             commentId: '@commentId',
 		}, {
 			hideComment: {
-				method: 'PUT',
+				method: 'POST',
 				url: $$config.apiPath + '/posts/:postId/comments/:commentId/hide'
 			},
 			unhideComment: {
-				method: 'PUT',
+				method: 'POST',
 				url: $$config.apiPath + '/posts/:postId/comments/:commentId/unhide'
 			},
 
