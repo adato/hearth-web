@@ -62,6 +62,7 @@ angular.module('hearth.services').factory('HearthCrowdfundingBanner', [
 
 			$http.get('https://blog.hearth.net/category/sdilime/feed/json', {
 				withCredentials: false,
+				cache:true,
 				headers: {
 					'Content-Type': undefined //'application/javascript'
 				}

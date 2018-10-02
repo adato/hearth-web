@@ -2,23 +2,29 @@
   <div ng-if="vm.showMoreCommentsLink" class="footer-item background-light-gray">
     <a ng-href="{{:: $root.getProfileLink('Post', vm.postId) + '#comments' }}" translate="POST.COMMENTS.ACTION_VIEW_ALL" class="color-primary"></a>
   </div>
-  <div ng-repeat="item in vm.model" class="footer-item background-light-gray position-relative" id="comment-{{ item._id }}">
+  <div ng-repeat="item in vm.model" class="footer-item background-light-gray position-relative" id="comment-{{ item._id }}" ng-mouseover="vm.showControls = item._id">
     <div class="medium-flex flex-space-between">
-      <div class="flex flex-divided-medium margin-right-tiny flex-align-start">
+      <div class="flex flex-divided-medium margin-right-tiny flex-align-start full-width">
         <div class="v2 user text-center" info-bubble=":: item.user" info-bubble-type=":: item.user._type">
           <a ng-href="{{:: getProfileLink(item.user._type, item.user._id)}}" class="display-block"><avatar src="item.user.avatar.normal" size="small"></avatar></a>
         </div>
-        <div class="flex-grid flex-column">
+        <div class="full-width">
           <div class="margin-bottom-tiny margin-left-none">
             <a ng-href="{{:: $root.getProfileLink(item.user._type, item.user._id) }}"><span class="text-emphasize" ng-bind="item.user.name"></span>&nbsp;<span ng-if="item.user.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span></a> · 
             <span class="color-dark-gray text-small" ng-bind="item.created_at_timeago"></span>
+            <a class="text-muted text-small float-right" ng-if="!item.hidden && vm.userHasRight('post.suspend_any') && vm.showControls == item._id" ng-click="vm.hideComment(item)">{{ 'POST.COMMENT.ACTION_HIDE' | translate }}</a>
+            <a class="text-muted text-small float-right" ng-if="item.hidden && vm.userHasRight('post.suspend_any') && vm.showControls == item._id" ng-click="vm.unhideComment(item)">{{ 'POST.COMMENT.ACTION_RESTORE' | translate }}</a>
           </div>
           
-          <div class="text-container word-wrap margin-left-none">
-              <p class="margin-none" ng-if="item.text.length < 270 || vm.expanded == true" ng-bind-html=":: item.text_parsed"></p>
-              <p class="margin-none" ng-if="item.text.length >= 270 && !vm.expanded">
-                <span ng-bind-html=":: item.text_short_parsed"></span>
-                <a ng-click="vm.expanded = true;" class="color-primary" translate="POST.ACTION_SHOW_MORE"></a>
+          <div class="text-container word-wrap margin-left-none" ng-if="item.hidden === false">
+            <p class="margin-none" ng-if="item.text.length < 270 || vm.expanded == true" ng-bind-html=":: item.text_parsed"></p>
+            <p class="margin-none" ng-if="item.text.length >= 270 && !vm.expanded">
+              <span ng-bind-html=":: item.text_short_parsed"></span>
+              <a ng-click="vm.expanded = true;" class="color-primary" translate="POST.ACTION_SHOW_MORE"></a>
+            </p>
+          </div>
+          <div class="text-container word-wrap margin-left-none" ng-if="item.hidden === true">
+              <p class="margin-none text-muted">{{ 'POST.COMMENT.DELETED_BY_ADMIN' | translate }}
               </p>
             </div>
         </div>

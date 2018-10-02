@@ -7,15 +7,32 @@
  */
 
 angular.module('hearth.controllers').controller('DashboardCtrl', [
-  '$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'PostAux', 'Rights',
-  function ($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, PostAux, Rights) {
+  '$scope', '$rootScope', 'Fulltext', 'User', 'HearthCrowdfundingBanner', 'PostAux',
+  function ($scope, $rootScope, Fulltext, User, HearthCrowdfundingBanner,  PostAux) {
 
     $scope.epOpts = null;
+    $scope.userOpts = null;
     $scope.loading = false;
 
     function init() {
       // init exemplary posts
       $scope.loading = true;
+
+      if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
+        User.get({_id: $rootScope.loggedUser._id}).$promise.then(function (profile) {
+          Fulltext.query({ limit:5, days:10, type:'post', keywords_operator: 'OR', keywords: profile.interests.join(',')}).$promise.then(function (result) {
+            result.data = result.data.filter(function (item) {
+              if (item.author._id == $rootScope.loggedUser._id) return false; else return true;
+            })
+            var uOpts = angular.copy(PostAux.getRecommendedPostsOpts(result.data));
+            uOpts.found = {
+              recommended: (result.data.length)
+            }
+            $scope.userOpts = uOpts;
+          });
+        })
+      }
+
       PostAux.getExemplaryPosts().then(function (data) {
         $scope.loading = false;
         var epOpts = new PostAux.getExemplaryPostsOpts(data)

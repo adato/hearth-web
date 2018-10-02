@@ -13,12 +13,16 @@
 
     <div loading show="loading"></div>
 
+    
     <exemplary-posts opts="epOpts" ng-if="epOpts">
     </exemplary-posts>
-
-    <div class="small-12 large-4 large-push-5" ng-if="!loading && epOpts">
+    
+    <exemplary-posts opts="userOpts" ng-if="userOpts">
+    </exemplary-posts>
+    
+    <div class="small-12 large-4 large-push-5" ng-if="!loading">
       <button class="button primary" ui-sref="market">
-        Další dary a přání...
+        {{:: 'MARKETPLACE.ACTION_MORE_POSTS' | translate }}
       </button>
   </div>
   </div>
