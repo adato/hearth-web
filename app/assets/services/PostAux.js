@@ -79,7 +79,8 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 				disableLoading: true,
 			  	getData: () => {return $q((resolve, reject) => resolve([...posts.main, ...posts.additional]))},
 			  	templateUrl: 'assets/components/post/posts/post.html',
-				bindToScope: {viewActivityMeta: {context: 'exemplary'}}
+				bindToScope: {viewActivityMeta: {context: 'exemplary'}},
+				inactivateTags: true,
 			}
       		// this.addListOptions = {
 			// 	disableLoading: true,
@@ -97,7 +98,8 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 					disableLoading: true,
 			  		getData: () => {return $q((resolve, reject) => resolve(posts))},
 			  		templateUrl: 'assets/components/post/posts/post.html',
-					bindToScope: {viewActivityMeta: {context: 'recommended'}}
+					bindToScope: {viewActivityMeta: {context: 'recommended'}},
+					inactivateTags: true,
 				}
 			}
 		}
