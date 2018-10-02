@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				function init() {
 					var lang = $rootScope.language;
 					try {
-						$http.get('https://cms.hearth.net/api/banner/list', { withCredentials: false }).then(function (obj) {
+						$http.get('https://cms.hearth.net/api/banner/list', { withCredentials: false, cache:true }).then(function (obj) {
 							if (obj && obj.data && obj.data.response && obj.data.response.length)
 								vm.content = obj.data.response[0][lang];
 						}, function (err) { throw new Exception(err) })
