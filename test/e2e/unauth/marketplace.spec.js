@@ -3,7 +3,7 @@ const beacon = require('../utils.js').beacon;
 describe('hearth unauth marketplace', function () {
 
   beforeEach(function () {
-    protractor.helpers.navigateTo('/?lang=cs');
+    protractor.helpers.navigateTo('/market?lang=cs');
   });
 
   // should see marketplace with items
@@ -36,29 +36,29 @@ describe('hearth unauth marketplace', function () {
   });
 
   // should be able to switch to map
-  it('should be able to switch to map view', function () {
-    browser.sleep(1000);
-    var marketContainer = element(by.className('marketplace-items-container'));
-    var switchToMapLink = element(by.css('[test-beacon="filterbar-show-posts-on-map"]'));
-    var mapContainer = element(by.className('marketplace-map-container'));
+  // it('should be able to switch to map view', function () {
+  //   browser.sleep(1000);
+  //   var marketContainer = element(by.className('marketplace-items-container'));
+  //   var switchToMapLink = element(by.css('[test-beacon="filterbar-show-posts-on-map"]'));
+  //   var mapContainer = element(by.className('marketplace-map-container'));
 
-    // market is visible
-    expect(marketContainer.isDisplayed()).toBeTruthy();
-    expect(switchToMapLink.isDisplayed()).toBeTruthy();
-    expect(mapContainer.isPresent()).toBeFalsy();
+  //   // market is visible
+  //   expect(marketContainer.isDisplayed()).toBeTruthy();
+  //   expect(switchToMapLink.isDisplayed()).toBeTruthy();
+  //   expect(mapContainer.isPresent()).toBeFalsy();
 
-    switchToMapLink.click().then(function () {
-      // map is visible
-      expect(marketContainer.isPresent()).toBeFalsy();
-      expect(mapContainer.isDisplayed()).toBeTruthy();
+  //   switchToMapLink.click().then(function () {
+  //     // map is visible
+  //     expect(marketContainer.isPresent()).toBeFalsy();
+  //     expect(mapContainer.isDisplayed()).toBeTruthy();
 
-      // click again to switch back to marketplace
-      switchToMapLink.click().then(function () {
-        expect(marketContainer.isDisplayed()).toBeTruthy();
-        expect(mapContainer.isPresent()).toBeFalsy();
-      });
-    });
-  });
+  //     // click again to switch back to marketplace
+  //     switchToMapLink.click().then(function () {
+  //       expect(marketContainer.isDisplayed()).toBeTruthy();
+  //       expect(mapContainer.isPresent()).toBeFalsy();
+  //     });
+  //   });
+  // });
 
   // should see login after click on some action buttons od desktop
   it('should see login dialog after try to create gift on desktop', function () {
@@ -148,7 +148,6 @@ describe('hearth unauth marketplace', function () {
     var iconSearch = beacon('search-bar-toggle-mobile');
     var toggleButton = beacon('nav-bar-menu-toggle');
     // var leftSidebar = element(by.css('aside.left-off-canvas-menu'));
-    var leftSidebar = beacon('off-canvas-content');
 
     var topBarDesktop = element(by.css('nav.top-bar'));
     var searchBoxDesktop = element(by.css('nav.top-bar #searchBox'));
@@ -169,11 +168,11 @@ describe('hearth unauth marketplace', function () {
         expect(searchBar.isDisplayed()).toBeTruthy();
       });
 
-      // after click on hamburger button, left sidebar should appear
-      toggleButton.click().then(function () {
-        expect(leftSidebar.isDisplayed()).toBeTruthy();
-        expect(protractor.helpers.hasClass(container, 'move-right')).toBe(true);
-      });
+      // // after click on hamburger button, left sidebar should appear
+      // toggleButton.click().then(function () {
+      //   expect(leftSidebar.isDisplayed()).toBeTruthy();
+      //   expect(protractor.helpers.hasClass(container, 'move-right')).toBe(true);
+      // });
     }
 
     if (type === 'desktop') {

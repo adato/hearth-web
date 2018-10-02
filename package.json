@@ -81,6 +81,7 @@
   },
   "private": true,
   "dependencies": {
+    "es6-promise": "^4.2.5",
     "gulp-util": "^3.0.8",
     "request": "^2.87.0",
     "request-progress": "^3.0.0",

@@ -36,7 +36,7 @@ describe('hearth bookmarks', function() {
 
 
 	it('should be able to make a bookmark on post detail', function() {
-    	protractor.helpers.navigateTo('');
+    	protractor.helpers.navigateTo('market');
 		var elAll = element.all(by.className('item-common')).get(1);
 		var postDetailLink = elAll.element(by.css('h1>a'));
 

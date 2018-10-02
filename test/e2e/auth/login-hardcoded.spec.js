@@ -3,7 +3,7 @@ const beacon = require('../utils.js').beacon;
 describe('hearth hardcoded login', function() {
 
 	beforeEach(function() {
-		protractor.helpers.navigateTo('');
+		protractor.helpers.navigateTo('market');
 	});
 
 	it('should be able to log in default user', function() {
