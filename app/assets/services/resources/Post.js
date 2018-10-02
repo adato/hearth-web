@@ -55,6 +55,14 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/follow',
 				method: 'DELETE'
 			},
+			pin: {
+				url: $$config.apiPath + '/posts/:postId/pinn',
+				method: 'PUT'
+			},
+			unpin: {
+				url: $$config.apiPath + '/posts/:postId/unpinn',
+				method: 'PUT'
+			},
 			mapQuery: {
 				method: 'GET',
 				url: $$config.apiPath + '/search/',
