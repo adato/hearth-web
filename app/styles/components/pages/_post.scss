@@ -657,3 +657,9 @@ button p {
 	line-height: inherit;
 	margin-bottom: inherit;
 }
+
+.marketplace-items-container {
+	.show-on-profile-only {
+		display:none;
+	}
+}
