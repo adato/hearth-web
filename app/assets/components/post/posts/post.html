@@ -141,8 +141,8 @@
 										<a class="touchable" title="{{:: 'COMMON.ACTION_REMOVE' | translate}}" ng-click="confirmBox({title: 'POST.REMOVE.LABEL', text: 'POST.REMOVE.ARE_YOU_SURE', callback: deleteItem, params: item, callbackScope: this})">
 											<i class="fa fa-fw fa-times"></i>
 										</a>
-										<a class="touchable show-on-profile-only" title="{{:: (item.pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
-											<i class="fa fa-fw fa-map-pin" ng-class="{ 'color-primary': item.pinned }"></i>
+										<a class="touchable show-on-profile-only" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
+											<i class="fa fa-fw fa-map-pin" ng-class="{ 'color-primary': item.is_pinned }"></i>
 										</a>
 									</div>
 								</div>

@@ -56,11 +56,11 @@ angular.module('hearth.services').factory('Post', [
 				method: 'DELETE'
 			},
 			pin: {
-				url: $$config.apiPath + '/posts/:postId/pinn',
+				url: $$config.apiPath + '/posts/:postId/pin',
 				method: 'PUT'
 			},
 			unpin: {
-				url: $$config.apiPath + '/posts/:postId/unpinn',
+				url: $$config.apiPath + '/posts/:postId/unpin',
 				method: 'PUT'
 			},
 			mapQuery: {

@@ -188,7 +188,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 		}
 
 		function togglePinPost(post) {
-			Post[(post.pinned === true ? 'unpin' : 'pin')]({ id: post._id }).$promise.then(function (res) {
+			Post[(post.is_pinned === true ? 'unpin' : 'pin')]({ id: post._id }).$promise.then(function (res) {
 				$rootScope.$broadcast('postUpdated', post);
 			});
 		}
