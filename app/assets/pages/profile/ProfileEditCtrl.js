@@ -207,6 +207,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$q.all(actions).then(res => {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
+				$rootScope.$broadcast("profileSaved");
 
 				// refresh user info - for example avatar in navbar
 				Auth.refreshUserInfo();

@@ -1,3 +1,7 @@
 <div class="tag-cloud margin-top-large">
-    <a ng-click="toggleTag(keyword.term)" ng-repeat="keyword in keywords" class="label" style="font-size:{{ (keyword.count / 50) + 10}}px;" ng-class="{ 'checked': keyword.checked === true }">{{ keyword.term }}</a>
+    <a ng-click="toggleTag(keyword.term, true)" ng-repeat="keyword in commonKeywords" class="label" style="font-size:{{ (keyword.count / 50) + 10}}px;" ng-class="{ 'checked': keyword.checked === true }">{{ keyword.term }}</a>
+</div>
+
+<div class="tag-cloud margin-top-large">
+    <a ng-click="toggleTag(keyword.term, true)" ng-repeat="keyword in userKeywords" class="label" style="font-size:16px;" ng-class="{ 'checked': keyword.checked === true }">{{ keyword.term }}</a>
 </div>
