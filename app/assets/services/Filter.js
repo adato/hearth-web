@@ -29,7 +29,7 @@ angular.module('hearth.services').factory('Filter', [
 			},
 			toggleTag: function(tag) {
 				var params, index;
-				tag = tag.toLowerCase();
+				//tag = tag.toLowerCase();
 
 				params = $location.search();
 				params.keywords = params.keywords || [];
