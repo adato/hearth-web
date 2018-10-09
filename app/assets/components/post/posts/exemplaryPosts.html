@@ -5,7 +5,8 @@
         <h3 class="text-center" translate="MARKETPLACE.EXEMPLARY_POSTS"></h3>
       </div>
       <div class="column medium-10 medium-push-2" ng-if="opts.found.recommended">
-          <h3 class="text-center">{{:: 'MARKETPLACE.RECOMMENDED_POSTS' | translate }} <i class="fa fa-info-sign" title="Nastavení svých zájmů najdeš v profilu" tipsy></i> </h3>
+          <h3 class="text-center">{{:: 'MARKETPLACE.RECOMMENDED_POSTS' | translate }} 
+            <a ui-sref="profileEdit" class="padding-left-small text-muted text-small" title="Tyto dary a přání jsme vybrali podle zájmů, které máš nastavené ve svém profilu." tipsy><i class="fa fa-pencil"></i></a></h3>
         </div>
     </div>
     <item-list options="opts.topListOptions"></item-list>
