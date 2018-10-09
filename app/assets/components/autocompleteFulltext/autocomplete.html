@@ -11,7 +11,7 @@
     <div class="autocomplete-list" ng-show="showAutocomplete" style="position:absolute;">
         <h5 ng-if="autocompleted.historyReversedLimited.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.HISTORY' | translate }}</h5>
         <div ng-repeat="item in autocompleted.historyReversedLimited" class="list-item list-item-history">
-            <a class="pull-right" ng-click="removeSearchFromHistory(item)"><i class="fa fa-times" style="font-size:14px;"></i></a>
+            <a class="close pull-right" ng-click="removeSearchFromHistory(item)"><i class="fa fa-times"></i></a>
             <a href="" ui-sref="search({query:item})">{{ item }}</a>
         </div>
         <h5 ng-if="autocompleted.default.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.DEFAULT' | translate }}</h5>
