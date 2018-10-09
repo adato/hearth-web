@@ -50,11 +50,11 @@
 			<div class="flex-1">
 				<h2 translate="PROFILE.EDIT.ABOUT_ME_TITLE"></h2>
 				<div class="medium-flex-grid">
-					<label class="flex-1">
+					<label class="flex-1 large-6">
 						<span translate="PROFILE.EDIT.ABOUT_ME_LABEL"></span>
 						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'PROFILE.EDIT.ABOUT_ME_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
 					</label>
-					<label class="flex-1">
+					<label class="flex-1 large-6">
 						<span translate="PROFILE.EDIT.MY_INTERESTS"></span>
 						<tags-input id="interests" test-beacon="interests-tags-input" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'PROFILE.EDIT.MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
 							<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true" debounce-delay="200"></auto-complete>
