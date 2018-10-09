@@ -318,13 +318,17 @@ angular.module('hearth').config([
 				})
 				.state('hearth-points', {
 					url: '/hearth-points',
-					templateUrl: 'assets/pages/static/hearth-points.html',
-					controller: 'HearthPointsCtrl'
+					templateUrl: 'assets/pages/static/hearth-point.html',
+					controller: 'HearthPointsCtrl',
+					controllerAs: 'vm',
+					slug: 'hearth.points'
 				})
 				.state('central-hearth-point', {
 					url: '/central-hearth-point',
-					templateUrl: 'assets/pages/static/central-hearth-point.html',
-					controller: 'HearthPointsCtrl'
+					templateUrl: 'assets/pages/static/hearth-point.html',
+					controller: 'HearthPointsCtrl',
+					controllerAs: 'vm',
+					slug: 'central.hearth.point'
 				})
 			.state('ourStory', {
 				url: '/our-story',
