@@ -28,8 +28,18 @@
         .list-item-with-avatar {
             padding-top:$size-tiny;
             display:block;
-            max-height:50px;
-            
+            max-height:50px;   
+        }
+
+        .list-item-history {
+            .close {
+                display:none;
+            }
+            &:hover {
+                .close {
+                    display:inline;
+                }
+            }
         }
     }
 }

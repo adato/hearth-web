@@ -31,7 +31,8 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			postInaccessibleModal,
 			removePostFromBookmarks,
 			replyItem,
-			detectEmbed
+			detectEmbed,
+			togglePinPost
 		}
 
 		return factory
@@ -201,6 +202,13 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 				showClose: false
 			})
 		}
+
+		function togglePinPost(post) {
+			Post[(post.is_pinned === true ? 'unpin' : 'pin')]({ id: post._id }).$promise.then(function (res) {
+				$rootScope.$broadcast('postUpdated', post);
+			});
+		}
+
 
 		/**
 		 *	function for hearting/unhearting items

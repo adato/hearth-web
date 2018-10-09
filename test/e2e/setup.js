@@ -64,7 +64,7 @@ module.exports = {
 	    beacon('login-button').click();
 	},
 	logout: function () {
-		this.navigateTo('');
+		this.navigateTo('market');
 		this.hoverTopUserMenu();
 		element(by.css('#profile-drop a[ng-click="logout()"]')).click();
 	},
