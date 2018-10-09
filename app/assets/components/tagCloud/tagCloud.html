@@ -2,6 +2,7 @@
     <a ng-click="toggleTag(keyword.term, true)" ng-repeat="keyword in commonKeywords" class="label" style="font-size:{{ (keyword.count / 50) + 10}}px;" ng-class="{ 'checked': keyword.checked === true }">{{ keyword.term }}</a>
 </div>
 
-<div class="tag-cloud margin-top-large">
+<div class="margin-top-large margin-bottom-small text-small text-muted" ng-if="userKeywords.length ">Tvoje klíčová slova <i class="fa fa-info-circle" title="Klíčová slova si můžeš nastavit v profilu. Tip: Čím jednodušší, tím účinnější" tipsy></i></div>
+<div class="tag-cloud">
     <a ng-click="toggleTag(keyword.term, true)" ng-repeat="keyword in userKeywords" class="label" style="font-size:16px;" ng-class="{ 'checked': keyword.checked === true }">{{ keyword.term }}</a>
 </div>
