@@ -190,15 +190,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		/// START trusted profile notify
 
-		// after page init load profile (real or from cache) and compute if there is s
-		// something an user should fill in ----> trusted profile
+		// after page init load profile (real or from cache) and compute if there is
+		// something the user should fill in ----> trusted profile
 		$rootScope.isTrustedProfileNotifyShown = function () { return false; }
 		$rootScope.userHasNotFilledProfile = function () { return false; }
 
-		var loadProfileAndCheckState = function (params) {
-
-			var loadProfile = function (params) {
-				var deferred = $q.defer();
+		let loadProfileAndCheckState = function (params) {
+			let loadProfile = function (params) {
+				let deferred = $q.defer();
 				if ((params && params.force && params.force == true) || ($rootScope.loggedUserProfile === null && !$rootScope.loggedUserProfileLoading)) {
 					$rootScope.loggedUserProfileLoading = true;
 					User.get({_id: $rootScope.loggedUser._id}).$promise.then(function (profile) {
@@ -213,17 +212,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			// first load the proifle from api (TODO caching)
 			loadProfile(params).then((profile) => {
 
-				$rootScope.isTrustedProfileNotifyShown = function () {
+				$rootScope.isTrustedProfileNotifyShown = function (storageKey) {
+					storageKey = storageKey || 'trusted-profile-notify-closed';
+					if ($state.current.name == 'profileEdit') return false;
 					let profileNotFilled = $rootScope.userHasNotFilledProfile();
-					if (!profileNotFilled || LocalStorage.get('trusted-profile-notify-closed') == 1) {
+					if (!profileNotFilled || LocalStorage.get(storageKey) == 1) {
 						return false;
 					}
 					if (profileNotFilled) return true;
 				}
 
-				$rootScope.closeTrustedProfileNotify = function () {
-					console.log("closing notify")
-					LocalStorage.set('trusted-profile-notify-closed', 1)
+				$rootScope.closeTrustedProfileNotify = function (storageKey) {
+					storageKey = storageKey || 'trusted-profile-notify-closed';
+					LocalStorage.set(storageKey, 1)
 				}
 				
 				// then modify check function
