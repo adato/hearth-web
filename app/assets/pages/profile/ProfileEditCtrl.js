@@ -207,11 +207,13 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$q.all(actions).then(res => {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
-
+				$rootScope.$broadcast("profileSaved");
+				
 				// refresh user info - for example avatar in navbar
 				Auth.refreshUserInfo();
 				$location.path('/profile/' + $scope.profile._id);
 				Notify.addSingleTranslate('PROFILE.EDIT.NOTIFY.SUCCESS_SAVE_PROFILE', Notify.T_SUCCESS);
+				
 
 			}, function(res) {
 				var data = res.data;
