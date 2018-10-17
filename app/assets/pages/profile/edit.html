@@ -1,3 +1,14 @@
+<div ng-if="$root.userHasNotFilledProfile()" class="background-light-secondary padding-small margin-bottom-medium">
+	<p>Důvěra je pro darování důležitá. Prosíme o vyplnění tvého profilu, ať tě ostatní mohou lépe poznat:</p>
+	<ul>
+		<li>Tvoje skutečné křestní jméno</li>
+		<li>Tvojí fotku, nejlépe s úsměvem :-)</li>
+		<li>Krátký popis pod "Řekni nám něco o sobě"</li>
+	</ul>
+	Děkujeme, že tu s námi jsi ❤️
+</div>
+
+
 <div class="box" ng-show="loaded">
 	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate test-beacon="profile-edit-form">
 
