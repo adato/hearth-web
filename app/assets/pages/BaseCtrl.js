@@ -233,7 +233,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 					if (!user || !user._id) return false; // omit if not logged in
 					if (!user.avatar || !user.avatar.large) return true; // check avatar
-					if (!profile.about || !profile.about.length || !profile.interests || !profile.interests.length) return true; //check profile
+					if (!profile.about || !profile.about.length) return true; // check profile
+					// || !profile.interests || !profile.interests.length) return true; //check profile interests
 					return false;
 				}
 			})

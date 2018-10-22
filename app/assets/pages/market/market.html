@@ -70,15 +70,11 @@
       <div class="head">
         <h2>{{:: '!TODO_TRANSLATE! Řekni nám něco o sobě...' | translate }}
         </h2>
-        <span ng-click="closeThisDialog('close-'+ngDialogData.type)" class="close fa fa-times"></span>
+        <span ng-click="closeThisDialog('close')" class="close fa fa-times"></span>
         <hr />
       </div>
       <div>
-        <p ng-if="ngDialogData.type == 'need'">
-          !TODO_TRANSLATE! Pokud tě dárce bude moci lépe poznat, spíš si tě mezi žadateli vybere. Vyplň si prosím profil.
-        </p>
-
-        <p ng-if="ngDialogData.type == 'offer'">
+        <p>
           !TODO_TRANSLATE! Pokud tě lidé budou moci lépe poznat, přání se spíš splní. Vyplň si prosím profil.
         </p>
         <div class="display-flex flex-space-between margin-top-medium">

@@ -317,9 +317,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
       // ALSO: 
       // notify about filling profile if needed
-      if (!post.type) return;
+      if (!post.type || post.type != 'need') return;
       
-      if ($rootScope.isTrustedProfileNotifyShown('trusted-profile-' + post.type + '-notify-closed')) {
+      if ($rootScope.isTrustedProfileNotifyShown('trusted-profile-need-notify-closed')) {
 
         var ngDialogOptions = {
           template: 'trusted-profile',
@@ -333,11 +333,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
         // show dialog containing info for user that he should update his profile
         let dialog = ngDialog.open(ngDialogOptions);
         dialog.closePromise.then(function (data) {
-          if (data.value == 'close-need') {
+          if (data.value == 'close') {
             $rootScope.closeTrustedProfileNotify('trusted-profile-need-notify-closed')
-          }
-          if (data.value == 'close-offer') {
-            $rootScope.closeTrustedProfileNotify('trusted-profile-offer-notify-closed')
           }
         })
       }
