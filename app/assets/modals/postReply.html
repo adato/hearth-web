@@ -9,8 +9,16 @@
 		</div>
 		<hr />
 	</div>
+	<div ng-if="showTrustedProfileNotify">
+		<p>{{:: 'PROFILE.TRUST.BEFORE_REPLY_MODAL' | translate }} <a ui-sref="profileEdit" class="bold color-primary">{{:: 'PROFILE.TRUST.ACTION_PLEASE_FILL_PROFILE' | translate }}</a></p>
+			<div class="display-flex flex-space-between margin-top-medium">
+				<a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>
+				<button ng-click="nextStep()" class="button button-send" translate="COMMON.ACTION_CONTINUE_ANYWAY"></button>
+			</div>
+			</div>
+	</div>
 
-	<form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad">
+	<form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad" ng-if="showTrustedProfileNotify == false">
 		<div class="notify-reply-container"></div>
 
 		<div class="block">

@@ -68,14 +68,12 @@
 <script type="text/ng-template" id="trusted-profile">
   <div class="formStyle itemEdit modal">
       <div class="head">
-        <h2>{{:: '!TODO_TRANSLATE! Řekni nám něco o sobě...' | translate }}
-        </h2>
+        <h2>{{ :: 'PROFILE.TRUST.TELL_US_MORE_TITLE' | translate }}</h2>
         <span ng-click="closeThisDialog('close')" class="close fa fa-times"></span>
         <hr />
       </div>
       <div>
-        <p>
-          !TODO_TRANSLATE! Pokud tě lidé budou moci lépe poznat, přání se spíš splní. Vyplň si prosím profil.
+        <p ng-bind-html=":: 'PROFILE.TRUST.AFTER_CREATE_MODAL' | translate">
         </p>
         <div class="display-flex flex-space-between margin-top-medium">
           <a ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></a>

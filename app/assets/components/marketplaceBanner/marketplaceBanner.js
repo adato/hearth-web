@@ -21,7 +21,7 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 								vm.content = obj.data.response[0][lang];
 						}, function (err) { throw new Exception(err) })
 					} catch (e) {
-						console.log(e);
+						//console.log(e);
 					}
 				}
 

@@ -317,6 +317,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
       // ALSO: 
       // notify about filling profile if needed
+      // ony go on when type is need
       if (!post.type || post.type != 'need') return;
       
       if ($rootScope.isTrustedProfileNotifyShown('trusted-profile-need-notify-closed')) {

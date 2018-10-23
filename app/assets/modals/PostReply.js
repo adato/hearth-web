@@ -27,6 +27,15 @@ angular.module('hearth.controllers').controller('PostReply', [
 			message: false,
 			agree: false
 		}
+		$scope.showTrustedProfileNotify = false;
+
+
+		// show trusted-profile notify only when asking for a gift
+		if (!$scope.post.type || $scope.post.type != 'offer') return;
+      
+		if ($rootScope.isTrustedProfileNotifyShown('trusted-profile-reply-notify-closed')) {
+			$scope.showTrustedProfileNotify = true;
+		}
 
 		$rootScope.$broadcast('suspendPostWatchers');
 
@@ -102,5 +111,9 @@ angular.module('hearth.controllers').controller('PostReply', [
 		$scope.disableErrorMsg = function(key) {
 			$scope.showErrors[key] = false;
 		};
+
+		$scope.nextStep = function () {
+			$scope.showTrustedProfileNotify = false;
+		}
 	}
 ]);

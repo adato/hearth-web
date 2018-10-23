@@ -212,6 +212,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			// first load the proifle from api (TODO caching)
 			loadProfile(params).then((profile) => {
 
+				// should show "notify" on top?
 				$rootScope.isTrustedProfileNotifyShown = function (storageKey) {
 					storageKey = storageKey || 'trusted-profile-notify-closed';
 					if ($state.current.name == 'profileEdit') return false;
@@ -222,19 +223,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					if (profileNotFilled) return true;
 				}
 
+				// close notify
 				$rootScope.closeTrustedProfileNotify = function (storageKey) {
 					storageKey = storageKey || 'trusted-profile-notify-closed';
 					LocalStorage.set(storageKey, 1)
 				}
 				
-				// then modify check function
+				// check function
 				$rootScope.userHasNotFilledProfile = function () {
 					let user = $rootScope.loggedUser;
 
 					if (!user || !user._id) return false; // omit if not logged in
 					if (!user.avatar || !user.avatar.large) return true; // check avatar
 					if (!profile.about || !profile.about.length) return true; // check profile
-					// || !profile.interests || !profile.interests.length) return true; //check profile interests
 					return false;
 				}
 			})
