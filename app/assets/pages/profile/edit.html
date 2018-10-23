@@ -1,11 +1,5 @@
 <div ng-if="$root.userHasNotFilledProfile()" class="background-light-secondary padding-small margin-bottom-medium">
-	<p>!TODO_TRANSLATE! Důvěra je pro darování důležitá. Prosíme o vyplnění tvého profilu, ať tě ostatní mohou lépe poznat:</p>
-	<ul>
-		<li>Tvoje skutečné křestní jméno</li>
-		<li>Tvojí fotku, nejlépe s úsměvem 😊</li>
-		<li>Krátký popis pod "Kdo jsem"</li>
-	</ul>
-	Děkujeme, že tu s námi jsi ❤️
+	<div ng-bind-html=":: 'PROFILE.TRUST.EDIT_PROFILE_BANNER' | translate"></div>
 </div>
 
 
@@ -38,7 +32,7 @@
 							<span translate="PROFILE.EDIT.FIRST_NAME"></span> *
 							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'PROFILE.EDIT.FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
 							<div class="form-error" ng-show="profileEditForm.first_name.$error.required" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_FILLED_FIRST_NAME"></div>
-							<p class="text-small text-muted">!TODO_TRANSLATE! Prosíme vyplnit skutečné křestní jméno, ať tě lidé mohou lépe poznat.</p>
+							<p class="text-small text-muted">{{:: 'PROFILE.TRUST.EDIT_PROFILE_FILL_REAL_NAME' | translate }}</p>
 						</label>
 						<label for="last_name" class="block flex-1">
 							<span translate="PROFILE.EDIT.LAST_NAME"></span>
