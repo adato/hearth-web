@@ -28,6 +28,10 @@
 		}
 	}
 	@include breakpoint(large up) {
+
+		// shift messages 10px higher to save space
+		margin-top:-10px;
+
 		.conversation-list-width{
 			width: 300px;
 			max-width: 300px;
@@ -189,8 +193,8 @@
 	}
 	.conversation-detail-container {
 		flex: 4;
-		margin-bottom: $size-large;
-		padding: 20px;
+		margin-bottom: $size-medium;
+		padding: 15px;
 
 		& > div {
 			position: relative;
@@ -208,7 +212,7 @@
 				color: black;
 			}
 			.conversation-detail-top {
-				padding-bottom: 15px;
+				//padding-bottom: 15px;
 				.conversation-title {
 					max-width: 540px;
 					line-height: 18px;
@@ -224,9 +228,9 @@
 						color: #777;
 					}
 				}
-				// hr {
-				// 	margin-top: 10px;
-				// }
+				&>hr {
+				 	margin:$size-small 0;
+				}
 				.conversation-participants {
 					min-height: 40px;
 					max-height: 145px;
