@@ -185,6 +185,10 @@
 .word-wrap{
 	word-wrap: break-word;
 }
+.white-space-nowrap {
+	white-space: nowrap;
+}
+
 .text-epic {
 	font-size: 7rem;
 	line-height: 100%;
@@ -313,6 +317,9 @@
 .color-secondary{color: $secondary-color !important}
 .color-dark-gray{color: $colorDarkGray !important}
 .color-light-gray{color: $colorLightGray !important}
+.color-black { color: $black !important }
+.color-light-primary{color: lighten($primary-color, 25%) !important}
+.color-light-secondary{color: lighten($secondary-color, 25%) !important}
 
 .text-danger{color: $alert-color !important;  border-color: $alert-color;}
 .text-warning{color: $warning-color !important;  border-color: $warning-color;}
@@ -336,6 +343,9 @@
 .background-light-gray{background-color: $colorLightGray !important}
 .background-medium-gray{background-color: $medium-gray !important}
 .background-dark-gray{background-color: $dark-gray !important}
+.background-light-primary {background-color: lighten($primary-color, 35%) !important}
+.background-light-secondary {background-color: lighten($secondary-color, 40%) !important}
+
 /* /COLOR */
 
 /* LINKS */

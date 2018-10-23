@@ -1,3 +1,8 @@
+<div ng-if="$root.userHasNotFilledProfile()" class="background-light-secondary padding-small margin-bottom-medium">
+	<div ng-bind-html=":: 'PROFILE.TRUST.EDIT_PROFILE_BANNER' | translate"></div>
+</div>
+
+
 <div class="box" ng-show="loaded">
 	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate test-beacon="profile-edit-form">
 
@@ -27,6 +32,7 @@
 							<span translate="PROFILE.EDIT.FIRST_NAME"></span> *
 							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'PROFILE.EDIT.FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
 							<div class="form-error" ng-show="profileEditForm.first_name.$error.required" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_FILLED_FIRST_NAME"></div>
+							<p class="text-small text-muted">{{:: 'PROFILE.TRUST.EDIT_PROFILE_FILL_REAL_NAME' | translate }}</p>
 						</label>
 						<label for="last_name" class="block flex-1">
 							<span translate="PROFILE.EDIT.LAST_NAME"></span>

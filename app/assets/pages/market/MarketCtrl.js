@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-  '$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'PostAux', 'Rights',
-  function ($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, PostAux, Rights) {
+  '$scope', '$rootScope', 'Post', '$location', '$q', '$translate', '$timeout', 'Filter', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', 'ScrollService', 'PostScope', 'MarketPostCount', 'Auth', 'PostAux', 'Rights', 'ngDialog',
+  function ($scope, $rootScope, Post, $location, $q, $translate, $timeout, Filter, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, ScrollService, PostScope, MarketPostCount, Auth, PostAux, Rights, ngDialog) {
 
     var marketplaceInited = false;
 
@@ -313,6 +313,33 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
           $('#post_' + post._id).slideDown();
         });
       });
+
+
+      // ALSO: 
+      // notify about filling profile if needed
+      // ony go on when type is need
+      if (!post.type || post.type != 'need') return;
+      
+      if ($rootScope.isTrustedProfileNotifyShown('trusted-profile-need-notify-closed')) {
+
+        var ngDialogOptions = {
+          template: 'trusted-profile',
+          scope: $scope,
+          closeByEscape: true,
+          showClose: false,
+          width:'40%',
+          data: post
+        };
+  
+        // show dialog containing info for user that he should update his profile
+        let dialog = ngDialog.open(ngDialogOptions);
+        dialog.closePromise.then(function (data) {
+          if (data.value == 'close') {
+            $rootScope.closeTrustedProfileNotify('trusted-profile-need-notify-closed')
+          }
+        })
+      }
+
     });
 
     /**

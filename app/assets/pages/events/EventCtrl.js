@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('EventCtrl', [
                         if (item.id == $stateParams.id) return true; else return false;
                     })
                     if (event.length) vm.event = event[0];
-                    console.log(vm.event)
+                    //console.log(vm.event)
                 }
                 vm.loading = false;
                 vm.error = false;

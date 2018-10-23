@@ -67,7 +67,7 @@ angular.module('hearth.services').service('UnauthReload', [
 		};
 
 		self.setLocation = path => {
-			console.log('SETTING',path);
+			//console.log('SETTING',path);
 			$.cookie(cookieName, path, {path: '/'});
 		}
 
