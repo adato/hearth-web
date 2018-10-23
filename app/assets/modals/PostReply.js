@@ -30,10 +30,8 @@ angular.module('hearth.controllers').controller('PostReply', [
 		$scope.showTrustedProfileNotify = false;
 
 
-		// show trusted-profile notify only when asking for a gift
-		if (!$scope.post.type || $scope.post.type != 'offer') return;
-      
-		if ($rootScope.isTrustedProfileNotifyShown('trusted-profile-reply-notify-closed')) {
+		// show trusted-profile notify only when asking for a gift      
+		if ($scope.post.type && $scope.post.type == 'offer' && $rootScope.isTrustedProfileNotifyShown('trusted-profile-reply-notify-closed')) {
 			$scope.showTrustedProfileNotify = true;
 		}
 
