@@ -35,8 +35,7 @@
 					</a>
 				</div>
 				<div class="flex flex-divided-medium flex-center flex-wrap">
-					<button class="button hollow" ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})" ng-click="sendMessage(info)" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN" translate-values="{actionAttrs: 'class=\'display-block margin-bottom-tiny\'', recipientAttrs: 'class=\'text-small\''}"></button>
-					<button class="button hollow" ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)" ng-click="sendMessage(info, {toAllMembers: true})" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS" translate-values="{actionAttrs: 'class=\'display-block margin-bottom-tiny\'', recipientAttrs: 'class=\'text-small\''}"></button>
+
 				</div>
 			</div>
 		</div>

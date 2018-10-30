@@ -10,6 +10,7 @@
 	.button-group .button {
     	margin-bottom: 0;
 	}
+	
 	header {
 		.user-basic {
 			padding: 0 0 1rem 0;
@@ -844,4 +845,18 @@
 	.reg-date {
 		font-size: 14px;
 	}
+}
+
+.main-button-dropdown {
+	position: absolute;
+	right:10px;
+    min-width: 12.5rem;
+    min-height: 25px;
+    margin: 0;
+    padding: 5px 0;
+    list-style: none;
+    background: #fefefe;
+    box-shadow: 0px 0px 5px rgba(100, 100, 100, 0.5);
+    border-radius: 0.5714rem;
+    z-index: 1000;
 }
