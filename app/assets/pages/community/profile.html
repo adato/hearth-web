@@ -30,7 +30,7 @@
 								<span translate="MARKETPLACE.ACTION_CREATE_POST"></span>
 							</button>
 
-							<button ng-click="addItem()" class="large button margin-left-none">
+							<button ng-click="addQuickPost()" class="large button margin-left-none">
 									<span translate="MARKETPLACE.ACTION_CREATE_QUICKPOST"></span>
 								</button>
 						</div>
@@ -114,3 +114,33 @@
 	</header>
 	<div ng-show="topLoaded" ui-view></div>
 </div>
+
+
+
+
+<script type="text/ng-template" id="add-quick-gift-modal">
+	<div class="formStyle itemEdit modal">
+		<div class="head">
+			<h2>TT Dotaz nebo tip</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+		<form class="margin-top-small">
+			<label>{{ :: 'TT S čím chceš poradit nebo inspirovat ostatní?'}}
+				<input type="text" name="title" ng-model="ctrl.post.title">
+			</label>
+			<label class="margin-top-small">{{ :: 'TT Podrobnosti:'}}
+				<textarea name="text" ng-model="ctrl.post.text"></textarea>
+			</label>
+		</form>
+		<div class="display-flex flex-space-between margin-top-medium">
+			<div class="">
+				<a href="">TT Přidat obrázek</a>
+			</div>
+			<div>
+				<a href="" ng-click="closeThisDialog()" translate="{{ 'COMMON.ACTION_CLOSE' }}"></a>
+				<button class="button margin-left-medium" ng-click="ctrl.save()" translate="{{ 'COMMON.ACTION_SAVE' }}"></button>
+			</div>
+	</div>
+</script>
+		

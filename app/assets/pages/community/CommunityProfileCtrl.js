@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService', 'ngDialog',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService, ngDialog) {
 		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -197,6 +197,20 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			$rootScope.editItem(null, null, preset);
 		};
+
+		$scope.addQuickPost = function () {
+			// open modal
+			ngDialog.open({
+				template: 'add-quick-gift-modal',
+				controller: 'QuickPostEditCtrl',
+				//scope: scope,
+				//data: post,
+				className: 'ngdialog-theme-default',
+				closeByDocument: false,
+				showClose: false,
+				//closeByEscape: true,
+			})
+		}
 
 		$scope.isNull = function(e) {
 			return e === null;
