@@ -1,8 +1,19 @@
 <div class="file-viewer">
-	<ul class="file-viewer-list">
+	<ul class="file-viewer-list" lemmon-slider fancybox="{{ message._id }}">
 		<li class="file-viewer-item" ng-repeat="file in message.file_attachments">
-			<i class="fa fa-file file-viewer-icon"></i>
-			<a ng-click="download(message, $index)" title="{{file.name}}">{{file.name}}</a>
+			<!-- ordinary file types, no images -->
+			<div ng-if="imagesDefinition.indexOf(file.content_type) === -1" class="text-center margin-top-large margin-horizontal-small">
+				<a ng-click="download(message, $index)" title="{{file.name}}" class="">
+					<i class="fa fa-file file-viewer-icon" style="font-size:40px;"></i><br>
+					{{file.name}}
+				</a>
+			</div>
+			<!-- images -->
+			<div ng-if="imagesDefinition.indexOf(file.content_type) > -1" ng-init="displayImage(message, $index)" style="clear:both">
+				<a class="fancy" ng-href="{{ getSrc($index) }}" rel="{{ message._id }}">
+					<img class="post-image" ng-if="getSrc($index)" ng-src="{{:: getSrc($index) }}" event-emitter="{event: 'initLemmonSlider', data: {isLast: $last}, waitFor: 'load'}" />
+				</a>
+			</div>
 		</li>
 	</ul>
 </div>

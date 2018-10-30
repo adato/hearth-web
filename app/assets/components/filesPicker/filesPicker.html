@@ -1,8 +1,6 @@
 <div>
 	<label class="files-upload-label button dark-gray" tabindex="0">
-		<i class="fa fa-paperclip"></i>
-		<input change-event-attacher type="file" ng-attr-accept="{{ filesPicker.pattern }}" ng-if="filesPicker.multiple" multiple />
-		<input change-event-attacher type="file" ng-attr-accept="{{:: filesPicker.pattern }}" ng-if="!(filesPicker.multiple)" />
+		<i class="fa fa-paperclip"></i><input change-event-attacher type="file" ng-attr-accept="{{ filesPicker.pattern }}" ng-if="filesPicker.multiple" multiple /><input change-event-attacher type="file" ng-attr-accept="{{:: filesPicker.pattern }}" ng-if="!(filesPicker.multiple)" />
 	</label>
 
 	<span class="display-inline-block margin-left-medium text-danger" ng-if="filesPicker.scope.invalidFileType.shown" ng-bind-html="'POST.CREATE.NOTIFY.ERROR_FILE_TYPE_INVALID' | translate:{type: invalidFileType.type}"></span>

@@ -5,6 +5,10 @@
 		padding: 0 10px;
 		margin-top: 80px !important;
 	}
+	.main-container.with-trusted-profile-notify {
+		margin-top: 110px !important;
+	}
+
 	#navigation {
 		margin: 0 auto;
 	}
@@ -49,6 +53,13 @@
 		width: 100%;
 		padding: 0 10px;
 		transition: max-height,margin .4s  cubic-bezier(.58,.02,.53,1);
+	}
+	.main-container.with-trusted-profile-notify {
+		margin-top: 130px !important;
+	}
+
+	.main-container.with-trusted-profile-notify.with-search-bar {
+		margin-top: 190px !important;
 	}
 }
 @include breakpoint(small down) {

@@ -18,6 +18,23 @@ angular.module('hearth.directives').directive('fileViewer', [
 				message: "="
 			},
 			link: function(scope, element, attrs) {
+				scope.images = {};
+				scope.imagesDefinition = ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/bmp', 'image/webp']
+
+				scope.displayImage = function (message, index) {
+					Conversations.downloadAttachment({
+						messageId: message._id,
+						fileId: message.file_attachments[index]._id
+					}, function(res) {
+						scope.images[index] = res.url;
+					});
+				}
+
+				scope.getSrc = function ($index) {
+					return scope.images[$index] || null;
+				}
+
+
 				scope.download = function(message, index) {
 					Conversations.downloadAttachment({
 						messageId: message._id,

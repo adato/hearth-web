@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux', '$q', 'LocalStorage',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux, $q, LocalStorage) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = [];
@@ -187,6 +187,73 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			})
 		})
 
+
+		/// START trusted profile notify
+
+		// after page init load profile (real or from cache) and compute if there is
+		// something the user should fill in ----> trusted profile
+		$rootScope.isTrustedProfileNotifyShown = function () { return false; }
+		$rootScope.userHasNotFilledProfile = function () { return false; }
+
+		let loadProfileAndCheckState = function (params) {
+			let loadProfile = function (params) {
+				let deferred = $q.defer();
+				if ((params && params.force && params.force == true) || ($rootScope.loggedUserProfile === null && !$rootScope.loggedUserProfileLoading)) {
+					$rootScope.loggedUserProfileLoading = true;
+					User.get({_id: $rootScope.loggedUser._id}).$promise.then(function (profile) {
+						$rootScope.loggedUserProfile = profile;
+						$rootScope.loggedUserProfileLoading = false;
+						deferred.resolve(profile);
+					})
+				} 
+				return deferred.promise;
+			}
+
+			// first load the proifle from api (TODO caching)
+			loadProfile(params).then((profile) => {
+
+				// should show "notify" on top?
+				$rootScope.isTrustedProfileNotifyShown = function (storageKey) {
+					storageKey = storageKey || 'trusted-profile-notify-closed';
+					if ($state.current.name == 'profileEdit') return false;
+					let profileNotFilled = $rootScope.userHasNotFilledProfile();
+					if (!profileNotFilled || LocalStorage.get(storageKey) == 1) {
+						return false;
+					}
+					if (profileNotFilled) return true;
+				}
+
+				// close notify
+				$rootScope.closeTrustedProfileNotify = function (storageKey) {
+					storageKey = storageKey || 'trusted-profile-notify-closed';
+					LocalStorage.set(storageKey, 1)
+				}
+				
+				// check function
+				$rootScope.userHasNotFilledProfile = function () {
+					let user = $rootScope.loggedUser;
+
+					if (!user || !user._id) return false; // omit if not logged in
+					if (!user.avatar || !user.avatar.large) return true; // check avatar
+					if (!profile.about || !profile.about.length) return true; // check profile
+					return false;
+				}
+			})
+		}
+
+		// load user profile on startup
+		// starts checks for 
+		$rootScope.$on("initSessionSuccess", function(event, user) {
+			loadProfileAndCheckState();
+		})
+
+		$rootScope.$on("profileSaved", function () {
+			$timeout(() => { loadProfileAndCheckState({ force: true }) }, 1000);
+		})
+
+		/// END trusted profile notify
+
+
 		/**
 		 * When submitted fulltext search
 		 */
@@ -288,6 +355,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.$on('reloadCommunities', loadMyCommunities);
 		$scope.$on('initFinished', $scope.initHearthbeat);
 		$rootScope.initFinished && $scope.initHearthbeat();
+
 
 		// ======================================== PUBLIC METHODS =====================================
 		$rootScope.showLoginBox = function(showMsgOnlyLogged) {
@@ -829,9 +897,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;
+		$rootScope.loggedUserProfile = null;
+		$rootScope.loggedUserProfileLoading = false;
 
 		$scope.$on('$destroy', () => {
 			angular.element(window).unbind('scroll');
 		});
+
+
+
 	}
 ]);
