@@ -316,6 +316,20 @@ angular.module('hearth').config([
 					selectedTab: 'principles',
 					controller: 'AboutCtrl',
 				})
+				.state('hearth-points', {
+					url: '/hearth-points',
+					templateUrl: 'assets/pages/static/hearth-point.html',
+					controller: 'HearthPointsCtrl',
+					controllerAs: 'vm',
+					slug: 'hearth.points'
+				})
+				.state('central-hearth-point', {
+					url: '/central-hearth-point',
+					templateUrl: 'assets/pages/static/hearth-point.html',
+					controller: 'HearthPointsCtrl',
+					controllerAs: 'vm',
+					slug: 'central.hearth.point'
+				})
 			.state('ourStory', {
 				url: '/our-story',
 				templateUrl: 'assets/pages/static/OurStory.html'
