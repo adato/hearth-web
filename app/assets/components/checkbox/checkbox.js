@@ -35,6 +35,7 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 			ctrl.change = () => {
 				if (ctrl.disabled) return
 				ctrl.model = !ctrl.model
+				scope.$broadcast('valueChanged', ctrl.model);
 			}
 
 			/**
@@ -47,6 +48,10 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 		}],
 		link: function(scope, el, attrs, ctrl) {
 
+			scope.$on('valueChanged', function (x, val) {
+				if (ctrl.onUpdate) ctrl.onUpdate({ value: val });
+			})
+
 			// keyboard support - toggle checkbox on spacebar press
 			const SPACE = 32
 			el[0].querySelector('[checkbox-keypress-handler]').addEventListener('keypress', event => {
@@ -58,7 +63,8 @@ angular.module('hearth.directives').directive('checkbox', [function() {
 
 					if (ctrl.disabled) return
 
-					ctrl.model = !ctrl.model
+					ctrl.model = !ctrl.model;
+					scope.$broadcast('valueChanged', ctrl.model);
 					if (!scope.$$phase) scope.$apply()
 				}
 			})

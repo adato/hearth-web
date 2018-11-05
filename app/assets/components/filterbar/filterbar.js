@@ -224,6 +224,7 @@ angular.module('hearth.directives').directive('filterbar', ['$state', 'geo', '$l
 
         // when (un)checked checkbox for save filter - send request also to api
         scope.toggleSaveFilter = (save) => {
+
           if (!$rootScope.loggedUser._id) return false;
 
           if (save) {
