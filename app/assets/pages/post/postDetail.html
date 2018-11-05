@@ -45,6 +45,9 @@
 									<div ng-if="item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 									<!-- TODO!!! add ngif and data -->
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
+									<div class="pull-left margin-right-tiny" ng-if=":: item.related_communities && item.related_communities.length">
+										{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a>
+									</div>
 								</div>
 							</header>
 							<div class="item-section text-container word-wrap">
