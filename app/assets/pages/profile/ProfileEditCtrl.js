@@ -100,11 +100,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.validatePhone = function(event) {
 			$scope.showError.phone = true;
-			var phone = event.target;
-
-			if (!$scope.profile.phone && !$scope.profileEditForm.phone.$error.internationalPhoneNumber) {
-				$(phone).val(null);
-			}
 		};
 
 		$scope.validateSocialNetworks = function() {
