@@ -174,9 +174,9 @@
 					<div class="flex-1">
 						<label>
 							<i class="fa fa-phone"></i>&nbsp;<span translate="PROFILE.EDIT.PHONE"></span>
-							<input type="tel" ng-focus="showError.phone = false" ng-blur="validatePhone($event)" name="phone" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone">
+							<input type="tel" ng-focus="showError.phone = false" ng-blur="validatePhone($event)" name="phone" ng-intl-tel-input data-initial-country="cz" national-mode="false" ng-model="profile.phone">
 							<div ng-show="showError.phone">
-								<span class="form-error" ng-show="profileEditForm.phone.$error.internationalPhoneNumber" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_VALID_PHONE"></span>
+								<span class="form-error" ng-show="profileEditForm.phone.$error.ngIntlTelInput" translate="PROFILE.EDIT.NOTIFY.ERROR_NOT_VALID_PHONE"></span>
 							</div>
 						</label>
 					</div>

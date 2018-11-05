@@ -31,7 +31,8 @@
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-smile-o"></i>
 		</div>
-		<div class="display-table-cell" ng-bind="entity.interests.join(',\u0020')"></div>
+		<div class="display-table-cell" ng-if="entity.interests && entity.interests.length > 1" ng-bind="entity.interests.join(',\u0020')"></div>
+		<div class="display-table-cell" ng-if="entity.interests && entity.interests.length == 1" ng-bind="entity.interests[0].split(',').join(',\u0020')"></div>
 	</div>
 
 	<div class="display-table-row" ng-if="canShow('work')">

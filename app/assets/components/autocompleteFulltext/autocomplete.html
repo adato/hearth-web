@@ -9,15 +9,19 @@
            ng-model-options="{ debounce: 400 }"
            >
     <div class="autocomplete-list" ng-show="showAutocomplete" style="position:absolute;">
-        <h5 ng-if="autocompleted.historyReversedLimited.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.HISTORY' | translate }}</h5>
-        <div ng-repeat="item in autocompleted.historyReversedLimited" class="list-item list-item-history">
-            <a class="close pull-right" ng-click="removeSearchFromHistory(item); undoHideAutocomplete();"><i class="fa fa-times" style="font-size:14px;"></i></a>
-            <a href="" ui-sref="search({query:item})">{{ item }}</a>
-        </div>
-        <h5 ng-if="autocompleted.default.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.DEFAULT' | translate }}</h5>
-        <div ng-repeat="item in autocompleted.default" class="list-item list-item-phrases">
-            <a href="" ui-sref="search({query:item[$root.language].title})">{{ item[$root.language].title }}</a>
-        </div>
+        <span ng-hide="ngModel.length">
+            <h5 ng-if="autocompleted.historyReversedLimited.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.HISTORY' | translate }}</h5>
+            <div ng-repeat="item in autocompleted.historyReversedLimited" class="list-item list-item-history">
+                <a class="close pull-right" ng-click="removeSearchFromHistory(item); undoHideAutocomplete();"><i class="fa fa-times" style="font-size:14px;"></i></a>
+                <a href="" ui-sref="search({query:item})">{{ item }}</a>
+            </div>
+        
+            <h5 ng-if="autocompleted.default.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.DEFAULT' | translate }}</h5>
+            <div ng-repeat="item in autocompleted.default" class="list-item list-item-phrases">
+                <a href="" ui-sref="search({query:item[$root.language].title})">{{ item[$root.language].title }}</a>
+            </div>
+        </span>
+        
         <h5 ng-if="autocompleted.posts.length">{{ 'MARKETPLACE.FILTER.POST_TYPE.POSTS' | translate }}</h5>
         <div ng-repeat="item in autocompleted.posts" class="list-item list-item-posts">
             <a href="" ui-sref="post({id: item._id })"><b>{{ item.type.toUpperCase() | translate }}</b> {{ item.title }}</a>

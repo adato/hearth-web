@@ -29,7 +29,7 @@ angular.module('hearth', [
 		'MobileDetect',
 		'checklist-model',
 		'ngActionCable',
-		'internationalPhoneNumber'
+		'ngIntlTelInput'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
@@ -148,8 +148,8 @@ angular.module('hearth', [
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 		}
-	]).config(['$provide', 'ipnConfig',
-		function($provide, ipnConfig) {
+	]).config(['$provide',
+		function($provide) {
 			$provide.decorator('$exceptionHandler', ['$delegate', '$window', function($delegate, $window) {
 				return function(exception, cause) {
 					if ($window.Rollbar) {
@@ -160,8 +160,6 @@ angular.module('hearth', [
 					$delegate(exception, cause);
 				};
 			}]);
-
-			ipnConfig.skipUtilScriptDownload = true;
 		}
 	]).config(['InfoBubbleSetup',
 		function(InfoBubbleSetup) {
