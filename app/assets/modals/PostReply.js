@@ -59,14 +59,16 @@ angular.module('hearth.controllers').controller('PostReply', [
 			$scope.closeThisDialog();
 		};
 
-		$scope.sendReply = function() {
+		$scope.sendReply = function(replyForm) {
 
 			$.each($scope.showErrors, function(key, value) {
 				$scope.showErrors[key] = true;
 			});
-			$scope.replyForm.$setDirty();
 
-			if ($scope.sending || !$scope.reply.agreed || $scope.replyForm.message.$invalid) {
+			replyForm.$setDirty();
+			
+
+			if ($scope.sending || replyForm.message.$invalid) {
 				return false;
 			}
 
@@ -78,26 +80,6 @@ angular.module('hearth.controllers').controller('PostReply', [
 				$scope.showFinished();
 				$scope.post.reply_count += 1;
 				$scope.post.is_replied = true;
-
-				// show modal after ask for gift
-				if ($scope.post.type == 'offer' && $rootScope.isTrustedProfileNotifyShown('trusted-profile-reply-offer-notify-closed')) {
-					var ngDialogOptions = {
-						template: 'trusted-profile',
-						scope: $scope,
-						closeByEscape: true,
-						showClose: false,
-						width:'40%',
-						data: post
-					};
-			
-					// show dialog containing info for user that he should update his profile
-					let dialog = ngDialog.open(ngDialogOptions);
-					dialog.closePromise.then(function (data) {
-						if (data.value == 'close') {
-							$rootScope.closeTrustedProfileNotify('trusted-profile-reply-offer-notify-closed')
-						}
-					})
-				}
 
 				$rootScope.$broadcast('postUpdateRepliedBy'); // update post counters
 			}, function(res) {
