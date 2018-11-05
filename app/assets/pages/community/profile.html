@@ -125,7 +125,7 @@
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
 		</div>
-		<form class="margin-top-small">
+		<form class="margin-top-small" ng-show="ctrl.draftLoaded">
 			<label>{{ :: 'TT S čím chceš poradit nebo inspirovat ostatní?'}}
 				<input type="text" name="title" ng-model="ctrl.post.title">
 			</label>

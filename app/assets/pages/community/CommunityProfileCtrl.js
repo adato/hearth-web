@@ -203,6 +203,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			ngDialog.open({
 				template: 'add-quick-gift-modal',
 				controller: 'QuickPostEditCtrl',
+				controllerAs: 'ctrl',
 				//scope: scope,
 				//data: post,
 				className: 'ngdialog-theme-default',

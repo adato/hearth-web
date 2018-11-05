@@ -7,8 +7,21 @@
  */
 
 angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
-	'$scope',
-	function($scope) {
-        console.log("YEAH CTRL!")
+	'$scope', 'Post',
+	function($scope, Post) {
+        var ctrl = this;
+        ctrl.post = {};
+        ctrl.draftLoaded = false;
+
+        Post.createDraft({}, function(draft) {
+            ctrl.post = draft;
+            ctrl.isDraft = true;
+            ctrl.draftLoaded = true;
+        });
+
+
+        ctrl.save = function () {
+            console.log("saving", ctrl.post)
+        }
     }
 ]);
