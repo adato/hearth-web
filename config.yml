@@ -99,8 +99,12 @@ PATHS:
         - "bower_components/overlapping-marker-spiderfier/oms.js"
         - "bower_components/angular-websocket/dist/angular-websocket.js"
         - "bower_components/angular-actioncable/dist/angular-actioncable.js"
-        - "bower_components/international-phone-number/releases/international-phone-number.js"
+        - "bower_components/intl-tel-input/build/js/utils.js"
         - "bower_components/intl-tel-input/build/js/intlTelInput.js"
+        - "bower_components/ng-intl-tel-input/ng-intl-tel-input.module.js"
+        - "bower_components/ng-intl-tel-input/ng-intl-tel-input.provider.js"
+        - "bower_components/ng-intl-tel-input/ng-intl-tel-input.directive.js"
+        - "bower_components/masonry-layout/dist/masonry.pkgd.min.js"
         - "bower_components/masonry-layout/dist/masonry.pkgd.min.js"
       css:
         - "bower_components/fancybox/source/jquery.fancybox.css"

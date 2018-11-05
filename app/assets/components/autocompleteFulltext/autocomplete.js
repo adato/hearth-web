@@ -24,6 +24,7 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                 scope.autocompleted.posts = [];
                 scope.autocompleted.default = [];
                 scope.autocompleted.history = [];
+                scope.autocompleteTimeout = null;
                 scope.loading = {
                     posts: false,
                     users: false,
@@ -39,7 +40,6 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                         scope.showAutocomplete = true;
                         return scope.searchAutocomplete(scope.ngModel);
                     }
-
                     let history = JSON.parse(LocalStorage.get("hearth-fulltext-searches")) || [];
                     scope.autocompleted.history = history;
 
@@ -51,8 +51,10 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                 }
 
                 scope.$watch('autocompleted.history', function (newVal, oldVal) {
-                    if (!newVal.length) return;
-                    scope.autocompleted.historyReversedLimited = newVal.reverse().slice(0, 10);
+                    if (!newVal.length) { scope.autocompleted.historyReversedLimited = []; }
+                    else {
+                        scope.autocompleted.historyReversedLimited = newVal.reverse().slice(0, 10);
+                    }
                 });
 
                 scope.$watch('ngModel', function (newVal, oldVal) {
@@ -67,7 +69,7 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
 
                 scope.saveSearch = function (query) {
                     if (scope.autocompleted.history.indexOf(query) == -1
-                        && query.length) {
+                        && query && query.length) {
                         scope.autocompleted.history.push(query);
                         LocalStorage.set("hearth-fulltext-searches", JSON.stringify(scope.autocompleted.history));
                     }
@@ -86,9 +88,13 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                 }
 
                 scope.hideAutocomplete = function () {
-                    $timeout(function () {
+                    scope.autocompleteTimeout = $timeout(function () {
                         scope.showAutocomplete = false;
                     }, 800)
+                }
+
+                scope.undoHideAutocomplete = function () {
+                    if (scope.autocompleteTimeout) $timeout.cancel(scope.autocompleteTimeout);
                 }
 
                 scope.searchAutocomplete = function (query) {
