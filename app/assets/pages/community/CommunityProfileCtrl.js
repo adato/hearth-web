@@ -189,6 +189,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.addItem = function() {
 			var preset = {
 				current_community_id: ($scope.mine) ? $scope.info._id : null,
+				current_community_name: $scope.info.name,
 				related_communities: (!$scope.mine) ? [{
 					_id: $scope.info._id,
 					name: $scope.info.name
