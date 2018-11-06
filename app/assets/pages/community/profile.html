@@ -120,12 +120,17 @@
 
 <script type="text/ng-template" id="add-quick-gift-modal">
 	<!-- template for add new "quick gift" modal -->
-	<div class="formStyle itemEdit modal">
+	<div class="formStyle itemEdit modal quick-modal">
 		<div class="head">
 			<h2>TT Dotaz nebo tip</h2>
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
 		</div>
+		
+		<!-- LOADING -->
+		<div class="margin-top-small" loading show="!ctrl.draftLoaded"></div>
+
+		<!-- DIALOG CONTENT -->
 		<form class="margin-top-small" ng-show="ctrl.draftLoaded">
 			<label>{{ :: 'TT S čím chceš poradit nebo inspirovat ostatní?'}}
 				<input type="text" name="title" ng-model="ctrl.post.title">
@@ -134,14 +139,42 @@
 				<textarea name="text" ng-model="ctrl.post.text"></textarea>
 			</label>
 		</form>
+		
 		<div class="display-flex flex-space-between margin-top-medium">
-			<div class="">
-				<a href="">TT Přidat obrázek</a>
+			<div class="files">
+				<ul class="fileList" ng-if="ctrl.post.attachments_attributes.length">
+					<li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center margin-right-tiny" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in ctrl.post.attachments_attributes track by $index">
+						<div class="overlay"></div>
+						<a ng-click="ctrl.removeImage($index)" title="{{:: 'POST.CREATE.REMOVE_PHOTO_LABEL' | translate }}">
+							<i class="fa fa-times"></i>
+						</a>
+						<img exif-rotated resized-thumbnail-image ng-src="{{ file.normal || file.public_url }}" title='file' />
+					</li>
+					<li class="file-upload text-left margin-top-medium" ng-if="ctrl.post.attachments_attributes.length > 0">
+						<div image-preview-direct-upload options="ctrl.imageUploadOptions" result="ctrl.post.attachments_attributes">
+							<i class="fa fa-plus"></i>
+							<i class="fa fa-spinner fa-spin"></i>
+						</div>
+					</li>
+				</ul>
+				<div class="file-upload text-left margin-top-small" ng-if="ctrl.post.attachments_attributes.length == 0">
+					<div image-preview-direct-upload options="ctrl.imageUploadOptions" result="ctrl.post.attachments_attributes">
+						<a href="">TT Přidat obrázek</a>
+					</div>
+				</div>
+				<div class="clear form-error" ng-if="ctrl.showError.files">
+					<span ng-if="ctrl.showError.files.badFormat" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: 'JPG, JPEG, PNG, GIF'}"></span>
+					<span ng-if="ctrl.showError.files.badMaxSize" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize:ctrl.imageUploadOptions.limitMb}"></span>
+					<span ng-if="ctrl.showError.files.badSizeAll" translate="COMMON.NOTIFY.ERROR_FILES_TOO_BIG" translate-values="{maxSize:ctrl.imageUploadOptions.limitMb}"></span>
+					<span ng-if="ctrl.showError.files.badMinSizePx" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize:ctrl.imageUploadOptions.minSize}"></span>
+					<span ng-if="ctrl.showError.files.uploadError" translate="COMMON.NOTIFY.ERROR_UPLOADING"></span>
+				</div>
 			</div>
 			<div>
-				<a href="" ng-click="closeThisDialog()" translate="{{ 'COMMON.ACTION_CLOSE' }}"></a>
-				<button class="button margin-left-medium" ng-click="ctrl.save()" translate="{{ 'COMMON.ACTION_SAVE' }}"></button>
+				<a href="" ng-click="closeThisDialog()" translate="{{ 'COMMON.ACTION_CLOSE' }}" class="margin-right-medium"></a>
+				<button class="button" ng-click="ctrl.save()" translate="{{ 'COMMON.ACTION_SAVE' }}"></button>
 			</div>
+		</div>
 	</div>
 </script>
 		

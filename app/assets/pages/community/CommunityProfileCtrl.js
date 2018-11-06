@@ -206,7 +206,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				controller: 'QuickPostEditCtrl',
 				controllerAs: 'ctrl',
 				//scope: scope,
-				//data: post,
+				data: { community: $scope.info },
 				className: 'ngdialog-theme-default',
 				closeByDocument: false,
 				showClose: false,
