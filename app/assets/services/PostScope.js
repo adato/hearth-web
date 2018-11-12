@@ -36,6 +36,7 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.language = $rootScope.language
 			scope.postLanguage = LanguageList.translate(post.language)
 			scope.logViewActivity = PostAux.logViewActivity
+			scope.isInfoGift = PostAux.isInfoGift(post)
 
 			angular.extend(scope, PostServices)
 
@@ -74,12 +75,6 @@ angular.module('hearth.services').factory('PostScope', [
 
 			scope.analytics = ev => PostAux.logPostAction(ev, scope)
 
-			// used by post comments to focus the comment input on comments section show
-			scope.focus = selector => {
-				$timeout(() => {
-					$(selector).focus()
-				})
-			}
 
 			scope.max = (num1, num2) => {
 				if ((typeof num1 == 'undefined' || num1 === null) && num2) return num2 || 0;

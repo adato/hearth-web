@@ -45,7 +45,7 @@ angular.module('hearth.controllers').controller('HearthPointsCtrl', ['$rootScope
         }
 
         HearthPointService.query(slug).then((result) => {
-            console.log(result)
+            //console.log(result)
             ctrl.data = result;
             ctrl.loaded = true;
         }, () => {
