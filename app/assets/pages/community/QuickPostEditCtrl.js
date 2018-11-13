@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
-	'$scope', 'Post', '$state',
-	function($scope, Post, $state) {
+	'$scope', 'Post', '$rootScope',
+	function($scope, Post, $rootScope) {
         var ctrl = this;
         ctrl.post = {};
         ctrl.imageUploading = false;
@@ -27,7 +27,7 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
         };
 
         ctrl.draftLoaded = false;
-
+        ctrl.sending = false;
 
         ctrl.init = function () {
             // initialize draft
@@ -63,10 +63,64 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
         }
 
 
-        ctrl.save = function () {
-            // update post type depending on question mark in title
-            //ctrl.post.type = (ctrl.post.title.substring())
-            console.log("saving", ctrl.post)
+        ctrl.save = function (form) {
+            if (!ctrl.testForm(ctrl.post, form)) return;
+
+            var postData = angular.extend(
+				angular.copy(ctrl.post, {
+                    id: ctrl.post._id,
+                    location_unlimited: true,
+                })
+			);
+
+            postData.locations = null;
+
+            console.log(postData)
+			if (ctrl.sending) return false;
+			ctrl.sending = true;
+
+			Post['add'](postData, function(data) {
+
+                // is ok
+                $timeout(function() {
+                    $scope.closeThisDialog();
+                });
+    
+                // emit event into whole app
+                // /$rootScope.$broadcast('postCreated', data);
+                ctrl.sending = false;
+    
+			}, function (err) {
+                console.log("err")
+                console.log(err)
+                ctrl.sending = false;
+            });
+        }
+
+        ctrl.testForm = function (post, form) {
+			var res = false;
+			form.$setDirty();
+
+			if (form.title.$invalid) {
+				res = ctrl.showError.title = true;
+			}
+
+			if (form.text.$invalid) {
+				res = ctrl.showError.text = true;
+			}
+			return !res;
+		};
+
+
+        /**
+         * function to detect direction of gift
+         * (ie - title contains question mark? so it is need, othervise its offer)
+         * @param post 
+         */
+        ctrl.detectDirection = function (post) {
+            if (!post || !post.title) return;
+            let direction = (post.title.indexOf('?') > -1 ? 'need' : 'offer');
+            post.type = direction;
         }
 
         ctrl.init();
