@@ -184,6 +184,21 @@
 						<li language-only-en>
 							<a href='#testimonies' class='nav-item' t='LANDING_PAGE.MENU.TESTIMONIALS'>Mají nás rádi</a>
 						</li>
+						<li>
+							<a href='/app/register?utm_source=lp&utm_medium=lp-register-link-mobile&utm_campaign=lp' class='nav-item' t='LANDING_PAGE.MENU.REGISTER' user-not-logged style='display: none'>
+								Registrace
+							</a>
+						</li>
+						<li>
+							<a href='/app/login' class='nav-item' t='LANDING_PAGE.MENU.LOGIN' user-not-logged style='display: none'>
+								Přihlášení
+							</a>
+						</li>
+						<li>
+							<a href='/app/?utm_source=lp&utm_medium=lp-top-link-mobile&utm_campaign=lp' class='nav-item' t='LANDING_PAGE.ENTER' user-logged style='display: none'>
+								Vstoupit
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -200,25 +215,30 @@
 				<li language-only-en>
 					<a href='#testimonies' class='nav-item' t='LANDING_PAGE.MENU.TESTIMONIALS'>Mají nás rádi</a>
 				</li>
-        <li>
-          <a href='/app/login' class='nav-item' t='LANDING_PAGE.MENU.LOGIN' user-not-logged style='display: none'>
-            Přihlášení
-          </a>
-        </li>
-        <li>
-          <a href='/app/register' class='button secondary nav-item special' t='LANDING_PAGE.MENU.REGISTER' user-not-logged style='display: none'>
-            Registrace
-          </a>
-        </li>
+				<li>
+					<a href='/app/register?utm_source=lp&utm_medium=lp-register-link&utm_campaign=lp' class='nav-item' t='LANDING_PAGE.MENU.REGISTER' user-not-logged style='display: none'>
+						Registrace
+					</a>
+				</li>
+				<li>
+					<a href='/app/login' class='button secondary nav-item special' t='LANDING_PAGE.MENU.LOGIN' user-not-logged style='display: none'>
+						Přihlášení
+					</a>
+				</li>
+				<li>
+					<a href='/app/?utm_source=lp&utm_medium=lp-top-button&utm_campaign=lp' class='button secondary nav-item special margin-right-large' t='LANDING_PAGE.ENTER' user-logged style='display: none'>
+						Vstoupit
+					</a>
+				</li>
 			</ul>
 			<div class='flex position-relative' user-logged id='profileSection' style='display: none'>
 				<img class='avatar cursor-pointer' profile-image dropdown='profile-box' />
 				<div class='hover-window padding-none window-align-right' id='profile-box'>
-					<div class='padding-horizontal-medium padding-vertical-small text-emphasize' profile-name></div>
+					<div class='padding-horizontal-medium padding-vertical-small text-emphasize text-decoration-none'><a profile-link profile-name></a></a></div>
 					<div class='hr margin-vertical-none'></div>
 					<ul class='margin-none padding-medium sub-link-list'>
 						<li>
-							<a class='nav-item has-hover-effect' href='/app/market'>
+							<a class='nav-item has-hover-effect' href='/app/market?utm_source=lp&utm_medium=lp-marketplace-button&utm_campaign=lp'>
 								<i class='fa fa-fw hearth-flame margin-right-small'></i>
 								<span t='LANDING_PAGE.MENU.MARKETPLACE'>Podívat se na tržiště</span>
 							</a>
@@ -299,7 +319,7 @@
 				</div>
 				<h1 t='LANDING_PAGE.SLOGAN.SPACE_FOR_PEOPLE_WITH_OPEN_HEART'>Prostor pro lidi<br />s otevřeným srdcem</h1>
 				<h2 class='subheader' t='LANDING_PAGE.SLOGAN.JOY_TO_GIVE_HAPPINESS_TO_ACCEPT'>Radost dát, štěstí přijmout</h2>
-				<a href='/app' class='button secondary flex'>
+				<a href='/app/?utm_source=lp&utm_medium=lp-main-callout-button&utm_campaign=lp' class='button secondary flex'>
 					<i class='fa button-flame'></i>
 					<span t='LANDING_PAGE.ENTER'>Vstupte</span>
 				</a>
