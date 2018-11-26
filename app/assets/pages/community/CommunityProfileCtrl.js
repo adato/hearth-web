@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService', 'ngDialog',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService, ngDialog) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService', 'ngDialog', '$timeout',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService, ngDialog, $timeout) {
 		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -113,7 +113,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		function refreshDataFeed() {
-			$scope.$broadcast('refreshSubpage');
+			$timeout(function() {
+				$scope.$broadcast('refreshSubpage');
+			}, 500)
 		};
 
 		$scope.applyForCommunity = function() {
@@ -281,6 +283,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
 			$scope.activePage = params.page;
+		});
+
+		$scope.$on('postCreated', function(ev, route, params) {
+			$scope.init();
 		});
 
 		UnauthReload.check();

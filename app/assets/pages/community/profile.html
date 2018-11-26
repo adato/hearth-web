@@ -142,7 +142,7 @@
 				<check-capitals model="ctrl.post.title" ng-if="showError.title" class="form-error warning"></check-capitals>
 			</label>
 			<label class="margin-top-small">{{ :: 'TT Podrobnosti:'}}
-				<textarea autosize-textarea name="text" ng-model="ctrl.post.text" required ng-minlength="3" ng-maxlength="2500" ng-focus="ctrl.showError.text = false" ng-blur="ctrl.showError.text = true"></textarea>
+				<textarea autosize-textarea name="text" ctrl-enter-submit ng-model="ctrl.post.text" required ng-minlength="3" ng-maxlength="2500" ng-focus="ctrl.showError.text = false" ng-blur="ctrl.showError.text = true"></textarea>
 				<div class="form-error" ng-show="quickAddForm.text.$invalid && ctrl.showError.text && quickAddForm.$dirty">
 					<span ng-show="quickAddForm.text.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
 					<span ng-show="quickAddForm.text.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
@@ -150,7 +150,7 @@
 				</div>
 				<check-capitals model="ctrl.post.text" ng-if="showError.text" class="form-error warning"></check-capitals>
 			</label>
-			<div>Direction: {{ ctrl.post.type }}</div>
+			<!-- <div>Direction: {{ ctrl.post.type }}</div> -->
 		</div>
 		
 		<div class="display-flex flex-space-between margin-top-medium">

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
-	'$scope', 'Post', '$rootScope',
-	function($scope, Post, $rootScope) {
+	'$scope', 'Post', '$rootScope', '$timeout', 
+	function($scope, Post, $rootScope, $timeout) {
         var ctrl = this;
         ctrl.post = {};
         ctrl.imageUploading = false;
@@ -67,32 +67,29 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
             if (!ctrl.testForm(ctrl.post, form)) return;
 
             var postData = angular.extend(
-				angular.copy(ctrl.post, {
+				angular.copy(ctrl.post), {
                     id: ctrl.post._id,
-                    location_unlimited: true,
-                })
+                }
 			);
 
-            postData.locations = null;
+            delete postData.$promise;
+            delete postData.$resolved;
 
-            console.log(postData)
 			if (ctrl.sending) return false;
 			ctrl.sending = true;
 
-			Post['add'](postData, function(data) {
+			Post.add(postData, function(data) {
 
                 // is ok
                 $timeout(function() {
                     $scope.closeThisDialog();
-                });
+                    $rootScope.$broadcast('postCreated', data);
+                }, 100);
     
-                // emit event into whole app
-                // /$rootScope.$broadcast('postCreated', data);
                 ctrl.sending = false;
-    
+                    
 			}, function (err) {
-                console.log("err")
-                console.log(err)
+                console.error(err)
                 ctrl.sending = false;
             });
         }
