@@ -53,7 +53,7 @@
 							<li ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)"><a href="" ng-click="sendMessage(info, {toAllMembers: true})" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li>
 							<li ng-show="(!mine && info.is_member) || mine"><hr/></li>
 							<li ng-if="!mine && info.is_member"><a href="" class="elevated-authority-function" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})" translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></a></li>
-							<li ng-if="mine"><a href="{{:: communityLink }}/edit" translate="PROFILE.ACTION_EDIT"></a></li>
+							<li ng-if="mine"><a href="{{:: communityLink }}/edit" translate="COMMUNITY.PROFILE.ACTION_EDIT"></a></li>
 						</ul>
 
 					</div>
