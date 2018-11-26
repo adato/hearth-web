@@ -79,6 +79,9 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						_id: id
 					}, function(data) {
 						$scope.community = prepareDataIn(data);
+						
+						// emulate fake attribute for privacy selector (is_standard = !is_private & !is_public)
+						$scope.community.is_standard = (!$scope.community.is_private && !$scope.community.is_public);
 
 						if (!data.locations || !data.locations.length || data.locations[0] === void 0) {
 							data.locations = [];

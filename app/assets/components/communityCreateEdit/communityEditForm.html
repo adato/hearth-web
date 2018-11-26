@@ -51,12 +51,17 @@
 						<div class="flex-1 block">
 							<div class="box box--checkbox-list">
 								<label>
-									<checkbox class="box box--checkbox" model="community.is_public" name="communityIsPublic" disabled="community.is_private">
+									<checkbox class="box box--checkbox" model="community.is_public" name="communityIsPublic" disabled="community.is_private || community.is_standard">
 										<span translate="COMMUNITY.PRIVACY.PUBLIC"></span>
 									</checkbox>
 								</label>
 								<label>
-									<checkbox class="box box--checkbox" model="community.is_private" name="communityIsPrivate" disabled="community.is_public">
+										<checkbox class="box box--checkbox" model="community.is_standard" name="communityIsStandard" disabled="community.is_private || community.is_public">
+											<span translate="COMMUNITY.PRIVACY.STANDARD"></span>
+										</checkbox>
+									</label>
+								<label>
+									<checkbox class="box box--checkbox" model="community.is_private" name="communityIsPrivate" disabled="community.is_public || community.is_standard">
 										<span translate="COMMUNITY.PRIVACY.PRIVATE"></span>
 									</checkbox>
 								</label>
