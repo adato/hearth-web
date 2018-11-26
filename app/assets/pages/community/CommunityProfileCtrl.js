@@ -204,7 +204,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.addQuickPost = function () {
 			// open modal
 			ngDialog.open({
-				template: 'add-quick-gift-modal',
+				templateUrl: 'assets/modals/newQuickGift.html',
 				controller: 'QuickPostEditCtrl',
 				controllerAs: 'ctrl',
 				//scope: scope,
