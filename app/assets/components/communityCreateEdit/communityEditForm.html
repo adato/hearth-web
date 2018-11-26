@@ -43,6 +43,31 @@
 
 			<div class="flex-grid block">
 				<div>
+					<i class="fa fa-fw fa-2x block--leading-icon fa-eye"></i>
+				</div>
+				<div class="flex-1">
+					<h2 translate="COMMUNITY.CREATE.PRIVACY"></h2>
+					<div class="medium-flex-grid">
+						<div class="flex-1 block">
+							<div class="box box--checkbox-list">
+								<label>
+									<checkbox class="box box--checkbox" model="community.is_public" name="communityIsPublic" disabled="community.is_private">
+										<span translate="COMMUNITY.PRIVACY.PUBLIC"></span>
+									</checkbox>
+								</label>
+								<label>
+									<checkbox class="box box--checkbox" model="community.is_private" name="communityIsPrivate" disabled="community.is_public">
+										<span translate="COMMUNITY.PRIVACY.PRIVATE"></span>
+									</checkbox>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex-grid block">
+				<div>
 					<i class="fa fa-fw fa-2x block--leading-icon fa-info"></i>
 				</div>
 				<div class="flex-1">
