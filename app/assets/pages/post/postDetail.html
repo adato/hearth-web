@@ -119,7 +119,7 @@
 											<button ng-if="!item.is_replied && !isMine" ng-click="PostAux.replyItem(item)" class="button" ng-class=':: item.type' ng-bind-html=":: replyLabel[item.type] | translate"></button>
 											<span ng-if="item.is_replied" translate="POST.NOTIFY.YOU_ALREADY_REPLIED"></span>
 										</div>
-										<div class="padding-right-large" ng-if=":: isInfoGift">
+										<div class="padding-right-large" ng-if=":: isInfoGift && !isMine && item.comments_count > 0">
 											<button ng-click="PostAux.focus('#post_' + item._id + ' [comments-focusser]')" class="button" ng-bind-html="'POST.COMMENT.ACTION_ADD' | translate"></button>
 										</div>
 									</div>

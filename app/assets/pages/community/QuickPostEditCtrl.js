@@ -39,6 +39,7 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
                     character: ['information'],
                     exact_type: 'gift',
                     location_unlimited: true,
+                    locations: [],
                     type: 'offer'
                 };
 
