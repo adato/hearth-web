@@ -78,7 +78,7 @@
 
 						<div class="column small-12">
 							<div class="pull-left margin-right-tiny" ng-if=":: item.related_communities && item.related_communities.length">
-								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a>
+								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift">&bull;</span>
 							</div>
 							<div ng-if="item.location_unlimited && !isInfoGift">
 								<i class="fa fa-map-marker"></i>&nbsp;
