@@ -121,7 +121,7 @@
       <p ng-if="! mine && ! activityLog.length" translate="COMMUNITY.ACTIVITY.NO_ACTIVITY_OTHER"></p>
 
       <div ng-if="activityLog.length">
-        <timeline timeline-items="activityLog" load-next="loadCommunityActivities()"></timeline>
+        <timeline timeline-items="activityLog" load-next="loadCommunityActivities(null, { eventType: 'scroll' })"></timeline>
 				<div loading show="activityLogFetchRunning" class="margin-top-large"></div>
       </div>
     </div>
