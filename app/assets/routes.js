@@ -44,20 +44,20 @@ angular.module('hearth').config([
 				controller: 'CommunityListCtrl',
 				controllerAs: 'vm'
 			})
-			.state('communities.my', {
-				url: '',
-				templateUrl: 'assets/pages/community/communityList.html',
-				controller: 'CommunityListCtrl',
-				controllerAs: 'vm'
-			})
+			// .state('communities.my', {
+			// 	url: '/communities/my',
+			// 	templateUrl: 'assets/pages/community/communityList.html',
+			// 	controller: 'CommunityListCtrl',
+			// 	controllerAs: 'vm'
+			// })
 			.state('communities.suggested', {
-				url: '/suggested',
+				url: '/communities/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
         		controllerAs: 'vm'
 			})
-			.state('communities.all', {
-				url: '/all',
+			.state('communities-all', {
+				url: '/communities/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
         		controllerAs: 'vm'
