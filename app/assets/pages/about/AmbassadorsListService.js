@@ -43,8 +43,8 @@ angular.module('hearth.services').service('AmbassadorsListService', ['CommunityM
 			id: '569620a966a6f10007001192',
 			area: 'Praha',
 			geo: [[14.4378, 50.075538]],
-			reason: 'Ambasadorství ke mně přišlo tak nějak samo. :-) Hearth.net se mi líbí již delší dobu a již delší dobu jsem měla pocit, že bych mohla Hearth.net podpořit i jinak než jako běžný uživatel. Celé to začalo, když jsem potkala Lenku (v tu dobu novou ředitelku Adato Paradigma) a&nbsp;tak nějak jsme si hned sedly.',
-			story: 'Zažila jsem si, že splněná přání přichází se správným nastavením mysli. Díky Hearth.net jsem si uvědomila, že umím spíš dávat, než žádat, a&nbsp;díky Hearth.net se to učím – i když zatím velice pomalu. :-D',
+			reason: 'Ambasadorství ke mně přišlo tak nějak samo. :-) Hearth.net se mi líbí již delší dobu a již delší dobu jsem měla pocit, že bych mohla Hearth.net podpořit i jinak než jako běžný uživatel. Celé to začalo, když jsem potkala Lenku (v tu dobu novou ředitelku Adato Paradigma) a hned jsme si sedly. Od té doby mám radost, že mohu podporovat Hearth skrz mé dary - talenty: koučuji tým Adato a tvořím workshopy na Hearth pointu.',
+			story: 'Zažila jsem milá setkání. Naučila jsem se, jak si užít hloubku darování. Zjistila jsem, že splněná přání přichází se správným nastavením mysli. Díky Hearth.net jsem si uvědomila, že to, co se potřebuje většina lidí naučit, není umění darovat, ale umění přijímat.',
 		},
 		{ 
 			realName: 'Hanka Zemánková',
