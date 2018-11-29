@@ -6,7 +6,7 @@
 				<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>
 			</div>
 
-			<h3 class="margin-top-large text-center">TT Dary a přání z mých skupin</h3>
+			<h3 class="medium-push-2 medium-10 margin-top-large text-center">TT Dary a přání z mých skupin</h3>
 			<exemplary-posts opts="vm.commOpts" ng-if="vm.commOpts">
 			</exemplary-posts>
 
@@ -21,7 +21,7 @@
 		<!-- my communities -->
 		<div class="margin-top-medium padding-top-medium">
 			<h4 class="text-center margin-top-none margin-bottom-small">TT Moje skupiny</h4>
-			<div ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-small" ui-sref="community.default({id: comm._id })" style="cursor:pointer">
+			<div ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })" style="cursor:pointer">
 				<h4>{{ comm.name }}</h4>
 				
 				<div class="text-danger" ng-if="comm.admin == loggedUser._id">TT Jsem správce</div>
