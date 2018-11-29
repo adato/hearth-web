@@ -7,75 +7,47 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter',
-	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter) {
+	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter', 'Fulltext', 'PostAux',
+	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter, Fulltext, PostAux) {
     var vm = this;
     vm.myCommunities;
     vm.showColumns = true;
 		$scope.list = [];
 		$scope.loading = false;
 		$scope.loadingFinished = false;
-    vm.load = () => initMyCommunities();
+    vm.load = () => initCommunities();
 		var ItemFilter = new UniqueFilter();
 
-		var initCommunities = () => {
 
-      if ($state.current.name == 'communities.my') {
-        if ($rootScope.myCommunities.length) {
-          vm.myCommunities = $rootScope.myCommunities.length;
-          vm.showColumns = false;
-          $scope.list = $rootScope.myCommunities;
-          $scope.$parent.loadedFirstBatch = true;
-          $scope.loadingFinished = true;
-          $scope.loading = false;
-        } else {
-          // if there are not my communities, then default tab is suggested communities
-          $state.go('communities.suggested');
+    vm.getSearchOpts = () => {
+      Fulltext.query({ limit:20, days:30, type:'post', my_section: true}).$promise.then(function (result) {
+        result.data = result.data.filter(function (item) {
+          if (item.author._id == $rootScope.loggedUser._id) return false; else return true;
+        })
+        var commOpts = angular.copy(PostAux.getRecommendedPostsOpts(result.data));
+        
+        commOpts.found = {
+          communities: (result.data.length)
         }
-      } else {
-        var conf = {
-          limit: 20,
-          offset: $scope.list.length
-        };
+        vm.commOpts = commOpts;
+      });
+    }
 
-        var service = ($state.current.name == 'communities.suggested') ? Community.suggested : Community.query;
-        service(conf, function (res) {
 
-          if (res) {
-            res = ItemFilter.filter(res);
+    var initCommunities = () => {
+      
+      $rootScope.$on('communities:loaded', () => {
+        vm.myCommunities = $rootScope.myCommunities
+      });
+      
+      if (!vm.myCommunities || !vm.myCommunities.length) $rootScope.$emit('reloadCommunities');
 
-            res.forEach(function (item) {
-              item.description = $filter('ellipsis')($filter('linky')(item.description, '_blank'));
-            });
-          }
-          $scope.list = $scope.list.concat(res);
-          $scope.loading = false;
-          $scope.$parent.loadedFirstBatch = true;
-          if (!res.length || $state.current.name == 'communities.suggested') {
-            return $scope.loadingFinished = true;
-          }
-        });
-      }
+      vm.getSearchOpts();
     };
 
-    var initMyCommunities = () => {
-      if ($scope.loadingFinished || $scope.loading) return false;
-      $scope.loading = true;
 
-      // my communities are loaded in BaseCtrl
-      if ($rootScope.communitiesLoaded || !Auth.isLoggedIn()) {
-        initCommunities()
-      } else {
-        // wait for load
-        var listener = $rootScope.$watch('communitiesLoaded', function(val) {
-          if (val) {
-            initCommunities();
-            listener();
-          }
-        });
-      }
-    };
 
-    initMyCommunities();
-	}
+  
+  initCommunities()
+  }
 ]);

@@ -1,5 +1,31 @@
 <div loading show="!profileLoaded"></div>
-<div class="community-view profile-common" ng-if="profileLoaded" ng-class="{'mine': mine, 'others': !mine}">
+
+<div ng-if="info && info.is_private && !info.is_member && !mine">
+		<!-- private community info-->
+		<header class="margin-bottom-large">
+			<div class="user-basic large-12 columns">
+					<h1>
+						<span>{{:: info.name }}</span>
+					</h1>
+			</div>
+			<div class="large-4 large-push-4 margin-top-large padding-top-large text-center text-large">
+				TT Toto je skupina přístupná pouze pro členy
+			</div>
+			<div class="large-4 large-push-4 margin-top-large padding-top-large text-center">
+					<button ng-click="applyForCommunity()" class="button large" ng-if="loggedUser._id && !info.is_applicant">
+						<span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
+					</button>
+					<span translate="COMMUNITY.APPLY_FOR_MEMBERSHIP_SENT" ng-if="info.is_applicant"></span>
+			</div>
+			<div class="large-4 large-push-4 margin-top-large padding-top-large text-center text-large text-muted">
+				TT Na Hearth.net si lidé vzájemně pomáhají, dávají dary a komunikují spolu.<br><br>
+				A někdy se stanou i zázraky.
+			</div>
+		</header>
+	</div>
+
+
+<div class="community-view profile-common" ng-if="profileLoaded && (!info.is_private || info.is_member || mine)" ng-class="{'mine': mine, 'others': !mine}">
 	<div class="user" ng-if="! info">
 		<p>{{:: 'COMMUNITY.NOTIFY.ERROR_NOT_FOUND' | translate }}</p>
 	</div>

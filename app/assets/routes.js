@@ -38,10 +38,11 @@ angular.module('hearth').config([
 				controller: 'MapCtrl',
 			})
 			.state('communities', {
-				abstract: true,
+				//abstract: true,
 				url: '/communities',
 				templateUrl: 'assets/pages/community/communities.html',
-				controller: 'CommunitiesCtrl'
+				controller: 'CommunityListCtrl',
+				controllerAs: 'vm'
 			})
 			.state('communities.my', {
 				url: '',
