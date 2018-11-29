@@ -325,8 +325,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
-        $rootScope.myCommunities.length = 0;
-        $rootScope.myCommunities.push(...res);
+				$rootScope.myCommunities.length = 0;
+				$rootScope.myCommunities.push(...res);
 				$rootScope.myAdminCommunities = [];
 				res.forEach(function(item) {
 					// create list of communities I'm admin in

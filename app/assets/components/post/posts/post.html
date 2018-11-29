@@ -71,7 +71,7 @@
 									<span ng-bind=":: item.title" test-beacon="marketplace-item-post-title"></span>
 								</a>
 							</h1>
-							<span class="nowrap" ng-if=":: isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
+							<span class="nowrap text-muted" ng-if=":: isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
 							<div ng-if=":: item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 							<span class="fa fa-lock" ng-if=":: item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 						</div>
