@@ -6,8 +6,8 @@
  * @description functions for marketplace items / posts
  */
 
-angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache', '$locale', '$filter', '$sce',
-	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache, $locale, $filter, $sce) {
+angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', '$rootScope', 'Post', 'Notify', '$state', 'UserBookmarks', '$analytics', '$templateCache', '$locale', '$filter', '$sce', '$timeout',
+	function($q, ngDialog, Auth, $rootScope, Post, Notify, $state, UserBookmarks, $analytics, $templateCache, $locale, $filter, $sce, $timeout) {
 
 		const postTypes = $$config.postTypes
 
@@ -22,6 +22,7 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			hideItem,
 			heart,
 			isMyPost,
+			isInfoGift, 
 			isPostActive,
 			logCharInfoShown,
 			logPostAction,
@@ -32,7 +33,8 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			removePostFromBookmarks,
 			replyItem,
 			detectEmbed,
-			togglePinPost
+			togglePinPost,
+			focus
 		}
 
 		return factory
@@ -326,5 +328,22 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			item.text_parsed = $sce.trustAsHtml(item.text_parsed.replace(reg2, replFn));
 		}
 
+		/**
+		 * Returns whether the post is type information (and other params when needed)
+		 * @param post 
+		 * @returns boolean
+		 */
+		function isInfoGift(post) {
+			return (post && post.character && post.character.indexOf('information') > -1);
+		}
+
+		/** set focus on particular item 
+		 * used by post comments to focus the comment input on comments section show
+		*/
+		function focus(selector) {
+			$timeout(() => {
+				$(selector).focus()
+			})
+		}
 	}
 ])

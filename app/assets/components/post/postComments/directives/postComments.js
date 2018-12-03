@@ -34,6 +34,7 @@ angular.module('hearth.directives').directive('postComments', [function() {
         ctrl.sending
         ctrl.success
         ctrl.error
+        ctrl.loading = false;
 
         ctrl.showError = false; // default state of error message
         ctrl.showMoreCommentsLink = false; // default not show link
@@ -50,8 +51,10 @@ angular.module('hearth.directives').directive('postComments', [function() {
 
       function init() {
         ctrl.model = ctrl.model || []
+        ctrl.loading = true
         Post.queryComments({postId: ctrl.postId}).$promise
         .then((res) => {
+          ctrl.loading = false;
           res && res.length && (ctrl.model = res.map((comment) => {
 						return prerenderValues(comment);
           }))

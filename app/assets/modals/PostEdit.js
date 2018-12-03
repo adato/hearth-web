@@ -517,6 +517,7 @@ angular.module('hearth.controllers').controller('PostEdit', [
 
 		$scope.init();
 
+	
 		$scope.$watch('post.related_communities', function(val, old) {
 			if (val.length !== old.length && !$scope.post.related_communities.length)
 				$scope.post.is_private = false;
@@ -526,9 +527,20 @@ angular.module('hearth.controllers').controller('PostEdit', [
 
 		$scope.$watch('post.current_community_id', function(val, old) {
 			if (!!val !== !!old) {
-				$scope.post.related_communities = [];
+
+				if (val == null && $scope.preset.current_community_id && $scope.preset.current_community_name && old == $scope.preset.current_community_id) {
+					// set related community to one defined in preset
+					$scope.post.related_communities = [{ 
+						_id: $scope.preset.current_community_id, 
+						name: $scope.preset.current_community_name 
+					}];
+
+					$scope.slide.communities = true;
+				} else {
+					$scope.post.related_communities = [];
+					$scope.slide.communities = false;
+				}
 				$scope.post.is_private = false;
-				$scope.slide.communities = false;
 			}
 			$scope.toggleLockField();
 		});

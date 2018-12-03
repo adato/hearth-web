@@ -18,7 +18,8 @@ angular.module('hearth.controllers').controller('PostDetail', [
 		$scope.isEmpty = IsEmpty;
 		$scope.removeReminder = Bubble.removeReminder;
 		$scope.PostAux = PostAux;
-    $scope.relatedLoaded;
+		$scope.relatedLoaded;
+		$scope.isInfoGift = false; 
 
 		var templatePath = 'assets/components/post/posts/post.html';
 		var templateUrl = $sce.getTrustedResourceUrl(templatePath);
@@ -78,6 +79,7 @@ angular.module('hearth.controllers').controller('PostDetail', [
           PrerenderService.setStatusCode('404')
         }
 				$scope.item = data;
+				$scope.isInfoGift = PostAux.isInfoGift(data);
 
 				$scope.setTitle(data);
 				if ($rootScope.loggedUser._id && data.text)
@@ -130,7 +132,7 @@ angular.module('hearth.controllers').controller('PostDetail', [
 			if (item._id != $scope.item._id)
 				return false;
 
-			$("#item_container_" + item._id).fadeOut("slow", function() {
+			$("#post_" + item._id).fadeOut("slow", function() {
 				$scope.itemDeleted = true;
 				if (!$scope.$$phase) $scope.$apply();
 			});

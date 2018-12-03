@@ -100,6 +100,8 @@ angular.module('hearth.controllers').controller('UiKitCtrl', [
         {code: '<button class="button disabled">disabled</button>'},
         {code: '<button class="large button offer disabled">large offer disabled</button>'},
         {code: '<button class="small button dark-gray disabled">small dark-gray disabled</button>'},
+        { name: 'Round buttons'},
+        { code: '<button class="button rounded"><i class="fa fa-chevron-down"></i></button>'}
       ];
     };
 

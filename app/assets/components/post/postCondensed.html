@@ -23,12 +23,11 @@
   </div>
 
   <div>
-
     <!-- <div class="flex flex-align-start flex-divided-medium flex-wrap"> -->
     <div class="header-margin">
       <h3 class="item-header display-inline margin-bottom-none margin-right-small">
         <a ui-sref="post({id: ctrl.item._id})" ng-click="ctrl.onlyAllowActive(ctrl.item, $event)">
-          <strong ng-class=":: 'color-' + ctrl.item.type" translate="{{:: ctrl.item.postTypeCode }}"></strong><strong ng-bind=":: '\u00A0' + (ctrl.item.title | ellipsis:100)"></strong>
+          <strong ng-if=":: !ctrl.isInfoGift" ng-class=":: 'color-' + ctrl.item.type">{{:: ctrl.item.postTypeCode | translate }}&nbsp;</strong><strong ng-bind=":: (ctrl.item.title | ellipsis:100)"></strong>
         </a>
       </h3>
       <i class="fa fa-lock margin-right-small" ng-if="ctrl.item.is_private" translate-attr="{title: 'POST.ONLY_FOR_FRIENDS'}"></i>

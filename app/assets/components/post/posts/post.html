@@ -11,7 +11,7 @@
 				<i class="fa fa-fw" ng-class="(item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
 			</div> -->
 
-			<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
+			<div class="item-option-bg-type by-avatar" ng-if=":: !isInfoGift" ng-class=":: 'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
 				<i></i>
 			</div>
 			<div class="v2 user text-center">
@@ -59,7 +59,7 @@
 						<div class="column small-4 small-pull-8 hide-for-medium">
 							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="display-inline-block position-relative">
 								<avatar class="" type=":: item.author._type" src=":: item.author.avatar.normal" size="small"></avatar>
-								<div class="item-option-bg-type by-avatar" ng-class=":: 'item-option-bg-' + item.type">
+								<div class="item-option-bg-type by-avatar" ng-if=":: !isInfoGift" ng-class=":: 'item-option-bg-' + item.type">
 									<i class="fa fa-fw" ng-class=":: (item.exact_type == 'loan' ? 'fa-clock-o' : 'fa-heart')"></i>
 								</div>
 							</a>
@@ -67,21 +67,24 @@
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
 							<h1>
 								<a ng-href="{{:: getProfileLink('Post', item._id)}}" history-param-pusher='item._id'>
-									<span ng-class=":: 'color-' + item.type" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
+									<span ng-if=":: !isInfoGift" ng-class=":: 'color-' + item.type" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
 									<span ng-bind=":: item.title" test-beacon="marketplace-item-post-title"></span>
 								</a>
 							</h1>
-							<span class="nowrap" ng-if=":: isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
+							<span class="nowrap text-muted" ng-if=":: isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
 							<div ng-if=":: item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 							<span class="fa fa-lock" ng-if=":: item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 						</div>
 
 						<div class="column small-12">
-							<div ng-if="item.location_unlimited">
+							<div class="pull-left margin-right-tiny" ng-if=":: item.related_communities && item.related_communities.length">
+								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift">&bull;</span>
+							</div>
+							<div ng-if="item.location_unlimited && !isInfoGift">
 								<i class="fa fa-map-marker"></i>&nbsp;
 								<span translate="POST.LOCATION.ANYWHERE"></span>
 							</div>
-							<div ng-if=":: !item.location_unlimited">
+							<div ng-if=":: !item.location_unlimited && !isInfoGift">
 								<span ng-repeat="(locationId, location) in :: item.locations track by $index">
 									<span ng-if=":: location.short_address">
 										<i class="fa fa-map-marker" ng-if=":: $first"></i>&nbsp;{{:: location.short_address }}
@@ -94,9 +97,6 @@
 
 					<div class="item-section text-container word-wrap">
 						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html=":: item.text_parsed" test-beacon="marketplace-item-text"></p>
-						<a href="" ng-click="marketplace.expanded = false; logPostTextToggle({action: 'collapsed', post: item})" ng-if="item.text.length >= 270 && marketplace.expanded">
-			        		<strong ng-class=":: 'color-' + item.type" translate="POST.ACTION_SHOW_LESS"></strong>
-			     		</a>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html=":: item.text_short_parsed"></span>
 							<a ng-click="marketplace.expanded = true; logPostTextToggle({action: 'expanded', post: item})">
@@ -146,16 +146,19 @@
 										</a>
 									</div>
 								</div>
-								<div class="padding-right-large" ng-if="(!item.is_replied && !mine) || (item.is_replied)">
+								<div class="padding-right-large" ng-if="!isInfoGift && ((!item.is_replied && !mine) || (item.is_replied))">
 									<button ng-if="!item.is_replied && !mine" ng-click="PostAux.replyItem(item); analytics('Reply clicked');" class="button" ng-class=":: item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied" translate="POST.NOTIFY.YOU_ALREADY_REPLIED"></span>
+								</div>
+								<div class="padding-right-large" ng-if="isInfoGift && !mine">
+									<button ng-click="item.commentsShown = true; PostAux.focus('#post_' + item._id + ' [comments-focusser]')" class="button" ng-bind-html="'POST.COMMENT.ACTION_ADD' | translate"></button>
 								</div>
 								<div>
 									<div ng-if="item.reply_count && mine">
 										<a class="text-decoration-underline" ng-href="{{getProfileLink('Post', item._id) }}#replies" ng-bind-html="item.replied_by_string"></a>
 									</div>
 									<!-- experiment: if date is unlimited, show reply count -->
-									<div ng-if="item.valid_until == 'unlimited' && item.reply_count && !mine" ng-bind-html="item.replied_by_string"></div>
+									<div ng-if="item.valid_until == 'unlimited' && item.reply_count && !mine && !isInfoGift" ng-bind-html="item.replied_by_string"></div>
 									<!-- end of experiment -->
 									<!-- <div ng-if="!item.reply_count && mine" test-beacon="marketplace-reply" translate="POST.DETAIL.NO_REPLY"></div> -->
 								</div>
