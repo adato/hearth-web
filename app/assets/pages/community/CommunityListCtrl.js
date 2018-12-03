@@ -7,27 +7,27 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter', 'Fulltext', 'PostAux',
-	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter, Fulltext, PostAux) {
+	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter', 'Fulltext', 'PostAux', '$sce', 'ProfileUtils',
+	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter, Fulltext, PostAux, $sce, ProfileUtils) {
     var vm = this;
     vm.list = [];
     vm.myCommunities;
     var ItemFilter = new UniqueFilter();
 
-    vm.load = () => initCommunities();
+		vm.finishLoading = function (res) {
+			console.log("done")
+		}
+
 
     vm.getSearchOpts = () => {
-      Fulltext.query({ limit:20, days:30, type:'post', my_section: true}).$promise.then(function (result) {
-        result.data = result.data.filter(function (item) {
-          if (item.author._id == $rootScope.loggedUser._id) return false; else return true;
-        })
-        var commOpts = angular.copy(PostAux.getRecommendedPostsOpts(result.data));
-        
-        commOpts.found = {
-          communities: (result.data.length)
-        }
-        vm.commOpts = commOpts;
-      }); 
+      var templatePath = 'assets/components/post/posts/post.html';
+      var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+			vm.communityGiftListOptions = {
+        getData: Community.getRelatedPosts,
+        templateUrl: templateUrl,
+				inactivateTags: true,
+        cb: vm.finishLoading,
+      };
     }
 
     vm.getAllCommunities = () => {

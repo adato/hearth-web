@@ -59,6 +59,7 @@ angular.module('hearth.directives').directive('itemList', [
 
 					promise.then(res => {
 						items = responseTransform(res)
+						if (items && items.data && items.data.length) items = items.data // ugly, but need the prop!
 						return $templateRequest(scope.options.templateUrl)
 					}).then(template => {
 						scope.loading = false
