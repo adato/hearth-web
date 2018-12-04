@@ -322,6 +322,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		});
 
 		function loadMyCommunities() {
+			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) {
+				$rootScope.myCommunities = [];
+				$rootScope.myAdminCommunities = [];
+				return;
+			}
+			
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {

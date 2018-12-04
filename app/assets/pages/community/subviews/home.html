@@ -2,6 +2,14 @@
 
 	<div class="flex-4" style="order: 2">
 
+			<div class="block line-height-double">
+				<a ui-sref="community.subview({id: info._id, page: 'members'})" class="pull-right">
+					<span translate="COMMUNITY.MEMBERS.{{ pluralCat(info.member_count) }}" translate-values="{count: info.member_count}"></span>
+				</a>
+				<h4 class="display-inline-block">TT Clenove</h4>
+				<community-members count="10" community="info"></community-members>
+			</div>
+
 		<div class="user-about box block">
 			<div class="display-flex flex-align-start">
 				<h3><span translate="COMMUNITY.MEET_COMMUNITY"></span> {{ info.name }}</h3>
