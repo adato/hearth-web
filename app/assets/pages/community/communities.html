@@ -2,10 +2,6 @@
 	<div class="small-12 large-9 columns">
 			<h1 translate="COMMUNITY.COMMUNITIES"></h1>
 
-			<div class="community-list-add-form clearfix hide" community-list-add-focusser>
-				<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>
-			</div>
-
 			<h3 class="medium-push-2 medium-10 margin-top-large text-center">TT Dary a přání z mých skupin</h3>
 
 			<item-list options="vm.communityGiftListOptions"></item-list>
@@ -16,7 +12,7 @@
 
   <div class="large-3 hide-for-small-only hide-for-medium-down show-for-large columns">
     <div class="margin-bottom-tiny">
-				<button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium" ng-click="toggleForm()" community-form-toggler translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
+				<button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium" ui-sref="communityCreate()" community-form-toggler translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
 				</button>
 		</div>
 

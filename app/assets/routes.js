@@ -235,11 +235,18 @@ angular.module('hearth').config([
 				templateUrl: function($stateParams) {
 					var pages = ['activity', 'members', 'given-ratings', 'received-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'assets/pages/community/subviews/';
-
+					
 					if (!~pages.indexOf($stateParams.page))
-						$stateParams.page = 'home';
+					$stateParams.page = 'home';
 					return tplPath + $stateParams.page + '.html';
 				},
+				policy: SIGNED_IN
+			})
+			.state('communityCreate', {
+				title: false,
+				url: '/community/create',
+				controller: 'CommunityProfileCtrl',
+				templateUrl: 'assets/pages/community/createCommunity.html',
 				policy: SIGNED_IN
 			})
 			.state('uikit', {

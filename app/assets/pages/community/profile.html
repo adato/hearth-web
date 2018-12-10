@@ -31,13 +31,13 @@
 	</div>
 	<header ng-if="info" class="margin-bottom-large">
 		<div class="user-basic large-12 columns">
-      <div class="display-medium-flex flex-space-between">
-        <h1>
-          <a dont-jump-top href="{{:: communityLink }}">
-          	<span>{{:: info.name }}</span>
-          </a>
-        </h1>
-        <div class="display-inline-flex">
+			<div class="display-medium-flex flex-space-between">
+				<h1>
+				<a dont-jump-top href="{{:: communityLink }}">
+					<span>{{:: info.name }}</span>
+				</a>
+				</h1>
+				<div class="display-inline-flex">
 					<div class="button-bar">
 
 						<div ng-if="!mine && !info.is_member && !info.is_applicant">
@@ -81,21 +81,15 @@
 							<li ng-if="!mine && info.is_member"><a href="" class="elevated-authority-function" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})" translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></a></li>
 							<li ng-if="mine"><a href="{{:: communityLink }}/edit" translate="COMMUNITY.PROFILE.ACTION_EDIT"></a></li>
 						</ul>
-
 					</div>
-
-
-
-
-
-
-
-        </div>
-      </div>
+				</div>
+			</div>
+			
 			<div class="short-about" ng-if="info.motto">
 				<i class="fa fa-quote-right"></i> {{:: info.motto }}
 			</div>
 		</div>
+		
 		<div class="highlights">
 			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href=":: basePath+'community/'+info._id" type="info._type"  thanks=":: info.up_votes" show-glow="true"></avatar>
 			<span class="shadow large">
