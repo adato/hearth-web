@@ -4,10 +4,7 @@
 
 			<h3 class="medium-push-2 medium-10 margin-top-large text-center">TT Dary a přání z mých skupin</h3>
 
-			<item-list options="vm.communityGiftListOptions"></item-list>
-			<!-- <exemplary-posts opts="vm.commOpts" ng-if="vm.commOpts">
-			</exemplary-posts> -->
-
+			<div when-scrolled="vm.loadNext()"><item-list options="vm.communityGiftListOptions"></item-list></div>
 	</div>
 
   <div class="large-3 hide-for-small-only hide-for-medium-down show-for-large columns">
@@ -20,10 +17,10 @@
 		<div class="margin-top-medium padding-top-medium">
 			<h4 class="text-center margin-top-none margin-bottom-small">TT Moje skupiny</h4>
 			<div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })" style="cursor:pointer">
-				<h4>{{ comm.name }}</h4>
+				<h4>{{:: comm.name }}</h4>
 				
-				<div class="text-danger" ng-if="comm.admin == loggedUser._id">TT Jsem správce</div>
-				<div class="text-muted">{{ comm.short_description }}</div>
+				<div class="text-danger" ng-if=":: comm.admin == loggedUser._id">TT Jsem správce</div>
+				<div class="text-muted">{{ :: comm.short_description }}</div>
 			</div>
 		</div>
 		<div>

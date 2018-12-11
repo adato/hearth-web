@@ -12,18 +12,34 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
     var vm = this;
     vm.list = [];
     vm.myCommunities;
+    vm.loading = false;
     var ItemFilter = new UniqueFilter();
 
+    var templatePath = 'assets/components/post/posts/post.html';
+    var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+
+    var offset = 0;
+    var pageSize = 5;
+
+
 		vm.finishLoading = function (res) {
-			console.log("done")
+			vm.loading = false;
 		}
 
+    vm.loadNext = () => {
+      if (vm.loading) return;
+      //offset = offset + 1
+      vm.getSearchOpts(++offset);
+    }
 
-    vm.getSearchOpts = () => {
-      var templatePath = 'assets/components/post/posts/post.html';
-      var templateUrl = $sce.getTrustedResourceUrl(templatePath);
+    vm.getSearchOpts = (offset = 0) => {
+      vm.loading = true;
 			vm.communityGiftListOptions = {
         getData: Community.getRelatedPosts,
+        getParams: {
+          limit: pageSize,
+          offset: offset * pageSize 
+        },
         templateUrl: templateUrl,
 				inactivateTags: true,
         cb: vm.finishLoading,

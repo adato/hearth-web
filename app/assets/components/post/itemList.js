@@ -27,10 +27,9 @@ angular.module('hearth.directives').directive('itemList', [
 			scope: {
 				options: '='
 			},
-			template: '<div loading show="loading && !options.disableLoading"></div><div content></div>',
+			template: '<div content></div><div loading show="loading && !options.disableLoading"></div>',
 			link: function(scope, el) {
 
-				scope.loading = true
 				var content = el[0].querySelector('[content]')
 
 				const listener = $rootScope.$on('itemList.refresh', init)
@@ -39,17 +38,24 @@ angular.module('hearth.directives').directive('itemList', [
 					listener()
 				})
 
-				init()
+				scope.$watch('options', (newVal, oldVal) => {
+					if (newVal && newVal !== oldVal) {
+						init({ erase: false }) // scroll
+					}
+				})
+
+				init({ erase: true }) // init with erase div
 
 				/////////////////
 
-				function init() {
+				function init(params) {
+					scope.loading = true
 					scope.options = scope.options || {}
 					if (typeof scope.options.getData !== 'function') throw new TypeError('Unsupported itemList setup')
 					var responseTransform = scope.options.responseTransform || angular.identity
 
 					var items
-					content.innerHTML = ''
+					if (params && params.erase === true) content.innerHTML = ''
 
 					// call for data
 					var promise = scope.options.getData(scope.options.getParams || {})
@@ -74,7 +80,7 @@ angular.module('hearth.directives').directive('itemList', [
 								fragment.appendChild(clone[0])
 							})
 						})
-						content.innerHTML = ''
+						if (params && params.erase === true) content.innerHTML = ''
 						content.appendChild(fragment)
 						if (typeof scope.options.cb === 'function') scope.options.cb(items)
 					}).catch(err => {
