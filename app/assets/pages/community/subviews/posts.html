@@ -5,6 +5,11 @@
 		<div when-scrolled="loadNext()">
 			<item-list options="communityPostListActiveOptions"></item-list>
 		</div>
+
+		<div ng-if="mine && communityPostCount.inactive" class="ads-listing inactive">
+			<h3 translate="PROFILE.POSTS.INACTIVE_TITLE"></h3>
+			<item-list options="communityPostListInactiveOptions"></item-list>
+		</div>
 	</div>
 	<div class="large-3 columns">
 		<a ui-sref="community.subview({id: info._id, page: 'members'})" class="pull-right">
@@ -18,11 +23,6 @@
 		<p class="margin-top-medium text-muted" ng-if="info.is_private">TT Toto je <b>soukromá skupina</b> - bezpečný prostor důvěry pro vás a vaše dary. Přístup sem mají pouze členové skupiny schválení správcem.</p>
 		<p class="margin-top-medium text-muted" ng-if="info.is_public">TT Toto je <b>veřejná skupina</b>. O vašich aktivitách se snadno dozví všichni lidé na Hearthu. Kdokoli se může do skupiny přidat.</p>
 	</div>
-
-	<div ng-if="mine && communityPostCount.inactive" class="ads-listing inactive">
-		<h3 translate="PROFILE.POSTS.INACTIVE_TITLE"></h3>
-	</div>
-	<item-list options="communityPostListInactiveOptions"></item-list>
 
 </div>
 <div loading show="!subPageLoaded"></div>

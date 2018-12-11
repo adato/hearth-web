@@ -4,9 +4,9 @@
 		<!-- private community info-->
 		<header class="margin-bottom-large">
 			<div class="user-basic large-12 columns">
-					<h1>
-						<span>{{:: info.name }}</span>
-					</h1>
+				<h1>
+					<span>{{:: info.name }}</span>
+				</h1>
 			</div>
 			<div class="large-4 large-push-4 margin-top-large padding-top-large text-center text-large">
 				TT Toto je skupina přístupná pouze pro členy
@@ -30,12 +30,12 @@
 		<p>{{:: 'COMMUNITY.NOTIFY.ERROR_NOT_FOUND' | translate }}</p>
 	</div>
 	<header ng-if="info">
-		<div class="user-basic large-12 columns">
+		<div class="user-basic large-12 columns margin-bottom-small">
 			<div class="display-medium-flex flex-space-between">
 				<h1>
-				<a dont-jump-top href="{{:: communityLink }}">
-					<span>{{:: info.name }}</span>
-				</a>
+					<a dont-jump-top href="{{:: communityLink }}">
+						<span>{{:: info.name }}</span>
+					</a>
 				</h1>
 				<div class="display-inline-flex">
 					<div class="button-bar">
@@ -83,6 +83,12 @@
 						</ul>
 					</div>
 				</div>
+			</div>
+			<div>
+				<span class="text-muted" ng-if="info.is_private">TT Soukromá skupina</span>
+				<span class="text-muted" ng-if="info.is_public">TT Veřejná skupina</span>
+				<span class="text-danger" ng-if="mine || (info.is_private || info.is_public)">&bull;</span>
+				<span class="text-danger" ng-if="mine">TT Jsem správce</span>
 			</div>
 		</div>
 	</header>
