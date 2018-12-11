@@ -40,6 +40,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'inactive': 0
 		};
 
+
+		var postPageSize = 5;
+		var postPageOffset = 0;
+
 		$scope.loadCommunityActivities = (done, config = {}) => {
 			if (activityLogComplete || $scope.activityLogFetchRunning) return;
 			$scope.activityLogFetchRunning = true;
@@ -274,11 +278,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		};
 		var getPostsQ = [];
 
+		$scope.loadNext = function () {
+			if (!getPostsResult.active.length) return; 
+			postPageOffset = postPageOffset+1;
+			loadCommunityPosts($scope.info._id);
+		}
+
 		// load posts of community
 		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadCommunityPosts(id) {
 			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 
+			
 			// counter for template
 			$scope.communityPostCount.active = 0;
 			$scope.communityPostCount.inactive = 0;
@@ -289,7 +300,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			$scope.communityPostListActiveOptions = {
 				getData: ProfileUtils.getPosts.bind(null, {
 					params: {
-						communityId: id
+						communityId: id,
+						limit: postPageSize,
+						offset: postPageSize * postPageOffset
 					},
 					resource: Community.getPosts,
 					getPostsStatus: getPostsStatus,
@@ -319,7 +332,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				templateUrl: templateUrl,
 			};
 
-			$rootScope.$emit('itemList.refresh')
+			//$rootScope.$emit('itemList.refresh')
 
 		}
 
@@ -408,9 +421,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			ItemFilter.clear();
 			$scope.loadingData = true;
 			$scope.data = [];
-			$scope.pageSegment = $stateParams.page || 'home';
+			$scope.pageSegment = $stateParams.page || 'posts';
 			var loadService = loadServices[$scope.pageSegment];
-
 			$scope.debug && $log.log("Calling load service for segment ", $scope.pageSegment);
 			loadService($stateParams.id, processData, processDataErr);
 

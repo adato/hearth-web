@@ -29,7 +29,7 @@
 	<div class="user" ng-if="! info">
 		<p>{{:: 'COMMUNITY.NOTIFY.ERROR_NOT_FOUND' | translate }}</p>
 	</div>
-	<header ng-if="info" class="margin-bottom-large">
+	<header ng-if="info">
 		<div class="user-basic large-12 columns">
 			<div class="display-medium-flex flex-space-between">
 				<h1>
@@ -84,53 +84,7 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="short-about" ng-if="info.motto">
-				<i class="fa fa-quote-right"></i> {{:: info.motto }}
-			</div>
 		</div>
-		
-		<div class="highlights">
-			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href=":: basePath+'community/'+info._id" type="info._type"  thanks=":: info.up_votes" show-glow="true"></avatar>
-			<span class="shadow large">
-				<a dont-jump-top href="{{:: communityLink }}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
-					<span>
-						<b>{{ info.post_count.offers }}</b>
-						<br /> {{ 'COMMUNITY.X_GIVES.'+pluralCat(info.post_count.offers) | translate }}
-						<hr class="orange" />
-						<b>{{ info.post_count.needs }}</b>
-						<br /> {{ 'COMMUNITY.X_WISHES.'+pluralCat(info.post_count.needs) | translate }}
-					</span>
-				</a>
-			</span>
-			<span class="shadow small">
-				<a dont-jump-top href="{{:: communityLink }}/members" class="bubble small move-down" ng-class="{'active': (activePage == 'members' || activePage == 'applications')}">
-					<span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
-				</a>
-			</span>
-			<span class="shadow large">
-				<a dont-jump-top href="{{:: communityLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="bubble medium">
-					<span>
-						<b class="avatar-thanks">{{info.up_votes}}</b>
-						<br>
-						<span translate="PROFILE.RATING.COUNT.few"></span>
-						<hr class="orange" />
-						<strong>{{info.down_votes}}</strong>×
-						<span translate="PROFILE.RATING.NEGATIVE" class="text-smaller"></span>
-					</span>
-				</a>
-			</span>
-			<span class="shadow small">
-				<a dont-jump-top href="{{:: communityLink }}/about" class="bubble small move-down" ng-class="{'active': (activePage == 'about')}">
-					<span>
-						<b>?</b>
-						<br />
-						<span translate="COMMUNITY.PROFILE.SHORT_ABOUT"></span>
-					</span>
-				</a>
-			</span>
-		</div>
-		<div class="clear"></div>
 	</header>
 	<div ng-show="topLoaded" ui-view></div>
 </div>

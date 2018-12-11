@@ -225,7 +225,7 @@ angular.module('hearth').config([
 				title: false,
 				url: '',
 				controller: 'CommunityDataFeedCtrl',
-				templateUrl: 'assets/pages/community/subviews/home.html',
+				templateUrl: 'assets/pages/community/subviews/posts.html',
 				policy: SIGNED_IN
 			})
 			.state('community.subview', {
@@ -237,7 +237,7 @@ angular.module('hearth').config([
 					var tplPath = 'assets/pages/community/subviews/';
 					
 					if (!~pages.indexOf($stateParams.page))
-					$stateParams.page = 'home';
+					$stateParams.page = 'posts';
 					return tplPath + $stateParams.page + '.html';
 				},
 				policy: SIGNED_IN

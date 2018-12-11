@@ -32,7 +32,7 @@ angular.module('hearth.directives').directive('itemList', [
 
 				var content = el[0].querySelector('[content]')
 
-				const listener = $rootScope.$on('itemList.refresh', init)
+				const listener = $rootScope.$on('itemList.refresh', () => { init({ erase: true })} );
 
 				scope.$on('$destroy', () => {
 					listener()
