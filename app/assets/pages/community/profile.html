@@ -11,32 +11,59 @@
           	<span>{{:: info.name }}</span>
           </a>
         </h1>
-        <div class="button-group large display-inline-flex">
-          <button ng-if="!mine" class="button" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK "></button>
-          <button class="hollow button" ng-if="!mine && info.is_member" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})">
-            <i class="fa fa-minus"></i>
-            <span translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></span>
-          </button>
-          <button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="hollow button">
-            <i class="fa fa-plus"></i>
-            <span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
-          </button>
-          <button ng-if="!mine && info.is_applicant" class="hollow button">
-            <i class="fa fa-plus"></i>
-            <span translate="COMMUNITY.APPLY_FOR_MEMBERSHIP_SENT"></span>
-          </button>
-          <a href="{{:: communityLink }}/invite-friends" class="right" ng-if="false">
-            <button class="button">
-              <i class="fa fa-share"></i>
-              <span translate="COMMUNITY.ACTION_INVITE_FRIENDS"></span>
-            </button>
-          </a>
-          <a ng-if="mine" href="{{:: communityLink }}/edit">
-            <button class="button secondary">
-              <i class="fa fa-gears"></i>
-              <span translate="PROFILE.ACTION_EDIT"></span>
-            </button>
-          </a>
+        <div class="display-inline-flex">
+					<div class="button-bar">
+
+						<div ng-if="!mine && !info.is_member && !info.is_applicant">
+							<!-- i am NOT a member or applicant of the community -->
+							<button ng-if=":: loggedUser._id && !info.is_applicant" ng-click="applyForCommunity()" class="large button">
+								<i class="fa fa-plus"></i>
+								<span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
+							</button>
+						</div>
+
+						<div ng-if="mine || (!mine && info.is_member && !info.is_applicant)">
+							<!-- i am an admin of the community -->
+							<!-- OR -->
+							<!-- i am a member of the community -->
+							<button ng-click="addItem()" class="large button margin-right-small">
+								<span translate="MARKETPLACE.ACTION_CREATE_POST"></span>
+							</button>
+
+							<button ng-click="addQuickPost()" class="large button margin-left-none">
+									<span translate="MARKETPLACE.ACTION_CREATE_QUICKPOST"></span>
+								</button>
+						</div>
+
+						<div ng-if="!mine && info.is_applicant" class="alert-box success margin-bottom-none text-left">
+							<!-- i am an applicant of the community -->
+							<i class="fa fa-info-circle"></i> <span translate="COMMUNITY.APPLY_FOR_MEMBERSHIP_SENT"></span>
+						</div>
+
+					</div>
+
+					<div class="margin-left-small position-relative">
+						<button href="" dropdown="#community-menu" class="button rounded">
+								<i class="fa fa-chevron-down"></i>
+						</button>
+
+						<ul class="dropdown-menu margin-top-medium" id="community-menu" style="display: none; ">
+							<li ng-if="!mine"><a href="" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK "></a></li>
+							<li ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})"><a href="" ng-click="sendMessage(info)" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li>
+							<li ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)"><a href="" ng-click="sendMessage(info, {toAllMembers: true})" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li>
+							<li ng-show="(!mine && info.is_member) || mine"><hr/></li>
+							<li ng-if="!mine && info.is_member"><a href="" class="elevated-authority-function" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})" translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></a></li>
+							<li ng-if="mine"><a href="{{:: communityLink }}/edit" translate="COMMUNITY.PROFILE.ACTION_EDIT"></a></li>
+						</ul>
+
+					</div>
+
+
+
+
+
+
+
         </div>
       </div>
 			<div class="short-about" ng-if="info.motto">
@@ -87,3 +114,4 @@
 	</header>
 	<div ng-show="topLoaded" ui-view></div>
 </div>
+		

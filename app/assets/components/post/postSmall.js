@@ -34,6 +34,7 @@ angular.module('hearth.directives').directive('postSmall', ['$rootScope', functi
       ctrl.userHasRight = Rights.userHasRight
       ctrl.logPostTextToggle = PostAux.logPostTextToggle
       ctrl.getProfileLink = $rootScope.getProfileLink
+      ctrl.isInfoGift = PostAux.isInfoGift($scope.item);
 
       // temp workaround for links leading to posts that will not be shown
       ctrl.onlyAllowActive = (item, event) => {

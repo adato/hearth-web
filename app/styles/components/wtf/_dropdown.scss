@@ -95,35 +95,32 @@ nav {
 .action-dropdown:hover {
 	color: $primary-color !important;
 }
-.actions-dropdown {
+
+.dropdown-menu, .actions-dropdown {
 	position: absolute;
-	top: calc(100% + 5px);
-	right: .5rem;
 	min-width: 12.5rem;
 	min-height: $size-large;
 	margin: 0;
 	padding: $size-tiny 0;
 	list-style: none;
 	background: $white;
-	// box-shadow: 0 0 .5rem 0 rgba(100, 100, 100, 0.3);
 	box-shadow: $ui-box-shadow;
 	border-radius: $global-radius;
 	z-index: 1000;
+	right:0;
 
-	/* as touchables get smaller with desktop size view, the alignment has to be altered */
-	@include breakpoint(large up) {
-		right: -$size-medium;
+	&::before {
+		content: '';
+		position: absolute;
+		top: -7px;
+		right: 13px;
+		width: $size-medium;
+		height: $size-medium;
+		transform: rotate(45deg);
+		box-shadow: -2px -2px 4px 0px rgba(100, 100, 100, 0.2);
+		background: white;
 	}
 
-	// contains a responsive-padding circle around its fa-chevron, thus
-	// requires a custom handling
-	.item-common & {
-
-		@include breakpoint(medium down) {
-			right: -.6rem;
-			top: calc(100% - 5px);
-		}
-	}
 
 	ul, li {
 		margin: 0;
@@ -175,6 +172,27 @@ nav {
 		&::before {
 			right: inherit;
 			left: $size-big;
+		}
+	}
+}
+
+
+.actions-dropdown {
+	top: calc(100% + 5px);
+	right: .5rem;
+
+	/* as touchables get smaller with desktop size view, the alignment has to be altered */
+	@include breakpoint(large up) {
+		right: -$size-medium;
+	}
+
+	// contains a responsive-padding circle around its fa-chevron, thus
+	// requires a custom handling
+	.item-common & {
+
+		@include breakpoint(medium down) {
+			right: -.6rem;
+			top: calc(100% - 5px);
 		}
 	}
 }

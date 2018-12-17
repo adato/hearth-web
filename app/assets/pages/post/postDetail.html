@@ -7,7 +7,7 @@
 			<p class="margin-none" ng-show="itemDeleted" translate="POST.NOTIFY.DELETED"></p>
 			<p class="margin-none" ng-show="item && !isMine && item.state === 'expired'" translate="POST.NOTIFY.EXPIRED"></p>
 		</section>
-		<section ng-if="!itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
+		<section ng-if="!itemDeleted && item && item.text" class="column small-12 padding-none" id="post_{{ item._id }}">
 			<div class='row'>
 				<div ng-if="!isActive" class="column small-12 large-8">
 					<div class='item-status-bar' ng-if="item.state === 'expired'">
@@ -26,18 +26,17 @@
 									<span class="color-dark-gray" title="{{item.updated_a_date }}">{{item.updated_at_timeago}}</span>
 									<div class="display-inline-block" post-dropdown="item"></div>
 								</div>
-
 								<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large margin-bottom-small">
 									<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="display-inline-block position-relative">
 										<avatar class="small-avatar-small" type="item.author._type" src="item.author.avatar.normal" size="normal" thanks=":: item.author.up_votes"></avatar>
-										<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
+										<div class="item-option-bg-type by-avatar" ng-if=":: !isInfoGift" ng-class=":: 'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
 											<i></i>
 										</div>
 									</a>
 								</div>
 								<div class="column small-12 medium-8 medium-pull-4">
 									<h1 class='margin-right-medium'>
-										<span ng-class=":: 'color-' + item.type" translate="{{:: postTypeCode }}"></span>
+										<span ng-if=":: !isInfoGift" ng-class=":: 'color-' + item.type" translate="{{:: postTypeCode }}"></span>
 										{{:: item.title}}
 									</h1>
 									<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
@@ -45,6 +44,9 @@
 									<div ng-if="item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
 									<!-- TODO!!! add ngif and data -->
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
+									<div class="pull-left margin-right-tiny" ng-if=":: item.related_communities && item.related_communities.length">
+										{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a>
+									</div>
 								</div>
 							</header>
 							<div class="item-section text-container word-wrap">
@@ -57,11 +59,11 @@
 									</a>
 								</li>
 							</ul>
-							<div class="item-section">
+							<div class="item-section" ng-if=":: !isInfoGift">
 								<div ng-if="!item.location_unlimited">
 									<div class='display-flex flex-space-between flex-wrap'>
 										<div>
-											<span class='text-emphasize' translate="POST.LOCATION.TITLE"></span>
+											<span class="text-emphasize" translate="POST.LOCATION.TITLE"></span>
 										</div>
 										<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
 											<a ng-show="!local.showMap" ng-click="local.showMap = true">
@@ -74,7 +76,7 @@
 											</a>
 										</div>
 									</div>
-									<div class='margin-bottom-small'>
+									<div class="margin-bottom-small">
 										<ul class="no-list">
 											<li ng-if="item.location_unlimited" translate="POST.LOCATION.ANYWHERE"></li>
 											<li ng-repeat="location in item.locations track by $index">
@@ -113,9 +115,12 @@
 												</a>
 											</div>
 										</div>
-										<div class='padding-right-large'>
-											<button ng-if="!item.is_replied && !isMine" ng-click="PostAux.replyItem(item)" class="button" ng-class=':: item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
+										<div class="padding-right-large" ng-if=":: !isInfoGift">
+											<button ng-if="!item.is_replied && !isMine" ng-click="PostAux.replyItem(item)" class="button" ng-class=':: item.type' ng-bind-html=":: replyLabel[item.type] | translate"></button>
 											<span ng-if="item.is_replied" translate="POST.NOTIFY.YOU_ALREADY_REPLIED"></span>
+										</div>
+										<div class="padding-right-large" ng-if=":: isInfoGift && !isMine && item.comments_count > 0">
+											<button ng-click="PostAux.focus('#post_' + item._id + ' [comments-focusser]')" class="button" ng-bind-html="'POST.COMMENT.ACTION_ADD' | translate"></button>
 										</div>
 									</div>
 								</div>
@@ -208,7 +213,7 @@
 							</div>
 							<div class="avatar-thanks">{{ item.author.up_votes }}</div>
 							<span style="text-shadow:none; font-weight:normal;">{{ 'PROFILE.RATING.COUNT.few' | translate }}</span>
-							<div class="item-option-bg-type by-avatar" ng-class="'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
+							<div class="item-option-bg-type by-avatar" ng-if="!isInfoGift" ng-class=":: 'item-option-bg-' + (item.exact_type == 'gift' ? item.type : (item.type == 'offer' ? 'lend' : 'borrow'))">
 								<i></i>
 							</div>
 						</a>

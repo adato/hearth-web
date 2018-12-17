@@ -418,6 +418,9 @@ a.link-secondary{
 .round {
 	border-radius: $global-radius;
 }
+.circle {
+	border-radius: 50% !important;
+}
 
 /* WATERFALL CLASSES */
 .paragraph-all-unstyle p {

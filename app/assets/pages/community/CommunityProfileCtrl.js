@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService', 'ngDialog', '$timeout',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService, ngDialog, $timeout) {
 		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -113,7 +113,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		function refreshDataFeed() {
-			$scope.$broadcast('refreshSubpage');
+			$timeout(function() {
+				$scope.$broadcast('refreshSubpage');
+			}, 500)
 		};
 
 		$scope.applyForCommunity = function() {
@@ -189,6 +191,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.addItem = function() {
 			var preset = {
 				current_community_id: ($scope.mine) ? $scope.info._id : null,
+				current_community_name: $scope.info.name,
 				related_communities: (!$scope.mine) ? [{
 					_id: $scope.info._id,
 					name: $scope.info.name
@@ -197,6 +200,21 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			$rootScope.editItem(null, null, preset);
 		};
+
+		$scope.addQuickPost = function () {
+			// open modal
+			ngDialog.open({
+				templateUrl: 'assets/modals/newQuickGift.html',
+				controller: 'QuickPostEditCtrl',
+				controllerAs: 'ctrl',
+				//scope: scope,
+				data: { community: $scope.info },
+				className: 'ngdialog-theme-default',
+				closeByDocument: false,
+				showClose: false,
+				//closeByEscape: true,
+			})
+		}
 
 		$scope.isNull = function(e) {
 			return e === null;
@@ -265,6 +283,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
 			$scope.activePage = params.page;
+		});
+
+		$scope.$on('postCreated', function(ev, route, params) {
+			$scope.init();
 		});
 
 		UnauthReload.check();

@@ -40,15 +40,20 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'inactive': 0
 		};
 
-		$scope.loadCommunityActivities = (done) => {
+		$scope.loadCommunityActivities = (done, config = {}) => {
 			if (activityLogComplete || $scope.activityLogFetchRunning) return;
 			$scope.activityLogFetchRunning = true;
 
 			done = typeof done === 'function' ? done : angular.identity;
+			
+			var currentActivityLogOffset = 0;
+			if (config && config.eventType == 'scroll') {
+				currentActivityLogOffset = currentActivityLogOffset + activityLogOffset;
+			}
 
 			Community.getActivityLog({
 				communityId: $stateParams.id,
-				offset: activityLogOffset,
+				offset: currentActivityLogOffset,
 				limit: ACTIVITY_LIMIT,
 				filter: 'community_accepted_user,community_new_post,new_rating_received,new_rating',
 				include_full: 'Post,Rating',
@@ -62,7 +67,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					return activity;
 				});
 
-				$scope.activityLog.push(...res.data);
+				if (config && config.eventType == 'scroll') {
+					$scope.activityLog.push(...res.data);
+				} else {
+					$scope.activityLog = res.data;
+				}
 
 				activityLogOffset += parseInt(res.headers('X-Pagination-Count'), 10);
 				if (activityLogOffset === parseInt(res.headers('X-Pagination-Total'), 10) || res.data.length === 0) {
@@ -406,25 +415,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			loadService($stateParams.id, processData, processDataErr);
 
 			// refresh after new post created
-			if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
+			if (!inited && ['posts', 'home'].indexOf($scope.pageSegment) > -1) {
 				$scope.$on('postCreated', function() {
-					// refresh whole page - load new counters, activity feed, posts list
-					$scope.init();
-					// loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
-				});
-			}
-
-			// refresh after new post created
-			if (!inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts' || $scope.pageSegment == 'posts')) {
-				$scope.$on('postCreated', function() {
-					$scope.loadingData = false;
-					$scope.subPageLoaded = false;
-					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
+					loadService($stateParams.id, processData, processDataErr);
 				});
 				$scope.$on('postUpdated', function() {
-					$scope.loadingData = false;
-					$scope.subPageLoaded = false;
-					$timeout(loadService($stateParams.id, processData, processDataErr), 800);
+					loadService($stateParams.id, processData, processDataErr);
 				});
 
 				// added event listeners - dont add them again
