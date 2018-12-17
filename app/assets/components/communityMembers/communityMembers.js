@@ -38,7 +38,6 @@ angular.module('hearth.directives').directive('communityMembers', [
 			},
 			templateUrl: 'assets/components/communityMembers/communityMembers.html',
 			link: function(scope, baseElement) {
-
 			}
 		};
 	}
