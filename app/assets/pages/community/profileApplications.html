@@ -1,33 +1,27 @@
-<div ng-include="'assets/pages/community/profileMembersPanel.html'"></div>
-<div class="community-applications-list" ng-if="subPageLoaded">
-	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
-		<div class="application">
-			<div class="position-relative">
-				<div class="info-avatar" info-bubble=":: item" info-bubble-type=":: item._type">
-					<avatar class="left block" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
-				</div>
-				<div class="applications-text">
-					<a href="{{ basePath }}profile/{{item._id}} ">
-						{{item.name | ellipsis}}
-					</a>
-					<br>
-					<a href="{{ basePath }}profile/{{item._id}} ">
-						<small translate="COMMON.SHOW_PROFILE"></small>
-					</a>
-				</div>
-				<div class="applications-buttons">
-					<a ng-click="approveApplication(item._id)" title="{{ 'COMMUNITY.MEMBERS.ACTION_ACCEPT' | translate }}" class="yes">
-						<i class="fa fa-check"></i>
-					</a>
-					<a ng-click="rejectApplication(item._id)" title="{{ 'COMMUNITY.MEMBERS.ACTION_REJECT' | translate }}" class="no">
-						<i class="fa fa-times"></i>
-					</a>
-				</div>
+<div class="community-applications-list margin-top-small" ng-controller="CommunityApplicationsCtrl as applications">
+	<h4>TT Nové žádosti o členství</h4>
+	<div ng-if="applications.applicants" ng-repeat="user in applications.applicants track by user._id ">
+		<div class="display-flex">
+			<div class="info-avatar margin-right-small" info-bubble=":: user" info-bubble-type=":: user._type">
+				<avatar class="left" href="basePath+'profile/'+user._id" src="user.avatar.normal" type="user._type" size="small"></avatar>
 			</div>
+			<div>
+				<div>
+					<a href="{{ basePath }}profile/{{user._id}} ">
+					{{user.name | ellipsis}}
+					</a>
+				</div>
+
+				<div class="applications-buttons">
+						<a ng-click="approveApplication(user._id)" title="{{ 'COMMUNITY.MEMBERS.ACTION_ACCEPT' | translate }}" class="text-primary text-larger" tipsy>
+							<i class="fa fa-check"></i>
+						</a>
+						<a ng-click="rejectApplication(user._id)" title="{{ 'COMMUNITY.MEMBERS.ACTION_REJECT' | translate }}" class="text-danger text-larger" tipsy>
+							<i class="fa fa-times"></i>
+						</a>
+					</div>
+			</div>
+			
 		</div>
 	</div>
 </div>
-<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! data.length">
-	<p translate="COMMUNITY.MEMBERS.NO_APPLICATIONS"></p>
-</div>
-<div loading show="!subPageLoaded"></div>

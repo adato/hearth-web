@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('communityMembers', [
 		return {
 			restrict: 'E',
 			replace: true,
-			controller: ['CommunityMembers', '$scope', '$rootScope', function (CommunityMembers, $scope, $rootScope) {
+			controller: ['CommunityMembers', '$scope', '$state', function (CommunityMembers, $scope, $state) {
 				var vm = this;
 				vm.members = [];
 				vm.moreMembers = 0;
@@ -30,11 +30,19 @@ angular.module('hearth.directives').directive('communityMembers', [
 					}
 				});
 
+				
+				vm.navigateToMembers = function() {
+					if ($scope.moreLinkHref) {
+						$state.go($scope.moreLinkHref, { id: $scope.community._id });
+					}
+				}
+
 			}],
 			controllerAs: 'vm',
 			scope: {
 				count: "=",
 				community: "=",
+				moreLinkHref: "=",
 			},
 			templateUrl: 'assets/components/communityMembers/communityMembers.html',
 			link: function(scope, baseElement) {

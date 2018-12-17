@@ -202,6 +202,10 @@
 	font-size:rem-calc(30px);
 }
 
+.text-larger {
+	font-size:rem-calc(23px);
+}
+
 /* /TEXT */
 
 .nowrap{
@@ -436,4 +440,9 @@ a.link-secondary{
 
 .full-width {
   width: 100%;
+}
+
+
+button[ui-sref], div[ui-sref], a[ui-sref], p[ui-sref], section[ui-sref], h3 [ui-sref] {
+	cursor: pointer;
 }

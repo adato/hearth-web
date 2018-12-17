@@ -18,6 +18,8 @@
 		<h4 class="display-inline-block">TT Clenove</h4>
 		<community-members count="10" community="info"></community-members>
 
+		<div ng-if="mine" ng-include="'assets/pages/community/profileApplications.html'"></div>
+
 		<p class="margin-top-medium">{{ :: info.about}}</p>
 		<p>{{ :: info.description }}</p>
 		<p class="margin-top-medium text-muted" ng-if="info.is_private">TT Toto je <b>soukromá skupina</b> - bezpečný prostor důvěry pro vás a vaše dary. Přístup sem mají pouze členové skupiny schválení správcem.</p>
