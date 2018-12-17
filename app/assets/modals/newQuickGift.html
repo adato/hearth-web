@@ -1,0 +1,71 @@
+
+<!-- template for add new "quick gift" modal -->
+<form class="formStyle itemEdit modal quick-modal" name="quickAddForm" novalidate ng-submit="ctrl.save(quickAddForm)">
+    <div class="head">
+        <h2>{{ :: 'POST.CREATE.QUICK.MODAL_TITLE' | translate }}</h2>
+        <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr />
+    </div>
+    
+    <!-- LOADING -->
+    <div class="margin-top-small" loading show="!ctrl.draftLoaded"></div>
+
+    <!-- DIALOG CONTENT -->
+    <div class="margin-top-small" ng-show="ctrl.draftLoaded">
+        <label>{{ :: 'POST.CREATE.QUICK.TITLE' | translate }}
+            <input type="text" name="title" ng-model="ctrl.post.title" required ng-minlength="3" ng-maxlength="70" ng-blur="ctrl.detectDirection(ctrl.post)" ng-focus="ctrl.showError.title = false">
+            <div class="form-error" ng-show="quickAddForm.title.$invalid && ctrl.showError.title && quickAddForm.$dirty">
+                <span ng-show="quickAddForm.title.$error.required" translate="POST.CREATE.NOTIFY.ERROR_TITLE_TOO_SHORT"></span>
+                <span ng-show="quickAddForm.title.$error.minlength" translate="POST.CREATE.NOTIFY.ERROR_TITLE_TOO_SHORT"></span>
+                <span ng-show="quickAddForm.title.$error.maxlength" translate="POST.CREATE.NOTIFY.ERROR_TITLE_TOO_LONG"></span>
+            </div>
+            <check-capitals model="ctrl.post.title" ng-if="showError.title" class="form-error warning"></check-capitals>
+        </label>
+        <label class="margin-top-small">{{ :: 'POST.CREATE.QUICK.TEXT' | translate }}
+            <textarea autosize-textarea name="text" ctrl-enter-submit ng-model="ctrl.post.text" required ng-minlength="3" ng-maxlength="2500" ng-focus="ctrl.showError.text = false" ng-blur="ctrl.showError.text = true"></textarea>
+            <div class="form-error" ng-show="quickAddForm.text.$invalid && ctrl.showError.text && quickAddForm.$dirty">
+                <span ng-show="quickAddForm.text.$error.required" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+                <span ng-show="quickAddForm.text.$error.minlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_SHORT"></span>
+                <span ng-show="quickAddForm.text.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></span>
+            </div>
+            <check-capitals model="ctrl.post.text" ng-if="showError.text" class="form-error warning"></check-capitals>
+        </label>
+        <!-- <div>Direction: {{ ctrl.post.type }}</div> -->
+    </div>
+    
+    <div class="display-flex flex-space-between margin-top-medium">
+        <div class="files">
+            <ul class="fileList" ng-if="ctrl.post.attachments_attributes.length">
+                <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center margin-right-tiny" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in ctrl.post.attachments_attributes track by $index">
+                    <div class="overlay"></div>
+                    <a ng-click="ctrl.removeImage($index)" title="{{:: 'POST.CREATE.REMOVE_PHOTO_LABEL' | translate }}">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <img exif-rotated resized-thumbnail-image ng-src="{{ file.normal || file.public_url }}" title='file' />
+                </li>
+                <li class="file-upload text-left margin-top-medium" ng-if="ctrl.post.attachments_attributes.length > 0">
+                    <div image-preview-direct-upload options="ctrl.imageUploadOptions" result="ctrl.post.attachments_attributes">
+                        <i class="fa fa-plus"></i>
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </li>
+            </ul>
+            <div class="file-upload text-left margin-top-small" ng-if="ctrl.post.attachments_attributes.length == 0">
+                <div image-preview-direct-upload options="ctrl.imageUploadOptions" result="ctrl.post.attachments_attributes">
+                    <a href="">{{ :: 'POST.CREATE.QUICK.ACTION_ADD_PHOTO' | translate }}</a>
+                </div>
+            </div>
+            <div class="clear form-error" ng-if="ctrl.showError.files">
+                <span ng-if="ctrl.showError.files.badFormat" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_FORMAT" translate-values="{formats: 'JPG, JPEG, PNG, GIF'}"></span>
+                <span ng-if="ctrl.showError.files.badMaxSize" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE" translate-values="{maxSize:ctrl.imageUploadOptions.limitMb}"></span>
+                <span ng-if="ctrl.showError.files.badSizeAll" translate="COMMON.NOTIFY.ERROR_FILES_TOO_BIG" translate-values="{maxSize:ctrl.imageUploadOptions.limitMb}"></span>
+                <span ng-if="ctrl.showError.files.badMinSizePx" translate="COMMON.NOTIFY.ERROR_BAD_IMAGE_SIZE_PX" translate-values="{minSize:ctrl.imageUploadOptions.minSize}"></span>
+                <span ng-if="ctrl.showError.files.uploadError" translate="COMMON.NOTIFY.ERROR_UPLOADING"></span>
+            </div>
+        </div>
+        <div>
+            <a href="" ng-click="closeThisDialog()" translate="{{ 'COMMON.ACTION_CLOSE' }}" class="margin-right-medium"></a>
+            <button class="button" type="submit" translate="{{ 'COMMON.ACTION_SAVE' }}" ng-disabled="ctrl.sending"></button>
+        </div>
+    </div>
+</form>

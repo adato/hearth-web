@@ -1,6 +1,5 @@
 <div when-scrolled="loadNext()">
-  <div class="timeline" ng-repeat="(id, item) in timelineItems track by $index">
-
+  <div class="timeline" ng-repeat="(id, item) in timelineItems track by item.created_at">
     <div ng-if="item.verb == 'community_new_post' || item.verb == 'new_post'">
       <div post-small item="item.object" type="condensed" class="box"></div>
     </div>
