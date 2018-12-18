@@ -32,7 +32,7 @@
 						</label>
 						<label class="block">
 							<span translate="COMMUNITY.CREATE.MOTTO"></span>
-							<input type="text" name="motto" ng-model="community.motto" maxlength="{{parameters.MAX_MOTTO_LENGTH}}" ng-maxlength="parameters.MAX_MOTTO_LENGTH" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY.CREATE.MOTTO_PLACEHOLDER' | translate }}" />
+							<input type="text" name="motto" ng-model="community.motto" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY.CREATE.MOTTO_PLACEHOLDER' | translate }}" />
 							<div class="form-error" ng-show="showError.motto">
 								<span ng-show="communityForm.motto.$error.maxlength" translate="COMMUNITY.NOTIFY.ERROR_MOTTO_MAX_LENGTH"></span>
 							</div>
