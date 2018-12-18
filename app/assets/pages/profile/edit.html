@@ -42,7 +42,8 @@
 					<div>
 						<label>
 							<span translate="PROFILE.EDIT.MY_WORK"></span>
-							<input type='text' placeholder="{{:: 'PROFILE.EDIT.MY_WORK_EXAMPLE' | translate }}" ng-model="profile.work" name="my_work">
+							<input type="text" placeholder="{{:: 'PROFILE.EDIT.MY_WORK_EXAMPLE' | translate }}" ng-model="profile.work" name="my_work" ng-maxlength="250">
+							<div class="form-error" ng-show="profileEditForm.my_work.$error.maxlength" translate="COMMON.NOTIFY.ERROR_TEXT_TOO_LONG"></div>
 						</label>
 					</div>
 				</div>

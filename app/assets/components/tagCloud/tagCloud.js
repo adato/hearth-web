@@ -16,18 +16,25 @@ angular.module('hearth.directives').directive('tagCloud', [
 			templateUrl: 'assets/components/tagCloud/tagCloud.html',
 			link: function(scope) {
 
+                const filteredKeywords = ['pro', 'kdy', 'jak', 'ananda', 'sileny']
+
                 scope.keywords = [];
 
-                scope.toggleTag = function (term) {
+                scope.toggleTag = (term) => {
                     Filter.toggleTag(term);
-                    scope.keywords.forEach(function (item) {
+                    scope.keywords.forEach((item) => {
                         if (term === item.term) item.checked = !item.checked;
                     })
                 }
 
                 scope.loadKeywords = () => {
                     KeywordsService.listKeywords().then(function (res) {
-                        scope.keywords = res;
+                        if (res && res.length) {
+                            // filter out short- or stop-words
+                            scope.keywords = res.filter((item) => {
+                                return (item.term.length > 2 && filteredKeywords.indexOf(item.term) === -1)
+                            })
+                        }
                     });
                 };
 
