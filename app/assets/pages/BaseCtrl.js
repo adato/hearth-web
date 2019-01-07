@@ -209,6 +209,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				return deferred.promise;
 			}
 
+			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) return;
 			// first load the proifle from api (TODO caching)
 			loadProfile(params).then((profile) => {
 

@@ -40,9 +40,10 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
                     exact_type: 'gift',
                     location_unlimited: true,
                     locations: [],
-                    type: 'offer'
+                    type: 'offer',
+                    language: $rootScope.language
                 };
-
+                
                 // if its from community, prefill it too
                 if ($scope.ngDialogData && $scope.ngDialogData.community) {
                     prefill.related_communities = [{
@@ -50,9 +51,9 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
                         name: $scope.ngDialogData.community.name,
                     }]
                 }
-
+                
                 angular.extend(ctrl.post, prefill);
-
+                
                 ctrl.isDraft = true;
                 ctrl.draftLoaded = true;
             });
