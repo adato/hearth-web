@@ -11,7 +11,7 @@
 	const CHARACTER_LINK_SELECTOR = '[character-link]';
 
   const NUMBER_OF_GIFTS_TRANSLATION_SELECTOR = 'translation[rel="NUMBER_OF_GIFTS"]';
-  const NUMBER_VARIABLE = '{{count}}';
+  const NUMBER_VARIABLE = '%count%';
   const NUMBER_OF_GIFTS_TRANSLATION = $(NUMBER_OF_GIFTS_TRANSLATION_SELECTOR)[0].innerHTML;
   const ACCEPTABILITY_THRESHOLD = 10;
 
@@ -29,12 +29,12 @@
         if (req.status === 200) {
           const res = JSON.parse(req.responseText);
           if (!(res && res.counters && res.counters.post)) return console.warn('Failed to load post counters');
-
+          
           // only replace if the number is high enough so that it doesn't discourage users
           if (res.counters.post > ACCEPTABILITY_THRESHOLD) {
 						item.innerHTML = NUMBER_OF_GIFTS_TRANSLATION.replace(NUMBER_VARIABLE, res.counters.post);
 
-						updateLinks(additionalParams);
+            updateLinks(additionalParams);
 					}
         } else {
           console.error('Failed to fetch item counts for character "' + character + '"');
