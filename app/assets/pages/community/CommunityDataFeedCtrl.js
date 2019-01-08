@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		$scope.activityShow = false;
 		$scope.activityLog = [];
 		$scope.activityLogFetchRunning;
+		$scope.view = { expanded: false }; // used for template action binding
 		var activityLogComplete;
 		// Count of all activities includes activities inside the groups
 		var activityLogOffset = 0;
@@ -42,7 +43,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 
 		var postPageSize = 5;
-		var postPageOffset = 0;
+		$scope.postPageOffset = 0;
 
 		$scope.loadCommunityActivities = (done, config = {}) => {
 			if (activityLogComplete || $scope.activityLogFetchRunning) return;
@@ -280,7 +281,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 		$scope.loadNext = function () {
 			if (!getPostsResult.active.length) return; 
-			postPageOffset = postPageOffset+1;
+			$scope.postPageOffset = $scope.postPageOffset+1;
 			loadCommunityPosts($scope.info._id);
 		}
 
@@ -302,7 +303,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 					params: {
 						communityId: id,
 						limit: postPageSize,
-						offset: postPageSize * postPageOffset
+						offset: postPageSize * $scope.postPageOffset
 					},
 					resource: Community.getPosts,
 					getPostsStatus: getPostsStatus,
@@ -428,12 +429,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 			// refresh after new post created
 			if (!inited && ['posts', 'home'].indexOf($scope.pageSegment) > -1) {
-				$scope.$on('postCreated', function() {
-					loadService($stateParams.id, processData, processDataErr);
-				});
-				$scope.$on('postUpdated', function() {
-					loadService($stateParams.id, processData, processDataErr);
-				});
+				var reloadFn = function() {
+					$scope.communityPostCount.active = 0;
+					$scope.communityPostCount.inactive = 0;
+					getPostsResult.active = [];
+					getPostsResult.inactive = [];
+					$scope.postPageOffset = 0;
+
+					$rootScope.$emit('itemList.refresh');
+					//loadService($stateParams.id, processData, processDataErr);
+				}
+				$scope.$on('postCreated', reloadFn);
+				$scope.$on('postUpdated', reloadFn);
 
 				// added event listeners - dont add them again
 				inited = true;

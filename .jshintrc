@@ -4,7 +4,7 @@
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
-  "eqnull": true
+  "eqnull": true,
   "esnext": true,
   "globals": {
   "immed": true,

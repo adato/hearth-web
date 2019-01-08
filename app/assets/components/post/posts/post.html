@@ -17,6 +17,7 @@
 			<div class="v2 user text-center">
 				<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}
 					<span ng-if=":: item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+					<div ng-if=":: item.admin_communities[0] === item.related_communities[0]._id" class="text-muted" title="TT Vloženo správcem skupiny {{:: item.related_communities[0].name}}" tipsy>{{:: item.related_communities[0].name}}</div>
 				</div>
 			</div>
 		</section>
@@ -77,10 +78,10 @@
 						</div>
 
 						<div class="column small-12">
-							<div class="pull-left margin-right-tiny" ng-if=":: item.related_communities && item.related_communities.length">
-								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift">&bull;</span>
+							<div class="pull-left margin-right-tiny hide-for-community-detail" ng-if=":: item.related_communities && item.related_communities.length">
+								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift" class="hide-for-community-detail">&bull;</span>
 							</div>
-							<div ng-if="item.location_unlimited && !isInfoGift">
+							<div ng-if="item.location_unlimited && !isInfoGift" class="hide-for-community">
 								<i class="fa fa-map-marker"></i>&nbsp;
 								<span translate="POST.LOCATION.ANYWHERE"></span>
 							</div>
@@ -141,7 +142,7 @@
 										<a class="touchable" title="{{:: 'COMMON.ACTION_REMOVE' | translate}}" ng-click="confirmBox({title: 'POST.REMOVE.LABEL', text: 'POST.REMOVE.ARE_YOU_SURE', callback: deleteItem, params: item, callbackScope: this})">
 											<i class="fa fa-fw fa-times"></i>
 										</a>
-										<a class="touchable show-on-profile-only" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
+										<a class="touchable show-on-profile-only hide-for-community" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
 											<i class="fa fa-fw fa-map-pin" ng-class="{ 'color-primary': item.is_pinned }"></i>
 										</a>
 									</div>

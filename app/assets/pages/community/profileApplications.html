@@ -1,18 +1,14 @@
 <div class="community-applications-list margin-top-small" ng-controller="CommunityApplicationsCtrl as applications">
-	<h4>TT Nové žádosti o členství</h4>
-	<div ng-if="applications.applicants" ng-repeat="user in applications.applicants track by user._id ">
-		<div class="display-flex">
-			<div class="info-avatar margin-right-small" info-bubble=":: user" info-bubble-type=":: user._type">
-				<avatar class="left" href="basePath+'profile/'+user._id" src="user.avatar.normal" type="user._type" size="small"></avatar>
-			</div>
-			<div>
-				<div>
-					<a href="{{ basePath }}profile/{{user._id}} ">
-					{{user.name | ellipsis}}
-					</a>
+	<div ng-if="applications.applicants && applications.applicants.length > 0">
+		<h4>TT Nové žádosti o členství</h4>
+		<div ng-repeat="user in applications.applicants track by user._id" class="margin-top-tiny">
+			<div class="display-flex">
+				<div class="info-avatar margin-left-tiny margin-right-tiny margin-bottom-tiny" info-bubble=":: user" info-bubble-type=":: user._type">
+					<avatar class="left" href="basePath+'profile/'+user._id" src="user.avatar.normal" type="user._type" size="small"></avatar>
 				</div>
-
-				<div class="applications-buttons">
+				<div>
+					<a ng-href="{{ $root.getProfileLink('User', user._id) }}" class="color-black">{{user.name | ellipsis}}</span>
+					<div class="applications-buttons">
 						<a ng-click="approveApplication(user._id)" title="{{ 'COMMUNITY.MEMBERS.ACTION_ACCEPT' | translate }}" class="text-primary text-larger" tipsy>
 							<i class="fa fa-check"></i>
 						</a>
@@ -20,8 +16,8 @@
 							<i class="fa fa-times"></i>
 						</a>
 					</div>
+				</div>	
 			</div>
-			
 		</div>
 	</div>
 </div>

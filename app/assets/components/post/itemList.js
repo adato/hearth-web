@@ -32,7 +32,7 @@ angular.module('hearth.directives').directive('itemList', [
 
 				var content = el[0].querySelector('[content]')
 
-				const listener = $rootScope.$on('itemList.refresh', () => { init({ erase: true })} );
+				const listener = $rootScope.$on('itemList.refresh', () => init({ erase: true }) );
 
 				scope.$on('$destroy', () => {
 					listener()
@@ -64,7 +64,7 @@ angular.module('hearth.directives').directive('itemList', [
 					promise = promise.$promise || promise
 
 					promise.then(res => {
-						items = responseTransform(res)
+						items = responseTransform(res);
 						if (items && items.data && items.data.length) items = items.data // ugly, but need the prop!
 						return $templateRequest(scope.options.templateUrl)
 					}).then(template => {

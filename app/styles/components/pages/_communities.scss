@@ -42,6 +42,7 @@
       }
 
 		}
+
 	}
 	// RESPONSIVE
 	// duplicates, how to solve this?
@@ -51,4 +52,18 @@
 			height: 8rem;
 		}
 	}
+}
+
+
+
+.communities .hide-for-community, .community-view .hide-for-community {
+	display:none;
+}
+
+.communities .hide-for-community-list {
+	display:none;
+}
+
+.community-view .hide-for-community-detail {
+	display:none;
 }

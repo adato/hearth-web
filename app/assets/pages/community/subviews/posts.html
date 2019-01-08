@@ -1,30 +1,48 @@
-<!-- <div class="bottom-tabs"></div> -->
 <div class="clear"></div>
 <div ng-show="subPageLoaded">
 	<div class="large-9 columns">
-		<div when-scrolled="loadNext()">
+
+		<div when-scrolled="loadNext()" ng-show="postPageOffset > 0 || communityPostCount.active > 0">
 			<item-list options="communityPostListActiveOptions"></item-list>
 		</div>
 
-		<div ng-if="mine && communityPostCount.inactive" class="ads-listing inactive">
+		<div ng-show="mine && communityPostCount.inactive" class="ads-listing inactive">
 			<h3 translate="PROFILE.POSTS.INACTIVE_TITLE"></h3>
 			<item-list options="communityPostListInactiveOptions"></item-list>
 		</div>
+
+		<div ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0" class="box panel panel-default text-center padding-large">
+			<h3 class="margin-bottom-large">TT Jsme rádi, že jsi tady 😊</h3>
+			<p class="margin-bottom-large margin-top-large">TT Právě teď je nejlepší chvíle pro přidání darů.</p>
+			<button class="button margin-top-large" ng-click="addItem()">TT Přidat první dar</button>
+		</div>
 	</div>
 	<div class="large-3 columns">
-		<a ui-sref="community.subview({id: info._id, page: 'members'})" class="pull-right">
+		<a ui-sref="community.subview({id: info._id, page: 'members'})" class="line-height-double pull-right">
 			<span translate="COMMUNITY.MEMBERS.{{ pluralCat(info.member_count) }}" translate-values="{count: info.member_count}"></span>
 		</a>
-		<h4 class="display-inline-block">TT Clenove</h4>
+		<h4 class="display-inline-block">TT Členové</h4>
 		<community-members count="10" community="info"></community-members>
 
-		<div ng-if="mine" ng-include="'assets/pages/community/profileApplications.html'"></div>
+		<div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
 
-		<p class="margin-top-medium">{{ :: info.about}}</p>
-		<p>{{ :: info.description }}</p>
+		<p class="margin-top-large" ng-if="info.about.length < 300 || view.expanded">{{ :: info.about }}</p>
+		<p class="margin-top-large" ng-if="info.about.length >= 300 && !view.expanded">
+			<span ng-bind-html=":: info.about | ellipsis: 300"></span>
+			<a ng-click="view.expanded = true;">
+				<b translate="POST.ACTION_SHOW_MORE"></b>
+			</a>
+		</p>
+
+		<p class="margin-top-large" ng-if="info.description.length < 300 || view.expanded">{{ :: info.description }}</p>
+		<p class="margin-top-large" ng-if="info.description.length >= 300 && !view.expanded">
+			<span ng-bind-html=":: info.description | ellipsis: 300"></span>
+			<a ng-click="view.expanded = true;">
+				<b translate="POST.ACTION_SHOW_MORE"></b>
+			</a>
+		</p>
 		<p class="margin-top-medium text-muted" ng-if="info.is_private">TT Toto je <b>soukromá skupina</b> - bezpečný prostor důvěry pro vás a vaše dary. Přístup sem mají pouze členové skupiny schválení správcem.</p>
 		<p class="margin-top-medium text-muted" ng-if="info.is_public">TT Toto je <b>veřejná skupina</b>. O vašich aktivitách se snadno dozví všichni lidé na Hearthu. Kdokoli se může do skupiny přidat.</p>
 	</div>
-
 </div>
 <div loading show="!subPageLoaded"></div>

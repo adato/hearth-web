@@ -11,8 +11,6 @@ angular.module('hearth.controllers').controller('CommunityApplicationsCtrl', [
 	function($scope, $rootScope, CommunityApplicants, $stateParams) {
         var ctrl = this;
         ctrl.applicants = [];
-        console.log($scope)
-        console.log($stateParams)
         
         var conf = {
             communityId: $stateParams['id'],
@@ -20,11 +18,19 @@ angular.module('hearth.controllers').controller('CommunityApplicationsCtrl', [
             offset: 0
         };
 
-        CommunityApplicants.query(conf).$promise.then(function(data) {
-            if (data.length) {
-                ctrl.applicants = data
-            }
-        });
+        ctrl.fetch = () => {
+            CommunityApplicants.query(conf).$promise.then(function(data) {
+                if (data.length) {
+                    ctrl.applicants = data;
+                } else {
+                    ctrl.applicants = [];
+                }
+            });
+        };
+
+        $rootScope.$on('communityApplicationApproved', () => { ctrl.fetch() });
+        $rootScope.$on('communityApplicationRejected', () => { ctrl.fetch() });
+        ctrl.fetch();
 
     }
 ]);

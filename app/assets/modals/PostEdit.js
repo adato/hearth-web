@@ -218,8 +218,8 @@ angular.module('hearth.controllers').controller('PostEdit', [
 				post.dateOrig = post.valid_until;
 				post.valid_until_unlimited = (post.valid_until == 'unlimited');
 
-				if (post.author._type == 'Community')
-					post.current_community_id = post.author._id;
+				// if (post.author._type == 'Community')
+				// 	post.current_community_id = post.author._id;
 
 				if (!post.valid_until_unlimited) {
 					post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
@@ -236,6 +236,10 @@ angular.module('hearth.controllers').controller('PostEdit', [
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.communities = !!post.related_communities.length;
+
+				if (post.state === 'draft' && post.locations.length === 0) {
+					// prefill with profile values
+				}
 			}
 			return post;
 		}
@@ -361,7 +365,7 @@ angular.module('hearth.controllers').controller('PostEdit', [
 				});
 
 				// if post is visible on marketplace - refresh user there
-				$location.path('/market');
+				//$location.path('/market');
 				$rootScope.insertPostIfMissing(data);
 			} else {
 				// flash post immediatelly
@@ -507,10 +511,7 @@ angular.module('hearth.controllers').controller('PostEdit', [
 		};
 
 		$scope.toggleLockField = function() {
-			$scope.enableLockField = $scope.post.current_community_id ||
-				$scope.post.related_communities.length ||
-				$rootScope.loggedUser.friends_count ||
-				$scope.post.is_private;
+			$scope.enableLockField = !$scope.post.related_communities.length;
 		};
 
 		$scope.logCharInfoShown = () => {PostAux.logCharInfoShown('Item edit form. Post ID (' + $scope.post._id + ')')};
