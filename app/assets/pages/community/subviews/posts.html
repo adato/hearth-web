@@ -14,7 +14,7 @@
 		<div ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0" class="box panel panel-default text-center padding-large">
 			<h3 class="margin-bottom-large">TT Jsme rádi, že jsi tady 😊</h3>
 			<p class="margin-bottom-large margin-top-large">TT Právě teď je nejlepší chvíle pro přidání darů.</p>
-			<button class="button margin-top-large" ng-click="addItem()">TT Přidat první dar</button>
+			<button class="button margin-top-large" ng-click="addItem()" ng-if="info.is_member">TT Přidat první dar</button>
 		</div>
 	</div>
 	<div class="large-3 columns">
@@ -23,6 +23,7 @@
 		</a>
 		<h4 class="display-inline-block">TT Členové</h4>
 		<community-members count="10" community="info"></community-members>
+		<button class="button margin-top-small" ng-click="addMembersModal()">TT Přidat členy</button>
 
 		<div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
 

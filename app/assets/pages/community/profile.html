@@ -44,7 +44,8 @@
 							<!-- i am NOT a member or applicant of the community -->
 							<button ng-if=":: loggedUser._id && !info.is_applicant" ng-click="applyForCommunity()" class="large button">
 								<i class="fa fa-plus"></i>
-								<span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
+								<span ng-if="!info.is_public" translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
+								<span ng-if="info.is_public" translate="COMMUNITY.ACTION_BECOME_MEMBER"></span>
 							</button>
 						</div>
 

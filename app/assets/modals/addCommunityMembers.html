@@ -1,0 +1,23 @@
+
+<!-- template for add new "quick gift" modal -->
+<form class="formStyle itemEdit modal quick-modal" name="addCommunityMembersForm" novalidate>
+    <div class="head">
+        <h2>{{ :: 'TT Přidej členy' | translate }}</h2>
+        <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr />
+    </div>
+    
+    <!-- DIALOG CONTENT -->
+    <div class="margin-top-small">
+        <label>TT Pokud víš o lidech, kteří by ve skupině měli být, pošli jim tento odkaz:</label>
+        <input type="text" value="{{:: ctrl.communityLink }}" id="modal-community-link" autofocus>
+        <p></p>
+        <p><a href="" ng-click="ctrl.copyLink()">TT Kopírovat odkaz do schránky</a></p>
+        <p><a href="mailto:?Subject={{ ctrl.info.name }}&body={{:: ctrl.communityLink }}">TT Poslat odkaz emailem</a></p>
+        <p class="margin-top-large" ng-if="ctrl.info.is_private"><i class="fa fa-info-circle"></i>&nbsp; TT Členství ve skupině schvaluje její správce</p>
+    </div>
+
+    <div class="margin-top-medium pull-right">
+        <a href="" ng-click="closeThisDialog()" translate="{{ 'COMMON.ACTION_CLOSE' }}" class="button"></a>
+    </div>
+</form>

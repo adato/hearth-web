@@ -122,18 +122,6 @@
 				</div>
 			</div>
 
-			<div class="block">
-				<label class="ui-select-scope-wrapper">
-					<span translate='POST.CREATE.LANGUAGE_LABEL'></span>:
-					<ui-select id="post-language" ng-model="post.language" theme="select2">
-						<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
-						<ui-select-choices group-by="'group'" group-filter="[('COMMON.LANGUAGES.MAIN' | translate), ('COMMON.LANGUAGES.OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
-				      <div ng-bind-html="item.name | highlight: $select.search"></div>
-				    </ui-select-choices>
-					</ui-select>
-				</label>
-			</div>
-
 			<div class="block position-relative">
 				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
@@ -195,6 +183,23 @@
 				</div>
 			</div>
 
+			<div class="collapse language-selector">
+				<div class="block">
+					<label class="collapse-trigger" slide-trigger="slide.language">
+						<span translate="POST.CREATE.LANGUAGE_LABEL"></span>
+						<span ng-bind="' (' + post.language + ')'"></span>
+					</label>
+					<label ng-slide-down="slide.language" lazy-render duration="0.5"  class="ui-select-scope-wrapper margin-top-small">
+						<ui-select id="post-language" ng-model="post.language" theme="select2">
+							<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+							<ui-select-choices group-by="'group'" group-filter="[('COMMON.LANGUAGES.MAIN' | translate), ('COMMON.LANGUAGES.OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
+						  		<div ng-bind-html="item.name | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</label>
+				</div>
+			</div>
+
 			<!-- <div class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
 				<div class="block">
 					<label class="collapse-trigger" slide-trigger="slide.communities">
@@ -211,6 +216,7 @@
 					</div>
 				</div>
 			</div> -->
+
 
 			<div class="collapse lock" ng-show="enableLockField">
 				<div class="block">
