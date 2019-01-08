@@ -2,19 +2,19 @@
 <!-- template for add new "quick gift" modal -->
 <form class="formStyle itemEdit modal quick-modal" name="addCommunityMembersForm" novalidate>
     <div class="head">
-        <h2>{{ :: 'TT Přidej členy' | translate }}</h2>
+        <h2>{{ :: 'COMMUNITY.MEMBERS.ACTION_ADD_MEMBERS_MODAL' | translate }}</h2>
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
         <hr />
     </div>
     
     <!-- DIALOG CONTENT -->
     <div class="margin-top-small">
-        <label>TT Pokud víš o lidech, kteří by ve skupině měli být, pošli jim tento odkaz:</label>
+        <label translate="COMMUNITY.MEMBERS.ADD_MEMBERS_LABEL"></label>
         <input type="text" value="{{:: ctrl.communityLink }}" id="modal-community-link" autofocus>
         <p></p>
-        <p><a href="" ng-click="ctrl.copyLink()">TT Kopírovat odkaz do schránky</a></p>
-        <p><a href="mailto:?Subject={{ ctrl.info.name }}&body={{:: ctrl.communityLink }}">TT Poslat odkaz emailem</a></p>
-        <p class="margin-top-large" ng-if="ctrl.info.is_private"><i class="fa fa-info-circle"></i>&nbsp; TT Členství ve skupině schvaluje její správce</p>
+        <p><a href="" ng-click="ctrl.copyLink()" translate="COMMON.ACTION_COPY_LINK_TO_CLIPBOARD"></a></p>
+        <p><a href="mailto:?Subject={{ ctrl.info.name }}&body={{:: ctrl.communityLink }}" translate="COMMON.ACTION_SEND_LINK_BY_EMAIL"></a></p>
+        <p class="margin-top-large" ng-if="ctrl.info.is_private"><i class="fa fa-info-circle"></i>&nbsp; {{:: 'COMMUNITY.MEMBERS.ADMIN_ACCEPT_MEMBERS' | translate }}</p>
     </div>
 
     <div class="margin-top-medium pull-right">

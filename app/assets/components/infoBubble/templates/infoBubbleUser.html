@@ -1,7 +1,7 @@
 <div>
   <div class="flex-grid info-bubble-content">
     <div>
-      <avatar type="vm.model._type" src="vm.model.avatar.normal"></avatar>
+      <avatar ui-sref="profile.subview({id: vm.model._id, page: 'home'})" type="vm.model._type" src="vm.model.avatar.normal"></avatar>
       <a ui-sref="profile.subview({id: vm.model._id, page: 'received-ratings'})" ng-if="vm.model.up_votes > 0" class="text-center display-block">
         <span class="avatar-thanks" ng-bind="vm.model.up_votes"></span>
         <span translate="PROFILE.RATING.COUNT.few" class="text-muted text-small text-center"></span>
@@ -9,7 +9,7 @@
     </div>
     <div>
       <div class="block">
-        <h1 class="header-6 margin-bottom-none">{{ vm.model.name }}&nbsp;<span ng-if="vm.model.infoBubble.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+        <h1 class="header-6 margin-bottom-none" ui-sref="profile.subview({id: vm.model._id, page: 'home'})">{{ vm.model.name }}&nbsp;<span ng-if="vm.model.infoBubble.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
         </h1>
         <div class="text-muted text-small">
           <span ng-show="vm.model.infoBubble.locations.length">

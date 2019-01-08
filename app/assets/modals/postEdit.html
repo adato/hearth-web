@@ -128,7 +128,7 @@
 					<span translate="POST.CREATE.CATEGORY_LABEL"></span>
 				</label>
 				<div class="flex button-group margin-bottom-none">
-					<label ng-repeat="character in character" class="button flex-1" ng-class="post.character.indexOf(character.name) > -1 ? '' : 'button-white'">
+					<label ng-repeat="character in character" class="button flex-1" ng-class="post.character.indexOf(character.name) > -1 ? '' : 'button-white'"  title="{{ :: character.translateText | translate }}" tipsy>
 						<span translate="{{:: character.translate }}"></span>
 						<input hidden type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="setCharacter(character)" name="character" />
 					</label>
