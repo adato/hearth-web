@@ -1,4 +1,4 @@
-<article suspendable action-when-visible="logViewActivity({item: item, meta: viewActivityMeta, state: stateName})" class="item-common item-post bubbled" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+<article suspendable action-when-visible="logViewActivity({item: item, meta: viewActivityMeta, state: stateName})" class="item-common item-post bubbled" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}" ng-show="!item.is_hidden">
 	<div class="row">
 		<section ng-if=":: !hideAvatar" class="column medium-2 show-for-medium padding-top-small position-relative">
 				<div class="v2 user text-center" info-bubble=":: item.author" info-bubble-type=":: item.author._type">
@@ -17,7 +17,7 @@
 			<div class="v2 user text-center">
 				<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}
 					<span ng-if=":: item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
-					<div ng-if=":: item.admin_communities[0] === item.related_communities[0]._id" class="text-muted" title="TT Vloženo správcem skupiny {{:: item.related_communities[0].name}}" tipsy>{{:: item.related_communities[0].name}}</div>
+					<!-- <div ng-if=":: item.admin_communities[0] === item.related_communities[0]._id" class="text-muted" title="TT Vloženo správcem skupiny {{:: item.related_communities[0].name}}" tipsy>{{:: item.related_communities[0].name}}</div> -->
 				</div>
 			</div>
 		</section>
