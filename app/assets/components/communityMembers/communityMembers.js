@@ -22,7 +22,8 @@ angular.module('hearth.directives').directive('communityMembers', [
 				if (!$scope.community || !$scope.community._id) return;
 
 				CommunityMembers.query({ communityId: $scope.community._id, limit: $scope.count, offset: 0 }).$promise.then(function (res) {
-					vm.members = res;
+					
+					vm.members = res.filter((member) => { return (!member.deactivated) });
 //					if ($rootScope.loggedUser && $rootScope.loggedUser._id && $rootScope.loggedUser._id == $scope.community.admin) res.push($rootScope.loggedUser)
 
 					if ($scope.community && $scope.community.member_count && $scope.community.member_count > res.length) {
