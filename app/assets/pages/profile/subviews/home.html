@@ -1,5 +1,5 @@
 <div class="profile-listings-v1" ng-show="subPageLoaded">
-	<div class="left-pane">
+	<div ng-class="{ 'left-pane': !isDeactivated , 'large-12': isDeactivated}">
 		<div class="box ratings home-ratings" ng-if="receivedRatings.length">
 			<h3 class="mine" translate="PROFILE.RATINGS.YOUR_RATINGS"></h3>
 			<h3 class="others" translate="PROFILE.RATINGS.USER_RATINGS"></h3>
@@ -19,7 +19,7 @@
 				</a>
 			</div>
 		</div>
-		<div class="box ads">
+		<div class="box ads" ng-if="!isDeactivated">
 			<h3 ng-if="mine" class="display-flex flex-space-between">
 				<div>
 					<span ng-if="posts.data.length">{{:: 'PROFILE.POSTS.YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} {{'COMMON.X_POSTS.'+pluralCat(posts.data.length) | translate }}</span>
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="right-pane">
+	<div class="right-pane" ng-if="!isDeactivated">
 		<div class="box user-about">
 			<h3 ng-if="!mine"><span translate="PROFILE.MEET_USER"></span> {{info.name}}</h3>
 			<h3 ng-if="mine" translate="PROFILE.YOUR_PROFILE"></h3>

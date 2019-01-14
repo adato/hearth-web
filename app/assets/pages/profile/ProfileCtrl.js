@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.paramId = false;
 			$scope.sendingRemoveFollower = false;
 			$scope.sendingAddFollower = false;
+			$scope.isDeactivated = false;
 
 			// ratings
 			$scope.sendingRating = false;
@@ -75,6 +76,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			User.get({
 				_id: $stateParams.id
 			}, function(res) {
+				if (res.deactivated === true) $scope.isDeactivated = true; else $scope.isDeactivated = false;
+
 				res = ProfileUtils.single.copyMottoIfNecessary(res);
 				res.post_total = (res.post_count ? res.post_count.needs + res.post_count.offers : 0);
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
