@@ -17,7 +17,7 @@
 <div class="clear"></div>
 <div class="rating-listing ratings-received" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div class="columns hide-for-small" ng-class="{ 'large-2': data.length, 'large-1': !data.length }">&nbsp;</div>
-	<section class="large-10 small-12 columns rating-call-to-action" ng-if="!mine && !showUserRatingForm && loggedUser._id && !isDeactivated">
+	<section class="large-10 small-12 columns rating-call-to-action" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'PROFILE.RATING.CALL_TO_ACTION' | translate:'{name: "'+info.name+'" }'}}

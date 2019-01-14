@@ -1,9 +1,12 @@
 <div loading show="!profileLoaded"></div>
 <div class="profile-view profile-common" ng-show="profileLoaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
-	<div class="user" ng-show="!info">
+	<div class="user" ng-show="!info && !isDeactivated">
 		<p translate="PROFILE.NOTIFY.ERROR_USER_NOT_FOUND"></p>
 	</div>
-	<header ng-show="info" class="margin-bottom-large">
+	<div class="" ng-if="isDeactivated" ng-include="'assets/pages/profile/deactivated.html'">
+
+	</div>
+	<header ng-if="info && !isDeactivated" class="margin-bottom-large">
 		<div class="user-basic large-12 columns">
 			<div class="display-medium-flex flex-space-between">
 				<h1>
@@ -13,7 +16,7 @@
 					</a>
 				</h1>
 
-				<div class="button-group large" ng-if="!isDeactivated">
+				<div class="button-group large">
 					<button class="button others" ng-click="openUserRatingForm()" test-beacon="profile-rating-button" translate="PROFILE.ACTION_FEEDBACK"></button>
 					<button ng-if="!info.is_followed" class="hollow button others" ng-click="toggleFollow(info._id)">
 						<i class="fa fa-plus"></i> <span translate="PROFILE.ACTION_FOLLOW"></span>
@@ -32,10 +35,6 @@
 					</a>
 				</div>
 			</div>
-
-			<h3 ng-if="isDeactivated" class="margin-bottom-medium color-need">Tento uživatel je deaktivovaný</h3>
-
-
 			<div class="short-about" ng-if="info.motto">
 				<i class="fa fa-quote-right"></i> {{:: info.motto }}
 			</div>
@@ -43,7 +42,7 @@
 		<div class="highlights opacity-50">
 			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type" thanks=":: info.up_votes" show-glow="true"></avatar>
 			<span class="shadow large">
-				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'bookmarks' || activePage == 'replies')}" class="bubble large" ng-if="!isDeactivated">
+				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'bookmarks' || activePage == 'replies')}" class="bubble large">
 					<span>
 						<b>{{info.post_count.offers}}</b>
 						<br> {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count.offers) | translate }}
@@ -52,7 +51,6 @@
 						<br> {{ 'PROFILE.WISHES_COUNT.'+pluralCat(info.post_count.needs) | translate }}
 					</span>
 				</a>
-				<a href="" ng-if="isDeactivated" class="bubble large">&nbsp;</a>
 			</span>
 			<span class="shadow large">
 				<a dont-jump-top href="{{:: profileLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble medium">
@@ -67,7 +65,7 @@
 				</a>
 			</span>
 			<span class="shadow small">
-				<a dont-jump-top href="{{:: profileLink }}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble medium" ng-if="!isDeactivated">
+				<a dont-jump-top href="{{:: profileLink }}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble medium">
 					<span>
 						<span ng-if="mine && info" ng-bind-html="'PROFILE.X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
 						<span ng-if="!mine && info" ng-bind-html="'PROFILE.X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
@@ -76,21 +74,19 @@
 						<span ng-if="!mine && info" ng-bind-html="'PROFILE.X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
 					</span>
 				</a>
-				<a href="" ng-if="isDeactivated" class="bubble medium">&nbsp;</a>
 			</span>
 			<span class="shadow small">
-				<a dont-jump-top href="{{:: profileLink }}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}" ng-if="!isDeactivated" >
+				<a dont-jump-top href="{{:: profileLink }}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}">
 					<span>
 						<b>{{info.communities_count}}</b>
 						<br />
 						<span translate="{{'PROFILE.X_COMMUNITIES.'+pluralCat(info.communities_count)}}"></span>
 					</span>
 				</a>
-				<a href="" ng-if="isDeactivated" class="bubble small move-down">&nbsp;</a>
 			</span>
 		</div>
 		<div class="clear"></div>
 	</header>
 	<div class="clear"></div>
-	<div class="profile-pages-container" ng-show="info" ui-view ng-class="{'opacity-50': isDeactivated }"></div>
+	<div class="profile-pages-container" ng-if="info && !isDeactivated" ui-view></div>
 </div>
