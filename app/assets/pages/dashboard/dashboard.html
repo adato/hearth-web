@@ -34,6 +34,8 @@
       <a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button display-block padding-top-medium padding-bottom-medium" test-beacon="new-post-button" translate="MARKETPLACE.ACTION_CREATE_POST"></a>
     </div>
 
+    <my-communities ng-if="loggedUser._id"></my-communities>
+
     <!-- BANNER -->
     <marketplace-banner class="clearfix"></marketplace-banner>
 

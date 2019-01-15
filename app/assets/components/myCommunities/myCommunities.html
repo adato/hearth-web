@@ -1,0 +1,6 @@
+<div ng-if="vm.userHasCommunities" class="margin-top-large">
+    <div ng-repeat="community in vm.communities" class="box display-block padding-small margin-bottom-medium">
+        <a href="" ui-sref="community.default({id: community._id })">{{ community.name }}</a>
+    </div>
+    <div class="text-center" ng-if="vm.hasMoreCommunities"><a ui-sref="communities">TT Další skupiny...</a></div>
+</div>

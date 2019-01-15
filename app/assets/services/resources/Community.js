@@ -15,17 +15,11 @@ angular.module('hearth.services').factory('Community', [
 		}, {
 			get: {
 				method: 'GET',
-				params: {
-					r: Math.random()
-				},
 				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			query: {
 				method: 'GET',
 				isArray: true,
-				params: {
-					r: Math.random()
-				}
 			},
 			getPosts: {
 				url: $$config.apiPath + '/communities/:communityId/posts',
