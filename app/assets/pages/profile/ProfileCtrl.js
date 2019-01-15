@@ -305,7 +305,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.$on("$destroy", function() {
 			var innerWrap = angular.element('.inner-wrap');
 			if (innerWrap && innerWrap[0]) {
-				innerWrap[0].style.backgroundColor = 'silver';
+				innerWrap[0].style.backgroundColor = '';
 			}		
 		});
 	}
