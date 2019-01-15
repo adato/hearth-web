@@ -1,0 +1,26 @@
+<header ng-if="info && isDeactivated" class="margin-bottom-large">
+    <div class="user-basic large-12 columns">
+        <div class="display-medium-flex flex-space-between margin-top-large margin-bottom-large color-dark-gray">
+            <h1>
+                {{info.name}}
+                <span class="text-smaller">&ndash; {{::'PROFILE.DEACTIVATED' | translate }}</span>
+            </h1>
+        </div>
+    </div>
+    <div class="highlights opacity-50">
+        <avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type" thanks=":: info.up_votes" show-glow="false"></avatar>
+        <span class="shadow large">
+            <span class="bubble large"></span>
+        </span>
+        <span class="shadow large">
+            <span class="move-down bubble medium"></span>
+        </span>
+        <span class="shadow small">
+            <span class="bubble medium"></span>
+        </span>
+        <span class="shadow small">
+            <span class="bubble small move-down"></span>
+        </span>
+    </div>
+    <div class="clear"></div>
+</header>

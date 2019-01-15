@@ -1,9 +1,12 @@
 <div loading show="!profileLoaded"></div>
 <div class="profile-view profile-common" ng-show="profileLoaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
-	<div class="user" ng-show="!info">
+	<div class="user" ng-show="!info && !isDeactivated">
 		<p translate="PROFILE.NOTIFY.ERROR_USER_NOT_FOUND"></p>
 	</div>
-	<header ng-show="info" class="margin-bottom-large">
+	<div class="" ng-if="isDeactivated" ng-include="'assets/pages/profile/deactivated.html'">
+
+	</div>
+	<header ng-if="info && !isDeactivated" class="margin-bottom-large">
 		<div class="user-basic large-12 columns">
 			<div class="display-medium-flex flex-space-between">
 				<h1>
@@ -12,6 +15,7 @@
 						<span ng-if="info.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 					</a>
 				</h1>
+
 				<div class="button-group large">
 					<button class="button others" ng-click="openUserRatingForm()" test-beacon="profile-rating-button" translate="PROFILE.ACTION_FEEDBACK"></button>
 					<button ng-if="!info.is_followed" class="hollow button others" ng-click="toggleFollow(info._id)">
@@ -84,5 +88,5 @@
 		<div class="clear"></div>
 	</header>
 	<div class="clear"></div>
-	<div class="profile-pages-container" ng-show="info" ui-view></div>
+	<div class="profile-pages-container" ng-if="info && !isDeactivated" ui-view></div>
 </div>
