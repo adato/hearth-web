@@ -39,7 +39,7 @@
 				<i class="fa fa-quote-right"></i> {{:: info.motto }}
 			</div>
 		</div>
-		<div class="highlights opacity-50">
+		<div class="highlights">
 			<avatar ng-if="info.avatar" dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type" thanks=":: info.up_votes" show-glow="true"></avatar>
 			<span class="shadow large">
 				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'bookmarks' || activePage == 'replies')}" class="bubble large">
