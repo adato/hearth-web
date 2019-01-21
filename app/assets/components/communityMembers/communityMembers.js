@@ -23,9 +23,16 @@ angular.module('hearth.directives').directive('communityMembers', [
 
 				CommunityMembers.query({ communityId: $scope.community._id, limit: $scope.count * 3, offset: 0 }).$promise.then(function (res) { // scope.count*3 ==> we need more results because of deactivated users
 					
-					let members = res.filter((member) => { return (!member.deactivated) });
-					vm.members = members.slice(0, $scope.count);
-//					if ($rootScope.loggedUser && $rootScope.loggedUser._id && $rootScope.loggedUser._id == $scope.community.admin) res.push($rootScope.loggedUser)
+					let activeMembers = res.filter((member) => { 
+						return !member.deactivated;
+					});
+					activeMembers.sort((a,b) => {
+						if (a.avatar === null && b.avatar === null) return 0;
+						if (a.avatar !== null && b.avatar !== null) return 0;
+						if (a.avatar !== null && b.avatar === null) return -1;
+						if (a.avatar === null && b.avatar !== null) return 1;
+					});
+					vm.members = activeMembers.slice(0, $scope.count);
 
 					if ($scope.community && $scope.community.member_count && $scope.community.member_count > res.length) {
 						vm.moreMembers = $scope.community.member_count - res.length;

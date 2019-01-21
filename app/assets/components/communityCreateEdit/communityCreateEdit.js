@@ -28,6 +28,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					locations: [],
 					description: '',
 					terms: '',
+					is_public: true,
+					is_private: false
 				};
 				$scope.parameters = ProfileUtils.params;
 				$scope.showError = {
@@ -181,13 +183,13 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						$scope.showError.name = err = true;
 					}
 
-					if ($scope.communityForm.description.$invalid) {
-						$scope.showError.description = err = true;
-					}
+					// if ($scope.communityForm.description.$invalid) {
+					// 	$scope.showError.description = err = true;
+					// }
 
-					if ($scope.communityForm.terms.$invalid) {
-						$scope.showError.terms = err = true;
-					}
+					// if ($scope.communityForm.terms.$invalid) {
+					// 	$scope.showError.terms = err = true;
+					// }
 
 					// interest as tags are no longer available to form
 					// if ($scope.communityForm.interests.$invalid) {

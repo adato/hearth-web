@@ -23,7 +23,7 @@
 		</a>
 		<h4 class="display-inline-block">TT Členové</h4>
 		<community-members count="10" community="info"></community-members>
-		<button class="button margin-top-small" ng-click="addMembersModal()" ng-if="info.is_member">TT Přidat členy</button>
+		<button class="button margin-top-small" ng-click="addMembersModal()" ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
 
 		<div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
 

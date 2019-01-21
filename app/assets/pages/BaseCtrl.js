@@ -323,7 +323,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// });
 
 		function loadMyCommunities() {
-			console.log("LOADIGN CONMS")
 			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) {
 				$rootScope.myCommunities = [];
 				$rootScope.myAdminCommunities = [];

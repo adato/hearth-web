@@ -25,7 +25,7 @@ angular.module('hearth.directives').directive('myCommunities', [
 					// if is in cache, return it
 					var cachedResult = null;
 					if (typeof (cachedResult = UserCommunitiesCache.get('by-number-of-posts')) != 'undefined') {
-						vm.hasMoreCommunities = (cachedResult > DISPLAY_COUNT);
+						vm.hasMoreCommunities = (cachedResult.length > DISPLAY_COUNT);
 						vm.communities = cachedResult.slice(0, DISPLAY_COUNT);
 						vm.userHasCommunities = cachedResult.length > 0;
 						return;

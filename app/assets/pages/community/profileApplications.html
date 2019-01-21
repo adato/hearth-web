@@ -1,6 +1,6 @@
 <div class="community-applications-list margin-top-small" ng-controller="CommunityApplicationsCtrl as applications">
 	<div ng-if="applications.applicants && applications.applicants.length > 0">
-		<h4>TT Nové žádosti o členství</h4>
+		<h4 translate="COMMUNITY.MEMBERS.NEW_APPLICATIONS"></h4>
 		<div ng-repeat="user in applications.applicants track by user._id" class="margin-top-tiny">
 			<div class="display-flex">
 				<div class="info-avatar margin-left-tiny margin-right-tiny margin-bottom-tiny" info-bubble=":: user" info-bubble-type=":: user._type">

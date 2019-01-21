@@ -51,18 +51,19 @@
 						<div class="flex-1 block">
 							<div class="box box--checkbox-list">
 								<label>
-									<checkbox class="box box--checkbox" model="community.is_public" name="communityIsPublic" disabled="community.is_private || community.is_standard">
-										<span translate="COMMUNITY.PRIVACY.PUBLIC"></span>
+									<checkbox class="box box--checkbox" model="community.is_public" name="communityIsPublic" ng-click="community.is_public = true; community.is_private = false;">
+										<div>
+											<b translate="COMMUNITY.PRIVACY.PUBLIC"></b><span translate="COMMUNITY.PRIVACY.PUBLIC_DESCRIPTION"></span>
+											<p><small class="text-muted" translate="COMMUNITY.PRIVACY.PUBLIC_DETAILS"></small></p>
+										</div>
 									</checkbox>
 								</label>
 								<label>
-										<checkbox class="box box--checkbox" model="community.is_standard" name="communityIsStandard" disabled="community.is_private || community.is_public">
-											<span translate="COMMUNITY.PRIVACY.STANDARD"></span>
-										</checkbox>
-									</label>
-								<label>
-									<checkbox class="box box--checkbox" model="community.is_private" name="communityIsPrivate" disabled="community.is_public || community.is_standard">
-										<span translate="COMMUNITY.PRIVACY.PRIVATE"></span>
+									<checkbox class="box box--checkbox" model="community.is_private" name="communityIsPrivate" ng-click="community.is_public = false; community.is_private = true;">
+										<div>
+											<b translate="COMMUNITY.PRIVACY.PRIVATE"></b><span translate="COMMUNITY.PRIVACY.PRIVATE_DESCRIPTION"></span>
+											<p><small class="text-muted" translate="COMMUNITY.PRIVACY.PRIVATE_DETAILS"></small></p>
+										</div>
 									</checkbox>
 								</label>
 							</div>
@@ -71,7 +72,7 @@
 				</div>
 			</div>
 
-			<div class="flex-grid block">
+			<!-- <div class="flex-grid block">
 				<div>
 					<i class="fa fa-fw fa-2x block--leading-icon fa-info"></i>
 				</div>
@@ -98,8 +99,8 @@
 						</label>
 					</div>
 				</div>
-			</div>
-
+			</div> -->
+<!-- 
 			<div class="flex-grid block">
 				<div>
 					<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
@@ -110,7 +111,7 @@
 						<locations locations="community.locations" is-required="true" error-code="COMMUNITY.NOTIFY.ERROR_LOCATION_IS_EMPTY" show-error="showError.locations"></locations>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="flex-grid block" ng-if="community._id">
 				<div>
