@@ -16,6 +16,11 @@ $list-item-panel-color: $medium-gray;
 	background: rgba($primary-color, .03);
 }
 
+.about-page-panel--danger {
+	border:1px solid $state-danger-text;
+	background-color: $state-danger-bg;
+}
+
 .about-page--ambassadors {
 	.anchor {
 		display: block;
@@ -48,6 +53,9 @@ $list-item-panel-color: $medium-gray;
 		@extend .about-page-panel;
 		&.panel-info {
 			@extend .about-page-panel--info;
+		}
+		&.panel-danger {
+			@extend .about-page-panel--danger	;
 		}
 	}
 

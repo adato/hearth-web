@@ -13,9 +13,6 @@ angular.module('hearth.services').factory('Session', [
 		return $resource($$config.apiPath + '/session', {}, {
 			get: {
 				method: 'GET',
-				params: {
-					r: Math.random()
-				}
 			},
 			updateLanguage: {
 				method: 'PUT',

@@ -7,27 +7,16 @@
  */
 
 angular.module('hearth.services').service('UnauthReload', [
-	'$translate', '$location', '$rootScope', '$timeout', '$state',
-	function($translate, $location, $rootScope, $timeout, $state) {
+	'$translate', '$location', '$rootScope', '$timeout', '$window',
+	function($translate, $location, $rootScope, $timeout, $window) {
 		var self = this;
 		var cookieName = 'reloadPath';
 
-		/**
-		 *  Check if user is logged - if no, throw him on login page
-		 */
-		self.checkAuth = function() {
-			// if not logged
+		self.saveLocation = function() {
+			// set the return path for unlogged user
 			if (! ($rootScope.loggedUser && $rootScope.loggedUser._id)) {
-				$rootScope.loginRequired = true;
-
-				// set return path and refresh on login
-				// console.log($location.path(), $location.path().slice(1));
-				self.setLocation($location.path().slice(1))
-
-				// $location.path('login');
-				// $state.go('login', {
-				// 	location: 'replace'
-				// });
+				$rootScope.loginRequired = true;				
+				self.setLocation($location.path())
 
 				var destroy = $rootScope.$on('$routeChangeSuccess', function() {
 					$timeout(function() {
@@ -43,17 +32,37 @@ angular.module('hearth.services').service('UnauthReload', [
 		 */
 		self.check = function() {
 			// check after user is loaded
-			$rootScope.$on('initFinished', self.checkAuth);
-			$rootScope.initFinished && self.checkAuth();
+
+			$rootScope.$on('initFinished', self.saveLocation);
+			$rootScope.initFinished && self.saveLocation();
 		};
 
-		self.checkLocation = function() {
+		self.goToSavedLocationIfAny = function() {
 			var loc = self.getLocation();
-
+			
 			if (loc) {
-				$location.path(loc);
-				self.clearReloadLocation();
-			}
+				if (loc.indexOf('app/') > -1) {
+					loc = loc.replace('app/', '');
+				}
+				if (loc.indexOf('//') > -1) {
+					loc = loc.replace('//', '/');
+				}
+				if (loc.indexOf('%2F') > -1) {
+					loc = loc.replace(/\%2F/gi, '/');
+				}
+				if (loc.indexOf('%252F') > -1) {
+					loc = loc.replace(/\%252F/gi, '/');
+				}
+				if (loc[0] == '/') {
+					loc = loc.substr(1);
+			    }
+				$timeout(() => {
+					//$window.location.replace(loc);
+					$location.path(loc);
+					self.clearReloadLocation();
+				}, 100);
+				return true;
+			} else return false;
 		};
 
 		self.clearReloadLocation = function() {
@@ -63,11 +72,11 @@ angular.module('hearth.services').service('UnauthReload', [
 		};
 
 		self.getLocation = function() {
-			return $.cookie(cookieName);
+			let cookie = $.cookie(cookieName);
+			return cookie;
 		};
 
 		self.setLocation = path => {
-			//console.log('SETTING',path);
 			$.cookie(cookieName, path, {path: '/'});
 		}
 

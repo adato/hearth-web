@@ -219,14 +219,14 @@ angular.module('hearth').config([
 				url: '/community/:id',
 				templateUrl: 'assets/pages/community/profile.html',
 				controller: 'CommunityProfileCtrl',
-				policy: SIGNED_IN
+				//policy: SIGNED_IN
 			})
 			.state('community.default', {
 				title: false,
 				url: '',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: 'assets/pages/community/subviews/posts.html',
-				policy: SIGNED_IN
+				///policy: SIGNED_IN
 			})
 			.state('community.subview', {
 				title: false,
@@ -240,7 +240,7 @@ angular.module('hearth').config([
 					$stateParams.page = 'posts';
 					return tplPath + $stateParams.page + '.html';
 				},
-				policy: SIGNED_IN
+				//policy: SIGNED_IN
 			})
 			.state('communityCreate', {
 				title: false,
