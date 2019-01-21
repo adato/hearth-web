@@ -13,6 +13,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
     vm.list = [];
     vm.myCommunities;
     vm.loading = false;
+    vm.shouldLoadMore = true;
     var ItemFilter = new UniqueFilter();
 
     var templatePath = 'assets/components/post/posts/post.html';
@@ -23,12 +24,12 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
 
 		vm.finishLoading = function (res) {
-			vm.loading = false;
+      vm.loading = false;
+      vm.shouldLoadMore = (res.length > 0);
 		}
 
     vm.loadNext = () => {
-      if (vm.loading) return;
-      //offset = offset + 1
+      if (vm.loading || !vm.shouldLoadMore) return;
       vm.getSearchOpts(++offset);
     }
 
@@ -68,12 +69,9 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
       vm.getAllCommunities();
     }
 
+ 
     var initCommunities = () => {  
-      $rootScope.$on('communities:loaded', () => {
-        vm.myCommunities = $rootScope.myCommunities
-      });
-      
-      if (!vm.myCommunities || !vm.myCommunities.length) $rootScope.$emit('reloadCommunities');
+      vm.myCommunities = $rootScope.myCommunities;
       vm.getSearchOpts();
     };
 

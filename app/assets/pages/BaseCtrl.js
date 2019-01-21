@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux', '$q', 'LocalStorage',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux, $q, LocalStorage) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ScrollService', 'ConversationAux', 'UnauthReload', 'Session', 'PostAux', '$q', 'LocalStorage', 'UserCommunitiesCache',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ScrollService, ConversationAux, UnauthReload, Session, PostAux, $q, LocalStorage, UserCommunitiesCache) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = [];
@@ -315,14 +315,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return $scope.loggedUser && author_id === $scope.loggedUser._id
 		}
 
-		angular.element(window).bind('scroll', function() {
-			if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
-				$('html').toggleClass('scrolled');
-				$scope.isScrolled = !$scope.isScrolled;
-			}
-		});
+		// angular.element(window).bind('scroll', function() {
+		// 	if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
+		// 		$('html').toggleClass('scrolled');
+		// 		$scope.isScrolled = !$scope.isScrolled;
+		// 	}
+		// });
 
 		function loadMyCommunities() {
+			console.log("LOADIGN CONMS")
 			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) {
 				$rootScope.myCommunities = [];
 				$rootScope.myAdminCommunities = [];
@@ -332,15 +333,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
-				$rootScope.myCommunities.length = 0;
-				$rootScope.myCommunities.push(...res);
-				$rootScope.myAdminCommunities = [];
-				
-				res.forEach(function(item) {
-					// create list of communities I'm admin in
-					if (item.admin == $rootScope.loggedUser._id) $rootScope.myAdminCommunities.push(item);
-				});
 
+				$rootScope.myCommunities = res;
+				$rootScope.myAdminCommunities = res.filter(function (item) {
+					return (item.admin === $rootScope.loggedUser._id);
+				});
 				$rootScope.$emit('communities:loaded');
 				$rootScope.communitiesLoaded = true;
 			});

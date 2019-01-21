@@ -1,9 +1,5 @@
 'use strict';
 
-angular.module('hearth').factory('AmbassadorsCache', ['$cacheFactory', function($cacheFactory) {
-	return $cacheFactory('ambassadors');
-}]);
-
 
 /**
  * @ngdoc service
