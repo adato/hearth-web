@@ -71,6 +71,9 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
  
     var initCommunities = () => {  
+      $rootScope.$on('communities:loaded', () => { // for when loaded straight from login
+        vm.myCommunities = $rootScope.myCommunities; 
+      });
       vm.myCommunities = $rootScope.myCommunities;
       vm.getSearchOpts();
     };

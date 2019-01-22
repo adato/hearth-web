@@ -6,7 +6,7 @@
 
 		<form ng-submit="save()" id="communityForm" name="communityForm" novalidate>
 			<div class="medium-flex-grid block">
-				<div class="flex-5 medium-order-last" ng-cloak>
+				<!-- <div class="flex-5 medium-order-last" ng-cloak>
 					<div image-preview-direct-upload class="big" result="community.avatar" options="avatarUploadOpts">
 						<img class="preview" ng-if="community.avatar.public_avatar_url" ng-src="{{ community.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated />
 						<img class="preview" ng-if="!community.avatar.public_avatar_url && community.avatar.large" ng-src="{{ community.avatar.large }}" resized-thumbnail-image />
@@ -15,7 +15,7 @@
 							<span translate="PROFILE.EDIT.UPLOAD_AVATAR_IMAGE"></span>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="flex-7 flex-grid">
 					<div>
 						<i class="fa fa-fw fa-2x block--leading-icon fa-users"></i>
@@ -69,6 +69,12 @@
 							</div>
 						</div>
 					</div>
+					<div ng-if="community.is_private">
+							<checkbox class="checkbox" model="community.is_agreed" name="communityTermsAgreement" required="community.is_private">
+								Přebírám zodpovědnost za dodržování <a href="/app/terms" target="_blank" class="margin-horizontal-tiny">Podmínek Hearth.net</a> v této skupině
+							</checkbox>
+							<div class="form-error margin-left-large" ng-show="showError.terms" translate="COMMUNITY.NOTIFY.ERROR_TERMS_NOT_AGREED"></div>
+					</div>
 				</div>
 			</div>
 
@@ -112,7 +118,7 @@
 					</div>
 				</div>
 			</div> -->
-
+<!-- 
 			<div class="flex-grid block" ng-if="community._id">
 				<div>
 					<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
@@ -164,7 +170,7 @@
 						<div class="flex-1"></div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="display-flex flex-reverse flex-space-between">
 				<button type="submit" class="button right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5" translate="COMMON.ACTION_SAVE"></button>
@@ -178,7 +184,7 @@
 			<hr />
 
 			<!-- ==================================== Change message settings ================================== -->
-			<div class="flex-grid block">
+			<!-- <div class="flex-grid block">
 				<div>
 					<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
 				</div>
@@ -199,7 +205,7 @@
 				</div>
 			</div>
 
-			<hr />
+			<hr /> -->
 			<!-- ==================================== Change admin in community ================================ -->
 			<div class="flex-grid block">
 				<div>

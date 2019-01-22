@@ -12,16 +12,16 @@
 		</div>
 
 		<div ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0" class="box panel panel-default text-center padding-large">
-			<h3 class="margin-bottom-large">TT Jsme rádi, že jsi tady 😊</h3>
-			<p class="margin-bottom-large margin-top-large">TT Právě teď je nejlepší chvíle pro přidání darů.</p>
-			<button class="button margin-top-large" ng-click="addItem()" ng-if="info.is_member">TT Přidat první dar</button>
+			<h3 class="margin-bottom-large" translate="COMMUNITY.NOGIFTS.TITLE"></h3>
+			<p class="margin-bottom-large margin-top-large" translate="COMMUNITY.NOGIFTS.DESCRIPTION"></p>
+			<button class="button margin-top-large" ng-click="addItem()" ng-if="info.is_member" translate="COMMUNITY.NOGIFTS.ACTION_ADD_FIRST_GIFT"></button>
 		</div>
 	</div>
 	<div class="large-3 columns">
 		<a ui-sref="community.subview({id: info._id, page: 'members'})" class="line-height-double pull-right">
 			<span translate="COMMUNITY.MEMBERS.{{ pluralCat(info.member_count) }}" translate-values="{count: info.member_count}"></span>
 		</a>
-		<h4 class="display-inline-block">TT Členové</h4>
+		<h4 class="display-inline-block" translate="COMMUNITY.MEMBERS_LIST"></h4>
 		<community-members count="10" community="info"></community-members>
 		<button class="button margin-top-small" ng-click="addMembersModal()" ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
 
@@ -34,16 +34,8 @@
 				<b translate="POST.ACTION_SHOW_MORE"></b>
 			</a>
 		</p>
-
-		<p class="margin-top-large" ng-if="info.description.length < 300 || view.expanded">{{ :: info.description }}</p>
-		<p class="margin-top-large" ng-if="info.description.length >= 300 && !view.expanded">
-			<span ng-bind-html=":: info.description | ellipsis: 300"></span>
-			<a ng-click="view.expanded = true;">
-				<b translate="POST.ACTION_SHOW_MORE"></b>
-			</a>
-		</p>
-		<p class="margin-top-medium text-muted" ng-if="info.is_private">TT Toto je <b>soukromá skupina</b> - bezpečný prostor důvěry pro vás a vaše dary. Přístup sem mají pouze členové skupiny schválení správcem.</p>
-		<p class="margin-top-medium text-muted" ng-if="info.is_public">TT Toto je <b>veřejná skupina</b>. O vašich aktivitách se snadno dozví všichni lidé na Hearthu. Kdokoli se může do skupiny přidat.</p>
+		<p class="margin-top-medium text-muted" ng-if="info.is_private" ng-bind-html="'COMMUNITY.PRIVACY.PRIVATE_FULL_DESCRIPTION' | translate"></p>
+		<p class="margin-top-medium text-muted" ng-if="info.is_public" ng-bind-html="'COMMUNITY.PRIVACY.PUBLIC_FULL_DESCRIPTION' | translate"></p>
 	</div>
 </div>
 <div loading show="!subPageLoaded"></div>
