@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('DashboardCtrl', [
-  '$scope', '$rootScope', 'Fulltext', 'User', 'HearthCrowdfundingBanner', 'PostAux',
-  function ($scope, $rootScope, Fulltext, User, HearthCrowdfundingBanner,  PostAux) {
+  '$scope', '$rootScope', 'Fulltext', 'User', 'HearthCrowdfundingBanner', 'PostAux', 'Interests',
+  function ($scope, $rootScope, Fulltext, User, HearthCrowdfundingBanner,  PostAux, Interests) {
 
     $scope.epOpts = null;
     $scope.userOpts = null;
@@ -19,8 +19,8 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
       $scope.loading = true;
 
       if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
-        User.get({_id: $rootScope.loggedUser._id}).$promise.then(function (profile) {
-          Fulltext.query({ limit:5, days:10, type:'post', keywords_operator: 'OR', keywords: profile.interests.join(',')}).$promise.then(function (result) {
+        Interests.queryCurrentUser().then(function (interests) {
+          Fulltext.query({ limit:5, days:10, type:'post', keywords_operator: 'OR', keywords: interests.join(',')}).$promise.then(function (result) {
             result.data = result.data.filter(function (item) {
               if (item.author._id == $rootScope.loggedUser._id) return false; else return true;
             })

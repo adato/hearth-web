@@ -1,9 +1,6 @@
 .communities {
 	margin: 0 auto;
 	padding: 0;
-	.avatar {
-		margin-left: 3*$ui-small-grid-size;
-	}
 	h5 {
 		font-size: $global-font-size;
 	}
@@ -21,7 +18,7 @@
 		}
 		.community-item {
       padding: $size-medium;
-      height: 11.5rem;
+      height: 8rem;
 			word-wrap: break-word;
       overflow: hidden;
       width: 100%;
@@ -45,6 +42,7 @@
       }
 
 		}
+
 	}
 	// RESPONSIVE
 	// duplicates, how to solve this?
@@ -54,4 +52,18 @@
 			height: 8rem;
 		}
 	}
+}
+
+
+
+.communities .hide-for-community, .community-view .hide-for-community {
+	display:none;
+}
+
+.communities .hide-for-community-list {
+	display:none;
+}
+
+.community-view .hide-for-community-detail {
+	display:none;
 }

@@ -148,6 +148,9 @@ angular.module('hearth.services').factory('User', [
 			logout: {
 				method: 'POST',
 				url: $$config.apiPath + '/logout'
+			},
+			setProperties: {
+				method: 'PUT',	
 			}
 
 		});

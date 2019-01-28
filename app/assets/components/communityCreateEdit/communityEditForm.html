@@ -6,16 +6,6 @@
 
 		<form ng-submit="save()" id="communityForm" name="communityForm" novalidate>
 			<div class="medium-flex-grid block">
-				<div class="flex-5 medium-order-last" ng-cloak>
-					<div image-preview-direct-upload class="big" result="community.avatar" options="avatarUploadOpts">
-						<img class="preview" ng-if="community.avatar.public_avatar_url" ng-src="{{ community.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated />
-						<img class="preview" ng-if="!community.avatar.public_avatar_url && community.avatar.large" ng-src="{{ community.avatar.large }}" resized-thumbnail-image />
-						<div class="text">
-							<span class="fa fa-plus-square-o"></span>
-							<span translate="PROFILE.EDIT.UPLOAD_AVATAR_IMAGE"></span>
-						</div>
-					</div>
-				</div>
 				<div class="flex-7 flex-grid">
 					<div>
 						<i class="fa fa-fw fa-2x block--leading-icon fa-users"></i>
@@ -31,113 +21,54 @@
 							</div>
 						</label>
 						<label class="block">
-							<span translate="COMMUNITY.CREATE.MOTTO"></span>
-							<input type="text" name="motto" ng-model="community.motto" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY.CREATE.MOTTO_PLACEHOLDER' | translate }}" />
-							<div class="form-error" ng-show="showError.motto">
-								<span ng-show="communityForm.motto.$error.maxlength" translate="COMMUNITY.NOTIFY.ERROR_MOTTO_MAX_LENGTH"></span>
-							</div>
-						</label>
-					</div>
-				</div>
-			</div>
-
-			<div class="flex-grid block">
-				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-info"></i>
-				</div>
-				<div class="flex-1">
-					<h2 translate="COMMUNITY.CREATE.ABOUT"></h2>
-					<div class="medium-flex-grid">
-						<label class="flex-1">
 							<span translate="COMMUNITY.CREATE.DESCRIPTION"></span>
-							<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="5000" placeholder="" model="community.description" name="description" required></input-max-length>
+							<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="5000" placeholder="{{:: 'COMMUNITY.CREATE.DESCRIPTION_PLACEHOLDER' | translate }}" model="community.description" name="description" required></input-max-length>
 							<div class="form-error" ng-show="communityForm.description.$error.required" translate="COMMUNITY.NOTIFY.ERROR_ABOUT_NOT_FILLED"></div>
 						</label>
-						<label class="flex-1">
-							<span translate="COMMUNITY.CREATE.RESTRICTIONS"></span>
-							<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY.CREATE.RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
-						</label>
-					</div>
-
-					<div>
-						<label>
-							<span translate="COMMUNITY.CREATE.INTERESTS"></span>
-							<tags-input class='interests-input' refocus-input-on-tab class="tags" ng-model="community.interests" placeholder="{{:: 'COMMUNITY.CREATE.INTERESTS_PLACEHOLDER' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="0" max-length="500">
-								<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-							</tags-input>
-						</label>
 					</div>
 				</div>
 			</div>
 
 			<div class="flex-grid block">
 				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
+					<i class="fa fa-fw fa-2x block--leading-icon fa-eye"></i>
 				</div>
 				<div class="flex-1">
-					<h2 translate="COMMUNITY.CREATE.LOCATION"></h2>
-					<div>
-						<locations locations="community.locations" is-required="true" error-code="COMMUNITY.NOTIFY.ERROR_LOCATION_IS_EMPTY" show-error="showError.locations"></locations>
-					</div>
-				</div>
-			</div>
-
-			<div class="flex-grid block" ng-if="community._id">
-				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
-				</div>
-				<div class="flex-1">
-					<h2 translate="PROFILE.EDIT.NETWORKS_TITLE"></h2>
+					<h2 translate="COMMUNITY.CREATE.PRIVACY"></h2>
 					<div class="medium-flex-grid">
-						<label class="block flex-1">
-							<span translate="PROFILE.EDIT.MY_FACEBOOK"></span>
-							<input placeholder="{{ 'COMMON.EG' | translate }} https://www.facebook.com/profile" ng-model="community.facebook" type="url" ng-blur="updateUrl($event, community, 'facebook')" />
-							<div class="form-error" ng-show="showError.social_networks['facebook']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
-						</label>
-						<label class="block flex-1">
-							<span translate="PROFILE.EDIT.MY_TWITTER"></span>
-							<input placeholder="{{ 'COMMON.EG' | translate }} https://twitter.com/profile" ng-model="community.twitter" type="url" ng-blur="updateUrl($event, community, 'twitter')" />
-							<div class="form-error" ng-show="showError.social_networks['twitter']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
-						</label>
-					</div>
-					<div class="medium-flex-grid">
-						<label class="block flex-1">
-							<span translate="PROFILE.EDIT.MY_LINKEDIN"></span>
-							<input placeholder="{{ 'COMMON.EG' | translate }} https://www.linkedin.com/profile" ng-model="community.linkedin" type="url" ng-blur="updateUrl($event, community, 'linkedin')" />
-							<div class="form-error" ng-show="showError.social_networks['linkedin']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
-						</label>
-						<label class="block flex-1">
-							<span translate="PROFILE.EDIT.MY_GOOGLEPLUS"></span>
-							<input placeholder="{{ 'COMMON.EG' | translate }} https://plus.google.com/profile" ng-model="community.googleplus" type="url" ng-blur="updateUrl($event, community, 'googleplus')" />
-							<div class="form-error" ng-show="showError.social_networks['googleplus']" translate="PROFILE.EDIT.NOTIFY.ERROR_SOCIAL_NETWORK_NAME"></div>
-						</label>
-					</div>
-					<div class="medium-flex-grid">
-						<div class="block flex-1">
-							<label>
-								<i class="fa fa-globe"></i>&nbsp;<span translate="PROFILE.EDIT.MY_WEB"></span>
-								<div ng-repeat="web in community.webs track by $index" class="block flex flex-align-start">
-									<input placeholder="{{ 'COMMON.EG' | translate }} https://www.myweb.com" ng-model="community.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, community.webs, $index)" />
-									<button ng-hide="$first" type="button" class="touchable" ng-click="community.webs.splice($index,1)">
-										<i class="fa fa-times-circle"></i>
-									</button>
-								</div>
-								<div class="form-error" ng-show="showError.social_networks['webs']" translate="PROFILE.EDIT.NOTIFY.ERROR_INVALID_URL"></div>
-								<div>
-									<a ng-click="community.webs.push('')">
-										<i class="fa fa-plus-square"></i>&nbsp;<span translate="PROFILE.EDIT.ACTION_ADD_NEXT_WEB"></span>
-									</a>
-								</div>
-							</label>
+						<div class="flex-1 block">
+							<div class="box box--checkbox-list">
+								<label>
+									<checkbox class="box box--checkbox" model="community.is_public" name="communityIsPublic" ng-click="community.is_public = true; community.is_private = false;">
+										<div>
+											<b translate="COMMUNITY.PRIVACY.PUBLIC"></b><span translate="COMMUNITY.PRIVACY.PUBLIC_DESCRIPTION"></span>
+											<p><small class="text-muted" translate="COMMUNITY.PRIVACY.PUBLIC_DETAILS"></small></p>
+										</div>
+									</checkbox>
+								</label>
+								<label>
+									<checkbox class="box box--checkbox" model="community.is_private" name="communityIsPrivate" ng-click="community.is_public = false; community.is_private = true;">
+										<div>
+											<b translate="COMMUNITY.PRIVACY.PRIVATE"></b><span translate="COMMUNITY.PRIVACY.PRIVATE_DESCRIPTION"></span>
+											<p><small class="text-muted" translate="COMMUNITY.PRIVACY.PRIVATE_DETAILS"></small></p>
+										</div>
+									</checkbox>
+								</label>
+							</div>
 						</div>
-						<div class="flex-1"></div>
+					</div>
+					<div ng-if="community.is_private">
+							<checkbox class="checkbox" model="community.is_agreed" name="communityTermsAgreement" required="community.is_private">								
+								<span ng-bind-html="'COMMUNITY.PRIVACY.AGREE_WITH_TERMS' | translate"></span>
+							</checkbox>
+							<div class="form-error margin-left-large" ng-show="showError.terms" translate="COMMUNITY.NOTIFY.ERROR_TERMS_NOT_AGREED"></div>
 					</div>
 				</div>
 			</div>
 
 			<div class="display-flex flex-reverse flex-space-between">
 				<button type="submit" class="button right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5" translate="COMMON.ACTION_SAVE"></button>
-				<a ng-if="!community._id" tabindex="0" ng-click="close()" class="revert-changes" translate="COMMUNITY.CREATE.ACTION_CANCEL_ADD"></a>
+				<a ng-if="!community._id" tabindex="0" ui-sref="communities" class="revert-changes" translate="COMMUNITY.CREATE.ACTION_CANCEL_ADD"></a>
 				<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
 			</div>
 
@@ -146,29 +77,6 @@
 		<div ng-if="community._id">
 			<hr />
 
-			<!-- ==================================== Change message settings ================================== -->
-			<div class="flex-grid block">
-				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
-				</div>
-				<div class="flex-1">
-					<h2 translate="SETTINGS.MESSAGES"></h2>
-					<div class="medium-flex-grid">
-						<form ng-submit="saveCommunityConversationSettings(messageSettings)" name="communityConversationSettings" class="flex-1">
-							<div class="display-medium-flex flex-space-between flex-wrap flex-divided-large">
-								<checkbox id="allowSendingToMembers" name="allowSendingToMembers" model="community.allow_message_to_members">
-									<span translate="COMMUNITY.SETTINGS.ALLOW_SENDING_TO_MEMBERS"></span>
-								</checkbox>
-							</div>
-							<div class="display-flex flex-reverse flex-space-between">
-								<button type="submit" class="button" translate="COMMON.ACTION_SAVE"></button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<hr />
 			<!-- ==================================== Change admin in community ================================ -->
 			<div class="flex-grid block">
 				<div>

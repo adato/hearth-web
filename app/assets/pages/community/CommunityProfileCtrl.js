@@ -41,7 +41,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				_id: $stateParams.id
 			}, function(res) {
 				res = ProfileUtils.single.copyMottoIfNecessary(res);
-				res.post_total = res.post_count.needs + res.post_count.offers;
+				res.post_total = (res.post_count ? res.post_count.needs + res.post_count.offers : 0);
 				res.karma = Karma.count(res.up_votes, res.down_votes);
 
 				$scope.communityLink = $rootScope.getProfileLink('Community', res._id);
@@ -145,6 +145,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 				$scope.rejectApplicationLock = false;
 				$scope.init();
+				$rootScope.$emit('communityApplicationRejected');
 				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_REJECT', Notify.T_SUCCESS);
 			}, function() {
 				$scope.rejectApplicationLock = false;
@@ -182,6 +183,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.approveApplicationLock = false;
 
 				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_APPROVE', Notify.T_SUCCESS);
+				$rootScope.$emit('communityApplicationApproved');
 				$scope.init();
 			}, function() {
 				$scope.approveApplicationLock = false;
@@ -190,12 +192,13 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 		$scope.addItem = function() {
 			var preset = {
-				current_community_id: ($scope.mine) ? $scope.info._id : null,
-				current_community_name: $scope.info.name,
-				related_communities: (!$scope.mine) ? [{
+				// current_community_id: ($scope.mine) ? $scope.info._id : null,
+				// current_community_name: $scope.info.name,
+				is_private: ($scope.info && $scope.info.is_private && !$scope.info.is_public ? true : false),
+				related_communities: [{
 					_id: $scope.info._id,
 					name: $scope.info.name
-				}] : []
+				}]
 			};
 
 			$rootScope.editItem(null, null, preset);
@@ -276,8 +279,22 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
+		$scope.addMembersModal = function() {
+			ngDialog.open({
+				templateUrl: 'assets/modals/addCommunityMembers.html',
+				controller: 'AddCommunityMembersCtrl',
+				controllerAs: 'ctrl',
+				data: { community: $scope.info },
+				className: 'ngdialog-theme-default',
+				closeByDocument: false,
+				showClose: false,
+				closeByEscape: true,
+			})
+		}
+
+
 		$scope.init = function() {
-			refreshDataFeed();
+			//refreshDataFeed();
 			fetchCommunity();
 		};
 

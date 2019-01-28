@@ -38,7 +38,7 @@
 			</div>
 			<div class="text">
 				<p ng-if="item.description" ng-bind-html="item.description | linky:'_blank' | nl2br"></p>
-				<p ng-if="!item.description" ng-bind-html="'POST.COMMUNITY_INFO_NOT_FILLED' | translate"></p>
+				<p ng-if="!item.description" ng-bind-html="::'POST.COMMUNITY_INFO_NOT_FILLED' | translate"></p>
 			</div>
 		</div>
 		<!-- MARKET ITEM POST CONTENT End -->

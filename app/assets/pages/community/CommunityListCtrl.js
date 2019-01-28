@@ -7,75 +7,82 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter',
-	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter) {
+	'$scope', '$rootScope', 'Community', 'CommunityMemberships', 'Auth', '$state', '$filter', 'UniqueFilter', 'Fulltext', 'PostAux', '$sce', 'ProfileUtils',
+	function($scope, $rootScope, Community, CommunityMemberships, Auth, $state, $filter, UniqueFilter, Fulltext, PostAux, $sce, ProfileUtils) {
     var vm = this;
+    vm.list = [];
     vm.myCommunities;
-    vm.showColumns = true;
-		$scope.list = [];
-		$scope.loading = false;
-		$scope.loadingFinished = false;
-    vm.load = () => initMyCommunities();
-		var ItemFilter = new UniqueFilter();
+    vm.loading = false;
+    vm.shouldLoadMore = true;
+    var ItemFilter = new UniqueFilter();
 
-		var initCommunities = () => {
+    var templatePath = 'assets/components/post/posts/post.html';
+    var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 
-      if ($state.current.name == 'communities.my') {
-        if ($rootScope.myCommunities.length) {
-          vm.myCommunities = $rootScope.myCommunities.length;
-          vm.showColumns = false;
-          $scope.list = $rootScope.myCommunities;
-          $scope.$parent.loadedFirstBatch = true;
-          $scope.loadingFinished = true;
-          $scope.loading = false;
-        } else {
-          // if there are not my communities, then default tab is suggested communities
-          $state.go('communities.suggested');
+    var offset = 0;
+    var pageSize = 5;
+
+
+		vm.finishLoading = function (res) {
+      vm.loading = false;
+      vm.shouldLoadMore = (res.length > 0);
+		}
+
+    vm.loadNext = () => {
+      if (vm.loading || !vm.shouldLoadMore) return;
+      vm.getSearchOpts(++offset);
+    }
+
+    vm.getSearchOpts = (offset = 0) => {
+      vm.loading = true;
+			vm.communityGiftListOptions = {
+        getData: Community.getRelatedPosts,
+        getParams: {
+          limit: pageSize,
+          offset: offset * pageSize 
+        },
+        templateUrl: templateUrl,
+				inactivateTags: true,
+        cb: vm.finishLoading,
+      };
+    }
+
+    vm.getAllCommunities = () => {
+      var conf = {
+        limit: 20,
+        offset: vm.list.length
+      };
+
+      Community.query(conf, (res) => {
+        if (res) {
+          res = ItemFilter.filter(res);
+
+          res.forEach(function (item) {
+            item.description = $filter('ellipsis')($filter('linky')(item.description, '_blank'));
+          });
         }
-      } else {
-        var conf = {
-          limit: 20,
-          offset: $scope.list.length
-        };
+        vm.list = vm.list.concat(res);
+      });
+    }
 
-        var service = ($state.current.name == 'communities.suggested') ? Community.suggested : Community.query;
-        service(conf, function (res) {
+    vm.loadMore = () => {
+      vm.getAllCommunities();
+    }
 
-          if (res) {
-            res = ItemFilter.filter(res);
-
-            res.forEach(function (item) {
-              item.description = $filter('ellipsis')($filter('linky')(item.description, '_blank'));
-            });
-          }
-          $scope.list = $scope.list.concat(res);
-          $scope.loading = false;
-          $scope.$parent.loadedFirstBatch = true;
-          if (!res.length || $state.current.name == 'communities.suggested') {
-            return $scope.loadingFinished = true;
-          }
-        });
-      }
+ 
+    var initCommunities = () => {  
+      $rootScope.$on('communities:loaded', () => { // for when loaded straight from login
+        vm.myCommunities = $rootScope.myCommunities; 
+      });
+      vm.myCommunities = $rootScope.myCommunities;
+      vm.getSearchOpts();
     };
 
-    var initMyCommunities = () => {
-      if ($scope.loadingFinished || $scope.loading) return false;
-      $scope.loading = true;
-
-      // my communities are loaded in BaseCtrl
-      if ($rootScope.communitiesLoaded || !Auth.isLoggedIn()) {
-        initCommunities()
-      } else {
-        // wait for load
-        var listener = $rootScope.$watch('communitiesLoaded', function(val) {
-          if (val) {
-            initCommunities();
-            listener();
-          }
-        });
-      }
-    };
-
-    initMyCommunities();
-	}
+    
+    if ($state.current.name == 'communities-all') {
+      vm.getAllCommunities();
+    } else {
+      initCommunities() 
+    }
+  }
 ]);

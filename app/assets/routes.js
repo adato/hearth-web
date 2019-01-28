@@ -38,25 +38,26 @@ angular.module('hearth').config([
 				controller: 'MapCtrl',
 			})
 			.state('communities', {
-				abstract: true,
+				//abstract: true,
 				url: '/communities',
 				templateUrl: 'assets/pages/community/communities.html',
-				controller: 'CommunitiesCtrl'
-			})
-			.state('communities.my', {
-				url: '',
-				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
 				controllerAs: 'vm'
 			})
+			// .state('communities.my', {
+			// 	url: '/communities/my',
+			// 	templateUrl: 'assets/pages/community/communityList.html',
+			// 	controller: 'CommunityListCtrl',
+			// 	controllerAs: 'vm'
+			// })
 			.state('communities.suggested', {
-				url: '/suggested',
+				url: '/communities/suggested',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
         		controllerAs: 'vm'
 			})
-			.state('communities.all', {
-				url: '/all',
+			.state('communities-all', {
+				url: '/communities/all',
 				templateUrl: 'assets/pages/community/communityList.html',
 				controller: 'CommunityListCtrl',
         		controllerAs: 'vm'
@@ -218,14 +219,14 @@ angular.module('hearth').config([
 				url: '/community/:id',
 				templateUrl: 'assets/pages/community/profile.html',
 				controller: 'CommunityProfileCtrl',
-				policy: SIGNED_IN
+				//policy: SIGNED_IN
 			})
 			.state('community.default', {
 				title: false,
 				url: '',
 				controller: 'CommunityDataFeedCtrl',
-				templateUrl: 'assets/pages/community/subviews/home.html',
-				policy: SIGNED_IN
+				templateUrl: 'assets/pages/community/subviews/posts.html',
+				///policy: SIGNED_IN
 			})
 			.state('community.subview', {
 				title: false,
@@ -234,11 +235,18 @@ angular.module('hearth').config([
 				templateUrl: function($stateParams) {
 					var pages = ['activity', 'members', 'given-ratings', 'received-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'assets/pages/community/subviews/';
-
+					
 					if (!~pages.indexOf($stateParams.page))
-						$stateParams.page = 'home';
+					$stateParams.page = 'posts';
 					return tplPath + $stateParams.page + '.html';
 				},
+				//policy: SIGNED_IN
+			})
+			.state('communityCreate', {
+				title: false,
+				url: '/community/create',
+				controller: 'CommunityProfileCtrl',
+				templateUrl: 'assets/pages/community/createCommunity.html',
 				policy: SIGNED_IN
 			})
 			.state('uikit', {

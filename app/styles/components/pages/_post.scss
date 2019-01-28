@@ -641,6 +641,9 @@ button.active[disabled] .item-option-bg-type {
 .post-image {
 	max-height: 120px;
 }
+.post-image[data-src] {
+	background:$white;
+}
 
 /* @Kamil TODO - remove important after ditching v2 class */
 .info-box + .v2.user > .karma-bar {

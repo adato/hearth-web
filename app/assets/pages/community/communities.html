@@ -1,4 +1,40 @@
 <div class="communities">
+	<div class="small-12 large-9 columns">
+			<h1 translate="COMMUNITY.COMMUNITIES"></h1>
+
+			<h3 class="medium-push-2 medium-10 margin-top-large text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
+
+			<div when-scrolled="vm.loadNext()"><item-list options="vm.communityGiftListOptions"></item-list></div>
+	</div>
+
+  <div class="large-3 hide-for-small-only hide-for-medium-down show-for-large columns">
+    <div class="margin-bottom-tiny">
+				<button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium" ui-sref="communityCreate()" community-form-toggler translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
+				</button>
+		</div>
+
+		<!-- my communities -->
+		<div class="margin-top-medium padding-top-medium">
+			<h4 class="text-center margin-top-none margin-bottom-small" translate="COMMUNITY.MY_COMMUNITIES"></h4>
+			<div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })" style="cursor:pointer">
+				<h4>{{:: comm.name }}</h4>
+				
+				<div class="text-danger" ng-if=":: comm.admin == loggedUser._id" translate="COMMUNITY.I_AM_ADMIN"></div>
+				<div class="text-muted">{{ :: comm.short_description }}</div>
+			</div>
+		</div>
+		<div>
+			<a ui-sref="communities-all"><h4 class="text-center" translate="COMMUNITY.ALL_COMMUNITIES"></h4></a>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+<!--<div class="communities">
   <div class="flex flex-space-between">
     <h1 translate="COMMUNITY.COMMUNITIES"></h1>
     <button type="button" class="button" ng-click="toggleForm()" community-form-toggler>
@@ -26,4 +62,4 @@
 <div class="clear"></div>
 <div class="communities">
 	<div ui-view></div>
-</div>
+</div>-->

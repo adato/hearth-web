@@ -27,9 +27,11 @@
   }
 	&.success {
 		background-color: #8DC321 !important;
+		color:#fff;
 	}
 	&.info {
 		background-color: #4EB2E7 !important;
+		color:#fff;
 	}
 	&.warning {
 		background-color: #FFED00 !important;
@@ -37,6 +39,10 @@
 	}
 	&.error {
 		background-color: #FF0000 !important;
+	}
+	&.subtle {
+		font-weight: bold;
+		color:$black;
 	}
 }
 

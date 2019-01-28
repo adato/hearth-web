@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService', '$timeout', '$q',
-	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService, $timeout, $q) {
+	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService', '$timeout', '$q', 'ngDialog', 
+	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService, $timeout, $q, ngDialog) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -28,6 +28,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					locations: [],
 					description: '',
 					terms: '',
+					is_public: true,
+					is_private: false
 				};
 				$scope.parameters = ProfileUtils.params;
 				$scope.showError = {
@@ -35,13 +37,15 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					locations: false,
 					description: false,
 					social_networks: [],
+					terms: false,
 				};
 
 				$scope.avatarUploadOpts = ProfileUtils.getUploadOpts();
 				$scope.avatarUploadOpts.uploadingQueue = $scope.imageUploading;
 				$scope.avatarUploadOpts.error = $scope.showError.avatar;
 
-				$scope.community = {};
+				$scope.community = {}; 		// this is the actual model
+				$scope.editCommunity = {}; 	// this is the copy of edited data (when editing, not creating new)
 
 				$scope.confirmBox = $rootScope.confirmBox;
 
@@ -79,12 +83,12 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						_id: id
 					}, function(data) {
 						$scope.community = prepareDataIn(data);
-
+						
 						if (!data.locations || !data.locations.length || data.locations[0] === void 0) {
 							data.locations = [];
 						}
 
-						// $scope.community = data;
+						$scope.editCommunity = angular.copy($scope.community);
 
 						if ($scope.checkOwnership($scope.community)) {
 							$scope.loaded = true;
@@ -177,19 +181,9 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					if ($scope.communityForm.name.$invalid) {
 						$scope.showError.name = err = true;
 					}
-
-					if ($scope.communityForm.description.$invalid) {
-						$scope.showError.description = err = true;
-					}
-
-					if ($scope.communityForm.terms.$invalid) {
+					if (data.is_private && $scope.communityForm.communityTermsAgreement.$error.required) {
 						$scope.showError.terms = err = true;
 					}
-
-					// interest as tags are no longer available to form
-					// if ($scope.communityForm.interests.$invalid) {
-					// 	$scope.showError.interests = err = true;
-					// }
 
 					if (!$scope.validateSocialNetworks()) {
 						err = true;
@@ -209,29 +203,46 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 					// lock
 					if ($scope.sending) {
-						return false
+						return false;
 					};
 
-					$scope.sending = true;
-					$rootScope.globalLoading = true;
 
-					var actions = {
-						community: Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community)).$promise
-					};
+					var saveFn = function (data) {
+						$scope.sending = true;
+						$rootScope.globalLoading = true;
+	
+						var actions = {
+							community: Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community)).$promise
+						};
+	
+						$q.all(actions).then(function(res) {
+							res = res.community;
+							$rootScope.globalLoading = false;
+							$rootScope.$emit('reloadCommunities');
+							$location.path('/community/' + res._id);
+							Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_' + ($scope.community._id ? 'UPDATE' : 'CREATE'), Notify.T_SUCCESS);
+						}, function(res) {
+							$scope.sending = false;
+							$rootScope.globalLoading = false;
+						});
+					} 
 
-					$q.all(actions)
-						.then(function(res) {
-								res = res.community;
-								$rootScope.globalLoading = false;
-								$rootScope.$emit('reloadCommunities');
-								$location.path('/community/' + res._id);
+					// if there is a change of privacy (private vs public group) show alert box
+					if ($scope.editCommunity._id && (data.is_private != $scope.editCommunity.is_private 
+						 || data.is_public != $scope.editCommunity.is_public)) {
+						ngDialog.openConfirm({
+							templateUrl:  'assets/modals/communityChangePrivacyType.html',
+							showClose: false
+						}).then(function (result) {
+							result === true && saveFn(data);
+						}, function (err) {});
+					} else {
+						// normal situation
+						// (privacy has not changed)
+						saveFn(data);
+					}
 
-								Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_' + ($scope.community._id ? 'UPDATE' : 'CREATE'), Notify.T_SUCCESS);
-							},
-							function(res) {
-								$scope.sending = false;
-								$rootScope.globalLoading = false;
-							});
+
 				};
 
 				$scope.change = function(id, needReload) {

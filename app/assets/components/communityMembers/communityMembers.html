@@ -1,0 +1,8 @@
+<div class="community-members">
+	<div class="display-inline-block margin-left-tiny margin-right-tiny margin-bottom-tiny" info-bubble-type="'User'" info-bubble="member" ng-repeat="member in vm.members track by member._id" >
+		<avatar type="'User'" src="member.avatar.normal" size="small" href="$root.getProfileLink('User', member._id)"></avatar>
+	</div>
+	<div class="line-height-double display-inline-block like-avatar margin-left-tiny margin-right-tiny margin-bottom-tiny" ng-if="vm.moreMembers" ui-sref="community.subview({ id: community._id, page: 'members' })">
+		+{{:: vm.moreMembers }}
+	</div>
+</div>

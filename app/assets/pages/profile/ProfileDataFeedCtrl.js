@@ -360,7 +360,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 			// refresh after new post created
 			if (!inited) {
-				if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts' || $scope.pageSegment == 'posts') {
+				if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts' || $scope.pageSegment == 'posts' || $scope.pageSegment == 'home' || $scope.pageSegment == 'profile.home') {
 					$scope.$on('postCreated', timeoutReloadFunction);
 					$scope.$on('postUpdated', timeoutReloadFunction);
 				};
