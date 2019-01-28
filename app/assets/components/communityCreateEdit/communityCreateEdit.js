@@ -228,12 +228,13 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					} 
 
 					// if there is a change of privacy (private vs public group) show alert box
-					if (data.is_private != $scope.editCommunity.is_private || data.is_public != $scope.editCommunity.is_public) {
+					if ($scope.editCommunity._id && (data.is_private != $scope.editCommunity.is_private 
+						 || data.is_public != $scope.editCommunity.is_public)) {
 						ngDialog.openConfirm({
 							templateUrl:  'assets/modals/communityChangePrivacyType.html',
 							showClose: false
 						}).then(function (result) {
-							result == 1 && saveFn(data);
+							result === true && saveFn(data);
 						}, function (err) {});
 					} else {
 						// normal situation
