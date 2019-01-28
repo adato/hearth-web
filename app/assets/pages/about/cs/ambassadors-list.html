@@ -2,10 +2,12 @@
 	<h2>Kdo jsou ambasadoři Hearth.net</h2>
 
 	<!-- inital info -->
-	<div class="large-12 small-12 margin-bottom-small panel panel-info">
-		<div class="">
-			Všechny nás najdeš v komunitě <a href="/app/community/57fa6266b7c3ff000a20228c">Ambasadoři Hearth.net</a>. Tam nám také můžeš napsat, nebo se na cokoliv zeptat.
-		</div>
+	<div class="large-12 small-12 margin-bottom-small panel panel-info" ng-if="loggedUser._id">
+		Všechny nás najdeš v komunitě <a href="/app/community/57fa6266b7c3ff000a20228c">Ambasadoři Hearth.net</a>. Tam nám také můžeš napsat, nebo se na cokoliv zeptat.
+	</div>
+
+	<div class="large-12 small-12 margin-bottom-small panel panel-danger" ng-if="!loggedUser._id">
+		Nejprve se prosím <a href="" ui-sref="login">přihlaš</a>. Pak uvidíš seznam ambasadorů pěkně na mapě.
 	</div>
 
 	<div class="clearfix margin-top-small margin-bottom-medium">

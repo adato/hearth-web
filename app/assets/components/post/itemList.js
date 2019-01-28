@@ -27,58 +27,65 @@ angular.module('hearth.directives').directive('itemList', [
 			scope: {
 				options: '='
 			},
-			template: '<div loading show="loading && !options.disableLoading"></div><div content></div>',
+			template: '<div content></div><div loading show="loading && !options.disableLoading"></div>',
 			link: function(scope, el) {
 
-				scope.loading = true
 				var content = el[0].querySelector('[content]')
 
-				const listener = $rootScope.$on('itemList.refresh', init)
+				const listener = $rootScope.$on('itemList.refresh', () => init({ erase: true }) );
 
 				scope.$on('$destroy', () => {
 					listener()
 				})
 
-				init()
+				scope.$watch('options', (newVal, oldVal) => {
+					if (newVal && newVal !== oldVal) {
+						init({ erase: false }) // scroll
+					}
+				})
+
+				init({ erase: true }) // init with erase div
 
 				/////////////////
 
-				function init() {
-					scope.options = scope.options || {}
-					if (typeof scope.options.getData !== 'function') throw new TypeError('Unsupported itemList setup')
-					var responseTransform = scope.options.responseTransform || angular.identity
+				function init(params) {
+					scope.loading = true;
+					scope.options = scope.options || {};
+					if (typeof scope.options.getData !== 'function') throw new TypeError('Unsupported itemList setup');
+					var responseTransform = scope.options.responseTransform || angular.identity;
 
-					var items
-					content.innerHTML = ''
+					var items = [];
+					if (params && params.erase === true) content.innerHTML = '';
 
 					// call for data
-					var promise = scope.options.getData(scope.options.getParams || {})
+					var promise = scope.options.getData(scope.options.getParams || {});
 
 					// normalize $resource and $q api
-					promise = promise.$promise || promise
+					promise = promise.$promise || promise;
 
 					promise.then(res => {
-						items = responseTransform(res)
-						return $templateRequest(scope.options.templateUrl)
+						items = responseTransform(res);
+						if (items && items.data && items.data.length) items = items.data; // ugly, but need the prop!
+						return $templateRequest(scope.options.templateUrl);
 					}).then(template => {
-						scope.loading = false
-						const compiledTemplate = $compile(template)
-						const fragment = document.createDocumentFragment()
-						items.forEach(item => {
-							const _scope = PostScope.getPostScope(item, $rootScope)
-							angular.merge(_scope, scope.options.bindToScope || {})
-							_scope.delayedView = false
-							_scope.inactivateTags = !!scope.options.inactivateTags
+						scope.loading = false;
+						const compiledTemplate = $compile(template);
+						const fragment = document.createDocumentFragment();
+						items.length && items.forEach(item => {
+							const _scope = PostScope.getPostScope(item, $rootScope);
+							angular.merge(_scope, scope.options.bindToScope || {});
+							_scope.delayedView = false;
+							_scope.inactivateTags = !!scope.options.inactivateTags;
 							compiledTemplate(_scope, clone => {
-								fragment.appendChild(clone[0])
+								fragment.appendChild(clone[0]);
 							})
 						})
-						content.innerHTML = ''
-						content.appendChild(fragment)
-						if (typeof scope.options.cb === 'function') scope.options.cb(items)
+						if (params && params.erase === true) content.innerHTML = '';
+						content.appendChild(fragment);
+						if (typeof scope.options.cb === 'function') scope.options.cb(items);
 					}).catch(err => {
-						scope.loading = false
-						console.log('Error getting items:', err)
+						scope.loading = false;
+						console.log('Error getting items:', err);
 					})
 				}
 

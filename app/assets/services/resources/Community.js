@@ -15,17 +15,11 @@ angular.module('hearth.services').factory('Community', [
 		}, {
 			get: {
 				method: 'GET',
-				params: {
-					r: Math.random()
-				},
 				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			query: {
 				method: 'GET',
 				isArray: true,
-				params: {
-					r: Math.random()
-				}
 			},
 			getPosts: {
 				url: $$config.apiPath + '/communities/:communityId/posts',
@@ -82,7 +76,15 @@ angular.module('hearth.services').factory('Community', [
 				url: $$config.apiPath + '/communities/:communityId/activity_feed',
 				isArray: true,
 				interceptor: plainResponseInterceptor
-			}
+			},
+			getRelatedPosts: { // posts from all my communities
+				url: $$config.apiPath + '/related_posts',
+
+				method: 'GET',
+				transformResponse: [LocationJsonDataTransform.getLocationJson.bind({
+					prop: 'data'
+				})]
+			},
 		});
 	}
 ]);

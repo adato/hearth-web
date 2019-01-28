@@ -173,26 +173,14 @@ angular.module('hearth', [
 		  InfoBubbleSetup.typeMap.community = 'Community'
 
 		}
-	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window', 'Session', 'User',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window, Session, User) {
+	]).run(['$rootScope', 'Auth', '$translate', 'tmhDynamicLocale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window',
+		function($rootScope, Auth, $translate, tmhDynamicLocale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
 			ActionCableConfig.wsUri = $$config.websocket.url;
 			ActionCableConfig.debug = $$config.websocket.debug;
 			ActionCableConfig.autoStart = false;
-
-			/**
-			 * This will cache some files at start
-			 */
-			// function cacheFiles(done) {
-			//
-			// 	// cache tooltip in MAP -- DEPRECATED -- remove when map will be refactored
-			// 	$http.get('assets/components/geo/markerTooltip.html', {
-			// 		cache: $templateCache
-			// 	});
-			// 	done(null);
-			// }
 
 			/**
 			 * This will init app language
@@ -227,8 +215,8 @@ angular.module('hearth', [
 					// enrich rootScope with user/community credentials
 					angular.extend($rootScope, Auth.getSessionInfo());
 
-					// if is logged, check if he wanted to see some restricted page
-					if ($rootScope.loggedUser._id) UnauthReload.checkLocation();
+					// if is logged, check if he wanted to see some restricted page before login
+					if ($rootScope.loggedUser._id) { UnauthReload.goToSavedLocationIfAny(); }
 
 					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
 						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {

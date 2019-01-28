@@ -50,21 +50,21 @@
 			</div>
 
 			<!-- show either for editform, or for step2 of insert form -->
-			<section class="author display-flex flex-wrap">
+			<!-- <section class="author display-flex flex-wrap">
 				<div class="form-section column small-12 medium-6" ng-show="authorList.length > 1">
 					<author-selector ng-disabled="post.reply_count" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.NOTIFY.AUTHOR_SELECT_IS_DISABLED': '' ) | translate }}" tipsy author-list='authorList'></author-selector>
 					<div class="position-relative">
 						<div class="tipsy-overlay" ng-if="post.reply_count"></div>
 					</div>
 				</div>
-			</section>
+			</section> -->
 			<div class="block">
 				<label>
 					<span translate="POST.CREATE.TITLE_LABEL"></span>
 					<div>
 						<div class="field-group margin-bottom-none">
-							<span title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius green bold" ng-if="post.type == 'offer'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
-							<span title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius red bold" ng-if="post.type == 'need'" ng-click="togglePostType()">{{ postTypes[post.current_community._type][post.exact_type][post.type] | translate }}</span>
+							<span title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius green bold" ng-if="post.type == 'offer'" ng-click="togglePostType()">{{ postTypes['User'][post.exact_type][post.type] | translate }}</span>
+							<span title="{{ ((post.reply_count) ? 'POST.NOTIFY.TYPE_CHANGE_IS_DISABLED' : '' ) | translate }}" tipsy class="left-radius red bold" ng-if="post.type == 'need'" ng-click="togglePostType()">{{ postTypes['User'][post.exact_type][post.type] | translate }}</span>
 							<input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{:: 'POST.CREATE.TITLE_PLACEHOLDER' | translate }}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 						</div>
 						<div class="form-error" ng-show="createAdForm.title.$invalid && showError.title && createAdForm.$dirty">
@@ -122,25 +122,13 @@
 				</div>
 			</div>
 
-			<div class="block">
-				<label class="ui-select-scope-wrapper">
-					<span translate='POST.CREATE.LANGUAGE_LABEL'></span>:
-					<ui-select id="post-language" ng-model="post.language" theme="select2">
-						<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
-						<ui-select-choices group-by="'group'" group-filter="[('COMMON.LANGUAGES.MAIN' | translate), ('COMMON.LANGUAGES.OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
-				      <div ng-bind-html="item.name | highlight: $select.search"></div>
-				    </ui-select-choices>
-					</ui-select>
-				</label>
-			</div>
-
 			<div class="block position-relative">
 				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
 					<span translate="POST.CREATE.CATEGORY_LABEL"></span>
 				</label>
 				<div class="flex button-group margin-bottom-none">
-					<label ng-repeat="character in character" class="button flex-1" ng-class="post.character.indexOf(character.name) > -1 ? '' : 'button-white'">
+					<label ng-repeat="character in character" class="button flex-1" ng-class="post.character.indexOf(character.name) > -1 ? '' : 'button-white'"  title="{{ :: character.translateText | translate }}" tipsy>
 						<span translate="{{:: character.translate }}"></span>
 						<input hidden type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="setCharacter(character)" name="character" />
 					</label>
@@ -161,7 +149,7 @@
 			</div>
 
 			<div class="block">
-				<locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="POST.CREATE.NOTIFY.ERROR_NO_LOCATIONS"></locations>
+				<locations prefill="post.prefill" locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="POST.CREATE.NOTIFY.ERROR_NO_LOCATIONS"></locations>
 			</div>
 
 			<div class="block collapse" ng-class="{ 'collapse-expanded': slide.date }">
@@ -195,7 +183,24 @@
 				</div>
 			</div>
 
-			<div class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
+			<div class="collapse language-selector">
+				<div class="block">
+					<label class="collapse-trigger" slide-trigger="slide.language">
+						<span translate="POST.CREATE.LANGUAGE_LABEL"></span>
+						<span ng-bind="' (' + post.language + ')'"></span>
+					</label>
+					<label ng-slide-down="slide.language" lazy-render duration="0.5"  class="ui-select-scope-wrapper margin-top-small">
+						<ui-select id="post-language" ng-model="post.language" theme="select2">
+							<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+							<ui-select-choices group-by="'group'" group-filter="[('COMMON.LANGUAGES.MAIN' | translate), ('COMMON.LANGUAGES.OTHER' | translate)]" repeat="item.code as item in languageList | filter: {name: $select.search}">
+						  		<div ng-bind-html="item.name | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</label>
+				</div>
+			</div>
+
+			<!-- <div class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
 				<div class="block">
 					<label class="collapse-trigger" slide-trigger="slide.communities">
 						<span translate="POST.CREATE.COMMUNITIES_LABEL"></span>
@@ -210,7 +215,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
+
 
 			<div class="collapse lock" ng-show="enableLockField">
 				<div class="block">
@@ -219,7 +225,7 @@
 						<span ng-if="!slide.lock">
 							<span ng-if="!post.is_private">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_ALL"></span>)</span>
 							<span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_FRIENDS"></span>)</span>
-							<span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_COMMUNITY"></span>)</span>
+							<!-- <span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">(<span translate="POST.CREATE.PRIVACY_SHOW_TO_COMMUNITY"></span>)</span> -->
 						</span>
 					</label>
 					<ul ng-slide-down="slide.lock" lazy-render duration="0.5">
@@ -231,7 +237,7 @@
 						<li>
 							<radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
 								<span ng-if="!post.current_community_id && !post.related_communities.length" translate="POST.CREATE.PRIVACY_SHOW_TO_FRIENDS"></span>
-								<span ng-if="(post.current_community_id || post.related_communities.length)" translate="POST.CREATE.PRIVACY_VISIBLE_FOR_MEMBERS"></span>
+								<!-- <span ng-if="(post.current_community_id || post.related_communities.length)" translate="POST.CREATE.PRIVACY_VISIBLE_FOR_MEMBERS"></span> -->
 							</radio>
 						</li>
 					</ul>

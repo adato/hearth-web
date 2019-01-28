@@ -32,9 +32,6 @@ angular.module('hearth.services').factory('CommunityMembers', [
 			query: {
 				method: 'GET',
 				isArray: true,
-				params: {
-					r: Math.random()
-				}
 			}
 		});
 	}

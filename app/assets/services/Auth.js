@@ -90,11 +90,8 @@ angular.module('hearth.services').factory('Auth', [
 				if (data.language) LanguageSwitch.setCookie(data.language);
 
 				if (data.api_token) this.setToken(data.api_token);
-
-				var reloadLoc = UnauthReload.getLocation();
-				UnauthReload.clearReloadLocation();
-
-				return $window.location.replace(reloadLoc || '/app');
+				
+				$window.location.replace('/app');
 			},
 			getTwitterAuthUrl: function(method) {
 				var fillEmailUrl = $$config.appUrl + 'fill-email/%{token}';

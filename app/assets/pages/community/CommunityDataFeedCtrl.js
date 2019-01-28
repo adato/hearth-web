@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		$scope.activityShow = false;
 		$scope.activityLog = [];
 		$scope.activityLogFetchRunning;
+		$scope.view = { expanded: false }; // used for template action binding
 		var activityLogComplete;
 		// Count of all activities includes activities inside the groups
 		var activityLogOffset = 0;
@@ -39,6 +40,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			'active': 0,
 			'inactive': 0
 		};
+
+
+		var postPageSize = 5;
+		$scope.postPageOffset = 0;
 
 		$scope.loadCommunityActivities = (done, config = {}) => {
 			if (activityLogComplete || $scope.activityLogFetchRunning) return;
@@ -274,11 +279,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		};
 		var getPostsQ = [];
 
+		$scope.loadNext = function () {
+			if (!getPostsResult.active.length) return; 
+			$scope.postPageOffset = $scope.postPageOffset+1;
+			loadCommunityPosts($scope.info._id);
+		}
+
 		// load posts of community
 		// render them same way as on marketplace, ie download & compile templates, make scope, inject it..
 		function loadCommunityPosts(id) {
 			var templateUrl = $sce.getTrustedResourceUrl(templatePath);
 
+			
 			// counter for template
 			$scope.communityPostCount.active = 0;
 			$scope.communityPostCount.inactive = 0;
@@ -289,7 +301,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			$scope.communityPostListActiveOptions = {
 				getData: ProfileUtils.getPosts.bind(null, {
 					params: {
-						communityId: id
+						communityId: id,
+						limit: postPageSize,
+						offset: postPageSize * $scope.postPageOffset
 					},
 					resource: Community.getPosts,
 					getPostsStatus: getPostsStatus,
@@ -319,7 +333,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				templateUrl: templateUrl,
 			};
 
-			$rootScope.$emit('itemList.refresh')
+			//$rootScope.$emit('itemList.refresh')
 
 		}
 
@@ -408,20 +422,25 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			ItemFilter.clear();
 			$scope.loadingData = true;
 			$scope.data = [];
-			$scope.pageSegment = $stateParams.page || 'home';
+			$scope.pageSegment = $stateParams.page || 'posts';
 			var loadService = loadServices[$scope.pageSegment];
-
 			$scope.debug && $log.log("Calling load service for segment ", $scope.pageSegment);
 			loadService($stateParams.id, processData, processDataErr);
 
 			// refresh after new post created
 			if (!inited && ['posts', 'home'].indexOf($scope.pageSegment) > -1) {
-				$scope.$on('postCreated', function() {
-					loadService($stateParams.id, processData, processDataErr);
-				});
-				$scope.$on('postUpdated', function() {
-					loadService($stateParams.id, processData, processDataErr);
-				});
+				var reloadFn = function() {
+					$scope.communityPostCount.active = 0;
+					$scope.communityPostCount.inactive = 0;
+					getPostsResult.active = [];
+					getPostsResult.inactive = [];
+					$scope.postPageOffset = 0;
+
+					$rootScope.$emit('itemList.refresh');
+					//loadService($stateParams.id, processData, processDataErr);
+				}
+				$scope.$on('postCreated', reloadFn);
+				$scope.$on('postUpdated', reloadFn);
 
 				// added event listeners - dont add them again
 				inited = true;

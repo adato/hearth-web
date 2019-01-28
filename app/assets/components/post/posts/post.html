@@ -1,4 +1,4 @@
-<article suspendable action-when-visible="logViewActivity({item: item, meta: viewActivityMeta, state: stateName})" class="item-common item-post bubbled" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+<article suspendable action-when-visible="logViewActivity({item: item, meta: viewActivityMeta, state: stateName})" class="item-common item-post bubbled" id="post_{{:: item._id }}" ng-class=":: {inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}" ng-show="!item.is_hidden">
 	<div class="row">
 		<section ng-if=":: !hideAvatar" class="column medium-2 show-for-medium padding-top-small position-relative">
 				<div class="v2 user text-center" info-bubble=":: item.author" info-bubble-type=":: item.author._type">
@@ -77,10 +77,10 @@
 						</div>
 
 						<div class="column small-12">
-							<div class="pull-left margin-right-tiny" ng-if=":: item.related_communities && item.related_communities.length">
-								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift">&bull;</span>
+							<div class="pull-left margin-right-tiny hide-for-community-detail" ng-if=":: item.related_communities && item.related_communities.length">
+								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift" class="hide-for-community-detail">&bull;</span>
 							</div>
-							<div ng-if="item.location_unlimited && !isInfoGift">
+							<div ng-if="item.location_unlimited && !isInfoGift" class="hide-for-community">
 								<i class="fa fa-map-marker"></i>&nbsp;
 								<span translate="POST.LOCATION.ANYWHERE"></span>
 							</div>
@@ -107,7 +107,7 @@
 					<ul lemmon-slider fancybox="{{:: item._id}}" ng-if="item.attachments_attributes.length" class="item-section">
 						<li ng-repeat="photo in :: item.attachments_attributes track by $index">
 							<a class="fancy" ng-href="{{:: photo.large }}" rel="{{:: item._id}}">
-								<img class="post-image" ng-src="{{:: photo.normal}}" event-emitter="{event: 'initLemmonSlider', data: {isLast: $last}, waitFor: 'load'}" />
+								<img class="post-image" data-src="{{:: photo.normal}}" event-emitter="{event: 'initLemmonSlider', data: {isLast: $last}, waitFor: 'load'}" lazy-render/>
 							</a>
 						</li>
 					</ul>
@@ -141,7 +141,7 @@
 										<a class="touchable" title="{{:: 'COMMON.ACTION_REMOVE' | translate}}" ng-click="confirmBox({title: 'POST.REMOVE.LABEL', text: 'POST.REMOVE.ARE_YOU_SURE', callback: deleteItem, params: item, callbackScope: this})">
 											<i class="fa fa-fw fa-times"></i>
 										</a>
-										<a class="touchable show-on-profile-only" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
+										<a class="touchable show-on-profile-only hide-for-community" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
 											<i class="fa fa-fw fa-map-pin" ng-class="{ 'color-primary': item.is_pinned }"></i>
 										</a>
 									</div>

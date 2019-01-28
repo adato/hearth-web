@@ -49,7 +49,8 @@ angular.module('hearth.controllers').controller('QuickPostEditCtrl', [
                     prefill.related_communities = [{
                         _id: $scope.ngDialogData.community._id,
                         name: $scope.ngDialogData.community.name,
-                    }]
+                    }];
+                    prefill.is_private = ($scope.ngDialogData.community.is_private === true ? true : false);
                 }
                 
                 angular.extend(ctrl.post, prefill);

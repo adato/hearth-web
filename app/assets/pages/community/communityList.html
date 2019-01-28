@@ -1,14 +1,25 @@
-<div ng-if="list.length" class="community-list row clearfix" when-scrolled="vm.load()" offset="300" loading-in-progress="loading">
-  <div ng-if="vm.myCommunities" class="columns">
-    <h5>
-      {{:: 'PROFILE.YOU_ARE_MEMBER' | translate}} {{ 'PROFILE.OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
-      <span ng-if="myAdminCommunities.length">
-        {{:: 'PROFILE.YOU_ARE_ADMIN' | translate }} {{ 'PROFILE.OF_X_COMMUNITIES.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}' }}.
-      </span>
-    </h5>
+<div class="communities">
+  <div class="small-12 large-9 columns">
+    <h1 translate="COMMUNITY.ALL_COMMUNITIES"></h1>
   </div>
-  <div ng-class="{'medium-6': vm.showColumns, end: $last}" class="small-12 columns" ng-repeat="(id, item) in list track by item._id">
-	  <community-item ng-class="{'height-small': vm.myCommunities}" class="box block" item="item" user="loggedUser"></community-item>
+  <div class="community-list">
+    <div ng-if="vm.list.length" class="community-list row clearfix" when-scrolled="vm.loadMore()" offset="300"
+      loading-in-progress="loading">
+      <div ng-if="vm.myCommunities" class="columns">
+        <h5>
+          {{:: 'PROFILE.YOU_ARE_MEMBER' | translate}} {{ 'PROFILE.OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) |
+          translate:'{count:'+myCommunities.length+'}' }}
+          <span ng-if="myAdminCommunities.length">
+            {{:: 'PROFILE.YOU_ARE_ADMIN' | translate }} {{
+            'PROFILE.OF_X_COMMUNITIES.'+pluralCat(myAdminCommunities.length) |
+            translate:'{count:'+myAdminCommunities.length+'}' }}.
+          </span>
+        </h5>
+      </div>
+      <div ng-class="{'medium-6': vm.showColumns, end: $last}" class="small-12 columns" ng-repeat="(id, item) in vm.list track by item._id">
+        <community-item ng-class="{'height-small': vm.myCommunities}" class="box block" item="item" user="loggedUser"></community-item>
+      </div>
+    </div>
+    <div loading show="loading"></div>
   </div>
 </div>
-<div loading show="loading"></div>
