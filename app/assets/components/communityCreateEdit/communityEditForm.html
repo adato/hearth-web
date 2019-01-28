@@ -21,11 +21,9 @@
 							</div>
 						</label>
 						<label class="block">
-							<span translate="COMMUNITY.CREATE.MOTTO"></span>
-							<input type="text" name="motto" ng-model="community.motto" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY.CREATE.MOTTO_PLACEHOLDER' | translate }}" />
-							<div class="form-error" ng-show="showError.motto">
-								<span ng-show="communityForm.motto.$error.maxlength" translate="COMMUNITY.NOTIFY.ERROR_MOTTO_MAX_LENGTH"></span>
-							</div>
+							<span translate="COMMUNITY.CREATE.DESCRIPTION"></span>
+							<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="5000" placeholder="{{:: 'COMMUNITY.CREATE.DESCRIPTION_PLACEHOLDER' | translate }}" model="community.description" name="description" required></input-max-length>
+							<div class="form-error" ng-show="communityForm.description.$error.required" translate="COMMUNITY.NOTIFY.ERROR_ABOUT_NOT_FILLED"></div>
 						</label>
 					</div>
 				</div>

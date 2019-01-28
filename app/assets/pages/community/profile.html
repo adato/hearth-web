@@ -3,7 +3,7 @@
 <div ng-if="info && info.is_private && !info.is_member && !mine">
 	<!-- private community info when not member-->
 	<header class="margin-bottom-large">
-		<div class="user-basic large-12 columns">
+		<div class="user-basic large-12 columns margin-bottom-large">
 			<h1>
 				<span>{{:: info.name }}</span>
 			</h1>
@@ -74,12 +74,12 @@
 
 						<ul class="dropdown-menu margin-top-medium" id="community-menu" style="display: none; ">
 							<!-- <li ng-if="!mine"><a href="" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK "></a></li> -->
+							<li ng-if="info.is_member"><a href="" ng-click="addMembersModal()" translate="COMMUNITY.ACTION_ADD_MEMBERS"></a></li>
 							<li ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})"><a href="" ng-click="sendMessage(info)" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li>
 							<!-- <li ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)"><a href="" ng-click="sendMessage(info, {toAllMembers: true})" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li> -->
-							<li ng-show="(!mine && info.is_member) || mine"><hr/></li>
-							<li ng-if="!mine && info.is_member"><a href="" class="elevated-authority-function" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})" translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></a></li>
-							<li ng-if="info.is_member"><a href="" ng-click="addMembersModal()" translate="COMMUNITY.ACTION_ADD_MEMBERS"></a></li>
 							<li ng-if="mine"><a href="{{:: communityLink }}/edit" translate="COMMUNITY.PROFILE.ACTION_EDIT"></a></li>
+							<li ng-show="(!mine && info.is_member) && !mine"><hr/></li>
+							<li ng-if="!mine && info.is_member"><a href="" class="elevated-authority-function" ng-click="confirmBox({title: 'COMMUNITY.CONFIRM_LEAVE.TITLE', text: 'COMMUNITY.CONFIRM_LEAVE.TEXT', callback: leaveCommunity, callbackScope: this})" translate="COMMUNITY.ACTION_LEAVE_COMMUNITY"></a></li>
 						</ul>
 					</div>
 				</div>

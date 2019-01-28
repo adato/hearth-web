@@ -27,15 +27,16 @@
 
 		<div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
 
-		<p class="margin-top-large" ng-if="info.about.length < 300 || view.expanded">{{ :: info.about }}</p>
-		<p class="margin-top-large" ng-if="info.about.length >= 300 && !view.expanded">
-			<span ng-bind-html=":: info.about | ellipsis: 300"></span>
+		<h4 ng-if="info.description" class="margin-top-large" translate="COMMUNITY.CREATE.DESCRIPTION"></h4>
+		<p class="" ng-if="info.description.length < 300 || view.expanded">{{ :: info.description }}</p>
+		<p class="" ng-if="info.description.length >= 300 && !view.expanded">
+			<span ng-bind-html=":: info.description | ellipsis: 300"></span>
 			<a ng-click="view.expanded = true;">
 				<b translate="POST.ACTION_SHOW_MORE"></b>
 			</a>
 		</p>
-		<p class="margin-top-medium text-muted" ng-if="info.is_private" ng-bind-html="'COMMUNITY.PRIVACY.PRIVATE_FULL_DESCRIPTION' | translate"></p>
-		<p class="margin-top-medium text-muted" ng-if="info.is_public" ng-bind-html="'COMMUNITY.PRIVACY.PUBLIC_FULL_DESCRIPTION' | translate"></p>
+		<p class="margin-top-large text-muted" ng-if="info.is_private" ng-bind-html="'COMMUNITY.PRIVACY.PRIVATE_FULL_DESCRIPTION' | translate"></p>
+		<p class="margin-top-large text-muted" ng-if="info.is_public" ng-bind-html="'COMMUNITY.PRIVACY.PUBLIC_FULL_DESCRIPTION' | translate"></p>
 	</div>
 </div>
 <div loading show="!subPageLoaded"></div>
