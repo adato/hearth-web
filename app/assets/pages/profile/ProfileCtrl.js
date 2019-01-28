@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.paramId = false;
 			$scope.sendingRemoveFollower = false;
 			$scope.sendingAddFollower = false;
+			$scope.isDeactivated = false;
 
 			// ratings
 			$scope.sendingRating = false;
@@ -75,6 +76,21 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			User.get({
 				_id: $stateParams.id
 			}, function(res) {
+
+				// DEACTIVATED USERS handling
+				if (res.deactivated === true) {
+					$scope.isDeactivated = true;
+				} else {
+					$scope.isDeactivated = false;
+				}
+				var innerWrap = angular.element('.inner-wrap');
+				if (innerWrap && innerWrap[0]) {
+					innerWrap[0].style.backgroundColor = (res.deactivated ? 'silver' : '');
+				}
+				// end of deactivated users
+
+
+
 				res = ProfileUtils.single.copyMottoIfNecessary(res);
 				res.post_total = (res.post_count ? res.post_count.needs + res.post_count.offers : 0);
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
@@ -285,5 +301,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.refreshUser(false);
 		});
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
+
+		$scope.$on("$destroy", function() {
+			var innerWrap = angular.element('.inner-wrap');
+			if (innerWrap && innerWrap[0]) {
+				innerWrap[0].style.backgroundColor = '';
+			}		
+		});
 	}
 ]);

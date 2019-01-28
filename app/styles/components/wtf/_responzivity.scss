@@ -157,6 +157,7 @@
 .off-canvas-wrap > .inner-wrap {
 	min-height: 100vh;
 	overflow-y:hidden;
+	padding-bottom:6*$ui-small-grid-size;
 }
 .fixed { position:fixed; }
 
