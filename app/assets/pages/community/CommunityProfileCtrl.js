@@ -127,6 +127,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 				$scope.init();
 				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_APPLY', Notify.T_SUCCESS);
+				$timeout(function () { 
+					$rootScope.$broadcast('reloadCommunities');
+				}, 1000);
 				$scope.sendingApplication = false;
 			}, function() {
 				$scope.sendingApplication = false;

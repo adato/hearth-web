@@ -14,6 +14,8 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
     vm.myCommunities;
     vm.loading = false;
     vm.shouldLoadMore = true;
+    vm.total = 0;
+
     var ItemFilter = new UniqueFilter();
 
     var templatePath = 'assets/components/post/posts/post.html';
@@ -21,10 +23,12 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
     var offset = 0;
     var pageSize = 5;
+    
 
 
 		vm.finishLoading = function (res) {
       vm.loading = false;
+      vm.total = vm.total + (res.length || 0);
       vm.shouldLoadMore = (res.length > 0);
 		}
 

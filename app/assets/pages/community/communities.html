@@ -2,64 +2,37 @@
 	<div class="small-12 large-9 columns">
 			<h1 translate="COMMUNITY.COMMUNITIES"></h1>
 
-			<h3 class="medium-push-2 medium-10 margin-top-large text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
-
-			<div when-scrolled="vm.loadNext()"><item-list options="vm.communityGiftListOptions"></item-list></div>
+			<div ng-show="vm.total > 0 && !vm.loading">
+				<h3 class="medium-push-2 medium-10 margin-top-large text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
+				<div when-scrolled="vm.loadNext()"><item-list options="vm.communityGiftListOptions"></item-list></div>
+			</div>
+			<div ng-show="!vm.total && !vm.loading" class="text-larger">
+				<div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communityCreate" translate="COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART1"></a> {{ :: 'COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART2' | translate }}</div>
+				<div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communities-all" translate="COMMUNITY.EMPTY_LIST_COMMUNITIES_PART1"></a> {{ :: 'COMMUNITY.EMPTY_LIST_COMMUNITIES_PART2' | translate }}</div>
+			</div>
 	</div>
 
   <div class="large-3 hide-for-small-only hide-for-medium-down show-for-large columns">
     <div class="margin-bottom-tiny">
-				<button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium" ui-sref="communityCreate()" community-form-toggler translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
+				<button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium" ui-sref="communityCreate()" translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
 				</button>
 		</div>
 
 		<!-- my communities -->
 		<div class="margin-top-medium padding-top-medium">
 			<h4 class="text-center margin-top-none margin-bottom-small" translate="COMMUNITY.MY_COMMUNITIES"></h4>
-			<div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })" style="cursor:pointer">
+			<div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })" style="cursor:pointer" ng-if=":: vm.myCommunities">
 				<h4>{{:: comm.name }}</h4>
 				
 				<div class="text-danger" ng-if=":: comm.admin == loggedUser._id" translate="COMMUNITY.I_AM_ADMIN"></div>
 				<div class="text-muted">{{ :: comm.short_description }}</div>
 			</div>
+			<p class="text-center" ng-if=":: !vm.myCommunities.length" translate="COMMUNITY.NO_MY_COMMUNITIES">
+
+			</p>
 		</div>
 		<div>
 			<a ui-sref="communities-all"><h4 class="text-center" translate="COMMUNITY.ALL_COMMUNITIES"></h4></a>
 		</div>
 	</div>
-	
 </div>
-
-
-
-
-
-<!--<div class="communities">
-  <div class="flex flex-space-between">
-    <h1 translate="COMMUNITY.COMMUNITIES"></h1>
-    <button type="button" class="button" ng-click="toggleForm()" community-form-toggler>
-      <i class="fa fa-plus"></i>
-      <span translate="COMMUNITY.ACTION_CREATE_COMMUNITY"></span>
-    </button>
-  </div>
-	<div class="community-list-add-form clearfix hide" community-list-add-focusser>
-		<community-create-edit class="margin-bottom-large" hide-heading="true" close="toggleForm()"></community-create-edit>
-	</div>
-</div>
-<div class="bottom-tabs" ng-if="loadedFirstBatch">
-	<ul>
-    <li ng-if="myCommunities.length">
-      <a dont-jump-top href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.my'}" translate="COMMUNITY.MY_COMMUNITIES"></a>
-    </li>
-		<li>
-			<a dont-jump-top href="{{:: basePath }}communities/suggested" ng-class="{selected: pageSegment =='communities.suggested'}" translate="COMMUNITY.SUGGESTED_COMMUNITIES"></a>
-		</li>
-		<li>
-			<a dont-jump-top href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}" translate="COMMUNITY.ALL_COMMUNITIES"></a>
-		</li>
-	</ul>
-</div>
-<div class="clear"></div>
-<div class="communities">
-	<div ui-view></div>
-</div>-->

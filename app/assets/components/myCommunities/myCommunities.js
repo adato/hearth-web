@@ -33,11 +33,18 @@ angular.module('hearth.directives').directive('myCommunities', [
 					CommunityMemberships.get({ user_id: $rootScope.loggedUser._id }).$promise.then(function (res) {
 						vm.userHasCommunities = res.length > 0;
 						var communities = [];
+
+						if (!res.length) {
+							return UserCommunitiesCache.put('by-number-of-posts', []);
+						}
 						var promises = res.map(function (communityItem) {
 							return Community.get({ _id: communityItem._id }).$promise;
 						});
 						$q.all(promises).then(function (results) {
 							// sort them by number of posts
+							if (!results) {
+								return UserCommunitiesCache.put('by-number-of-posts', []);
+							}
 							var tmpList = Object.values(results).sort(function (a, b) {
 								var aposts = a.post_count.needs + a.post_count.offers;
 								var bposts = b.post_count.needs + b.post_count.offers;
