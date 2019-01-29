@@ -31,7 +31,7 @@ angular.module('hearth.services').factory('Interests', ['$q', 'User', '$rootScop
                 User.get({_id: $rootScope.loggedUser._id}).$promise.then(function (profile) {
                     let interests = profile.interests;
                     // remove those weird ones:
-                    if (interests.length == 1 && interests[0].length > 10) deferred.reject("Not valid interests, probably")
+                    if (interests.length == 1 && interests[0].length > 10) { interests = []; }
                     Cache.put(cacheKey, interests);
                     deferred.resolve(interests);
                 });

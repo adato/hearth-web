@@ -38,6 +38,9 @@ angular.module('hearth.directives').directive('myCommunities', [
 						});
 						$q.all(promises).then(function (results) {
 							// sort them by number of posts
+							if (!results) {
+								return UserCommunitiesCache.put('by-number-of-posts', []);
+							}
 							var tmpList = Object.values(results).sort(function (a, b) {
 								var aposts = a.post_count.needs + a.post_count.offers;
 								var bposts = b.post_count.needs + b.post_count.offers;
