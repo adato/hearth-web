@@ -73,12 +73,14 @@
 							</h1>
 							<span class="nowrap text-muted" ng-if=":: isExpiringSoon" translate="POST.STATE.EXPIRING_SOON"></span>
 							<div ng-if=":: item.edited_by_admin && userHasRight('post.suspend_any') && !isActive" class="error" translate="POST.STATE.SUSPENDED_BY_ADMIN"></div>
-							<span class="fa fa-lock" ng-if=":: item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
+							<span class="fa fa-lock hide-for-community-detail" ng-if=":: item.is_private && (!item.related_communities || !item.related_communities.length)" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 						</div>
 
 						<div class="column small-12">
 							<div class="pull-left margin-right-tiny hide-for-community-detail" ng-if=":: item.related_communities && item.related_communities.length">
-								{{:: 'COMMUNITY.COMMUNITY' | translate }} <a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift" class="hide-for-community-detail">&bull;</span>
+								<span class="fa fa-lock hide-for-community-detail margin-right-tiny" ng-if=":: item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
+								{{:: 'COMMUNITY.COMMUNITY' | translate }} 
+								<a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift" class="hide-for-community-detail">&bull;</span>
 							</div>
 							<div ng-if="item.location_unlimited && !isInfoGift" class="hide-for-community">
 								<i class="fa fa-map-marker"></i>&nbsp;
