@@ -33,6 +33,7 @@ angular.module('hearth.directives').directive('myCommunities', [
 					CommunityMemberships.get({ user_id: $rootScope.loggedUser._id }).$promise.then(function (res) {
 						vm.userHasCommunities = res.length > 0;
 						var communities = [];
+
 						if (!res.length) {
 							return UserCommunitiesCache.put('by-number-of-posts', []);
 						}
