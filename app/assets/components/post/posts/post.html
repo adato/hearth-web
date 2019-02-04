@@ -80,7 +80,7 @@
 							<div class="pull-left margin-right-tiny hide-for-community-detail" ng-if=":: item.related_communities && item.related_communities.length">
 								<span class="fa fa-lock hide-for-community-detail margin-right-tiny" ng-if=":: item.is_private" title="{{:: 'POST.ONLY_FOR_FRIENDS' | translate }}"></span>
 								{{:: 'COMMUNITY.COMMUNITY' | translate }} 
-								<a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift" class="hide-for-community-detail">&bull;</span>
+								<a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift || !item.location_unlimited" class="hide-for-community-detail">&bull;</span>
 							</div>
 							<div ng-if="item.location_unlimited && !isInfoGift" class="hide-for-community">
 								<i class="fa fa-map-marker"></i>&nbsp;

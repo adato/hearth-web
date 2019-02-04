@@ -12,7 +12,7 @@ $$localConfig = {
 	},
 	oauth: {
 		facebook: "1495788017321716",
-		google: '1090116646962-720t5edifghd7fqua7pn6hc5cpgbdiis.apps.googleusercontent.com'
+		google: '92033229844-v09m9smq112nj2rtj49g5etq4rh0nqpa.apps.googleusercontent.com'
 	},
 	map: {
 		apiKey: 'AIzaSyBayPzQHaRBdgUDqT79q683ZDAnw_enaII' // new Google dev MAP id
