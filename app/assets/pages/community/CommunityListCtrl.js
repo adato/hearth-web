@@ -12,9 +12,10 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
     var vm = this;
     vm.list = [];
     vm.myCommunities;
-    vm.loading = false;
+    vm.loading = true;
+    vm.loaded = false;
     vm.shouldLoadMore = true;
-    vm.total = 0;
+    vm.total = null;
 
     var ItemFilter = new UniqueFilter();
 
@@ -28,6 +29,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
 		vm.finishLoading = function (res) {
       vm.loading = false;
+      vm.loaded = true;
       vm.total = vm.total + (res.length || 0);
       vm.shouldLoadMore = (res.length > 0);
 		}
