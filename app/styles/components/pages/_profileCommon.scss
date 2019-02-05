@@ -46,12 +46,14 @@
 			}
 		}
 		.button-bar {
-			margin-left: 1rem;
-			float: right;
-			text-align: right;
+			//margin-left: 1rem;
+			//float: right;
+			//text-align: right;
 			padding-left: 0px;
 			padding-right: 0px;
-			min-width:380px;
+			@include breakpoint(medium up) {
+				min-width:380px;
+			}
 		}
 		.highlights {
 			display: block;

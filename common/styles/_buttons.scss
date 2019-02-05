@@ -76,6 +76,10 @@
   .button-group.large &,
   &.large {
     padding: 1.5em 1em;
+    @include breakpoint(small down) {
+      padding:0.5em;
+      margin-bottom:0.5em;
+    }
   }
 
   &.button-white {

@@ -11,7 +11,7 @@
 			<item-list options="communityPostListInactiveOptions"></item-list>
 		</div>
 
-		<div ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0" class="box panel panel-default text-center padding-large">
+		<div ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0" class="box panel panel-default text-center padding-large margin-bottom-large">
 			<h3 class="margin-bottom-large" translate="COMMUNITY.NOGIFTS.TITLE"></h3>
 			<p class="margin-bottom-large margin-top-large" translate="COMMUNITY.NOGIFTS.DESCRIPTION"></p>
 			<button class="button margin-top-large" ng-click="addItem()" ng-if="info.is_member" translate="COMMUNITY.NOGIFTS.ACTION_ADD_FIRST_GIFT"></button>
