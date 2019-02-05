@@ -228,6 +228,9 @@ nav {
 		margin: 0 auto;
 		padding: 6px;
 		max-width:$global-width;
+		@include breakpoint(small down) {
+			min-height:120px;
+		}
 
 		section.bar-columns {
 			padding:0;

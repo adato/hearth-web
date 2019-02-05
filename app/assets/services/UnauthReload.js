@@ -41,9 +41,6 @@ angular.module('hearth.services').service('UnauthReload', [
 			var loc = self.getLocation();
 			
 			if (loc) {
-				if (loc.indexOf('app/') > -1) {
-					loc = loc.replace('app/', '');
-				}
 				if (loc.indexOf('//') > -1) {
 					loc = loc.replace('//', '/');
 				}
@@ -52,6 +49,9 @@ angular.module('hearth.services').service('UnauthReload', [
 				}
 				if (loc.indexOf('%252F') > -1) {
 					loc = loc.replace(/\%252F/gi, '/');
+				}
+				if (loc.indexOf('app/') > -1) {
+					loc = loc.replace('app/', '');
 				}
 				if (loc[0] == '/') {
 					loc = loc.substr(1);
