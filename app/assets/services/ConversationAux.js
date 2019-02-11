@@ -101,7 +101,8 @@ angular.module('hearth.services').factory('ConversationAux', ['$q', 'Conversatio
 	 *		- archived, deleted, created, read, unread
 	 */
 	function handleEvent(socketEvent) {
-		if (socketEvent.unread !== void 0) Messenger.setUnreadCount(socketEvent.unread)
+		if (typeof socketEvent == 'undefined') return Messenger.setUnreadCount(0);
+		if (socketEvent.unread !== void 0) Messenger.setUnreadCount(socketEvent.unread);
 
 		if (!processingRunning) return void 0
 

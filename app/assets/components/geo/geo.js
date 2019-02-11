@@ -144,7 +144,8 @@ angular.module('hearth.geo').factory('geo', [
 			 * @param {google.maps.Map} map (optional)  - if not set, last created map will be used
 			 */
 			focusLocation: function(location, map) {
-				(map || _map).setCenter(location);
+				var m = (map || _map);
+				if (m && m.setCenter) m.setCenter(location);
 			},
 
 			/**

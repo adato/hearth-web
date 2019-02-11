@@ -32,6 +32,16 @@ angular.module('hearth.services').factory('Interests', ['$q', 'User', '$rootScop
                     let interests = profile.interests;
                     // remove those weird ones:
                     if (interests.length == 1 && interests[0].length > 10) { interests = []; }
+                    if (interests.length) {
+                        interests = interests.filter(function (interest) {
+                            if (interest.length > 20) return false;
+                            if (interest.indexOf("-") > -1) return false;
+                            return true;
+                        })
+                        interests = interests.map(function (interest) {
+                            return interest.trim();
+                        })
+                    }
                     Cache.put(cacheKey, interests);
                     deferred.resolve(interests);
                 });
