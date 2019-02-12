@@ -50,7 +50,7 @@
 				<div class="box-content">
 					<header class="item-section row">
 						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
-							<span class="color-dark-gray" title="{{:: item.updated_at_date }}">{{:: item.updated_at_timeago}}</span>
+							<span class="color-dark-gray" title="{{:: item.updated_at_date }}" tipsy>{{:: item.updated_at_timeago}}</span>
 							<div class="display-inline-block" post-dropdown="item"></div>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium">
@@ -128,19 +128,19 @@
 							<div class="display-flex flex-wrap">
 								<div class="padding-right-large" ng-if=":: mine">
 									<div class="touchable-wrapper">
-										<a class="touchable" title="{{:: 'POST.ACTION_EDIT' | translate}}" ng-click="edit(item)">
+										<a class="touchable" title="{{:: 'POST.ACTION_EDIT' | translate}}" ng-click="edit(item)" tipsy>
 											<i class="fa fa-fw fa-pencil"></i>
 										</a>
-										<a class="touchable" title="{{:: 'POST.ACTION_RESUME' | translate}}" ng-if=":: !isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+										<a class="touchable" title="{{:: 'POST.ACTION_RESUME' | translate}}" ng-if=":: !isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)" tipsy>
 											<i class="fa fa-fw" ng-class=":: {'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 										</a>
-										<a class="touchable" title="{{:: 'POST.ACTION_SUSPEND' | translate}}" ng-if="isActive" ng-click="confirmBox({title: 'POST.SUSPEND.LABEL', text: 'POST.SUSPEND.ARE_YOU_SURE', callback: pauseToggle, params: item, callbackScope: this})">
+										<a class="touchable" title="{{:: 'POST.ACTION_SUSPEND' | translate}}" ng-if="isActive" ng-click="confirmBox({title: 'POST.SUSPEND.LABEL', text: 'POST.SUSPEND.ARE_YOU_SURE', callback: pauseToggle, params: item, callbackScope: this})" tipsy>
 											<i class="fa fa-fw fa-pause"></i>
 										</a>
-										<a class="touchable" title="{{:: 'COMMON.ACTION_REMOVE' | translate}}" ng-click="confirmBox({title: 'POST.REMOVE.LABEL', text: 'POST.REMOVE.ARE_YOU_SURE', callback: deleteItem, params: item, callbackScope: this})">
+										<a class="touchable" title="{{:: 'COMMON.ACTION_REMOVE' | translate}}" ng-click="confirmBox({title: 'POST.REMOVE.LABEL', text: 'POST.REMOVE.ARE_YOU_SURE', callback: deleteItem, params: item, callbackScope: this})" tipsy>
 											<i class="fa fa-fw fa-times"></i>
 										</a>
-										<a class="touchable show-on-profile-only hide-for-community" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)">
+										<a class="touchable show-on-profile-only hide-for-community" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)" tipsy>
 											<i class="fa fa-fw fa-map-pin" ng-class="{ 'color-primary': item.is_pinned }"></i>
 										</a>
 									</div>
@@ -172,7 +172,7 @@
 									</a>
 									<span ng-class="{'touchable-blue bold': max(item.comments.length, item.comments_count) > 0}" ng-show="max(item.comments.length, item.comments_count) > 0" ng-bind="max(item.comments.length, item.comments_count)"></span>
 								</div>
-								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="Share">
+								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="{{ 'POST.SHARE.LINK_TITLE' | translate }}">
 									<i class="fa fa-fw fa-share-alt"></i>
 								</a>
 								<div heart item="item"></div>
