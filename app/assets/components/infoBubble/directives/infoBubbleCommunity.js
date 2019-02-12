@@ -33,9 +33,8 @@ angular.module('hearth.directives').directive('infoBubbleCommunity', [function()
             communityDetail: Community.get({_id: ctrl.model._id}).$promise
           })
           .then(res => {
-            const about = res.communityDetail.about || res.communityDetail.motto
+            const about = res.communityDetail.short_description || res.communityDetail.description
             res.communityDetail.about_shortened = about ? (about.length > (MottoLength + 3) ? (about.substring(0, MottoLength) + '…') : about) : ''
-            // res.communityDetail.about_shortened = res.communityDetail.about ? (res.communityDetail.about.length > (MottoLength + 3) ? (res.communityDetail.about.substring(0, MottoLength) + '…') : res.communityDetail.about) : ''
             ctrl.model.infoBubble = res.communityDetail
             initDone()
           }).catch(err => {

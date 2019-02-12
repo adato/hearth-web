@@ -353,8 +353,11 @@
 .background-dark-gray{background-color: $dark-gray !important}
 .background-light-primary {background-color: lighten($primary-color, 35%) !important}
 .background-light-secondary {background-color: lighten($secondary-color, 40%) !important}
-
 /* /COLOR */
+
+.border-radius-small { border-radius: 1px; }
+.border-radius-medium { border-radius: 3px; }
+.border-radius-large { border-radius: 5px; }
 
 /* LINKS */
 .link-primary,

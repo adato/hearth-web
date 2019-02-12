@@ -43,7 +43,7 @@
 			<p class="text-center" ng-if="!vm.myCommunities.length" translate="COMMUNITY.NO_MY_COMMUNITIES">
 			</p>
 		</div>
-		<div ng-show="vm.total === null && vm.loaded" class="text-larger">
+		<div ng-show="(vm.total === null || vm.total == 0) && vm.loaded" class="text-larger">
 			<div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communityCreate" translate="COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART1"></a>
 				{{ :: 'COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART2' | translate }}</div>
 			<div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communities-all" translate="COMMUNITY.EMPTY_LIST_COMMUNITIES_PART1"></a>

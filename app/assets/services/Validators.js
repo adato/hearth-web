@@ -22,9 +22,6 @@ angular.module('hearth.services').service('Validators', [
 			},
 			'linkedin': {
 				'url': 'linkedin.com\/.*'
-			},
-			'googleplus': {
-				'url': 'plus.google.com\/.*'
 			}
 		};
 

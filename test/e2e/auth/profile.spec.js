@@ -204,7 +204,6 @@ describe('user profile', function() {
     beacon('social-fb').clear().sendKeys('http://facebook.com/profile' + randomNumber);
 		beacon('social-twitter').clear().sendKeys('http://twitter.com/profile' + randomNumber);
 		beacon('social-linkedin').clear().sendKeys('http://linkedin.com/profile' + randomNumber);
-		beacon('social-gplus').clear().sendKeys('http://plus.google.com/profile' + randomNumber);
 
 		clickSubmitButton();
 	});
@@ -242,9 +241,6 @@ describe('user profile', function() {
 		beacon('social-linkedin').getAttribute('value').then(function(gotvalue){
 			expect(gotvalue).toBe('http://linkedin.com/profile' + randomNumber);
 		});
-		beacon('social-gplus').getAttribute('value').then(function(gotvalue){
-			expect(gotvalue).toBe('http://plus.google.com/profile' + randomNumber);
-		});
 
 		element.all(by.css('[test-beacon="web-input"]')).get(0).getAttribute('value').then(gotvalue => {
 			expect(gotvalue).toBe('http://profile' + randomNumber + '.com');
@@ -271,7 +267,6 @@ describe('user profile', function() {
 		beacon('social-fb').clear();
 		beacon('social-twitter').clear();
 		beacon('social-linkedin').clear();
-		beacon('social-gplus').clear();
 
 		element.all(by.css('[test-beacon="web-input"]')).get(0).clear();
 		beacon('web-adder').click();

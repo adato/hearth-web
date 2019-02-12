@@ -36,8 +36,7 @@
 					</a>
 				</h1>
 				<div class="display-inline-flex">
-					<div class="button-bar">
-
+					<div class="button-bar text-right">
 						<div ng-if="!mine && !info.is_member && !info.is_applicant">
 							<!-- i am NOT a member or applicant of the community -->
 							<button ng-if=":: loggedUser._id && !info.is_applicant" ng-click="applyForCommunity()" class="large button">

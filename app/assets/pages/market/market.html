@@ -1,6 +1,6 @@
 <div id="notify-container-market"></div>
 <div class="market">
-  <div class="small-12 large-9 columns">
+  <div class="small-12 large-9 columns main-market-column">
 
     <div ng-if="infoMessageToShow" class="row margin-horizontal-none margin-bottom-large">
       <div class="column medium-10 medium-push-2 padding-medium close-wrapper box">
@@ -65,6 +65,9 @@
     <div class="margin-bottom-tiny">
       <tag-cloud></tag-cloud>
     </div>
+
+    <!-- FLYING FOOTER -->
+    <flying-footer hide-if-underruns-element="'.main-market-column'"></flying-footer>
   </div>
 
   <script type="text/ng-template" id="trusted-profile">

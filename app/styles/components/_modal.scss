@@ -69,7 +69,7 @@
 		font-size: $global-font-size;
 		margin: 0 auto;
 	    display: inline-block;
-	    /*max-width: 650px;*/
+	    min-width: 420px;
 		position: relative;
 		text-align: left;
 		margin-top: 6%;
@@ -206,6 +206,7 @@ body.ngdialog-open {
 		animation: none;
 	}
 	.ngdialog-content {
+		min-width: 260px !important;
 		width: 97%;
 	}
 	.ngdialog-content .modal {

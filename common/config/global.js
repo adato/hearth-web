@@ -22,9 +22,8 @@ window['$$config'] = {
 	sharingEndpoints: {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 		facebook_invite: 'https://www.facebook.com/share.php?u=',
-		gplus: 'https://plus.google.com/share?url=',
 		twitter: 'https://twitter.com/share?url=',
-		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
+		linkedin: 'https://www.linkedin.com/shareArticle?mini=true&url='
 	},
 	activitiesIcons: {
 		new_post: 'new_post',

@@ -255,7 +255,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			rating.post_id = (rating.post_id && rating.post_id != '0') ? rating.post_id : null;
 
 			var out = {
-				current_community_id: rating.current_community_id,
+				//current_community_id: rating.current_community_id,
 				id: $scope.info._id,
 				rating: rating
 			};
@@ -273,13 +273,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				// close form
 				$scope.closeUserRatingForm();
-
+				
 				// refresh user counters
 				$scope.refreshUser(false);
-
+				
+				Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
 				// broadcast new rating - this will add rating to list
 				$scope.$broadcast('userRatingsAdded', res);
-				// Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
 
 			}, function(err) {
 				// remove lock

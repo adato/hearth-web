@@ -6,8 +6,6 @@
  * @restrict E
  */
 
-
-
 angular.module('hearth.directives').directive('myCommunities', [
 	function() {
 		return {
@@ -42,7 +40,7 @@ angular.module('hearth.directives').directive('myCommunities', [
 						});
 						$q.all(promises).then(function (results) {
 							// sort them by number of posts
-							if (!results) {
+							if (!results || !results.length) {
 								return UserCommunitiesCache.put('by-number-of-posts', []);
 							}
 							var tmpList = Object.values(results).sort(function (a, b) {

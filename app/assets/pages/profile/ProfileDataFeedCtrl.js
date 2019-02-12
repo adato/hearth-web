@@ -386,7 +386,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		// will add new rating to data array
 		$scope.addUserRating = function($event, item) {
 			$scope.data.unshift(item);
-			$scope.flashRatingBackground(item);
 		};
 
 		$scope.$on('userRatingsAdded', $scope.addUserRating);

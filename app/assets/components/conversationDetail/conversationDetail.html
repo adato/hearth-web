@@ -74,7 +74,7 @@
 											</div>
 										</h5>
 									</a>
-									<span class="color-dark-gray" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
+									<span class="color-dark-gray" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at" tipsy></span>
 								</div>
 								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 								<file-viewer ng-if="item.file_attachments.length" message="item"></file-viewer>
