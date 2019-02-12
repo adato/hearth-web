@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('flyingFooter', [
 
 					if (stickySidebar) { 
 						var stickyHeight = stickySidebar.height(),
+						stickyWidth = stickySidebar.width(),
 						sidebarTop = stickySidebar.offset().top;
 					}
 
@@ -33,10 +34,14 @@ angular.module('hearth.directives').directive('flyingFooter', [
 						if (stickySidebar && (!underrunElement || underrunElement && underrunElement.height() > sidebarTop + 300)) {
 							element.css('display', 'block');
 							var scrollTop = $(window).scrollTop();
-							if (sidebarTop < scrollTop + stickyHeight) {
-								stickySidebar.css('margin-top', scrollTop - sidebarTop + stickyHeight);
+							if (sidebarTop < scrollTop + stickyHeight - 20) {
+								stickySidebar.css('position', 'fixed');
+								stickySidebar.css('top', '50px');
+								stickySidebar.css('width', stickyWidth);
 							} else {
-								stickySidebar.css('margin-top', '0');
+								stickySidebar.css('position', '');
+								stickySidebar.css('top', '');
+								stickySidebar.css('width', '');
 							} 
 						} else {
 							element.css('display', 'none');
