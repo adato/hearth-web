@@ -25,7 +25,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.searchBarDisplayed = false;
 		$rootScope.socialLinks = {
 			facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
-			gplus: 'https://plus.google.com/share?url=',
 			twitter: 'https://twitter.com/share?url='
 		};
 
@@ -777,15 +776,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 
 		// this will flash rating box with some background color
-		$rootScope.flashRatingBackground = function(rating) {
-			$timeout(function() {
+		// $rootScope.flashRatingBackground = function(rating) {
+		// 	$timeout(function() {
 
-				$('#rating_' + rating._id).toggleClass('blink-rating');
-				$timeout(function() {
-					$('#rating_' + rating._id).toggleClass('blink-rating');
-				}, 1200);
-			});
-		};
+		// 		$('#rating_' + rating._id).toggleClass('blink-rating');
+		// 		$timeout(function() {
+		// 			$('#rating_' + rating._id).toggleClass('blink-rating');
+		// 		}, 1200);
+		// 	});
+		// };
 
 		// == deactivate / prolong / activate post item
 		// and close modal or call given callback

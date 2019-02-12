@@ -106,7 +106,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var isOk = true;
 			var isWebsOk = true;
 			var isLinkOk = true;
-			['facebook', 'twitter', 'linkedin', 'googleplus'].forEach(function(networkName) {
+			['facebook', 'twitter', 'linkedin'].forEach(function(networkName) {
 				if ($scope.profile[networkName]) {
 					isLinkOk = Validators.social($scope.profile[networkName], networkName);
 					$scope.showError.social_networks[networkName] = !isLinkOk;

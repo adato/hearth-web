@@ -450,7 +450,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		// will add new rating to data array
 		$scope.addCommunityRating = function($event, item) {
 			$scope.data.unshift(item);
-			$scope.flashRatingBackground(item);
+			// $scope.flashRatingBackground(item);
 		};
 
 		$scope.$on('refreshSubpage', init);
