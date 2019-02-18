@@ -1,1 +1,2 @@
-/app/*    /app/index.html   200
+/app/*      /app/index.html         200
+/groups/    http://go.hearth.net/   302
