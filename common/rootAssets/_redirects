@@ -1,2 +1,2 @@
 /app/*      /app/index.html         200
-/groups/*    http://go.hearth.net/   302
+/groups/*    http://go.hearth.net/:splat   302
