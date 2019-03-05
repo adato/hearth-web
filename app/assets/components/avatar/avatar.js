@@ -46,7 +46,7 @@ angular.module('hearth.directives').directive('avatar', [function() {
 
 			$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user')
 			$scope.style = {};
-			if ($attrs.src) $scope.style['background-image'] = 'url(' + $scope.src + ')';
+			if ($attrs.src && typeof $scope.src != 'undefined') $scope.style['background-image'] = 'url(' + $scope.src + ')';
 			if ($attrs.thanks && $scope.showGlow === true) $scope.style['box-shadow'] = getBoxShadow($scope.thanks);
 		}
 	}

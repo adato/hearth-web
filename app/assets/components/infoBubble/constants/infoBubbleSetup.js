@@ -70,8 +70,8 @@ function ($templateCache, $compile, $rootScope, $document, $timeout) {
     const YOFFSET = -20;
 
     var bubbleObj = $document[0].querySelector("[bubble-wrapper]");
-    var parentTop = parentElement[0].offsetTop;
-    var parentLeft = parentElement[0].offsetLeft;
+    var parentTop = parentElement.offsetTop;
+    var parentLeft = parentElement.offsetLeft;
     var bubbleWidth = bubbleObj.offsetWidth;
     var documentWidth = $document[0].body.offsetWidth;
     bubbleObj.style.top = parentTop + YOFFSET + 'px';

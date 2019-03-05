@@ -24,7 +24,7 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
           InfoBubbleSetup.setIntent({ 
             model: scope.infoBubble, 
             type: scope.infoBubbleType, 
-            element: element
+            element: element[0]
           });
         })
         element.on('mouseleave', function () {
