@@ -25,6 +25,8 @@ window['$$config'] = {
 		twitter: 'https://twitter.com/share?url=',
 		linkedin: 'https://www.linkedin.com/shareArticle?mini=true&url='
 	},
+	shortLinkGeneratorUrl: 'https://go.hearth.net/',
+	shortLinkAccessUrl: 'https://hearth.net/groups/',
 	activitiesIcons: {
 		new_post: 'new_post',
 		community_new_post: 'new_post',

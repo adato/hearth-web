@@ -4,13 +4,14 @@ $info-bubble-width: (5 * ($info-bubble-image-width + $size-small)) - $size-small
 
 .info-bubble {
     position: absolute;
-    display: none;
-    // width: 330px;
-    // max-width: 300px;
+    display: block;
     width: $info-bubble-width;
     max-width: $info-bubble-width;
     text-align: left;
     background: $white;
+    color:$black;
+    line-height:140%;
+    font-size:$fontSize;
     border-radius: $global-radius;
     box-shadow: $ui-box-shadow;
     transition: opacity .1s;

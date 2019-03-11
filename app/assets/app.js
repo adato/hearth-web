@@ -161,18 +161,6 @@ angular.module('hearth', [
 				};
 			}]);
 		}
-	]).config(['InfoBubbleSetup',
-		function(InfoBubbleSetup) {
-
-			InfoBubbleSetup.enabled = false
-
-			InfoBubbleSetup.templateGet = type => `assets/components/infoBubble/templates/infoBubble${type}Wrapper.html`
-
-			InfoBubbleSetup.typeMap.user = 'User'
-		  InfoBubbleSetup.typeMap.location = 'Location'
-		  InfoBubbleSetup.typeMap.community = 'Community'
-
-		}
 	]).run(['$rootScope', 'Auth', '$translate', 'tmhDynamicLocale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig', '$window',
 		function($rootScope, Auth, $translate, tmhDynamicLocale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig, $window) {
 			$rootScope.appInitialized = false;
