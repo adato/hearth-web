@@ -32,5 +32,5 @@ $$localConfig = {
 		applicationID: "5595469",
 		agent: "js-agent.newrelic.com/nr-515.min.js"
 	},
-	notificationUserId: '5aeafc9e9a8ab50006865e9d'
+	notificationUserId: '5af2d6ca4c5eaa00068c221f'
 };

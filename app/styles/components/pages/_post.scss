@@ -10,10 +10,10 @@ $ui-color-like-icon: #FF68B0;
 .user {
 	position: relative;
 	text-align: center;
-	font-weight: bold;
-	font-size: 0.8em;
-
+	
 	div.name {
+		font-size: 0.8em;
+		font-weight: bold;
 		margin: {
 			top: 1rem;
 		}
