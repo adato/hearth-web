@@ -30,6 +30,20 @@
 			overflow: visible;
 		}
 	}
+
+	@include breakpoint(small only) {
+		header .user-basic {
+			h1 {
+				text-align:center;
+			}
+		}
+		header .profile-action-buttons {
+			width:100%;
+			margin-top:4*$ui-small-grid-size;
+			justify-content: center;
+		}
+		
+	}
 }
 
 .community-applications-list {
@@ -149,3 +163,5 @@
 .line-height-double {
 	line-height:200%;
 }
+
+
