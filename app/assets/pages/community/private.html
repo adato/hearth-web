@@ -7,13 +7,13 @@
         translate="COMMUNITY.PRIVACY.PRIVATE_FULL_DESCRIPTION">
     </h4>
     <div class="large-6 large-push-3 margin-top-large padding-top-large text-center">
-            <button ng-click="applyForCommunity()" class="button large" ng-if="loggedUser._id && !info.is_applicant">
-                <span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
-            </button>
-            <div ng-if="info.is_applicant" class="box display-flex flex-space-between text-left padding-right-small">
-                <i class="padding-right-medium" style="font-size:50px; color:#159700;">✓</i>
-                <span translate="COMMUNITY.APPLY_FOR_PRIVATE_MEMBERSHIP_SENT"></span>
-            </div>
+        <button ng-click="applyForCommunity()" class="button large" ng-if="loggedUser._id == null || (loggedUser._id && !info.is_applicant)">
+            <span translate="COMMUNITY.ACTION_APPLY_FOR_MEMBERSHIP"></span>
+        </button>
+        <div ng-if="loggedUser._id && info.is_applicant" class="box display-flex flex-space-between text-left padding-right-small">
+            <i class="padding-right-medium" style="font-size:50px; color:#159700;">✓</i>
+            <span translate="COMMUNITY.APPLY_FOR_PRIVATE_MEMBERSHIP_SENT"></span>
+        </div>
     </div>
     <div class="text-center margin-top-large">
         <img src="/app/assets/img/flame.svg">

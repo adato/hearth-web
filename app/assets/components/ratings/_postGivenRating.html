@@ -27,9 +27,9 @@
 			</div>
 			<div class="left">
 				<b ng-if="item.score == -1">
-					<i class="score-icon fa icon-rating-negative"></i><span translate="PROFILE.RATING.NEGATIVE"></span></b>
+						<span class="score-icon bold">⛅️</span> <span translate="PROFILE.RATING.NEGATIVE"></span></b>
 				<b ng-if="item.score == 1">
-					<i class="score-icon bold fa icon-rating-positive"></i><span translate="PROFILE.RATING.POSITIVE"></span></b>
+					<span class="score-icon">🌞</span> <span translate="PROFILE.RATING.POSITIVE"></span></b>
 				<small ng-if="item.post_id">
 					&nbsp;<span translate="PROFILE.RATING.ON_POST"></span>
 					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title }}">
