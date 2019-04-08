@@ -283,16 +283,17 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		$scope.addMembersModal = function() {
-			ngDialog.open({
-				templateUrl: 'assets/modals/addCommunityMembers.html',
-				controller: 'AddCommunityMembersCtrl',
-				controllerAs: 'ctrl',
-				data: { community: $scope.info },
-				className: 'ngdialog-theme-default',
-				closeByDocument: false,
-				showClose: false,
-				closeByEscape: true,
-			})
+			
+			// ngDialog.open({
+			// 	templateUrl: 'assets/modals/addCommunityMembers.html',
+			// 	controller: 'AddCommunityMembersCtrl',
+			// 	controllerAs: 'ctrl',
+			// 	data: { community: $scope.info },
+			// 	className: 'ngdialog-theme-default',
+			// 	closeByDocument: false,
+			// 	showClose: false,
+			// 	closeByEscape: true,
+			// })
 		}
 
 

@@ -1,7 +1,12 @@
 <div class="clear"></div>
+
+
 <div ng-show="subPageLoaded">
 	<div class="large-9 columns">
-
+		<div ng-if="mine" ng-include="'assets/pages/community/onboarding/for-admin.html'">
+			<!-- include admin onboarding-->
+		</div>
+		
 		<div when-scrolled="loadNext()" ng-show="postPageOffset > 0 || communityPostCount.active > 0">
 			<item-list options="communityPostListActiveOptions"></item-list>
 		</div>
@@ -23,7 +28,7 @@
 		</a>
 		<h4 class="display-inline-block" translate="COMMUNITY.MEMBERS_LIST"></h4>
 		<community-members count="10" community="info"></community-members>
-		<button class="button margin-top-small" ng-click="addMembersModal()" ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
+		<button class="button margin-top-small" ui-sref="community.subview({ id: info._id, page:'invite' })" ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
 
 		<div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
 
