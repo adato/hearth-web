@@ -232,7 +232,7 @@ angular.module('hearth.controllers').controller('PostEdit', [
 				}
 
 				var postLanguage = $.cookie(POST_LANGUAGE);
-				if (!post.language) post.language = (postLanguage ? postLanguage : $.cookie('language'));
+				if (!post.language) post.language = (postLanguage ? postLanguage : $$config.defaultLanguage);
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.communities = !!post.related_communities.length;

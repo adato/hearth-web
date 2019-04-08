@@ -5,7 +5,7 @@ window['$$config'] = {
 	modalTemplates: 'assets/modals/',
 	staticTemplatesRoute: 'assets/locales/',
 	lengthUnit: 'km',
-	defaultLanguage: 'en',
+	defaultLanguage: 'cs',
 	maxImagesSize: 6, // max size of all attached images in MB
 	fbSharing: {
 		minWidth: 200,
