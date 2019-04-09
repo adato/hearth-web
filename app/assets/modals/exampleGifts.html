@@ -1,0 +1,18 @@
+<div class="example-gifts formStyle itemEdit modal">
+	<div class="head">
+		<h2>
+			<span translate="HEARTH.EXAMPLE_GIFTS.TITLE"></span> 
+		</h2>
+		<span ng-click="close()" class="close fa fa-times"></span>
+		<hr />
+	</div>
+
+    <div class="display-block" ng-bind-html="'HEARTH.EXAMPLE_GIFTS.CONTENT' | translate">
+    </div>
+
+    <div class="display-flex flex-reverse margin-top-medium">
+        <button class="button" ng-click="closeThisDialog()" translate="COMMON.ACTION_CLOSE"></button>
+    </div>
+
+	<div class="clear"></div>
+</div>

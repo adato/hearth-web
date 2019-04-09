@@ -20,6 +20,7 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
             
         }
         ctrl.communityLink = null;
+        ctrl.showMaxPostsError = false;
 
         const PDF_FRONTEND_URL = "http://pdf.hearth.net.adato.miniserver.cz/";
         const PDF_API_URL = "https://67ngmpm84c.execute-api.us-east-1.amazonaws.com/dev/pdf"
@@ -101,6 +102,33 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                 throw new Error("Error PDF FE");
             })
         }
+
+
+        function selectAllText() {
+            var el = $window.document.getElementById('community-invitation-textarea');
+            if (el && el.focus && el.select) {
+                el.focus();
+                el.select();
+            }
+        }
+
+        ctrl.copyLink = () => {
+            console.log("copylink")
+            selectAllText();
+            $window.document.execCommand("copy");
+            ctrl.showSuccessTick = true;
+            $window.setTimeout(() => {
+                ctrl.showSuccessTick = false;
+            }, 1000);
+        }
+
+        ctrl.checkNumberOfSelectedPosts = () => {
+            var num = (ctrl.invitation.posts.filter((item) => {
+                return (item.checked === true);
+            }).length);
+            return num > 2;
+        }
+
 
         ctrl.fetchCommunityInfo();
         ctrl.fetchPosts();

@@ -22,7 +22,7 @@
                   </div>
                   <ul class="actions-dropdown text-left" style="display:none;" id="more-actions-admin">
                     <li>
-                      <span>TT Skrýt tento tip</span>
+                      <span><a href="" ng-click="hideOnboarding()" translate="COMMON.ACTION_HIDE_TIP"></a></span>
                     </li>
                     <!-- /admin only -->
                   </ul>
@@ -37,26 +37,23 @@
             </div>
 
             <div class="column small-12 medium-7 medium-pull-5 large-10 large-pull-2">
-              <h2>
-                TT Jak přivést život do této skupiny?
-              </h2>
+              <h2 translate="COMMUNITY.ADMIN_ONBOARDING.TITLE"></h2>
             </div>
 
             <div class="column small-12">
-              <p>Jak přivést život do této skupiny?</p>
 
-              <p>Darování přináší radost a zlepšuje vztahy. Rozjeďte to i u vás ve firmě, sousedství nebo
-                jiné skupině. Zde jsou tipy, jak na to:</p>
+              <p translate="COMMUNITY.ADMIN_ONBOARDING.SUBTITLE"></p>
 
               <ol class="ol-spaced-list">
-                <li><a href="" class="text-bigger bold" ui-sref="community.subview({ id: info._id, page: 'invite' })">Přidej dva aktivní pomocníky</a><br>
-                  Utvoříte spolu důležitý základ skupiny.</li>
+                <li><a href="" class="text-bigger bold" ui-sref="community.subview({ id: info._id, page: 'invite' })" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_1_LINK"></a><br>
+                  <span translate="COMMUNITY.ADMIN_ONBOARDING.STEP_1_TEXT"></span></li>
 
-                <li><a href="" class="text-bigger bold">Přidejte každý dva dary nebo přání</a><br>
-                  Hezké a lákavé pro ostatní - <a href="">například tyto</a>.</li>
+              <li><a href="" class="text-bigger bold" ng-click="addItem()" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_2_LINK"></a><br>
+                <span translate="COMMUNITY.ADMIN_ONBOARDING.STEP_2_TEXT"></span> - <a href="" ng-click="showPreferredGifts()" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_2_LINK_2"></a></a>.</li>
 
-                <li><a href="" class="text-bigger bold" ui-sref="community.invite({ id: info._id, page: 'invite' })">Pozvi ostatní kolegy, sousedy, apod.</a><br>
-                  Pomocí e-mailu, letáků nebo plakátů.</li>
+                <li><a href="" class="text-bigger bold" ui-sref="community.invite({ id: info._id, page: 'invite' })" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_3_LINK"></a><br>
+                  <span translate="COMMUNITY.ADMIN_ONBOARDING.STEP_3_TEXT"></span>
+                </li>
                 </ul>
             </div>
           </header>

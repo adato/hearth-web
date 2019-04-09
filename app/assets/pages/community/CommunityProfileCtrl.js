@@ -7,9 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService', 'ngDialog', '$timeout',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService, ngDialog, $timeout) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils', 'UsersCommunitiesService', 'ngDialog', '$timeout', 'LocalStorage',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils, UsersCommunitiesService, ngDialog, $timeout, LocalStorage) {
 		$scope.profileLoaded = false;
+		$scope.pageSegment = $stateParams.page || 'posts';
+		$scope.showHeader = ($scope.pageSegment != 'invite');
 		$scope.info = false;
 		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
@@ -17,6 +19,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.sendingRating = false;
 		$scope.activePage = false;
 		$scope.showUserRatingForm = false;
+		$scope.showOnboarding = false;
 		$scope.communityService = UsersCommunitiesService;
 		$scope.rating = {
 			current_community_id: null,
@@ -53,6 +56,8 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $rootScope.loggedUser._id === res.admin; // is community mine?
+
+				$scope.showOnboarding = $scope.getOnboardingState($scope.info._id);
 
 				PageTitle.setTranslate('COMMUNITY.PROFILE.TITLE', res.name);
 
@@ -282,28 +287,43 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
-		$scope.addMembersModal = function() {
-			
-			// ngDialog.open({
-			// 	templateUrl: 'assets/modals/addCommunityMembers.html',
-			// 	controller: 'AddCommunityMembersCtrl',
-			// 	controllerAs: 'ctrl',
-			// 	data: { community: $scope.info },
-			// 	className: 'ngdialog-theme-default',
-			// 	closeByDocument: false,
-			// 	showClose: false,
-			// 	closeByEscape: true,
-			// })
+		$scope.getOnboardingState = function (id) {
+			var onboardingStates = JSON.parse(LocalStorage.get("hideOnboarding"));
+			return (!onboardingStates || !onboardingStates.length || onboardingStates.indexOf(id) !== true);
 		}
+
+		$scope.hideOnboarding = function() {
+			if ($scope.info && $scope.info._id) {
+				var previousState = JSON.parse(LocalStorage.get("hideOnboarding")) || [];
+				if (typeof previousState != 'array') previousState = [$scope.info._id];
+				else previousState.push($scope.info._id);
+
+				LocalStorage.set("hideOnboarding", JSON.stringify(previousState));
+				$scope.showOnboarding = false;
+			}
+		}
+
+		$scope.showPreferredGifts = function () { 
+			var dialog = ngDialog.open({
+				template: $$config.modalTemplates + 'exampleGifts.html',
+				closeByDocument: true,
+				closeByEscape: true,
+				showClose: false
+			})
+		}
+
+		
 
 
 		$scope.init = function() {
 			//refreshDataFeed();
 			fetchCommunity();
+			
 		};
-
+		
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
 			$scope.activePage = params.page;
+			$scope.showHeader = ($scope.activePage != 'invite');
 		});
 
 		$scope.$on('postCreated', function(ev, route, params) {

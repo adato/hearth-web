@@ -17,7 +17,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		$scope.activityShow = false;
 		$scope.activityLog = [];
 		$scope.activityLogFetchRunning;
-		$scope.view = { expanded: false }; // used for template action binding
+		$scope.view = { 
+			expanded: false 
+		}; // used for template action binding
 		var activityLogComplete;
 		// Count of all activities includes activities inside the groups
 		var activityLogOffset = 0;
@@ -270,7 +272,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			var loadService = loadServices[$scope.pageSegment];
 			$scope.debug && $log.log("Calling load service for segment ", $scope.pageSegment);
 			loadService($stateParams.id, processData, processDataErr);
-			$scope.showHeader = ($scope.pageSegment != 'invite');
 
 			// refresh after new post created
 			if (!inited && ['posts', 'home'].indexOf($scope.pageSegment) > -1) {
