@@ -36,18 +36,23 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                 }).then((response) => {
                     if (response.data && response.data.url) {
                         ctrl.communityLink = $window.$$config.shortLinkAccessUrl + response.data.url;
+                        ctrl.initCommunityInfo(id);
                     }
                 }, (error) => {
                     ctrl.communityLink = communityLink;
+                    ctrl.initCommunityInfo(id);
                 });
             } else {
                 ctrl.communityLink = communityLink;
+                ctrl.initCommunityInfo(id);
             }
+        }
 
+        ctrl.initCommunityInfo = (id) => {
             Community.get({ _id: id }).$promise.then((res) => {
                 ctrl.invitation.communityLink = ctrl.communityLink;
                 ctrl.invitation.communityName = res.name;
-                ctrl.invitation.body = $filter('translate')(ctrl.invitation.body)
+                 ctrl.invitation.body = $filter('translate')(ctrl.invitation.body)
                     .replace("COMMUNITY_NAME", res.name)
                     .replace("COMMUNITY_URL", ctrl.communityLink);
             })
@@ -77,7 +82,6 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
 
 
         ctrl.generatePoster = (type) => {
-            console.log("generate poster");
             let filtered = ctrl.invitation.posts.filter((item) => {
                 return (item.checked === true);
             });
@@ -92,7 +96,6 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                 if (res.data && res.data.result === "ok") {
                     let token = res.data.token;
                     let tmpUrl = PDF_FRONTEND_URL + "?token=" + token + "&layout=" + type;
-                    console.log("open", tmpUrl)
                     let url = encodeURIComponent(tmpUrl);
                     $window.open(PDF_API_URL + '?url=' + url);
                 } else {
@@ -113,7 +116,6 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
         }
 
         ctrl.copyLink = () => {
-            console.log("copylink")
             selectAllText();
             $window.document.execCommand("copy");
             ctrl.showSuccessTick = true;
