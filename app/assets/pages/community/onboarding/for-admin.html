@@ -1,0 +1,64 @@
+<article class="item-common item-post bubbled">
+  <div class="row margin-bottom-large">
+    <section class="column medium-2 show-for-medium padding-top-small position-relative">
+      <div class="v2 user text-center display-block">
+        <avatar class="" type="'User'" src="config.imgUrl + '/logo-round.png'"
+            thanks=":: item.author.up_votes" show-thanks="true" show-glow="true"></avatar>
+      </div>
+    </section>
+    <div class="column small-12 medium-10 padding-none position-relative">
+      <section class="box padding-none padding-bottom-small">
+        <div class="box-content">
+          <header class="item-section row">
+
+            <div class="column small-8 small-push-4 medium-5 medium-push-7 large-2 large-push-10 text-right nowrap">
+
+              <div class="display-inline-block">
+                <div class="dropdown-wrapper nowrap">
+                  <div class="display-inline-block touchable-wrapper margin-left-none position-relative">
+                    <span dropdown="#more-actions-admin"  class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray">
+                      <i class="fa fa-fw fa-chevron-down"></i>
+                    </span>
+                  </div>
+                  <ul class="actions-dropdown text-left" style="display:none;" id="more-actions-admin">
+                    <li>
+                      <span><a href="" ng-click="hideOnboarding()" translate="COMMON.ACTION_HIDE_TIP"></a></span>
+                    </li>
+                    <!-- /admin only -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="column small-4 small-pull-8 hide-for-medium">
+              <div class="display-inline-block position-relative">
+                  <avatar class="" type="'User'" src="config.imgUrl + '/logo-round.png'" size="small"></avatar>
+              </div>
+            </div>
+
+            <div class="column small-12 medium-7 medium-pull-5 large-10 large-pull-2">
+              <h2 translate="COMMUNITY.ADMIN_ONBOARDING.TITLE"></h2>
+            </div>
+
+            <div class="column small-12">
+
+              <p translate="COMMUNITY.ADMIN_ONBOARDING.SUBTITLE"></p>
+
+              <ol class="ol-spaced-list">
+                <li><a href="" class="text-bigger bold" ui-sref="community.subview({ id: info._id, page: 'invite' })" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_1_LINK"></a><br>
+                  <span translate="COMMUNITY.ADMIN_ONBOARDING.STEP_1_TEXT"></span></li>
+
+              <li><a href="" class="text-bigger bold" ng-click="addItem()" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_2_LINK"></a><br>
+                <span translate="COMMUNITY.ADMIN_ONBOARDING.STEP_2_TEXT"></span> - <a href="" ng-click="showPreferredGifts()" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_2_LINK_2"></a></a>.</li>
+
+                <li><a href="" class="text-bigger bold" ui-sref="community.subview({ id: info._id, page: 'invite' })" translate="COMMUNITY.ADMIN_ONBOARDING.STEP_3_LINK"></a><br>
+                  <span translate="COMMUNITY.ADMIN_ONBOARDING.STEP_3_TEXT"></span>
+                </li>
+                </ul>
+            </div>
+          </header>
+        </div>
+      </section>
+    </div>
+  </div>
+</article>

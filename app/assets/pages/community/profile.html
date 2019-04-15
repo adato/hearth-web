@@ -9,7 +9,7 @@
 	<div class="user" ng-if="! info">
 		<p>{{:: 'COMMUNITY.NOTIFY.ERROR_NOT_FOUND' | translate }}</p>
 	</div>
-	<header ng-if="info">
+	<header ng-if="info && showHeader">
 		<div class="user-basic large-12 columns margin-bottom-small">
 			<div class="row">
 				<h1 class="large-6 small-12 pull-left">

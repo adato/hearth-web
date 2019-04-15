@@ -233,7 +233,7 @@ angular.module('hearth').config([
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: function($stateParams) {
-					var pages = ['activity', 'members', 'given-ratings', 'received-ratings', 'applications', 'about', 'posts'];
+					var pages = ['invite', 'members', 'applications', 'posts'];
 					var tplPath = 'assets/pages/community/subviews/';
 					
 					if (!~pages.indexOf($stateParams.page))
@@ -249,6 +249,13 @@ angular.module('hearth').config([
 				templateUrl: 'assets/pages/community/createCommunity.html',
 				policy: SIGNED_IN
 			})
+			// .state('communityInvite', {
+			// 	url: '/community/:id/invite',
+			// 	title:false,
+			// 	templateUrl: 'assets/pages/community/addCommunityMembers.html',
+			// 	controller: 'AddCommunityMembersCtrl',
+			// 	policy: SIGNED_IN
+			// })
 			.state('uikit', {
 				url: '/uikit',
 				templateUrl: 'assets/pages/uikit/uikit.html',

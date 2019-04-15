@@ -44,6 +44,34 @@
 		}
 		
 	}
+
+	.poster {
+		display:block;
+		width:300px;
+		float:left;
+		text-align:center;
+	}
+	.poster-content {
+		height:130px;
+		border:1px solid $black;
+		padding:2*$ui-small-grid-size;
+		margin-right:2*$ui-small-grid-size;
+		text-align:center;
+		display:flex;
+		flex-direction: column;
+		justify-content: center;
+		.line {
+			line-height: 155%;
+			font-size:140%;
+			font-weight:bold;
+			color:$colorDarkGray;
+		}
+		.orange.line {
+			color: $secondary-color;
+		}
+	}
+
+
 }
 
 .community-applications-list {
@@ -164,4 +192,8 @@
 	line-height:200%;
 }
 
-
+.ol-spaced-list {
+	li {
+		margin-bottom:2*$ui-small-grid-size;
+	}
+}
