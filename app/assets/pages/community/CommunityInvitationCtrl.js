@@ -22,9 +22,6 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
         ctrl.communityLink = null;
         ctrl.showMaxPostsError = false;
 
-        const PDF_FRONTEND_URL = "https://pdf.hearth.net/";
-        const PDF_API_URL = "https://67ngmpm84c.execute-api.us-east-1.amazonaws.com/dev/pdf"
-
         ctrl.fetchCommunityInfo = () => {
             let id = $stateParams['id'];
             let communityLink = $window.$$config.appUrl + 'community/' + id;
@@ -92,12 +89,12 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                     link: ctrl.invitation.communityLink
                 }
             }
-            $http.post(PDF_FRONTEND_URL, publishData, { withCredentials: false }).then((res) => {
+            $http.post($window.$$config.pdfFrontendUrl, publishData, { withCredentials: false }).then((res) => {
                 if (res.data && res.data.result === "ok") {
                     let token = res.data.token;
-                    let tmpUrl = PDF_FRONTEND_URL + "?token=" + token + "&layout=" + type;
+                    let tmpUrl = $window.$$config.pdfFrontendUrl + "?token=" + token + "&layout=" + type;
                     let url = encodeURIComponent(tmpUrl);
-                    $window.open(PDF_API_URL + '?url=' + url);
+                    $window.open($window.$$config.pdfApiUrl + '?url=' + url);
                 } else {
                     /// ... ajajaj
                 }
