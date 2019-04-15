@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
         ctrl.communityLink = null;
         ctrl.showMaxPostsError = false;
 
-        const PDF_FRONTEND_URL = "http://pdf.hearth.net.adato.miniserver.cz/";
+        const PDF_FRONTEND_URL = "https://pdf.hearth.net/";
         const PDF_API_URL = "https://67ngmpm84c.execute-api.us-east-1.amazonaws.com/dev/pdf"
 
         ctrl.fetchCommunityInfo = () => {
