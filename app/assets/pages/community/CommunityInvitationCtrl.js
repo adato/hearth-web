@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
-	'$scope', '$rootScope', 'Community', '$stateParams', 'PostAux', '$http', '$window', '$filter', '$translate',
-	function($scope, $rootScope, Community, $stateParams, PostAux, $http, $window, $filter, $translate) {
+	'$scope', '$rootScope', 'Community', '$stateParams', 'PostAux', '$http', '$window', '$translate',
+	function($scope, $rootScope, Community, $stateParams, PostAux, $http, $window, $translate) {
         var ctrl = this;
         ctrl.invitation = {
             postsLoaded: false,
@@ -89,6 +89,8 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                     link: ctrl.invitation.communityLink
                 }
             }
+
+            console.log($window.$$config);
             $http.post($window.$$config.pdfFrontendUrl, publishData, { withCredentials: false }).then((res) => {
                 if (res.data && res.data.result === "ok") {
                     let token = res.data.token;
