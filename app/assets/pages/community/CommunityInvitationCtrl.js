@@ -7,14 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
-	'$scope', '$rootScope', 'Community', '$stateParams', 'PostAux', '$http', '$window', '$filter',
-	function($scope, $rootScope, Community, $stateParams, PostAux, $http, $window, $filter) {
+	'$scope', '$rootScope', 'Community', '$stateParams', 'PostAux', '$http', '$window', '$filter', '$translate',
+	function($scope, $rootScope, Community, $stateParams, PostAux, $http, $window, $filter, $translate) {
         var ctrl = this;
         ctrl.invitation = {
             postsLoaded: false,
             postsExpanded: false,
             posts: [],
-            body: 'COMMUNITY.INVITATION.EMAIL_BODY',
+            body: '',
             communityName: null,
             communityLink: null,
             
@@ -52,7 +52,7 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
             Community.get({ _id: id }).$promise.then((res) => {
                 ctrl.invitation.communityLink = ctrl.communityLink;
                 ctrl.invitation.communityName = res.name;
-                 ctrl.invitation.body = $filter('translate')(ctrl.invitation.body)
+                ctrl.invitation.body = $translate.instant('COMMUNITY.INVITATION.EMAIL_BODY')
                     .replace("COMMUNITY_NAME", res.name)
                     .replace("COMMUNITY_URL", ctrl.communityLink);
             })
