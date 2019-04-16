@@ -89,14 +89,13 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                     link: ctrl.invitation.communityLink
                 }
             }
-
-            console.log($window.$$config);
+            var newWindow = $window.open('', '_blank');
             $http.post($window.$$config.pdfFrontendUrl, publishData, { withCredentials: false }).then((res) => {
                 if (res.data && res.data.result === "ok") {
                     let token = res.data.token;
                     let tmpUrl = $window.$$config.pdfFrontendUrl + "?token=" + token + "&layout=" + type;
                     let url = encodeURIComponent(tmpUrl);
-                    $window.open($window.$$config.pdfApiUrl + '?url=' + url);
+                    newWindow.location = $window.$$config.pdfApiUrl + '?url=' + url;
                 } else {
                     /// ... ajajaj
                 }

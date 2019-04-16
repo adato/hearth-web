@@ -289,7 +289,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 		$scope.getOnboardingState = function (id) {
 			var onboardingStates = JSON.parse(LocalStorage.get("hideOnboarding"));
-			return (!onboardingStates || !onboardingStates.length || onboardingStates.indexOf(id) !== true);
+			return (!onboardingStates || !onboardingStates.length || onboardingStates.indexOf(id) < 0);
 		}
 
 		$scope.hideOnboarding = function() {

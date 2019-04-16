@@ -62,7 +62,7 @@
 					<i class="fa fa-asterisk"></i>
 					<span ng-if="!mine" translate="PROFILE.USER_HAS_REGISTERED"></span>
 					<span ng-if="mine" translate="PROFILE.YOU_HAVE_REGISTERED"></span>
-					{{ info.confirmed_at | ago}}
+					{{ info.created_at | ago}}
 				</div>
 
 				<div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
