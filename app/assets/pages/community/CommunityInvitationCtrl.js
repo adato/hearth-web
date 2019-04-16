@@ -66,14 +66,17 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
             }).$promise.then(function (res) {
                 let counter = 0;
                 let MAX_COUNTER = 3;
-                res.data.forEach(post => {
+                let filtered = res.data.filter(item => {
+                    return item.state === 'active';
+                });
+                filtered.forEach(post => {
                     if (counter < MAX_COUNTER) post.checked = true;
                     post.postTypeCode = PostAux.getPostTypeCode(post.author._type, post.type, post.exact_type);
                     post.isInfoGift = PostAux.isInfoGift(post);
                     counter++;
                 });
                 ctrl.invitation.postsLoaded = true;
-                ctrl.invitation.posts = res.data;
+                ctrl.invitation.posts = filtered;
             })
         };
 
@@ -89,14 +92,14 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                     link: ctrl.invitation.communityLink
                 }
             }
-
-            console.log($window.$$config);
+            var newWindow = $window.open('', '_blank');
+            newWindow.document.write('<p>' + $translate.instant('COMMON.LOADING') + '</p>');
             $http.post($window.$$config.pdfFrontendUrl, publishData, { withCredentials: false }).then((res) => {
                 if (res.data && res.data.result === "ok") {
                     let token = res.data.token;
                     let tmpUrl = $window.$$config.pdfFrontendUrl + "?token=" + token + "&layout=" + type;
                     let url = encodeURIComponent(tmpUrl);
-                    $window.open($window.$$config.pdfApiUrl + '?url=' + url);
+                    newWindow.location = $window.$$config.pdfApiUrl + '?url=' + url;
                 } else {
                     /// ... ajajaj
                 }
