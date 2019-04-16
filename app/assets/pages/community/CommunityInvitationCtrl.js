@@ -66,14 +66,17 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
             }).$promise.then(function (res) {
                 let counter = 0;
                 let MAX_COUNTER = 3;
-                res.data.forEach(post => {
+                let filtered = res.data.filter(item => {
+                    return item.state === 'active';
+                });
+                filtered.forEach(post => {
                     if (counter < MAX_COUNTER) post.checked = true;
                     post.postTypeCode = PostAux.getPostTypeCode(post.author._type, post.type, post.exact_type);
                     post.isInfoGift = PostAux.isInfoGift(post);
                     counter++;
                 });
                 ctrl.invitation.postsLoaded = true;
-                ctrl.invitation.posts = res.data;
+                ctrl.invitation.posts = filtered;
             })
         };
 
