@@ -1,0 +1,21 @@
+<div class="formStyle itemEdit modal" style="max-width:400px;">
+	<div class="head">
+		<span ng-click="closeAndGoToDashboard()" class="close fa fa-times"></span>
+	</div>
+	<form novalidate class="text-center">
+        <h1>TT Mrkni do emailu</h1>
+        <div class="margin-top-medium" style="margin:0 auto; display:block; font-size:60px; color:white; background:#659c4f; width:100px; border-radius:50%; height:100px; border:2px solid #4e7b3b;">
+            <i class="fa fa-envelope"></i>
+        </div>
+        <p class="margin-top-large">
+            TT Abys mohl(a) Hearth plně využívat, prosím ověř svůj e-mail. Je to dobré i pro důvěru mezi námi Hearťany.
+            <br><br>
+            E-mail nepřišel? Koukni do Nevyžádané pošty nebo <a href="" ng-click="resendConfirmation()">pošli znovu</a>
+        </p>
+		<div>
+			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<a ng-click="closeAndGoToDashboard()" translate="COMMON.ACTION_CLOSE"></a>
+			</div>
+		</div>
+	</form>
+</div>

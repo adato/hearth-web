@@ -121,6 +121,16 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			User.add(params, $scope.user, function() {
 				$scope.sending = false;
 				$scope.hideForm();
+				var loginData = { username: $scope.user.email, password: $scope.user.password };
+				Auth.login(loginData, function (res) {
+					if (res.ok === true) {
+						Auth.processLoginResponse(res);
+					}
+				}, function (err) {
+					console.log("after reg login fail:")
+					console.log(err)
+				});
+
 
 				return $analytics.eventTrack('registration email sent', {
 					category: 'registration',
