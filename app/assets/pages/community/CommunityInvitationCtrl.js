@@ -90,6 +90,7 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                 }
             }
             var newWindow = $window.open('', '_blank');
+            newWindow.document.write('<p>' + $translate.instant('COMMON.LOADING') + '</p>');
             $http.post($window.$$config.pdfFrontendUrl, publishData, { withCredentials: false }).then((res) => {
                 if (res.data && res.data.result === "ok") {
                     let token = res.data.token;
