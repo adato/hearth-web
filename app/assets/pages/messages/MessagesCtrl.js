@@ -158,12 +158,20 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				if (confirmed == '' || confirmed == null) {
 					// not confirmed --> should not see messages
 					var newScope = $scope.$new();
+					newScope.resendEnabled = true;
+					newScope.sent = false;
 					newScope.closeAndGoToDashboard = function () {
 						$state.go('dashboard');
 					}
 					newScope.resendConfirmation = function () {
-						User.resendConfirmation({ _id: $rootScope.loggedUser._id, email: "pavel.voska@gmail.com" }).then(res => {
-							console.log(res);
+						if (!newScope.resendEnabled) return;
+						newScope.resendEnabled = false;
+						User.resendConfirmation({ _id: $rootScope.loggedUser._id, email: $rootScope.loggedUser.email }).$promise.then(res => {
+							newScope.sent = true;
+							$timeout(() => {
+								newScope.resendEnabled = true;
+								newScope.sent = false;
+							}, 10000)
 						})
 					}
 					ngDialog.open({
