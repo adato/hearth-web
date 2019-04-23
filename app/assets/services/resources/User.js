@@ -50,6 +50,10 @@ angular.module('hearth.services').factory('User', [
 					code: 'AUTH.NOTIFY.ERROR_ACTIVATE_ACCOUNT'
 				}
 			},
+			resendConfirmation: {
+				url: $$config.apiPath + '/users/resend_confirmation',
+				method: 'POST'
+			},
 			edit: {
 				method: 'PUT',
 				errorNotify: false,

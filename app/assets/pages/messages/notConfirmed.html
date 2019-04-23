@@ -1,0 +1,22 @@
+<div class="formStyle itemEdit modal" style="max-width:400px;">
+	<div class="head">
+		<span ng-click="closeAndGoToDashboard()" class="close fa fa-times"></span>
+	</div>
+	<form novalidate class="text-center">
+        <h1 translate="AUTH.VERIFY_EMAIL.TITLE"></h1>
+        <div class="margin-top-medium" style="margin:0 auto; display:block; font-size:60px; color:white; background:#659c4f; width:100px; border-radius:50%; height:100px; border:2px solid #4e7b3b;">
+            <i class="fa fa-envelope"></i>
+        </div>
+        <p class="margin-top-large">
+            {{ 'AUTH.VERIFY_EMAIL.INFOTEXT' | translate }}
+            <br><br>
+			{{ 'AUTH.VERIFY_EMAIL.RETRY' | translate }}
+			<br><b><a href="" ng-class="{ 'disabled': !resendEnabled, }" ng-click="resendConfirmation()">{{ 'AUTH.VERIFY_EMAIL.ACTION_RETRY' | translate }} <span ng-if="sent">✓</span></a></b>
+        </p>
+		<div>
+			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<a ng-click="closeAndGoToDashboard()" translate="COMMON.ACTION_CLOSE"></a>
+			</div>
+		</div>
+	</form>
+</div>

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty', '$window',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, ResponsiveViewport, ConversationAux, $state, IsEmpty, $window) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', 'ResponsiveViewport', 'ConversationAux', '$state', 'IsEmpty', '$window', 'ngDialog', 'User',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, ResponsiveViewport, ConversationAux, $state, IsEmpty, $window, ngDialog, User) {
 
 		// start processing socket events
 		ConversationAux.init({
@@ -150,6 +150,42 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		}
 
 		function init({ resetId } = {}) {
+
+			// CHECK if user is confirmed 
+			if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
+				// logged in ---> should check session/profile for info about email activation
+				var confirmed = $rootScope.loggedUser.confirmed_at;
+				if (confirmed == '' || confirmed == null) {
+					// not confirmed --> should not see messages
+					var newScope = $scope.$new();
+					newScope.resendEnabled = true;
+					newScope.sent = false;
+					newScope.closeAndGoToDashboard = function () {
+						$state.go('dashboard');
+					}
+					newScope.resendConfirmation = function () {
+						if (!newScope.resendEnabled) return;
+						newScope.resendEnabled = false;
+						User.resendConfirmation({ _id: $rootScope.loggedUser._id, email: $rootScope.loggedUser.email }).$promise.then(res => {
+							newScope.sent = true;
+							$timeout(() => {
+								newScope.resendEnabled = true;
+								newScope.sent = false;
+							}, 10000)
+						})
+					}
+					ngDialog.open({
+						templateUrl:  'assets/pages/messages/notConfirmed.html',
+						showClose: false,
+						closeByEscape:false,
+						closeByDocument:false,
+						scope: newScope
+					});
+				}
+			}
+
+
+
 			$scope.reloading = true;
 			// set conversation to false, so that template ng-ifs evaluate correctly and show loading
 			$scope.conversations = false;
