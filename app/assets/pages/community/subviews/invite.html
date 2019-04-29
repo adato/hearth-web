@@ -1,0 +1,76 @@
+<h1 class="large-6 small-12 " translate="COMMUNITY.ACTION_ADD_MEMBERS"></h1>
+<div class="box" ng-controller="CommunityInvitationCtrl as ctrl">
+	<div class="block flex-grid">
+		<div>
+			<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
+		</div>
+		<div class="flex-1">
+			<h2 translate="COMMUNITY.INVITATION.BY_EMAIL"></h2>
+			<label class="block">
+				<div class="padding-bottom-tiny" translate="COMMUNITY.INVITATION.BY_EMAIL_DESCRIPTION"></div>
+				<textarea ng-show="ctrl.invitation.body" id="community-invitation-textarea" class="text-input bottom" name="message" ng-model="ctrl.invitation.body" style="min-height:140px;" onclick="this.focus();this.select()"></textarea>
+				<a href="" ng-click="ctrl.copyLink()" translate="COMMON.ACTION_COPY_TEXT_TO_CLIPBOARD"></a> <i class="fa fa-check color-primary" ng-if="ctrl.showSuccessTick"></i>
+			</label>
+		</div>
+	</div>
+
+	<!-- <div class="block flex-grid">
+		<div>
+			<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
+		</div>
+		<div class="flex-1">
+			<h2 translate="COMMUNITY.INVITATION.BY_URL"></h2>
+			<label class="block">
+				<input type="text" ng-show="ctrl.invitation.url" id="community-invitation-url" class="text-input" name="url" ng-model="ctrl.invitation.url" onclick="this.focus();this.select()" style="max-width:500px;"/>
+				<a href="" ng-click="ctrl.copyUrlLink()" translate="COMMON.ACTION_COPY_TEXT_TO_CLIPBOARD"></a> <i class="fa fa-check color-primary" ng-if="ctrl.showUrlSuccessTick"></i>
+			</label>
+		</div>
+	</div> -->
+
+	<div class="block flex-grid">
+		<div>
+			<i class="fa fa-fw fa-2x block--leading-icon fa-clone"></i>
+		</div>
+		<div class="flex-1">
+			<h2 translate="COMMUNITY.INVITATION.BY_POSTER"></h2>
+			<label class="block">
+				<div class="padding-bottom-tiny" translate="COMMUNITY.INVITATION.BY_POSTER_DESCRIPTION"></div>
+				<div class="clearfix" loading show="!ctrl.invitation.postsLoaded"></div>
+				<div class="clearfix" ng-if="ctrl.invitation.postsLoaded && ctrl.invitation.posts.length < 3">
+					<b>{{ 'COMMUNITY.INVITATION.NOT_ENOUGH_POSTS' | translate }}</b>
+				</div>
+				<div class="clearfix" ng-if="ctrl.invitation.postsLoaded && ctrl.invitation.posts.length >= 3">
+					<a href="" ng-click="ctrl.generatePoster(1)" class="poster">
+						<div class="poster-content" ng-bind-html="'COMMUNITY.INVITATION.PREVIEW1' | translate"></div>
+						{{ 'COMMUNITY.INVITATION.PREVIEW1_TITLE' | translate }}
+					</a>
+					<a href="" ng-click="ctrl.generatePoster(2)" class="poster">
+						<div class="poster-content" ng-bind-html="'COMMUNITY.INVITATION.PREVIEW2' | translate"></div>
+						{{ 'COMMUNITY.INVITATION.PREVIEW2_TITLE' | translate }}
+					</a>
+				</div>
+			</label>
+
+			<div ng-if="ctrl.invitation.postsLoaded && ctrl.invitation.posts.length >= 3">
+				<label class="block margin-top-large" ng-if="!ctrl.invitation.postsExpanded">
+					<a href="" ng-click="ctrl.invitation.postsExpanded = true" translate="COMMUNITY.INVITATION.ACTION_CHOOSE_POSTS"></a>
+				</label>
+
+				<label class="block margin-top-large" ng-if="ctrl.invitation.postsExpanded == true">
+						<span translate="COMMUNITY.NOTIFY.INFO_SELECT_X_GIFTS"></span> <a href="" ng-click="ctrl.invitation.postsExpanded = false" translate="COMMUNITY.INVITATION.ACTION_HIDE_POSTS"></a>
+					<div class="">
+						<div ng-repeat="post in ctrl.invitation.posts">
+							<checkbox model="post.checked" disabled="!post.checked && ctrl.checkNumberOfSelectedPosts()"><span>{{ post.author.first_name }}:&nbsp;</span><span ng-if="!post.isInfoGift" ng-class=":: 'color-' + post.type" translate="{{:: post.postTypeCode }}"></span><span ng-if="!post.isInfoGift">&nbsp;</span>{{ post.title }}</checkbox> 
+						</div>
+					</div>
+				</label>
+			</div>
+
+			<div class="display-flex flex-reverse margin-top-medium">
+				<a ui-sref="community.default({id: info._id })" class="button" translate="COMMON.ACTION_CLOSE"></a>
+			</div>
+		</div>
+	</div>
+
+
+</div>

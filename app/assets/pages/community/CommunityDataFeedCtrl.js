@@ -13,26 +13,24 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		$scope.loadingData = false;
 
 		const ACTIVITY_LIMIT = 10;
+		$scope.showHeader = true;
 		$scope.activityShow = false;
 		$scope.activityLog = [];
 		$scope.activityLogFetchRunning;
-		$scope.view = { expanded: false }; // used for template action binding
+		$scope.view = { 
+			expanded: false 
+		}; // used for template action binding
 		var activityLogComplete;
 		// Count of all activities includes activities inside the groups
 		var activityLogOffset = 0;
 
 		var ItemFilter = new UniqueFilter();
-		var selectedAuthor = false;
 		var inited = false;
 		var loadServices = {
-			'home': loadCommunityHome,
 			'posts': loadCommunityPosts,
 			'members': loadCommunityMember,
-			'about': loadCommunityAbout,
 			'applications': loadCommunityApplications,
-			'activity': $scope.loadCommunityActivities,
-			'received-ratings': loadReceivedRatings,
-			'given-ratings': loadGivenRatings,
+			'invite': loadCommunityInvite,
 		};
 		var templatePath = 'assets/components/post/posts/post.html';
 
@@ -130,110 +128,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			finishLoading([]);
 		}
 
-		function loadGivenRatings(id, done, doneErr) {
-			var obj = {
-				communityId: id,
-				limit: 10,
-				offset: $scope.data.length
-			};
-
-			CommunityRatings.given(obj, done, doneErr);
-		}
-
-		function loadReceivedRatings(id, done, doneErr) {
-			var obj = {
-				communityId: id,
-				limit: 10,
-				offset: $scope.data.length
-			};
-
-			$scope.loadedRatingPosts = false;
-			$scope.ratingPosts = [];
-
-			CommunityRatings.received(obj, function(res) {
-				done(res);
-				$rootScope.receivedRepliesAfterLoadHandler($scope.data, $scope);
-			}, doneErr);
-
-			$scope.$watch('rating.current_community_id', function(val) {
-				if (val === selectedAuthor && $scope.loadedRatingPosts) return;
-				selectedAuthor = val;
-
-				$scope.rating.post_id = null;
-				processRelevantPosts(id, val);
-			});
-
-			var removeListener = $scope.$on('$routeChangeStart', function() {
-				$scope.closeUserRatingForm();
-				removeListener();
-			});
-		}
-
-		function processRelevantPosts(id, val) {
-			var configCommunityPossible = {
-				communityId: $stateParams.id,
-				current_community_id: val,
-				not_related: true
-			};
-			var configUser = {
-				userId: $rootScope.loggedUser._id
-			};
-			var configCommunity = {
-				communityId: val,
-				not_related: true
-			};
-			var configCurrentCommunity = {
-				communityId: $stateParams.id,
-				not_related: true
-			};
-
-			$scope.loadingRatingPosts = true;
-
-			CommunityRatings.possiblePosts(val ? configCommunityPossible : configCurrentCommunity, function(res, headers) {
-				var posts = UsersCommunitiesService.alterPossiblePosts(res, headers);
-
-				$scope.ratingPosts = posts;
-
-				var ratingActivePosts = [];
-
-				if (val) {
-					CommunityRatings.activePosts(configCurrentCommunity, function(res) {
-						angular.forEach(res.data, function(post) {
-							ratingActivePosts.push(post);
-						});
-					});
-
-					CommunityRatings.activePosts(configCommunity, function(res) {
-						angular.forEach(res.data, function(post) {
-							ratingActivePosts.push(post);
-						});
-					});
-				} else {
-					CommunityRatings.activePosts(configCurrentCommunity, function(res) {
-						angular.forEach(res.data, function(post) {
-							ratingActivePosts.push(post);
-						});
-					});
-
-					UserRatings.activePosts(configUser, function(res) {
-						angular.forEach(res.data, function(post) {
-							ratingActivePosts.push(post);
-						});
-					});
-				}
-
-				$scope.ratingActivePosts = ratingActivePosts;
-				$scope.loadedRatingPosts = true;
-				$scope.loadingRatingPosts = false;
-			}, function(res) {
-				$scope.loadedRatingPosts = true;
-				$scope.loadingRatingPosts = false;
-			});
-		}
-
-		function loadCommunityAbout(id, done, doneErr) {
-			finishLoading([]);
-		}
 
 		function loadCommunityMember(id, doneErr) {
 			var obj = {
@@ -255,19 +149,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			CommunityApplicants.query(obj, processData, doneErr);
 		}
 
-		function pushPost(containerPath, post, compiledTemplate) {
-			var scope = PostScope.getPostScope(post, $scope);
-			compiledTemplate(scope, function(clone) {
-				// doesnt work when not delayed
-				$timeout(function() {
-					$(containerPath).append(clone[0]);
-					$timeout(function() {
-						$('#post_' + post._id).show();
-					});
-				}, 100);
-			});
-		}
-
 		// helper variables for getting post list
 		var getPostsStatus = {
 			running: false
@@ -283,6 +164,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			if (!getPostsResult.active.length) return; 
 			$scope.postPageOffset = $scope.postPageOffset+1;
 			loadCommunityPosts($scope.info._id);
+		}
+
+		function loadCommunityInvite(id) {
+			console.log(id)
 		}
 
 		// load posts of community
@@ -345,45 +230,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				}
 			});
 		};
-
-		function loadCommunityHome(id) {
-			async.parallel([
-				function(done) {
-					$scope.loadCommunityActivities(done);
-				},
-				function(done) {
-					CommunityApplicants.query({
-						communityId: id
-					}, function(res) {
-						$scope.applications = res;
-						done(null);
-					}, done);
-				},
-				function(done) {
-					CommunityRatings.received({
-						communityId: id,
-						limit: 5,
-						offset: 0
-					}, function(res) {
-						$scope.receivedRatings = res;
-						done(null);
-					}, done);
-				},
-				function(done) {
-					Community.getPosts({
-						communityId: id,
-						limit: 5,
-						offset: 0,
-						state: 'active'
-					}, function(res) {
-						$scope.posts = res;
-						done(null);
-					}, done);
-				}
-			], finishLoading);
-
-			$scope.$on('postUpdated', $scope.refreshItemInfo);
-		}
 
 		// =================================== Public Methods ====================================
 

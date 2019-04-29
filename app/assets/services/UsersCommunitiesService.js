@@ -48,6 +48,7 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 			params = params || {}
 			if (communityObject && communityObject._id) {
 				var communityList = params.checkIfIAmAdmin ? $rootScope.myAdminCommunities : $rootScope.myCommunities
+				if (!communityList || !communityList.length) return false;
 				for (var i = communityList.length; i--;) {
 					if (communityList[i]._id === communityObject._id) return true
 				}

@@ -5,7 +5,7 @@ window['$$config'] = {
 	modalTemplates: 'assets/modals/',
 	staticTemplatesRoute: 'assets/locales/',
 	lengthUnit: 'km',
-	defaultLanguage: 'en',
+	defaultLanguage: 'cs',
 	maxImagesSize: 6, // max size of all attached images in MB
 	fbSharing: {
 		minWidth: 200,
@@ -27,6 +27,8 @@ window['$$config'] = {
 	},
 	shortLinkGeneratorUrl: 'https://go.hearth.net/',
 	shortLinkAccessUrl: 'https://hearth.net/groups/',
+	pdfFrontendUrl: "https://pdf.hearth.net/",
+	pdfApiUrl: "https://67ngmpm84c.execute-api.us-east-1.amazonaws.com/dev/pdf",
 	activitiesIcons: {
 		new_post: 'new_post',
 		community_new_post: 'new_post',

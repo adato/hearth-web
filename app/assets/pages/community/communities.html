@@ -1,54 +1,54 @@
-<div class="communities">
-	<!-- main content -->
-	<div class="large-9 small-12 columns margin-bottom-none">
-		<h1 translate="COMMUNITY.COMMUNITIES"></h1>
-	</div>
-	<div class="large-3 small-12 columns margin-bottom-none">
-		<button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium"
-			ui-sref="communityCreate()" translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
-		</button>
-	</div>
+<div class="">
+  <!-- main content -->
+  <div class="large-9 small-12 columns margin-bottom-none">
+    <h1 translate="COMMUNITY.COMMUNITIES"></h1>
+  </div>
+  <div class="large-3 small-12 columns margin-bottom-none">
+    <button type="button" style="width:100%" class="button block display-block padding-top-medium padding-bottom-medium"
+      ui-sref="communityCreate()" translate="COMMUNITY.ACTION_CREATE_COMMUNITY">
+    </button>
+  </div>
 
-	<!-- right column -->
-	<div class="large-3 small-12 columns">
-			<!-- my communities -->
-			<div class="margin-top-medium padding-top-medium">
-				<h4 class="text-center margin-top-none margin-bottom-small" translate="COMMUNITY.MY_COMMUNITIES"></h4>
-				<div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities" class="box display-block padding-small margin-bottom-medium"
-					ui-sref="community.default({id: comm._id })" style="cursor:pointer" ng-if=":: vm.myCommunities">
-					<h4>{{:: comm.name }}</h4>
-	
-					<div class="text-danger" ng-if=":: comm.admin == loggedUser._id" translate="COMMUNITY.I_AM_ADMIN"></div>
-					<div class="text-muted">{{ :: comm.short_description }}</div>
-				</div>
-				<p class="text-center" ng-if="!vm.myCommunities.length" translate="COMMUNITY.NO_MY_COMMUNITIES">
-				</p>
-			</div>
-			<div>
-				<a ui-sref="communities-all">
-					<h4 class="text-center" translate="COMMUNITY.ALL_COMMUNITIES"></h4>
-				</a>
-			</div>
-		</div>
-	</div>
+  <!-- right column -->
+  <div class="large-3 small-12 columns">
+    <!-- my communities -->
+    <div class="margin-top-medium padding-top-medium">
+      <h4 class="text-center margin-top-none margin-bottom-small" translate="COMMUNITY.MY_COMMUNITIES"></h4>
+      <div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities"
+        class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })"
+        style="cursor:pointer" ng-if=":: vm.myCommunities">
+        <h4>{{:: comm.name }}</h4>
 
-	<div class="small-12 large-9 columns">
+        <div class="text-danger" ng-if=":: comm.admin == loggedUser._id" translate="COMMUNITY.I_AM_ADMIN"></div>
+        <div class="text-muted">{{ :: comm.short_description }}</div>
+      </div>
+      <p class="text-center" ng-if="!vm.myCommunities.length" translate="COMMUNITY.NO_MY_COMMUNITIES">
+      </p>
+    </div>
+    <div>
+      <a ui-sref="communities-all">
+        <h4 class="text-center" translate="COMMUNITY.ALL_COMMUNITIES"></h4>
+      </a>
+    </div>
+  </div>
+</div>
 
-		<div ng-show="vm.total > 0 && vm.loaded">
-			<h3 class="medium-push-2 medium-10 margin-top-large text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
-			<div when-scrolled="vm.loadNext()">
-				<!-- list content -->
-				<item-list options="vm.communityGiftListOptions"></item-list>
-			</div>
-			<p class="text-center" ng-if="!vm.myCommunities.length" translate="COMMUNITY.NO_MY_COMMUNITIES">
-			</p>
-		</div>
-		<div ng-show="(vm.total === null || vm.total == 0) && vm.loaded" class="text-larger">
-			<div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communityCreate" translate="COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART1"></a>
-				{{ :: 'COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART2' | translate }}</div>
-			<div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communities-all" translate="COMMUNITY.EMPTY_LIST_COMMUNITIES_PART1"></a>
-				{{ :: 'COMMUNITY.EMPTY_LIST_COMMUNITIES_PART2' | translate }}</div>
-		</div>
-	</div>
-
-
+<div class="small-12 large-9 columns communities">
+  <div ng-show="vm.total > 0 && vm.loaded">
+    <h3 class="medium-push-2 medium-10 margin-top-large text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
+    <div when-scrolled="vm.loadNext()">
+      <!-- list content -->
+      <item-list options="vm.communityGiftListOptions"></item-list>
+    </div>
+    <p class="text-center" ng-if="!vm.myCommunities.length" translate="COMMUNITY.NO_MY_COMMUNITIES">
+    </p>
+  </div>
+  <div ng-show="(vm.total === null || vm.total == 0) && vm.loaded" class="text-larger">
+    <div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communityCreate"
+        translate="COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART1"></a>
+      {{ :: 'COMMUNITY.EMPTY_LIST_CREATE_COMMUNITY_PART2' | translate }}</div>
+    <div class="margin-top-large margin-bottom-large"><a href="" ui-sref="communities-all"
+        translate="COMMUNITY.EMPTY_LIST_COMMUNITIES_PART1"></a>
+      {{ :: 'COMMUNITY.EMPTY_LIST_COMMUNITIES_PART2' | translate }}</div>
+  </div>
+</div>

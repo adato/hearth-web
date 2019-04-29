@@ -1,42 +1,70 @@
 <div class="clear"></div>
+
+
 <div ng-show="subPageLoaded">
-	<div class="large-9 columns">
+  <div class="large-9 columns">
+    <div ng-if="mine && showOnboarding" ng-include="'assets/pages/community/onboarding/for-admin.html'">
+      <!-- include admin onboarding-->
+    </div>
 
-		<div when-scrolled="loadNext()" ng-show="postPageOffset > 0 || communityPostCount.active > 0">
-			<item-list options="communityPostListActiveOptions"></item-list>
-		</div>
+    <div when-scrolled="loadNext()" ng-show="postPageOffset > 0 || communityPostCount.active > 0">
+      <item-list options="communityPostListActiveOptions"></item-list>
+    </div>
 
-		<div ng-show="mine && communityPostCount.inactive" class="ads-listing inactive">
-			<h3 translate="PROFILE.POSTS.INACTIVE_TITLE"></h3>
-			<item-list options="communityPostListInactiveOptions"></item-list>
-		</div>
+    <div ng-show="mine && communityPostCount.inactive" class="ads-listing inactive">
+      <h3 translate="PROFILE.POSTS.INACTIVE_TITLE"></h3>
+      <item-list options="communityPostListInactiveOptions"></item-list>
+    </div>
 
-		<div ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0" class="box panel panel-default text-center padding-large margin-bottom-large">
-			<h3 class="margin-bottom-large" translate="COMMUNITY.NOGIFTS.TITLE"></h3>
-			<p class="margin-bottom-large margin-top-large" translate="COMMUNITY.NOGIFTS.DESCRIPTION"></p>
-			<button class="button margin-top-large" ng-click="addItem()" ng-if="info.is_member" translate="COMMUNITY.NOGIFTS.ACTION_ADD_FIRST_GIFT"></button>
-		</div>
-	</div>
-	<div class="large-3 columns">
-		<a ui-sref="community.subview({id: info._id, page: 'members'})" class="line-height-double pull-right">
-			<span translate="COMMUNITY.MEMBERS.{{ pluralCat(info.member_count) }}" translate-values="{count: info.member_count}"></span>
-		</a>
-		<h4 class="display-inline-block" translate="COMMUNITY.MEMBERS_LIST"></h4>
-		<community-members count="10" community="info"></community-members>
-		<button class="button margin-top-small" ng-click="addMembersModal()" ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
+    <div
+      ng-if="subPageLoaded && postPageOffset === 0 && communityPostCount.active === 0 && communityPostCount.inactive === 0">
+      <article class="item-common item-post bubbled">
+        <div class="row margin-bottom-large">
+          <section class="column medium-2 show-for-medium padding-top-small position-relative">
+            <div class="v2 user text-center display-block">
+              <avatar class="" type="'User'" src="config.imgUrl + '/logo-round.png'" thanks=":: item.author.up_votes"
+                show-thanks="true" show-glow="true"></avatar>
+            </div>
+          </section>
+          <div class="column small-12 medium-10 padding-none position-relative">
+            <section class="box padding-none">
+              <div class="box-content">
+                <h2 class="color-secondary" translate="COMMUNITY.NOGIFTS.TITLE"></h3>
+				<p class="margin-bottom-medium margin-top-medium" translate="COMMUNITY.NOGIFTS.DESCRIPTION"></p>
+			  </div>
+			  <footer>
+                <div class="medium-flex flex-space-between footer-item footer-item-bordered"><button class="button" ng-click="addItem()" ng-if="info.is_member"
+				  translate="COMMUNITY.NOGIFTS.ACTION_ADD_FIRST_GIFT"></button>
+				</div>
+			  </footer>
+          </div>
+      </article>
+    </div>
+  </div>
+  <div class="large-3 columns">
+    <a ui-sref="community.subview({id: info._id, page: 'members'})" class="line-height-double pull-right">
+      <span translate="COMMUNITY.MEMBERS.{{ pluralCat(info.member_count) }}"
+        translate-values="{count: info.member_count}"></span>
+    </a>
+    <h4 class="display-inline-block" translate="COMMUNITY.MEMBERS_LIST"></h4>
+    <community-members count="10" community="info"></community-members>
+    <button class="button margin-top-small" ui-sref="community.subview({ id: info._id, page:'invite' })"
+      ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
 
-		<div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
+    <div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
 
-		<h4 ng-if="info.description" class="margin-top-large" translate="COMMUNITY.CREATE.DESCRIPTION"></h4>
-		<p class="" ng-if="info.description.length < 300 || view.expanded">{{ :: info.description }}</p>
-		<p class="" ng-if="info.description.length >= 300 && !view.expanded">
-			<span ng-bind-html=":: info.description | ellipsis: 300"></span>
-			<a ng-click="view.expanded = true;">
-				<b translate="POST.ACTION_SHOW_MORE"></b>
-			</a>
-		</p>
-		<p class="margin-top-large text-muted" ng-if="info.is_private" ng-bind-html="'COMMUNITY.PRIVACY.PRIVATE_FULL_DESCRIPTION' | translate"></p>
-		<p class="margin-top-large text-muted" ng-if="info.is_public" ng-bind-html="'COMMUNITY.PRIVACY.PUBLIC_FULL_DESCRIPTION' | translate"></p>
-	</div>
+    <h4 ng-if="info.description" class="margin-top-large" translate="COMMUNITY.CREATE.DESCRIPTION"></h4>
+    <p class="" ng-if="info.description.length < 300 || view.expanded">{{ :: info.description }}</p>
+    <p class="" ng-if="info.description.length >= 300 && !view.expanded">
+      <span ng-bind-html=":: info.description | ellipsis: 300"></span>
+      <a ng-click="view.expanded = true;">
+        <b translate="POST.ACTION_SHOW_MORE"></b>
+      </a>
+    </p>
+    <p class="margin-top-large text-muted" ng-if="info.is_private"
+      ng-bind-html="'COMMUNITY.PRIVACY.PRIVATE_FULL_DESCRIPTION' | translate"></p>
+    <p class="margin-top-large text-muted" ng-if="info.is_public"
+      ng-bind-html="'COMMUNITY.PRIVACY.PUBLIC_FULL_DESCRIPTION' | translate"></p>
+  </div>
 </div>
 <div loading show="!subPageLoaded"></div>

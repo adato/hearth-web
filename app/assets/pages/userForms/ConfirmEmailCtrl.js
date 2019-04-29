@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
-	'$scope', '$location', 'Auth', '$analytics', 'Notify', 'LanguageSwitch', 'User', '$timeout', 
-	function($scope, $location, Auth, $analytics, Notify, LanguageSwitch, User, $timeout) {
+	'$scope', '$location', 'Auth', '$analytics', 'Notify', 'LanguageSwitch', 'User', '$timeout', '$translate',
+	function($scope, $location, Auth, $analytics, Notify, LanguageSwitch, User, $timeout, $translate) {
 		$scope.brokenLink = false;
 
 		init();
@@ -29,7 +29,7 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 					label: 'registration email confirmed'
 				});
 
-				Notify.addTranslateAfterRefresh('AUTH.NOTIFY.SUCCESS_ACTIVATE_ACCOUNT', Notify.T_SUCCESS);
+				Notify.addTranslateAfterRefresh($translate.instant('AUTH.NOTIFY.SUCCESS_ACTIVATE_ACCOUNT'), Notify.T_SUCCESS);
 				Auth.setToken(res.api_token);
 				$timeout(function () { 
 					window.location = $$config.appUrl;

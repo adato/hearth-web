@@ -6,7 +6,7 @@
     <div class="panel" ng-if="vm.events && !vm.loading">
         <div id="masonry-container" class="small-block-grid-2 large-block-grid-4 columns margin-none padding-tiny">
             <div ng-repeat="event in vm.events" class="single-event banner box margin-small padding-none overflow-hidden event-detail">
-                    <div class="banner-image" style="background-image:url({{:: event.image }})" ui-sref="event-detail({id: event.id })" style="cursor:pointer;"></div>
+                    <div class="banner-image" style="background-image:url('{{:: event.image }}')" ui-sref="event-detail({id: event.id })" style="cursor:pointer;"></div>
                     <div class="fright padding-medium" ng-if="event.isAttend == 1">
                         <img src="/app/assets/img/logo-dark.png" title="{{ 'EVENTS.HEARTH_ATTENDING' | translate }}" style="width:90px;" tipsy>
                     </div>
