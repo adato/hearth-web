@@ -47,9 +47,11 @@
 
 	.poster {
 		display:block;
-		width:300px;
+		max-width:300px;
+		min-width: 250px;
 		float:left;
 		text-align:center;
+		margin-bottom:20px;
 	}
 	.poster-content {
 		height:130px;
