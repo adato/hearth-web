@@ -60,7 +60,7 @@
 							<ul class="dropdown-menu margin-top-medium text-left" id="community-menu" style="display: none; ">
 								<!-- <li ng-if="!mine"><a href="" ng-click="openUserRatingForm()" translate="PROFILE.ACTION_FEEDBACK "></a></li> -->
 								<li class="hide-for-large hide-for-medium"><a ng-click="addQuickPost()" translate="MARKETPLACE.ACTION_CREATE_QUICKPOST"></a></li>
-								<li ng-if="info.is_member"><a href="" ng-click="addMembersModal()" translate="COMMUNITY.ACTION_ADD_MEMBERS"></a></li>
+								<li ng-if="info.is_member"><a href="" ui-sref="community.subview({ id: info._id, page: 'invite' })" translate="COMMUNITY.ACTION_ADD_MEMBERS"></a></li>
 								<li ng-if="!communityService.isMyCommunity(info, {checkIfIAmAdmin: true})"><a href="" ng-click="sendMessage(info)" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ADMIN" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li>
 								<!-- <li ng-if="communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) || (!communityService.isMyCommunity(info, {checkIfIAmAdmin: true}) && communityService.isMyCommunity(info) && info.allow_message_to_members)"><a href="" ng-click="sendMessage(info, {toAllMembers: true})" translate="COMMUNITY.ACTION_SEND_MESSAGE_TO_ALL_MEMBERS" translate-values="{actionAttrs: '', recipientAttrs: ''}"></a></li> -->
 								<li ng-if="mine"><a href="{{:: communityLink }}/edit" translate="COMMUNITY.PROFILE.ACTION_EDIT"></a></li>

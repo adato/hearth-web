@@ -16,42 +16,42 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
             posts: [],
             body: '',
             communityName: null,
-            communityLink: null,
+            url: null,
             
         }
-        ctrl.communityLink = null;
+        ctrl.url = null;
         ctrl.showMaxPostsError = false;
 
         ctrl.fetchCommunityInfo = () => {
             let id = $stateParams['id'];
-            let communityLink = $window.$$config.appUrl + 'community/' + id;
+            let url = $window.$$config.appUrl + 'community/' + id;
 
             if ($window.$$config.shortLinkGeneratorUrl && $window.$$config.shortLinkAccessUrl) {
                 $http.get($window.$$config.shortLinkGeneratorUrl, { 
                     withCredentials: false,
-                    params: { url: communityLink }
+                    params: { url: url }
                 }).then((response) => {
                     if (response.data && response.data.url) {
-                        ctrl.communityLink = $window.$$config.shortLinkAccessUrl + response.data.url;
+                        ctrl.url = $window.$$config.shortLinkAccessUrl + response.data.url;
                         ctrl.initCommunityInfo(id);
                     }
                 }, (error) => {
-                    ctrl.communityLink = communityLink;
+                    ctrl.url = url;
                     ctrl.initCommunityInfo(id);
                 });
             } else {
-                ctrl.communityLink = communityLink;
+                ctrl.url = url;
                 ctrl.initCommunityInfo(id);
             }
         }
 
         ctrl.initCommunityInfo = (id) => {
             Community.get({ _id: id }).$promise.then((res) => {
-                ctrl.invitation.communityLink = ctrl.communityLink;
+                ctrl.invitation.url = ctrl.url;
                 ctrl.invitation.communityName = res.name;
                 ctrl.invitation.body = $translate.instant('COMMUNITY.INVITATION.EMAIL_BODY')
                     .replace("COMMUNITY_NAME", res.name)
-                    .replace("COMMUNITY_URL", ctrl.communityLink);
+                    .replace("COMMUNITY_URL", ctrl.url);
             })
         }
                 
@@ -89,7 +89,7 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
                 posts: filtered,
                 community: {
                     name: ctrl.invitation.communityName,
-                    link: ctrl.invitation.communityLink
+                    link: ctrl.invitation.url
                 }
             }
             var newWindow = $window.open('', '_blank');
@@ -109,8 +109,8 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
         }
 
 
-        function selectAllText() {
-            var el = $window.document.getElementById('community-invitation-textarea');
+        function selectAllText(where) {
+            var el = $window.document.getElementById(where);
             if (el && el.focus && el.select) {
                 el.focus();
                 el.select();
@@ -118,11 +118,21 @@ angular.module('hearth.controllers').controller('CommunityInvitationCtrl', [
         }
 
         ctrl.copyLink = () => {
-            selectAllText();
+            selectAllText('community-invitation-textarea');
             $window.document.execCommand("copy");
             ctrl.showSuccessTick = true;
             $window.setTimeout(() => {
                 ctrl.showSuccessTick = false;
+            }, 1000);
+        }
+
+
+        ctrl.copyUrlLink = () => {
+            selectAllText('community-invitation-url');
+            $window.document.execCommand("copy");
+            ctrl.showUrlSuccessTick = true;
+            $window.setTimeout(() => {
+                ctrl.showUrlSuccessTick = false;
             }, 1000);
         }
 

@@ -149,6 +149,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		}
 
+
 		function init({ resetId } = {}) {
 
 			// CHECK if user is confirmed 
@@ -174,7 +175,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 							}, 10000)
 						})
 					}
-					ngDialog.open({
+					return ngDialog.open({
 						templateUrl:  'assets/pages/messages/notConfirmed.html',
 						showClose: false,
 						closeByEscape:false,
@@ -183,8 +184,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					});
 				}
 			}
-
-
 
 			$scope.reloading = true;
 			// set conversation to false, so that template ng-ifs evaluate correctly and show loading

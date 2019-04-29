@@ -26,6 +26,8 @@ angular.module('hearth.directives').directive('authorSelector', [
 				$scope.list = [];
 				$scope.selected = {};
 				$scope.selectedEntity = {};
+				$scope.myAdminCommunities = [];
+				$scope.myCommunities = [];
 
 				$scope.getIndexById = function(id) {
 					for (var i = 0; i < $scope.list.length; i++) {

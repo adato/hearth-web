@@ -129,14 +129,16 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			CommunityApplicants.add({
 				communityId: $scope.info._id
-			}, function(res) {
+			}).$promise.then(function(res) {
+				if (res.communityId) return $scope.sendingApplication = false;
 				$scope.init();
 				Notify.addSingleTranslate('COMMUNITY.NOTIFY.SUCCESS_APPLY', Notify.T_SUCCESS);
 				$timeout(function () { 
 					$rootScope.$broadcast('reloadCommunities');
 				}, 1000);
 				$scope.sendingApplication = false;
-			}, function() {
+			}, function(err) {
+				console.log("ERR", err);
 				$scope.sendingApplication = false;
 			});
 		};
