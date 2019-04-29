@@ -16,6 +16,19 @@
 
 	<div class="block flex-grid">
 		<div>
+			<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
+		</div>
+		<div class="flex-1">
+			<h2 translate="COMMUNITY.INVITATION.BY_URL"></h2>
+			<label class="block">
+				<input type="text" ng-show="ctrl.invitation.url" id="community-invitation-url" class="text-input" name="url" ng-model="ctrl.invitation.url" onclick="this.focus();this.select()" style="max-width:500px;"/>
+				<a href="" ng-click="ctrl.copyUrlLink()" translate="COMMON.ACTION_COPY_TEXT_TO_CLIPBOARD"></a> <i class="fa fa-check color-primary" ng-if="ctrl.showUrlSuccessTick"></i>
+			</label>
+		</div>
+	</div>
+
+	<div class="block flex-grid">
+		<div>
 			<i class="fa fa-fw fa-2x block--leading-icon fa-clone"></i>
 		</div>
 		<div class="flex-1">
