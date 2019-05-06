@@ -1,0 +1,26 @@
+<!-- public community info when not logged-->
+<header class="margin-bottom-large">
+    <h1 class="text-center">
+        {{:: info.name }}
+    </h1>
+    <h4 class="large-6 large-push-3 margin-top-large padding-top-large text-center" 
+        translate="COMMUNITY.PRIVACY.PUBLIC_NOAUTH_DESCRIPTION">
+    </h4>
+    <div class="large-6 large-push-3 margin-top-large padding-top-large text-center">
+        <button ng-click="applyForCommunity()" class="button large" ng-if="loggedUser._id == null || (loggedUser._id && !info.is_applicant)">
+            <span translate="COMMON.ACTION_CONTINUE"></span>
+        </button>
+    </div>
+    <div class="text-center margin-top-large">
+        <img src="/app/assets/img/flame.svg">
+    </div>
+    <div>
+        <h4 class="large-4 large-push-4 margin-top-large margin-bottom-large padding-top-large text-center text-muted" ng-bind-html=":: 'HEARTH.WHAT_IS_HEARTH_FOR' | translate">
+        </h4>
+        <div class="text-center margin-top-large">
+            <button ng-click="applyForCommunity()" class="button" ng-if="loggedUser._id && !info.is_applicant">
+                <span translate="COMMON.ACTION_CONTINUE"></span>
+            </button>
+        </div>
+    </div>
+</header>

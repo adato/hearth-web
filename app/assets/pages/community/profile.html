@@ -1,11 +1,15 @@
 <div loading show="!profileLoaded"></div>
 
+<div ng-if="info && !info.is_member && !loggedUser._id" ng-include="'assets/pages/community/public.html'">
+	<!-- included from public.html -->
+</div>
+
 <div ng-if="info && info.is_private && !info.is_member && !mine" ng-include="'assets/pages/community/private.html'">
 	<!-- included from private.html -->
 </div>
 
 
-<div class="community-view profile-common" ng-if="profileLoaded && (!info.is_private || info.is_member || mine)" ng-class="{'mine': mine, 'others': !mine}">
+<div class="community-view profile-common" ng-if="loggedUser._id && profileLoaded && (!info.is_private || info.is_member || mine)" ng-class="{'mine': mine, 'others': !mine}">
 	<div class="user" ng-if="! info">
 		<p>{{:: 'COMMUNITY.NOTIFY.ERROR_NOT_FOUND' | translate }}</p>
 	</div>
