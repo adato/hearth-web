@@ -1,0 +1,65 @@
+<article class="item-common item-post bubbled" ng-if="vm.showPromo">
+  <div class="row margin-bottom-large">
+    <section class="column medium-2 show-for-medium padding-top-small position-relative">
+      <div class="v2 user text-center display-block">
+        <avatar class="" type="'User'" src="vm.config.imgUrl + '/logo-round.png'"></avatar>
+      </div>
+    </section>
+    <div class="column small-12 medium-10 padding-none position-relative">
+      <section class="box padding-none">
+        <div class="box-content">
+          <header class="item-section row">
+            <div class="column small-8 small-push-4 medium-5 medium-push-7 large-2 large-push-10 text-right nowrap">
+              <div class="display-inline-block">
+                <div class="dropdown-wrapper nowrap">
+                  <div class="display-inline-block touchable-wrapper margin-left-none position-relative">
+                    <span dropdown="#more-actions-admin"
+                      class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray">
+                      <i class="fa fa-fw fa-chevron-down"></i>
+                    </span>
+                  </div>
+                  <ul class="actions-dropdown text-left" style="display:none;" id="more-actions-admin">
+                    <li>
+                      <span><a href="" ng-click="vm.hidePromo()" translate="COMMON.ACTION_HIDE_TIP"></a></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="column small-4 small-pull-8 hide-for-medium">
+              <div class="display-inline-block position-relative">
+                <avatar class="" type="'User'" src="config.imgUrl + '/logo-round.png'" size="small"></avatar>
+              </div>
+			</div>
+			
+			<!-- banner specific content -->
+			<div class="column small-12 medium-7 medium-pull-5 large-10 large-pull-2">
+				<h3 class="color-secondary">
+					<!-- title goes here -->
+					Založte si "soukromý Hearth" pro vaší firmu, školu nebo sousedství
+				</h3>
+			</div>
+
+			<div class="column small-12">
+			<!-- text goes here! -->
+				<p>Darování mezi lidmi přináší radost a zlepšuje vztahy. Díky novým soukromým skupinám na Hearthu máte
+					možnost to zažít i u vás. <a
+					href="https://blog.hearth.net/zalozte-si-vas-soukromy-hearth-diky-novym-skupinam/">Více
+					informací na blogu</a>.
+				</p>
+			</div>
+          </header>
+        </div>
+		<footer>
+			<div class="medium-flex footer-item footer-item-bordered">
+				<button class="button margin-right-medium" ui-sref="communityCreate()"
+				translate="COMMUNITY.ACTION_CREATE_COMMUNITY"></button>
+
+				<a ui-sref="communities-all" class="color-primary" translate="COMMUNITY.ALL_COMMUNITIES"></a>
+			</div>
+		</footer>
+      </section>
+    </div>
+  </div>
+</article>
