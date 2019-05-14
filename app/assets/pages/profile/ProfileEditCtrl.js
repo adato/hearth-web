@@ -271,7 +271,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			data.interests = data.interests || []
 			data.interests = data.interests.map(interest => interest.term)
 
-			data.user_languages = ['cs']
+			data.user_languages = []
 			// REMOVED because MONGODB upgrade on Heroku
 			//$scope.userLanguage.forEach(lang => data.user_languages.push(lang.code))
 
