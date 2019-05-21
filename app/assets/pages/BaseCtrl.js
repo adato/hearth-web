@@ -892,12 +892,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return $rootScope.searchBarDisplayed;
 		};
 
-		$rootScope.mixpanelTrackMoveToTop = () => {
-			$analytics.eventTrack('Move to Top clicked', {
-				'context': $state.current.name
-			});
-		};
-
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;
 		$rootScope.loggedUserProfile = null;

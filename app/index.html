@@ -43,26 +43,7 @@
 		window.__nr_require = {};
 	</script>
 	<script src="/app/assets/js/config.js"></script>
-
-	<!-- <link rel="stylesheet" type="text/css" href="/app/assets/css/libs.css" media="screen" /> -->
-
 	<script src="/app/assets/js/jquery.js"></script>
-
-  <!-- Start Visual Website Optimizer Asynchronous Code -->
-  <script type='text/javascript'>
-  /* COMMENTED OUT 
-    var _vwo_code=(function(){
-      var account_id=299037,
-        settings_tolerance=2000,
-        library_tolerance=2500,
-		use_existing_jquery=false,
-		
-		f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
-		
-	*/
-  </script>
-  <!-- End Visual Website Optimizer Asynchronous Code -->
-
 	<script type="text/javascript">
 		document.write('<meta name="action-cable-url" content="' + $$config.websocket.url + '"/>');
 	</script>
@@ -105,46 +86,7 @@
 			});
 			ga('adato.require', 'displayfeatures');
 			ga('adato.send', 'pageview');
-			// =================== ADATO MIXPANEL =======================
-			(function(f, b) {
-				if (!b.__SV) {
-					var a, e, i, g;
-					window.mixpanel = b;
-					b._i = [];
-					b.init = function(a, e, d) {
-						function f(b, h) {
-							var a = h.split(".");
-							2 == a.length && (b = b[a[0]], h = a[1]);
-							b[h] = function() {
-								b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
-							}
-						}
-						var c = b;
-						"undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
-						c.people = c.people || [];
-						c.toString = function(b) {
-							var a = "mixpanel";
-							"mixpanel" !== d && (a += "." + d);
-							b || (a += " (stub)");
-							return a
-						};
-						c.people.toString = function() {
-							return c.toString(1) + ".people (stub)"
-						};
-						i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-						for (g = 0; g < i.length; g++) f(c, i[g]);
-						b._i.push([a, e, d])
-					};
-					b.__SV = 1.2;
-					a = f.createElement("script");
-					a.type = "text/javascript";
-					a.async = !0;
-					a.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
-					e = f.getElementsByTagName("script")[0];
-					e.parentNode.insertBefore(a, e)
-				}
-			})(document, window.mixpanel || []);
-			mixpanel.init($$config.mixpanel.token);
+			// =================== // ADATO GA ACCOUNT =======================
 		})();
 	</script>
 	<script src="//connect.facebook.net/en_US/sdk.js"></script>

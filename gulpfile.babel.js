@@ -267,6 +267,9 @@ function jQuery() {
   return gulp.src(PATHS.libs.app.jq)
     .pipe($.concat('jquery.js'))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/js'))
+    .pipe($.uglify()
+      .on('error', e => { console.log(e); })
+    )
 }
 
 /////////////////////
