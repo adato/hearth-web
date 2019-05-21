@@ -23,9 +23,6 @@ $$localConfig = {
 		debug: false
 	},
 	hotjar: '56494',
-	mixpanel: {
-		token: "6b175f45d52ad5f52b7344b9cad15a8f"
-	},
 	newRelic: {
 		licenseKey: "b7ed760467",
 		applicationID: "5107330",

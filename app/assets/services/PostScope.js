@@ -35,7 +35,6 @@ angular.module('hearth.services').factory('PostScope', [
 			scope.delayedView = true
 			scope.language = $rootScope.language
 			scope.postLanguage = LanguageList.translate(post.language)
-			scope.logViewActivity = PostAux.logViewActivity
 			scope.isInfoGift = PostAux.isInfoGift(post)
 
 			angular.extend(scope, PostServices)

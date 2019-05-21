@@ -22,7 +22,7 @@
 		<nav class="display-flex flex-space-between flex-align-center hide-for-large" test-beacon="nav-bar">
 			<!-- this is a mobile toolbar-->
 			<div class="display-flex flex-align-center">
-				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleToolbar(); mixpanelTrackMenu()">
+				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleToolbar();">
 					<i class="fa fa-bars"></i>
 				</a>
 				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
@@ -140,7 +140,7 @@
 
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li ng-repeat="item in myAdminCommunities track by item._id">
-							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{:: item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
+							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{:: item.name}}">
 								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 								<span class="name">{{:: item.name | ellipsis:12}}</span>
 							</a>

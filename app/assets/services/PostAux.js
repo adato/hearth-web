@@ -27,7 +27,6 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 			logCharInfoShown,
 			logPostAction,
 			logPostTextToggle,
-			logViewActivity,
 			postHeartedByUser,
 			postInaccessibleModal,
 			removePostFromBookmarks,
@@ -287,19 +286,6 @@ angular.module('hearth.services').factory('PostAux', ['$q', 'ngDialog', 'Auth', 
 				post_id: post._id
 			})
 		}
-
-		/**
-		 *	Function that logs to mixpanel that a post has been viewed
-		 *	Logs the posts ID and the current url
-		 */
-		function logViewActivity({item, meta = {context: 'default'}, state}) {
-		if (meta.context !== 'default' && ['market', 'dashboard'].indexOf(state) < 0) console.warn('invalid combo', item, meta, state)
-			$analytics.eventTrack('post-viewed', angular.merge({}, meta, {
-				id: item._id,
-				state
-			}))
-		}
-
 
 		/** 
 		 * Function to detect if post has any youtube embed 
