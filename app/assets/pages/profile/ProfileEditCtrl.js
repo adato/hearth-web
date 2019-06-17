@@ -272,7 +272,8 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			data.interests = data.interests.map(interest => interest.term)
 
 			data.user_languages = []
-			$scope.userLanguage.forEach(lang => data.user_languages.push(lang.code))
+			// REMOVED because MONGODB upgrade on Heroku
+			//$scope.userLanguage.forEach(lang => data.user_languages.push(lang.code))
 
 			// avatar
 			if (data.avatar && data.avatar.public_avatar_url) data.public_avatar_url = data.avatar.public_avatar_url
