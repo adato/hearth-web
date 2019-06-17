@@ -35,7 +35,9 @@ angular.module('hearth', [
 		function($sceProvider, $locationProvider) {
 			$locationProvider.html5Mode(true);
 		}
-	]).config([
+	]).config(['$analyticsProvider', function ($analyticsProvider) {
+		$analyticsProvider.settings.ga.additionalAccountNames = ['adato'];
+	}]).config([
 		'$compileProvider', '$httpProvider',
 		function($compileProvider, $httpProvider) {
 			$compileProvider.debugInfoEnabled($$config.angularDebugInfoEnabled);
@@ -106,7 +108,7 @@ angular.module('hearth', [
 			$authProvider.facebook({
 				clientId: $$config.oauth.facebook,
 				url: $window.encodeURI($$config.apiPath + '/auth/facebook' + $window.refsString),
-  			authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth'
+  				authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth'
 			});
 
 			$authProvider.google({
