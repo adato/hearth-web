@@ -1,0 +1,86 @@
+<section class="large-2 medium-2 hide-for-small-only columns" style="max-width:120px;">
+	<div info-bubble=":: item.entity_to" info-bubble-type=":: item.entity_to._type">
+		<div class="user">
+			<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id) }}">
+				<avatar src="item.entity_to.avatar.normal" type="item.entity_to._type"></avatar>
+				<div class="name">{{:: item.entity_to.name}}&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+				</div>
+			</a>
+		</div>
+	</div>
+</section>
+<div class="columns" style="width: 0;
+height: 0;
+border-style: solid;
+border-width: 10px 20px 10px 0;
+border-color: transparent #1fb1e8 transparent transparent;
+position: relative;
+    left: -10px;
+    top: 30px;">
+</div>
+<section class="large-2 medium-2 hide-for-small-only columns" style="max-width:120px;">
+	<div info-bubble=":: item.entity_from" info-bubble-type=":: item.entity_from._type">
+		<div class="user margin-top-medium">
+			<a ng-href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id) }}">
+				<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type" size="small"></avatar>
+				<div class="name">{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+				</div>
+			</a>
+		</div>
+	</div>
+</section>
+<section class="large-7 small-12 medium-10 columns" id="rating_{{item._id}}">
+	<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
+		<div class="content">
+			<div class="right">
+				<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
+					<i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
+			</div>
+			<div class="ratings-small-avatar-container hide-for-medium display-flex margin-bottom-large">
+				<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_from._id) }}">
+					<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type" size="small"></avatar>
+					<div class="name">{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+					</div>
+				</a>
+			</div>
+			<div class="left">
+				<b ng-if="item.score == -1">
+						<span class="score-icon">⛅️</span> <span translate="PROFILE.RATING.NEGATIVE"></span></b>
+				<b ng-if="item.score == 1">
+						<span class="score-icon">🌞</span> <span translate="PROFILE.RATING.POSITIVE"></span></b>
+				<small ng-if="item.post_id">
+					&nbsp;<span translate="PROFILE.RATING.ON_POST"></span>
+					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title }}">
+            {{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title | ellipsis:40}}</a>.
+				</small>
+			</div>
+			<div class="clear"></div>
+			<div class="text-container clearfix">
+				<p ng-if="!item.hidden" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+				<p ng-if="item.hidden">
+					<i translate="PROFILE.RATING.REMOVED"></i>
+				</p>
+			</div>
+			<div ng-if="!item.formOpened">
+				<a class="right reply-form-link" ng-if="!item.comment && mine" ng-click="openRatingReplyForm(item)" translate="PROFILE.RATING.ACTION_ADD_COMMENT"></a>
+				<div class="clear"></div>
+			</div>
+
+			<div class="rating-reply" ng-if="item.comment">
+				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
+					<avatar class="left margin-right-small" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
+				</a>
+				<div class="">
+					<div class="reply-top margin-bottom-tiny">
+						{{:: item.entity_to.name | ellipsis:40}}
+						<small class="date pull-right" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
+					</div>
+					<em ng-if="!item.comment.hidden">„{{ item.comment.text }}”</em>
+					<em ng-if="item.comment.hidden" translate="PROFILE.RATING.REMOVED"></em>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<rating-reply rating-item="item" ng-if="item.formOpened"></rating-reply>
+		</div>
+	</div>
+</section>

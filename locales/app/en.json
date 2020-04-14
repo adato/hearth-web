@@ -1,0 +1,1880 @@
+{
+    "DAYS_AGO": "%d days ago",
+    "HOURS_AGO": "%d hours ago",
+    "MINUTES_AGO": "%d minutes ago",
+    "MONTHS_AGO": "%d months ago",
+    "YEARS_AGO": "%d years ago",
+    "MARKETPLACE": {
+        "FILTER": {
+            "3_DAYS": "3 days",
+            "ADS_ALL": "All posts",
+            "ADS_NEED": "Needs only <small>(wish and borrow)</small>",
+            "ADS_OFFER": "Offers only <small>(give and lend)</small>",
+            "BY_AUTHOR": "By author",
+            "BY_LOCATION": "By place",
+            "BY_TIME": "By time",
+            "BY_TYPE": "By type",
+            "CANCEL_FILTER": "Remove filter",
+            "INDIVIDUALS": "Users",
+            "MY_CONNECTIONS": "Only my friends",
+            "RUN_FILTER": "Filter",
+            "TODAY": "Today",
+            "WEEK": "Week",
+            "WITHOUT_LIMIT": "Unlimited",
+            "TITLE": "Filter",
+            "BY_KEYWORDS": "By keyword(s)",
+            "SAVE_FILTER": "Save the filter for future use",
+            "COMMUNITIES": "Groups",
+            "CANCEL_FILTER_BAR": "Remove filter",
+            "KM": "Km",
+            "CLOSE_FILTER": "Close a filter",
+            "BY_CHARACTER": "By Nature",
+            "POST_TYPE": {
+                "NAME": "Gifts and wishes",
+                "OFFER": "Only gifts",
+                "NEED": "Only wishes",
+                "ALL": "All",
+                "OFFERGIFT": "Only I give",
+                "OFFERLOAN": "Only I lend",
+                "NEEDLOAN": "Only I borrow",
+                "NEEDGIFT": "Only I wish",
+                "POSTS": "Gifts and Wishes",
+                "PEOPLE": "People",
+                "COMMUNITY": "Groups"
+            },
+            "NEXT_OPTIONS": "More options...",
+            "CHARACTER": {
+                "ENERGY": "Only Energy",
+                "MASS": "Only Matter",
+                "INFORMATION": "Only Information",
+                "ALL": "Any",
+                "NAME": "Nature"
+            },
+            "TIME": {
+                "ALL": "Independent of creation time",
+                "1": "Today",
+                "3": "3 days",
+                "7": "Week",
+                "NAME": "Date created"
+            },
+            "BY_POST_TYPE": "By type",
+            "BY_LANGUAGE": "By language",
+            "LANGUAGE": {
+                "ALL": "Any",
+                "MY_LANGUAGES": "Languages I speak",
+                "OTHER": "Other"
+            },
+            "NOTIFY": {
+                "ERROR_LANGUAGE_REQUIRED": "Please select at least one language..."
+            },
+            "DISTANCE_IN_PLACE": "In place",
+            "AUTOCOMPLETE": {
+                "HISTORY": "Recently searched",
+                "DEFAULT": "Search tips"
+            }
+        },
+        "EDIT_FILTER": "Edit filter",
+        "FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br />Maybe remove some conditions?",
+        "RESET_FILTER": "Reset filter",
+        "NOTHING_FOUND": "Something has gone wrong. Give us a second please and then <a {{attrs}}>try again</a>.",
+        " SHOW_POSTS_ON_MAP": "View posts on a map",
+        "NOT_ON_FIRST_PAGE": "We tried to reload the Marketplace at around the point you finished browsing. You can still reload again  <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>from the beginning</strong></a>.",
+        "NOTHING_FOUND_WITH_OPTIONS": "Bohužel pro tebe nemáme žádné dary a přání. Bude to nastavením jazyků v uživatelském profilu.<br />\nBuď můžeš <a {{changeFilterAttrs}}>upravit filtr</a> na Tržišti (Podle jazyka) nebo <a {{editLangsAttrs}}>přidat jazyky</a> na svém profilu (Jazyky, kterými mluvím).",
+        "ACTION_CREATE_POST": "Add a gift or wish",
+        "COUNT_TOTAL": "{{value}} in total",
+        "X_POSTS_HAS_BEEN_READ": "{{value}} posts have been read",
+        "FULLTEXT": {
+            "WE_FOUND_X_RESULTS": "<p>Yes! We've found <strong>{{counter}}</strong> results for you concerning <strong>{{value}}</strong>.</p>",
+            "NOTHING_FOUND": "<p>Sorry! Nothing close to <strong>{{value}}</strong> found.<br />It's either hiding very well somewhere, or simply doesn't exist here yet. Please refine your search.</p>",
+            "QUERY_PLACEHOLDER": "What you are looking for?"
+        },
+        "POST": {
+            "REMOVE_FROM_COMMUNITY": "Remove post from the group"
+        },
+        "NEWEST_POSTS": "Newest gifts and wishes",
+        "EXEMPLARY_POSTS": "Popular gifts and wishes",
+        "POPULAR_POSTS": "Popular",
+        "NON_MASS_POSTS": "Help, advices, questions",
+        "FRIENDS_POSTS": "From my friends",
+        "RECOMMENDED_POSTS": "By my interests",
+        "RATINGS": "Ratings",
+        "NAVIGATION_ITEM": "Market",
+        "MAP": {
+            "GO_TO_CURRENT_LOCATION": "Find your current location"
+        },
+        "ACTION_SHOW_POSTS_ON_MAP": "Show posts on map",
+        "ACTION_SHOW_POSTS_IN_LIST": "Show posts in list",
+        "FILTER_RESULTS": "Filter results",
+        "SHOW_ALL": "show everything",
+        "POSTS_IN_PLACE": "Gifts and wishes in {{place}}",
+        "ACTION_MORE_POSTS": "More gifts and wishes …",
+        "ACTION_CREATE_QUICKPOST": "Add question or tip"
+    },
+    "ABOUT": "Please tell us a little bit about your self.",
+    "ACTIVATE": "Activate",
+    "POST": {
+        "REMOVE": {
+            "ARE_YOU_SURE": "Are you sure you want to delete this item? No one will see it again. Never ever!",
+            "LABEL": "Delete"
+        },
+        "SUSPEND": {
+            "LABEL": "Suspend post",
+            "ARE_YOU_SURE": "Do you want to suspend this post?",
+            "CONNECTED_MESSAGE_PLACEHOLDER": "Please let the user of a suspended post know about why you decide to suspend it.",
+            "CONNECTED_MESSAGE": "Hello,\n\nas a Hearth.net custodian I just suspended your gift/wish {{post_type}} {{post_title}} ({{post_url}}), because its content is in breach of Hearth.net Terms and conditions (https://www.hearth.net/app/terms).\n\nPlease edit the text of your gift/wish so it complies with Hearth.net TCO and publish again or if not possible, delete the gift/wish.\n\nFor Hearth.net custodians community – {{user_name}}\nhttps://www.hearth.net/app/custodians"
+        },
+        "RESUME": {
+            "LABEL": "Resume"
+        },
+        "HIDE": {
+            "LABEL": "Hide this post",
+            "ARE_YOU_SURE": "Are you sure you want to hide this post?",
+            "TITLE": "Hide post"
+        },
+        "STATE": {
+            "EXPIRED": "Post has expired",
+            "SUSPENDED": "Post is suspended",
+            "EXPIRING_SOON": "Expires in few more days",
+            "SUSPENDED_BY_ADMIN": "Suspended by admin"
+        },
+        "INACCESSIBLE": {
+            "HEADER": "This gift is not active anymore",
+            "TEXT": "We are terribly sorry, but this gift is not active any more. Please try another one."
+        },
+        "EXEMPLARY": {
+            "NEXT": "More recommended...",
+            "INFO": {
+                "NEXT_FOR_YOU": "Tailored for you. Do you want more of these?",
+                "ADD_TO_COMMUNITY": "<p>Join <a href=\"/app/communities/all\">groups</a> you like </p>",
+                "FOLLOW_PEOPLE": "Follow people who you like",
+                "WHAT_YOU_SAY": "<p><a href=\"/app/feedback\">Give us feedback</a></p>"
+            }
+        },
+        "CREATE": {
+            "SELECT_COMMUNITIES": "Select groups the post should go into:",
+            "TITLE_EDIT": "Edit",
+            "TITLE": "Create",
+            "BORROW_LEND_TEXT": "In the first step, please choose the direction of the gift. You can also choose a combination, such as \"I give or lend\" or \"I wish or borrow\".",
+            "TITLE_LABEL": "Post short description:",
+            "TITLE_PLACEHOLDER": "Simply state what: e.g. A book, tutoring, directions, tips, help etc.",
+            "NOTIFY": {
+                "ERROR_TITLE_TOO_SHORT": "The title of the post is too short.",
+                "ERROR_TITLE_TOO_LONG": "The post title is too long.",
+                "ERROR_NO_CATEGORY": "You must select the nature of your gift/wish.",
+                "ERROR_MAX_ONE_CATEGORY": "You can choose up to 2 options of the nature of your gift/wish.",
+                "ERROR_NO_LOCATIONS": "Fill in location or tick box no location needed.",
+                "ERROR_DATE_IS_EMPTY": "Fill in post expiry date or check the box for - unlimited duration.",
+                "ERROR_DATE_IS_IN_PAST": "The date you have entered is no longer valid. Please check and provide the correct date.",
+                "NO_COMMUNITIES_WHEN_PRIVATE": "To insert the post to group you can't have it visible for friends only.",
+                "ERROR_UNKNOWN_LOCATION": "We don't know of such a place... Could you pick one from the list instead?",
+                "ERROR_FILE_TYPE_INVALID": "Sorry, but we don't support files of .{{type}} type as an attachment."
+            },
+            "TEXT_LABEL": "Post text:",
+            "TEXT_PLACEHOLDER": "Tell the world, what you can offer or wish to receive",
+            "IMAGES_LABEL": "Images",
+            "REMOVE_PHOTO_LABEL": "Delete photo",
+            "LANGUAGE_LABEL": "Post language",
+            "LANGUAGES_MAIN": "Primary languages",
+            "LANGUAGES_OTHER": "Other languages",
+            "CATEGORY_LABEL": "Category",
+            "KEYWORDS_LABEL": "Keywords:",
+            "EXPIRY_DATE_LABEL": "Valid until:",
+            "COMMUNITIES_LABEL": "Place post in group",
+            "PRIVACY_LABEL": "Post privacy:",
+            "PRIVACY_SHOW_TO_ALL": "show to all",
+            "PRIVACY_SHOW_TO_FRIENDS": "show to friends",
+            "PRIVACY_SHOW_TO_COMMUNITY": "show to group",
+            "PRIVACY_VISIBLE_FOR_ALL": "Visible for anyone",
+            "PRIVACY_VISIBLE_FOR_FRIENDS": "Only for friends",
+            "PRIVACY_VISIBLE_FOR_MEMBERS": "Visible only for members",
+            "ACTION_SAVE_AND_ACTIVATE": "Save and publish",
+            "ACTION_CHOOSE_FROM_MAP": "Pick a place on the map",
+            "LOCATION_PLACEHOLDER": "Add location",
+            "QUICK": {
+                "MODAL_TITLE": "Question or tip",
+                "TITLE": "What do you want to ask or inspire others about?",
+                "TEXT": "Details:",
+                "ACTION_ADD_PHOTO": "Add image"
+            }
+        },
+        "LOCATION": {
+            "ANYWHERE": "Anywhere",
+            "TITLE": "Post location",
+            "ANYWHERE_WITH_TITLE": "Post location: anywhere"
+        },
+        "NOTIFY": {
+            "SUCCESS_UPDATED": "Post has been edited successfully.",
+            "SUCCESS_DELETED": "Post has been deleted successfully.",
+            "SUCCESS_FOLLOWED": "Great! You are now watching this post.",
+            "SUCCESS_UNFOLLOWED": "You are no longer watching this post.",
+            "ERROR_NOT_FOUND": "Post not found. Check your link.",
+            "EXPIRED": "The date of the post has expired.",
+            "SUSPENDED": "Post has been suspended.",
+            "DELETED": "Post has been deleted.",
+            "EXPIRED_AT": "Post has expired on",
+            "YOU_ALREADY_REPLIED": "You have replied to this post.",
+            "ERROR_CHOOSE_COMMUNITY": "Select at least one group from which to remove the post.",
+            "ERROR_THERE_ARE_ERRORS": "There are errors in your post, the action could not be completed. Please correct it and try again.",
+            "TYPE_CHANGE_IS_DISABLED": "The post has a reply, that's why its type cannot be changed.",
+            "AUTHOR_SELECT_IS_DISABLED": "The post has a reply and that's why you cannot change the author.",
+            "ERROR_UPDATE": "Editing the post has failed. Please try again, or let us know if the problem continues.",
+            "ERROR_DELETE": "Post could not be deleted."
+        },
+        "ACTION_MORE_INFO": "More info",
+        "ACTION_UNBOOKMARK": "Remove from favourites",
+        "ACTION_BOOKMARK": "Add to favourites",
+        "FLAG": {
+            "ALREADY_FLAGGED": "You have already set this gift or wish as inaproppriate."
+        },
+        "ACTION_FLAG": "Report abusive post",
+        "ACTION_HIDE": "Hide this post",
+        "ACTION_REMOVE_FROM_COMMUNITY": "Remove from group",
+        "ACTION_SUSPEND": "Suspend post",
+        "ACTION_FOLLOW": "Watch this Post",
+        "ACTION_UNFOLLOW": "Stop watching this post",
+        "CHARACTER": "Nature",
+        "ONLY_FOR_FRIENDS": "Only for friends or members of the same group",
+        "ACTION_SHOW_MAP": "Show map",
+        "ACTION_HIDE_MAP": "Hide map",
+        "ACTION_EDIT": "Edit",
+        "ACTION_RESUME": "Resume",
+        "DETAIL": {
+            "NO_REPLY": "No one yet.",
+            "REPLIES": "User replies",
+            "NO_REPLY_YOU": "You have no replies to this post yet."
+        },
+        "ACTION_GO_TO_PROFILE": "Show profile",
+        "RELATED": {
+            "TITLE": "Will any related post catch your eye?",
+            "QUESTION": "Does the selection of related gifts and wishes make sense for you?"
+        },
+        "ACTION_SHOW_MORE": "Expand entire post",
+        "ACTION_SHOW_LESS": "View brief description",
+        "HEART": {
+            "REMOVE": "Unmark this gift/wish. It's not your cup of tea anymore.",
+            "ADD": "Mark that this gift/wish is inspiring you."
+        },
+        "REMOVE_FROM_COMMUNITY": {
+            "TEXT": "Is this post not for your group? You can simply remove it...",
+            "SELECT_COMMUNITIES": "Select groups from which to remove the post:",
+            "POST_WILL_BE_REMOVED_FROM": "<p>Post&nbsp;will be removed from the group&nbsp;<strong>{{name}}</strong>.</p>",
+            "REASON_LABEL": "Reason for removal:",
+            "REASON_PLACEHOLDER": "Tell user why the post is not suitable for Your groups...",
+            "SUCCESSFULLY_REMOVED": "Post removed successfully.",
+            "ERROR_REMOVE": "An error occured while removing the post from group",
+            "TITLE": "Remove the post from the group"
+        },
+        "SHARE": {
+            "LINK_TITLE": "Share link",
+            "BY_EMAIL": {
+                "HEADER": "Send post to a friend",
+                "ADDRESS_LABEL": "Friend's email:",
+                "ADDRESS_PLACEHOLDER": "Enter one or more email addresses separated by commas.",
+                "NOTIFY": {
+                    "ERROR_NO_ADDRESS": "You have to fill in your friend's email address.",
+                    "ERROR_ADDRESS_INVALID": "One or more of the addresses is not in the correct format.",
+                    "SUCCESS_SENT": "Email has been sent successfully. :)"
+                },
+                "TEXT_LABEL": "Message text:",
+                "TEXT_PLACEHOLDER": "Enter a few words here..."
+            }
+        },
+        "USER_INFO_NOT_FILLED": "User has not given any personal info yet.",
+        "COMMUNITY_INFO_NOT_FILLED": "Group has not given any info yet",
+        "REPORT": {
+            "TITLE": "Report post",
+            "LABEL": "<div>Reason for report:</div>",
+            "REASON_PLACEHOLDER": "Tell us a little about why this post is bad...",
+            "NOTIFY": {
+                "SUCCESS_MESSAGE_SENT": "Post has been reported successfully."
+            }
+        },
+        "ACTION_ASK_FOR_GIFT": "Ask for it",
+        "ACTION_OFFER_GIFT": "Offer it",
+        "REPLY": {
+            "TEXT_PLACEHOLDER": "Are you interested? Wonderful... Please reply here...",
+            "NOTIFY": {
+                "SUCCESS_SEND_REPLY": "Reply to post has been sent.",
+                "ERROR_SEND_REPLY": "Sending reply has failed."
+            },
+            "TEXT_PLACEHOLDER_NEED": "What exactly do you offer? How do you prefer to meet?",
+            "TEXT_PLACEHOLDER_OFFER": "How will the gift help you? How do you prefer to meet?"
+        },
+        "LOCATION_LABEL": "Places:",
+        "EDIT": {
+            "LOCATION_DOES_NOT_MATTER": "Location does not matter"
+        },
+        "ACTION_INSERT_LOCATION": "Insert location",
+        "GIFT_WISH_COUNT": {
+            "one": "{{count}} actual gift/wish",
+            "few": "{{count}} actual gifts/wishes",
+            "other": "{{count}} actual gifts/wishes"
+        },
+        "COMMENT": {
+            "YOUR_COMMENT": "Your comment",
+            "YOUR_ANSWER": "Your reply",
+            "ACTION_HIDE": "Hide comment",
+            "ACTION_RESTORE": "Unhide comment",
+            "DELETED_BY_ADMIN": "This comment has been removed by the administrator.",
+            "ACTION_ADD": "Add comment"
+        },
+        "COMMENTS": {
+            "ACTION_TOGGLE": "Show/hide comments",
+            "ACTION_VIEW_ALL": "View older comments"
+        },
+        "ACTION_UNPIN": "Unpin from top",
+        "ACTION_PIN": "Pin to top"
+    },
+    "BACK": "Back",
+    "CHANGE": "Change",
+    "CHANGE_PASSWORD": "Change password",
+    "COMMUNITY_ADMIN": "Admin",
+    "COMMUNITY_MEMBER": "Member",
+    "COMMUNITY_MEMBER_REMOVE": "Remove",
+    "DAY_AGO": "yesterday",
+    "DOES_GIVE": "I give",
+    "DOES_WISH": "I wish",
+    "FILTER": "Filter",
+    "FORGOTTEN_PASSWORD_EMAIL_FAIL": "Sending the confirmation email has failed.",
+    "FORGOTTEN_PASSWORD_EMAIL_SUCCESS": "A confirmation email has been sent to your email address. To create a new password, just open it and show us your clicking skills.",
+    "HIDE_MAP": "Hide map",
+    "HOUR_AGO": "an hour ago",
+    "INTERESTS": "What interests me",
+    "INVITATION_SENDING_SUCCESS": "Yes! An invitation email has been sent.",
+    "I_GIVE": "I give",
+    "I_WISH": "I accept",
+    "KEYWORD": "Type a few characters...",
+    "KEYWORDS": "Keywords",
+    "LESS_THAN_MINUTE_AGO": "now",
+    "LIST": "List",
+    "MAP": "Map",
+    "MESSAGES": "Messages",
+    "MINUTE_AGO": "one minute ago",
+    "MONTH_AGO": "one month ago",
+    "MY_LANG": {
+        "ar": "Arabic",
+        "bg": "Bulgarian",
+        "cs": "Czech",
+        "de": "German",
+        "el": "Greek",
+        "en": "English",
+        "eo": "Esperanto",
+        "es": "Spanish",
+        "fi": "Finnish",
+        "fr": "French",
+        "hr": "Croatian",
+        "it": "Italian",
+        "ja": "Japanese",
+        "ko": "Korean",
+        "no": "Norwegian",
+        "pl": "Polish",
+        "pt": "Portuguese",
+        "ro": "Romanian",
+        "ru": "Russian",
+        "sk": "Slovakian",
+        "sv": "Swedish",
+        "tk": "Turkish",
+        "tr": "Turkish",
+        "uk": "Ukrainian",
+        "zh": "Chinese",
+        "he": "Hebrew",
+        "clean": "- No translation -",
+        "nl": "Dutch",
+        "bo": "Tibetan",
+        "sq": "Albanian",
+        "hy": "Armenian",
+        "az": "Azerbaijani",
+        "be": "Belarusian",
+        "da": "Danish",
+        "et": "Estonian",
+        "fo": "Faroese",
+        "fa": "Persian",
+        "ka": "Georgian",
+        "te": "Telugu",
+        "hu": "Hungarian",
+        "is": "Icelandic",
+        "id": "Indonesian",
+        "ky": "Kirghiz",
+        "lv": "Latvian",
+        "lt": "Lithuanian",
+        "mk": "Macedonian",
+        "ms": "Malay",
+        "mn": "Mongolian",
+        "nn": "Norwegian Nynorsk",
+        "tt": "Tatar",
+        "sr": "Serbian",
+        "sl": "Slovenian",
+        "sw": "Swahili",
+        "th": "Thai",
+        "ur": "Urdu",
+        "uz": "Uzbek",
+        "vi": "Vietnamese"
+    },
+    "NEED": "I wish",
+    "OFFER": "I give",
+    "OR": "or",
+    "TITLE": {
+        "0": "Hearth.net",
+        "market": "Marketplace",
+        "map": "Map of gifts and wishes",
+        "communities": {
+            "0": "Groups",
+            "suggested": "Selected groups",
+            "all": "List of all groups"
+        },
+        "reset-pass": "New password",
+        "forgot-pass": "Forgotten password",
+        "token-login": "First login",
+        "fill-email": "Fill in email",
+        "confirm-email": "E-mail confirmation",
+        "login": "Sign in",
+        "reg": "Sign up",
+        "search": "Search",
+        "feedback": "Contact",
+        "terms": "Terms and Conditions",
+        "about": "About",
+        "post": "wish / gift detail",
+        "messages": {
+            "0": "Conversation",
+            "detail": "Conversation detail"
+        },
+        "profileEdit": "Edit profile",
+        "profileSettings": "Profile settings",
+        "communityEdit": "Edit group",
+        "community": "Groups",
+        "error404": "Page not found"
+    },
+    "WE_OFFER": "We give",
+    "WE_NEED": "We accept",
+    "YEAR_AGO": "one year ago",
+    "author": "Author",
+    "community": "groups",
+    "market": "Marketplace",
+    "place": "Place",
+    "time": "Time",
+    "user": "Users",
+    "activities": {
+        "first_person": {
+            "new_post": "<p>You have created the new ad <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_reply": "<p>You have replied to the ad&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "wants_into_community": "<p>You've applied to the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "accepted_into_community": "<p>You've been accepted into the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "rejected_into_community": "<p>You have been rejected by the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_following": "<p>You have started following <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_being_followed": "<p>You are being followed by&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "resume_post": "<p>You have resumed the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_comm_rating_received": "<p>You have received a rating from the gorup&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "suspend_post": "<p>You have suspended the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "prolong_post": "<p>You have resumed the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "publish_post": "<p>You have renewed the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+        },
+        "third_person": {
+            "new_post": "<p>User created an ad&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_reply": "<p>{{user}} has answered the ad&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "wants_into_community": "<p>{{user}} has applied to the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "accepted_into_community": "<p>{{user}} has been accepted into the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "rejected_into_community": "<p>{{user}} has been rejected by the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_following": "<p>{{user}} has started following the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_being_followed": "<p>{{user}} is being followed by&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "community_new_post": "<p>The group has a new post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "community_excluded_member": "<p><a href=\"{{url}}\">{{name}}</a>&nbsp;is no longer a member of the group.</p>",
+            "new_application": "<p>The group has a new application from&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "community_rejected_user": "<p>The group has refused <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "community_accepted_user": "<p>The group has accepted <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "member_left": "<p>The user <a href=\"{{url}}\">{{name}}</a> has left the group.</p>",
+            "new_admin": "<p>Group has a new admin - <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "resume_post": "<p>User has resumed the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_community_rating": "<p>Group has rated user <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_comm_rating_received": "<p>User has received a rating from the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "suspend_post": "<p>User has suspended the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "prolong_post": "<p>User has resumed the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "publish_post": "<p>User has renewed the post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "group": {
+                "community_accepted_user": "<p>{{names}} are new members of the group.</p>"
+            }
+        },
+        "rating": {
+            "first": {
+                "user": {
+                    "user": "<p>You can give a new rating to the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>You can give a new rating to the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} give a new rating to the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>{{user}} give a new rating to the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                },
+                "comm": {
+                    "user": "<p>Group {{user}} give a new rating to user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>Group {{user}} just gave a new rating to the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            }
+        },
+        "rating_received": {
+            "first": {
+                "user": {
+                    "user": "<p>You got a rating from the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>You got a rating from the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}}&nbsp;got a rating from the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>{{user}}&nbsp;got a rating from the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                },
+                "comm": {
+                    "user": "<p>Group {{user}} got a rating from the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>Group {{user}} got a rating from the group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            }
+        }
+    },
+    "COMMUNITY": {
+        "MEMBERS": {
+            "one": "{{count}} member",
+            "other": "{{count}} members",
+            "ACTION_ACCEPT": "Accept",
+            "ACTION_REJECT": "Reject",
+            "NO_APPLICATIONS": "Currently there are no applications for the group.",
+            "NEW_APPLICATIONS": "New membership requests",
+            "SHOW_ALL_APPLICATIONS": "Show all group applications.",
+            "ACTION_ADD_MEMBERS_MODAL": "Add group members",
+            "ADD_MEMBERS_LABEL": "If you know about people who should be in the group, send them the following link:",
+            "ADMIN_ACCEPT_MEMBERS": "Membership in the group is approved by its administrator"
+        },
+        "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "You are not part of a group yet. You can create one yourself or check out our recommended groups. We hope at least one catches your eye.",
+        "X_MEMBERS": {
+            "one": "<strong>{{count}}</strong><br />member",
+            "other": "<p><strong>{{count}}<br /></strong>members</p>"
+        },
+        "COMMUNITY_HAS_X_MEMBERS": {
+            "one": "Group has one member",
+            "other": "Group has {{count}} members"
+        },
+        "APPROVE_REQUESTS": {
+            "one": "One person waiting for approval",
+            "other": "{{count}} people waiting for approval"
+        },
+        "POSTS": {
+            "NO_POSTS_ADMIN": "What? You haven't created any posts yet. Let's do something about it. You can give or accept, whatever comes into your beautiful mind.",
+            "NO_POSTS_OTHER": "The group hasn't offered anything yet, nor needed to accept.",
+            "TITLE": "Gifts and wishes of the group",
+            "NO_POSTS_YET": "This group has no posts yet. But here you are, so maybe...?",
+            "INACTIVE_POSTS_ONLY": "This group has only inactive posts. You can manage them in the list of all posts."
+        },
+        "CONFIRM_LEAVE": {
+            "TITLE": "Leave group",
+            "TEXT": "Do you really want to leave this group?"
+        },
+        "PROFILE": {
+            "GIVEN_RATINGS": "Sent ratings",
+            "RECEIVED_RATINGS": "Recieved ratings",
+            "CLICK_TO_EXPAND": "Show more",
+            "TITLE": "Group profile",
+            "SHORT_ABOUT": "About group",
+            "NO_RATING_ME": "With your first rating, we'll add a splash of color here.",
+            "NO_RATING_OTHER": "Rate the group and pretty colors will start to show:)",
+            "TERMS": "Community terms",
+            "HAS_BEEN_REGISTERED": "Group has been created",
+            "ACTION_EDIT": "Edit group"
+        },
+        "X_GIVES": {
+            "one": "gift",
+            "other": "gifts"
+        },
+        "X_WISHES": {
+            "one": "wishes",
+            "other": "wishes"
+        },
+        "ADMIN": "Administrator",
+        "NOTIFY": {
+            "SUCCESS_CREATE": "Group has been created successfully. Woohoo!",
+            "SUCCESS_UPDATE": "Group has been edited successfully.",
+            "SUCCESS_DELEGATE_ADMIN": "Administration has been handed over successfully.",
+            "SUCCESS_DELETE_COMMUNITY": "Poof! Group has been deleted.",
+            "ERROR_NOT_FOUND": "No such group here. Sorry...",
+            "ERROR_NAME_NOT_FILLED": "Please enter the name of the group.",
+            "ERROR_NAME_MAX_LENGTH": "Group name is too long. Cannot exceed 75 characters.",
+            "ERROR_MOTTO_MAX_LENGTH": "About group should be really short :)",
+            "ERROR_ABOUT_NOT_FILLED": "Please tell us a little about the group.",
+            "ERROR_LOCATION_IS_EMPTY": "Enter the location of your group",
+            "ERROR_PASS_ADMIN_NO_MEMBERS": "Err, you can change a group administrator only when the group has more members. Why not invite someone along?",
+            "SUCCESS_USER_KICKED": "Member has been dismissed from the group.",
+            "SUCCESS_APPLY": "Group application has been sent successfully.",
+            "SUCCESS_REJECT": "Community application has been rejected.",
+            "SUCCESS_LEAVE": "You have left the group.",
+            "SUCCESS_APPROVE": "Application has been successfully approved.",
+            "ERROR_DELEGATE_ADMIN": "Administration handover has failed.",
+            "ERROR_ADD_RATING": "There was an error when adding rating.",
+            "ERROR_APPROVE_APPLICATION": "Approval has failed. Please try again, or let us know if the problem continues.",
+            "ERROR_APPLY": "Group application has failed.",
+            "ERROR_UPDATE": "Editing group has failed.",
+            "ERROR_CREATE": "Adding group has failed.",
+            "ERROR_TERMS_NOT_AGREED": "As a group administrator, you are responsible for complying with the Hearth.net terms. This is a required item.",
+            "INFO_SELECT_X_GIFTS": "Choose three gifts that will best represent the group to be attractive to other members."
+        },
+        "CREATE": {
+            "TITLE_EDIT": "Edit group profile",
+            "TITLE_ADD": "Add group",
+            "NAME": "Group name",
+            "MOTTO": "About group in short",
+            "MOTTO_PLACEHOLDER": "Add short group description",
+            "ABOUT": "More about the group",
+            "DESCRIPTION": "Description:",
+            "RESTRICTIONS": "Membership rules",
+            "RESTRICTIONS_PLACEHOLDER": "What membership rules does the group have?",
+            "INTERESTS": "Interests",
+            "INTERESTS_PLACEHOLDER": "Insert keywords divided by comma, ie.: education, civil society,...",
+            "LOCATION": "Place of group",
+            "ACTION_CANCEL_ADD": "Cancel adding group",
+            "PRIVACY": "Group privacy",
+            "DESCRIPTION_PLACEHOLDER": "Who is the group intended for? What do people find there?"
+        },
+        "SETTINGS": {
+            "ALLOW_SENDING_TO_MEMBERS": "Allow members to send a message to the whole group",
+            "CHANGE_ADMIN": {
+                "0": "Change community administrator",
+                "SUBMIT": "Send"
+            },
+            "DELEGATE_ADMIN": {
+                "LABEL": "Hand over administration",
+                "TEXT": "Do you really want to hand over administration of the community?"
+            },
+            "SELECT_PERSON_TO_PASS_ADMIN": "Select person you want to hand over administration of the group to and click send.",
+            "DELETE": "Delete group",
+            "GIVE_ADMIN_TO_SOMEONE": "How about handing over administration rights so the group can continue?",
+            "NO_MEMBERS_DELETE_WARNING": "Group has no other members. How about inviting some more people along?"
+        },
+        "DELETE_DIALOG": {
+            "LABEL": "Delete group",
+            "TEXT": "Do you really want to delete this group?",
+            "ACTION_DELETE_ANYWAY": "Delete anyway"
+        },
+        "COMMUNITIES": "Groups",
+        "ACTION_CREATE_COMMUNITY": "Create a group",
+        "MY_COMMUNITIES": "My groups",
+        "SUGGESTED_COMMUNITIES": "Selected groups",
+        "ALL_COMMUNITIES": "All groups",
+        "ACTION_APPLY_FOR_MEMBERSHIP": "Become a member",
+        "APPLY_FOR_MEMBERSHIP_SENT": "Community application waiting for approval.",
+        "ACTION_INVITE_FRIENDS": "Invite friends to group.",
+        "ACTION_LEAVE_COMMUNITY": "Leave group",
+        "REMOVE_MEMBER_MODAL": {
+            "TITLE": "Dismiss member from group",
+            "TEXT": "Do you really want to dismiss this member from the group?"
+        },
+        "ACTION_REMOVE_MEMBER": "Dismiss member from group",
+        "MEET_COMMUNITY": "Meet group",
+        "ACTION_SEND_MESSAGE_TO_ADMIN": "Contact administrator",
+        "ACTION_SEND_MESSAGE_TO_ALL_MEMBERS": "Message to members",
+        "ACTIVITY": {
+            "TITLE": "Group activity",
+            "NO_ACTIVITY_ME": "You seem to be new here. Not much activity so far. :)",
+            "NO_ACTIVITY_OTHER": "This is a new group. Brand new it seems. Otherwise there would be loads of interesting and fun info here. We wait to see it! We love watching things grow!:)",
+            "USER_JOINED_COMMUNITY": "{{user}} has joined group",
+            "USERS_JOINED_COMMUNITY": "{{users}} have joined group",
+            "AND_X_MORE": "and <a {{anchorAttrs}}>more ({{count}})</a>"
+        },
+        "NAVIGATION_ITEM": "Groups",
+        "COMMUNITY": "Group",
+        "PRIVACY": {
+            "PRIVATE": "Private",
+            "PUBLIC": "Public",
+            "PUBLIC_DESCRIPTION": " - making your activities more visible",
+            "PRIVATE_DETAILS": "The group cannot be found on Hearth.net. Only those who know a direct link can become a member.",
+            "PRIVATE_DESCRIPTION": " - a secure space of trust",
+            "PUBLIC_DETAILS": "Everyone at Hearth.net can see a group, its members, and gifts. Anyone can become a member.",
+            "FOR_MEMBERS_ONLY": "This is a member-only group.",
+            "HEARTH_INTRO": "<p>At Hearth.net, people help each other, give gifts and communicate with each other.</p>\n<p>&nbsp;</p>\n<p>And sometimes miracles happen.</p>",
+            "PRIVATE_FULL_DESCRIPTION": "This is a <strong>private group</strong> - a safe space of trust for you and your gifts. Only group members can access it.",
+            "PUBLIC_FULL_DESCRIPTION": "This is a <strong>public group</strong>. All people can easily find out about your activities at Hearth.net. Anyone can join the group.",
+            "CHANGE_MODAL_TEXT": "All members of the group will receive a message that the privacy of the group has changed.",
+            "AGREE_WITH_TERMS": "I assume responsibility for <a href=\"/app/terms\" target=\"_blank\" class=\"margin-horizontal-tiny\">the Hearth.net Terms of Service</a> in this group\n",
+            "PUBLIC_NOAUTH_DESCRIPTION": "Thank you for your interest in our group. Come in..."
+        },
+        "ACTION_BECOME_MEMBER": "Join a group",
+        "ACTION_ADD_MEMBERS": "Add members",
+        "ACTION_MY_COMMUNITIES": "More groups…",
+        "MEMBERS_LIST": "Members",
+        "NOGIFTS": {
+            "TITLE": "We are glad you are here 😊",
+            "DESCRIPTION": "Right now is the best time to add gifts and wishes.",
+            "ACTION_ADD_FIRST_GIFT": "Add first gift"
+        },
+        "MY_COMMUNITIES_POSTS": "Gifts and wishes from my groups",
+        "TYPE_PRIVATE": "Private group",
+        "TYPE_PUBLIC": "Public group",
+        "I_AM_ADMIN": "I am an administrator",
+        "NO_MY_COMMUNITIES": "None yet",
+        "EMPTY_LIST_CREATE_COMMUNITY_PART1": "Create a group",
+        "EMPTY_LIST_CREATE_COMMUNITY_PART2": "for my business, project, or community.",
+        "EMPTY_LIST_COMMUNITIES_PART1": "Browse groups",
+        "EMPTY_LIST_COMMUNITIES_PART2": "that are already here.",
+        "APPLY_FOR_PRIVATE_MEMBERSHIP_SENT": "Thank you for your interest in the group. Your request has been sent to the administrator. We'll send you an email as soon as he approves it.",
+        "INVITATION": {
+            "EMAIL_BODY": "Vážení kolegové,\n\nzvu vás do skupiny COMMUNITY_NAME. Stačí kliknout sem:\n\nCOMMUNITY_URL\n\nVe skupině můžete například: \n\n• Darovat hezké věci, které už nepotřebujete\n• Pomoci někomu s tím, co děláte nejraději\n• Požádat ostatní o dar či pomoc.\n\nA proč to dělat? Pro radost! Darování často vykouzlí úsměv na tváři a to stojí za to :-)",
+            "BY_EMAIL": "Invitation by e-mail",
+            "BY_EMAIL_DESCRIPTION": "The fastest way. Here's the text. You can edit it as needed and send it.",
+            "BY_POSTER": "Letáky a plakáty k vytištění",
+            "BY_POSTER_DESCRIPTION": "The best way. Not handed over to the flyer together with a smile :-)\nCan be printed on the A6 as a leaflet or on the A3 as a poster for hanging up on busy places.",
+            "PREVIEW1": "<div class=\"line\">GIVING AND HELP</div><div class=\"line\">BETWEEN PEOPLE.</div><div class=\"line orange\">FOR JOY.</div>",
+            "PREVIEW2": "<div class=\"line\">LET`S STAY IN TOUCH.</div><div class=\"line orange\">LET`S HELP.</div>",
+            "PREVIEW1_TITLE": "Flyer for everyone",
+            "PREVIEW2_TITLE": "Flyer for participants of your event",
+            "ACTION_CHOOSE_POSTS": "Choose different posts",
+            "ACTION_HIDE_POSTS": "Hide posts",
+            "NOT_ENOUGH_POSTS": "Přidej do skupiny lákavé dary a přání, aby tam byly alespoň 3. Plakát pak půjde vytisknout.",
+            "BY_URL": "Odkaz na skupinu"
+        },
+        "ADMIN_ONBOARDING": {
+            "TITLE": "How to bring life to this group?",
+            "SUBTITLE": "Donation brings joy and improves relationships. Get started with your business, neighborhood, or other group. Here are some tips on how to do this:",
+            "STEP_1_LINK": "Add two active participants",
+            "STEP_1_TEXT": "You create an important group foundation together.",
+            "STEP_2_LINK": "Add some gifts and wishes",
+            "STEP_2_TEXT": "Nice and tempting for others",
+            "STEP_2_LINK_2": "for example, these",
+            "STEP_3_LINK": "Invite other colleagues, neighbors, etc.",
+            "STEP_3_TEXT": "Using email, flyers or posters."
+        }
+    },
+    "WITH_TERMS_OF_USE": "terms of use",
+    "YOU_ARE_ACCEPTING_TERMS": "By registering I accept",
+    "SIGNUP_PROCESS_ERROR": "Ugh. Sorry. Something is broken. Registration could not be completed. Please try again or feel free to contact us if the problem continues.",
+    "RESET_PASSWORD_SUCCESS": "<p>Yippee! Your password has been successfully changed.<br />You can now <a href=\"/app/login\">sign in</a>.</p>",
+    "ADMIN_7_CASE": "administrator",
+    "DELETE": "delete",
+    "YOU_HAVE": "You have",
+    "OG_DEFAULT_TITLE": "Hearth.net",
+    "OG_DEFAULT_DESCRIPTION": "A space where giving so much means getting so much more",
+    "POSTS": "Posts",
+    "TUTORIAL": "Tutorial",
+    "AD_ADD_LABEL": "Create post",
+    "NOTIFY": {
+        "POST_CREATED_SUCCESFULLY": "Post has been successfully saved.",
+        "EMAIL_INVITATION_FAILED": "Sending the invitation has failed. Please try again, or let us know if the problem continues.",
+        "POST_EDIT_FAILED": "Editing the post has failed. Please try again, or let us know if the problem continues.",
+        "REMOVE_FOLLOWER_SUCCES": "You have successfully removed the user from your followers.",
+        "REMOVE_FOLLOWER_FAILED": "Removing the user from your followers has failed. Please try again, or let us know if the problem continues.",
+        "ADD_FOLLOWER_SUCCES": "Adding the user to your followers has been successful.",
+        "ADD_FOLLOWER_FAILED": "Adding the user to your followers has failed. Please try again, or let us know if the problem continues.",
+        "USER_RATING_FAILED": "User rating has failed. Please try again, or let us know if the problem continues.",
+        "USER_RATING_SUCCESS": "User rating has been added.",
+        "PASS_CHANGE_FAILED": "Password editing has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_DELETE_FAILED": "Deleting group has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_DELEGATE_ADMIN_FAILED": "Administration handover has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_CREATE_FAILED": "Adding group has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_UPDATE_FAILED": "Editing group has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_APPLY_FAILED": "Group application has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_REJECT_FAILED": "Rejecting application has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_LEAVE_FAILED": "Leaving group has failed. Please try again, or let us know if the problem continues.",
+        "COMMUNITY_APPROVE_APPLICATION_FAILED": "Approval has failed. Please try again, or let us know if the problem continues.",
+        "SIGNUP_PROCESS_SUCCESS": "Registration has been successful.",
+        "SIGNUP_PROCESS_ERROR": "Registration has failed. Please try again, or let us know if the problem continues.",
+        "RESET_PASSWORD_FAILED": "Request to renew password has failed. Please try again, or let us know if the problem continues.",
+        "NEW_PASS_FAILED": "Setting up new password has failed. Please try again, or let us know if the problem continues.",
+        "ACCOUNT_ACTIVATE_SUCCESS": "Victory! Your account has been activated. Welcome to Hearth.net!",
+        "ACCOUNT_ACTIVATE_FAILED": "Account activation has failed... Please try again, or let us know if the problem continues.",
+        "POST_SPAM_REPORT_FAILED": "Reporting post has failed. Please try again, or let us know if the problem continues.",
+        "POST_SPAM_REPORT_SUCCESS": "Post has been reported.",
+        "USER_KICKED_FROM_COMMUNITY_FAILED": "Dismissing the member from the group has failed. Please try again, or let us know if the problem continues.",
+        "REPLY_FAILED": "Sending reply has failed.",
+        "CHANGE_LANGUAGE_FAILED": "Switching language has failed. Please try again, or let us know if the problem continues.",
+        "POST_DELETED_FAILED": "Post could not be deleted.",
+        "COMPLETE_TWITTER_REGISTRATION_FAILED": "Adding email has failed.",
+        "EMAIL_NOTIFY_CONFIG_FAILED": "Saving settings has failed.",
+        "EMAIL_SHARING_FAILED": "Err...There was an error when sending the email.",
+        "POST_REMOVE_FROM_COMMUNITY_FAILED": "An error occured while removing the post from group",
+        "MESSAGE_SEND_FAILED": "O-o-p-s. Message couln't be sent.",
+        "CONVERSATION_DELETE_FAILED": "Error when deleting the conversation.",
+        "CONVERSATION_LEAVE_FAILED": "There was an error while leaving the conversation.",
+        "MESSAGE_REPLY_FAILED": "Ooops. Error while sending the message.",
+        "CONVERSATION_ARCHIVE_FAILED": "Sorry! There was an error in the archive.",
+        "RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
+        "REACTIVATING_EMAIL_FAILED": "There was an error while sending activation e-mail.",
+        "API_ERROR": "<p>Something went wrong. Please try again in a little while, and <a href=\"/app/feedback\">let us know</a> if there is still a problem. Thanks!</p>",
+        "POST_BOOKMARKED_SUCCESFULLY": "Nice! Adding post to favourites was successful.",
+        "POST_UNBOOKMARKED_SUCCESFULLY": "Post was removed from the favourites",
+        "COMMUNITY_RATING_ADD_FAILED": "There was an error when adding rating.",
+        "POST_HID_SUCCESFULLY": "This post has been hidden. You’ll no longer see it in the Marketplace or search results."
+    },
+    "PEOPLE_COUNT_WISH_PL": {
+        "one": "{{value}} person has asked for it.",
+        "other": "{{value}} people have asked for it."
+    },
+    "PEOPLE_COUNT_OFFER_PL": {
+        "one": "{{value}} person has offered it.",
+        "other": "{{value}} people have offered it."
+    },
+    "PROFILE": {
+        "FRIENDS": {
+            "YOU_HAVE_X_FRIENDS": {
+                "one": "You have {{count}} friend",
+                "other": "You have {{count}} friends"
+            },
+            "HE_HAS_X_FRIENDS": {
+                "one": "User has {{count}} friend",
+                "other": "User has {{count}} friends"
+            },
+            "NO_FRIENDS_ME": "You seem to be a little lonely here. Follow anyone following you and voilà, you'll have a friendship right there!",
+            "NO_FRIENDS_OTHER": "User doesn't have any friends here. Now what? Follow each other and you become friends. Easy-peasy."
+        },
+        "FOLLOWEES": {
+            "IM_INSPIRED_BY_X_PEOPLE": {
+                "one": "You are following {{count}} person",
+                "other": "You are following {{count}} people"
+            },
+            "HE_IS_INSPIRED_BY_X_PEOPLE": {
+                "one": "User is following {{count}} person",
+                "other": "User is following {{count}} people"
+            },
+            "NO_FOLLOWEES_ME": "You are not following anyone. How come? Quick, pick someone's profile and select Follow...",
+            "NO_FOLLOWEES_OTHER": "User is not following anyone here. You can follow them and maybe they'll reciprocate. You know, magnetism and all that..."
+        },
+        "FOLLOWERS": {
+            "IM_INSPIRING_X_PEOPLE": {
+                "one": "You have {{count}} follower",
+                "other": "You have {{count}} followers"
+            },
+            "HE_IS_INSPIRING_X_PEOPLE": {
+                "one": "User has {{count}} follower",
+                "other": "User has {{count}} followers"
+            },
+            "NO_FOLLOWERS_ME": "No one is following you yet. Their loss. But you can follow whoever you like, starting right now...",
+            "NO_FOLLOWERS_OTHER": "User doesn't have any followers here. You can be their first. OK!",
+            "ERROR_ADD_FOLLOWER": "Adding the user to your followers has failed. Please try again, or let us know if the problem continues.",
+            "ERROR_REMOVE_FOLLOWER": "Removing the user from your followers has failed. Please try again, or let us know if the problem continues.",
+            "SUCCESS_ADD_FOLLOWER": "Adding the user to your followers has been successful.",
+            "SUCCESS_REMOVE_FOLLOWER": "You have successfully removed the user from your followers."
+        },
+        "HOME": {
+            "NO_POSTS_ME": "You haven't created any posts. Let's do something about it, shall we? You can give or accept anything that crosses your beautiful mind."
+        },
+        "INVITATION": {
+            "SEND_EMAIL_INVITATION": "Send"
+        },
+        "POSTS": {
+            "NO_GIVEN_RATINGS_ME": "It seems you haven't given or accepted anything. That's why you couldn't share how it went with us. But you can easily fix that!",
+            "NO_GIVEN_RATINGS_OTHER": "User hasn't given or accepted anything. That's why they couldn't give a rating to anyone.",
+            "NO_POSTS_ME": "Attention! You haven't created any posts so far. Let's set it right. You can give or accept anything that comes into your mind.",
+            "NO_POSTS_OTHER": "User hasn't given or accepted anything. Maybe they are looking around or simply answering others' posts.",
+            "NO_POSTS_BOOKMARKED": "You have no favourite gifts and wishes yet.",
+            "INACTIVE_TITLE": "Inactive posts",
+            "MY_POSTS": "My posts",
+            "MY_BOOKMARKS": "My favourites",
+            "USER_POSTS": "User posts",
+            "YOU_HAVE_ACTIVE": "Currently active",
+            "ACTIVE_POSTS": "Active posts",
+            "NO_POSTS_YET": "User has no posts yet.",
+            "ONLY_ACTIVE_POSTS": "You only have inactive posts here. You can enable them in the list of all posts.",
+            "ALL": "All gifts and wishes"
+        },
+        "YOUR_PROFILE_IS_EMPTY": "Your profile seems to be kind of empty. Don't be so mysterious - tell the world about stuff you like.",
+        "GIVES_COUNT": {
+            "one": "gift",
+            "other": "gifts"
+        },
+        "WISHES_COUNT": {
+            "one": "gifts",
+            "other": "wishes"
+        },
+        "REPLIES": {
+            "NO_REPLIES": "You have not replied to any gift or wish so we can't show you much here right now.",
+            "MY_REPLIES": "My replies",
+            "ON_POST": "to gift/wish:"
+        },
+        "RATING": {
+            "REPLY_TO_USER": "Reply to rating from",
+            "CALL_TO_ACTION": "Did you get in touch? Let the world know it was super great, or  maybe something didn't go as smoothly as it could have...",
+            "NO_RECEIVED_RATINGS_ME": "You haven't been bold enough to reply to any posts yet. So nobody has had the chance to leave a couple of nice words in exchange...",
+            "RATED_ME": "Rated me",
+            "RECEIVED_RATINGS": "Received ratings",
+            "ME_RATED_THEM": "I rated",
+            "GIVEN_RATINGS": "Given ratings",
+            "ACTION_SUBMIT": "Send rating",
+            "POSITIVE": "Everything has clicked into place",
+            "NEGATIVE": "It did not work out well.",
+            "TITLE": "How did everything work out?",
+            "RATE_USER": "Rate communication with the user",
+            "SELECT_POST": {
+                "TITLE": "Which post was it?",
+                "DESCRIPTION": "You can attach your rating to a post that you have interacted with in the last 3 months or to any active post (yours or a community one).",
+                "DEFAULT": "Select post",
+                "ACTIVE_POSTS": "Other active posts",
+                "NO_POSTS": "You haven't interacted with any posts in the past 3 months and you have no active posts right now. But hey, you can still rate the user. :)",
+                "COMMON_POSTS": "Common posts"
+            },
+            "WRITE_RATING": "Add a couple of words:",
+            "WRITE_RATING_PLACEHOLDER": "Add a couple of words to the user rating...",
+            "NOTIFY": {
+                "ERROR_NO_FILLED_RATING": "Send user some text along with the rating",
+                "ERROR_RATING_TOO_SHORT": "Add a little more to the user rating...",
+                "SUCCESS_RATING_REPLY": "That's it! Comment was added successfully.",
+                "ERROR_RATING_REPLY": "There was an error when adding your comment to rating."
+            },
+            "YOU_HAVE_NO_RATINGS": "You have no ratings here yet.",
+            "USER_HAS_NO_RATINGS": "User has no ratings here yet.",
+            "OLDER_RATINGS": "Previous feedback",
+            "ON_POST": "To post",
+            "WRITE_REPLY_PLACEHOLDER": "Reply text...",
+            "RATE_COMMUNITY": "Group rating",
+            "WRITE_RATING_COMMUNITY_PLACEHOLDER": "Add a couple of words to the group rating",
+            "REMOVED": "This rating has been removed due to the breach of Hearth.net terms and conditions (advertising, inappropriate content et al.)",
+            "ACTION_ADD_COMMENT": "Add comment",
+            "COUNT": {
+                "one": "{{count}} thanks",
+                "few": "{{count}} thanks",
+                "other": "{{count}} thanks"
+            }
+        },
+        "CONTACT": {
+            "VISIBILITY_NOBODY": "Nobody",
+            "VISIBILITY_FOLLOWEES": "Users I am following",
+            "VISIBILITY_EVERYBODY": "Logged-in users"
+        },
+        "FIRST_NAME": "Name",
+        "NOTIFY": {
+            "ERROR_NOT_FILLED_FIRST_NAME": "Please fill in your name",
+            "ERROR_WRONG_FIRST_NAME": "This name cannot be used. Sorry, please try another.",
+            "ERROR_SHORT_FIRST_NAME": "This name is too short, it has to consist of at least 2 characters.",
+            "ERROR_USER_NOT_FOUND": "User not found. Where are they?",
+            "ERROR_SELECT_RATING": "Before sending the rating, you must select the option.",
+            "ERROR_USER_RATING_FAILED": "User rating has failed. Please try again, or let us know if the problem continues."
+        },
+        "LAST_NAME": "Surname",
+        "EDIT": {
+            "NOTIFY": {
+                "ERROR_FORM_HAS_ERRORS": "There are errors in the form. Our bad, sorry...",
+                "SUCCESS_SAVE_PROFILE": "Profile editing has been successful.",
+                "ERROR_DUPLICATE_EMAIL": "<p>Apologies, but there was an error when saving your profile. It seems you have a second account on Hearth already with the same e-mail attached to it. <a title=\"Contact us\" href=\"/app/feedback\">Let us know</a> and we can merge your accounts or find another way. Thanks.</p>",
+                "ERROR_SAVE_PROFILE": "Profile editing has failed. Please try again, or let us know if the problem continues.",
+                "ERROR_NOT_FILLED_FIRST_NAME": "Please fill in your name",
+                "ERROR_NOT_FILLED_LANGUAGES": "Please fill in at least one language",
+                "ERROR_NOT_VALID_EMAIL": "Email format is not valid. Try again.",
+                "ERROR_NOT_FILLED_EMAIL": "Please fill in your email.",
+                "ERROR_NOT_VALID_PHONE": "You have entered the wrong format for the phone number. Try again.",
+                "ERROR_SOCIAL_NETWORK_NAME": "Social network link is not valid",
+                "ERROR_INVALID_URL": "This url address is invalid"
+            },
+            "UPLOAD_AVATAR_IMAGE": "Upload photo...",
+            "ABOUT_ME_TITLE": "More about me",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Surname",
+            "MY_WORK": "My work/What I do",
+            "MY_WORK_EXAMPLE": "e.g. teacher, accountant, rocket scientist, social worker, snake handler.",
+            "ABOUT_ME_LABEL": "Who am I",
+            "ABOUT_ME_EXAMPLE": "Tell us a few words about yourself, what you love, etc.",
+            "MY_INTERESTS": "My interests:",
+            "MY_INTERESTS_EXAMPLE": "Fill in keywords e.g. teaching, society, Black Metal, swimming with dolphins, ...",
+            "LOCATIONS_TITLE": "Places I live",
+            "MY_LANGUAGES_TITLE": "Languages I speak",
+            "ADD_OTHER_LANG": "Add language",
+            "CONTACTS_TITLE": "Contacts",
+            "EMAIL": "Email",
+            "WHO_CAN_SEE_IT": "Who can view it",
+            "MY_CONTACT_EMAIL_EXAMPLE": "This is the e-mail address for other Hearth.net users to contact you.",
+            "PHONE": "Phone",
+            "NETWORKS_TITLE": "Social networks and websites",
+            "MY_FACEBOOK": "Facebook",
+            "MY_TWITTER": "Twitter",
+            "MY_LINKEDIN": "LinkedIn",
+            "MY_GOOGLEPLUS": "Google+",
+            "MY_WEB": "Web",
+            "ACTION_ADD_NEXT_WEB": "Add another website",
+            "TITLE": "User profile",
+            "NAVIGATION_ITEM": "Edit profile",
+            "ME_TITLE": "Who I am",
+            "MY_CONTACT_EMAIL": "Contact email"
+        },
+        "ACTION_FEEDBACK": "Thank you!",
+        "ACTION_FOLLOW": "Follow",
+        "ACTION_UNFOLLOW": "Unfollow",
+        "ACTION_INVITE_FRIENDS": "<p>Invite friends</p>",
+        "ACTION_EDIT": "Edit profile",
+        "NAVIGATION_ITEM": "My profile",
+        "X_RATINGS": "ratings",
+        "X_PEOPLE_INSPIRED_BY_ME": {
+            "one": "<p><strong>{{count}}</strong><br />follower</p>",
+            "other": "<strong>{{count}}</strong><br />followers"
+        },
+        "X_PEOPLE_INSPIRED_BY_HIM": {
+            "one": "<p><strong>{{count}}</strong><br /> follower</p>",
+            "other": "<p><strong>{{count}}</strong><br /> followers</p>"
+        },
+        "X_PEOPLE_INSPIRING_ME": {
+            "one": "<strong>{{count}}</strong><br /> following",
+            "other": "<strong>{{count}}</strong><br /> following"
+        },
+        "X_PEOPLE_INSPIRING_HIM": {
+            "one": "<strong>{{count}}</strong><br /> following",
+            "other": "<strong>{{count}}</strong><br /> following"
+        },
+        "X_COMMUNITIES": {
+            "one": "group",
+            "other": "groups"
+        },
+        "POSITIVE_FEEDBACK_COUNT": "Number of plus points",
+        "NEGATIVE_FEEDBACK_COUNT": "Number of minus points",
+        "KARMA": {
+            "NO_RATING_ME": "With your first rating, we'll add a splash of color here.",
+            "NO_RATING_OTHER": "Rate the user and pretty colors will start to show:)"
+        },
+        "STOP_FOLLOWING_DIALOG": {
+            "TITLE": "Stop following user",
+            "TEXT": "Do you really want to stop following this user?"
+        },
+        "COMMUNITIES": {
+            "NO_COMMUNITIES_ME": "You are not part of any groups yet. But you can create a community yourself or check out our recommended groups. You never know what could be waiting...",
+            "NO_COMMUNITIES_OTHER": "User is not a member of any group."
+        },
+        "YOU_ARE_MEMBER": "You are a member of",
+        "OF_X_COMMUNITIES": {
+            "one": "one group",
+            "other": "{{count}} groups"
+        },
+        "YOU_ARE_ADMIN": "and admin of",
+        "USER_IS_MEMBER": "User is a member of",
+        "RATINGS": {
+            "YOUR_RATINGS": "Your rating",
+            "USER_RATINGS": "User ratings"
+        },
+        "MEET_USER": "Meet user",
+        "YOUR_PROFILE": "Your profile",
+        "USER_HAS_REGISTERED": "User has joined",
+        "YOU_HAVE_REGISTERED": "You have joined",
+        "ACTIVITY": {
+            "YOUR_ACTIVITY": "Your activity",
+            "USER_ACTIVITY": "User activity",
+            "NO_ACTIVITY_ME": "You're new here. Not much activity so far :)",
+            "NO_ACTIVITY_OTHER": "User is new here. Not lazy, just new, so we cannot show you their activity.",
+            "NO_ACTIVITY_ME_OLDER": "You have no activity here so far. There's no time like the present.",
+            "NO_ACTIVITY_OTHER_OLDER": "User hasn't been too active here. Saving for a rainy day? "
+        },
+        "MY_LOCATION": "You can find me in",
+        "INFOBOX": {
+            "NOTIFY": {
+                "ERROR_LOADING": "There was an error while loading."
+            },
+            "POSTS_COUNT": "Count of gifts and wishes: {{value}}",
+            "CONNECTIONS": {
+                "COMMON_USERS": {
+                    "one": "Also followed by",
+                    "other": "{{ count }} mutual connections:"
+                },
+                "AND_X_OTHER": {
+                    "one": "and one more",
+                    "other": "and {{ count }} more"
+                },
+                "COMMON_COMMUNITIES": {
+                    "one": "Also a member in ",
+                    "other": "Also member in {{ count }} groups:"
+                },
+                "COMMON_COMMUNITY_MEMBERS": {
+                    "one": "Members you also know:",
+                    "other": "{{ count }} members you also know:"
+                }
+            }
+        },
+        "YOU_ARE_FOLLOWEE": "Following",
+        "ACTION_PROFILE": "Show profile",
+        "IS_VERIFIED": "User is verified",
+        "TRUST": {
+            "TOPBAR_INFORMATION": "Trust is very important for giving. Please fill out your profile so others can get to know you better.",
+            "ACTION_FILL_PROFILE": "Fill your profile",
+            "EDIT_PROFILE_BANNER": "<p style=\"font-size: 14px;\">Trust is very important for giving. Please fill out your profile so others can get to know you better:</p>\n<ul>\n<li>Your real name</li>\n<li>Your photo, preferrably with smile 😊</li>\n<li>Few word in \"about me\" section</li>\n</ul>\n<p style=\"font-size: 14px;\">Thank you for being with us ❤️</p>",
+            "EDIT_PROFILE_FILL_REAL_NAME": "Please fill in the actual first name so people can get to know you better.",
+            "TELL_US_MORE_TITLE": "Tell us more about yourself…",
+            "AFTER_CREATE_MODAL": "If people can get to know you better, your wishes will come true. Please fill out your profile.",
+            "BEFORE_REPLY_MODAL": "If the donor can get to know you better, he will rather choose you among the applicants.",
+            "ACTION_PLEASE_FILL_PROFILE": "Please fill out your profile."
+        },
+        "DEACTIVATED": "inactive user"
+    },
+    "COMMON": {
+        "LOADING": "Loading...",
+        "YOU": "You",
+        "ACTION_CLOSE": "Close",
+        "NOTIFY": {
+            "ERROR_TEXT_TOO_SHORT": "Your post is too short. Please add a few more words.",
+            "ERROR_TEXT_TOO_LOUD": "Sorry to bother you, but please do switch off the Caps Lock. Netiquette says it equals to SHOUTING plus it looks bad. Thanks :)",
+            "SERVER_MAITENANCE": "<p>We are adding a heap of new functions right now.<br />Just a sec... We'll be done in a jiffy...</p>",
+            "CRITICAL_APP_ERROR": "<p>There was an error when loading Hearth.net.</p>\n<p>Wait a bit please and then try <a href=\".\">reload</a> the page again.</p>",
+            "YOU_ARE_OFFLINE": "<p><strong>Connection error</strong> Is your internet connection ok? Or modem on fire?</p>",
+            "ERROR_TEXT_TOO_LONG": "Sorry, your text is too long.",
+            "ERROR_TEXT_REQUIRED": "This field is required.",
+            "ERROR_BAD_IMAGE_FORMAT": "The image is in the wrong format. You can only use these: {{ formats}}",
+            "ERROR_BAD_IMAGE_SIZE": "The image is too big. Maximum size is {{ maxSize }}MB",
+            "ERROR_FILES_TOO_BIG": "Total size of uploaded images cannot exceed {{maxSize}}MB.",
+            "ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
+            "ERROR_UPLOADING": "Sorry, there was an error while uploading",
+            "ERROR_LOCATIONS_ARE_EMPTY": "Fill in location or tick box no location needed.",
+            "ERROR_ATTACHMENT_DOWNLOAD_FAILED": "Attachment failed to download.",
+            "API_ERROR": "<p>Something went wrong. Please try again in a little while, and <a href=\"/app/feedback\">let us know</a> if there is still a problem. Thanks!</p>"
+        },
+        "ACTION_CANCEL": "Cancel",
+        "ACTION_ADD": "Add",
+        "ACTION_SEND": "Send",
+        "ACTION_CONTINUE": "Continue",
+        "ACTION_SAVE": "Save",
+        "ACTION_REMOVE": "Remove",
+        "EG": "e.g.",
+        "ACTION_CANCEL_CHANGES": "Cancel changes",
+        "X_POSTS": {
+            "one": "one post",
+            "other": "{{count}} posts"
+        },
+        "AS_COMMUNITY": "as group",
+        "AS_USER": "as",
+        "BUBBLE": {
+            "MARKETPLACE_ITEM_MOOD": "Here you have the choice of the nature of the gift or wish. Basically, it's about whether it's a thing, a service or an information.",
+            "HIDE_POST": "<p><em>Tip:</em> You can mark as hidden any post that bothers you, and you no longer wish to see.</p>",
+            "MARKETPLACE_POST_BOOKMARK": "Did you know, you can add any gift or wish to the favourites so that you can access them later, whenever you want?"
+        },
+        "SHOW_PROFILE": "Show profile",
+        "ACTION_RELOAD": "Reload this page",
+        "LANGUAGE": "Language",
+        "TUTORIAL": {
+            "TITLE": "Hearth.net has donned a brand new suit. Let us show you all the cool stuff hidden in its pockets.",
+            "ACTION_SHOW_ME_FUNCTIONS": "Show me new functions.",
+            "ACTION_DONT_SHOW_ANYTHING": "Don't show me a thing. I want to be like Sherlock Holmes and work it all out myself.",
+            "ACTION_DONT_SHOW_THIS": "Don't show me this innovation."
+        },
+        "OK": "OK",
+        "IMAGES": "Images",
+        "KEYWORDS": "Add keywords, separated by commas.",
+        "NOT_FILLED": "unfilled",
+        "UNTIL": "until",
+        "UNLIMITED": "Unlimited.",
+        "ACTION_SUBMIT": "Submit",
+        "YES": "Yes",
+        "NO": "No",
+        "YOU_VOTED": "You voted {{attrs}}.",
+        "SELECT_USERS": "Select one or more recipients",
+        "X_CHARACTERS_ALLOWED": "{{len}} characters used from {{maxLen}} total",
+        "TEXT_PLACEHOLDER": "Message text:",
+        "AND": "and",
+        "ACTION_REFRESH": "Reload",
+        "ACTION_SEARCH": "Search",
+        "LANGUAGES": {
+            "MAIN": "Primary languages",
+            "OTHER": "Other languages"
+        },
+        "AGO": {
+            "LESS_THAN_MINUTE": "now",
+            "MINUTE": "one minute ago",
+            "MINUTES": "%d minutes ago",
+            "HOUR": "an hour ago",
+            "HOURS": "%d hours ago",
+            "DAY": "yesterday",
+            "DAYS": "%d days ago",
+            "MONTH": "one month ago",
+            "MONTHS": "%d months ago",
+            "YEAR": "one year ago",
+            "YEARS": "%d years ago"
+        },
+        "ACTION_CONTINUE_ANYWAY": "Continue anyway",
+        "ACTION_COPY_LINK_TO_CLIPBOARD": "Copy link to clipboard",
+        "ACTION_SEND_LINK_BY_EMAIL": "Send link by email",
+        "REALLY": "Really?",
+        "ACTION_COPY_TEXT_TO_CLIPBOARD": "Copy text to a clipboard",
+        "ACTION_HIDE_TIP": "Hide this tip"
+    },
+    "REPORT": "Report",
+    "SEND_COMMUNITY_RATING": "Send rating",
+    "REPLY": "Reply",
+    "ERR_REPORT_TEXT_MIN_LEN": "Please tell us why you are reporting the post",
+    "ERR_REPORT_TEXT_MAX_LEN": "Text is too long... 2500 characters is maximum. Think Twitter or SMS.",
+    "TERMS": "Terms of use",
+    "communities": {
+        "suggested": "Selected groups"
+    },
+    "messages": {
+        "detail": "Conversation detail",
+        "0": "Conversation"
+    },
+    "profileSettings": "Profile settings",
+    "LANGUAGE": {
+        "ENGLISH": "English",
+        "CZECH": "Czech",
+        "SLOVAK": "Slovak",
+        "LIST": {
+            "LABEL_CHOSEN": "Primary languages",
+            "LABEL_OTHER": "Other languages"
+        }
+    },
+    "h1": {
+        "marketplace": "Marketplace",
+        "communities": "Groups",
+        "messages": "Messages",
+        "profile_edit": "Edit profile",
+        "terms": "Terms and Conditions",
+        "map": "Map of gifts and wishes",
+        "profile_settings": "Profile settings",
+        "faq": "Frequently asked questions",
+        "taxes": "Donations and Taxes",
+        "community_edit": "Edit group",
+        "fulltext": "Search",
+        "support-us": "Support Hearth.net",
+        "custodians": "Hearth.net custodians",
+        "about_us": "O nás",
+        "contacts": "Tým Hearth.net",
+        "our_story": "Příběh",
+        "privacy-policy": "Privacy Policy"
+    },
+    "INVITATION_STATUS": {
+        "INVITATION_NOT_SENT": "{{email}}: Invitation could not be sent. Perhaps invalid e-mail address?"
+    },
+    "CATEGORY_INFORMATION": "Information",
+    "CATEGORY_MASS": "Matter",
+    "CATEGORY_ENERGY": "Energy",
+    "CATEGORY_INFORMATION_TEXT": "(knowledge, tips...)",
+    "CATEGORY_MASS_TEXT": "(things...)",
+    "CATEGORY_ENERGY_TEXT": "(activity, desire...)",
+    "COUNTRY": {
+        "AF": "Afghanistan",
+        "AX": "Åland Islands",
+        "AL": "Albania",
+        "DZ": "Algeria",
+        "AS": "American Samoa",
+        "VI": "U.S. Virgin Islands",
+        "AD": "Andorra",
+        "AO": "Angola",
+        "AI": "Anguilla",
+        "AQ": "Antarctica",
+        "AG": "Antigua & Barbuda",
+        "AR": "Argentina",
+        "AM": "Armenia",
+        "AW": "Aruba",
+        "AC": "Ascension Island",
+        "AU": "Australia",
+        "AZ": "Azerbaijan",
+        "BS": "Bahamas",
+        "BH": "Bahrain",
+        "BD": "Bangladesh",
+        "BB": "Barbados",
+        "BE": "Belgium",
+        "BZ": "Belize",
+        "BY": "Belarus",
+        "BJ": "Benin",
+        "BM": "Bermuda",
+        "BT": "Bhutan",
+        "BO": "Bolivia",
+        "BA": "Bosnia & Herzegovina",
+        "BW": "Botswana",
+        "BR": "Brazil",
+        "IO": "British Indian Ocean Territory",
+        "VG": "British Virgin Islands",
+        "BN": "Brunei",
+        "BG": "Bulgaria",
+        "BF": "Burkina Faso",
+        "BI": "Burundi",
+        "EA": "Ceuta & Melilla",
+        "CK": "Cook Islands",
+        "CW": "Curaçao",
+        "TD": "Chad",
+        "ME": "Montenegro",
+        "CZ": "Czech Republic",
+        "CN": "China",
+        "DK": "Denmark",
+        "DG": "Diego Garcia",
+        "DM": "Dominica",
+        "DO": "Dominican Republic",
+        "DJ": "Djibouti",
+        "EG": "Egypt",
+        "EC": "Ecuador",
+        "ER": "Eritrea",
+        "EE": "Estonia",
+        "ET": "Ethiopia",
+        "FO": "Faroe Islands",
+        "FK": "Falkland Islands",
+        "FJ": "Fiji",
+        "PH": "Philippines",
+        "FI": "Finland",
+        "FR": "France",
+        "GF": "French Guiana",
+        "TF": "French Southern Territories",
+        "PF": "French Polynesia",
+        "GA": "Gabon",
+        "GM": "Gambia",
+        "GH": "Ghana",
+        "GI": "Gibraltar",
+        "GD": "Grenada",
+        "GL": "Greenland",
+        "GE": "Georgia",
+        "GP": "Guadeloupe",
+        "GU": "Guam",
+        "GT": "Guatemala",
+        "GG": "Guernsey",
+        "GN": "Guinea",
+        "GW": "Guinea-Bissau",
+        "GY": "Guyana",
+        "HT": "Haiti",
+        "HN": "Honduras",
+        "HK": "Hong Kong SAR China",
+        "CL": "Chile",
+        "HR": "Croatia",
+        "IN": "India",
+        "ID": "Indonesia",
+        "IQ": "Iraq",
+        "IR": "Iran",
+        "IE": "Ireland",
+        "IS": "Iceland",
+        "IT": "Italy",
+        "IL": "Israel",
+        "JM": "Jamaica",
+        "JP": "Japan",
+        "YE": "Yemen",
+        "JE": "Jersey",
+        "ZA": "South Africa",
+        "GS": "South Georgia & South Sandwich Islands",
+        "KR": "South Korea",
+        "SS": "South Sudan",
+        "JO": "Jordan",
+        "KY": "Cayman Islands",
+        "KH": "Cambodia",
+        "CM": "Cameroon",
+        "CA": "Canada",
+        "IC": "Canary Islands",
+        "CV": "Cape Verde",
+        "BQ": "Caribbean Netherlands",
+        "QA": "Qatar",
+        "KZ": "Kazakhstan",
+        "KE": "Kenya",
+        "KI": "Kiribati",
+        "CC": "Cocos (Keeling) Islands",
+        "CO": "Colombia",
+        "KM": "Comoros",
+        "CG": "Congo - Brazzaville",
+        "CD": "Congo - Kinshasa",
+        "XK": "Kosovo",
+        "CR": "Costa Rica",
+        "CU": "Cuba",
+        "KW": "Kuwait",
+        "CY": "Cyprus",
+        "KG": "Kyrgyzstan",
+        "LA": "Laos",
+        "LS": "Lesotho",
+        "LB": "Lebanon",
+        "LR": "Liberia",
+        "LY": "Libya",
+        "LI": "Liechtenstein",
+        "LT": "Lithuania",
+        "LV": "Latvia",
+        "LU": "Luxembourg",
+        "MO": "Macau SAR China",
+        "MG": "Madagascar",
+        "HU": "Hungary",
+        "MK": "Macedonia",
+        "MY": "Malaysia",
+        "MW": "Malawi",
+        "MV": "Maldives",
+        "ML": "Mali",
+        "MT": "Malta",
+        "MA": "Morocco",
+        "MH": "Marshall Islands",
+        "MQ": "Martinique",
+        "MU": "Mauritius",
+        "MR": "Mauritania",
+        "YT": "Mayotte",
+        "UM": "U.S. Outlying Islands",
+        "MX": "Mexico",
+        "FM": "Micronesia",
+        "MD": "Moldova",
+        "MC": "Monaco",
+        "MN": "Mongolia",
+        "MS": "Montserrat",
+        "MZ": "Mozambique",
+        "MM": "Myanmar (Burma)",
+        "NA": "Namibia",
+        "NR": "Nauru",
+        "DE": "Germany",
+        "NP": "Nepal",
+        "NE": "Niger",
+        "NG": "Nigeria",
+        "NI": "Nicaragua",
+        "NU": "Niue",
+        "NL": "Netherlands",
+        "NF": "Norfolk Island",
+        "NO": "Norway",
+        "NC": "New Caledonia",
+        "NZ": "New Zealand",
+        "OM": "Oman",
+        "IM": "Isle of Man",
+        "PK": "Pakistan",
+        "PW": "Palau",
+        "PS": "Palestinian Territories",
+        "PA": "Panama",
+        "PG": "Papua New Guinea",
+        "PY": "Paraguay",
+        "PE": "Peru",
+        "PN": "Pitcairn Islands",
+        "CI": "Côte d’Ivoire",
+        "PL": "Poland",
+        "PR": "Puerto Rico",
+        "PT": "Portugal",
+        "AT": "Austria",
+        "RE": "Réunion",
+        "GQ": "Equatorial Guinea",
+        "RO": "Romania",
+        "RU": "Russia",
+        "RW": "Rwanda",
+        "GR": "Greece",
+        "PM": "St. Pierre & Miquelon",
+        "SV": "El Salvador",
+        "WS": "Samoa",
+        "SM": "San Marino",
+        "SA": "Saudi Arabia",
+        "SN": "Senegal",
+        "KP": "North Korea",
+        "MP": "Northern Mariana Islands",
+        "SC": "Seychelles",
+        "SL": "Sierra Leone",
+        "SG": "Singapore",
+        "SK": "Slovakia",
+        "SI": "Slovenia",
+        "SO": "Somalia",
+        "AE": "United Arab Emirates",
+        "US": "United States",
+        "RS": "Serbia",
+        "LK": "Sri Lanka",
+        "CF": "Central African Republic",
+        "SD": "Sudan",
+        "SR": "Suriname",
+        "SH": "St. Helena",
+        "LC": "St. Lucia",
+        "BL": "St. Barthélemy",
+        "KN": "St. Kitts & Nevis",
+        "MF": "St. Martin",
+        "SX": "Sint Maarten",
+        "ST": "São Tomé & Príncipe",
+        "VC": "St. Vincent & Grenadines",
+        "SZ": "Swaziland",
+        "SY": "Syria",
+        "SB": "Solomon Islands",
+        "ES": "Spain",
+        "SJ": "Svalbard & Jan Mayen",
+        "SE": "Sweden",
+        "CH": "Switzerland",
+        "TJ": "Tajikistan",
+        "TZ": "Tanzania",
+        "TH": "Thailand",
+        "TW": "Taiwan",
+        "TG": "Togo",
+        "TK": "Tokelau",
+        "TO": "Tonga",
+        "TT": "Trinidad & Tobago",
+        "TA": "Tristan da Cunha",
+        "TN": "Tunisia",
+        "TR": "Turkey",
+        "TM": "Turkmenistan",
+        "TC": "Turks & Caicos Islands",
+        "TV": "Tuvalu",
+        "UG": "Uganda",
+        "UA": "Ukraine",
+        "UY": "Uruguay",
+        "UZ": "Uzbekistan",
+        "CX": "Christmas Island",
+        "VU": "Vanuatu",
+        "VA": "Vatican City",
+        "GB": "United Kingdom",
+        "VE": "Venezuela",
+        "VN": "Vietnam",
+        "TL": "Timor-Leste",
+        "WF": "Wallis & Futuna",
+        "ZM": "Zambia",
+        "EH": "Western Sahara",
+        "ZW": "Zimbabwe"
+    },
+    "LEND": "I lend",
+    "BORROW": "I borrow",
+    "AND": "and",
+    "OFFER_LEND": "I give or lend",
+    "NEED_BORROW": "I wish or borrow",
+    "WE_NEED_BORROW": "We accept or borrow",
+    "WE_OFFER_LEND": "We give or lend",
+    "WE_BORROW": "We borrow",
+    "WE_LEND": "We lend",
+    "LIMITED_POSTS_MESSAGE_UNAUTH": "Hearth.net is currently expanding abroad where gifts and wishes can blossom in different languages. You will be able to modify which languages and locations you want to see on Hearth.net after <a href=\"/app/login\">login</a>.",
+    "LIMITED_POSTS_MESSAGE_AUTH": "Hearth.net is currently expanding abroad where gifts and wishes can blossom in different languages. You can modify which languages and locations you wish to see on Hearth.net in your <a {{attrs}}>profile</a>",
+    "AGO": {
+        "MOMENT": "moment ago",
+        "DAYS": "few days ago",
+        "WEEKS": "few weeks ago",
+        "MONTHS": "few months ago",
+        "YEAR": "year ago",
+        "LONG": "many years ago"
+    },
+    "AUTH": {
+        "REGISTER": {
+            "FRIENDLY_AGREEMENT": "You also agree to be kind and respectful to other users of this network. Let's have a good time together without prejudices or judgments.",
+            "TITLE": "Registration",
+            "TITLE_FACEBOOK": "Join in",
+            "TEXT": "Your profile is just few short steps away. Almost there!",
+            "TEXT_FACEBOOK": "<p>Hearth.net is a generous social network full of interesting people who dare to give. Do you? You can create your profile in a snap and the world of gifts is instantly yours.</p>",
+            "EULA": {
+                "ACCEPTATION_TEXT": "<p>By registering, I agree with <a {{attrs}}>the terms of use</a> of Hearth.net.</p>\n<p>And I also agree to behave kindly with esteem and respect to other users of this network. Without prejudices or judgments.</p>",
+                "I_ACCEPT_EULA": "I agree with the terms",
+                "ACTION_AGREE": "I agree",
+                "ACTION_DISAGREE": "I don`t agree"
+            },
+            "VIA_SOCIAL_NETWORKS": "Or you can sign up via social network.",
+            "LOGIN_TEXT": "Already have an account?",
+            "LOGIN_LINK": "Sign in",
+            "MOTIVATION_TEXT": "There are hundreds of gifts and wishes waiting for you."
+        },
+        "NOTIFY": {
+            "SUCCESS_RESET_PASSWORD": "One, two, three. We have sent you an email with a walkthrough for changing your password. ",
+            "ERROR_BROKEN_LINK": "<p>Ouch, something is broken, this link is invalid.<br />Generate a new one by <a href=\"/app/forgotten-password\">clicking here</a>.</p>",
+            "ERROR_API_RESET_PASSWORD": "Change of password has failed. Please try again.",
+            "ERROR_RESET_PASSWORD_NOT_FILLED": "Enter the new password you want to use.",
+            "ERROR_SHORT_PASSWORD": "This password is too short, it has to consist of at least 5 characters.",
+            "ERROR_PASSWORD_AGAIN_NOT_FILLED": "Please fill in the new password again for verification.",
+            "ERROR_PASSWORD_DOES_NOT_MATCH": "The passwords you entered do not match. Try again.",
+            "SUCCESS_RESEND_EMAIL": "Activation e-mail has been sent to your e-mail address.",
+            "SUCCESS_COMPLETE_REGISTRATION": "Email successfully saved.",
+            "SUCCESS_ACTIVATE_ACCOUNT": "Victory! Your account has been activated. Welcome to Hearth.net!",
+            "ERROR_BROKEN_ACTIVATION_LINK": "Sorry, the account activation link is not valid.",
+            "ERROR_BAD_EMAIL_FORMAT": "Your email doesn't have a valid format. Please try again.",
+            "ERROR_NOT_FILLED_EMAIL": "Please fill in your email.",
+            "ERROR_EMAIL_ALREADY_USED": "This email is being used already in our app. Try another.",
+            "ERROR_MAILGUN_NOT_VALID_EMAIL": "Is it the correct e-mail? We could not verify it. If this is a mistake please <a href=\"/app/support\">let us know</a>.",
+            "SUCCESS_REGISTERED": "Thank you for registering, you're almost with us!<br /><br />We have sent a message with an activation link to your e-mail. Clicking the link will activate your account. This is to confirm your e-mail, so no one can pretend that they are you.<br /><br />Please wait a moment for the e-mail to arrive. Meanwhile, feel free to check out our Marketplace to see the fun that awaits you.",
+            "ERROR_ACCOUNT_NOT_ACTIVATED": "You are trying to get a new password for account that hasn't been activated by clicking the link in registering confirmation e-mail. You can  have it <a {{attrs}}>sent to you again</a>.",
+            "ERROR_UNKNOWN_EMAIL": "We do not recognize this email. Please check it and try again.",
+            "LOGIN_REQUIRED": "Please sign in or register",
+            "ERROR_LOGIN_FAILED": "There was an error while logging in.",
+            "ERROR_WRONG_CREDENTIALS": "Login and password do not match. Please try again.",
+            "ERROR_LOGIN_ACCOUNT_NOT_ACTIVATED": "You are tyring to log in with account that has not been activated yet. By clicking the link in confirmation registration e-mail. You can have  it <a {{attrs}}>sent to you again</a>.",
+            "NO_OAUTH_ACCOUNT_FOUND": "<p>You are logging into Hearth.net with a third-party account (Facebook, Google, Twitter). However the system does not recognize this account. Perhaps you don't have a Hearth account yet, or have you registered before via e-mail?<br /><br />Try to remember and sign in with a different account, or <a href=\"{{ registerUrl }}\">register</a>.</p>",
+            "ERROR_REGISTRATION_BLOCKED": "Sorry, but the data you have entered is not possible to use for registering with Hearth.net. If you think this is an error, <a {{attrs}}> please let us know about it</a>.",
+            "ERROR_EMAIL_EXISTS": "This is strange but it can happen! A user with this email address is already registered. Please try another email.",
+            "ERROR_NO_PASSWORD": "Please enter your password.",
+            "ERROR_EULA_REQUIRED": "For successful registration you have to agree the Hearth.net terms.",
+            "SUCCESS_ACCOUNT_HAS_BEEN_DELETED": "Your account has been removed. Completely.",
+            "ERROR_NOT_VALID_EMAIL": "Email format is not valid. Try again.",
+            "ERROR_REGISTER": "Registration has failed. Please try again, or let us know if the problem continues.",
+            "ERROR_ACTIVATE_ACCOUNT": "Account activation has failed... Please try again, or let us know if the problem continues.",
+            "ERROR_RESET_PASSWORD": "Setting up new password has failed. Please try again, or let us know if the problem continues.",
+            "ERROR_RESEND_EMAIL": "There was an error while sending activation e-mail.",
+            "ERROR_TWITTER_REGISTRATION": "Adding email has failed."
+        },
+        "RESET_PASSWORD": {
+            "TITLE": "Reset password.",
+            "TEXT": "You can set up a new password here."
+        },
+        "PASSWORD": "Password",
+        "PASSWORD_AGAIN": "Password (check)",
+        "ACTION_CHANGE_PASSWORD": "Change password",
+        "CONFIRM_EMAIL": {
+            "TITLE": "Email confirmation",
+            "TEXT": "Email confirmation"
+        },
+        "LOGIN_NAVIGATION_ITEM": "Log in",
+        "REGISTER_NAVIGATION_ITEM": "Sign up",
+        "LOGOUT_NAVIGATION_ITEM": "Sign out",
+        "FILL_EMAIL": {
+            "TITLE": "Complete registration",
+            "TEXT": "Add your contact email:"
+        },
+        "EMAIL_PLACEHOLDER": "E-mail",
+        "FORGOTTEN_PASSWORD": {
+            "TITLE": "Forgotten your password?",
+            "TEXT": "We just need your e-mail address. So we can send you further instructions on how to reset your password.",
+            "REMEMBERED_TEXT": "Have you remembered your password?",
+            "REMEMBERED_LOGIN_LINK": "Sign in."
+        },
+        "LOGIN": {
+            "TITLE": "Sign in",
+            "FORGOTTEN_PASSWORD_LINK": "Forgotten your password?",
+            "VIA_SOCIAL_NETWORKS": "Or you can sign in via a social network.",
+            "REGISTER_TEXT": "Need an account?"
+        },
+        "ACTION_LOGIN": "Sign in",
+        "ACTION_REGISTER": "Sign up",
+        "MAILGUN": {
+            "DID_YOU_MEAN": "Did you mean "
+        },
+        "VERIFY_EMAIL": {
+            "TITLE": "Check the email",
+            "INFOTEXT": "To fully use Hearth, please verify your email. It is also good for the trust between us Hearthians :-)",
+            "RETRY": "Email didn't arrive? Look in spam folder or get it",
+            "ACTION_RETRY": "resend once more"
+        }
+    },
+    "MESSAGING": {
+        "FILTER": {
+            "OPTION_ALL": "All conversations",
+            "OPTION_ADMIN": "Admin Conversations",
+            "OPTION_COMMUNITY": "Conversations in my groups",
+            "OPTION_POST_REPLIES": "Replies to gifts and wishes",
+            "OPTION_ARCHIVED": "Archived conversations"
+        },
+        "ACTION_CREATE_MESSAGE": "New message",
+        "CONVERSATIONS": {
+            "NO_RESULT": "No conversations in the list.",
+            "MORE_PARTICIPANTS": "and others",
+            "ALL_PARTICIPANTS_HAVE_LEFT": "All users have left the conversation.",
+            "NO_CONVERSATIONS": "There are no conversations here. Can you hear the... crickets?",
+            "ACTIONS_MENU_TITLE": "Conversation menu",
+            "DIALOG_ARCHIVE": {
+                "LABEL": "Archive this conversation?",
+                "TEXT": "If you archive the conversation, you can return to it whenever you want in the Archive. And you won't miss any new messages, we will notify you..."
+            },
+            "ACTION_ARCHIVE": "Archive conversation",
+            "DIALOG_LEAVE": {
+                "LABEL": "Leave this conversation?",
+                "TEXT": "If you leave the conversation, other recipients can continue with the conversation, but you will not be able to access it. No worries though. We will move the conversation to the Archive, where you can return to it via history anytime you wish."
+            },
+            "ACTION_LEAVE": "Leave conversation",
+            "DIALOG_DELETE": {
+                "LABEL": "Delete this conversation?",
+                "TEXT": "If you delete this conversation, you will not be able to return to it. Other recipients will still have access to it."
+            },
+            "ACTION_DELETE": "Delete conversation",
+            "ACTION_MARK_AS_UNREAD": "Mark as unread"
+        },
+        "NOTIFY": {
+            "CONVERSATION_DOESNT_EXIST": "<p>Sorry but you are trying to get into a conversation that no longer exist or you cannot access it. If you think it is an error, <a title=\"feedback\" href=\"/app/feedback\">please let us know</a>.</p>",
+            "SUCCESS_MESSAGE_SEND": "Zing! Message has been sent.",
+            "ERROR_TEXT_TOO_LONG": "Your post is too long, Mr. Shakespeare. We're sorry but our total length is 2500 characters.",
+            "SUCCESS_CONVERSATION_ARCHIVE": "Conversation was successfully archived.",
+            "SUCCESS_CONVERSATION_LEAVE": "You left the conversation. Lone Wolf!",
+            "SUCCESS_CONVERSATION_DELETE": "Conversation was deleted. ",
+            "ERROR_CONVERSATION_ARCHIVE": "Sorry! There was an error in the archive.",
+            "ERROR_CONVERSATION_DELETE": "Error when deleting the conversation.",
+            "ERROR_REPLY_MESSAGE": "Ooops. Error while sending the message."
+        },
+        "CREATE": {
+            "RECIPIENT": "To:",
+            "NOTIFY": {
+                "ERROR_NO_RECIPIENT": "Don't forget to fill in the message recipients."
+            },
+            "SEND_AS_ADMIN": "Send as admin",
+            "SUBJECT": "Subject:",
+            "SUBJECT_PLACEHOLDER": "Add the conversation subject",
+            "TEXT": "Message:",
+            "ACTION_SEND": "Send message",
+            "TEXT_PLACEHOLDER": "Add the message for your lucky recipients...",
+            "RECIPIENT_PLACEHOLDER": "Add recipient to conversation"
+        },
+        "MESSAGE": {
+            "REPLY_TO": "Reply to:",
+            "PARTICIPANTS": {
+                "one": "1 recipient",
+                "other": "{{count}} recipients"
+            },
+            "MORE_PARTICIPANTS": {
+                "one": "and 1 more",
+                "other": "and {{count}} more"
+            },
+            "ACTION_ADD_PARTICIPANT": "Add recipient to conversation",
+            "SYSTEM": {
+                "User": {
+                    "enter": "<p>User&nbsp;<strong>{{target.name}}</strong>&nbsp;joined the conversation.</p>",
+                    "left": "<p><strong>{{target.name}}</strong> left the conversation.</p>"
+                },
+                "Community": {
+                    "left": "<p>Group <strong>{{target.name}}</strong> left the conversation.</p>"
+                }
+            },
+            "SYSTEM_YOU": {
+                "enter": "You have joined the conversation.",
+                "left": "<p>You left the conversation.</p>"
+            },
+            "REPLY": "Reply:",
+            "REPLY_AS_COMMUNITY": "Reply as:",
+            "REPLY_PLACEHOLDER": "Notable text of Your message...",
+            "NOTIFY": {
+                "ERROR_TEXT_MISSING": "No text entered? Did you forget to fill in the message? "
+            }
+        },
+        "NAVIGATION_ITEM": "Messages",
+        "ACTION_GO_TO_CONVERSATION": "Go to conversation",
+        "ACTION_SEND_MESSAGE": "Send message..."
+    },
+    "SETTINGS": {
+        "NOTIFY": {
+            "SUCCESS_DELETE_ACCOUNT": "Boom! Your account has been deleted! :(",
+            "ERROR_DELETE_FAILED_COMMUNITY_OWNER": "Before deleting your account, please hand over administration of your groups, or delete them.",
+            "ERROR_DELETE_ACCOUNT": "Deleting account has failed. Please try again, or let us know if the problem continues.",
+            "SUCCESS_PASSWORD_CHANGED": "Password has been edited successfully.",
+            "SUCCESS_SAVE_PROFILE": "Profile editing has been successful.",
+            "ERROR_NOT_FILLED_OLD_PASS": "Enter your previous password...",
+            "ERROR_OLD_PASS_IS_NOT_VALID": "You have entered an invalid current password. Curse that Caps Lock!",
+            "ERROR_NOT_FILLED_NEW_PASS": "Please fill in the new password that you want to set.",
+            "ERROR_TOO_SHORT_NEW_PASS": "New password has to be at least 5 characters!",
+            "ERROR_EMAIL_NOTIFY_CONFIG": "Saving settings has failed.",
+            "ERROR_CHANGE_LANGUAGE": "Switching language has failed. Please try again, or let us know if the problem continues.",
+            "ERROR_PASSWORD_CHANGE": "Password editing has failed. Please try again, or let us know if the problem continues."
+        },
+        "LANGUAGE_AND_COUNTRY": "Language and country",
+        "USING_HEARTH_IN_LANG": "You are currently using Hearth.net",
+        "IN_THIS_LANG": "in English",
+        "CHOOSE_LANGUAGE": "Select language",
+        "USING_HEARTH_FROM_COUNTRY": "You use Hearth.net mostly in this country",
+        "NOTIFICATIONS": {
+            "TITLE": "Notifications",
+            "FREQUENCY": {
+                "HOW_OFTEN": "How often should we send you notifications?",
+                "IMMEDIATELY": "All immediately",
+                "ONCE_DAY": "Messages immediately, the rest at end of the day",
+                "ALL_ONCE_DAY": "Summary at the end of the day",
+                "OFF": "Do not send notifications"
+            },
+            "WHICH": "Which email notifications do you want to receive?",
+            "ALERT_EXPIRING_POSTS": "Send notifications for posts close to their expiry date (usually 3 days before expiry).",
+            "ALERT_EXPIRED_POSTS": "Send notifications for expired posts.",
+            "ALERT_NEW_CONVERSATION": "Send e-mail notifications about new conversations.",
+            "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Send notifications of new messages in the conversation.",
+            "MESSAGES_ALLOW_ONLY_POST_REPLIES": "I don't want to receive messages that aren't replies to my gifts and wishes.",
+            "CONVERSATIONS": "Messages",
+            "GIFTS_WISHES": "Gifts and wishes"
+        },
+        "MESSAGES": "Messages",
+        "PASSWORD": {
+            "TITLE": "Change password",
+            "WARNING_OMNIAUTH": "You are logged in using an external social network (e.g. Facebook, Twitter), so you can't change your Hearth.net password here. If you want to change it you must log in with your email.",
+            "CURRENT": "Current password",
+            "NEW": "New password"
+        },
+        "DELETE_PROFILE": {
+            "TITLE": "Delete profile",
+            "DONT_LEAVE": "So sad you are leaving us. But never say never, right? Please tell us why and we will work hard to get you back on board...",
+            "ACTION_DELETE": "Delete profile"
+        },
+        "NAVIGATION_ITEM": "Settings"
+    },
+    "MESSAGE": {
+        "CREATE": {
+            "TO_COMMUNITY_ADMIN": "Contact administrator",
+            "TO_COMMUNITY_MEMBERS": "Message to members"
+        }
+    },
+    "USER": {
+        "LIST": {
+            "OTHERS_COUNT": "and <a {{anchorAttrs}}>more ({{count}})</a>",
+            "USERS_JOINED_COMMUNITY": "{{users}} have joined the group",
+            "USER_JOINED_COMMUNITY": "{{user}} has joined the group"
+        }
+    },
+    "HEARTH": {
+        "BLOG": {
+            "GET_INSPIRED": "Get inspired",
+            "ACTION_READ_ON_BLOG": "Continue reading...",
+            "NAVIGATION_ITEM": "Blog"
+        },
+        "INVITE": {
+            "TITLE": "Invite friends",
+            "BY_EMAIL": "Email",
+            "BY_FACEBOOK": "Facebook",
+            "BY_TWITTER": "Twitter",
+            "BY_GOOGLE": "Google",
+            "BY_LINKEDIN": "LinkedIn",
+            "ADDRESSES_LABEL": "Addresses:",
+            "ADDRESSES_PLACEHOLDER": "Separate multiple addresses with commas...",
+            "NOTIFY": {
+                "ERROR_NOT_FILLED_ADDRESS": "Fill in your friends' emails.",
+                "ERROR_EMAIL_INVALID": "One or more of the emails has an invalid format.",
+                "ERROR_TEXT_NOT_FILLED": "Fill in your invitation to friends with some text.",
+                "SUCCESS_INVITE_SEND": "Invitation to friends has been sent.",
+                "SUCCESS_INVITATION_SENT": "{{email}}: Yipee, your invitation was sent successfully!",
+                "ERROR_USER_ALREADY_INVITED": "{{email}}: You have already invited this person to Hearth before.",
+                "ERROR_USER_ALREADY_EXISTS": "{{email}}: This person is already on Hearth as",
+                "ERROR_SEND_INVITATION": "Sending the invitation has failed. Please try again, or let us know if the problem continues."
+            },
+            "TEXT_LABEL": "Message:",
+            "TEXT_PLACEHOLDER": "Include a message in the invitation.",
+            "TITLE_AFTER_SEND": "Invite friends"
+        },
+        "404": {
+            "TITLE": "Sorry. No such thing here :(",
+            "TEXT": "How did you get here in the first place? If you think that it's a mistake, please let us know."
+        },
+        "ACTION_CONTACT_US": "Get in touch",
+        "ACTION_GO_TO_MARKET": "Go to Marketplace",
+        "FEEDBACK": {
+            "TITLE": "Get in touch",
+            "TEXT": "We're not perfect. But with your help perhaps we can be. Please give us your feedback and we'll give you a better Hearth.net Thank you!",
+            "REMOVING_ACCOUNT_FEEDBACK": "Sad to see you go. We will miss you. Please, let us know why are you leaving or how can we make Hearth.net better. We'll try to do just that, thanks!",
+            "TEXT_PLACEHOLDER": "Please let us know what works for you and what doesn't. There's always room for improvement.",
+            "EMAIL_PLACEHOLDER": "Your email",
+            "NOTIFY": {
+                "SUCCESS_SEND_FEEDBACK": "Thanks for your response! You too are helping us get better each and every day."
+            },
+            "ACTION_SEND_ANOTHER": "Send another feedback"
+        },
+        "PROJECT_NAVIGATION_ITEM": "About",
+        "ABOUT_US": {
+            "NAVIGATION_ITEM": "About us",
+            "WE_ARE_ALSO_ON": "Connect with us via:"
+        },
+        "STORY": {
+            "NAVIGATION_ITEM": "Our story",
+            "ABOUT": "Hearth.Net is an online gifting marketplace and generosity based social network built on the principals of the gift economy. It is a place where people can reclaim their daily relationships with the generous world that surrounds them."
+        },
+        "CONTACTS": {
+            "NAVIGATION_ITEM": "Hearth.net team"
+        },
+        "TERMS": {
+            "NAVIGATION_ITEM": "Terms of use"
+        },
+        "CUSTODIANS": {
+            "NAVIGATION_ITEM": "Hearth.net custodians"
+        },
+        "FAQ": {
+            "NAVIGATION_ITEM": "FAQs"
+        },
+        "SUPPORT_US": {
+            "NAVIGATION_ITEM": "Support Hearth.net"
+        },
+        "CONTACT_US": {
+            "NAVIGATION_ITEM": "Get in touch"
+        },
+        "TAXES": {
+            "NAVIGATION_ITEM": "Giving and taxes"
+        },
+        "NEW_VERSION_NOTIFICATION": "We have a slick new version of Hearth ready for you. Do you want to update Hearth now or later?",
+        "AMBASSADORS": {
+            "NAVIGATION_ITEM": "Ambassadors"
+        },
+        "PRINCIPLES": {
+            "NAVIGATION_ITEM": "Principles of gifting",
+            "DESCRIPTION": "It's a big joy to give gifts! To make it easier for you to get started, we have crafted these practical from the experience of Hearth.net community with gifting over several years."
+        },
+        "PRIVACY-POLICY": {
+            "NAVIGATION_ITEM": "Privacy Policy"
+        },
+        "CALENDAR": {
+            "NAVIGATION_ITEM": "Events"
+        },
+        "NEWSLETTER": {
+            "ACTION_SUBSCRIBE": "Subscribe"
+        },
+        "EVENTS": {
+            "RECOMMENDED": "Recommended event"
+        },
+        "POINTS": {
+            "NAVIGATION_ITEM": "Hearth Points",
+            "CENTRAL": {
+                "NAVIGATION_ITEM": "Central Hearth Point"
+            }
+        },
+        "WHAT_IS_HEARTH_FOR": "<h3>K čemu slouží Hearth.net?</h3>\n<p>Můžeš tu...</p>\n<p><strong>Darovat</strong> hezké věci, které už nepotřebuješ</p>\n<p><strong>Pomoci</strong> někomu tím, co děláš nejraději</p>\n<p><strong>Požádat</strong> ostatní o dar či pomoc</p>\n<h3>... pro radost sobě i ostatním.</h3>",
+        "MARKETPLACE_PROMO": "Now you can check out our marketplace for new gifts and wishes every day.",
+        "EXAMPLE_GIFTS": {
+            "CONTENT": "<p>Dary:</p>\n<ul>\n<li><strong>Společný oběd nebo kafe.</strong> Možnost poznat někoho zajímavého a strávit spolu pěkný čas.</li>\n<li><strong>Pomoc s tím, co děláš nejraději.</strong> Se zahradou, počítačem, venčením pejska...&nbsp;</li>\n<li><strong>Hodina profesionální konzultace.</strong> Účetní, právník, programátor... Poraď ostatním s tím, co umíš.</li>\n<li><strong>Domácí jídlo a dobroty.</strong> Jídlo sbližuje, někdo si určitě rád pochutná.</li>\n<li><strong>Hezké oblečení, které už nenosíš.</strong> Někdo jiný si jím rád osvěží šatník.</li>\n</ul>\n<p>Přání:</p>\n<ul>\n<li><strong>Knihu darem nebo k zapůjčení.</strong> Pokud si chceš nějakou přečíst, není nutné kupovat novou.</li>\n<li><strong>Spoluhráče na stolní tenis.</strong> Nebo zpěvačku do kapely či parťáky pro komunitní zahradu.</li>\n<li><strong>Kamaráda na společné procházky.</strong> Na Hearth.net se lze i seznámit.</li>\n<li><strong>Květináče, truhlíky, sazenice...</strong> a cokoli, co zrovna potřebuješ.</li>\n</ul>",
+            "TITLE": "Examples of gifts and wishes for joy"
+        }
+    },
+    "EVENTS": {
+        "NAVIGATION_ITEM": "Events",
+        "TITLE": "Hearth.net events calendar",
+        "NOTHING_FOUND": "There are no upcoming events.",
+        "HEARTH_ATTENDING": "Hearth.net will attend",
+        "ADATO_ORGANISED": "Organised by Adato paradigma institute"
+    },
+    "DASHBOARD": {
+        "NAVIGATION_ITEM": "Dashboard"
+    }
+}

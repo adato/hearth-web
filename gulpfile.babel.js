@@ -236,14 +236,15 @@ function getLocalePaths(opts = {}) {
 
 // App locales
 function localesApp() {
-  return download(getLocalePaths('app'))
-    .pipe(gulp.dest(PATHS.dist + '/app/assets/locale/'))
+  //return download(getLocalePaths('app'))
+  return gulp.src(PATHS.locales.app)
+    .pipe(gulp.dest(PATHS.dist + '/app/assets/locale/'));
 }
 
 // Landing locales
 function localesLanding() {
-  return download(getLocalePaths('landing'))
-  .pipe(gulp.dest(PATHS.temp + '/locales/landing'))
+  return gulp.src(PATHS.locales.landing)
+   .pipe(gulp.dest(PATHS.temp + '/locales/landing'))
 }
 
 /////////////////////
@@ -267,6 +268,9 @@ function jQuery() {
   return gulp.src(PATHS.libs.app.jq)
     .pipe($.concat('jquery.js'))
     .pipe(gulp.dest(PATHS.dist + '/app/assets/js'))
+    .pipe($.uglify()
+      .on('error', e => { console.log(e); })
+    )
 }
 
 /////////////////////

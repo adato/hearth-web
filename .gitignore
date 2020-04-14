@@ -10,3 +10,4 @@ Thumbs.db
 .sass-cache
 unit-tests-result.xml
 test/unit-tests-result.xml
+.netlify

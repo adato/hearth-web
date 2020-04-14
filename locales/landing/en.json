@@ -1,0 +1,138 @@
+{
+    "LANDING_PAGE": {
+        "ENTER": "Come in",
+        "GIFT": {
+            "ACCEPT": "I accept",
+            "OFFER": "I offer"
+        },
+        "LETS_DO_IT": "Let's do this!",
+        "MENU": {
+            "EDIT_PROFILE": "Edit profile",
+            "HOW_TO": "How to start?",
+            "LOGIN": "Sign in",
+            "LOGOUT": "Log out",
+            "MARKETPLACE": "Check Marketplace",
+            "PROFILE": "Profile",
+            "REGISTER": "Register",
+            "SETTINGS": "Settings",
+            "SUPPORT_US": "Support us",
+            "MESSAGES": "Messages",
+            "GET_INSPIRED": "Get inspired",
+            "TESTIMONIALS": "People like us"
+        },
+        "SECTION": {
+            "CONTACT": {
+                "ABOUT_US": "About us",
+                "CONNECT_WITH_US": "Get in touch",
+                "CONTACT": "Contact",
+                "CUSTODIANS": "Hearth custodians",
+                "FAQ": "FAQ",
+                "GIVING_AND_TAXES": "Giving and taxes",
+                "PEOPLE_IN_ADATO": "People of Adato",
+                "STORY": "Story",
+                "TERMS_OF_USE": "Terms and conditions",
+                "WE_CREATE_SPACE": "We create a space where the values of generosity and kindness are a natural part of life. Free of charge for everyone. No ads,  just sharing . We'll be happy if you join us and help others open up their hearts.<a href='/app'>Will you join us?</a>",
+                "AMBASSADORS": "Our ambassadors"
+            },
+            "HOW_TO": {
+                "ACCEPT_WHAT_YOU_ARE_LACKING": "<strong>Accept what you're missing</strong><br />Don't be afraid to ask for what makes your day.<br />Someone else will get a sense of joy from offering a gift thanks to you.",
+                "GIVE_WHAT_YOU_HAVE_OR_CAN_DO": "<strong>Give what you have & know best</strong><br /> It could be just the thing to make another happy.\n<br />Making others happy brings joy to all.",
+                "HOW_TO": "How to start?",
+                "MEET_NEW_FRIENDS": "<strong>Meet new friends</strong><br />You're not alone in this. Lot of us believe that<br />sharing the joys of life is just a natural thing to do."
+            },
+            "MARKETPLACE": {
+                "POSSIBILITIES_ARE_ENDLESS": "Countless possibilities",
+                "NUMBER_OF_GIFTS": "{{count}} gifts and wishes",
+                "SHOW_GIFTS_AND_WISHES": "Show gifts and wishes",
+                "CATEGORY_ENERGY_TEXT": "Let's meet, help ...",
+                "CATEGORY_MASS_TEXT": "Let's move on, fill our wishes ...",
+                "CATEGORY_INFORMATION_TEXT": "Let's inspire, advise ..."
+            },
+            "SHARE_WISHES": {
+                "SHARE_WISHES_AND_GIFTS": "Let's share gifts and wishes",
+                "WHAT_FULFILLS_US": "We share what fulfills us. We accept what we ask for. Without money. Without \"what's in it for me.\" Just like that, for the pleasure it brings. :)"
+            },
+            "SUPPORT_US": {
+                "CREATIVELY": {
+                    "HEADER": "Create with us",
+                    "LINK": "I'm in",
+                    "TEXT": "Are you a computer savvy, are you interested in technologies such as HTML, CSS, JavaScript, Angular, Ruby, Elastic, MongoDb, Redis, Docker, Heroku and many more, and would you like to help us develop Hearth.net? Join the Open Source Hearth.net community and join us to improve the Hearth.net website."
+                },
+                "DOES_HEARTH_GIVE_YOU_JOY": "Is Hearth bringing you joy? Are you meeting nice people here? We’d love for you to support and help others open their hearts. Hearth is free for everyone and without ads. It is possible thanks to the generous support of people like you.",
+                "ENDORSE": {
+                    "HEADER": "Spread the word",
+                    "LINK": "I will share",
+                    "TEXT": "If you can introduce our generous social network to people around you and invite them to Hearth.net we'll be happy to help out. We have three options for starters, pick one to begin with."
+                },
+                "FINANCIALLY": {
+                    "HEADER": "Contribute financially",
+                    "LINK": "I will donate to Hearth",
+                    "TEXT": "One time, repeatedly or regularly with an amount you choose. Generosity does not have an exchange rate but we know any gift for Hearth matters."
+                },
+                "SUPPORT_HEARTH": "Support Hearth",
+                "HEADER": "Is Hearth bringing you joy?"
+            },
+            "TESTIMONIALS": {
+                "PEOPLE_WHO_LIKE_US": "People like us",
+                "PEOPLE": {
+                    "BARTA": {
+                        "POSITION": {
+                            "SHORT": "Via foundation",
+                            "LONG": "Via foundation"
+                        },
+                        "TEXT": "Superb idea. Gift is both joy and concern. It shows interest. It is an occasion to help or to  help accept. For someone it is an occasion for hope. For someone else a commitment to help. I keep my fingers crossed and wish that lots of people and gifts meet at the right time thanks to Hearth.net."
+                    },
+                    "HAJZLER": {
+                        "POSITION": {
+                            "SHORT": "Peoplecomm.cz",
+                            "LONG": "Founder of Peoplecomm.cz and a man not afraid of being his own self"
+                        },
+                        "TEXT": "I really like your simplicity. I moved recently and I think that Hearth.net could help me with building connections in my new place. Giving was and will be a basis of every family, and it brings you a great feeling too. This is an ideal use of a social network in our present day."
+                    },
+                    "PANEK": {
+                        "POSITION": {
+                            "SHORT": "People in Need",
+                            "LONG": "CEO of People in Need, NGO"
+                        },
+                        "TEXT": "In today’s complex and rushed world, this is an interesting way to get back to the simple act of giving to someone, to help them, to meet them. Earlier you could do that within community, extended family or a tribe. Nowadays there is Hearth.net and that’s great."
+                    },
+                    "VACLAVEK": {
+                        "POSITION": {
+                            "SHORT": "novebohatstvi.cz",
+                            "LONG": "Founded the spiritual blog novebohatstvi.cz  after quitting the world of top advertising."
+                        },
+                        "TEXT": "Hearth.net is an excellent place for anybody who wants to connect with the world in a different, new and meaningful way. It provides the opportunity to apply our gift-talent and do what fills us with joy."
+                    },
+                    "FELLMER": {
+                        "TEXT": "Live more according to our heart and trust it. Hearth.net - listen to your heart <3",
+                        "POSITION": {
+                            "LONG": "co-founder of foodsharing.de, who was inspired to create his company after living for 5 years without money",
+                            "SHORT": "foodsharing.de"
+                        }
+                    },
+                    "DUSEK": {
+                        "POSITION": {
+                            "SHORT": "An actor and a lover of life",
+                            "LONG": "An actor and above all a lover of life, whose passion is exploring and discovering the principles of existence as they are. He reaches many people through the play “Four Agreements” by Don Miguel Ruiz and the interesting talk show “DušeK”."
+                        },
+                        "TEXT": "The state of mutual energies flowing is a permanent gift that the universe provides to us. We subsist in this gift and if we are aware of it, the energy of giving flows and the feeling of happiness becomes natural in that moment. The gift is love; the gift is the principle of life."
+                    }
+                }
+            },
+            "GET_INSPIRED": {
+                "READ_ON_OUR_BLOG": "Read on blog",
+                "GET_INSPIRED": "Get inspired"
+            }
+        },
+        "SLOGAN": {
+            "ACCEPT_WHAT_YOU_ARE_LACKING": "<strong>Accept:</strong><br />Receive what you desire",
+            "GIVE_WHAT_YOU_HAVE_OR_CAN_DO": "<strong>Give:</strong><br />Share what you have and know",
+            "JOY_TO_GIVE_HAPPINESS_TO_ACCEPT": "A joy to give! A delight to accept!",
+            "MEET_NEW_FRIENDS": "<strong>Discover:</strong><br />Meet new friends",
+            "SPACE_FOR_PEOPLE_WITH_OPEN_HEART": "A space for open hearts"
+        }
+    },
+    "CATEGORY_INFORMATION": "Information",
+    "CATEGORY_MASS": "Matter",
+    "CATEGORY_ENERGY": "Energy"
+}

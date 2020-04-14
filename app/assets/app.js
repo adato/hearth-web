@@ -21,7 +21,7 @@ angular.module('hearth', [
 		'pascalprecht.translate',
 		'ng-slide-down',
 		'angulartics',
-		'angulartics.mixpanel',
+//		'angulartics.mixpanel',
 		'angulartics.google.analytics',
 		'ngTagsInput',
 		'ipCookie',

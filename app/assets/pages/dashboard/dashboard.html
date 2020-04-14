@@ -12,22 +12,49 @@
     </div>
 
     <!-- promo posts -->
-    <promo-post id="new-groups" show-from-date="2019-05-14" show-until-date="2019-05-24"></promo-post>
+    <!-- <promo-post id="new-groups" show-from-date="2019-05-14" show-until-date="2019-05-24"></promo-post> -->
     <!-- end of promo posts -->
     
+    <div class="bottom-tabs margin-bottom-medium margin-top-small">
+      <ul>
+        <li><a href="#" ng-click="setTab('popular')" ng-class="{ 'selected': selectedTab == 'popular' }">{{:: 'MARKETPLACE.POPULAR_POSTS' | translate }}</a></li>
+        <li><a href="#" ng-click="setTab('info')" ng-class="{ 'selected': selectedTab == 'info' }">{{:: 'MARKETPLACE.NON_MASS_POSTS' | translate }}</a></li>
+        <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('friends')" ng-class="{ 'selected': selectedTab == 'friends' }">{{:: 'MARKETPLACE.FRIENDS_POSTS' | translate }}</a></li>
+        <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('recommended')" ng-class="{ 'selected': selectedTab == 'recommended' }">{{:: 'MARKETPLACE.RECOMMENDED_POSTS' | translate }}</a></li>
+        <!-- <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('ratings')" ng-class="{ 'selected': selectedTab == 'ratings' }">{{:: 'MARKETPLACE.RATINGS' | translate }}</a></li> -->
+      </ul>
+    </div>
+
     <div loading show="loading"></div>
     
-    <exemplary-posts opts="epOpts" ng-if="epOpts">
-    </exemplary-posts>
-    
-    <exemplary-posts opts="userOpts" ng-if="userOpts">
-    </exemplary-posts>
-    
+    <div class="margin-top-large">
+      <div class="" id="panel1" ng-show="selectedTab == 'popular'">
+        <exemplary-posts opts="epOpts" ng-if="epOpts">
+        </exemplary-posts>
+      </div>
+      <div class="" id="panel2" ng-show="selectedTab == 'info'">
+        <exemplary-posts opts="nonMassOpts" ng-if="nonMassOpts">
+        </exemplary-posts>
+      </div>
+      <div class="" id="panel3" ng-show="selectedTab == 'recommended'">
+        <exemplary-posts opts="userOpts" ng-if="userOpts">
+        </exemplary-posts>
+      </div>
+      <div class="" id="panel4" ng-show="selectedTab == 'friends'">
+        <exemplary-posts opts="friendsOpts" ng-if="friendsOpts">
+        </exemplary-posts>
+      </div>
+      <!-- <div id="panel5" ng-show="selectedTab == 'ratings'" when-scrolled="loadMoreRatings()" offset="1000" loading-in-progress="loading" class="marketplace-items-container">
+        <article class="row rating-item margin-top-large" id="rating_{{ item._id }}" ng-repeat="(id, item) in lastRatings track by item._id" ng-include="'assets/components/ratings/_dashboardReceivedRating.html'">
+        </article>
+      </div> -->
+    </div>
+
     <div class="small-12 large-4 large-push-5" ng-if="!loading">
       <button class="button primary" ui-sref="market">
         {{:: 'MARKETPLACE.ACTION_MORE_POSTS' | translate }}
       </button>
-  </div>
+    </div>
   </div>
   
 

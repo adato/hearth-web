@@ -1,0 +1,1909 @@
+{
+    "DAYS_AGO": "pred %d dňami",
+    "HOURS_AGO": "pred %d hodinami",
+    "MINUTES_AGO": "pred %d minútami",
+    "MONTHS_AGO": "pred %d mesiacmi",
+    "YEARS_AGO": "pred %d rokmi",
+    "MARKETPLACE": {
+        "FILTER": {
+            "3_DAYS": "3 dni",
+            "ADS_ALL": "Všetky inzeráty",
+            "ADS_NEED": "Len želanie <small>(prijmem aj požičiam si)</small>",
+            "ADS_OFFER": "Len dary <small>(venujem i požičiam)</small>",
+            "BY_AUTHOR": "Podľa autora",
+            "BY_LOCATION": "Podľa miesta",
+            "BY_TIME": "Podľa času",
+            "BY_TYPE": "Podľa typu",
+            "CANCEL_FILTER": "Zrušiť filter",
+            "INDIVIDUALS": "Jednotlivci",
+            "MY_CONNECTIONS": "Len moji priatelia",
+            "RUN_FILTER": "Filtrovať",
+            "TODAY": "Dnes",
+            "WEEK": "Týždeň",
+            "WITHOUT_LIMIT": "Bez obmedzení",
+            "TITLE": "Filtrovať",
+            "BY_KEYWORDS": "Podľa kľúčových slov",
+            "SAVE_FILTER": "Zapamätať si filter",
+            "COMMUNITIES": "Skupiny",
+            "CANCEL_FILTER_BAR": "Zrušiť filter",
+            "KM": "Km",
+            "CLOSE_FILTER": "Zavrieť filter",
+            "BY_CHARACTER": "Podľa povahy",
+            "POST_TYPE": {
+                "NAME": "Dary i přání",
+                "OFFER": "Jen dary",
+                "NEED": "Jen přání",
+                "ALL": "Vše",
+                "OFFERGIFT": "Jen Věnuji",
+                "OFFERLOAN": "Jen Zapůjčím",
+                "NEEDLOAN": "Jen Půjčím si",
+                "NEEDGIFT": "Jen Přijmu",
+                "POSTS": "Dary a přání",
+                "PEOPLE": "Lidé",
+                "COMMUNITY": "Skupiny"
+            },
+            "NEXT_OPTIONS": "Další možnosti...",
+            "CHARACTER": {
+                "ENERGY": "Jen Energie",
+                "MASS": "Jen Hmota",
+                "INFORMATION": "Jen Informace",
+                "ALL": "Nezávisle na povaze",
+                "NAME": "Povaha"
+            },
+            "TIME": {
+                "ALL": "Nezávisle na čase přidání",
+                "1": "Dnes",
+                "3": "3 dny",
+                "7": "Týden",
+                "NAME": "Čas přidání"
+            },
+            "BY_POST_TYPE": "Podle obsahu",
+            "BY_LANGUAGE": "Podle jazyka",
+            "LANGUAGE": {
+                "ALL": "Všechny",
+                "MY_LANGUAGES": "Kterými mluvím",
+                "OTHER": "Vlastní"
+            },
+            "NOTIFY": {
+                "ERROR_LANGUAGE_REQUIRED": "Vyberte alespoň jeden jazyk"
+            },
+            "DISTANCE_IN_PLACE": "V místě",
+            "AUTOCOMPLETE": {
+                "HISTORY": "Nedávno hľadané",
+                "DEFAULT": "Tipy na hľadanie"
+            }
+        },
+        "EDIT_FILTER": "Upraviť filter",
+        "FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br />Čo takto nejaké to kritérium ubrať?",
+        "RESET_FILTER": "Vymazať filter",
+        "NOTHING_FOUND": "Hmm... asi sa niekde stala chyba, pretože tu nie sú žiadne inzeráty. <a {{attrs}}>Skús to znovu</a>",
+        " SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
+        "NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku</strong></a>.",
+        "NOTHING_FOUND_WITH_OPTIONS": "Bohužel pro tebe nemáme žádné dary a přání. Bude to nastavením jazyků v uživatelském profilu.<br />\nBuď můžeš <a {{changeFilterAttrs}}>upravit filtr</a> na Tržišti (Podle jazyka) nebo <a {{editLangsAttrs}}>přidat jazyky</a> na svém profilu (Jazyky, kterými mluvím).",
+        "ACTION_CREATE_POST": "Pridať dar alebo želanie",
+        "COUNT_TOTAL": "{{value}} celkovo",
+        "X_POSTS_HAS_BEEN_READ": "{{value}} inzerátov zobrazených",
+        "FULLTEXT": {
+            "WE_FOUND_X_RESULTS": "Našli sme <b>{{counter}}</b> záznamov súvisiacich s <b>{{value}}</b>.",
+            "NOTHING_FOUND": "Ejha, nič čo by zodpovedalo <b>{{value}}</b> sme nenašli.<br />Buď sa tento výraz niekde schováva, alebo ešte neexistuje.",
+            "QUERY_PLACEHOLDER": "Zadajte, čo vás zaujíma..."
+        },
+        "POST": {
+            "REMOVE_FROM_COMMUNITY": "Odstrániť inzerát zo skupiny"
+        },
+        "NEWEST_POSTS": "Nejnovější dary a přání",
+        "EXEMPLARY_POSTS": "Vybrané dary a přání",
+        "POPULAR_POSTS": "Populárne",
+        "NON_MASS_POSTS": "Pomoc, rady, otázky",
+        "FRIENDS_POSTS": "Od mojich priateľov",
+        "RECOMMENDED_POSTS": "Podľa mojich záujmov",
+        "RATINGS": "Poďakovanie",
+        "NAVIGATION_ITEM": "Tržnica",
+        "MAP": {
+            "GO_TO_CURRENT_LOCATION": "Nájsť vašu aktuálnu polohu"
+        },
+        "ACTION_SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
+        "ACTION_SHOW_POSTS_IN_LIST": "Zobraziť zoznam inzerátov",
+        "FILTER_RESULTS": "Výsledky filtrování",
+        "SHOW_ALL": "zobrazit celé tržiště",
+        "POSTS_IN_PLACE": "Dary a přání v místě {{place}}\n",
+        "ACTION_MORE_POSTS": "Ďalšie dary a priania ...",
+        "ACTION_CREATE_QUICKPOST": "Pridať otázku alebo tip"
+    },
+    "ABOUT": "Napíšte pár slov o sebe. Kto ste, čo ste.",
+    "ACTIVATE": "Obnoviť",
+    "POST": {
+        "REMOVE": {
+            "ARE_YOU_SURE": "Ste si istý, že chcete zmazať túto položku? Potom ju už nikto nikdy neuvidí!",
+            "LABEL": "Odstrániť inzerát"
+        },
+        "SUSPEND": {
+            "LABEL": "Pozastaviť inzerát",
+            "ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
+            "CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit.",
+            "CONNECTED_MESSAGE": "Ahoj,\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https://www.hearth.net/app/terms).\n\nProsím, uprav text svého daru/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps://www.hearth.net/app/custodians"
+        },
+        "RESUME": {
+            "LABEL": "Obnoviť inzerát"
+        },
+        "HIDE": {
+            "LABEL": "Skryť inzerát",
+            "ARE_YOU_SURE": "Naozaj chcete skryť tento inzerát?",
+            "TITLE": "Skryť inzerát"
+        },
+        "STATE": {
+            "EXPIRED": "Platnost skončila",
+            "SUSPENDED": "Pozastavená platnost",
+            "EXPIRING_SOON": "Platí posledných pár dní",
+            "SUSPENDED_BY_ADMIN": "Pozastaveno správcem"
+        },
+        "INACCESSIBLE": {
+            "HEADER": "Dar/přání již není aktivní",
+            "TEXT": "Omlouváme se, ale tento dar/přání již není aktivní a tak není co zobrazit. Zkus vybrat jiný..."
+        },
+        "EXEMPLARY": {
+            "NEXT": "Další vybrané...",
+            "INFO": {
+                "NEXT_FOR_YOU": "Pro vás na míru. Chcete zde další takové?",
+                "ADD_TO_COMMUNITY": "<p>Pridajte sa do <a href=\"/app/communities/all\">skupín</a>, ktoré sa vám páči</p>",
+                "FOLLOW_PEOPLE": "Sledujte lidi, kteří vás zaujmou (na jejich profilu)",
+                "WHAT_YOU_SAY": "<p><a href=\"/app/feedback\">Co na to říkáte?</a></p>"
+            }
+        },
+        "CREATE": {
+            "SELECT_COMMUNITIES": "Vyberte skupiny, do ktorých sa má inzerát vložiť.",
+            "TITLE_EDIT": "Upraviť",
+            "TITLE": "Vytvoriť",
+            "BORROW_LEND_TEXT": "V prvom kroku prosím vyber smer daru. Môžeš vybrať aj kombináciu, napr. \"Venujem alebo požičám\", alebo \"Požičiam si alebo Prijmem\".",
+            "TITLE_LABEL": "Stručný popis inzerátu:",
+            "TITLE_PLACEHOLDER": "Jednoducho uveďte čo napr. tútorstvo",
+            "NOTIFY": {
+                "ERROR_TITLE_TOO_SHORT": "Titulok príspevku je príliš krátky.",
+                "ERROR_TITLE_TOO_LONG": "Titulok príspevku je príliš dlhý.",
+                "ERROR_NO_CATEGORY": "Kategórie príspevku musí byť vyplnené.",
+                "ERROR_MAX_ONE_CATEGORY": "Môžete vybrať maximálne 2 kategórie.",
+                "ERROR_NO_LOCATIONS": "Doplňte prázdne miesto, alebo označte, že na mieste nezáleží.",
+                "ERROR_DATE_IS_EMPTY": "Vyplňte dátum platnosti inzerátu alebo označte neobmedzený dátum.",
+                "ERROR_DATE_IS_IN_PAST": "Doba platnosti je v minulosti.",
+                "NO_COMMUNITIES_WHEN_PRIVATE": "Pre pridanie inzerátu do skupiny nemôžete mať inzerát len označený len pre priateľov.",
+                "ERROR_UNKNOWN_LOCATION": "Takéto miesto nepoznáme.. Skúste vybrať miesto radšej zo zoznamu.",
+                "ERROR_FILE_TYPE_INVALID": "Promiň, ale soubory typu .{{type}} jako přílohu nepodporujeme."
+            },
+            "TEXT_LABEL": "Text inzerátu:",
+            "TEXT_PLACEHOLDER": "Povedzte svetu, čo venujete či prijmete",
+            "IMAGES_LABEL": "Obrázky",
+            "REMOVE_PHOTO_LABEL": "Zmazať fotku",
+            "LANGUAGE_LABEL": "Jazyk inzerátu",
+            "LANGUAGES_MAIN": "Hlavní jazyky",
+            "LANGUAGES_OTHER": "Další jazyky",
+            "CATEGORY_LABEL": "Kategória inzerátu",
+            "KEYWORDS_LABEL": "Kľúčové slová:",
+            "EXPIRY_DATE_LABEL": "Platnosť do",
+            "COMMUNITIES_LABEL": "Vložiť inzerát do skupiny",
+            "PRIVACY_LABEL": "Súkromie inzerátu",
+            "PRIVACY_SHOW_TO_ALL": "zobražiť všetkým",
+            "PRIVACY_SHOW_TO_FRIENDS": "zobraziť priateľom",
+            "PRIVACY_SHOW_TO_COMMUNITY": "zobraziť skupine",
+            "PRIVACY_VISIBLE_FOR_ALL": "Viditeľné pre všetkých",
+            "PRIVACY_VISIBLE_FOR_FRIENDS": "Len pre priateľov",
+            "PRIVACY_VISIBLE_FOR_MEMBERS": "Viditeľné iba pre členov",
+            "ACTION_SAVE_AND_ACTIVATE": "Uložiť a aktivovať",
+            "ACTION_CHOOSE_FROM_MAP": "Vyberte miesto na mape",
+            "LOCATION_PLACEHOLDER": "Napíšte miesto",
+            "QUICK": {
+                "MODAL_TITLE": "Otázka alebo tip",
+                "TITLE": "S čím chceš poradiť alebo inšpirovať ostatní?",
+                "TEXT": "Podrobnosti:",
+                "ACTION_ADD_PHOTO": "Pridať obrázok"
+            }
+        },
+        "LOCATION": {
+            "ANYWHERE": "Kdekoľvek",
+            "TITLE": "Umiestnenie inzerátu",
+            "ANYWHERE_WITH_TITLE": "Umiestnenie inzerátu: kdekoľvek"
+        },
+        "NOTIFY": {
+            "SUCCESS_UPDATED": "Inzerát bol úspešne upravený.",
+            "SUCCESS_DELETED": "Inzerát bol úspešne zmazaný.",
+            "SUCCESS_FOLLOWED": "Bezva! Sledování inzerátu zapnuto.",
+            "SUCCESS_UNFOLLOWED": "Sledování inzerátu bylo vypnuto.",
+            "ERROR_NOT_FOUND": "Inzerát nebol nájdený.",
+            "EXPIRED": "Platnosť inzerátu už skončila",
+            "SUSPENDED": "Inzerát bol pozastavený",
+            "DELETED": "Inzerát bol vymazaný.",
+            "EXPIRED_AT": "Platnosť inzerátu skončila",
+            "YOU_ALREADY_REPLIED": "Na tento inzerát ste už odpovedal(a).",
+            "ERROR_CHOOSE_COMMUNITY": "Vyberte aspoň jednu skupinu, z ktorej sa má inzerát odstrániť.",
+            "ERROR_THERE_ARE_ERRORS": "Inzerát obsahuje chyby, takže akciu nebolo možné dokončiť. Opravte ho a potom to skúste znova.",
+            "TYPE_CHANGE_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť typ.",
+            "AUTHOR_SELECT_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť autora inzerátu.",
+            "ERROR_UPDATE": "Pri úprave inzerátu došlo k chybe.",
+            "ERROR_DELETE": "Inzerát sa nepodarilo zmazať."
+        },
+        "ACTION_MORE_INFO": "Viac informácii",
+        "ACTION_UNBOOKMARK": "Odobrať z obľúbených",
+        "ACTION_BOOKMARK": "Pridať k obľúbeným",
+        "FLAG": {
+            "ALREADY_FLAGGED": "Tento dar alebo prianie ste už označili ako nevhodný."
+        },
+        "ACTION_FLAG": "Nahlásiť škodlivý inzerát",
+        "ACTION_HIDE": "Skryť tento inzerát",
+        "ACTION_REMOVE_FROM_COMMUNITY": "Odstrániť zo skupiny",
+        "ACTION_SUSPEND": "Pozastaviť inzerát",
+        "ACTION_FOLLOW": "Sledovat inzerát",
+        "ACTION_UNFOLLOW": "Přestat inzerát sledovat",
+        "CHARACTER": "Povaha",
+        "ONLY_FOR_FRIENDS": "Len pre priateľov alebo členov rovnakej skupiny",
+        "ACTION_SHOW_MAP": "Zobraziť mapu",
+        "ACTION_HIDE_MAP": "Skryť mapu",
+        "ACTION_EDIT": "Editovať inzerát",
+        "ACTION_RESUME": "Obnoviť inzerát",
+        "DETAIL": {
+            "NO_REPLY": "Zatiaľ nikto nič.",
+            "REPLIES": "Odpovede používateľov",
+            "NO_REPLY_YOU": "Na tento inzerát zatiaľ nemáte žiadne odpovede."
+        },
+        "ACTION_GO_TO_PROFILE": "Celý profil",
+        "RELATED": {
+            "TITLE": "Zaujme tě některý z podobných darů nebo přání?",
+            "QUESTION": "Působí na tebe výběr podobných darů a přání dobře?"
+        },
+        "ACTION_SHOW_MORE": "Rozbaliť celý inzerát",
+        "ACTION_SHOW_LESS": "Zobrazit zkrácený text",
+        "HEART": {
+            "REMOVE": "Kliknutím môžeš označiť, že ťa už tento dar/priania prestal inšpirovať.",
+            "ADD": "Označ tento dar/želanie, že ťa inšpiruje."
+        },
+        "REMOVE_FROM_COMMUNITY": {
+            "TEXT": "Inzerát do Vašej skupiny nepatrí? Môžete ho jednoducho odstrániť...",
+            "SELECT_COMMUNITIES": "Vyberte skupiny, z ktorých sa má inzerát odstrániť:",
+            "POST_WILL_BE_REMOVED_FROM": "<p>Inzerát bude odstránený z skupiny&nbsp;<strong>{{name}}</strong>.</p>",
+            "REASON_LABEL": "Dôvod odstránenia:",
+            "REASON_PLACEHOLDER": "Napíšte používateľovi dôvod, prečo je inzerát nevhodný v rámci Vašich skupinách...",
+            "SUCCESSFULLY_REMOVED": "Inzerát bol úspešne odobraný.",
+            "ERROR_REMOVE": "Pri odoberaní inzerátu zo skupiny došlo k chybe",
+            "TITLE": "Odstránenie inzerátu zo skupiny"
+        },
+        "SHARE": {
+            "LINK_TITLE": "Zdieľať odkaz",
+            "BY_EMAIL": {
+                "HEADER": "Doporučte inzerát kamarátom",
+                "ADDRESS_LABEL": "E-mail kamaráta/kamarátky:",
+                "ADDRESS_PLACEHOLDER": "Napíšte jednu alebo viac e-mailových adries oddelených čiarkou",
+                "NOTIFY": {
+                    "ERROR_NO_ADDRESS": "Musíte vyplniť e-mailovú adresu kamaráta",
+                    "ERROR_ADDRESS_INVALID": "Jedna alebo viac adries nemá správny formát",
+                    "SUCCESS_SENT": "E-mail bol úspešne odoslaný :-)"
+                },
+                "TEXT_LABEL": "Odkaz:",
+                "TEXT_PLACEHOLDER": "Napíšte kamarátovi/kamarátke niekoľko slov..."
+            }
+        },
+        "USER_INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace.",
+        "COMMUNITY_INFO_NOT_FILLED": "Skupina o sebe zatiaľ vyplnila žiadne informácie.",
+        "REPORT": {
+            "TITLE": "Upozornite na nevhodný dar alebo prianie",
+            "LABEL": "<p>Myslíte si, že dar alebo prianie tohoto typu na Hearth.net nepatrí? <strong>Dajte nám o tom vedieť!</strong></p>\n<p>Vaše upozornenie na nevhodný obsah, spolu s uvedeným dôvodom zašleme jeho autorovi. Nebojte sa, Vaša správa nebude zverejnená. Táto spätná väzba ostane len medzi Vami, Hearthnet-om a autorom.</p>",
+            "REASON_PLACEHOLDER": "Napíšte nám o autorovi pár slov, prečo si myslíte, že na Heart.net takýto obsah nemá čo robiť.",
+            "NOTIFY": {
+                "SUCCESS_MESSAGE_SENT": "Upozornenie na nevhodný dar/prianie bolo úspešne odoslané."
+            }
+        },
+        "ACTION_ASK_FOR_GIFT": "Požiadať o dar",
+        "ACTION_OFFER_GIFT": "Ponúknuť dar",
+        "REPLY": {
+            "TEXT_PLACEHOLDER": "Máte záujem? Tak odpovedzte!",
+            "NOTIFY": {
+                "SUCCESS_SEND_REPLY": "Odpoveď na inzerát bola odoslaná.",
+                "ERROR_SEND_REPLY": "Pri odosielaní odpovede došlo k chybe."
+            },
+            "TEXT_PLACEHOLDER_NEED": "Co přesně nabízíš? Jak ti vyhovuje se setkat?",
+            "TEXT_PLACEHOLDER_OFFER": "Jak ti dar pomůže? Jak ti vyhovuje se setkat?"
+        },
+        "LOCATION_LABEL": "Miesta:",
+        "EDIT": {
+            "LOCATION_DOES_NOT_MATTER": "Na mieste nezáleží"
+        },
+        "ACTION_INSERT_LOCATION": "Vložiť lokáciu",
+        "GIFT_WISH_COUNT": {
+            "one": "{{count}} aktuální dar/přání",
+            "few": "{{count}} aktuální dary/přání",
+            "other": "{{count}} aktuálních darů/přání"
+        },
+        "COMMENT": {
+            "YOUR_COMMENT": "Tvůj komentář",
+            "YOUR_ANSWER": "Tvoje odpověď",
+            "ACTION_HIDE": "Skryť komentár",
+            "ACTION_RESTORE": "Obnoviť komentár",
+            "DELETED_BY_ADMIN": "Tento komentár bol odstránený správcom.",
+            "ACTION_ADD": "Pridať komentár"
+        },
+        "COMMENTS": {
+            "ACTION_TOGGLE": "Zobrazit/skrýt komentáře",
+            "ACTION_VIEW_ALL": "Zobraziť starší komentáre"
+        },
+        "ACTION_UNPIN": "Zrušiť pripnutie",
+        "ACTION_PIN": "Pripichnúť na vrch"
+    },
+    "BACK": "Späť",
+    "CHANGE": "Zmeniť",
+    "CHANGE_PASSWORD": "zmeniť heslo",
+    "COMMUNITY_ADMIN": "Správca",
+    "COMMUNITY_MEMBER": "Člen",
+    "COMMUNITY_MEMBER_REMOVE": "Odobrať",
+    "DAY_AGO": "včera",
+    "DOES_GIVE": "Venuje",
+    "DOES_WISH": "Príjme",
+    "FILTER": "Filtrovať",
+    "FORGOTTEN_PASSWORD_EMAIL_FAIL": "Bum! Zaslanie potvrdzovacieho emailu sa, bohužiaľ, nepodarilo. Mali ste prekrížené prsty?",
+    "FORGOTTEN_PASSWORD_EMAIL_SUCCESS": "Na uvedenú adresu sme vám poslali odkaz. Kliknite naň a vytvorte si nové heslo.",
+    "HIDE_MAP": "Skryť mapu",
+    "HOUR_AGO": "pred hodinou",
+    "INTERESTS": "Čo ma zaujíma",
+    "INVITATION_SENDING_SUCCESS": "Hurá! Vaša pozvánka je už na ceste.",
+    "I_GIVE": "Venujem",
+    "I_WISH": "Prijmem",
+    "KEYWORD": "Napíšte prvých pár znakov...",
+    "KEYWORDS": "Kľúčové slová",
+    "LESS_THAN_MINUTE_AGO": "teraz",
+    "LIST": "Zoznam",
+    "MAP": "Mapa",
+    "MESSAGES": "Správy",
+    "MINUTE_AGO": "1 minúta",
+    "MONTH_AGO": "pred mesiacom",
+    "MY_LANG": {
+        "ar": "Arabsky",
+        "bg": "Bulharsky",
+        "cs": "Česky",
+        "de": "Nemecky",
+        "el": "Grécky",
+        "en": "Anglicky",
+        "eo": "Esperanto",
+        "es": "Španielsky",
+        "fi": "Fínsky",
+        "fr": "Francúzsky",
+        "hr": "Chorvátsky",
+        "it": "Taliansky",
+        "ja": "Japonsky",
+        "ko": "Kórejsky",
+        "no": "Nórsky",
+        "pl": "Poľsky",
+        "pt": "Portugalsky",
+        "ro": "Rumunsky",
+        "ru": "Rusky",
+        "sk": "Slovensky",
+        "sv": "Švédsky",
+        "tk": "Turménsky",
+        "tr": "Turecky",
+        "uk": "Ukrajinsky",
+        "zh": "Čínsky",
+        "he": "Hebrejsky",
+        "clean": "- Bez prekladov -",
+        "nl": "Holandsky",
+        "bo": "Tibetsky",
+        "sq": "Albánsky",
+        "hy": "Arménsky",
+        "az": "Azerbájdžánsky",
+        "be": "Bělorusky",
+        "da": "Dánsky",
+        "et": "Estonsky",
+        "fo": "Faersky",
+        "fa": "Persky",
+        "ka": "Gruzínsky",
+        "te": "Telugsky",
+        "hu": "Maďarsky",
+        "is": "Islandsky",
+        "id": "Indonésky",
+        "ky": "Kyrgyzsky",
+        "lv": "Lotyšsky",
+        "lt": "Litevsky",
+        "mk": "Makedonsky",
+        "ms": "Malajsky",
+        "mn": "Mongolsky",
+        "nn": "Nynorsky",
+        "tt": "Tatarsky",
+        "sr": "Srbsky",
+        "sl": "Slovinsky",
+        "sw": "Svahilsky",
+        "th": "Thajsky",
+        "ur": "Urdsky",
+        "uz": "Uzbecky",
+        "vi": "Vietnamsky"
+    },
+    "NEED": "Prijmem",
+    "OFFER": "Venujem",
+    "OR": "alebo",
+    "TITLE": {
+        "0": "Hearth",
+        "market": "Tržnica",
+        "map": "Mapa darov a priania",
+        "communities": {
+            "0": "Skupiny",
+            "suggested": "Vybrané skupiny",
+            "all": "Zoznam všetkých skupin"
+        },
+        "reset-pass": "Nastavenie nového hesla",
+        "forgot-pass": "Zabudnuté heslo",
+        "token-login": "Prvé prihlásenie",
+        "fill-email": "Doplnenie emailu",
+        "confirm-email": "Overenie emailu",
+        "login": "Prihlásenie",
+        "reg": "Registrácia",
+        "search": "Vyhľadávanie",
+        "feedback": "Kontakt",
+        "terms": "Podmínky používání služby",
+        "about": "O projekte",
+        "post": "Detail daru / priania",
+        "messages": {
+            "0": "Konverzácia",
+            "detail": "Detail konverzácia"
+        },
+        "profileEdit": "Úprava profilu",
+        "profileSettings": "Nastavenie profilu",
+        "communityEdit": "Úprava skupiny",
+        "community": "Skupiny",
+        "error404": "Stránka nenájdená"
+    },
+    "WE_OFFER": "Ponúkame",
+    "WE_NEED": "Príjmeme",
+    "YEAR_AGO": "pred rokom",
+    "author": "Autor",
+    "community": "skupiny",
+    "market": "Tržnica",
+    "place": "Miesto",
+    "time": "Čas",
+    "user": "jednotlivci",
+    "activities": {
+        "first_person": {
+            "new_post": "<p>Pridal(a) ste inzer&aacute;t <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_reply": "<p>Odpovedal(a) ste na inzer&aacute;t <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "wants_into_community": "<p>Prihlásil(a) ste sa do skupiny <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "accepted_into_community": "<p>Prijali vás do skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "rejected_into_community": "<p>Bol(a) ste odmietnutý/á skupinou&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_following": "<p>Začal(a) ste sledovať už&iacute;vateľa <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_being_followed": "<p><a href=\"{{url}}\">{{name}}</a> v&aacute;s začal(a) sledovať.</p>",
+            "resume_post": "<p>Obnovil(a) ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_comm_rating_received": "<p>Dostal(a) ste hodnotenie od skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "suspend_post": "<p>Pozastavil(a) ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "prolong_post": "<p>Obnovil(a) ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "publish_post": "<p>Obnovili ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>\n"
+        },
+        "third_person": {
+            "new_post": "<p>{{user}} pridal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_reply": "<p>{{user}} odpovedal(a) na inzer&aacute;t <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "wants_into_community": "<p>{{user}} prihlásil(a) sa do skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "accepted_into_community": "<p>{{user}} bol(a) prijatý/á do skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "rejected_into_community": "<p>{{user}} bol(a) odmietnut skupinou&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_following": "<p>{{user}}&nbsp;sleduje použ&iacute;vateľa <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "start_being_followed": "<p><a href=\"{{url}}\">{{name}}</a> začal(a) sledovať použ&iacute;vateľa {{user}}.</p>",
+            "community_new_post": "<p>Nový inzerát v skupine&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "community_excluded_member": "<p><a href=\"{{url}}\">{{name}}&nbsp;</a>už nie je členom skupiny.</p>",
+            "new_application": "<p>Užívateľ&nbsp;<a href=\"{{url}}\">{{name}}</a>&nbsp;odoslal novú žiadosť o vstup do skupiny.</p>",
+            "community_rejected_user": "<p>Skupina odmietla užívateľa&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "community_accepted_user": "<p><a href=\"{{url}}\">{{name}}</a>&nbsp;je nový člen skupiny.</p>",
+            "member_left": "<p>Skupinu opustil užívateľ <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_admin": "<p><a href=\"{{url}}\">{{name}}</a>&nbsp;je nový správca skupiny.</p>",
+            "resume_post": "<p>Už&iacute;vateľ obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_community_rating": "<p>Skupina ohodnotila užívateľa <a href=\"{{url}}\">{{name}}</a>.</p>",
+            "new_comm_rating_received": "<p>Užívateľ dostal hodnotenie od skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "suspend_post": "<p>Už&iacute;vateľ pozastavil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "prolong_post": "<p>Už&iacute;vateľ obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+            "publish_post": "<p>Používateľ obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>\n",
+            "group": {
+                "community_accepted_user": "{{names}}&nbsp;sú noví členovia skupiny."
+            }
+        },
+        "rating": {
+            "first": {
+                "user": {
+                    "user": "<p>Ohodnotila ste už&iacute;vateľa <a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>Ohodnotil(a) ste skupinu&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} ohodnotil(a) užívateľa <a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>{{user}} ohodnotil(a) group&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                },
+                "comm": {
+                    "user": "<p>Skupina {{user}} ohodnotila užívateľa&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>Skupina {{user}} ohodnotila skupinu&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            }
+        },
+        "rating_received": {
+            "first": {
+                "user": {
+                    "user": "<p>Dostal(a) ste hodnotenie od užívateľa&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>Dostal(a) ste hodnotenie od skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} dostal(a) hodnotenie od užívateľa&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>{{user}}&nbsp;dostal(a) hodnotenie od skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                },
+                "comm": {
+                    "user": "<p>Skupina {{user}} dostala hodnotenie od užívateľa&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "comm": "<p>Skupina {{user}} dostala hodnotenie od skupiny&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            }
+        }
+    },
+    "COMMUNITY": {
+        "MEMBERS": {
+            "one": "{{count}} člen",
+            "few": "{{count}} členovia",
+            "other": "{{count}} členov",
+            "ACTION_ACCEPT": "Prijatý",
+            "ACTION_REJECT": "Odmietnuť",
+            "NO_APPLICATIONS": "Skupina nemá aktuálne žiadne prihlášky",
+            "NEW_APPLICATIONS": "Nové žiadosti o prijatie",
+            "SHOW_ALL_APPLICATIONS": "Zobraziť všetky prihlášky do skupiny",
+            "ACTION_ADD_MEMBERS_MODAL": "Pridať členov skupiny",
+            "ADD_MEMBERS_LABEL": "Pokiaľ vieš o ľuďoch, ktorí by v skupine mali byť, pošli im tento odkaz:",
+            "ADMIN_ACCEPT_MEMBERS": "Členstvo v skupine schvaľuje jej správca"
+        },
+        "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatiaľ nie ste súčasťou žiadnej skupiny. Buď si môžete nejakú založiť, alebo sa mrknite do odporúčaných skupin, možno vás tam nejaká zaujme.",
+        "X_MEMBERS": {
+            "one": "<b>{{count}}</b><br /> člen",
+            "few": "<b>{{count}}</b><br /> členovia",
+            "other": "<b>{{count}}</b><br /> členov"
+        },
+        "COMMUNITY_HAS_X_MEMBERS": {
+            "one": "Skupina má jedného člena",
+            "few": "Skupina má {{count}} členov",
+            "other": "Skupina má {{count}} členov"
+        },
+        "APPROVE_REQUESTS": {
+            "one": "Jeden človek čaká na schválenie",
+            "few": "{{count}} ľudia čakajú na schválenie",
+            "other": "{{count}} ľudí čaká na schválenie"
+        },
+        "POSTS": {
+            "NO_POSTS_ADMIN": "Zatiaľ ste nevytvorili žiadny inzerát, poďme s tým niečo urobiť - môžete darovať či prijať, čo vás len napadne.",
+            "NO_POSTS_OTHER": "Skupina zatiaľ nič nevenovala, ani nepotrebovala prijať.",
+            "TITLE": "Dary a priania skupiny",
+            "NO_POSTS_YET": "Skupina zatiaľ nemá žiadne inzeráty",
+            "INACTIVE_POSTS_ONLY": "V skupine sú iba neaktívne inzeráty. Spravovať ich môžete v zozname všetkých inzerátov."
+        },
+        "CONFIRM_LEAVE": {
+            "TITLE": "Opustiť skupinu",
+            "TEXT": "Naozaj chcete opustiť túto skupinu?"
+        },
+        "PROFILE": {
+            "GIVEN_RATINGS": "Odoslaná hodnotenie",
+            "RECEIVED_RATINGS": "Prijatá hodnotenie",
+            "CLICK_TO_EXPAND": "Ukázať viacej",
+            "TITLE": "Profil skupiny",
+            "SHORT_ABOUT": "O skupine",
+            "NO_RATING_ME": "S prvým hodnotením vám to tu zafarbíme :)",
+            "NO_RATING_OTHER": "Ohodnoťte skupinu a pekne sa všetkým vyfarbí :)",
+            "TERMS": "Podmienky členstva",
+            "HAS_BEEN_REGISTERED": "Skupina vznikla",
+            "ACTION_EDIT": "Upraviť skupinu"
+        },
+        "X_GIVES": {
+            "one": "dar",
+            "few": "dary",
+            "other": "darov"
+        },
+        "X_WISHES": {
+            "one": "priania",
+            "few": "priania",
+            "other": "priania"
+        },
+        "ADMIN": "Správca",
+        "NOTIFY": {
+            "SUCCESS_CREATE": "Skupina bola úspešne vytvorená.",
+            "SUCCESS_UPDATE": "Úprava skupiny bola úspešná.",
+            "SUCCESS_DELEGATE_ADMIN": "Odovzdanie správcovstva bolo úspešné.",
+            "SUCCESS_DELETE_COMMUNITY": "Skupina bola zmazaná.",
+            "ERROR_NOT_FOUND": "Mrzí nás to, ale táto skupina tu nie je...",
+            "ERROR_NAME_NOT_FILLED": "Vyplňte prosím názov skupiny",
+            "ERROR_NAME_MAX_LENGTH": "Meno skupiny je príliš dlhé. Nesmie mať viac ako 75 znakov.",
+            "ERROR_MOTTO_MAX_LENGTH": "Stručné info o skupine by malo byť stručnejší :)",
+            "ERROR_ABOUT_NOT_FILLED": "Napíšte prosím aspoň pár slov o skupine.",
+            "ERROR_LOCATION_IS_EMPTY": "Vyplňte miesto, kde Vaša skupina pôsobí.",
+            "ERROR_PASS_ADMIN_NO_MEMBERS": "Zmeniť správcu skupiny môžete len v prípade, keď má skupina viac členov. Pozvite do nej niekoho ďalšieho...",
+            "SUCCESS_USER_KICKED": "Člen bol odstránený zo skupiny.",
+            "SUCCESS_APPLY": "Prihláška do skupiny bola úspešne odoslaná.",
+            "SUCCESS_REJECT": "Prihláška bola zamietnutá.",
+            "SUCCESS_LEAVE": "Skupina bola opustená.",
+            "SUCCESS_APPROVE": "Schválenie prihlášky prebehlo úspešne.",
+            "ERROR_DELEGATE_ADMIN": "Odovzdanie správcovstva skupiny sa nepodarilo.",
+            "ERROR_ADD_RATING": "Při přidávání hodnocení došlo k chybě.",
+            "ERROR_APPROVE_APPLICATION": "Pri schvaľovaní došlo k chybe.",
+            "ERROR_APPLY": "Pri prihlasovaní do skupiny došlo k chybe.",
+            "ERROR_UPDATE": "Úprava skupiny sa nepodarila.",
+            "ERROR_CREATE": "Pridanie skupiny sa nepodarilo.",
+            "ERROR_TERMS_NOT_AGREED": "Ako správca skupiny zodpovedáš za dodržiavanie podmienok Hearth.net. Toto je povinná položka.",
+            "INFO_SELECT_X_GIFTS": "Vyber tri dary, ktoré budú skupinu najlepšie reprezentovať, aby bola lákavá aj pre ďalších členov."
+        },
+        "CREATE": {
+            "TITLE_EDIT": "Upraviť profil skupiny",
+            "TITLE_ADD": "Pridať skupinu",
+            "NAME": "Názov skupiny",
+            "MOTTO": "Stručne o skupine",
+            "MOTTO_PLACEHOLDER": "Pridajte krátky popis skupiny",
+            "ABOUT": "Ďalšie info o skupine",
+            "DESCRIPTION": "Popis:",
+            "RESTRICTIONS": "Podmienky členstva",
+            "RESTRICTIONS_PLACEHOLDER": "Aké má skupina podmienky členstva?",
+            "INTERESTS": "Zájmy",
+            "INTERESTS_PLACEHOLDER": "Zadej klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
+            "LOCATION": "Miesto skupiny",
+            "ACTION_CANCEL_ADD": "Zrušiť pridanie skupiny",
+            "PRIVACY": "Súkromie vo skupine",
+            "DESCRIPTION_PLACEHOLDER": "Pre koho je skupina určená? Čo v nej ľudia nájdu?"
+        },
+        "SETTINGS": {
+            "ALLOW_SENDING_TO_MEMBERS": "Umožniť členom poslať správu celej skupine",
+            "CHANGE_ADMIN": {
+                "0": "Zmeniť správcu komunity",
+                "SUBMIT": "Odoslať"
+            },
+            "DELEGATE_ADMIN": {
+                "LABEL": "Odovzdanie správcovstva",
+                "TEXT": "Naozaj chcete odovzdať správcovstvo tejto skupiny?"
+            },
+            "SELECT_PERSON_TO_PASS_ADMIN": "Vyberte osobu, ktorej chcete odovzdať spravovanie skupiny a kliknite na odoslať.",
+            "DELETE": "Zmazať skupinu",
+            "GIVE_ADMIN_TO_SOMEONE": "čo tak radšej odovzdať niekomu práva, nech môže skupina ďalej fungovať?",
+            "NO_MEMBERS_DELETE_WARNING": "Skupina nemá žiadneho ďalšieho člena, nechcete do nej radšej dotiahnuť viac ľudí?"
+        },
+        "DELETE_DIALOG": {
+            "LABEL": "Zmazať skupinu",
+            "TEXT": "Naozaj chcete zmazať túto skupinu?",
+            "ACTION_DELETE_ANYWAY": "Napriek tomu zmazať"
+        },
+        "COMMUNITIES": "Skupiny",
+        "ACTION_CREATE_COMMUNITY": "Založiť skupinu",
+        "MY_COMMUNITIES": "Moje skupiny",
+        "SUGGESTED_COMMUNITIES": "Vybrané skupiny",
+        "ALL_COMMUNITIES": "Všetky skupiny",
+        "ACTION_APPLY_FOR_MEMBERSHIP": "Stať sa členom",
+        "APPLY_FOR_MEMBERSHIP_SENT": "Prihláška do komunity čaká na schválenie",
+        "ACTION_INVITE_FRIENDS": "Pozvať priateľov do skupiny",
+        "ACTION_LEAVE_COMMUNITY": "Opustiť skupinu",
+        "REMOVE_MEMBER_MODAL": {
+            "TITLE": "Odobrať člena zo skupiny",
+            "TEXT": "Naozaj chcete odobrať tohto člena zo skupiny?"
+        },
+        "ACTION_REMOVE_MEMBER": "Odstrániť člena zo skupiny",
+        "MEET_COMMUNITY": "Spoznajte skupinu",
+        "ACTION_SEND_MESSAGE_TO_ADMIN": "Kontaktovať správcu",
+        "ACTION_SEND_MESSAGE_TO_ALL_MEMBERS": "Poslať správu členom",
+        "ACTIVITY": {
+            "TITLE": "Aktivita skupiny",
+            "NO_ACTIVITY_ME": "Ste tu krátko, nemáme vám zatiaľ čo ukázať :)",
+            "NO_ACTIVITY_OTHER": "Skupina je tu nová, nemáme vám tu zatiaľ čo ukázať.",
+            "USER_JOINED_COMMUNITY": "{{user}} se pripojil(a) k skupine",
+            "USERS_JOINED_COMMUNITY": "{{users}} sa pripojili k skupine.",
+            "AND_X_MORE": "a <a {{anchorAttrs}}>další ({{count}})</a>"
+        },
+        "NAVIGATION_ITEM": "Skupiny",
+        "COMMUNITY": "Skupina",
+        "PRIVACY": {
+            "PRIVATE": "Súkromná",
+            "PUBLIC": "Verejná",
+            "PUBLIC_DESCRIPTION": " - zviditeľnenie vašich aktivít",
+            "PRIVATE_DETAILS": "Skupinu nemožno nájsť na Hearth.net. Stať sa členom môžu iba tí, ktorí poznajú priamy odkaz.",
+            "PRIVATE_DESCRIPTION": " - bezpečný priestor dôvery",
+            "PUBLIC_DETAILS": "Všetci na Hearth.net môžu vidieť skupinu, jej členov a dary. Ktokoľvek sa môže stať členom.",
+            "FOR_MEMBERS_ONLY": "Toto je skupina prístupná len pre členov",
+            "HEARTH_INTRO": "<p>Na Hearth.net si ľudia pomáhajú, darujú a komunikujú spolu.</p>\n<p>&nbsp;</p>\n<p>A niekedy sa stanú aj zázraky.</p>",
+            "PRIVATE_FULL_DESCRIPTION": "Toto je <strong>súkromná skupina</strong> - bezpečný priestor dôvery pre vás a vaše dary. Prístup sem majú iba členovia skupiny.",
+            "PUBLIC_FULL_DESCRIPTION": "Toto je <strong>verejná skupina</strong>. O vašich aktivitách sa ľahko dozvie všetci ľudia na Hearth.net. Ktokoľvek sa môže do skupiny pridať.",
+            "CHANGE_MODAL_TEXT": "Všetci členovia skupiny dostanú správu o tom, že sa zmenil typ súkromia skupiny.",
+            "AGREE_WITH_TERMS": "Preberám zodpovednosť za dodržiavanie <a href=\"/app/terms\" target=\"_blank\" class=\"margin-horizontal-tiny\">Podmienok Hearth.net</a> v tejto skupine",
+            "PUBLIC_NOAUTH_DESCRIPTION": "Ďakujeme za záujem o našu skupinu. Poď ďalej ..."
+        },
+        "ACTION_BECOME_MEMBER": "Pridať sa k skupine",
+        "ACTION_ADD_MEMBERS": "Pridať členov",
+        "ACTION_MY_COMMUNITIES": "Viacej skupin…",
+        "MEMBERS_LIST": "Členovia",
+        "NOGIFTS": {
+            "TITLE": "Sme radi, že si tu 😊",
+            "DESCRIPTION": "Práve teraz je tá najlepšia chvíľa pre pridanie darov.",
+            "ACTION_ADD_FIRST_GIFT": "Pridať prvý dar"
+        },
+        "MY_COMMUNITIES_POSTS": "Dary a priania z mojich skupín",
+        "TYPE_PRIVATE": "Súkromná skupina",
+        "TYPE_PUBLIC": "Verejná skupina",
+        "I_AM_ADMIN": "Som správca",
+        "NO_MY_COMMUNITIES": "Zatiaľ žiadne",
+        "EMPTY_LIST_CREATE_COMMUNITY_PART1": "Založiť skupinu",
+        "EMPTY_LIST_CREATE_COMMUNITY_PART2": "pre moju firmu, projekt alebo komunitu.",
+        "EMPTY_LIST_COMMUNITIES_PART1": "Prezrieť skupiny",
+        "EMPTY_LIST_COMMUNITIES_PART2": "ktoré tu už sú.",
+        "APPLY_FOR_PRIVATE_MEMBERSHIP_SENT": "Ďakujeme za záujem o skupinu. Tvoja žiadosť bola odoslaná správcovi. Hneď ako ju schváli, pošleme ti email.",
+        "INVITATION": {
+            "EMAIL_BODY": "Vážení kolegové,\n\nzvu vás do skupiny COMMUNITY_NAME. Stačí kliknout sem:\n\nCOMMUNITY_URL\n\nVe skupině můžete například: \n\n• Darovat hezké věci, které už nepotřebujete\n• Pomoci někomu s tím, co děláte nejraději\n• Požádat ostatní o dar či pomoc.\n\nA proč to dělat? Pro radost! Darování často vykouzlí úsměv na tváři a to stojí za to :-)",
+            "BY_EMAIL": "Pozvánka emailom",
+            "BY_EMAIL_DESCRIPTION": "Najrýchlejší spôsob. Tu je pripravený text. Môžeš ho upraviť podľa potreby a poslať.",
+            "BY_POSTER": "Letáky a plakáty k vytištění",
+            "BY_POSTER_DESCRIPTION": "Najlepší spôsob. Niet nad leták odovzdaný osobne spolu s úsmevom :-)\nMožné vytlačiť na A6 ako leták, alebo na A3 ako plagát k rozvešané na frekventovaných miestach.",
+            "PREVIEW1": "<div class=\"line\">DAROVANIE A POMOC</div><div class=\"line\">MEDZI ĽUĎMI.</div><div class=\"line orange\">PRE RADOSŤ.</div>",
+            "PREVIEW2": "<div class=\"line\">ZOSTAŇME V KONTAKTE.</div><div class=\"line orange\">POMÁHAJME SI.</div>",
+            "PREVIEW1_TITLE": "Leták pre všetkých",
+            "PREVIEW2_TITLE": "Leták pre účastníkov tvojej akcie",
+            "ACTION_CHOOSE_POSTS": "Vybrať iné dary na leták",
+            "ACTION_HIDE_POSTS": "Skryť výber darov",
+            "NOT_ENOUGH_POSTS": "Přidej do skupiny lákavé dary a přání, aby tam byly alespoň 3. Plakát pak půjde vytisknout.",
+            "BY_URL": "Odkaz na skupinu"
+        },
+        "ADMIN_ONBOARDING": {
+            "TITLE": "Ako priviesť život do tejto skupiny?",
+            "SUBTITLE": "Darovanie prináša radosť a zlepšuje vzťahy. Rozbehnite to aj u vás vo firme, susedstve alebo inej skupine. Tu sú tipy, ako na to:",
+            "STEP_1_LINK": "Pridaj dvoch aktívnych pomocníkov",
+            "STEP_1_TEXT": "Utvoríte spolu dôležitý základ skupiny.",
+            "STEP_2_LINK": "Pridajte každý dva dary alebo želanie",
+            "STEP_2_TEXT": "Pekné a lákavé pre ostatných",
+            "STEP_2_LINK_2": "napríklad tieto.",
+            "STEP_3_LINK": "Pozvi ostatných kolegov, susedov, apod.",
+            "STEP_3_TEXT": "Pomocou e-mailu, letákov alebo plagátov."
+        }
+    },
+    "WITH_TERMS_OF_USE": "podmienkami používania",
+    "YOU_ARE_ACCEPTING_TERMS": "Registráciou súhlasím s",
+    "SIGNUP_PROCESS_ERROR": "Niečo sa pokazilo. Registráciu nebolo možné dokončiť.",
+    "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bolo úspešne zmenené.<br />Teraz sa môžete <a href='/app/login'>prihlásiť</a>.",
+    "ADMIN_7_CASE": "správca",
+    "DELETE": "zmazať",
+    "YOU_HAVE": "Máte",
+    "OG_DEFAULT_TITLE": "Hearth.net",
+    "OG_DEFAULT_DESCRIPTION": "Priestor, kde dávať znamená dostať oveľa viac",
+    "POSTS": "inzeráty",
+    "TUTORIAL": "Tutoriál",
+    "AD_ADD_LABEL": "Vytvoriť inzerát",
+    "NOTIFY": {
+        "POST_CREATED_SUCCESFULLY": "Inzerát bol úspešne uložený.",
+        "EMAIL_INVITATION_FAILED": "Pri odosielaní pozvánky došlo k chybe.",
+        "POST_EDIT_FAILED": "Pri úprave inzerátu došlo k chybe.",
+        "REMOVE_FOLLOWER_SUCCES": "Odobranie užívateľa zo sledovaných bolo úspešné.",
+        "REMOVE_FOLLOWER_FAILED": "Odobranie užívateľa zo sledovaných sa nepodarilo.",
+        "ADD_FOLLOWER_SUCCES": "Pridanie užívateľa do sledovaných bolo úspešné.",
+        "ADD_FOLLOWER_FAILED": "Pridanie užívateľa do sledovaných bolo neúspešné.",
+        "USER_RATING_FAILED": "Pri hodnotení užívateľa došlo k chybe.",
+        "USER_RATING_SUCCESS": "Hodnotenie užívateľa bolo pridané.",
+        "PASS_CHANGE_FAILED": "Pri úprave hesla došlo k chybe.",
+        "COMMUNITY_DELETE_FAILED": "Pri mazaní skupiny došlo k chybe.",
+        "COMMUNITY_DELEGATE_ADMIN_FAILED": "Odovzdanie správcovstva skupiny sa nepodarilo.",
+        "COMMUNITY_CREATE_FAILED": "Pridanie skupiny sa nepodarilo.",
+        "COMMUNITY_UPDATE_FAILED": "Úprava skupiny sa nepodarila.",
+        "COMMUNITY_APPLY_FAILED": "Pri prihlasovaní do skupiny došlo k chybe.",
+        "COMMUNITY_REJECT_FAILED": "Zamietnutie prihlášky sa nepodarilo.",
+        "COMMUNITY_LEAVE_FAILED": "Opustenie skupiny sa nepodarilo.",
+        "COMMUNITY_APPROVE_APPLICATION_FAILED": "Pri schvaľovaní došlo k chybe.",
+        "SIGNUP_PROCESS_SUCCESS": "Registrácia bola úspešná.",
+        "SIGNUP_PROCESS_ERROR": "Pri registrácii došlo k chybe.",
+        "RESET_PASSWORD_FAILED": "Požiadavka na obnovu hesla sa nepodarila.",
+        "NEW_PASS_FAILED": "Nastavenie nového hesla sa nepodarilo.",
+        "ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Vitajte v Hearth.net!",
+        "ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",
+        "POST_SPAM_REPORT_FAILED": "Nahlásenie inzerátu sa nepodarilo.",
+        "POST_SPAM_REPORT_SUCCESS": "Inzerát bol nahlásený.",
+        "USER_KICKED_FROM_COMMUNITY_FAILED": "Odstránenie člena zo skupiny sa nepodarilo...",
+        "REPLY_FAILED": "Pri odosielaní odpovede došlo k chybe.",
+        "CHANGE_LANGUAGE_FAILED": "Zmena jazyka sa nepodarila. :(",
+        "POST_DELETED_FAILED": "Inzerát sa nepodarilo zmazať.",
+        "COMPLETE_TWITTER_REGISTRATION_FAILED": "Pridanie emailu sa nepodarilo.",
+        "EMAIL_NOTIFY_CONFIG_FAILED": "Pri ukladaní došlo k chybe.",
+        "EMAIL_SHARING_FAILED": "Pri odosielaní e-mailu došlo k chybe...",
+        "POST_REMOVE_FROM_COMMUNITY_FAILED": "Pri odoberaní inzerátu z skupiny došlo k chybe",
+        "MESSAGE_SEND_FAILED": "Oops. Pri odosielaní správy došlo k chybe",
+        "CONVERSATION_DELETE_FAILED": "Pri vymazávaní konverzácie došlo k chybe. No teda...",
+        "CONVERSATION_LEAVE_FAILED": "Pri opustení konverzácie došlo k chybe.",
+        "MESSAGE_REPLY_FAILED": "Jaj. Pri odosielaní správy došlo k chybe.",
+        "CONVERSATION_ARCHIVE_FAILED": "Pri archivácii došlo k chybe. Teda, tá archivácia!",
+        "RATING_REPLY_FAILED": "Pri pridávaní komentáre k hodnotenie došlo k chybe",
+        "REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního e-mailu došlo k chybě.",
+        "API_ERROR": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"/app/feedback\">dejte n&aacute;m o tom vědět</a>. D&iacute;ky!</p>",
+        "POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
+        "POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
+        "COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
+        "POST_HID_SUCCESFULLY": "Skvelé. Skrytie inzerátu sa podarilo, už sa ti nebude na tržnici a vo vyhľadávání zobrazovať."
+    },
+    "PEOPLE_COUNT_WISH_PL": {
+        "one": "Už požiadal {{value}} človek.\n\n\n",
+        "few": "Už požiadali {{value}} ľudia.",
+        "other": "Už požiadalo {{value}} ľudí."
+    },
+    "PEOPLE_COUNT_OFFER_PL": {
+        "one": "Už ponúkol {{value}} človek.",
+        "few": "Už ponúkli {{value}} ľudia.",
+        "other": "Už ponúklo {{value}} ľudí."
+    },
+    "PROFILE": {
+        "FRIENDS": {
+            "YOU_HAVE_X_FRIENDS": {
+                "one": "Máte {{count}} priateľa",
+                "few": "Máte {{count}} priateľov",
+                "other": "Máte {{count}} priateľov"
+            },
+            "HE_HAS_X_FRIENDS": {
+                "one": "Je priateľ s {{count}} človekom",
+                "few": "Je priateľ s {{count}} ľuďmi",
+                "other": "Je priateľ s {{count}} ľuďmi "
+            },
+            "NO_FRIENDS_ME": "Zatiaľ u nás nemáte žiadnych priateľov. Sledujte niekoho, kto sleduje vás, a priateľstvo je na svete!",
+            "NO_FRIENDS_OTHER": "Užívateľ tu zatiaľ nemá žiadnych priateľov. Sledujte sa navzájom a stanú sa z vás priatelia."
+        },
+        "FOLLOWEES": {
+            "IM_INSPIRED_BY_X_PEOPLE": {
+                "one": "Sledujete {{count}} človeka",
+                "few": "Sledujete {{count}} ľudí",
+                "other": "Sledujete {{count}} ľudí"
+            },
+            "HE_IS_INSPIRED_BY_X_PEOPLE": {
+                "one": "Sleduje {{count}} človeka",
+                "few": "Sleduje {{count}} ľudí",
+                "other": "Sleduje {{count}} ľudí"
+            },
+            "NO_FOLLOWEES_ME": "Zatiaľ nikoho nesledujete. Tak šup k niekomu na profil a začať sledovať...",
+            "NO_FOLLOWEES_OTHER": "Užívateľ u nás zatiaľ nikoho nesleduje. Tak ho môžete sledovať vy a možno vám to oplatí..."
+        },
+        "FOLLOWERS": {
+            "IM_INSPIRING_X_PEOPLE": {
+                "one": "Sleduje vás {{count}} človek",
+                "few": "Sledujú vás {{count}} ľudia",
+                "other": "Sledujú vás {{count}} ľudia"
+            },
+            "HE_IS_INSPIRING_X_PEOPLE": {
+                "one": "Je sledovaný {{count}} človekom",
+                "few": "Je sledovaný {{count}} ľuďmi",
+                "other": "Je sledovaný {{count}} ľuďmi"
+            },
+            "NO_FOLLOWERS_ME": "Zatiaľ vás tu nikto nesleduje. Tak zatiaľ sledujte aspoň niekoho vy...",
+            "NO_FOLLOWERS_OTHER": "Užívateľa u nás zatiaľ nikto nesleduje. Môžete byť prvý!",
+            "ERROR_ADD_FOLLOWER": "Pridanie užívateľa do sledovaných bolo neúspešné.",
+            "ERROR_REMOVE_FOLLOWER": "Odobranie užívateľa zo sledovaných sa nepodarilo.",
+            "SUCCESS_ADD_FOLLOWER": "Pridanie užívateľa do sledovaných bolo úspešné.",
+            "SUCCESS_REMOVE_FOLLOWER": "Odobranie užívateľa zo sledovaných bolo úspešné."
+        },
+        "HOME": {
+            "NO_POSTS_ME": "Zatiaľ ste nevytvorili žiadny inzerát, poďme s tým niečo urobiť - môžete darovať či prijať, čokoľvek vám napadne."
+        },
+        "INVITATION": {
+            "SEND_EMAIL_INVITATION": "Odoslať"
+        },
+        "POSTS": {
+            "NO_GIVEN_RATINGS_ME": "Asi ste zatiaľ nikomu nič nedarovali ani nič neprijali, tak ste ešte ani nemohli mať príležitosť porozprávať o tom, ako to všetko šlo.",
+            "NO_GIVEN_RATINGS_OTHER": "Užívateľ zatiaľ nič nevenoval ani nepotreboval prijať, tak nemal zatiaľ ani príležitosť niekomu napísať hodnotenie.",
+            "NO_POSTS_ME": "Zatiaľ ste nevytvoril(a) žiadny inzerát, poďme s tým niečo urobiť - môžete darovať alebo prijať, čo vám len napadne.",
+            "NO_POSTS_OTHER": "Užívateľ zatiaľ nič nevenoval, ani nepotreboval prijať. Asi sa zatiaľ rozhliada alebo len reaguje na inzeráty ostatných.",
+            "NO_POSTS_BOOKMARKED": "Nemáte žiadne obľúbené dary a priania",
+            "INACTIVE_TITLE": "Neaktívne inzeráty",
+            "MY_POSTS": "Moje inzeráty",
+            "MY_BOOKMARKS": "Moje obľúbené",
+            "USER_POSTS": "Inzeráty užívateľa",
+            "YOU_HAVE_ACTIVE": "Momentálne máte aktívne",
+            "ACTIVE_POSTS": "Aktívne inzeráty",
+            "NO_POSTS_YET": "Užívateľ zatiaľ nemá žiadne inzeráty",
+            "ONLY_ACTIVE_POSTS": "Máte tu len neaktívne inzeráty, ktoré si môžete aktivovať v zozname všetkých inzerátov.",
+            "ALL": "Všetky dary a priania"
+        },
+        "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázdny - povedzte niečo viac o tom, čo vás zaujíma a baví.",
+        "GIVES_COUNT": {
+            "one": "dar",
+            "few": "dary",
+            "other": "darov"
+        },
+        "WISHES_COUNT": {
+            "one": "priania",
+            "few": "priania",
+            "other": "priania"
+        },
+        "REPLIES": {
+            "NO_REPLIES": "Zatiaľ ste nikomu neodpovedali na žiadne prianie alebo ponuku a tak Vám tú nemáme čo ukázať.",
+            "MY_REPLIES": "Moje odpovede",
+            "ON_POST": "na dar/želanie:"
+        },
+        "RATING": {
+            "REPLY_TO_USER": "Reagovať na hodnotenia od",
+            "CALL_TO_ACTION": "Komunikovali ste spolu? Dajte svetu vedieť, že všetko klaplo alebo že sa naopak niečo nepodarilo...",
+            "NO_RECEIVED_RATINGS_ME": "Očividne za sebou ešte nemáte žiadnu odvážnu odpoveď na inzerát, tak nemal nikto príležitosť sem napísať niečo pekné :(",
+            "RATED_ME": "Ohodnotili ma",
+            "RECEIVED_RATINGS": "Prijaté hodnotenia",
+            "ME_RATED_THEM": "Ohodnotil(a) som",
+            "GIVEN_RATINGS": "Odoslané hodnotenia",
+            "ACTION_SUBMIT": "Odoslať hodnotenie",
+            "POSITIVE": "Všetko klaplo",
+            "NEGATIVE": "Niečo sa nepodarilo",
+            "TITLE": "Ako sa vám spolu komunikovalo?",
+            "RATE_USER": "Ohodnoťte komunikáciu s užívateľom",
+            "SELECT_POST": {
+                "TITLE": "O aký inzerát šlo?",
+                "DESCRIPTION": "Hodnotenie môžete spojiť s inzerátom, na ktorý ste si v posledných 3 mesiacoch vzájomne reagovali.",
+                "DEFAULT": "Vyberte inzerát",
+                "ACTIVE_POSTS": "Ostatní aktivní inzeráty",
+                "NO_POSTS": "Za posledné 3 mesiace ste si vzájomne nereagovali na žiadny inzerát. I tak ale môžete užívateľa ohodnotiť. :)",
+                "COMMON_POSTS": "Společné inzeráty"
+            },
+            "WRITE_RATING": "Pridajte pár slov:",
+            "WRITE_RATING_PLACEHOLDER": "Napíšte užívateľovi k hodnoteniu pár slov.",
+            "NOTIFY": {
+                "ERROR_NO_FILLED_RATING": "Pošlite užívateľovi s hodnotením i nejaký text",
+                "ERROR_RATING_TOO_SHORT": "Napíšte užívateľovi do hodnotenia ešte pár písmenok...",
+                "SUCCESS_RATING_REPLY": "A je to! Komentár bol úspešne pridaný.",
+                "ERROR_RATING_REPLY": "Pri pridávaní komentáre k hodnotenie došlo k chybe"
+            },
+            "YOU_HAVE_NO_RATINGS": "Zatiaľ tu nemáte žiadne hodnotenia",
+            "USER_HAS_NO_RATINGS": "Užívateľ tu zatiaľ nemá žiadne hodnotenia",
+            "OLDER_RATINGS": "Staršie hodnotenia",
+            "ON_POST": "k inzerátu",
+            "WRITE_REPLY_PLACEHOLDER": "Text odpovede ...",
+            "RATE_COMMUNITY": "Hodnotenie skupiny",
+            "WRITE_RATING_COMMUNITY_PLACEHOLDER": "Ohodnoťte skupinu niekoľkými slovami",
+            "REMOVED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah aj.)",
+            "ACTION_ADD_COMMENT": "Pridať komentár",
+            "COUNT": {
+                "one": "{{ count }} poďakovanie",
+                "few": "{{ count }} poďakovanie",
+                "other": "{{ count }} poďakovanie"
+            }
+        },
+        "CONTACT": {
+            "VISIBILITY_NOBODY": "Nikdo",
+            "VISIBILITY_FOLLOWEES": "Uživatelé co sleduji",
+            "VISIBILITY_EVERYBODY": "Přihlášení uživatelé"
+        },
+        "FIRST_NAME": "Meno",
+        "NOTIFY": {
+            "ERROR_NOT_FILLED_FIRST_NAME": "Vyplňte prosím vaše meno",
+            "ERROR_WRONG_FIRST_NAME": "Toto meno nie je možné použiť. Jednoducho nedá sa.",
+            "ERROR_SHORT_FIRST_NAME": "Toto meno je moc krátke, musí mať minimálne 2 znaky.",
+            "ERROR_USER_NOT_FOUND": "Užívateľ nebol nájdený.",
+            "ERROR_SELECT_RATING": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
+            "ERROR_USER_RATING_FAILED": "Pri hodnotení užívateľa došlo k chybe."
+        },
+        "LAST_NAME": "Priezvisko",
+        "EDIT": {
+            "NOTIFY": {
+                "ERROR_FORM_HAS_ERRORS": "Vo formulári sú chyby.",
+                "SUCCESS_SAVE_PROFILE": "Úprava profilu bola úspešná.",
+                "ERROR_DUPLICATE_EMAIL": "<p>Omlouv&aacute;me se, ale při ukl&aacute;d&aacute;n&iacute; tv&eacute;ho profilu do&scaron;lo k chybě. Pravděpodobně m&aacute;&scaron; na Hearthu druh&yacute; &uacute;čet, u kter&eacute;ho m&aacute;&scaron; uveden&yacute; stejn&yacute; e-mail. <a title=\"Napi&scaron; n&aacute;m\" href=\"/app/feedback\">Napi&scaron; n&aacute;m</a>&nbsp;a můžeme ti &uacute;čty spojit, př&iacute;padně naj&iacute;t jin&eacute; ře&scaron;en&iacute;. D&iacute;ky.</p>",
+                "ERROR_SAVE_PROFILE": "Pri úprave profilu došlo k chybe.",
+                "ERROR_NOT_FILLED_FIRST_NAME": "Vyplňte prosím vaše meno",
+                "ERROR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš",
+                "ERROR_NOT_VALID_EMAIL": "Email nemá platný formát",
+                "ERROR_NOT_FILLED_EMAIL": "Vyplňte prosím váš email",
+                "ERROR_NOT_VALID_PHONE": "Zadal(a) si zlý formát telefónneho čísla.",
+                "ERROR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
+                "ERROR_INVALID_URL": "Tato adresa není platná"
+            },
+            "UPLOAD_AVATAR_IMAGE": "Nahrať novú fotku",
+            "ABOUT_ME_TITLE": "Viac o mne",
+            "FIRST_NAME": "Meno",
+            "LAST_NAME": "Priezvisko",
+            "MY_WORK": "Zamestnanie/Čo robím (keď nemám voľno)",
+            "MY_WORK_EXAMPLE": "Napr.: učiteľka, rozvoj občianskej spoločnosti.",
+            "ABOUT_ME_LABEL": "Kto som",
+            "ABOUT_ME_EXAMPLE": "Stačí pár slovíčok, čo vás baví a dokáže nadchnúť...",
+            "MY_INTERESTS": "Moje záujmy",
+            "MY_INTERESTS_EXAMPLE": "Zadajte kľúčové slová napr. školstvo, záhrada, občianska spoločnosť...",
+            "LOCATIONS_TITLE": "Miesta kde sa pohybujem",
+            "MY_LANGUAGES_TITLE": "Jazyky, ktorými hovorím",
+            "ADD_OTHER_LANG": "Pridať ďalšie jazyky",
+            "CONTACTS_TITLE": "Kontakty",
+            "EMAIL": "Email",
+            "WHO_CAN_SEE_IT": "Kdo jej může vidět",
+            "MY_CONTACT_EMAIL_EXAMPLE": "Pokiaľ pole vyplníte, tak potom práve sem vám budú chodiť správy od užívateľov z Hearth.",
+            "PHONE": "Telefón",
+            "NETWORKS_TITLE": "Sociálne siete a weby",
+            "MY_FACEBOOK": "Facebook",
+            "MY_TWITTER": "Twitter",
+            "MY_LINKEDIN": "LinkedIn",
+            "MY_GOOGLEPLUS": "Google+",
+            "MY_WEB": "Web",
+            "ACTION_ADD_NEXT_WEB": "Pridať ďalší web",
+            "TITLE": "Profil užívateľa",
+            "NAVIGATION_ITEM": "Upraviť profil",
+            "ME_TITLE": "Kto som",
+            "MY_CONTACT_EMAIL": "Kontaktný email "
+        },
+        "ACTION_FEEDBACK": "Ohodnotiť",
+        "ACTION_FOLLOW": "Sledovať",
+        "ACTION_UNFOLLOW": "Prestať sledovať",
+        "ACTION_INVITE_FRIENDS": "Pozvať priateľov",
+        "ACTION_EDIT": "Upraviť profil",
+        "NAVIGATION_ITEM": "Môj profil",
+        "X_RATINGS": "hodnotenie",
+        "X_PEOPLE_INSPIRED_BY_ME": {
+            "one": "<b>{{count}}</b><br /> človek ma sleduje",
+            "few": "<b>{{count}}</b><br /> ľudia ma sledujú",
+            "other": "<b>{{count}}</b><br /> ľudí ma sleduje"
+        },
+        "X_PEOPLE_INSPIRED_BY_HIM": {
+            "one": "<b>{{count}}</b><br /> človekem sledovaný",
+            "few": "<b>{{count}}</b><br /> ľuďmi sledovaný",
+            "other": "<b>{{count}}</b><br /> ľuďmi sledovaný"
+        },
+        "X_PEOPLE_INSPIRING_ME": {
+            "one": "{{count}} človeka<br /> sledujem",
+            "few": "{{count}} ľudí<br /> sledujem",
+            "other": "{{count}} ľudí<br /> sledujem"
+        },
+        "X_PEOPLE_INSPIRING_HIM": {
+            "one": "{{count}} človeka<br /> sleduje",
+            "few": "{{count}} ľudí<br /> sleduje",
+            "other": "{{count}} ľudí<br /> sleduje"
+        },
+        "X_COMMUNITIES": {
+            "one": "skupina",
+            "few": "skupiny",
+            "other": "skupín"
+        },
+        "POSITIVE_FEEDBACK_COUNT": "Počet kladných hodnotení",
+        "NEGATIVE_FEEDBACK_COUNT": "Počet záporných hodnotení",
+        "KARMA": {
+            "NO_RATING_ME": "S prvým hodnotením vám to tu vyfarbíme :)",
+            "NO_RATING_OTHER": "Ohodnoťte užívateľa, nech mu tu máme čo zobraziť :)"
+        },
+        "STOP_FOLLOWING_DIALOG": {
+            "TITLE": "Prestať sledovať užívateľa",
+            "TEXT": "Naozaj chcete prestať sledovať tohoto užívateľa?"
+        },
+        "COMMUNITIES": {
+            "NO_COMMUNITIES_ME": "Zatiaľ nie ste súčasťou žiadnej skupiny. Buď si môžete nejakú založiť, alebo sa mrknite do odporúčaných komunít, možno vás tam nejaká zaujme.",
+            "NO_COMMUNITIES_OTHER": "Užívateľ u nás zatiaľ nie je členom žiadnej skupiny."
+        },
+        "YOU_ARE_MEMBER": "Ste členom",
+        "OF_X_COMMUNITIES": {
+            "one": "jednej skupiny",
+            "few": "{{count}} skupin",
+            "other": "{{count}} skupin"
+        },
+        "YOU_ARE_ADMIN": "a správcom",
+        "USER_IS_MEMBER": "Užívateľ je členom",
+        "RATINGS": {
+            "YOUR_RATINGS": "Vaše hodnotenie",
+            "USER_RATINGS": "Hodnotenie užívateľa"
+        },
+        "MEET_USER": "Spoznajte užívateľa",
+        "YOUR_PROFILE": "Váš profil",
+        "USER_HAS_REGISTERED": "Užívateľ sa registroval",
+        "YOU_HAVE_REGISTERED": "Registroval(a) ste sa",
+        "ACTIVITY": {
+            "YOUR_ACTIVITY": "Vaša aktivita",
+            "USER_ACTIVITY": "Aktivity užívateľa",
+            "NO_ACTIVITY_ME": "Ste tu krátko, nemáme vám zatiaľ čo ukázať :)",
+            "NO_ACTIVITY_OTHER": "Užívateľ je tu nový, nemáme vám tu zatiaľ čo ukázať.",
+            "NO_ACTIVITY_ME_OLDER": "Zatiaľ tu nemáte žiadnu aktivitu.",
+            "NO_ACTIVITY_OTHER_OLDER": "Používateľ sa tu zatiaľ veľmi neprejavil. Chystá nám všetkým nejaké prekvapenie?"
+        },
+        "MY_LOCATION": "Nájdete ma v",
+        "INFOBOX": {
+            "NOTIFY": {
+                "ERROR_LOADING": "Pri nahrávaní došlo k chybe"
+            },
+            "POSTS_COUNT": "Počet darov a prianí: {{value}}",
+            "CONNECTIONS": {
+                "COMMON_USERS": {
+                    "one": "Spoločný známy",
+                    "few": "{{ count }} spoloční známi:",
+                    "other": "{{ count }} spoločných známych:"
+                },
+                "AND_X_OTHER": {
+                    "one": "a 1 ďalší",
+                    "few": "a {{ count }} ďalší",
+                    "other": "a {{ count }} ďalších"
+                },
+                "COMMON_COMMUNITIES": {
+                    "one": "Spoločná skupina",
+                    "few": "{{ count }} spoločné skupiny:",
+                    "other": "<b>{{ count }}</b> spoločných skupin:"
+                },
+                "COMMON_COMMUNITY_MEMBERS": {
+                    "one": "Spoločný užívateľ",
+                    "few": "{{ count }} spoloční používatelia: ",
+                    "other": "{{ count }} spoločných používateľov:"
+                }
+            }
+        },
+        "YOU_ARE_FOLLOWEE": "Sleduješ",
+        "ACTION_PROFILE": "Profil",
+        "IS_VERIFIED": "Užívateľ je osobne overený",
+        "TRUST": {
+            "TOPBAR_INFORMATION": "Dôvera je pre darovanie dôležitá. Prosíme o vyplnenie tvojho profilu, nech ťa ostatní môžu lepšie spoznať.",
+            "ACTION_FILL_PROFILE": "Vyplniť profil",
+            "EDIT_PROFILE_BANNER": "<p style=\"font-size: 14px;\">Dôvera je pre darovanie dôležitá. Prosíme o vyplnenie tvojho profilu, nech ťa ostatní môžu lepšie spoznať:</p>\n<ul>\n<li style=\"font-size: 14px;\">Tvoje skutočné krstné meno</li>\n<li style=\"font-size: 14px;\">Tvojou fotku, najlepšie s úsmevom 😊</li>\n<li style=\"font-size: 14px;\">Krátky popis pod \"Kto som\"</li>\n</ul>\n<p style=\"font-size: 14px;\">Ďakujeme, že tu s nami si ❤️</p>",
+            "EDIT_PROFILE_FILL_REAL_NAME": "Prosíme vyplniť skutočné krstné meno, nech ťa ľudia môžu lepšie spoznať.",
+            "TELL_US_MORE_TITLE": "Povedz nám niečo o sebe...",
+            "AFTER_CREATE_MODAL": "Ak ťa ľudia budú môcť lepšie spoznať, želanie sa skôr splní. Vyplň si prosím profil.",
+            "BEFORE_REPLY_MODAL": "Ak ťa darca bude môcť lepšie spoznať, skôr si ťa medzi žiadateľmi vyberie.",
+            "ACTION_PLEASE_FILL_PROFILE": "Vyplň si prosím profil."
+        },
+        "DEACTIVATED": "neaktívný užívateľ"
+    },
+    "COMMON": {
+        "LOADING": "Načítavam ...",
+        "YOU": "Vy",
+        "ACTION_CLOSE": "Zavrieť",
+        "NOTIFY": {
+            "ERROR_TEXT_TOO_SHORT": "Váš príspevok je príliš krátky. Pridajte ešte aspoň pár slov...",
+            "ERROR_TEXT_TOO_LOUD": "Neradi přerušujeme, ale zkus si prosím přepnout na malá písmena. Podle Netikety je to ŘVANÍ a hlavně to nevypadá pěkně. Díky :)",
+            "SERVER_MAITENANCE": "Práve pridávame hromadu nových funkcií.<br />O chvíľku to bude hotové.",
+            "CRITICAL_APP_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.</p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu</a>.</p>",
+            "YOU_ARE_OFFLINE": "<p><strong>Došlo k chybe pri spojení</strong> Nemáte problém s pripojením k internetu?</p>",
+            "ERROR_TEXT_TOO_LONG": "Príliš dlhý text, pán Shakespeare.",
+            "ERROR_TEXT_REQUIRED": "Toto pole je povinné. Nechceme sa hrať na policajta, ale poznáte takéto polia...",
+            "ERROR_BAD_IMAGE_FORMAT": "Obrázok má nesprávny formát!",
+            "ERROR_BAD_IMAGE_SIZE": "Obrázok je príliš veľký.",
+            "ERROR_FILES_TOO_BIG": "Celková veľkosť nahrávaných obrázkov nesmie prekročiť veľkosť {{maxsize}} MB.",
+            "ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
+            "ERROR_UPLOADING": "Pri nahrávaní došlo k chybe",
+            "ERROR_LOCATIONS_ARE_EMPTY": "Doplňte prázdne miesto, alebo označte, že na mieste nezáleží.",
+            "ERROR_ATTACHMENT_DOWNLOAD_FAILED": "Nepodařilo se stáhnout přílohu.",
+            "API_ERROR": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"/app/feedback\">dejte n&aacute;m o tom vědět</a>. D&iacute;ky!</p>"
+        },
+        "ACTION_CANCEL": "Zrušiť",
+        "ACTION_ADD": "Pridať",
+        "ACTION_SEND": "Odoslať",
+        "ACTION_CONTINUE": "Pokračovať",
+        "ACTION_SAVE": "Uložiť",
+        "ACTION_REMOVE": "Odobrať",
+        "EG": "Napr.:",
+        "ACTION_CANCEL_CHANGES": "Zrušiť zmeny",
+        "X_POSTS": {
+            "one": "inzerát",
+            "few": "inzeráty",
+            "other": "inzerátov"
+        },
+        "AS_COMMUNITY": "ako skupina",
+        "AS_USER": "ako",
+        "BUBBLE": {
+            "MARKETPLACE_ITEM_MOOD": "Tu máš možnosť zvoliť povahu daru alebo želania. V zásade ide o to, či je to vec, služba alebo informácie.",
+            "HIDE_POST": "<p><em>Tip:</em> Ktor&yacute;koľvek inzer&aacute;t, ktor&yacute; v&aacute;s obťažuje a nechcete ho už vidieť, m&ocirc;žete označiť ako skryt&yacute;.</p>",
+            "MARKETPLACE_POST_BOOKMARK": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
+        },
+        "SHOW_PROFILE": "Zobraziť profil",
+        "ACTION_RELOAD": "Obnoviť stránku",
+        "LANGUAGE": "Jazyk",
+        "TUTORIAL": {
+            "TITLE": "Hearth.net je v novom kabáte. V krátkosti vám predstavíme, čo nájdete vo vreckách.",
+            "ACTION_SHOW_ME_FUNCTIONS": "Ukážte mi nové funkcie",
+            "ACTION_DONT_SHOW_ANYTHING": "Neukazujte mi nič, chcem sa zahrať na Sherlocka a objavím ich sám.",
+            "ACTION_DONT_SHOW_THIS": "Túto novinku mi už neukazujte."
+        },
+        "OK": "OK",
+        "IMAGES": "Obrázky",
+        "KEYWORDS": "Kľúčové slová, oddelené čiarkou",
+        "NOT_FILLED": "nevyplnené",
+        "UNTIL": "do",
+        "UNLIMITED": "Neobmedzene",
+        "ACTION_SUBMIT": "Odoslať",
+        "YES": "Ano",
+        "NO": "Ne",
+        "YOU_VOTED": "Hlasoval jsi {{attrs}}.",
+        "SELECT_USERS": "Vyberte jedného alebo viac príjemcov",
+        "X_CHARACTERS_ALLOWED": "Napísané {{len}} z {{maxLen}} povolených znakov",
+        "TEXT_PLACEHOLDER": "Text správy",
+        "AND": "a",
+        "ACTION_REFRESH": "Aktualizovať",
+        "ACTION_SEARCH": "Hledat",
+        "LANGUAGES": {
+            "MAIN": "Hlavní jazyky",
+            "OTHER": "Další jazyky"
+        },
+        "AGO": {
+            "LESS_THAN_MINUTE": "teraz",
+            "MINUTE": "1 minúta",
+            "MINUTES": "pred %d minútami",
+            "HOUR": "pred hodinou",
+            "HOURS": "pred %d hodinami",
+            "DAY": "včera",
+            "DAYS": "pred %d dňami",
+            "MONTH": "pred mesiacom",
+            "MONTHS": "pred %d mesiacmi",
+            "YEAR": "pred rokom",
+            "YEARS": "pred %d rokmi"
+        },
+        "ACTION_CONTINUE_ANYWAY": "Pokračovať napriek tomu",
+        "ACTION_COPY_LINK_TO_CLIPBOARD": "Kopírovať odkaz do schránky",
+        "ACTION_SEND_LINK_BY_EMAIL": "Poslať odkaz emailom",
+        "REALLY": "Naozaj?",
+        "ACTION_COPY_TEXT_TO_CLIPBOARD": "Zkopírovat text do schránky",
+        "ACTION_HIDE_TIP": "Skryť tento tip"
+    },
+    "REPORT": "Odoslať",
+    "SEND_COMMUNITY_RATING": "Odoslať hodnotenie",
+    "REPLY": "Odpovedať",
+    "ERR_REPORT_TEXT_MIN_LEN": "Napíšte, prosím, dôvod nahlásenia inzerátu",
+    "ERR_REPORT_TEXT_MAX_LEN": "Text je príliš dlhý... maximum je 2500 znakov. Spomeňte si na Twitter alebo esemesky.",
+    "TERMS": "Podmienky používania",
+    "communities": {
+        "suggested": "Vybrané skupiny"
+    },
+    "messages": {
+        "detail": "Detail konverzace",
+        "0": "Konverzace"
+    },
+    "profileSettings": "Nastavení profilu",
+    "LANGUAGE": {
+        "ENGLISH": "English",
+        "CZECH": "Čeština",
+        "SLOVAK": "Slovenčina",
+        "LIST": {
+            "LABEL_CHOSEN": "Hlavní jazyky",
+            "LABEL_OTHER": "Další jazyky"
+        }
+    },
+    "h1": {
+        "marketplace": "Trhovisko",
+        "communities": "Skupiny",
+        "messages": "Správy",
+        "profile_edit": "Úprava profilu",
+        "terms": "Podmienky použitia",
+        "map": "Mapa darov a priania",
+        "profile_settings": "Nastavenie profilu",
+        "faq": "Často kladené otázky",
+        "taxes": "Darovanie a dane",
+        "community_edit": "Úprava skupiny",
+        "fulltext": "Vyhľadávanie",
+        "support-us": "Podpor Hearth.net",
+        "custodians": "Správcovia Hearth.net",
+        "about_us": "O nás",
+        "contacts": "Tým Hearth.net",
+        "our_story": "Příběh",
+        "privacy-policy": "Zásady ochrany osobných údajov"
+    },
+    "INVITATION_STATUS": {
+        "INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
+    },
+    "CATEGORY_INFORMATION": "Informácie",
+    "CATEGORY_MASS": "Hmota",
+    "CATEGORY_ENERGY": "Energie",
+    "CATEGORY_INFORMATION_TEXT": "(vedomosti, tipy...)",
+    "CATEGORY_MASS_TEXT": "(veci...)",
+    "CATEGORY_ENERGY_TEXT": "(aktivita, priania...)",
+    "COUNTRY": {
+        "AF": "Afganistan",
+        "AX": "Ålandy",
+        "AL": "Albánsko",
+        "DZ": "Alžírsko",
+        "AS": "Americká Samoa",
+        "VI": "Americké Panenské ostrovy",
+        "AD": "Andorra",
+        "AO": "Angola",
+        "AI": "Anguilla",
+        "AQ": "Antarktída",
+        "AG": "Antigua a Barbuda",
+        "AR": "Argentína",
+        "AM": "Arménsko",
+        "AW": "Aruba",
+        "AC": "Ascensión",
+        "AU": "Austrália",
+        "AZ": "Azerbajdžan",
+        "BS": "Bahamy",
+        "BH": "Bahrajn",
+        "BD": "Bangladéš",
+        "BB": "Barbados",
+        "BE": "Belgicko",
+        "BZ": "Belize",
+        "BY": "Bielorusko",
+        "BJ": "Benin",
+        "BM": "Bermudy",
+        "BT": "Bhután",
+        "BO": "Bolívia",
+        "BA": "Bosna a Hercegovina",
+        "BW": "Botswana",
+        "BR": "Brazília",
+        "IO": "Britské indickooceánske územie",
+        "VG": "Britské Panenské ostrovy",
+        "BN": "Brunej",
+        "BG": "Bulharsko",
+        "BF": "Burkina Faso",
+        "BI": "Burundi",
+        "EA": "Ceuta a Melilla",
+        "CK": "Cookove ostrovy",
+        "CW": "Curaçao",
+        "TD": "Čad",
+        "ME": "Čierna Hora",
+        "CZ": "Česká republika",
+        "CN": "Čína",
+        "DK": "Dánsko",
+        "DG": "Diego García",
+        "DM": "Dominika",
+        "DO": "Dominikánska republika",
+        "DJ": "Džibutsko",
+        "EG": "Egypt",
+        "EC": "Ekvádor",
+        "ER": "Eritrea",
+        "EE": "Estónsko",
+        "ET": "Etiópia",
+        "FO": "Faerské ostrovy",
+        "FK": "Falklandy",
+        "FJ": "Fidži",
+        "PH": "Filipíny",
+        "FI": "Fínsko",
+        "FR": "Francúzsko",
+        "GF": "Francúzska Guayana",
+        "TF": "Francúzske južné a antarktické územia",
+        "PF": "Francúzska Polynézia",
+        "GA": "Gabon",
+        "GM": "Gambia",
+        "GH": "Ghana",
+        "GI": "Gibraltár",
+        "GD": "Grenada",
+        "GL": "Grónsko",
+        "GE": "Gruzínsko",
+        "GP": "Guadeloupe",
+        "GU": "Guam",
+        "GT": "Guatemala",
+        "GG": "Guernsey",
+        "GN": "Guinea",
+        "GW": "Guinea-Bissau",
+        "GY": "Guayana",
+        "HT": "Haiti",
+        "HN": "Honduras",
+        "HK": "Hongkong – OAO Číny",
+        "CL": "Čile",
+        "HR": "Chorvátsko",
+        "IN": "India",
+        "ID": "Indonézia",
+        "IQ": "Irak",
+        "IR": "Irán",
+        "IE": "Írsko",
+        "IS": "Island",
+        "IT": "Taliansko",
+        "IL": "Izrael",
+        "JM": "Jamajka",
+        "JP": "Japonsko",
+        "YE": "Jemen",
+        "JE": "Jersey",
+        "ZA": "Južná Afrika",
+        "GS": "Južná Georgia a Južné Sandwichove ostrovy",
+        "KR": "Južná Kórea",
+        "SS": "Južný Sudán",
+        "JO": "Jordánsko",
+        "KY": "Kajmanie ostrovy",
+        "KH": "Kambodža",
+        "CM": "Kamerun",
+        "CA": "Kanada",
+        "IC": "Kanárske ostrovy",
+        "CV": "Kapverdy",
+        "BQ": "Karibské Holandsko",
+        "QA": "Katar",
+        "KZ": "Kazachstan",
+        "KE": "Keňa",
+        "KI": "Kiribati",
+        "CC": "Kokosové ostrovy",
+        "CO": "Kolumbia",
+        "KM": "Komory",
+        "CG": "Kongo - Brazzaville",
+        "CD": "Kongo - Kinshasa",
+        "XK": "Kosovo",
+        "CR": "Kostarika",
+        "CU": "Kuba",
+        "KW": "Kuvajt",
+        "CY": "Cyprus",
+        "KG": "Kirgizsko",
+        "LA": "Laos",
+        "LS": "Lesotho",
+        "LB": "Libanon",
+        "LR": "Libéria",
+        "LY": "Líbya",
+        "LI": "Lichtenštajnsko",
+        "LT": "Litva",
+        "LV": "Lotyšsko",
+        "LU": "Luxembursko",
+        "MO": "Macao – OAO Číny",
+        "MG": "Madagaskar",
+        "HU": "Maďarsko",
+        "MK": "Macedónsko",
+        "MY": "Malajzia",
+        "MW": "Malawi",
+        "MV": "Maldivy",
+        "ML": "Mali",
+        "MT": "Malta",
+        "MA": "Maroko",
+        "MH": "Marshallove ostrovy",
+        "MQ": "Martinik",
+        "MU": "Maurícius",
+        "MR": "Mauritánia",
+        "YT": "Mayotte",
+        "UM": "Menšie odľahlé ostrovy USA",
+        "MX": "Mexiko",
+        "FM": "Mikronézia",
+        "MD": "Moldavsko",
+        "MC": "Monako",
+        "MN": "Mongolsko",
+        "MS": "Montserrat",
+        "MZ": "Mozambik",
+        "MM": "Mjanmarsko",
+        "NA": "Namíbia",
+        "NR": "Nauru",
+        "DE": "Nemecko",
+        "NP": "Nepál",
+        "NE": "Niger",
+        "NG": "Nigéria",
+        "NI": "Nikaragua",
+        "NU": "Niue",
+        "NL": "Holandsko",
+        "NF": "Norfolk",
+        "NO": "Nórsko",
+        "NC": "Nová Kaledónia",
+        "NZ": "Nový Zéland",
+        "OM": "Omán",
+        "IM": "Ostrov Man",
+        "PK": "Pakistan",
+        "PW": "Palau",
+        "PS": "Palestínske územia",
+        "PA": "Panama",
+        "PG": "Papua Nová Guinea",
+        "PY": "Paraguaj",
+        "PE": "Peru",
+        "PN": "Pitcairnove ostrovy",
+        "CI": "Pobrežie Slonoviny",
+        "PL": "Poľsko",
+        "PR": "Portoriko",
+        "PT": "Portugalsko",
+        "AT": "Rakúsko",
+        "RE": "Réunion",
+        "GQ": "Rovníková Guinea",
+        "RO": "Rumunsko",
+        "RU": "Rusko",
+        "RW": "Rwanda",
+        "GR": "Grécko",
+        "PM": "Saint Pierre a Miquelon",
+        "SV": "Salvádor",
+        "WS": "Samoa",
+        "SM": "San Maríno",
+        "SA": "Saudská Arábia",
+        "SN": "Senegal",
+        "KP": "Severná Kórea",
+        "MP": "Severné Mariány",
+        "SC": "Seychely",
+        "SL": "Sierra Leone",
+        "SG": "Singapur",
+        "SK": "Slovensko",
+        "SI": "Slovinsko",
+        "SO": "Somálsko",
+        "AE": "Spojené arabské emiráty",
+        "US": "Spojené štáty",
+        "RS": "Srbsko",
+        "LK": "Srí Lanka",
+        "CF": "Stredoafrická republika",
+        "SD": "Sudán",
+        "SR": "Surinam",
+        "SH": "Svätá Helena",
+        "LC": "Svätá Lucia",
+        "BL": "Svätý Bartolomej",
+        "KN": "Svätý Krištof a Nevis",
+        "MF": "Svätý Martin",
+        "SX": "Sint Maarten",
+        "ST": "Svätý Tomáš a Princov ostrov",
+        "VC": "Svätý Vincent a Grenadíny",
+        "SZ": "Svazijsko",
+        "SY": "Sýria",
+        "SB": "Šalamúnove ostrovy",
+        "ES": "Španielsko",
+        "SJ": "Svalbard a Jan Mayen",
+        "SE": "Švédsko",
+        "CH": "Švajčiarsko",
+        "TJ": "Tadžikistan",
+        "TZ": "Tanzánia",
+        "TH": "Thajsko",
+        "TW": "Taiwan",
+        "TG": "Togo",
+        "TK": "Tokelau",
+        "TO": "Tonga",
+        "TT": "Trinidad a Tobago",
+        "TA": "Tristan da Cunha",
+        "TN": "Tunisko",
+        "TR": "Turecko",
+        "TM": "Turkménsko",
+        "TC": "Turks a Caicos",
+        "TV": "Tuvalu",
+        "UG": "Uganda",
+        "UA": "Ukrajina",
+        "UY": "Uruguaj",
+        "UZ": "Uzbekistan",
+        "CX": "Vianočný ostrov",
+        "VU": "Vanuatu",
+        "VA": "Vatikán",
+        "GB": "Spojené kráľovstvo",
+        "VE": "Venezuela",
+        "VN": "Vietnam",
+        "TL": "Východný Timor",
+        "WF": "Wallis a Futuna",
+        "ZM": "Zambia",
+        "EH": "Západná Sahara",
+        "ZW": "Zimbabwe"
+    },
+    "LEND": "Požičiam",
+    "BORROW": "Požičiam si",
+    "AND": "a",
+    "OFFER_LEND": "Venujem alebo požičiam",
+    "NEED_BORROW": "Prijmem alebo si požičiam",
+    "WE_NEED_BORROW": "Prijmeme alebo si požičiame",
+    "WE_OFFER_LEND": "Venujeme alebo požičiame",
+    "WE_BORROW": "Požičiame si",
+    "WE_LEND": "Požičiame",
+    "LIMITED_POSTS_MESSAGE_UNAUTH": "Hearth.net je momentálne na ceste do sveta a dary a želania v jednotlivých jazykoch tak ešte len pribúdajú. Po <a href=\"/app/login\">prihlásení</a> si budeš môcť nastaviť, ktoré jazyky a oblasti chceš na Hearth vidieť.",
+    "LIMITED_POSTS_MESSAGE_AUTH": "Hearth.net je momentálne na ceste do sveta a dary a želania v jednotlivých jazykoch tak ešte len pribúdajú. Vo svojom <a {{attrs}}>profile</a> si môžeš upraviť, ktoré jazyky a oblasti chceš na Hearth vidieť.",
+    "AGO": {
+        "MOMENT": "před chvílí",
+        "DAYS": "před několika dny",
+        "WEEKS": "před několika týdny",
+        "MONTHS": "před několika měsíci",
+        "YEAR": "před rokem",
+        "LONG": "před lety"
+    },
+    "AUTH": {
+        "REGISTER": {
+            "FRIENDLY_AGREEMENT": "A také souhlasím s tím, že se budu k ostatním uživatelům této sítě chovat laskavě, s úctou a respektem. Bez předsudků nebo soudů.",
+            "TITLE": "Registrácia",
+            "TITLE_FACEBOOK": "Pridajte sa",
+            "TEXT": "Váš profil je už len pár klikov odtiaľto. Šup šup.",
+            "TEXT_FACEBOOK": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.</p>",
+            "EULA": {
+                "ACCEPTATION_TEXT": "<p>Registrací souhlasím s&nbsp;<a {{terms}}>Podmínkami používání Hearth.net</a> a beru na vědomí, že Adato Paradigma, z.ú. zpracovává mé osobní údaje v rozsahu uvedeném v dokumentu <a {{privacy}}>Ochrana osobních údajů</a></p>\n\n<p>A také souhlasím s tím, že se budu k ostatním uživatelům této sítě chovat laskavě, s úctou a respektem. Bez předsudků nebo soudů.</p>",
+                "I_ACCEPT_EULA": "Souhlasím s pravidly",
+                "ACTION_AGREE": "Souhlasím",
+                "ACTION_DISAGREE": "Nesouhlasím"
+            },
+            "VIA_SOCIAL_NETWORKS": "Alebo sa registrujte pomocou sociálnej siete.",
+            "LOGIN_TEXT": "Už máte účet?",
+            "LOGIN_LINK": "Prihláste sa",
+            "MOTIVATION_TEXT": "Čakajú na teba stovky darov a priani."
+        },
+        "NOTIFY": {
+            "SUCCESS_RESET_PASSWORD": "Postup na zmenu hesla sme vám poslali na email.",
+            "ERROR_BROKEN_LINK": "Ajajaj, niečo sa pokazilo, tento odkaz nie je platný.<br />Nechajte si vygenerovať nový na <a href='/app/forgotten-password'>tejto adrese.</a>",
+            "ERROR_API_RESET_PASSWORD": "Pri zmene hesla došlo k chybe... Čo teraz?",
+            "ERROR_RESET_PASSWORD_NOT_FILLED": "Zadajte nové heslo, ktoré chcete nastaviť",
+            "ERROR_SHORT_PASSWORD": "Toto heslo je príliš krátke, musí mať minimálne 5 znakov.",
+            "ERROR_PASSWORD_AGAIN_NOT_FILLED": "Zadajte nové heslo ešte raz pre kontrolu",
+            "ERROR_PASSWORD_DOES_NOT_MATCH": "Zadané hesla sa nezhodujú.",
+            "SUCCESS_RESEND_EMAIL": "Aktivační e-mail byl zaslán na tvou e-mailovou adresu.",
+            "SUCCESS_COMPLETE_REGISTRATION": "Email bol úspešne uložený.",
+            "SUCCESS_ACTIVATE_ACCOUNT": "Váš účet bol aktivovaný. Vitajte v Hearth.net!",
+            "ERROR_BROKEN_ACTIVATION_LINK": "Fúha! Tento odkaz na aktiváciu účtu nie je platný.",
+            "ERROR_BAD_EMAIL_FORMAT": "Email nemá platný formát",
+            "ERROR_NOT_FILLED_EMAIL": "Vyplňte prosím váš email",
+            "ERROR_EMAIL_ALREADY_USED": "Email je už použitý v aplikácii",
+            "ERROR_MAILGUN_NOT_VALID_EMAIL": "Je to správny e-mail? Nepodarilo se nám ho overiť. V prípade omylu nám <a href=\"/app/feedback\">daj vedieť</a>.",
+            "SUCCESS_REGISTERED": "Ďakujeme za registráciu, už ste skoro u nás!<br /><br />Na email sme vám odoslali správu s odkazom, ktorým svoj účet aktivujete. To je kvôli potvrdeniu Vášho emailu, aby sa tu za vás niekto nemohol označovať.<br /><br />Chvíľu počkajte, kým email dorazí. Medzitým sa môžete mrknúť na tržnicu, aké inzeráty na vás u nás čakajú.",
+            "ERROR_ACCOUNT_NOT_ACTIVATED": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu</a>.",
+            "ERROR_UNKNOWN_EMAIL": "Tento email nepoznáme a nikdy sme ho nevideli.",
+            "LOGIN_REQUIRED": "Prosím prihlás sa alebo zaregistruj",
+            "ERROR_LOGIN_FAILED": "Pri prihlasovaní došlo k chybe.",
+            "ERROR_WRONG_CREDENTIALS": "Meno alebo heslo nesedí. Skúste to ešte raz.",
+            "ERROR_LOGIN_ACCOUNT_NOT_ACTIVATED": "Pokoušíš se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš <a {{attrs}}>nechat poslat znovu</a>.",
+            "NO_OAUTH_ACCOUNT_FOUND": "<p>Přihla&scaron;uje&scaron; se do Hearthu pomoc&iacute; &uacute;čtu třet&iacute; strany (Facebook, Google, Twitter). Syst&eacute;m ale tento &uacute;čet nepozn&aacute;v&aacute;. Je možn&eacute;, že na Hearthu je&scaron;tě &uacute;čet nem&aacute;&scaron;, nebo ses registroval(a) dř&iacute;v pomoc&iacute; e-mailu?</p>\n<p>Zkus si vzpomenout a přihl&aacute;sit se pomoc&iacute; jin&eacute;ho &uacute;čtu, nebo se může&scaron; <a href=\"{{ registerUrl }}\">registrovat</a>.</p>",
+            "ERROR_REGISTRATION_BLOCKED": "Je nám líto, ale pomocí těchto údajů se na Hearth.net není možné registrovat. Pokud si myslíš, že se jedná o chybu, <a {{attrs}}>dej nám o tom vědět</a>.",
+            "ERROR_EMAIL_EXISTS": "Tento email už niekto použil. Neboli ste to vy?",
+            "ERROR_NO_PASSWORD": "Vyplňte prihlasovacie heslo",
+            "ERROR_EULA_REQUIRED": "Pro úspěšnou registraci je potřeba s podmínkami Hearth.net souhlasit.",
+            "SUCCESS_ACCOUNT_HAS_BEEN_DELETED": "Váš účet bol zrušený. Úplne.",
+            "ERROR_NOT_VALID_EMAIL": "Email nemá platný formát",
+            "ERROR_REGISTER": "Pri registrácii došlo k chybe.",
+            "ERROR_ACTIVATE_ACCOUNT": "Aktivácia účtu sa nepodarila...",
+            "ERROR_RESET_PASSWORD": "Nastavenie nového hesla sa nepodarilo.",
+            "ERROR_RESEND_EMAIL": "Při odesílání aktivačního e-mailu došlo k chybě.",
+            "ERROR_TWITTER_REGISTRATION": "Pridanie emailu sa nepodarilo."
+        },
+        "RESET_PASSWORD": {
+            "TITLE": "Reset hesla",
+            "TEXT": "Tu si môžete nastaviť nové prihlasovacie heslo."
+        },
+        "PASSWORD": "Heslo",
+        "PASSWORD_AGAIN": "Heslo (ešte raz pre kontrolu)",
+        "ACTION_CHANGE_PASSWORD": "Zmeniť heslo",
+        "CONFIRM_EMAIL": {
+            "TITLE": "Potvrdenie emailu",
+            "TEXT": "Vydržte chvíľu...overujeme vašu registráciu..."
+        },
+        "LOGIN_NAVIGATION_ITEM": "Prihlásiť",
+        "REGISTER_NAVIGATION_ITEM": "Zaregistrujte sa",
+        "LOGOUT_NAVIGATION_ITEM": "Odhlásiť sa",
+        "FILL_EMAIL": {
+            "TITLE": "Dokončenie registrácie",
+            "TEXT": "Doplňte Váš kontaktný email:"
+        },
+        "EMAIL_PLACEHOLDER": "E-mail",
+        "FORGOTTEN_PASSWORD": {
+            "TITLE": "Zabudli ste heslo?",
+            "TEXT": "Stačí nám vaša e-mailová adresa. Na ňu vám zašleme inštrukcie, čo ďalej.",
+            "REMEMBERED_TEXT": "Spomenuli ste si na heslo?",
+            "REMEMBERED_LOGIN_LINK": "Prihláste sa."
+        },
+        "LOGIN": {
+            "TITLE": "Prihlásenie",
+            "FORGOTTEN_PASSWORD_LINK": "Zabudli ste heslo?",
+            "VIA_SOCIAL_NETWORKS": "Alebo sa prihláste pomocou sociálnej siete. ",
+            "REGISTER_TEXT": "Nemáte účet?"
+        },
+        "ACTION_LOGIN": "Prihlásiť sa",
+        "ACTION_REGISTER": "Zaregistrujte sa",
+        "MAILGUN": {
+            "DID_YOU_MEAN": "Mal(a) si na mysli "
+        },
+        "VERIFY_EMAIL": {
+            "TITLE": "Mrkni do emailu",
+            "INFOTEXT": "Aby si mohol(a) Hearth plne využívať, prosím over svoj e-mail. Je to dobré aj pre dôveru medzi nami Hearťanmi.",
+            "RETRY": "E-mail neprišiel? Kukni do Nevyžiadané pošty alebo si ho",
+            "ACTION_RETRY": "nechaj poslať znovu"
+        }
+    },
+    "MESSAGING": {
+        "FILTER": {
+            "OPTION_ALL": "Všetky konverzácie",
+            "OPTION_ADMIN": "Správcovské konverzácie",
+            "OPTION_COMMUNITY": "Konverzácie v mojich skupinách",
+            "OPTION_POST_REPLIES": "Odpovede na dary a priania",
+            "OPTION_ARCHIVED": "Archivované konverzácie"
+        },
+        "ACTION_CREATE_MESSAGE": "Nová správa",
+        "CONVERSATIONS": {
+            "NO_RESULT": "V zozname nie su žiadne konverzácie. Fakt nie.",
+            "MORE_PARTICIPANTS": "a ďalší",
+            "ALL_PARTICIPANTS_HAVE_LEFT": "Všetci používatelia opustili konverzáciu.",
+            "NO_CONVERSATIONS": "Nie sú tu žiadne konverzácie. Počujete to... ticho?",
+            "ACTIONS_MENU_TITLE": "Menu konverzácie",
+            "DIALOG_ARCHIVE": {
+                "LABEL": "Chcete konverzáciu archívovať?",
+                "TEXT": "Pokiaľ konverzáciu archívujete, kedykoľvek sa k nej môžete v Archíve vrátiť. Neunikne Vám ani nová správa, na tú Vás upozorníme."
+            },
+            "ACTION_ARCHIVE": "Archivovať konverzáciu",
+            "DIALOG_LEAVE": {
+                "LABEL": "Chcete konverzáciu opustiť?",
+                "TEXT": "Ak opustíte konverzáciu, ostatní príjemcovia budú pokračovať v konverzácii, vy ju ale nebudete môcť sledovať. Nebojte, konverzáciu Vám uložíme do Archívu, kde sa k jej histórii budete môcť kedykoľvek vrátiť."
+            },
+            "ACTION_LEAVE": "Opustiť konverzáciu",
+            "DIALOG_DELETE": {
+                "LABEL": "Chcete konverzáciu zmazať?",
+                "TEXT": "Ak zmažete túto konverzáciu, už sa k nej nebudete môcť vrátiť. Ostatní príjemcovia ju však naďalej budú mať dostupnú."
+            },
+            "ACTION_DELETE": "Zmazať konverzáciu",
+            "ACTION_MARK_AS_UNREAD": "Označiť za neprečítanú"
+        },
+        "NOTIFY": {
+            "CONVERSATION_DOESNT_EXIST": "<p>Je n&aacute;m l&iacute;to, ale dostali jste se na konverzaci, kter&aacute; už neexistuje nebo k n&iacute; nem&aacute;te př&iacute;stup. Pokud si mysl&iacute;te, že se jedn&aacute; o chybu, <a title=\"feedback\" href=\"/app/feedback\">dejte n&aacute;m o tom pros&iacute;m vědět</a>.</p>",
+            "SUCCESS_MESSAGE_SEND": "Zing! Správa bola úspešne odoslaná.",
+            "ERROR_TEXT_TOO_LONG": "Váš príspevok je príliš dlhý, pán Shakespeare. To nás mrzí, naša maximálna dĺžka je 2500 znakov. ",
+            "SUCCESS_CONVERSATION_ARCHIVE": "Konverzácia bola úspešne archivovaná.",
+            "SUCCESS_CONVERSATION_LEAVE": "Opustili ste konverzáciu. Vy solitér!",
+            "SUCCESS_CONVERSATION_DELETE": "Konverzácia bola vymazaná.",
+            "ERROR_CONVERSATION_ARCHIVE": "Pri archivácii došlo k chybe. Teda, tá archivácia!",
+            "ERROR_CONVERSATION_DELETE": "Pri vymazávaní konverzácie došlo k chybe. No teda...",
+            "ERROR_REPLY_MESSAGE": "Jaj. Pri odosielaní správy došlo k chybe."
+        },
+        "CREATE": {
+            "RECIPIENT": "Príjemca:",
+            "NOTIFY": {
+                "ERROR_NO_RECIPIENT": "Nezabudnite vyplniť príjemcu správy. Presne ako na pošte."
+            },
+            "SEND_AS_ADMIN": "Odeslat jako správce",
+            "SUBJECT": "Predmet:",
+            "SUBJECT_PLACEHOLDER": "Vyplňte predmet konverzácie",
+            "TEXT": "Správa:",
+            "ACTION_SEND": "Odoslať správu",
+            "TEXT_PLACEHOLDER": "Napíšte text správy, ktorú chete odoslať šťastným príjemcom...",
+            "RECIPIENT_PLACEHOLDER": "Přidat příjemce do konverzace"
+        },
+        "MESSAGE": {
+            "REPLY_TO": "Odpoveď na",
+            "PARTICIPANTS": {
+                "one": "1 príjemca",
+                "few": "{{count}} príjemcovia",
+                "other": "{{count}} príjemcov\n"
+            },
+            "MORE_PARTICIPANTS": {
+                "one": "a 1 ďalší",
+                "few": "a {{count}} ďalší",
+                "other": "a {{count}} ďalších\n"
+            },
+            "ACTION_ADD_PARTICIPANT": "Přidat příjemce do konverzace",
+            "SYSTEM": {
+                "User": {
+                    "enter": "<p><strong>{{target.name}}</strong> vstoupil(a) do konverzace.</p>",
+                    "left": "<p><strong>{{target.name}}</strong> opustil(a) konverzáciu.</p>"
+                },
+                "Community": {
+                    "left": "<p>Skupina <strong>{{target.name}}</strong> opustila konverzáciu.</p>"
+                }
+            },
+            "SYSTEM_YOU": {
+                "enter": "Vstoupil(a) jsi do konverzace.",
+                "left": "<p>Opustili ste konverzáciu.</p>"
+            },
+            "REPLY": "Odpovedať:",
+            "REPLY_AS_COMMUNITY": "Odpovedať ako:",
+            "REPLY_PLACEHOLDER": "Nezabudnuteľný text Vašej správy...",
+            "NOTIFY": {
+                "ERROR_TEXT_MISSING": "Nezabudli ste vyplniť text správy? Väčšinou je to naozaj potrebné."
+            }
+        },
+        "NAVIGATION_ITEM": "Správy",
+        "ACTION_GO_TO_CONVERSATION": "Prejsť do konverzácie",
+        "ACTION_SEND_MESSAGE": "Poslať správu..."
+    },
+    "SETTINGS": {
+        "NOTIFY": {
+            "SUCCESS_DELETE_ACCOUNT": "Váš účet bol zmazaný :-(",
+            "ERROR_DELETE_FAILED_COMMUNITY_OWNER": "Pred zmazaním vášho účtu prosím odovzdajte niekomu správcovstvo vašich skupin.",
+            "ERROR_DELETE_ACCOUNT": "Zmazanie účtu sa nepodarilo.",
+            "SUCCESS_PASSWORD_CHANGED": "Úprava hesla bola úspešná.",
+            "SUCCESS_SAVE_PROFILE": "Úprava profilu bola úspešná.",
+            "ERROR_NOT_FILLED_OLD_PASS": "Zadajte vaše staré heslo...",
+            "ERROR_OLD_PASS_IS_NOT_VALID": "Zadali ste nesprávne staré heslo.",
+            "ERROR_NOT_FILLED_NEW_PASS": "Zadajte nové heslo, ktoré chcete nastaviť.",
+            "ERROR_TOO_SHORT_NEW_PASS": "Nové heslo musí mať aspoň 5 znakov!",
+            "ERROR_EMAIL_NOTIFY_CONFIG": "Pri ukladaní došlo k chybe.",
+            "ERROR_CHANGE_LANGUAGE": "Zmena jazyka sa nepodarila. :(",
+            "ERROR_PASSWORD_CHANGE": "Pri úprave hesla došlo k chybe."
+        },
+        "LANGUAGE_AND_COUNTRY": "Jazyk a země",
+        "USING_HEARTH_IN_LANG": "Momentálne používate Hearth",
+        "IN_THIS_LANG": "v slovenskom jazyku",
+        "CHOOSE_LANGUAGE": "Vyberte jazyk",
+        "USING_HEARTH_FROM_COUNTRY": "Nejčastěji Hearth používáš v této zemi",
+        "NOTIFICATIONS": {
+            "TITLE": "Upozornenie",
+            "FREQUENCY": {
+                "HOW_OFTEN": "Jak často chceš upozornění posílat?",
+                "IMMEDIATELY": "Všechna upozornění hned",
+                "ONCE_DAY": "Zprávy hned, zbytek jednou denně",
+                "ALL_ONCE_DAY": "Souhrn všeho jednou denně",
+                "OFF": "Vypnutá upozornění"
+            },
+            "WHICH": "Která upozornění chceš posílat?\n",
+            "ALERT_EXPIRING_POSTS": "Zasielať e-mailom upozornenia na inzeráty, ktorým sa blíži doba platnosti (obvykle 3 dni pred koncom doby platnosti).",
+            "ALERT_EXPIRED_POSTS": "Zasielať e-mailom upozornenie na inzeráty, ktorým sa skončila doba platnosti.",
+            "ALERT_NEW_CONVERSATION": "Zaslať upozornenia e-mailom na nové zahájené konverzácie.",
+            "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Zasielať e-mailom upozornenia na jednotlivé prijaté správy v konverzácii.",
+            "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Nechcem prijímať nové správy, ktoré sa netýkajú mojich darov a priania.",
+            "CONVERSATIONS": "Zprávy",
+            "GIFTS_WISHES": "Dary a přání"
+        },
+        "MESSAGES": "Správy",
+        "PASSWORD": {
+            "TITLE": "Zmeniť heslo",
+            "WARNING_OMNIAUTH": "Ste prihlásený pomocou externej sociálnej služby, takže si heslo musíte zmeniť tam.",
+            "CURRENT": "Zadajte súčasné heslo",
+            "NEW": "Zadajte nové heslo"
+        },
+        "DELETE_PROFILE": {
+            "TITLE": "Zmazať účet",
+            "DONT_LEAVE": "Je nám ľúto, že nás opúšťate - budeme vďační, keď nám poviete dôvod:",
+            "ACTION_DELETE": "Zmazať účet"
+        },
+        "NAVIGATION_ITEM": "Nastavenia"
+    },
+    "MESSAGE": {
+        "CREATE": {
+            "TO_COMMUNITY_ADMIN": "Kontaktovať správcu",
+            "TO_COMMUNITY_MEMBERS": "Poslať správu členom"
+        }
+    },
+    "USER": {
+        "LIST": {
+            "OTHERS_COUNT": "a <a {{anchorAttrs}}>další ({{count}})</a>",
+            "USERS_JOINED_COMMUNITY": "{{users}} sa pripojili k skupine.",
+            "USER_JOINED_COMMUNITY": "{{user}} sa pripojil(a) k skupine."
+        }
+    },
+    "HEARTH": {
+        "BLOG": {
+            "GET_INSPIRED": "Výber z blogu",
+            "ACTION_READ_ON_BLOG": "Číst na blogu",
+            "NAVIGATION_ITEM": "Blog"
+        },
+        "INVITE": {
+            "TITLE": "Pozvite svojich priateľov do Hearth",
+            "BY_EMAIL": "Emailom",
+            "BY_FACEBOOK": "Facebook",
+            "BY_TWITTER": "Twitter",
+            "BY_GOOGLE": "Google",
+            "BY_LINKEDIN": "LinkedIn",
+            "ADDRESSES_LABEL": "Adresy",
+            "ADDRESSES_PLACEHOLDER": "Viac adries oddeľte čiarkou...",
+            "NOTIFY": {
+                "ERROR_NOT_FILLED_ADDRESS": "Vyplňte emailové adresy vašich priateľov",
+                "ERROR_EMAIL_INVALID": "Jeden alebo viac emailov nemá správny formát.",
+                "ERROR_TEXT_NOT_FILLED": "Vyplňte priateľom do pozvánky nejaký text",
+                "SUCCESS_INVITE_SEND": "Pozvánka priateľom bola odoslaná.",
+                "SUCCESS_INVITATION_SENT": "{{email}}: Jupí, pozvánka úspěšně odeslána!",
+                "ERROR_USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
+                "ERROR_USER_ALREADY_EXISTS": "{{email}}: Tento člověk už v Hearthu je jako",
+                "ERROR_SEND_INVITATION": "Pri odosielaní pozvánky došlo k chybe."
+            },
+            "TEXT_LABEL": "Správa",
+            "TEXT_PLACEHOLDER": "Napíšte svojim priateľom nejakú správu do pozvánky.",
+            "TITLE_AFTER_SEND": "Pozvanie priateľov"
+        },
+        "404": {
+            "TITLE": "Toto tu nemáme :(",
+            "TEXT": "Ako ste sa sem vôbec dostali? Pokiaľ si myslíte, že je to chyba, tak nám to prosím dajte vedieť."
+        },
+        "ACTION_CONTACT_US": "Napíš nám",
+        "ACTION_GO_TO_MARKET": "Prejsť na tržnicu",
+        "FEEDBACK": {
+            "TITLE": "Tvoj názor",
+            "TEXT": "Nie sme perfektní, ale s tvojou pomocou môžeme byť. Napísaj nám a my ti dáme lepší Hearth. Uvidíš.",
+            "REMOVING_ACCOUNT_FEEDBACK": "To je škoda, že odchádzate. Budete nám chýbať. Napíšte nám, prosím, čo vás k tomu viedlo a ako môžeme Hearth vylepšiť a my sa vynasnažíme. Uvidíte.",
+            "TEXT_PLACEHOLDER": "Napíšte nám, čo sa vám v Hearth páči i nepáči. Stále je čo zlepšovať...",
+            "EMAIL_PLACEHOLDER": "Váš email",
+            "NOTIFY": {
+                "SUCCESS_SEND_FEEDBACK": "Ďakujeme za názor. I vďaka vám budeme zas o niečo lepší."
+            },
+            "ACTION_SEND_ANOTHER": "Poslať ďalší feedback"
+        },
+        "PROJECT_NAVIGATION_ITEM": "O projekte",
+        "ABOUT_US": {
+            "NAVIGATION_ITEM": "O nás",
+            "WE_ARE_ALSO_ON": "Nájdete nás tiež na:"
+        },
+        "STORY": {
+            "NAVIGATION_ITEM": "Příběh",
+            "ABOUT": "Je přirozené si vzájemně pomáhat. Stále více lidí si tuto skutečnost uvědomuje a s důvěrou vstupuje do živého proudu hojnosti. Díky štědré sociální síti Hearth.net si radost z dávání a přijímání můžete užívat každý den."
+        },
+        "CONTACTS": {
+            "NAVIGATION_ITEM": "Tým Hearth.net"
+        },
+        "TERMS": {
+            "NAVIGATION_ITEM": "Podmienky použitia"
+        },
+        "CUSTODIANS": {
+            "NAVIGATION_ITEM": "Správcovia Hearth.net"
+        },
+        "FAQ": {
+            "NAVIGATION_ITEM": "Časté otázky"
+        },
+        "SUPPORT_US": {
+            "NAVIGATION_ITEM": "Podpor Hearth.net"
+        },
+        "CONTACT_US": {
+            "NAVIGATION_ITEM": "Napíš nám"
+        },
+        "TAXES": {
+            "NAVIGATION_ITEM": "Darovanie a dane"
+        },
+        "NEW_VERSION_NOTIFICATION": "Máme pre vás pripravenú novšiu verziu Hearth. Chcete Hearth aktualizovať teraz alebo to necháte na neskôr?",
+        "AMBASSADORS": {
+            "NAVIGATION_ITEM": "Veľvyslanci"
+        },
+        "PRINCIPLES": {
+            "NAVIGATION_ITEM": "Principy darování",
+            "DESCRIPTION": "Darování přináší spoustu radosti! Abychom vám usnadnili začít, vytvořili jsme tyto principy na základě několikaleté zkušenosti komunity Hearth.net s darováním."
+        },
+        "PRIVACY-POLICY": {
+            "NAVIGATION_ITEM": "Zásady ochrany osobných údajov"
+        },
+        "CALENDAR": {
+            "NAVIGATION_ITEM": "Kalendár akcií"
+        },
+        "NEWSLETTER": {
+            "ACTION_SUBSCRIBE": "Odebírat novinky"
+        },
+        "EVENTS": {
+            "RECOMMENDED": "Doporučujeme"
+        },
+        "POINTS": {
+            "NAVIGATION_ITEM": "Hearth Points",
+            "CENTRAL": {
+                "NAVIGATION_ITEM": "Centrálný Hearth Point"
+            }
+        },
+        "WHAT_IS_HEARTH_FOR": "<h3>K čemu slouží Hearth.net?</h3>\n<p>Můžeš tu...</p>\n<p><strong>Darovat</strong> hezké věci, které už nepotřebuješ</p>\n<p><strong>Pomoci</strong> někomu tím, co děláš nejraději</p>\n<p><strong>Požádat</strong> ostatní o dar či pomoc</p>\n<h3>... pro radost sobě i ostatním.</h3>",
+        "MARKETPLACE_PROMO": "Teraz môžeš mrknúť na naše trhovisko, kde sú nové dary a priania každý deň.",
+        "EXAMPLE_GIFTS": {
+            "CONTENT": "<p>Dary:</p>\n<ul>\n<li><strong>Společný oběd nebo kafe.</strong> Možnost poznat někoho zajímavého a strávit spolu pěkný čas.</li>\n<li><strong>Pomoc s tím, co děláš nejraději.</strong> Se zahradou, počítačem, venčením pejska...&nbsp;</li>\n<li><strong>Hodina profesionální konzultace.</strong> Účetní, právník, programátor... Poraď ostatním s tím, co umíš.</li>\n<li><strong>Domácí jídlo a dobroty.</strong> Jídlo sbližuje, někdo si určitě rád pochutná.</li>\n<li><strong>Hezké oblečení, které už nenosíš.</strong> Někdo jiný si jím rád osvěží šatník.</li>\n</ul>\n<p>Přání:</p>\n<ul>\n<li><strong>Knihu darem nebo k zapůjčení.</strong> Pokud si chceš nějakou přečíst, není nutné kupovat novou.</li>\n<li><strong>Spoluhráče na stolní tenis.</strong> Nebo zpěvačku do kapely či parťáky pro komunitní zahradu.</li>\n<li><strong>Kamaráda na společné procházky.</strong> Na Hearth.net se lze i seznámit.</li>\n<li><strong>Květináče, truhlíky, sazenice...</strong> a cokoli, co zrovna potřebuješ.</li>\n</ul>",
+            "TITLE": "Príklady darov a priania pre radosť"
+        }
+    },
+    "EVENTS": {
+        "NAVIGATION_ITEM": "Kalendár",
+        "TITLE": "Kalendár akcií Hearth.net",
+        "NOTHING_FOUND": "Žiadne akcie v najbližšej budúcnosti nechystáme.",
+        "HEARTH_ATTENDING": "Hearth.net sa zúčastní",
+        "ADATO_ORGANISED": "Organizuje Adato Paradigma z.ú."
+    },
+    "DASHBOARD": {
+        "NAVIGATION_ITEM": "Nástenka"
+    }
+}

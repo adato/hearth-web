@@ -127,6 +127,14 @@ a.user {
 	background-color: $tertiary-color;
 	border-bottom-left-radius: 50%;
 }
+.item-option-bg-infogift {
+	background-color: $primary-color;
+	border-radius: 50%;
+	i.fa {
+		font-size:19px;
+	}
+}
+
 .item-option-bg-type > i {
 	display: block;
 	width: 12px; height: 12px;
@@ -155,7 +163,7 @@ button.active .item-option-bg-lend > i {
 	background-color: $secondary-color;
 	border-top-right-radius: 50%;
 }
-.item-option-bg-type > i {
+.item-option-bg-type > i:not(.fa) {
 	font-size: 10px;
 }
 button.active .item-option-bg-type {
@@ -188,8 +196,8 @@ button.active[disabled] .item-option-bg-type {
 		height: 32px;
 	}
 	.item-option-bg-type > i {
-		width: 17px; height: 17px;
-		background-size: 17px 17px;
+		width: 16px; height: 16px;
+		background-size: 16px 16px;
 	}
 	.item-option-bg-type.by-avatar {
 		top: 37px;

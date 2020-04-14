@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			$scope.loading = false;
 		};
 
-		const ACCEPTED_MODAL_VALUES = ['support-us-modal-pay', 'support-us-modal-write-us', 'support-us-modal-endorse'];
+		const ACCEPTED_MODAL_VALUES = ['support-us-modal-write-us', 'support-us-modal-endorse'];
 		const MODAL_KEY = 'open-modal';
 
 		$scope.feedbackData = {
