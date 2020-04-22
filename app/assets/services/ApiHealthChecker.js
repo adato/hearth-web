@@ -9,7 +9,7 @@
 angular.module('hearth.services').factory('ApiHealthChecker', ['$rootScope', '$timeout', '$interval', '$window', function($rootScope, $timeout, $interval, $window) {
 
 	const HEALTH_CHECK_TIMEOUT = 2000
-	const CHECK_INTERVAL = 60000
+	const CHECK_INTERVAL = 360000
 
 	var healthCheckTimeoutPointer = null
 	var healthCheckRunning = false
@@ -67,14 +67,7 @@ angular.module('hearth.services').factory('ApiHealthChecker', ['$rootScope', '$t
 				if (v === version) return
 
 				version = v
-
-				// on DEV we still want the nice message saying that a new version is available, but that's it
-				// everywhere else -> the next router state change reloads the page
-				if ($window.$$config.env === 'development') {
-					$rootScope.showNewVersionNotify = true
-				} else {
-					reloadRequired = true
-				}
+				reloadRequired = true
 
 				$interval.cancel(checkVersionInterval)
 			})

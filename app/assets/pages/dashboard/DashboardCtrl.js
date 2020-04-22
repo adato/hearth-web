@@ -29,7 +29,7 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
       
       if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
         if (tab == 'friends') initFriends();
-        if (tab == 'recommended') initRecommended();
+        //if (tab == 'recommended') initRecommended();
       }
     }
 
@@ -105,6 +105,7 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
     }
 
     $scope.loadMoreRatings = function() {
+      if ($scope.selectedTab != 'ratings') return;
       $scope.loading = true;
       Ratings.list({ page: ++$scope.lastRatingsPage }).$promise.then(function (result) {
         $scope.loading = false;
@@ -118,10 +119,10 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
       $scope.loading = true;
       $scope.setTab('popular');
      
-      // fetch blogposts
-      HearthCrowdfundingBanner.initBlogposts().then((blogposts) => {
-        $scope.blogposts = blogposts;
-      })
+      // // fetch blogposts
+      // HearthCrowdfundingBanner.initBlogposts().then((blogposts) => {
+      //   $scope.blogposts = blogposts;
+      // })
     }
 
     init();

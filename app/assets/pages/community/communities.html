@@ -12,7 +12,7 @@
   <!-- right column -->
   <div class="large-3 small-12 columns">
     <!-- my communities -->
-    <div class="margin-top-medium padding-top-medium">
+    <div class="">
       <h4 class="text-center margin-top-none margin-bottom-small" translate="COMMUNITY.MY_COMMUNITIES"></h4>
       <div info-bubble="comm" info-bubble-type="'community'" ng-repeat="comm in vm.myCommunities"
         class="box display-block padding-small margin-bottom-medium" ui-sref="community.default({id: comm._id })"
@@ -35,7 +35,7 @@
 
 <div class="small-12 large-9 columns communities">
   <div ng-show="vm.total > 0 && vm.loaded">
-    <h3 class="medium-push-2 medium-10 margin-top-large text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
+    <h3 class="medium-push-2 medium-10` text-center" translate="COMMUNITY.MY_COMMUNITIES_POSTS"></h3>
     <div when-scrolled="vm.loadNext()">
       <!-- list content -->
       <item-list options="vm.communityGiftListOptions"></item-list>

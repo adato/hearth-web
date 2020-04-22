@@ -95,7 +95,7 @@ a.user {
 			background-size: 17px 17px;
 		}
 	}
-	& > i {
+	& > i, & > span {
 		color: $white;
 		transform: rotate(-45deg);
 	}
@@ -130,6 +130,15 @@ a.user {
 .item-option-bg-infogift {
 	background-color: $primary-color;
 	border-radius: 50%;
+	i.fa {
+		font-size:19px;
+	}
+}
+
+.item-option-bg-rating {
+	background-color: $primary-color;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
 	i.fa {
 		font-size:19px;
 	}

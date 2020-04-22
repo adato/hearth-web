@@ -1,16 +1,5 @@
 <section id="navigation" class="navigation">
 	<div class="header">
-		<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
-			<div>
-				<p>
-					<i class="fa fa-exclamation-circle"></i>
-					<p translate="HEARTH.NEW_VERSION_NOTIFICATION"></p>
-				</p>
-				<span ng-click="refreshToPath()" class="left" translate="COMMON.ACTION_REFRESH"></span>
-				<span ng-click="closeMaintenanceNotify();" class="right" translate="COMMON.ACTION_CLOSE"></span>
-				<div class="clear"></div>
-			</div>
-		</div>
 		
 		<div id="notify-top"></div>
 		
@@ -66,8 +55,8 @@
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
-			<section class="bar-columns icons-column">
-				<div class="topbar-icons-wrapper pull-right">
+			<section class="bar-columns icons-column display-flex flex-space-between">
+				<div>
 					<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['dashboard'].indexOf(segment) > -1}" title="{{:: 'DASHBOARD.NAVIGATION_ITEM' | translate }}">
 							<div class="inner-icon">
 								<span class="fa fa-home"></span>
@@ -88,21 +77,8 @@
 							<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
 						</div>
 					</a>
-
-					<a ui-sref="events" class="icon-item" ng-class="{active: $state.includes('events') || $state.includes('event-detail')}" title="{{:: 'EVENTS.NAVIGATION_ITEM' | translate }}">
-						<div class="inner-icon">
-							<span class="fa fa-calendar"></span>
-							<span translate="EVENTS.NAVIGATION_ITEM"></span>
-						</div>
-					</a>
-					
-					<a href="https://blog.hearth.net" class="icon-item" title="{{:: 'HEARTH.BLOG.NAVIGATION_ITEM' | translate }}">
-						<div class="inner-icon">
-							<span class="fa icon-pencil"></span>
-							<span translate="HEARTH.BLOG.NAVIGATION_ITEM"></span>
-						</div>
-					</a>
-					
+				</div>
+				<div>
 					<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
 							<span class="fa messages-icon">

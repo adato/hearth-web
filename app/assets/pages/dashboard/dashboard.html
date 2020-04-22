@@ -17,11 +17,11 @@
     
     <div class="bottom-tabs margin-bottom-medium margin-top-small">
       <ul>
-        <li><a href="#" ng-click="setTab('popular')" ng-class="{ 'selected': selectedTab == 'popular' }">{{:: 'MARKETPLACE.POPULAR_POSTS' | translate }}</a></li>
+        <li><a href="#" ng-click="setTab('popular')" ng-class="{ 'selected': selectedTab == 'popular' }"><i class="fa fa-heart"></i> {{:: 'MARKETPLACE.POPULAR_POSTS' | translate }}</a></li>
         <li><a href="#" ng-click="setTab('info')" ng-class="{ 'selected': selectedTab == 'info' }">{{:: 'MARKETPLACE.NON_MASS_POSTS' | translate }}</a></li>
         <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('friends')" ng-class="{ 'selected': selectedTab == 'friends' }">{{:: 'MARKETPLACE.FRIENDS_POSTS' | translate }}</a></li>
-        <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('recommended')" ng-class="{ 'selected': selectedTab == 'recommended' }">{{:: 'MARKETPLACE.RECOMMENDED_POSTS' | translate }}</a></li>
-        <!-- <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('ratings')" ng-class="{ 'selected': selectedTab == 'ratings' }">{{:: 'MARKETPLACE.RATINGS' | translate }}</a></li> -->
+        <!-- <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('recommended')" ng-class="{ 'selected': selectedTab == 'recommended' }">{{:: 'MARKETPLACE.RECOMMENDED_POSTS' | translate }}</a></li> -->
+        <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('ratings')" ng-class="{ 'selected': selectedTab == 'ratings' }"><span >🌞 </span>{{:: 'MARKETPLACE.RATINGS' | translate }}</a></li>
       </ul>
     </div>
 
@@ -44,10 +44,10 @@
         <exemplary-posts opts="friendsOpts" ng-if="friendsOpts">
         </exemplary-posts>
       </div>
-      <!-- <div id="panel5" ng-show="selectedTab == 'ratings'" when-scrolled="loadMoreRatings()" offset="1000" loading-in-progress="loading" class="marketplace-items-container">
+      <div id="panel5" ng-show="selectedTab == 'ratings'" when-scrolled="loadMoreRatings()" offset="1000" loading-in-progress="loading" class="marketplace-items-container">
         <article class="row rating-item margin-top-large" id="rating_{{ item._id }}" ng-repeat="(id, item) in lastRatings track by item._id" ng-include="'assets/components/ratings/_dashboardReceivedRating.html'">
         </article>
-      </div> -->
+      </div>
     </div>
 
     <div class="small-12 large-4 large-push-5" ng-if="!loading">
@@ -65,29 +65,6 @@
     </div>
 
     <my-communities ng-if="loggedUser._id"></my-communities>
-
-    <!-- BANNER -->
-    <marketplace-banner class="clearfix"></marketplace-banner>
-
-    <!-- PROMOTED EVENT -->
-    <promoted-events class="clearfix"></promoted-events>
-
-
-    <!-- BLOGPOSTS -->
-    <h4 translate="HEARTH.BLOG.GET_INSPIRED" class="text-center margin-bottom-small margin-top-large"></h4>
-
-    <section class="padding-bottom-small">
-      <div class="">
-        <div class="box padding-none margin-bottom-medium" ng-repeat="post in blogposts">
-          <a ng-href="{{ post.link }}" class="blog-image display-block" ng-style="{'background-image': 'url(' + post.image.src + ')' }" title="{{ post.image.src }}"></a>
-          <div class="padding-small">
-            <h5>
-              <a ng-href="{{ post.link }}" ng-bind="post.title"></a>
-            </h5>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- FLYING FOOTER -->
     <flying-footer hide-if-underruns-element="'.main-dashboard-column'"></flying-footer>

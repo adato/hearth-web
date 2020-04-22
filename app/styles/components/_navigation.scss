@@ -219,7 +219,7 @@ nav {
 		}
 	}
 }
-
+	
 //@include breakpoint(large up) {
 	.header {
 		min-height: inherit;
@@ -228,9 +228,6 @@ nav {
 		margin: 0 auto;
 		padding: 6px;
 		max-width:$global-width;
-		@include breakpoint(small down) {
-			min-height:120px;
-		}
 
 		section.bar-columns {
 			padding:0;
@@ -258,8 +255,12 @@ nav {
 			}
 
 			&.icons-column {
+				@include breakpoint(large down) {
+					width:100%;
+				}
 				@include breakpoint(large up) {
 					width:55%;
+					margin-left:65px;
 				}
 				.topbar-icons-wrapper {
 					display:block;
