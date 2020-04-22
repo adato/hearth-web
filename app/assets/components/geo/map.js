@@ -97,16 +97,17 @@ angular.module('hearth.geo').directive('map', [
 								keepSpiderfied: true,
 							});
 
-							markerCluster = new MarkerClusterer(map, [], {
-								ignoreHidden: true,
-								maxZoom: markerClusterMaxZoom,
-								zoomOnClick: true,
-								gridSize: 40,
-								averageCenter: true,
-								styles: markerClusterStyles
-							});
+							// markerCluster = new MarkerClusterer(map, [], {
+							// 	ignoreHidden: true,
+							// 	maxZoom: markerClusterMaxZoom,
+							// 	zoomOnClick: true,
+							// 	gridSize: 40,
+							// 	averageCenter: false,
+							// 	styles: markerClusterStyles
+							// });
+							markerCluster = null;
 
-							oms.addListener('click', scope.onMarkerClick);
+							oms.addListener('click', scope.onMarkerClick);	
 							google.maps.event.addListener(map, 'idle', idleListenerFunction);
 
 							/**
@@ -175,6 +176,7 @@ angular.module('hearth.geo').directive('map', [
 
 				scope.onMarkerClick = function(marker) {
 					searchRequestInhibited = true;
+					//map.setZoom(markerClusterMaxZoom + 1);
 					Post.get({
 						postId: marker.info[I_ID]
 					}, function(data) {
@@ -208,10 +210,10 @@ angular.module('hearth.geo').directive('map', [
 
 					var i, j, ad, location, distanceBase, distance = false;
 					ads = ads || [];
-					markers = [];
 					markerLimitValues = [];
 
-					markerCluster.clearMarkers();
+//					markerCluster.clearMarkers();
+					map.clearMarkers(markers);
 					oms.clearMarkers();
 
 					if (typeof $location.search().distance != 'undefined') {
@@ -227,19 +229,19 @@ angular.module('hearth.geo').directive('map', [
 
 						for (j = 0; j < ad[I_LOCATION].length; j++) {
 							if (ad[I_LOCATION][j]) {
-								if (
-									(distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j])) ||
-									markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
-								) {
-									continue;
-								}
+								// if (
+								// 	(distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j])) ||
+								// 	markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
+								// ) {
+								// 	continue;
+								// }
 								scope.placeMarker(ad[I_LOCATION][j], ad);
 							}
 						}
 					}
 					if (scope.center) scope.centerZoomToAll(markers);
-					markerCluster.addMarkers(markers);
-					markerCluster.repaint();
+					// markerCluster.addMarkers(markers);
+					// markerCluster.repaint();
 				};
 
 				scope.initMap();
@@ -252,7 +254,7 @@ angular.module('hearth.geo').directive('map', [
 							newVal.lng = newVal.lon;
 						}
 						map.setCenter(newVal);
-						map.setZoom(markerClusterMaxZoom + 1);
+						//map.setZoom(markerClusterMaxZoom + 1);
 						$rootScope.$emit('searchRequest', map.getBounds().toJSON());
 					}
 				});

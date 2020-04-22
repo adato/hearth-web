@@ -46,11 +46,12 @@ angular.module('hearth.geo').factory('geo', [
 				}
 			};
 
-		google.maps.Map.prototype.clearMarkers = function() {
-			for (var i = 0; i < this.markers.length; i++) {
-				this.markers[i].setMap(null);
+		google.maps.Map.prototype.clearMarkers = function(markers) {
+			if (!markers || !markers.length) return;
+			for (var i = 0; i < markers.length; i++) {
+				markers[i].setMap(null);
 			}
-			this.markers = [];
+			markers = [];
 		};
 
 		return {
