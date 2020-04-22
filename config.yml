@@ -95,7 +95,7 @@ PATHS:
         - "bower_components/jquery.tipsy/js/jquery.tipsy.min.js"
         - "bower_components/flexslider/jquery.flexslider-min.js"
         - "bower_components/ng-tags-input/ng-tags-input.min.js"
-        - "bower_components/markerclustererplus/dist/markerclusterer.min.js"
+#        - "bower_components/markerclustererplus/dist/markerclusterer.min.js"
         - "bower_components/angular-mobile-detect/dist/angular-mobile-detect.js"
         - "bower_components/checklist-model/checklist-model.js"
         - "bower_components/overlapping-marker-spiderfier/oms.min.js"
@@ -104,7 +104,7 @@ PATHS:
         - "bower_components/intl-tel-input/build/js/utils.js"
         - "bower_components/intl-tel-input/build/js/intlTelInput.min.js"
         - "bower_components/ng-intl-tel-input/dist/ng-intl-tel-input.min.js"
-        - "bower_components/masonry-layout/dist/masonry.pkgd.min.js"
+#        - "bower_components/masonry-layout/dist/masonry.pkgd.min.js"
       css:
         - "bower_components/fancybox/source/jquery.fancybox.css"
         - "bower_components/nanoscroller/bin/css/nanoscroller.css"

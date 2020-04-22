@@ -208,21 +208,6 @@ angular.module('hearth', [
 					// if is logged, check if he wanted to see some restricted page before login
 					if ($rootScope.loggedUser._id) { UnauthReload.goToSavedLocationIfAny(); }
 
-					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
-						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
-							mixpanel.identify($rootScope.loggedUser._id);
-							mixpanel.people.set({
-								"$name": $rootScope.loggedUser.name,
-								"$email": $rootScope.loggedUser.email,
-								"$device-type": getDevice()
-							});
-						} else {
-							mixpanel.people.set({
-								"$device-type": getDevice()
-							});
-						}
-					}
-
 					$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
 					done(null, $rootScope.loggedUser);
 				}, function(err) {
