@@ -17,17 +17,75 @@ select,
 textarea,
 button,
 .button {
-	-webkit-border-radius: $global-radius;
-	border-radius: $global-radius;
+	border-radius: $new-border-radius;
 	resize: none;
 	margin-bottom: 0;
 }
 
 :not(form).ng-invalid:not(.ng-pristine),
 :not(form).ng-invalid:not(.ng-pristine):focus {
-	border: 1px solid $alert-color !important;
-	box-shadow: inset 0 0 5px $ui-input-error-color !important;
+	border: 2px solid $alert-color !important;
 }
+
+input[type="email"] {
+	&.ng-invalid-email,
+	&.ng-invalid-email_used {
+		border-color: $ui-input-error-color !important;
+	}
+}
+
+input[type="password"] {
+	&.ng-invalid-minlength {
+		border-color: $ui-input-error-color !important;
+	}
+}
+
+textarea, input {
+	&.ng-invalid-minlength, &.ng-invalid-maxlength {
+		border-color: $ui-input-error-color !important;
+	}
+}
+
+tags-input > div > .tags > input.input {
+	border-width:0 !important;
+	box-shadow: none !important;
+}
+
+/// all inputs except searchbox
+input:not(#searchBox),
+textarea,
+tags-input > div > .tags,
+.select2-container,
+select {
+	&:not(.input):not(.select2-input) {
+		box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.12) !important;
+		border: solid 1px $new-color-border !important;
+		border-radius:$new-border-radius;
+	}
+	background-color: $new-color-input-bg !important;
+	color: $new-color-darkgray !important;
+	font-size: 14px;
+	font-weight: 500 !important;
+	min-height:40px !important;
+}
+
+
+/// all inputs focused
+input:focus:not(#searchBox),
+textarea:focus,
+select:focus,
+tags-input > div > .tags.focused,
+.select2-container.select2-container-active {
+	&:not(.input):not(.select2-input) {
+		border: 1px solid $new-color-border !important;
+		box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.12) !important;
+	}
+	background-color: $white !important;
+	font-weight: 600 !important;
+	color: $new-color-text !important;
+}
+
+
 
 select {
 	// foundation triangle background position fix
@@ -43,10 +101,6 @@ textarea,
 tags-input {
 	width: 100%;
 }
-tags-input input {
-	//width: initial !important;
-}
-
 textarea{
 	max-height: 200px;
 }
@@ -58,50 +112,9 @@ textarea{
 // temp from profile edit
 textarea,
 tags-input.textarea-height > div > .tags {
-	// line-height: 1.33 !important;
-	// min-height: 200px;
-	min-height: 80px;
-}
-// tags-input .tags,
-// textarea {
-// 	padding: $size-medium;
-// }
-// /temp
-
-input,
-textarea,
-tags-input.textarea-height > div > .tags {
-	border: 1px solid #d7d7d7 !important;
-	box-shadow: inset 0 0 5px #d7d7d7 !important;
+	min-height: 100px !important;
 }
 
-input:focus,
-textarea:focus {
-	border: 1px solid $primary-color !important;
-	box-shadow: inset 0 0 5px $primary-color !important;
-}
-
-input[type="email"] {
-	&.ng-invalid-email,
-	&.ng-invalid-email_used {
-		border-color: $ui-input-error-color !important;
-		box-shadow: inset 0 0 5px $ui-input-error-color !important;
-	}
-}
-
-input[type="password"] {
-	&.ng-invalid-minlength {
-		border-color: $ui-input-error-color !important;
-		box-shadow: inset 0 0 5px $ui-input-error-color !important;
-	}
-}
-
-textarea, input {
-	&.ng-invalid-minlength, &.ng-invalid-maxlength {
-		border: 1px solid $ui-input-error-color !important;
-		box-shadow: inset 0 0 5px $ui-input-error-color !important;
-	}
-}
 
 .form-section {
 	margin-bottom: $size-medium;
@@ -119,43 +132,6 @@ textarea, input {
 	textarea,
 	.select2-container {
 		margin-bottom: 0;
-	}
-}
-
-#searchBox {
-	// margin: {
-	// 	top: $ui-small-grid-size + 1;
-	// 	left: 1rem;
-	// 	right: 0;
-	// 	bottom: 0;
-	// }
-	margin: 0;
-
-	max-width: inherit;
-	font-size: 14px;
-	box-shadow: none !important;
-	height: $ui-input-height;
-	border: 0 !important;
-	padding-left: 3*$ui-small-grid-size;
-	transition: background .3s,
-	border-color .3s,
-	box-shadow .3s;
-	&:focus {
-		background: lighten($colorLightGray, 20%) !important;
-	}
-	&::-webkit-input-placeholder {
-		color: $quaternary-color;
-	}
-	&:-moz-placeholder {
-		color: $quaternary-color;
-		opacity: 1;
-	}
-	&::-moz-placeholder {
-		color: $quaternary-color;
-		opacity: 1;
-	}
-	&:-ms-input-placeholder {
-		color: $quaternary-color;
 	}
 }
 
@@ -188,60 +164,6 @@ textarea, input {
 
 /// common form items, included as @extend
 .item-box-forms {
-	// textarea {
-	// 	height: 85px;
-	// 	resize: vertical;
-	// 	transition: height 0.2s;
-	// }
-
-	// label {
-		// cursor: pointer;
-		// margin-bottom: 10px;
-		// line-height: 1;
-		// font-weight: $ui-text-weight-bolder;
-		// color: #333;
-	// }
-
-	// fix stuff
-	// a {
-	// 	font-weight: $ui-text-weight-bolder;
-	// }
-	// input,
-	// select,
-	// textarea {
-	// 	border: $ui-input-border-style;
-	// 	font-family: $body-font-family;
-	// 	box-shadow: none !important; // uh oh
-	// 	font-size: $ui-text-font-size;
-	// 	color: $ui-input-text-color;
-	// 	&.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
-	// 		border: 1px solid $ui-input-error-color !important;
-	// 	}
-	// }
-	// input[type="radio"] {
-	// 	box-shadow: none !important;
-	// }
-	// input[type="text"],
-	// input[type="email"] {
-	// 	box-shadow: none !important;
-	// 	font-size: $ui-text-font-size !important;
-	// 	line-height: 1.3;
-	// 	height: 6 * $ui-small-grid-size;
-	// 	padding: $ui-small-grid-size;
-	// 	padding-left: $ui-small-grid-size * 2;
-	// }
-	// select {
-	// 	border-radius: $global-radius;
-	// 	height: $ui-input-height;
-	// 	line-height: $ui-text-font-size;
-	// 	padding: 0 15px;
-	// 	font-weight: $ui-text-weight-bolder;
-	// 	-moz-appearance: none;
-	// 	outline: none;
-	// 	&:disabled {
-	// 		background-color: #ddd !important;
-	// 	}
-	// }
 	div.error {
 		font-size: $ui-text-font-size;
 		/*top: -2 * $ui-small-grid-size;*/
@@ -261,12 +183,6 @@ textarea, input {
 			height: $ui-title-font-size;
 			text-align: left;
 		}
-		// hr {
-		// 	border: 0;
-		// 	border-bottom: $ui-border-style;
-		// 	margin-top: $ui-grid-size;
-		// 	margin-bottom: $ui-small-grid-size * 2;
-		// }
 		ul.message-line {
 			margin: 0;
 			padding: 0;

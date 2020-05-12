@@ -52,11 +52,11 @@
 			float: left;
 		}
 		input {
-			margin: 0px !important;
-			border: none !important;
-			box-shadow: unset !important;
-			height: 30px;
-			transition: none;
+			margin: 1px;
+			border: none;
+			box-shadow: unset;
+			//height: 30px;
+			//transition: none;
 			&.ng-hide {
 				display: block;
 				width: 100%;
@@ -144,8 +144,8 @@
 		display: block;
 		color: $black;
 		size: $global-font-size;
-		min-height: 28px;
-		line-height: 28px;
+		min-height: 40px;
+		line-height: 40px;
 		padding-left: $size-small;
 	}
 	[multiple] .ui-select-search {

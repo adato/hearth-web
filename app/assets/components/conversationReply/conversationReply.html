@@ -28,12 +28,12 @@
 					<files-picker ng-model="reply.attachments_attributes" files-multiple="true" class="flex-div"></files-picker>
 				</div>
 				<div>
-					<a class="hide-for-large cancel-changes" ui-sref="messages" translate="COMMON.ACTION_CLOSE"></a>
+					<a class="button hollow hide-for-large cancel-changes" ui-sref="messages" translate="COMMON.ACTION_CLOSE"></a>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div ng-if="conversation.last_message.owner._id == $root.config.notificationUserId" class="message-reply" style="min-height:unset;">
-		<a class="hide-for-large cancel-changes" ui-sref="messages" translate="COMMON.ACTION_CLOSE"></a>
+		<a class="button hollow hide-for-large cancel-changes" ui-sref="messages" translate="COMMON.ACTION_CLOSE"></a>
 	</div>
 </div>

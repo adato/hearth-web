@@ -10,24 +10,75 @@
 
 		<nav class="display-flex flex-space-between flex-align-center hide-for-large" test-beacon="nav-bar">
 			<!-- this is a mobile toolbar-->
-			<div class="display-flex flex-align-center">
-				<a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleToolbar(); mixpanelTrackMenu()">
+			<div class="display-flex flex-align-center dropdown-container">
+				<!-- <a class="display-inline-block padding-medium margin-right-small" test-beacon="nav-bar-menu-toggle" ng-click="toggleToolbar(); mixpanelTrackMenu()">
 					<i class="fa fa-bars"></i>
+				</a> -->
+				<!-- <a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+					<img class="hearth-logo" src="/app/assets/img/logo-jura.svg">
+				</a> -->
+				<a class="menuItem logo display-inline-block padding-medium" id="nav-title" dropdown="#mobile-drop">
+					<img class="hearth-logo" src="/app/assets/img/logo-jura.svg">
 				</a>
-				<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="menuItem logo display-inline-block" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-					<img class="hearth-logo" src="/app/assets/img/logo.png">
-				</a>
+				<ul class="dropdown menu vertical mobile-dropdown" data-dropdown-menu id="mobile-drop">
+					<li>
+						<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
+							<div class="display-flex">
+								<avatar class="img margin-right-small" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
+								<div>
+									<h5>{{ loggedUser.name }}</h5>
+									<small translate="PROFILE.NAVIGATION_ITEM" style="position:relative;top:-4px;"></small>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['dashboard'].indexOf(segment) > -1}" title="{{:: 'DASHBOARD.NAVIGATION_ITEM' | translate }}">
+							<i class="fa fa-map-pin"></i>
+							<span translate="DASHBOARD.NAVIGATION_ITEM"></span>
+						</a>
+					</li>					
+					<li>
+						<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
+							<i class="fa fa-map-pin"></i>
+							<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
+						</a>
+					</li>
+					<li>				
+						<a ui-sref="communities" class="icon-item" ng-class="{active: ['communities', 'community', 'communities-all', 'communityCreate', 'communityEdit'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
+							<i class="fa fa-map-pin"></i>
+							<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
+						</a>
+					</li>
+					<li ng-if=":: loggedUser._id">
+						<a id="unreaded-messages-counter2" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{'active': $state.includes('messages'), 'unread': messagesCounters.unread > 0}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
+							<i class="fa messages-icon"></i>
+							<span translate="MESSAGING.NAVIGATION_ITEM"></span>
+						</a>
+					</li>
+					<li>
+						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
+							<i class="fa fa-cog"></i>
+							<span translate="SETTINGS.NAVIGATION_ITEM"></span>
+						</a>
+					</li>
+					<li>
+						<a href="" ng-click="logout()" test-beacon="nav-logout-link">
+							<i class="fa fa-sign-out"></i>
+							<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
+						</a>
+					</li>
 			</div>
 
 			<div class="small-icons header-right">
 				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if=":: !loggedUser._id" ng-controller="LanguageChangeCtrl as languageChange" ng-click="toggleToolbar(false); languageChange.toggleLanguageSelectionDialog()">
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
-				<div class="display-inline-block">
+				<div class="display-inline-block color-dark-gray">
 					<i class="fa fa-fw fa-plus-circle" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
-					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{'active': isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+					<i id="searchIcon" class="fa fa-fw fa-search color-dark-gray" test-beacon="search-bar-toggle-mobile" ng-class="{'active': isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
 			</div>
 		</nav>
@@ -46,50 +97,45 @@
 			<!-- this is desktop topbar, visible all the time -->
 			<section class="bar-columns logo-column hide-for-medium-down show-for-large">
 				<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
-					<img class="zurb-logo-mobile" src="/app/assets/img/logo.png" width="150" height="28">
+					<img class="zurb-logo-mobile" src="/app/assets/img/logo-jura.svg" width="150" height="28">
 				</a>
 			</section>
 
 			<section class="bar-columns searchbox-column hide-for-medium-down show-for-large">
 				<autocomplete-fulltext ng-model="searchQuery.query" on-enter="search(searchQuery)"></autocomplete-fulltext>
-				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
 			<section class="bar-columns icons-column display-flex flex-space-between">
 				<div>
 					<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['dashboard'].indexOf(segment) > -1}" title="{{:: 'DASHBOARD.NAVIGATION_ITEM' | translate }}">
-							<div class="inner-icon">
-								<span class="fa fa-home"></span>
-								<span translate="DASHBOARD.NAVIGATION_ITEM"></span>
-							</div>
-						</a>
+						<div class="inner-icon">
+							<span class="fa fa-map-pin"></span>
+						</div>
+						<span translate="DASHBOARD.NAVIGATION_ITEM"></span>
+					</a>
 
 					<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa icon-marketplace"></span>
-							<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
+							<span class="fa fa-map-pin"></span>
 						</div>
+						<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
 					</a>
 					
 					<a ui-sref="communities" class="icon-item" ng-class="{active: ['communities', 'community', 'communities-all', 'communityCreate', 'communityEdit'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa icon-community"></span>
-							<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
+							<span class="fa fa-map-pin"></span>
 						</div>
+						<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
 					</a>
 				</div>
 				<div>
-					<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{active: $state.includes('messages')}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
+					<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{'active': $state.includes('messages'), 'unread': messagesCounters.unread > 0}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
 							<span class="fa messages-icon">
-								<span ng-if="messagesCounters.unread" class="unread-counter">
-									{{ messagesCounters.unread | minMax:1:99:'+':1 }}
-								</span>
 							</span>
-							<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 						</div>
+						<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 					</a>
-
 					<div class="dropdown-container">
 					<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" ng-if=":: loggedUser._id" ng-show="loggedUser.name" class="icon-item logged-user-dropdown" test-beacon="logged-user-dropdown" ng-class="{active: $state.includes('profile') && $state.params.id === loggedUser._id}" hover="true" dropdown="#profile-drop" title="{{:: loggedUser.name }}">
 						<avatar class="img" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
@@ -97,8 +143,13 @@
 					<ul class="dropdown menu vertical user-dropdown" data-dropdown-menu id="profile-drop" title="{{:: loggedUser.name }}">
 						<li>
 							<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}" test-beacon='dropdown-my-profile'>
-								<i class="fa fa-user"></i>
-								<span translate="PROFILE.NAVIGATION_ITEM"></span>
+								<div class="display-flex">
+									<avatar class="img margin-right-small" size="small" src="loggedUser.avatar.normal" type="'User'"></avatar>
+									<div>
+										<h5>{{ loggedUser.name }}</h5>
+										<small translate="PROFILE.NAVIGATION_ITEM" style="position:relative;top:-4px;"></small>
+									</div>
+								</div>
 							</a>
 						</li>
 						<li>
@@ -118,7 +169,7 @@
 						<li ng-repeat="item in myAdminCommunities track by item._id">
 							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{:: item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
 								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
-								<span class="name">{{:: item.name | ellipsis:12}}</span>
+								<span class="name">{{:: item.name | ellipsis:30}}</span>
 							</a>
 						</li>
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
@@ -135,23 +186,23 @@
 					<a hover="true" class="icon-item" dropdown="#language-drop">
 						<div class="inner-icon">
 							<span class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></span>
-							<label ng-bind-html=":: 'LANGUAGE.' + languageChange.languageStrings[languageChange.currentLanguage] | translate"></label>
 						</div>
+						<span ng-bind-html=":: 'LANGUAGE.' + languageChange.languageStrings[languageChange.currentLanguage] | translate"></span>
 					</a>
 					<ul class='dropdown flag-list' id='language-drop'>
-						<li ng-if='languageChange.currentLanguage != "cs"'>
+						<li ng-if='languageChange.currentLanguage != "cs"' class="margin-left-small">
 							<a ng-click='languageChange.switchLang("cs")'>
 								<i class='flag flag-cs'></i>
 								<span translate='LANGUAGE.CZECH'></span>
 							</a>
 						</li>
-						<li ng-if='languageChange.currentLanguage != "en"'>
+						<li ng-if='languageChange.currentLanguage != "en"' class="margin-left-small">
 							<a ng-click='languageChange.switchLang("en")'>
 								<i class='flag flag-en'></i>
 								<span translate='LANGUAGE.ENGLISH'></span>
 							</a>
 						</li>
-						<li ng-if='languageChange.currentLanguage != "sk"'>
+						<li ng-if='languageChange.currentLanguage != "sk"' class="margin-left-small">
 							<a ng-click='languageChange.switchLang("sk")'>
 								<i class='flag flag-sk'></i>
 								<span translate='LANGUAGE.SLOVAK'></span>
@@ -163,8 +214,8 @@
 				<a ng-if=":: !loggedUser._id" class="icon-item" ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" test-beacon="nav-login">
 					<div class="inner-icon">
 						<span class="fa fa-sign-in"></span>
-						<span translate="AUTH.LOGIN_NAVIGATION_ITEM"></label>
 					</div>
+					<span translate="AUTH.LOGIN_NAVIGATION_ITEM"></label>
 				</a>
 				
 			</section>

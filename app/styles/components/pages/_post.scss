@@ -122,16 +122,30 @@ a.user {
 	border-top-left-radius: 50%;
 	border-bottom-right-radius: 50%;
 }
+
+.item-option-bg-need,
+.item-option-bg-borrow {
+	background-color: darken($secondary-color, 10%);
+	border-top-right-radius: 50%;
+	&::before {
+		background-color: $secondary-color;
+	}
+}
 .item-option-bg-offer,
 .item-option-bg-lend {
-	background-color: $tertiary-color;
+	background-color: darken($tertiary-color, 10%);
 	border-bottom-left-radius: 50%;
+	&::before {
+		background-color: $tertiary-color;
+	}
 }
 .item-option-bg-infogift {
 	background-color: $primary-color;
 	border-radius: 50%;
 	i.fa {
-		font-size:19px;
+		font-size:22px;
+		width:unset;
+		height:unset;
 	}
 }
 
@@ -167,11 +181,7 @@ button.active .item-option-bg-borrow > i,
 button.active .item-option-bg-lend > i {
 	background-image: url('/app/assets/img/icons/clock-clr.svg');
 }
-.item-option-bg-need,
-.item-option-bg-borrow {
-	background-color: $secondary-color;
-	border-top-right-radius: 50%;
-}
+
 .item-option-bg-type > i:not(.fa) {
 	font-size: 10px;
 }
@@ -197,6 +207,14 @@ button.active[disabled] .item-option-bg-type {
 	margin-top: -15px;
 	margin-left: -15px;
 	right: -30px;
+	&::before {
+		content:"";
+		display:block;
+		width:32px;
+		height:32px;
+		position:absolute;
+		border-radius:50%;
+	}
 }
 
 @include breakpoint(medium up) {
@@ -206,7 +224,7 @@ button.active[disabled] .item-option-bg-type {
 	}
 	.item-option-bg-type > i {
 		width: 16px; height: 16px;
-		background-size: 16px 16px;
+		background-size: 15px 16px;
 	}
 	.item-option-bg-type.by-avatar {
 		top: 37px;

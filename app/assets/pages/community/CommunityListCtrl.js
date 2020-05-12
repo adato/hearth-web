@@ -24,8 +24,6 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
     var offset = 0;
     var pageSize = 5;
-    
-
 
 		vm.finishLoading = function (res) {
       vm.loading = false;
@@ -84,11 +82,14 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
       vm.getSearchOpts();
     };
 
+
+
     
     if ($state.current.name == 'communities-all') {
       vm.getAllCommunities();
     } else {
-      initCommunities() 
+      if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) return $state.go('communities-all', {})
+      else initCommunities() 
     }
   }
 ]);

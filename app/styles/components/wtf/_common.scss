@@ -49,9 +49,9 @@
 	display: block;
 	padding: $ui-grid-size;
 	background-color: white;
-	border-radius: $global-radius;
+	border-radius: $new-border-radius; //$global-radius;  // NEW
 	padding: $size-large;
-	box-shadow: $ui-box-shadow;
+	border: 1px solid $new-color-border; // NEW
 
 	/* @kamil todo - delete if nothing breaks without it*/
 	.header {
@@ -70,8 +70,12 @@
 	/* /todo */
 
 	.box-content {
-		padding: $size-large $size-large 0;
-
+		@include breakpoint(medium up) {
+			padding: $size-large $size-large 0;
+		}
+		@include breakpoint(medium down) {
+			padding: $size-medium $size-medium 0;
+		}
 		a {
 			color: $primary-color;
 		}
@@ -79,20 +83,6 @@
 	&.no-result p {
 		margin: 1.25rem 0.5rem;
 	}
-
-	// UNUSED ATM
-	// .box--list > & {
-	// 	border-radius: 0;
-	//
-	// 	&:first-child {
-	// 		border-top-left-radius: $global-radius;
-	// 		border-top-right-radius: $global-radius;
-	// 	}
-	// 	&:last-child {
-	// 		border-bottom-left-radius: $global-radius;
-	// 		border-bottom-right-radius: $global-radius;
-	// 	}
-	// }
 
 	/* This box style makes inner boxes of different color */
 	&.sectioned-box {
@@ -412,27 +402,6 @@ a.elevated-authority-function:active{
 	background-color: darken($state-danger-bg, 10%) !important;
 }
 
-/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability
-to remove !important would be also nice .. someday */
-// ! BELONGS TO _buttons.scss
-button.disabled,
-button[disabled],
-.button.disabled,
-.button[disabled] {
-	background-color: lighten($primary-color, 30%);
-	&:hover {
-		background-color: lighten($primary-color, 30%);
-	}
-}
-button.neutral,
-button.neutral:disabled{
-	background-color: darken($colorLightGray, 20%) !important;
-}
-button.neutral:hover,
-button.neutral:focus{
-	background-color: $quaternary-color !important;
-}
-/* /kamil */
 
 .lowercase {
 	text-transform: lowercase;

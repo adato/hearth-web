@@ -7,7 +7,7 @@
 		<form ng-submit="save()" id="communityForm" name="communityForm" novalidate>
 			<div class="medium-flex-grid block">
 				<div class="flex-7 flex-grid">
-					<div>
+					<div class="icon-wrapper">
 						<i class="fa fa-fw fa-2x block--leading-icon fa-users"></i>
 					</div>
 					<div class="flex-1">
@@ -30,7 +30,7 @@
 			</div>
 
 			<div class="flex-grid block">
-				<div>
+				<div class="icon-wrapper">
 					<i class="fa fa-fw fa-2x block--leading-icon fa-eye"></i>
 				</div>
 				<div class="flex-1">
@@ -68,8 +68,8 @@
 
 			<div class="display-flex flex-reverse flex-space-between">
 				<button type="submit" class="button right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5" translate="COMMON.ACTION_SAVE"></button>
-				<a ng-if="!community._id" tabindex="0" ui-sref="communities" class="revert-changes" translate="COMMUNITY.CREATE.ACTION_CANCEL_ADD"></a>
-				<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
+				<a ng-if="!community._id" tabindex="0" ui-sref="communities" class="button hollow revert-changes" translate="COMMUNITY.CREATE.ACTION_CANCEL_ADD"></a>
+				<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="button hollow revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
 			</div>
 
 		</form>
@@ -79,7 +79,7 @@
 
 			<!-- ==================================== Change admin in community ================================ -->
 			<div class="flex-grid block">
-				<div>
+				<div class="icon-wrapper">
 					<i class="fa fa-fw fa-2x block--leading-icon fa-share"></i>
 				</div>
 				<div class="flex-1">
@@ -102,7 +102,7 @@
 			<hr />
 			<!-- ==================================== Delete community ================================ -->
 			<div class="flex-grid block">
-				<div>
+				<div class="icon-wrapper">
 					<i class="fa fa-fw fa-2x block--leading-icon fa-minus-circle"></i>
 				</div>
 				<div class="flex-1">

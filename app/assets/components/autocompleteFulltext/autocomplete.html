@@ -1,4 +1,4 @@
-<div class="autocomplete-fulltext-input">
+<div class="autocomplete-fulltext-input" ng-class="{'autocomplete-visible': showAutocomplete }">
     <input type="text" 
            id="searchBox" 
            placeholder="{{:: 'MARKETPLACE.FULLTEXT.QUERY_PLACEHOLDER' | translate }}" 
@@ -6,9 +6,10 @@
            ng-focus="showAutocompleteWithSearchPhrases()"
            ng-model="ngModel"
            ng-enter="onEnter($event); saveSearch(ngModel)"
-           ng-model-options="{ debounce: 400 }"
+           autocomplete="off"
            >
-    <div class="autocomplete-list" ng-show="showAutocomplete" style="position:absolute;">
+           <span class="search-input-submit-icon fa fa-search" ng-click="onEnter($event); saveSearch(ngModel)"></span>
+    <div class="autocomplete-list" ng-show="showAutocomplete">
         <span ng-hide="ngModel.length">
             <h5 ng-if="autocompleted.historyReversedLimited.length">{{ 'MARKETPLACE.FILTER.AUTOCOMPLETE.HISTORY' | translate }}</h5>
             <div ng-repeat="item in autocompleted.historyReversedLimited" class="list-item list-item-history">

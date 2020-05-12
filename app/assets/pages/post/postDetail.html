@@ -234,11 +234,12 @@
 				</div>
 			</div>
 
-			<div ng-show="relatedLoaded" class="margin-top-large">
-        		<hr />
-				<h3 translate="POST.RELATED.TITLE"></h3>
-				<item-list options="relatedPostsOptions"></item-list>
-        		<vote-yes-no ng-if="relatedLoaded" title="{{:: 'POST.RELATED.QUESTION' | translate }}" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
+			<div ng-show="relatedLoaded" class="margin-top-large row">
+					<hr />
+					<div class="small-12 large-8">
+					<h3 translate="POST.RELATED.TITLE"></h3>
+					<item-list options="relatedPostsOptions"></item-list>
+					</div>
 			</div>
 
 		</section>

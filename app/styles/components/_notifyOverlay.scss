@@ -94,8 +94,8 @@
 	// 	display: inline-block;
 	// }
 	&.display {
-		max-height: 60px;
-		padding: $size-medium 0;
+		max-height: 120px;
+		padding: $size-medium $size-medium;
 	}
 }
 
@@ -104,6 +104,6 @@
 		padding-top: 70px;
 	}
 	.main-container {
-		padding-top: 65px;
+		padding-top: 120px;
 	}
 }
