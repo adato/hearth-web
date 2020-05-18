@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('infoBubbleCommunity', [function (
         ctrl.$onInit = () => {
 
           ctrl.pluralCat = $locale.pluralCat
-          ctrl.sendingJionRequest
+          //ctrl.sendingJionRequest
           ctrl.join = join
 
           init()
