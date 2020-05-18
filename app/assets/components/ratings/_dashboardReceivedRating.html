@@ -2,13 +2,13 @@
 	<div class="v2 user" info-bubble=":: item.entity_to" info-bubble-type=":: item.entity_to._type">
 		<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id) }}">
 			<avatar src="item.entity_to.avatar.normal" type="item.entity_to._type" thanks=":: item.entity_to.up_votes" show-thanks="true" show-glow="true"></avatar>
-			<div class="name">{{:: item.entity_to.name}}&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+			<div class="name">{{:: item.entity_to.name}}&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 			</div>
 		</a>
 	</div>
 	<div class="item-option-bg-type by-avatar item-option-bg-rating">
-		<span ng-if="item.score == -1" class="score-icon">⛅️</span>
-		<span ng-if="item.score == 1" class="score-icon">🌞</span>
+		<span ng-if="item.score == -1" class="score-icon icon-sad"></span>
+		<span ng-if="item.score == 1" class="score-icon icon-thanks"></span>
 	</div>
 
 </section>
@@ -24,7 +24,7 @@
 			<div class="ratings-small-avatar-container hide-for-medium display-flex margin-bottom-large">
 				<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_from._id) }}">
 					<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type" size="small"></avatar>
-					<div class="name">{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+					<div class="name">{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 					</div>
 				</a>
 			</div>
@@ -52,7 +52,7 @@
 					</a>
 				</div>
 				<div class="medium-11 columns bold" style="margin-top:20px;">
-					{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+					{{:: item.entity_from.name}}&nbsp;<span ng-if="item.entity_from.verified === true" class="verified-icon color-offer"><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 				</div>
 
 				<div class="medium-12 columns margin-top-medium">

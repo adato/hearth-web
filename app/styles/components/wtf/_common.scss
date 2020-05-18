@@ -141,6 +141,10 @@
 	}
 }
 
+.ngdialog-content .box {
+	border-width:0px;
+}
+
 .item {
 	@extend .box;
 }

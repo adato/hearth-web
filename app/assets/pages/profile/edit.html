@@ -19,7 +19,7 @@
 			</div>
 			<div class="flex-7 flex flex-divided-large flex-align-start">
 				<div class="icon-wrapper">
-					<i class="fa fa-fw fa-2x block--leading-icon fa-user"></i>
+					<i class="fa fa-fw fa-2x block--leading-icon icon-profile"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="PROFILE.EDIT.ME_TITLE"></h2>
@@ -48,7 +48,7 @@
 
 		<div class="flex-grid block">
 			<div class="icon-wrapper">
-				<i class="fa fa-fw fa-2x block--leading-icon fa-heart"></i>
+				<i class="fa fa-fw fa-2x block--leading-icon icon-srdce"></i>
 			</div>
 			<div class="flex-1">
 				<h2 translate="PROFILE.EDIT.ABOUT_ME_TITLE"></h2>
@@ -69,7 +69,7 @@
 
 		<div class="flex-grid block">
 			<div class="icon-wrapper">
-				<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
+				<i class="fa fa-fw fa-2x block--leading-icon icon-globe"></i>
 			</div>
 			<div class="flex-1">
 				<h2 translate="PROFILE.EDIT.LOCATIONS_TITLE"></h2>
@@ -80,7 +80,7 @@
 
 		<div class="flex-grid block">
 			<div class="icon-wrapper">
-				<i class="fa fa-fw fa-2x block--leading-icon fa-comments"></i>
+				<i class="fa fa-fw fa-2x block--leading-icon icon-bublina"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
 				<h2 translate="PROFILE.EDIT.MY_LANGUAGES_TITLE"></h2>
@@ -189,7 +189,7 @@
 
 		<div class="flex-grid block">
 			<div class="icon-wrapper">
-				<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
+				<i class="fa fa-fw fa-2x block--leading-icon icon-mail"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
 				<h2 translate="PROFILE.EDIT.NETWORKS_TITLE"></h2>
@@ -222,7 +222,7 @@
 				<div class="medium-flex-grid">
 					<div class="block flex-1">
 						<label>
-							<i class="fa fa-globe"></i>&nbsp;<span translate="PROFILE.EDIT.MY_WEB"></span>
+							<i class="fa icon-globe"></i>&nbsp;<span translate="PROFILE.EDIT.MY_WEB"></span>
 							<div ng-repeat="web in profile.webs track by $index" class="block flex flex-align-start">
 								<input placeholder="{{ 'COMMON.EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)" test-beacon="web-input">
 								<button ng-hide="$first" type="button" class="touchable" ng-click="profile.webs.splice($index,1)">

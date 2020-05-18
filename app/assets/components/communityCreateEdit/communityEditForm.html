@@ -27,11 +27,22 @@
 						</label>
 					</div>
 				</div>
+				<div class="flex-5 medium-order-last" ng-cloak>
+					<div image-preview-direct-upload class="big position-relative" result="community.avatar" options="avatarUploadOpts">
+						<img class="preview" ng-if="community.avatar.public_avatar_url" ng-src="{{ community.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated/>
+						<img class="preview" ng-if="!community.avatar.file && community.avatar.large" ng-src="{{ community.avatar.large }}" resized-thumbnail-image/>
+						<div class="text">
+							<i class="fa fa-plus-square-o"></i>
+							<span translate="PROFILE.EDIT.UPLOAD_AVATAR_IMAGE"></span>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<div class="flex-grid block">
 				<div class="icon-wrapper">
-					<i class="fa fa-fw fa-2x block--leading-icon fa-eye"></i>
+					<i class="fa fa-fw fa-2x block--leading-icon icon-privacy"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="COMMUNITY.CREATE.PRIVACY"></h2>
@@ -80,7 +91,7 @@
 			<!-- ==================================== Change admin in community ================================ -->
 			<div class="flex-grid block">
 				<div class="icon-wrapper">
-					<i class="fa fa-fw fa-2x block--leading-icon fa-share"></i>
+					<i class="fa fa-fw fa-2x block--leading-icon icon-sdilet"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="COMMUNITY.SETTINGS.CHANGE_ADMIN.0"></h2>
@@ -103,7 +114,7 @@
 			<!-- ==================================== Delete community ================================ -->
 			<div class="flex-grid block">
 				<div class="icon-wrapper">
-					<i class="fa fa-fw fa-2x block--leading-icon fa-minus-circle"></i>
+					<i class="fa fa-fw fa-2x block--leading-icon icon-close"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="COMMUNITY.SETTINGS.DELETE"></h2>

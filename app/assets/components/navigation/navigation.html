@@ -34,38 +34,44 @@
 					</li>
 					<li>
 						<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['dashboard'].indexOf(segment) > -1}" title="{{:: 'DASHBOARD.NAVIGATION_ITEM' | translate }}">
-							<i class="fa fa-map-pin"></i>
+							<i class="fa icon-pin"></i>
 							<span translate="DASHBOARD.NAVIGATION_ITEM"></span>
 						</a>
 					</li>					
 					<li>
 						<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
-							<i class="fa fa-map-pin"></i>
+							<i class="fa icon-trziste"></i>
 							<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
 						</a>
 					</li>
 					<li>				
 						<a ui-sref="communities" class="icon-item" ng-class="{active: ['communities', 'community', 'communities-all', 'communityCreate', 'communityEdit'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
-							<i class="fa fa-map-pin"></i>
+							<i class="fa icon-groups"></i>
 							<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
 						</a>
 					</li>
 					<li ng-if=":: loggedUser._id">
 						<a id="unreaded-messages-counter2" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{'active': $state.includes('messages'), 'unread': messagesCounters.unread > 0}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
-							<i class="fa messages-icon"></i>
+							<i class="fa icon-mail"></i>
 							<span translate="MESSAGING.NAVIGATION_ITEM"></span>
 						</a>
 					</li>
 					<li>
 						<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
-							<i class="fa fa-cog"></i>
+							<i class="fa icon-cog"></i>
 							<span translate="SETTINGS.NAVIGATION_ITEM"></span>
 						</a>
 					</li>
-					<li>
+					<li ng-if=":: loggedUser._id">
 						<a href="" ng-click="logout()" test-beacon="nav-logout-link">
-							<i class="fa fa-sign-out"></i>
+							<i class="fa icon-odhlasit"></i>
 							<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
+						</a>
+					</li>
+					<li ng-if=":: !loggedUser._id">
+						<a class="icon-item" ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" test-beacon="nav-login">
+							<i class="fa icon-prihlasit"></i>
+							<span translate="AUTH.LOGIN_NAVIGATION_ITEM"></label>
 						</a>
 					</li>
 			</div>
@@ -75,10 +81,10 @@
 					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class="display-inline-block color-dark-gray">
-					<i class="fa fa-fw fa-plus-circle" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate }}"></i>
+					<i class="fa fa-fw icon-add" test-beacon="open-new-post-dialog-toggle-mobile" ng-click="editItem(null)" title="{{:: 'MARKETPLACE.ACTION_CREATE_POST' | translate }}"></i>
 				</div>
 				<div class="display-inline-block">
-					<i id="searchIcon" class="fa fa-fw fa-search color-dark-gray" test-beacon="search-bar-toggle-mobile" ng-class="{'active': isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+					<i id="searchIcon" class="fa fa-fw icon-hledat color-dark-gray" test-beacon="search-bar-toggle-mobile" ng-class="{'active': isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
 			</div>
 		</nav>
@@ -109,21 +115,21 @@
 				<div>
 					<a ui-sref="dashboard" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['dashboard'].indexOf(segment) > -1}" title="{{:: 'DASHBOARD.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa fa-map-pin"></span>
+							<span class="fa icon-pin"></span>
 						</div>
 						<span translate="DASHBOARD.NAVIGATION_ITEM"></span>
 					</a>
 
 					<a ui-sref="market" ui-sref-opts="{reload: true, notify: true}" class="icon-item" ng-class="{active: ['market', 'post', 'search'].indexOf(segment) > -1}" title="{{:: 'MARKETPLACE.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa fa-map-pin"></span>
+							<span class="fa icon-trziste"></span>
 						</div>
 						<span translate="MARKETPLACE.NAVIGATION_ITEM"></span>
 					</a>
 					
 					<a ui-sref="communities" class="icon-item" ng-class="{active: ['communities', 'community', 'communities-all', 'communityCreate', 'communityEdit'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITY.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa fa-map-pin"></span>
+							<span class="fa icon-groups"></span>
 						</div>
 						<span translate="COMMUNITY.NAVIGATION_ITEM"></span>
 					</a>
@@ -131,7 +137,7 @@
 				<div>
 					<a id="unreaded-messages-counter" ng-if=":: loggedUser._id" ui-sref="messages.detail({id: getFirstConversationId()})" class="icon-item" ng-class="{'active': $state.includes('messages'), 'unread': messagesCounters.unread > 0}" title="{{:: 'MESSAGING.NAVIGATION_ITEM' | translate }}">
 						<div class="inner-icon">
-							<span class="fa messages-icon">
+							<span class="fa icon-mail">
 							</span>
 						</div>
 						<span translate="MESSAGING.NAVIGATION_ITEM"></span>
@@ -152,15 +158,15 @@
 								</div>
 							</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a ng-href="{{:: basePath }}profile-edit" test-beacon='dropdown-edit-profile'>
 								<i class="fa fa-edit"></i>
 								<span translate="PROFILE.EDIT.NAVIGATION_ITEM"></span>
 							</a>
-						</li>
+						</li> -->
 						<li>
 							<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link" test-beacon="user-settings-link">
-								<i class="fa fa-cog"></i>
+								<i class="fa icon-cog"></i>
 								<span translate="SETTINGS.NAVIGATION_ITEM"></span>
 							</a>
 						</li>
@@ -175,7 +181,7 @@
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li>
 							<a href="" ng-click="logout()" test-beacon="nav-logout-link">
-								<i class="fa fa-sign-out"></i>
+								<i class="fa icon-odhlasit"></i>
 								<span translate="AUTH.LOGOUT_NAVIGATION_ITEM"></span>
 							</a>
 						</li>
@@ -213,7 +219,7 @@
 				
 				<a ng-if=":: !loggedUser._id" class="icon-item" ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" test-beacon="nav-login">
 					<div class="inner-icon">
-						<span class="fa fa-sign-in"></span>
+						<span class="fa icon-prihlasit"></span>
 					</div>
 					<span translate="AUTH.LOGIN_NAVIGATION_ITEM"></label>
 				</a>

@@ -2,8 +2,8 @@
   <div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if=":: !ctrl.mine">
     <div bubble-placeholder="bookmark-reminder"></div>
     <div bubble-placeholder="hide-post"></div>
-    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="action-dropdown touchable touchable-small padding-vertical-none margin-left-medium round gray" translate-attr="{title: 'POST.ACTION_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[post-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
-      <i class="fa fa-fw fa-chevron-down"></i>
+    <span ng-click="ctrl.removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); ctrl.removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'}); ctrl.analytics('Dropdown clicked');" class="xaction-dropdown touchable touchable-small padding-none margin-left-medium xround xgray" translate-attr="{title: 'POST.ACTION_MORE_INFO'}" dropdown="#more-actions-{{:: item._id}}" dropdown-scope="'[post-dropdown-scope]'" test-beacon="marketplace-item-dropdown-toggle">
+      <i class="fa fa-fw icon-more" style="font-size:22px; position:relative;top:5px;"></i>
     </span>
   </div>
   <ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">

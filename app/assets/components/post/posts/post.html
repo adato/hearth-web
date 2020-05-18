@@ -15,7 +15,7 @@
 				<i></i>
 			</div>
 			<div class="item-option-bg-type by-avatar item-option-bg-infogift" ng-if=":: isInfoGift">
-				<i class="fa fa-info-circle"></i>				
+				<i class="fa icon-info"></i>				
 			</div>
 			<div class="v2 user text-center">
 				<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}
@@ -83,13 +83,13 @@
 								<a ui-sref="community.default({id: item.related_communities[0]._id })" info-bubble=":: item.related_communities[0]" info-bubble-type="::'Community'">{{:: item.related_communities[0].name }}</a> <span ng-if=":: !isInfoGift || !item.location_unlimited" class="hide-for-community-detail">&bull;</span>
 							</div>
 							<div ng-if="item.location_unlimited && !isInfoGift" class="hide-for-community">
-								<i class="fa fa-map-marker"></i>&nbsp;
+								<i class="fa icon-spendlik"></i>&nbsp;
 								<span translate="POST.LOCATION.ANYWHERE"></span>
 							</div>
 							<div ng-if=":: !item.location_unlimited && !isInfoGift">
 								<span ng-repeat="(locationId, location) in :: item.locations track by $index">
 									<span ng-if=":: location.short_address">
-										<i class="fa fa-map-marker" ng-if=":: $first"></i>&nbsp;{{:: location.short_address }}
+										<i class="fa icon-spendlik" ng-if=":: $first"></i>&nbsp;{{:: location.short_address }}
 										<span ng-if=":: !$last">;</span>
 									</span>
 								</span>
@@ -144,7 +144,7 @@
 											<i class="fa fa-fw fa-times"></i>
 										</a>
 										<a class="touchable show-on-profile-only hide-for-community" title="{{:: (item.is_pinned ? 'POST.ACTION_UNPIN' : 'POST.ACTION_PIN') | translate}}" ng-click="PostAux.togglePinPost(item)" tipsy>
-											<i class="fa fa-fw fa-map-pin" ng-class="{ 'color-primary': item.is_pinned }"></i>
+											<i class="fa fa-fw icon-spendlik" ng-class="{ 'color-primary': item.is_pinned }"></i>
 										</a>
 									</div>
 								</div>
@@ -170,13 +170,13 @@
 							<div class="flex flex-divided-medium">
 								<div class="flex">
 									<a href="" class="touchable" ng-class="{'touchable-blue': max(item.comments.length, item.comments_count) > 0 }" ng-click="item.commentsShown = !item.commentsShown; focus('#post_' + item._id + ' [comments-focusser]')" translate-attr="{title: 'POST.COMMENTS.ACTION_TOGGLE'}">
-										<i class="fa fa-fw fa-comment-o" ng-if="max(item.comments.length, item.comments_count) == 0"></i>
-										<i class="fa fa-fw fa-comment" ng-if="max(item.comments.length, item.comments_count) > 0"></i>
+										<i class="fa fa-fw icon-bublina-out" ng-if="max(item.comments.length, item.comments_count) == 0"></i>
+										<i class="fa fa-fw icon-bublina" ng-if="max(item.comments.length, item.comments_count) > 0"></i>
 									</a>
 									<span ng-class="{'touchable-blue bold': max(item.comments.length, item.comments_count) > 0}" ng-show="max(item.comments.length, item.comments_count) > 0" ng-bind="max(item.comments.length, item.comments_count)"></span>
 								</div>
 								<a class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140); analytics('Sharing clicked');" title="{{ 'POST.SHARE.LINK_TITLE' | translate }}">
-									<i class="fa fa-fw fa-share-alt"></i>
+									<i class="fa fa-fw icon-sdilet"></i>
 								</a>
 								<div heart item="item"></div>
 							</div>
@@ -184,7 +184,8 @@
 					</div>
 
 					<div ng-if="item.commentsShown">
-						<post-comments model="item.comments" post-id="item._id" limit-comments="5"></post-comments>
+						<p class="margin-medium margin-left-large" translate="AUTH.NOTIFY.LOGIN_REQUIRED" ng-if="!loggedUser._id"></p>
+						<post-comments model="item.comments" post-id="item._id" limit-comments="5" ng-if="loggedUser._id"></post-comments>
 					</div>
 
 				</footer>

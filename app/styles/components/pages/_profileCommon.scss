@@ -391,12 +391,12 @@
 					left: 20px;
 					right: 20px;
 				}
-				&.positive {
-					background: #FFF09C; //lighten($tertiary-color, 45%);
-				}
-				&.negative {
-					background: lighten($primary-color, 45%);
-				}
+				// &.positive {
+				// 	background: #FFF09C; //lighten($tertiary-color, 45%);
+				// }
+				// &.negative {
+				// 	background: lighten($primary-color, 45%);
+				// }
 				small {
 					font-size: 0.85rem;
 					line-height: 125%;
@@ -770,12 +770,13 @@
 			left: 20px;
 			right: 20px;
 		}
-		&.positive {
-			background: lighten($tertiary-color, 45%);
-		}
-		&.negative {
-			background: lighten($primary-color, 45%);
-		}
+		border-bottom:1px solid $tertiary-color;
+		// &.positive {
+		// 	background: lighten($tertiary-color, 45%);
+		// }
+		// &.negative {
+		// 	background: lighten($primary-color, 45%);
+		// }
 		small {
 			font-size: 0.85rem;
 			line-height: 125%;

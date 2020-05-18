@@ -2,14 +2,14 @@
 
 	<div class="display-table-row" ng-if="canShow('motto')">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-quote-right"></i>
+			<i class="fa fa-fw icon-quote"></i>
 		</div>
 		<div class="display-table-cell" ng-bind="entity.motto"></div>
 	</div>
 
 	<div class="display-table-row" ng-if="canShow('about')">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-quote-right"></i>
+			<i class="fa fa-fw icon-quote"></i>
 		</div>
 		<div class="display-table-cell" ng-if="!entity.community_about_shortened" ng-bind-html="entity.about | linky:'_blank':{rel: 'nofollow'} | nl2br"></div>
 		<div class="display-table-cell" ng-if="entity.community_about_shortened">
@@ -22,14 +22,14 @@
 
 	<div class="display-table-row" ng-if="canShow('about_shortened')">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-quote-right"></i>
+			<i class="fa fa-fw icon-quote"></i>
 		</div>
 		<div class="display-table-cell" ng-bind="entity.about_shortened"></div>
 	</div>
 
 	<div class="display-table-row" ng-if="canShow('interests') && entity.interests.length && entity.interests[0] != ''">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-smile-o"></i>
+			<i class="fa fa-fw icon-zajmy"></i>
 		</div>
 		<div class="display-table-cell" ng-if="entity.interests && entity.interests.length > 1" ng-bind="entity.interests.join(',\u0020')"></div>
 		<div class="display-table-cell" ng-if="entity.interests && entity.interests.length == 1" ng-bind="entity.interests[0].split(',').join(',\u0020')"></div>
@@ -37,14 +37,14 @@
 
 	<div class="display-table-row" ng-if="canShow('work')">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-briefcase"></i>
+			<i class="fa fa-fw icon-job"></i>
 		</div>
 		<div class="display-table-cell" ng-bind="entity.work"></div>
 	</div>
 
 	<div class="display-table-row" ng-if="canShow('locations') && entity.locations.length && entity.locations[0].short_address">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-map-marker"></i>
+			<i class="fa fa-fw icon-spendlik"></i>
 		</div>
 		<div class="display-table-cell">
 			<span translate="PROFILE.MY_LOCATION"></span>
@@ -54,7 +54,7 @@
 
 	<div class="display-table-row" ng-if="canShow('languages')">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-comments"></i>
+			<i class="fa fa-fw icon-bublina"></i>
 		</div>
 		<div class="display-table-cell">
 			<span ng-repeat="(languageCode, enabled) in entity.user_languages" ng-bind="('MY_LANG.' + languageCode | translate) + ($last ? '.' : ',\u00A0')"></span>
@@ -63,7 +63,7 @@
 
 	<div class="display-table-row" ng-if="(entity.email || entity.contact_email) && canShow('email')">
 		<div class="display-table-cell addon">
-			<i class="fa fa-fw fa-envelope"></i>
+			<i class="fa fa-fw icon-mail"></i>
 		</div>
 		<div class="display-table-cell">
 			<div ng-if="entity.email">
