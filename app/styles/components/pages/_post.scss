@@ -121,6 +121,14 @@ a.user {
 	color: $colorDarkGray;
 	border-top-left-radius: 50%;
 	border-bottom-right-radius: 50%;
+	&::before {
+		content:"";
+		display:block;
+		width:33px;
+		height:33px;
+		position:absolute;
+		border-radius:50%;
+	}
 }
 
 .item-option-bg-need,
@@ -152,11 +160,19 @@ a.user {
 }
 
 .item-option-bg-rating {
-	background-color: $primary-color;
 	border-top-right-radius: 50%;
 	border-bottom-right-radius: 50%;
+	&.positive { background-color: darken($tertiary-color, 10%); }
+	&.positive::before { background-color: $tertiary-color;	}
+	&.negative { background-color: darken($new-color-red, 10%); 	}
+	&.negative::before { background-color: $new-color-red; 	}
 	i.fa {
 		font-size:19px;
+	}
+	&.flip {
+		border-top-right-radius: 0%;
+		border-top-left-radius: 50%;
+		border-bottom-left-radius: 50%;
 	}
 }
 
@@ -209,14 +225,6 @@ button.active[disabled] .item-option-bg-type {
 	margin-top: -15px;
 	// margin-left: -15px;
 	right: -30px;
-	&::before {
-		content:"";
-		display:block;
-		width:33px;
-		height:33px;
-		position:absolute;
-		border-radius:50%;
-	}
 }
 
 @include breakpoint(medium up) {

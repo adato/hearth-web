@@ -14,16 +14,15 @@ $large-avatar-size: 295px;
 		display: block;
 		border-radius: 50%;
 		background-size: cover;
+		border:1px solid $new-color-avatar-border;
 	}
 
 	/** == Shade & height == */
-	.avatar-image::before {
+	.avatar-image::after {
 	    content: '';
 	    display: block;
 	    padding-top: 100%;
 			border-radius: 50%;
-			border:1px solid $new-color-avatar-border;
-//		box-shadow: -3px 3px 6px rgba(0,0,0,.5) inset;
 	}
 
 	&.avatar-medium .avatar-thanks,
@@ -33,10 +32,10 @@ $large-avatar-size: 295px;
 
 	/** == Default avatars == */
 	&.avatar-user {
-		background-image: url('../img/no-avatar.jpg');
+		background-image: url('../img/person-avatar.png');
 	}
 	&.avatar-community {
-		background-image: url('../img/no-cm-avatar.jpg');
+		background-image: url('../img/group-avatar.png');
 	}
 
 	&.faux-avatar {
@@ -129,7 +128,7 @@ $large-avatar-size: 295px;
 	}
 }
 
-.avatar.with-thanks .avatar-image::before {
+.avatar.with-thanks .avatar-image {
 	border: 1px solid #fa5801;
 }
 
@@ -151,12 +150,6 @@ $large-avatar-size: 295px;
 	text-shadow: none;
 	font-weight: bold;
 	font-size:12px;
-}
-
-
-.info-bubble-content .avatar-thanks,
-.avatar .avatar-thanks {
-	// for display in infobox
 }
 
 .avatar .avatar-thanks {

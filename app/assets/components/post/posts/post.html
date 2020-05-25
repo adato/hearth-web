@@ -19,7 +19,7 @@
 			</div>
 			<div class="v2 user text-center">
 				<div class="name" test-beacon="marketplace-item-author-name">{{:: item.author.name}}
-					<span ng-if=":: item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+					<span ng-if=":: item.author.verified === true" class="verified-icon "><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 				</div>
 			</div>
 		</section>
@@ -67,7 +67,7 @@
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
 							<h1>
 								<a ng-href="{{:: getProfileLink('Post', item._id)}}" history-param-pusher='item._id'>
-									<span ng-if=":: !isInfoGift" ng-class=":: 'color-' + item.type" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
+									<span ng-class=":: 'color-' + (isInfoGift ? 'primary' : item.type)" translate="{{:: postTypes[item.author._type][item.exact_type][item.type] }}"></span>
 									<span ng-bind=":: item.title" test-beacon="marketplace-item-post-title"></span>
 								</a>
 							</h1>

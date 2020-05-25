@@ -42,9 +42,9 @@
     </div>
   </div>
   <div class="large-3 columns">
-    <a ui-sref="community.subview({id: info._id, page: 'members'})" class="line-height-double pull-right">
+    <a ng-if="loggedUser._id" ui-sref="community.subview({id: info._id, page: 'members'})" class="line-height-double pull-right">
       <span translate="COMMUNITY.MEMBERS.{{ pluralCat(info.member_count) }}"
-        translate-values="{count: info.member_count}"></span>
+      translate-values="{count: info.member_count}"></span>
     </a>
     <h4 class="display-inline-block" translate="COMMUNITY.MEMBERS_LIST"></h4>
     <community-members count="10" community="info"></community-members>
@@ -52,8 +52,8 @@
       ng-if="info.is_member" translate="COMMUNITY.ACTION_ADD_MEMBERS"></button>
 
     <div ng-if="mine" class="clearfix" ng-include="'assets/pages/community/profileApplications.html'"></div>
-
-    <h4 ng-if="info.description" class="margin-top-large" translate="COMMUNITY.CREATE.DESCRIPTION"></h4>
+    <h4 ng-if="info.description || info.short_description" class="margin-top-large" translate="COMMUNITY.CREATE.DESCRIPTION"></h4>
+    <p class="" ng-if="!info.description && info.short_description">{{ :: info.short_description }}</p>
     <p class="" ng-if="info.description.length < 300 || view.expanded">{{ :: info.description }}</p>
     <p class="" ng-if="info.description.length >= 300 && !view.expanded">
       <span ng-bind-html=":: info.description | ellipsis: 300"></span>

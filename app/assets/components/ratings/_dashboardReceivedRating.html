@@ -6,7 +6,7 @@
 			</div>
 		</a>
 	</div>
-	<div class="item-option-bg-type by-avatar item-option-bg-rating">
+	<div class="item-option-bg-type by-avatar item-option-bg-rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1 }">
 		<span ng-if="item.score == -1" class="score-icon icon-sad"></span>
 		<span ng-if="item.score == 1" class="score-icon icon-thanks"></span>
 	</div>
