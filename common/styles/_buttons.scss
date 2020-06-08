@@ -33,6 +33,13 @@
     &.disabled {
       @include button-style(scale-color($secondary-color, $lightness: 40%), scale-color($secondary-color, $lightness: 40%), $white);
     }
+    &.secondary-light {
+      @include button-style(#f2dfce, scale-color(#f2dfce, $lightness: -15%), #fa5801);
+    }
+  }
+
+  &.fb-button {
+    @include button-style(#4267b2, scale-color(#4267b2, $lightness: 15%), $white);
   }
 
   // TERTIARY BUTTON (ORANGE)

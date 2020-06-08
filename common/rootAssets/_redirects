@@ -1,2 +1,6 @@
+/cs/          /app/         302
+/en/          /app/         302
+/sk/          /app/         302
+/index.html          /app/         302
 /app/*      /app/index.html         200
 /groups/*    http://go.hearth.net/:splat   302
