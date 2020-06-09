@@ -4,8 +4,9 @@ $arrowTop: 25px;
 $imageSize: 80px;
 $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 
-$ui-color-comment-icon: #21B2E3;
-$ui-color-like-icon: #FF68B0;
+$ui-color-comment-icon: #1fb1e8;
+$ui-color-like-icon: #ec1c24;
+$ui-color-share-icon: #a7bd1e;
 
 .user {
 	position: relative;
@@ -598,6 +599,8 @@ button.active[disabled] .item-option-bg-type {
 		.touchable-pink:hover { color:lighten($ui-color-like-icon, 20%); }
 		.touchable-pink:focus,
 		.touchable-pink:active { color:darken($ui-color-like-icon, 20%); }
+		.touchable-green { color:$ui-color-share-icon; }
+		.touchable-green:hover { color:lighten($ui-color-share-icon, 20%); }
 
 		.fa-inverse{
 			color: $colorLightGray;
