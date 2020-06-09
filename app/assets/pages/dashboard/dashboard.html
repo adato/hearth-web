@@ -1,5 +1,20 @@
 <div id="notify-container-market"></div>
 <div class="market">
+  <div ng-if=":: !loggedUser._id" class="full-width-bg margin-bottom-large padding-top-large" style="background:#f6eee6; margin-top:-30px;">
+    <div class="row">
+      <div class="large-7 small-12 columns padding-medium padding-left-large welcome-box">
+        <h1>Co si dnes dáte?</h1>
+        <h3>Hearth je největší darovací tržiště v ČR. Můžete u nás darovat věci, čas nebo svoje zkušenosti. Přidejte se k <b>58&nbsp;678</b> darům, které už na Hearthu proběhly.</h3>
+        <div class="margin-top-medium margin-bottom-medium">
+          <button class="button secondary margin-right-medium padding-medium" style="width:40%;" ui-sref="reg">Založit účet</button>
+          <button class="button secondary secondary-light padding-medium" style="width:40%;" ui-sref="about">O projektu</button>
+        </div>
+      </div>
+      <div class="large-5 small-12 columns text-right">
+        <img src="/app/assets/img/earth.png" srcset="/app/assets/img/earth@2x.png 2x, /app/assets/img/earth@3x.png 3x" style="width: 343px;height: 263px;object-fit: contain;" alt="Hearth">
+      </div>
+    </div>
+  </div>
   <div class="small-12 large-9 columns main-dashboard-column">
 
     <div ng-if="infoMessageToShow" class="row margin-horizontal-none margin-bottom-large">
@@ -10,18 +25,14 @@
         <div ng-bind-html="$parent.infoMessageToShow"></div>
       </div>
     </div>
-
-    <!-- promo posts -->
-    <!-- <promo-post id="new-groups" show-from-date="2019-05-14" show-until-date="2019-05-24"></promo-post> -->
-    <!-- end of promo posts -->
     
-    <div class="bottom-tabs margin-bottom-medium margin-top-small">
+    <div class="bottom-tabs margin-bottom-large margin-top-small">
       <ul>
-        <li><a href="#" ng-click="setTab('popular')" ng-class="{ 'selected': selectedTab == 'popular' }"><i class="fa fa-heart"></i> {{:: 'MARKETPLACE.POPULAR_POSTS' | translate }}</a></li>
+        <li><a href="#" ng-click="setTab('popular')" ng-class="{ 'selected': selectedTab == 'popular' }">{{:: 'MARKETPLACE.POPULAR_POSTS' | translate }}</a></li>
         <li><a href="#" ng-click="setTab('info')" ng-class="{ 'selected': selectedTab == 'info' }">{{:: 'MARKETPLACE.NON_MASS_POSTS' | translate }}</a></li>
         <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('friends')" ng-class="{ 'selected': selectedTab == 'friends' }">{{:: 'MARKETPLACE.FRIENDS_POSTS' | translate }}</a></li>
         <!-- <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('recommended')" ng-class="{ 'selected': selectedTab == 'recommended' }">{{:: 'MARKETPLACE.RECOMMENDED_POSTS' | translate }}</a></li> -->
-        <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('ratings')" ng-class="{ 'selected': selectedTab == 'ratings' }"><span >🌞 </span>{{:: 'MARKETPLACE.RATINGS' | translate }}</a></li>
+        <li ng-if="loggedUser._id"><a href="#" ng-click="setTab('ratings')" ng-class="{ 'selected': selectedTab == 'ratings' }">{{:: 'MARKETPLACE.RATINGS' | translate }}</a></li>
       </ul>
     </div>
 

@@ -61,6 +61,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		function redirectToFirstIfMatch(event, conversation) {
 			if ($state.params.id === conversation.id) {
+				console.log("HEHE")
 				if (!$scope.conversations.length || (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) {
 					$state.go('messages');
 				} else {
@@ -230,12 +231,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 						notify: false
 					});
 				}
-
 				if (!($state.is('messages.new') || $state.params.id || ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium())) {
 					return $state.go('messages.detail', {
 						id: $state.params.id || res[0]._id
 					});
 				}
+
 				if (resetId && $window.matchMedia('(min-width: 960px)').matches) {
 					return $state.go('messages.detail', {id: res[0]._id});
 				}

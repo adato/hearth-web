@@ -48,7 +48,7 @@
 	}
 
 	.main-container {
-		margin-top: 99px !important;
+		margin-top: 60px !important;
 		min-width: initial !important;
 		width: 100%;
 		padding: 0 10px;
@@ -121,6 +121,11 @@
 
 .all-visible {
 	float: none;
+}
+
+.max-width {
+	max-width: $global-width;
+	margin:0 auto;
 }
 
 .center {

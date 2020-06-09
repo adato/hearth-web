@@ -44,10 +44,10 @@ angular.module('hearth.directives').directive('avatar', [function() {
 				return '0 0 ' + (upvotes > 0 ? '40px' : '0') + ' ' + spread + 'px #FFF09C';
 			}
 
-			$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user')
+			$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user') + ' ' + ($attrs.showThanks ? 'with-thanks':'');
 			$scope.style = {};
 			if ($attrs.src && typeof $scope.src != 'undefined') $scope.style['background-image'] = 'url(' + $scope.src + ')';
-			if ($attrs.thanks && $scope.showGlow === true) $scope.style['box-shadow'] = getBoxShadow($scope.thanks);
+			//if ($attrs.thanks && $scope.showGlow === true) $scope.style['box-shadow'] = getBoxShadow($scope.thanks);
 		}
 	}
 

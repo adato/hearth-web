@@ -7,7 +7,7 @@
 		<form ng-submit="save()" id="communityForm" name="communityForm" novalidate>
 			<div class="medium-flex-grid block">
 				<div class="flex-7 flex-grid">
-					<div>
+					<div class="icon-wrapper">
 						<i class="fa fa-fw fa-2x block--leading-icon fa-users"></i>
 					</div>
 					<div class="flex-1">
@@ -27,11 +27,22 @@
 						</label>
 					</div>
 				</div>
+				<div class="flex-5 medium-order-last" ng-cloak>
+					<div image-preview-direct-upload class="big position-relative" result="community.avatar" options="avatarUploadOpts">
+						<img class="preview" ng-if="community.avatar.public_avatar_url" ng-src="{{ community.avatar.public_avatar_url }}" resized-thumbnail-image exif-rotated/>
+						<img class="preview" ng-if="!community.avatar.file && community.avatar.large" ng-src="{{ community.avatar.large }}" resized-thumbnail-image/>
+						<div class="text">
+							<i class="fa fa-plus-square-o"></i>
+							<span translate="PROFILE.EDIT.UPLOAD_AVATAR_IMAGE"></span>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<div class="flex-grid block">
-				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-eye"></i>
+				<div class="icon-wrapper">
+					<i class="fa fa-fw fa-2x block--leading-icon icon-privacy"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="COMMUNITY.CREATE.PRIVACY"></h2>
@@ -68,8 +79,8 @@
 
 			<div class="display-flex flex-reverse flex-space-between">
 				<button type="submit" class="button right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5" translate="COMMON.ACTION_SAVE"></button>
-				<a ng-if="!community._id" tabindex="0" ui-sref="communities" class="revert-changes" translate="COMMUNITY.CREATE.ACTION_CANCEL_ADD"></a>
-				<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
+				<a ng-if="!community._id" tabindex="0" ui-sref="communities" class="button hollow revert-changes" translate="COMMUNITY.CREATE.ACTION_CANCEL_ADD"></a>
+				<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="button hollow revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
 			</div>
 
 		</form>
@@ -79,8 +90,8 @@
 
 			<!-- ==================================== Change admin in community ================================ -->
 			<div class="flex-grid block">
-				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-share"></i>
+				<div class="icon-wrapper">
+					<i class="fa fa-fw fa-2x block--leading-icon icon-sdilet"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="COMMUNITY.SETTINGS.CHANGE_ADMIN.0"></h2>
@@ -102,8 +113,8 @@
 			<hr />
 			<!-- ==================================== Delete community ================================ -->
 			<div class="flex-grid block">
-				<div>
-					<i class="fa fa-fw fa-2x block--leading-icon fa-minus-circle"></i>
+				<div class="icon-wrapper">
+					<i class="fa fa-fw fa-2x block--leading-icon icon-close"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="COMMUNITY.SETTINGS.DELETE"></h2>

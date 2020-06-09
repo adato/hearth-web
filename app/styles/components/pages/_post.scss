@@ -4,8 +4,9 @@ $arrowTop: 25px;
 $imageSize: 80px;
 $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 
-$ui-color-comment-icon: #21B2E3;
-$ui-color-like-icon: #FF68B0;
+$ui-color-comment-icon: #1fb1e8;
+$ui-color-like-icon: #ec1c24;
+$ui-color-share-icon: #a7bd1e;
 
 .user {
 	position: relative;
@@ -86,8 +87,8 @@ a.user {
 		border-radius: 50%;
 	}
 	&.non-responsive {
-		width: 32px;
-		height: 32px;
+		width: 33px;
+		height: 33px;
 
 		& > i {
 			font-size: 17px;
@@ -121,26 +122,58 @@ a.user {
 	color: $colorDarkGray;
 	border-top-left-radius: 50%;
 	border-bottom-right-radius: 50%;
+	&::before {
+		content:"";
+		display:block;
+		width:33px;
+		height:33px;
+		position:absolute;
+		border-radius:50%;
+	}
+}
+
+.item-option-bg-need,
+.item-option-bg-borrow {
+	background-color: darken($secondary-color, 10%);
+	border-top-right-radius: 50%;
+	&::before {
+		background-color: $secondary-color;
+	}
 }
 .item-option-bg-offer,
 .item-option-bg-lend {
-	background-color: $tertiary-color;
+	background-color: darken($tertiary-color, 10%);
 	border-bottom-left-radius: 50%;
+	&::before {
+		background-color: $tertiary-color;
+	}
 }
 .item-option-bg-infogift {
 	background-color: $primary-color;
 	border-radius: 50%;
 	i.fa {
-		font-size:19px;
+		font-size:18px;
+		width:unset;
+		height:unset;
+		margin-top: 1px;
+    margin-left: 1px;
 	}
 }
 
 .item-option-bg-rating {
-	background-color: $primary-color;
 	border-top-right-radius: 50%;
 	border-bottom-right-radius: 50%;
+	&.positive { background-color: darken($tertiary-color, 10%); }
+	&.positive::before { background-color: $tertiary-color;	}
+	&.negative { background-color: darken($new-color-red, 10%); 	}
+	&.negative::before { background-color: $new-color-red; 	}
 	i.fa {
 		font-size:19px;
+	}
+	&.flip {
+		border-top-right-radius: 0%;
+		border-top-left-radius: 50%;
+		border-bottom-left-radius: 50%;
 	}
 }
 
@@ -167,11 +200,7 @@ button.active .item-option-bg-borrow > i,
 button.active .item-option-bg-lend > i {
 	background-image: url('/app/assets/img/icons/clock-clr.svg');
 }
-.item-option-bg-need,
-.item-option-bg-borrow {
-	background-color: $secondary-color;
-	border-top-right-radius: 50%;
-}
+
 .item-option-bg-type > i:not(.fa) {
 	font-size: 10px;
 }
@@ -195,18 +224,18 @@ button.active[disabled] .item-option-bg-type {
 	position: absolute;
 	top: 25px;
 	margin-top: -15px;
-	margin-left: -15px;
+	// margin-left: -15px;
 	right: -30px;
 }
 
 @include breakpoint(medium up) {
 	.item-option-bg-type {
-		width: 32px;
-		height: 32px;
+		width: 33px;
+		height: 33px;
 	}
 	.item-option-bg-type > i {
 		width: 16px; height: 16px;
-		background-size: 16px 16px;
+		background-size: 15px 16px;
 	}
 	.item-option-bg-type.by-avatar {
 		top: 37px;
@@ -430,11 +459,11 @@ button.active[disabled] .item-option-bg-type {
 	@include breakpoint(large up) {
 		.has-delimiter{
 			position: relative;
-			padding-left: 40px;
+			padding-left: 20px;
 
-			.user{
-				max-width: 240px;
-			}
+			// .user{
+			// 	max-width: 240px;
+			// }
 		}
 		.has-delimiter:before {
 			content: '';
@@ -443,7 +472,7 @@ button.active[disabled] .item-option-bg-type {
 			left: 0;
 			background: image-url("delimiter.png");
 			opacity: .5;
-			width: 40px;
+			width: 20px;
 			height: 500px;
 			background-size: 20px 500px;
 			background-position: 5px 0;
@@ -570,6 +599,8 @@ button.active[disabled] .item-option-bg-type {
 		.touchable-pink:hover { color:lighten($ui-color-like-icon, 20%); }
 		.touchable-pink:focus,
 		.touchable-pink:active { color:darken($ui-color-like-icon, 20%); }
+		.touchable-green { color:$ui-color-share-icon; }
+		.touchable-green:hover { color:lighten($ui-color-share-icon, 20%); }
 
 		.fa-inverse{
 			color: $colorLightGray;
@@ -601,8 +632,13 @@ button.active[disabled] .item-option-bg-type {
 
 // show full heart on hover, but only when there is no loading
 .fa-hover-heart:hover > .fa:not(.fa-spinner)::before {
-	content: '\f004';
+	font-family: 'icomoon';
+	content: '\e91d';
 }
+
+// .fa-hover-heart {
+// 	margin-top:6px;
+// }
 
 
 #confirm-delete,

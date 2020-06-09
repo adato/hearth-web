@@ -1,8 +1,8 @@
 <div class="footer-item-bordered" id="comments">
-  <div ng-if="vm.showMoreCommentsLink" class="footer-item background-light-gray">
+  <div ng-if="vm.showMoreCommentsLink" class="footer-item xbackground-light-gray">
     <a ng-href="{{:: $root.getProfileLink('Post', vm.postId) + '#comments' }}" translate="POST.COMMENTS.ACTION_VIEW_ALL" class="color-primary"></a>
   </div>
-  <div ng-if="!vm.loading" ng-repeat="item in vm.model" class="footer-item background-light-gray position-relative" id="comment-{{ item._id }}" ng-mouseover="vm.showControls = item._id">
+  <div ng-if="!vm.loading" ng-repeat="item in vm.model" class="footer-item xbackground-light-gray position-relative" id="comment-{{ item._id }}" ng-mouseover="vm.showControls = item._id">
     <div class="medium-flex flex-space-between">
       <div class="flex flex-divided-medium margin-right-tiny flex-align-start full-width">
         <div class="v2 user text-center" info-bubble=":: item.user" info-bubble-type=":: item.user._type">
@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-  <form name="postCommentForm" ng-submit="vm.submit(vm.message)" class="footer-item background-light-gray">
+  <form name="postCommentForm" ng-submit="vm.submit(vm.message)" class="footer-item xbackground-light-gray">
     <div class="block margin-bottom-small flex flex-divided-medium flex-align-start">
       <avatar src="vm.loggedUser.avatar.normal" size="small"></avatar>
       <div style="width:100%;">

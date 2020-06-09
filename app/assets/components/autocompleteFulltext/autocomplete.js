@@ -30,6 +30,7 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
                     users: false,
                     communities: false,
                 }
+                var autocompleteTimeoutPromise = null;
 
                 scope.showAutocompleteWithSearchPhrases = function () {
                     scope.autocompleted.users = [];
@@ -59,10 +60,10 @@ angular.module('hearth.directives').directive('autocompleteFulltext', ['$timeout
 
                 scope.$watch('ngModel', function (newVal, oldVal) {
                     if (newVal && !newVal.length) return; // filter null query
-                    $timeout(function () {
+                    if (autocompleteTimeoutPromise) $timeout.cancel(autocompleteTimeoutPromise);
+                    autocompleteTimeoutPromise = $timeout(function () {
                         scope.autocompleted.default = [];
                         scope.searchAutocomplete(newVal);
-
                     }, 500);
                     
                 });

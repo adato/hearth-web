@@ -14,15 +14,15 @@ $large-avatar-size: 295px;
 		display: block;
 		border-radius: 50%;
 		background-size: cover;
+		border:1px solid $new-color-avatar-border;
 	}
 
 	/** == Shade & height == */
-	.avatar-image::before {
+	.avatar-image::after {
 	    content: '';
 	    display: block;
 	    padding-top: 100%;
-		border-radius: 50%;
-		box-shadow: -3px 3px 6px rgba(0,0,0,.5) inset;
+			border-radius: 50%;
 	}
 
 	&.avatar-medium .avatar-thanks,
@@ -32,10 +32,10 @@ $large-avatar-size: 295px;
 
 	/** == Default avatars == */
 	&.avatar-user {
-		background-image: url('../img/no-avatar.jpg');
+		background-image: url('../img/person-avatar.png');
 	}
 	&.avatar-community {
-		background-image: url('../img/no-cm-avatar.jpg');
+		background-image: url('../img/group-avatar.png');
 	}
 
 	&.faux-avatar {
@@ -128,35 +128,28 @@ $large-avatar-size: 295px;
 	}
 }
 
-.avatar-thanks {
-	text-shadow: none;
-	border-radius:18px;
-	line-height:30px;
-	background:#FFF09C;
-	border: 1px solid #D2C67E;
-	color: black;
-	padding: 2px 5px;
-	font-weight: bold;
-	font-size:25px;
-	margin:auto;
-	width:fit-content;
-	min-width: 36px;
-	min-height: 36px;
+.avatar.with-thanks .avatar-image {
+	border: 1px solid #fa5801;
 }
 
-
-.info-bubble-content .avatar-thanks,
-.avatar .avatar-thanks {
-	font-size:9pt;
-	right:0;
-	bottom:5px;	
+.avatar-thanks {
 	display:block;
-	line-height:16px;
-	border-radius:10px;
-	padding: 1px 3px;
-	min-width:20px;
-	min-height:20px;
-	text-align:center;
+	width:fit-content;
+	margin:auto;
+	min-width: 40px;
+	min-height: 18px;
+	padding: 2px 5px;
+	
+	//position:absolute;
+	right:20px;
+	
+	background-image: linear-gradient(to bottom, #ff4501, #ec1c24);
+	border-radius: 2px;
+	color:$white;
+	bottom:-5px;	
+	text-shadow: none;
+	font-weight: bold;
+	font-size:12px;
 }
 
 .avatar .avatar-thanks {

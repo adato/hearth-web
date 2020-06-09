@@ -4,6 +4,8 @@
   font-family: $body-font-family;
   white-space: nowrap;
   transition: all .25s ease-out;
+  font-size: 14px !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
 
   @include breakpoint(medium down) {
     padding-top: 14px;
@@ -12,12 +14,12 @@
 
   // PRIMARY BUTTON (BLUE)
   &, &.button.primary {
-    @include button-style($primary-color, scale-color($primary-color, $lightness: 20%), $white);
+    @include button-style($primary-color, scale-color($primary-color, $lightness: -15%), $white);
   }
 
   // SECONDARY BUTTON (GREEN)
   &.secondary, &.need {
-    @include button-style($secondary-color, scale-color($secondary-color, $lightness: 20%), $white);
+    @include button-style($secondary-color, scale-color($secondary-color, $lightness: -15%), $white);
     &.hollow {
       @include button-style($white, $white, $secondary-color);
       border-color: $secondary-color;
@@ -31,11 +33,18 @@
     &.disabled {
       @include button-style(scale-color($secondary-color, $lightness: 40%), scale-color($secondary-color, $lightness: 40%), $white);
     }
+    &.secondary-light {
+      @include button-style(#f2dfce, scale-color(#f2dfce, $lightness: -15%), #fa5801);
+    }
+  }
+
+  &.fb-button {
+    @include button-style(#4267b2, scale-color(#4267b2, $lightness: 15%), $white);
   }
 
   // TERTIARY BUTTON (ORANGE)
   &.tertiary, &.offer {
-    @include button-style($tertiary-color, scale-color($tertiary-color, $lightness: 10%), $white);
+    @include button-style($tertiary-color, scale-color($tertiary-color, $lightness: -15%), $white);
     &.hollow {
       @include button-style($white, $white, $tertiary-color);
       border-color: $tertiary-color;
@@ -75,7 +84,7 @@
 
   .button-group.large &,
   &.large {
-    padding: 1.5em 1em;
+    padding: 1em 1em;
     @include breakpoint(small down) {
       padding:0.5em;
       margin-bottom:0.5em;
@@ -120,11 +129,39 @@
 
 .button.rounded {
   border-radius:50%;
-  width:40px;
-  height:40px;
+  width:44px;
+  height:44px;
+}
+
+@include breakpoint(medium up) {
+  .button:not(.rounded) {
+    min-width:130px;
+  }
 }
 
 // RESET underline of <a>
 a.button {
   text-decoration: none;
 }
+
+/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability
+to remove !important would be also nice .. someday */
+
+// button.disabled,
+// button[disabled],
+// .button.disabled,
+// .button[disabled] {
+// 	//background-color: lighten($primary-color, 30%);
+// 	&:hover {
+// 		//background-color: lighten($primary-color, 30%);
+// 	}
+// }
+// button.neutral,
+// button.neutral:disabled{
+// 	//background-color: darken($colorLightGray, 20%) !important;
+// }
+// button.neutral:hover,
+// button.neutral:focus{
+// 	//background-color: $quaternary-color !important;
+// }
+/* /kamil */

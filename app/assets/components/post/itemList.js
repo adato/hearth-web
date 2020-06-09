@@ -51,7 +51,7 @@ angular.module('hearth.directives').directive('itemList', [
 				function init(params) {
 					scope.loading = true;
 					scope.options = scope.options || {};
-					if (typeof scope.options.getData !== 'function') throw new TypeError('Unsupported itemList setup');
+					if (typeof scope.options.getData !== 'function') return;// throw new TypeError('Unsupported itemList setup');
 					var responseTransform = scope.options.responseTransform || angular.identity;
 
 					var items = [];

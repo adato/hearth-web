@@ -19,7 +19,7 @@
 				display: inline;
 				word-wrap: break-word;
 				line-height: 1.5;
-				text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
+				font-size:2rem;
 				a {
 					color: darken($quaternary-color, 40%);
 				}
@@ -391,12 +391,12 @@
 					left: 20px;
 					right: 20px;
 				}
-				&.positive {
-					background: #FFF09C; //lighten($tertiary-color, 45%);
-				}
-				&.negative {
-					background: lighten($primary-color, 45%);
-				}
+				// &.positive {
+				// 	background: #FFF09C; //lighten($tertiary-color, 45%);
+				// }
+				// &.negative {
+				// 	background: lighten($primary-color, 45%);
+				// }
 				small {
 					font-size: 0.85rem;
 					line-height: 125%;
@@ -613,16 +613,16 @@
 .bottom-tabs {
 	text-align: center;
 	font-weight: bold;
-	margin: {
-		top: 30px;
-		bottom: 30px;
-	}
+	// margin: {
+	// 	top: 30px;
+	// 	bottom: 30px;
+	// }
 	h2 {
 		color: #F95800;
 		font-size: 20px;
 	}
 	ul {
-		margin: 0 3*$ui-small-grid-size;
+		margin:0;// -1px 3*$ui-small-grid-size;
 		li {
 			display: inline-block;
 			margin: {
@@ -632,30 +632,32 @@
 				bottom: 0;
 			}
 			& > a {
-				position: relative;
-				top: -3px;
 				width: initial;
-				background: darken($colorLightGray, 30%);
-				color: lighten($colorLightGray, 20%);
-				border-top: 2px solid darken($colorLightGray, 20%);
-				text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
+				//background: darken($colorLightGray, 30%);
+				//color: lighten($colorLightGray, 20%);
+				border-bottom: 4px solid darken($colorLightGray, 20%);
+				color: darken($colorLightGray, 40%);
+				//text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
 				min-width: 250px;
 				font-size: 1rem;
 				padding: {
 					left: $ui-grid-size;
 					right: $ui-grid-size;
 					top: $ui-small-grid-size;
-					bottom: $ui-small-grid-size;
+					bottom: 2*$ui-small-grid-size;
 				}
-				border-top-left-radius: $global-radius / 2;
-				border-top-right-radius: $global-radius / 2;
+				//border-top-left-radius: $global-radius / 2;
+				//border-top-right-radius: $global-radius / 2;
 				&:hover {
-					border-top: 2px solid darken($colorLightGray, 30%);
-					background: darken($colorLightGray, 40%);
+				//	border-top: 2px solid darken($colorLightGray, 30%);
+				//	background: darken($colorLightGray, 40%);
+					color: darken($colorLightGray, 40%);
+					border-bottom: 4px solid darken($colorLightGray, 40%);
 				}
 				&.selected {
-					background: $secondary-color;
-					border-top: 2px solid lighten($secondary-color, 20%);
+				//	background: $secondary-color;
+					color: $secondary-color;
+					border-bottom: 4px solid $secondary-color;
 				}
 			}
 		}
@@ -672,12 +674,12 @@
 			}
 		}
 	}
-	&:after {
-		content: " ";
-		display: block;
-		border-bottom: 4px solid $secondary-color;
-		width: 100%;
-	}
+	// &:after {
+	// 	content: " ";
+	// 	display: block;
+	// 	border-bottom: 4px solid $secondary-color;
+	// 	width: 100%;
+	// }
 }
 
 .people-listing {
@@ -768,12 +770,13 @@
 			left: 20px;
 			right: 20px;
 		}
-		&.positive {
-			background: lighten($tertiary-color, 45%);
-		}
-		&.negative {
-			background: lighten($primary-color, 45%);
-		}
+		border-bottom:1px solid $tertiary-color;
+		// &.positive {
+		// 	background: lighten($tertiary-color, 45%);
+		// }
+		// &.negative {
+		// 	background: lighten($primary-color, 45%);
+		// }
 		small {
 			font-size: 0.85rem;
 			line-height: 125%;

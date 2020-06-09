@@ -177,7 +177,7 @@
 									<div class="row">
 										<div class="column small-12 medium-display-table margin-bottom-small">
 											<div class='medium-display-table-cell'>
-												<span class="text-emphasize">{{:: item.author.name }}&nbsp;<span ng-if="item.author.verified === true" class="verified-icon "><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+												<span class="text-emphasize">{{:: item.author.name }}&nbsp;<span ng-if="item.author.verified === true" class="verified-icon "><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 												</span>
 											</div>
 											<div class="medium-display-table-cell addon nowrap date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
@@ -190,7 +190,7 @@
 										<div class="column small-12 text-right">
 											<a ng-href="{{:: getProfileLink('Conversation', item.conversation_id) }}">
 												<span translate="MESSAGING.ACTION_GO_TO_CONVERSATION"></span>&nbsp;
-												<i class="fa fa-comments-o"></i>
+												<i class="fa icon-bublina-out"></i>
 											</a>
 										</div>
 									</div>
@@ -217,13 +217,13 @@
 						<div class="line">
 							<div class="social fleft">
 								<a target="_blank" ng-if="item.author.twitter" href="{{item.author.twitter}}">
-									<i class="fa fa-twitter-square"></i>
+									<i class="fa icon-twitter"></i>
 								</a>
 								<a target="_blank" ng-if="item.author.facebook" href="{{item.author.facebook}}">
-									<i class="fa fa-facebook-square"></i>
+									<i class="fa icon-facebook"></i>
 								</a>
 								<a target="_blank" ng-if="item.author.linkedin" href="{{item.author.linkedin}}">
-									<i class="fa fa-linkedin"></i>
+									<i class="fa icon-linkedin"></i>
 								</a>
 							</div>
 							<div class="text-right">
@@ -234,11 +234,12 @@
 				</div>
 			</div>
 
-			<div ng-show="relatedLoaded" class="margin-top-large">
-        		<hr />
-				<h3 translate="POST.RELATED.TITLE"></h3>
-				<item-list options="relatedPostsOptions"></item-list>
-        		<vote-yes-no ng-if="relatedLoaded" title="{{:: 'POST.RELATED.QUESTION' | translate }}" vote="sendVoteResult(result)" is-voted="voted"></vote-yes-no>
+			<div ng-show="relatedLoaded" class="margin-top-large row">
+					<hr />
+					<div class="small-12 large-8">
+					<h3 translate="POST.RELATED.TITLE"></h3>
+					<item-list options="relatedPostsOptions"></item-list>
+					</div>
 			</div>
 
 		</section>

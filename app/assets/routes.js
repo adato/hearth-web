@@ -110,18 +110,15 @@ angular.module('hearth').config([
 			})
 			.state('feedback', {
 				url: '/feedback',
-				templateUrl: 'assets/pages/static/feedback.html',
-				controller: 'FeedbackCtrl'
+				redirectTo: 'about'
 			})
 			.state('faq', {
 				url: '/faq',
-				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				redirectTo: 'about'
 			})
 			.state('taxes', {
 				url: '/taxes',
-				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				redirectTo: 'about'
 			})
 			.state('terms', {
 				url: '/terms',
@@ -135,8 +132,7 @@ angular.module('hearth').config([
 			})
 			.state('support-us', {
 				url: '/support-us',
-				templateUrl: 'assets/pages/static/localizationPage.html',
-				controller: 'StaticPageCtrl'
+				redirectTo: 'about'
 			})
 			.state('components', {
 				url: '/components',
@@ -263,7 +259,7 @@ angular.module('hearth').config([
 			})
 			.state('aboutUs', {
 				url: '/about-us',
-				templateUrl: 'assets/pages/static/AboutUs.html'
+				redirectTo: 'about'
 			})
 			// about page
 			.state('about', {
@@ -274,70 +270,47 @@ angular.module('hearth').config([
 				// ambassadors page
 				.state('ambassadors', {
 					url: '/about/ambassadors',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'ambassadors',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				// ambassadors page
 				.state('ambassadors-list', {
 					url: '/about/ambassadors/list',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'ambassadorsList',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				// napadnice (spreading)
 				.state('spreading', {
 					url: '/about/spreading',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'idealist',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				// udernice (communicate)
 				.state('communicate', {
 					url: '/about/communicate',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'todoist',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				// udernice
 				.state('similar-projects', {
 					url: '/about/similar-projects',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'similarProjects',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				.state('about-custodians', {
 					url: '/about/custodians',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'custodians',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				.state('custodians', {
 					url: '/custodians',
-					templateUrl: 'assets/pages/about/ambassadors.html',
-					selectedTab: 'custodians',
-					controller: 'AboutCtrl',
-					controllerAs: 'ctrl'
+					redirectTo: 'about'
 				})
 				.state('principles-of-giving', {
 					url: '/about/principles',
-					templateUrl: 'assets/pages/about/principles.html',
-					selectedTab: 'principles',
-					controller: 'AboutCtrl',
+					redirectTo: 'about'
 				})
 			.state('ourStory', {
 				url: '/our-story',
-				templateUrl: 'assets/pages/static/OurStory.html'
+				redirectTo: 'about'
 			})
 			.state('contacts', {
 				url: '/contacts',
-				templateUrl: 'assets/pages/static/Contacts.html'
+				redirectTo: 'about'
 			})
 			.state('error404', {
 				templateUrl: 'assets/pages/static/error404.html',
@@ -352,15 +325,11 @@ angular.module('hearth').config([
 			})
 			.state('events', {
 				url: '/events',
-				templateUrl: 'assets/pages/events/events.html',
-				controller: 'EventsCtrl',
-				controllerAs: 'vm',
+				redirectTo: 'market'
 			})
 			.state('event-detail', {
 				url: '/event/:id',
-				templateUrl: 'assets/pages/events/event.html',
-				controller: 'EventCtrl',
-				controllerAs: 'vm',
+				redirectTo: 'market'
 			})
 			;
 

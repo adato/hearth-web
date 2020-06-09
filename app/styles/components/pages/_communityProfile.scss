@@ -31,8 +31,38 @@
 		}
 	}
 
+	&>header {
+		.user-basic {
+			background-color:$new-color-pinkish;
+		}
+	}
+
+	@include breakpoint(medium up) {
+		&>header {
+			.user-basic {
+				margin-top: -25px !important;
+				padding-bottom:0px !important;
+				&>.row {
+					display: flex;
+					align-items: center;
+				}
+			}
+		}
+	}
+
+	@include breakpoint(medium only) {
+		&>header {
+			.user-basic {
+				margin-top: 0px !important;
+			}
+		}
+	}
+
+
+
 	@include breakpoint(small only) {
 		header .user-basic {
+			margin-top: -6px !important;
 			h1 {
 				text-align:center;
 			}

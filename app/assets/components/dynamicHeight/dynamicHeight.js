@@ -16,9 +16,12 @@ angular.module('hearth.directives').directive('dynamicHeight', ['$timeout', '$wi
 			},
 			link: function(scope, element, attrs) {
 				scope.minHeight = scope.minHeight || 200;
+				var device = getDevice();
+				var offset = scope.offset;
+				if (device == 'mobile') offset = offset / 1.75;
 
 				scope.onResize = function() {
-					var height = $(scope.container || $window).height() - parseInt(scope.offset);
+					var height = $(scope.container || $window).height() - parseInt(offset);
 					$(element).height((height < scope.minHeight) ? scope.minHeight : height);
 				}
 

@@ -20,6 +20,7 @@ angular.module('hearth.directives').directive('infoBubble', ['$timeout', '$windo
 
         element.on('mouseenter', function () {
           // should remove all waiting and show one
+          if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) return;
           InfoBubbleSetup.cancelIntents();
           InfoBubbleSetup.setIntent({ 
             model: scope.infoBubble, 

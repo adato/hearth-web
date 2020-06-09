@@ -320,7 +320,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.init = function() {
 			//refreshDataFeed();
 			fetchCommunity();
-			
 		};
 		
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {

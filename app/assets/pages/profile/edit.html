@@ -18,12 +18,8 @@
 				</div>
 			</div>
 			<div class="flex-7 flex flex-divided-large flex-align-start">
-				<div>
-					<!-- <span class="fa-stack fa-2x block--leading-icon">
-						<i class="fa fa-circle-thin fa-stack-2x"></i>
-						<i class="fa fa-stack-1x fa-user"></i>
-					</span> -->
-					<i class="fa fa-fw fa-2x block--leading-icon fa-user"></i>
+				<div class="icon-wrapper">
+					<i class="fa fa-fw fa-2x block--leading-icon icon-profile"></i>
 				</div>
 				<div class="flex-1">
 					<h2 translate="PROFILE.EDIT.ME_TITLE"></h2>
@@ -51,8 +47,8 @@
 		</div>
 
 		<div class="flex-grid block">
-			<div>
-				<i class="fa fa-fw fa-2x block--leading-icon fa-heart"></i>
+			<div class="icon-wrapper">
+				<i class="fa fa-fw fa-2x block--leading-icon icon-srdce"></i>
 			</div>
 			<div class="flex-1">
 				<h2 translate="PROFILE.EDIT.ABOUT_ME_TITLE"></h2>
@@ -72,8 +68,8 @@
 		</div>
 
 		<div class="flex-grid block">
-			<div>
-				<i class="fa fa-fw fa-2x block--leading-icon fa-globe"></i>
+			<div class="icon-wrapper">
+				<i class="fa fa-fw fa-2x block--leading-icon icon-globe"></i>
 			</div>
 			<div class="flex-1">
 				<h2 translate="PROFILE.EDIT.LOCATIONS_TITLE"></h2>
@@ -83,8 +79,8 @@
 		</div>
 
 		<div class="flex-grid block">
-			<div>
-				<i class="fa fa-fw fa-2x block--leading-icon fa-comments"></i>
+			<div class="icon-wrapper">
+				<i class="fa fa-fw fa-2x block--leading-icon icon-bublina"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
 				<h2 translate="PROFILE.EDIT.MY_LANGUAGES_TITLE"></h2>
@@ -102,7 +98,7 @@
 		</div>
 
 		<div class="flex-grid block">
-			<div>
+			<div class="icon-wrapper">
 				<i class="fa fa-fw fa-2x block--leading-icon fa-phone"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
@@ -192,8 +188,8 @@
 		</div>
 
 		<div class="flex-grid block">
-			<div>
-				<i class="fa fa-fw fa-2x block--leading-icon fa-envelope"></i>
+			<div class="icon-wrapper">
+				<i class="fa fa-fw fa-2x block--leading-icon icon-mail"></i>
 			</div>
 			<div class="flex-1" test-beacon="language-section">
 				<h2 translate="PROFILE.EDIT.NETWORKS_TITLE"></h2>
@@ -226,7 +222,7 @@
 				<div class="medium-flex-grid">
 					<div class="block flex-1">
 						<label>
-							<i class="fa fa-globe"></i>&nbsp;<span translate="PROFILE.EDIT.MY_WEB"></span>
+							<i class="fa icon-globe"></i>&nbsp;<span translate="PROFILE.EDIT.MY_WEB"></span>
 							<div ng-repeat="web in profile.webs track by $index" class="block flex flex-align-start">
 								<input placeholder="{{ 'COMMON.EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)" test-beacon="web-input">
 								<button ng-hide="$first" type="button" class="touchable" ng-click="profile.webs.splice($index,1)">
@@ -247,7 +243,7 @@
 		</div>
 		<div class="display-flex flex-reverse flex-space-between block">
 			<button type="submit" class="button" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5" translate="COMMON.ACTION_SAVE"></button>
-			<a ui-sref="profile.default({id: loggedUser._id})" class="revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
+			<a ui-sref="profile.default({id: loggedUser._id})" class="button hollow revert-changes" translate="COMMON.ACTION_CANCEL_CHANGES"></a>
 		</div>
 	</form>
 </div>

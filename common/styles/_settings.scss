@@ -121,7 +121,7 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Open Sans','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'Raleway', 'Roboto', Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -131,6 +131,21 @@ $global-radius: 0.5714rem; // default is 0
 $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;
+
+
+$new-color-lightgray: #f6f5f0;
+$new-color-gray: #e2e1dd;
+$new-color-darkgray: #928f89;
+$new-color-border: #ebe6dd;
+$new-color-green: #a7bd1e;
+$new-color-orange: #ff4501;
+$new-color-red: #ec1c24;
+$new-border-radius: 4px;
+$new-color-text: #626260;
+$new-color-avatar-border: #cfc4ba;
+$new-color-input-bg: #f5f5f7;
+$new-color-pinkish: #f6eee6;
+
 
 @include add-foundation-colors;
 

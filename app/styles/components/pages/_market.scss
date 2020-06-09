@@ -20,6 +20,25 @@
 		top: -50px;
 		position: relative;
 		margin-bottom:-50px;
+	}	
+}
+
+@include breakpoint(medium down) {
+	.market .main-market-column, .market .main-dashboard-column {
+		padding:0;
 	}
-	
+}
+
+.market .promo-container {
+	background-color: $new-color-pinkish;
+}
+
+.welcome-box {
+	h1 {
+		font-family: 'Playfair Display'; 
+		font-size:60px; 
+		color: #626260; 
+		font-weight:bold; 
+		font-style: italic;
+	}
 }

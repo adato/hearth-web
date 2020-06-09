@@ -4,7 +4,7 @@
 			<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id) }}">
 				<avatar src="item.entity_to.avatar.normal" type="item.entity_to._type"></avatar>
 				<div class="name">{{ item.entity_to.name}}
-						&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+						&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 				</div>
 			</a>
 		</div>
@@ -21,15 +21,21 @@
 				<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id) }}">
 					<avatar src="item.entity_to.avatar.normal" type="item.entity_to._type" size="small"></avatar>
 					<div class="name">{{:: item.entity_to.name}}
-							&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw fa-check-circle " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
+							&nbsp;<span ng-if="item.entity_to.verified === true" class="verified-icon color-offer"><i class="fa fa-fw icon-verified " title="{{ 'PROFILE.IS_VERIFIED' | translate }}" tipsy></i></span>
 					</div>
 				</a>
 			</div>
 			<div class="left">
-				<b ng-if="item.score == -1">
-						<span class="score-icon">⛅️</span> <span translate="PROFILE.RATING.NEGATIVE"></span></b>
-				<b ng-if="item.score == 1">
-					<span class="score-icon">🌞</span> <span translate="PROFILE.RATING.POSITIVE"></span></b>
+				<div class="display-inline-block margin-right-medium">
+					<div class="item-option-bg-type item-option-bg-rating flip" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1 }">
+						<span ng-if="item.score == -1" class="score-icon icon-sad"></span>
+						<span ng-if="item.score == 1" class="score-icon icon-thanks"></span>
+					</div>
+				</div>
+				<b class="rating-score" ng-if="item.score == -1">
+					<span translate="PROFILE.RATING.NEGATIVE"></span></b>
+				<b class="rating-score" ng-if="item.score == 1">
+					<span translate="PROFILE.RATING.POSITIVE"></span></b>
 				<small ng-if="item.post_id">
 					&nbsp;<span translate="PROFILE.RATING.ON_POST"></span>
 					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: postTypes[item.post.author._type][item.post.exact_type][item.post.type] | translate}} {{:: item.post.title }}">

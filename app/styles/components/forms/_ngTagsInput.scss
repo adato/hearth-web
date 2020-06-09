@@ -33,13 +33,13 @@ tags-input {
 			border: 0 !important;
 		}
 		.tag-item {
-			padding: 0 5px;
+			padding: 5px 7px;
 			display: inline-block;
 			float: left;
 			min-height: 22px;
 			line-height: 20px;
 			border: 1px solid #acacac;
-			border-radius: 8px;
+			border-radius: $new-border-radius;
 			background-color: white;
 			font-size: $global-font-size;
 			margin: 3px;
@@ -50,8 +50,8 @@ tags-input {
 				background: none;
 				cursor: pointer;
 				color: #585858;
-				font-weight: bold;
-				font-size: 14px;
+				font-size: 24px;
+				line-height:16px;
 				float:right;
 				&:active {
 					color: red;
