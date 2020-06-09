@@ -286,23 +286,23 @@ nav {
 						padding-top:5px;
 						width:40px;
 						height:30px;
-
-						&.unread { 
-							background-color: $new-color-green; // NEW
-							color: $new-color-green; // NEW 
-						}
-
+						
+						
 						span.fa { 
 							font-size:20px; 
 						}
 					}
-					// &.logged-user-dropdown .avatar .avatar-image { border:3px solid $white; }
-
+					&.unread { 
+						.inner-icon {
+							background-color: $new-color-green; // NEW
+							color: $white; // NEW 
+						}
+					}
+					
 					&:hover, &.active {
 						color: $new-color-orange;
 						.inner-icon .messages-icon > span { color: $white; }
 						.inner-icon, .inner-icon *, .inner-icon .messages-icon::after { background-color: $new-color-orange; color:$white; }
-						//&.logged-user-dropdown .avatar .avatar-image { border-color:$secondary-color; }
 					}
 				}
 			}
