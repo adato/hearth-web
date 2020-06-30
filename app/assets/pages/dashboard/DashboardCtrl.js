@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('DashboardCtrl', [
-  '$scope', '$rootScope', 'Fulltext', 'User', 'HearthCrowdfundingBanner', 'PostAux', 'Interests', 'Ratings',
-  function ($scope, $rootScope, Fulltext, User, HearthCrowdfundingBanner,  PostAux, Interests, Ratings) {
+  '$scope', '$rootScope', 'Fulltext', 'User', 'HearthCrowdfundingBanner', 'PostAux', 'Interests', 'Ratings', 'Info',
+  function ($scope, $rootScope, Fulltext, User, HearthCrowdfundingBanner,  PostAux, Interests, Ratings, Info) {
 
     $scope.epOpts = null;
     $scope.userOpts = null;
@@ -18,6 +18,10 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
     $scope.lastRatings = null;
     $scope.lastRatingsPage = 1;
     $scope.selectedTab = null;
+
+    $scope.dashboard = {
+      giftCount: 58678
+    };
 
     $scope.setTab = function (tab) {
       $scope.selectedTab = tab;
@@ -118,11 +122,13 @@ angular.module('hearth.controllers').controller('DashboardCtrl', [
       // init exemplary posts
       $scope.loading = true;
       $scope.setTab('popular');
-     
-      // // fetch blogposts
-      // HearthCrowdfundingBanner.initBlogposts().then((blogposts) => {
-      //   $scope.blogposts = blogposts;
-      // })
+
+      if (!$rootScope.loggedUser._id) {
+        Info.get().$promise.then(function (result) {
+          $scope.dashboard.giftCount = result.posts.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        });
+      }
+
     }
 
     init();
