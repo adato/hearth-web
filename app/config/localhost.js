@@ -1,36 +1,35 @@
-var $$localConfig; // development
+var $$localConfig; // production
 
 $$localConfig = {
-	env: 'development',
-	fbAppId: '1495788017321716', // dev
-	angularDebugInfoEnabled: true,
+	env: 'production',
+	fbAppId: '277542219089599',
+	angularDebugInfoEnabled: false,
 	languages: {
 		"cs": "cs_CZ",
 		"sk": "sk_SK",
-		"en": "en_US",
-		"clean": false
+		"en": "en_US"
 	},
 	oauth: {
-		facebook: "1495788017321716",
-		google: '1090116646962-720t5edifghd7fqua7pn6hc5cpgbdiis.apps.googleusercontent.com'
+		facebook: "277542219089599",
+		google: '498929272646-pn752gcu0r0d783pn4i8k6iuatmvf6cm.apps.googleusercontent.com'
 	},
 	map: {
-		apiKey: 'AIzaSyA7kTFu54onqOdKx0qWHNFhJovAOQiNFkM'
+		apiKey: 'AIzaSyCyNFqXADqUeQkYu9ed3FVsprK0vjR6SFo' //apiKey: 'AIzaSyDzCAYNej1CbceM6FC8cehufhI82HkYOis'
 	},
-	apiPath: 'https://api.dev.hearth.net',
-	rollbar: '6b7753ee76e044a7a9d41c62cde53f17',
+	apiPath: 'https://api2.hearth.net',
+	rollbar: '37749b1156e24ca986bf5a77dd74eefc',
 	websocket: {
-		url: 'wss://api.stage.hearth.net/cable',
+		url: 'wss://api2.hearth.net/cable',
 		debug: false
 	},
-	hotjar: '56502',
+	hotjar: '56494',
 	mixpanel: {
-		token: "da840eedc861f63c2b6de3119c5fd6dc"
+		token: "6b175f45d52ad5f52b7344b9cad15a8f"
 	},
 	newRelic: {
-		licenseKey: "f88b92ebf7",
-		applicationID: "5595469",
-		agent: "js-agent.newrelic.com/nr-515.min.js"
+		licenseKey: "b7ed760467",
+		applicationID: "5107330",
+		agent: "js-agent.newrelic.com/nr-632.min.js"
 	},
-	notificationUserId: '5af2d6ca4c5eaa00068c221f'
+	notificationUserId: '5af2d6ca4c5eaa00068c221f',
 };

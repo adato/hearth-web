@@ -12,16 +12,16 @@ $$localConfig = {
 	},
 	oauth: {
 		facebook: "1495788017321716",
-		google: '92033229844-v09m9smq112nj2rtj49g5etq4rh0nqpa.apps.googleusercontent.com'
+		google: '1090116646962-720t5edifghd7fqua7pn6hc5cpgbdiis.apps.googleusercontent.com'
 	},
 	map: {
-		apiKey: 'AIzaSyBayPzQHaRBdgUDqT79q683ZDAnw_enaII' // new Google dev MAP id
+		apiKey: 'AIzaSyA7kTFu54onqOdKx0qWHNFhJovAOQiNFkM'
 	},
-	apiPath: 'https://hapi.sangha.email',
+	apiPath: 'https://api.dev.hearth.net',
 	rollbar: '6b7753ee76e044a7a9d41c62cde53f17',
 	websocket: {
-		url: 'wss://hapi.sangha.email/cable',
-		debug: true
+		url: 'wss://api.stage.hearth.net/cable',
+		debug: false
 	},
 	hotjar: '56502',
 	mixpanel: {
@@ -32,5 +32,5 @@ $$localConfig = {
 		applicationID: "5595469",
 		agent: "js-agent.newrelic.com/nr-515.min.js"
 	},
-	notificationUserId: '5af2d6ca4c5eaa00068c221f',
+	notificationUserId: '5af2d6ca4c5eaa00068c221f'
 };

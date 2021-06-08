@@ -16,10 +16,10 @@ $$localConfig = {
 	map: {
 		apiKey: 'AIzaSyCyNFqXADqUeQkYu9ed3FVsprK0vjR6SFo' //apiKey: 'AIzaSyDzCAYNej1CbceM6FC8cehufhI82HkYOis'
 	},
-	apiPath: 'https://api.hearth.net',
+	apiPath: 'https://api2.hearth.net',
 	rollbar: '37749b1156e24ca986bf5a77dd74eefc',
 	websocket: {
-		url: 'wss://api.hearth.net/cable',
+		url: 'wss://api2.hearth.net/cable',
 		debug: false
 	},
 	hotjar: '56494',
